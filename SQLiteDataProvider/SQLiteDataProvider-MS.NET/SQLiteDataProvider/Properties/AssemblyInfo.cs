@@ -1,4 +1,24 @@
-﻿using System.Reflection;
+﻿#region "License"
+
+// Copyright (c) 2008 Andrew York
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+#endregion "License"
+
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -6,11 +26,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SQLiteDataProvider")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This is a Mono .NET class library that is a dataprovider for SQLite (http://sqlite.org/) a file and/or memory based database"")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Nond")]
+[assembly: AssemblyCompany("Andrew York")]
 [assembly: AssemblyProduct("SQLiteDataProvider")]
-[assembly: AssemblyCopyright("Copyright © Nond 2008")]
+[assembly: AssemblyCopyright("Copyright © Andrew York 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
