@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SQLiteDataProvider")]
-[assembly: AssemblyDescription("This is a Microsoft .NET class library that is a dataprovider for SQLite (http://sqlite.org/) a file and/or memory based database"")]
+[assembly: AssemblyDescription("This is a Microsoft .NET class library that is a dataprovider for SQLite (http://sqlite.org/) a file and/or memory based database")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Andrew York")]
 [assembly: AssemblyProduct("SQLiteDataProvider")]
@@ -52,4 +52,3 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyFileVersion("1.0.*")]
