@@ -1,0 +1,16 @@
+<Combine name="TreeStoreExample" fileversion="2.0">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <Entry build="True" name="TreeStoreExample" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" name="TreeStoreExample" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <StartMode startupentry="TreeStoreExample" single="True">
+    <Execute type="None" entry="TreeStoreExample" />
+  </StartMode>
+  <Entries>
+    <Entry filename="TreeStoreExample/TreeStoreExample.mdp" />
+  </Entries>
+</Combine>
