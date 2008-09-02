@@ -1,0 +1,20 @@
+<Combine name="SQLiteDataProvider" fileversion="2.0">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <Entry build="True" name="SQLiteDataProvider" configuration="Debug" />
+      <Entry build="True" name="SQLiteDataProvider-pkg" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" name="SQLiteDataProvider" configuration="Release" />
+      <Entry build="True" name="SQLiteDataProvider-pkg" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <StartMode startupentry="SQLiteDataProvider" single="True">
+    <Execute type="None" entry="SQLiteDataProvider" />
+    <Execute type="None" entry="SQLiteDataProvider-pkg" />
+  </StartMode>
+  <Entries>
+    <Entry filename="SQLiteDataProvider.mdp" />
+    <Entry filename="SQLiteDataProvider-pkg/SQLiteDataProvider-pkg.mdse" />
+  </Entries>
+</Combine>
