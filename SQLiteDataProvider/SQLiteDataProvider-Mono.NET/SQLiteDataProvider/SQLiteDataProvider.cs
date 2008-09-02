@@ -667,6 +667,7 @@ namespace SQLiteDataProvider
 		 * Not too sure where the ListStore and the TreeStore are going or if they will work well
 		 * I have had some problems with the data types not being correct
 		 * in the calling code - but that could very well be a brain fart on my part
+		 */
 		public Gtk.ListStore ExecuteListStore(string strSQL)
 		{
 			SqliteConnection sqlCN = GetConn();
@@ -761,7 +762,7 @@ namespace SQLiteDataProvider
 			Gtk.TreeStore ts = new Gtk.TreeStore(typeof(string), typeof(string));
 			return ts;			
 		}
-		*/
+		
 		#endregion "ListStore and TreeStore"
 		
 	}
