@@ -77,7 +77,7 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mono.Data">
-      <HintPath>..\..\..\..\..\Program Files\Mono-1.9\lib\mono\2.0\Mono.Data.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.SqliteClient">
       <HintPath>..\..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
