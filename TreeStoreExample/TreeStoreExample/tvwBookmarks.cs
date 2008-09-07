@@ -8,7 +8,7 @@
  */
 using System;
 using System.Data;
-using Mono.Data.SqliteClient;
+using Mono.Data.Sqlite;
 using Gtk;
 using System.Collections;
 
