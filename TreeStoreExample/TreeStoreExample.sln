@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-# SharpDevelop 3.0.0.3437
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeStoreExample", "TreeStoreExample\TreeStoreExample.csproj", "{33AE6C1B-149A-462D-A064-0B22E664F4F1}"
 EndProject
 Global
