@@ -41,7 +41,7 @@ namespace SQLiteDataProvider
 	/// <summary>
 	/// A dataprovider for SQLite and Mono .NET
 	/// </summary>
-	public class DataProvider: System.IDisposable
+	public class DataProvider
 	{
 		private string _ConnString = null;
 		private int _TimeOut = 300;
@@ -89,33 +89,14 @@ namespace SQLiteDataProvider
 		#region "Class Constructors"
 		
 		/// <summary>
-        ///  Class Constructor that specifies the IntPtr handle
-        ///  for disposing
-        /// </summary>
-        /// <param name="handle"></param>
-        public DataProvider(IntPtr handle)
-		{
-			 this.handle = handle;
-		}
-        
-		/// <summary>
-        ///  Class Constructor that specifies the IntPtr handle
-        ///  and the connection string
-        /// </summary>
-        /// <param name="Conn"></param>
-        /// <param name="handle"></param>
-		public DataProvider(string Conn,IntPtr handle)
-		{
-			 this.handle = handle;
-			 _ConnString = Conn;
-		}
-		
-		/// <summary>
         /// Base Class Constructor
         /// </summary>
 		public DataProvider()
 		{
-			
+			_ConnString = null;
+			_TimeOut = 0;
+			_ExceptionMessage = null;
+		    _ConnStringType = ConnectionStringType.FromCallingCode;
 		}
 		
 		/// <summary>
@@ -165,96 +146,14 @@ namespace SQLiteDataProvider
             _ConnString = Conn;
         }
 		
+		public void Dispose()
+		{
+			
+		}
+		
 		#endregion "Class Constructors"
 
-		#region "Items for Disposing"
-		
-		// Pointer to an external unmanaged resource.
-		private IntPtr handle;
-        // Other managed resource this class uses.
-        private Component component = new Component();
-        // Track whether Dispose has been called.
-        private bool disposed = false;
-
-        /// <summary>
-        /// Implement IDisposable.
-        /// Do not make this method virtual.
-        /// A derived class should not be able to override this method.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            // This object will be cleaned up by the Dispose method.
-            // Therefore, you should call GC.SupressFinalize to
-            // take this object off the finalization queue
-            // and prevent finalization code for this object
-            // from executing a second time.
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Dispose(bool disposing) executes in two distinct scenarios.
-        /// If disposing equals true, the method has been called directly
-        /// or indirectly by a user's code. Managed and unmanaged resources
-        /// can be disposed.
-        /// If disposing equals false, the method has been called by the
-        /// runtime from inside the finalizer and you should not reference
-        /// other objects. Only unmanaged resources can be disposed.
-		/// </summary>
-        /// <param name="disposing"></param>
-        private void Dispose(bool disposing)
-        {
-            // Check to see if Dispose has already been called.
-            if(!this.disposed)
-            {
-                // If disposing equals true, dispose all managed
-                // and unmanaged resources.
-                if(disposing)
-                {
-                    // Dispose managed resources.
-                    component.Dispose();
-                }
-
-                // Call the appropriate methods to clean up
-                // unmanaged resources here.
-                // If disposing is false,
-                // only the following code is executed.
-                CloseHandle(handle);
-                handle = IntPtr.Zero;
-
-                // Note disposing has been done.
-                disposed = true;
-
-            }
-        }
-
-        /// <summary>
-        /// Use interop to call the method necessary
-        /// to clean up the unmanaged resource.
-        /// </summary>
-        /// <param name="handle"></param>
-        /// <returns></returns>
-		[System.Runtime.InteropServices.DllImport("Kernel32")]
-        private extern static Boolean CloseHandle(IntPtr handle);
-
-        /// <summary>
-        /// Use C# destructor syntax for finalization code.
-        /// This destructor will run only if the Dispose method
-        /// does not get called.
-        /// It gives your base class the opportunity to finalize.
-        /// Do not provide destructors in types derived from this class.
-        /// </summary>
-		~DataProvider()
-        {
-            // Do not re-create Dispose clean-up code here.
-            // Calling Dispose(false) is optimal in terms of
-            // readability and maintainability.
-            Dispose(false);
-        }
-        
-        #endregion
-		
-        #region "Main Connection"
+		#region "Main Connection"
 		
         /// <summary>
         ///  Creates a new database connection
