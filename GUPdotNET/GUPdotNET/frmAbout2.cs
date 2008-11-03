@@ -29,5 +29,10 @@ namespace GUPdotNET
 		{
 			this.Build();
 		}
+
+		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
+		{
+			this.Hide();
+		}
 	}
 }
