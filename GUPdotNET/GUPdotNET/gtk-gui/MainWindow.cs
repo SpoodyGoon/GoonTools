@@ -14,6 +14,8 @@ public partial class MainWindow {
     
     private Gtk.VBox vbox3;
     
+    private Gtk.Label label1;
+    
     private Gtk.Label label2;
     
     private Gtk.ScrolledWindow GtkScrolledWindow;
@@ -31,14 +33,26 @@ public partial class MainWindow {
         this.vbox3.Name = "vbox3";
         this.vbox3.Spacing = 6;
         // Container child vbox3.Gtk.Box+BoxChild
+        this.label1 = new Gtk.Label();
+        this.label1.Name = "label1";
+        this.label1.LabelProp = Mono.Unix.Catalog.GetString("About GUPdotNET");
+        this.label1.UseMarkup = true;
+        this.label1.UseUnderline = true;
+        this.label1.SingleLineMode = true;
+        this.vbox3.Add(this.label1);
+        Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.vbox3[this.label1]));
+        w1.Position = 0;
+        w1.Expand = false;
+        w1.Fill = false;
+        // Container child vbox3.Gtk.Box+BoxChild
         this.label2 = new Gtk.Label();
         this.label2.Name = "label2";
         this.label2.LabelProp = Mono.Unix.Catalog.GetString("label2");
         this.vbox3.Add(this.label2);
-        Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.vbox3[this.label2]));
-        w1.Position = 0;
-        w1.Expand = false;
-        w1.Fill = false;
+        Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.vbox3[this.label2]));
+        w2.Position = 1;
+        w2.Expand = false;
+        w2.Fill = false;
         // Container child vbox3.Gtk.Box+BoxChild
         this.GtkScrolledWindow = new Gtk.ScrolledWindow();
         this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -50,8 +64,8 @@ public partial class MainWindow {
         this.txtOutput.Editable = false;
         this.GtkScrolledWindow.Add(this.txtOutput);
         this.vbox3.Add(this.GtkScrolledWindow);
-        Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox3[this.GtkScrolledWindow]));
-        w3.Position = 1;
+        Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox3[this.GtkScrolledWindow]));
+        w4.Position = 2;
         this.Add(this.vbox3);
         if ((this.Child != null)) {
             this.Child.ShowAll();

@@ -1,4 +1,4 @@
-// frmSuPass.cs
+// frmAbout2.cs
 // 
 // Copyright (C) 2008 SpoodyGoon
 //
@@ -16,21 +16,16 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-
 using System;
 
 namespace GUPdotNET
 {
 	
 	
-	public partial class frmSuPass : Gtk.Dialog
+	public partial class frmAbout2 : Gtk.Dialog
 	{
 		
-		/// <summary>
-		///  we'll do more with this after the windows release
-		/// </summary>
-		
-		public frmSuPass()
+		public frmAbout2()
 		{
 			this.Build();
 		}
