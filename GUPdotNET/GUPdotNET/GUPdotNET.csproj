@@ -30,11 +30,13 @@
     <None Include="GetUpdateInfo.aspx" />
     <None Include="gtk-gui\gui.stetic" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="frmAbout.cs" />
     <Compile Include="frmFirstRun.cs" />
     <Compile Include="frmSuPass.cs" />
     <Compile Include="frmUpdateConfirm.cs" />
     <Compile Include="frmUpdateDownload.cs" />
     <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.frmAbout.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmFirstRun.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmSuPass.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateConfirm.cs" />
