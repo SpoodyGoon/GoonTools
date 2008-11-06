@@ -12,9 +12,11 @@
 
 public partial class MainWindow {
     
+    private Gtk.Action AboutAction;
+    
     private Gtk.VBox vbox3;
     
-    private Gtk.Label label1;
+    private Gtk.MenuBar menubar1;
     
     private Gtk.Label label2;
     
@@ -25,6 +27,13 @@ public partial class MainWindow {
     protected virtual void Build() {
         Stetic.Gui.Initialize(this);
         // Widget MainWindow
+        Gtk.UIManager w1 = new Gtk.UIManager();
+        Gtk.ActionGroup w2 = new Gtk.ActionGroup("Default");
+        this.AboutAction = new Gtk.Action("AboutAction", Mono.Unix.Catalog.GetString("About"), null, null);
+        this.AboutAction.ShortLabel = Mono.Unix.Catalog.GetString("About");
+        w2.Add(this.AboutAction, null);
+        w1.InsertActionGroup(w2, 0);
+        this.AddAccelGroup(w1.AccelGroup);
         this.Name = "MainWindow";
         this.Title = Mono.Unix.Catalog.GetString("MainWindow");
         this.WindowPosition = ((Gtk.WindowPosition)(4));
@@ -33,26 +42,23 @@ public partial class MainWindow {
         this.vbox3.Name = "vbox3";
         this.vbox3.Spacing = 6;
         // Container child vbox3.Gtk.Box+BoxChild
-        this.label1 = new Gtk.Label();
-        this.label1.Name = "label1";
-        this.label1.LabelProp = Mono.Unix.Catalog.GetString("About GUPdotNET");
-        this.label1.UseMarkup = true;
-        this.label1.UseUnderline = true;
-        this.label1.SingleLineMode = true;
-        this.vbox3.Add(this.label1);
-        Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.vbox3[this.label1]));
-        w1.Position = 0;
-        w1.Expand = false;
-        w1.Fill = false;
+        w1.AddUiFromString("<ui><menubar name='menubar1'><menu action='AboutAction'/></menubar></ui>");
+        this.menubar1 = ((Gtk.MenuBar)(w1.GetWidget("/menubar1")));
+        this.menubar1.Name = "menubar1";
+        this.vbox3.Add(this.menubar1);
+        Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox3[this.menubar1]));
+        w3.Position = 0;
+        w3.Expand = false;
+        w3.Fill = false;
         // Container child vbox3.Gtk.Box+BoxChild
         this.label2 = new Gtk.Label();
         this.label2.Name = "label2";
         this.label2.LabelProp = Mono.Unix.Catalog.GetString("label2");
         this.vbox3.Add(this.label2);
-        Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.vbox3[this.label2]));
-        w2.Position = 1;
-        w2.Expand = false;
-        w2.Fill = false;
+        Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox3[this.label2]));
+        w4.Position = 1;
+        w4.Expand = false;
+        w4.Fill = false;
         // Container child vbox3.Gtk.Box+BoxChild
         this.GtkScrolledWindow = new Gtk.ScrolledWindow();
         this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -64,8 +70,8 @@ public partial class MainWindow {
         this.txtOutput.Editable = false;
         this.GtkScrolledWindow.Add(this.txtOutput);
         this.vbox3.Add(this.GtkScrolledWindow);
-        Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox3[this.GtkScrolledWindow]));
-        w4.Position = 2;
+        Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox3[this.GtkScrolledWindow]));
+        w6.Position = 2;
         this.Add(this.vbox3);
         if ((this.Child != null)) {
             this.Child.ShowAll();
@@ -74,5 +80,6 @@ public partial class MainWindow {
         this.DefaultHeight = 300;
         this.Show();
         this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
+        this.AboutAction.Activated += new System.EventHandler(this.OnAboutActionActivated);
     }
 }
