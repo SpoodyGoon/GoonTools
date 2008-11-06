@@ -148,6 +148,10 @@ namespace SQLiteDataProvider
             _ConnString = Conn;
         }
 		
+		/// <summary>
+		///  A dummmy dispose with no real purpose in life.
+		///  It's a sad Dispose()... nobody love it
+		/// </summary>
 		public void Dispose()
 		{
 			
@@ -238,6 +242,7 @@ namespace SQLiteDataProvider
 		///  not for use with web services
 		/// </summary>
 		/// <param name="strSQL"></param>
+		/// <example><code>Hashtable hshReturn = new Hashtable();</code></example>
 		/// <returns></returns>
 		public Hashtable ExecuteHashTable(string strSQL)
 		{
@@ -569,6 +574,13 @@ namespace SQLiteDataProvider
 		 * I have had some problems with the data types not being correct
 		 * in the calling code - but that could very well be a brain fart on my part
 		 */
+		/// <summary>
+		///  Returns a Gtk.ListStore inteded for use with Gtk.ComboBoxes
+		///  This assumes that the first column in the dataset will be the value column
+		///  and the second column in the dataset will be the text column
+		/// </summary>
+		/// <param name="strSQL"/>
+		/// <returns>Gtk.ListStore</returns>
 		public Gtk.ListStore ExecuteListStore(string strSQL)
 		{
 			SqliteConnection sqlCN = GetConn();
@@ -620,6 +632,14 @@ namespace SQLiteDataProvider
 			return ls;
 		}
 		
+		/// <summary>
+		///  Returns a Gtk.ListStore inteded for use with Gtk.ComboBoxes
+		///  This specifies which column is the Text/Name and which column will be the ID/Value column
+		/// </summary>
+		/// <param name="strSQL"></param>
+		/// <param name="strName"></param>
+		/// <param name="strValue"></param>
+		/// <returns>Gtk.ListStore</returns>
 		public Gtk.ListStore ExecuteListStore(string strSQL, string strName, string strValue)
 		{
 			SqliteConnection sqlCN = GetConn();
@@ -656,12 +676,6 @@ namespace SQLiteDataProvider
 				sqlReader.Dispose();
 			}
 			return ls;
-		}
-		
-		public Gtk.TreeStore ExecuteTreeStore()
-		{
-			Gtk.TreeStore ts = new Gtk.TreeStore(typeof(string), typeof(string));
-			return ts;			
 		}
 		
 		#endregion "ListStore and TreeStore"
