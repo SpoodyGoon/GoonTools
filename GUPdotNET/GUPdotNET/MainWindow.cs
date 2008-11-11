@@ -44,7 +44,7 @@ public partial class MainWindow: Gtk.Window
 		AboutDialog dialog = new AboutDialog ();
 		Assembly asm = Assembly.GetExecutingAssembly ();
 		
-		dialog.ProgramName = (asm.GetCustomAttributes (
+		dialog.Name = (asm.GetCustomAttributes (
 			typeof (AssemblyTitleAttribute), false) [0]
 			as AssemblyTitleAttribute).Title;
 		
