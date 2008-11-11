@@ -56,7 +56,7 @@ namespace GUPdotNET
 		{
 			try
 			{
-				string strLocation =MainClass.GetOption("Location");
+				string strLocation = GUPdotNET.GetOption("Location");
 				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strLocation);
 				
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
@@ -65,7 +65,7 @@ namespace GUPdotNET
 				System.Diagnostics.Debug.WriteLine("got here " + strFilePath);
 				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
 				BinaryWriter br = new BinaryWriter(fs);
-				long lgFileSize = long.Parse(MainClass.GetOption("FileSize"));
+				long lgFileSize = long.Parse(GUPdotNET.GetOption("FileSize"));
 				long lgFileProgress = 0;
 				
 				byte[] b = new byte[2048];

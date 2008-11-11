@@ -36,7 +36,7 @@ namespace GUPdotNET
 				this.Title = ConfigurationManager.AppSettings["MessageBoxTitle"].ToString();
 				this.lblProgramTitle.Text = "<span size=\"xx-large\"><b>" + ConfigurationManager.AppSettings["MessageBoxTitle"].ToString() + "</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "There is an update available for " + ConfigurationManager.AppSettings["ProgramName"].ToString() + ".\r\nWould you like to upgrate to version: " + MainClass.GetOption("Version") + " now?";
+				this.lblUpdateMessage.Text = "There is an update available for " + ConfigurationManager.AppSettings["ProgramName"].ToString() + ".\r\nWould you like to upgrate to version: " + GUPdotNET.GetOption("Version") + " now?";
 			}
 			catch(Exception doh)
 			{
