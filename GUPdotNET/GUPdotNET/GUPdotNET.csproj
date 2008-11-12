@@ -3,10 +3,11 @@
     <ProjectGuid>{4C89213F-F2F0-417D-AB7F-850D2BC47DC7}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>GUPdotNET</RootNamespace>
     <AssemblyName>GUPdotNET</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\ayork\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -39,9 +40,7 @@
     <Compile Include="gtk-gui\GUPdotNET.frmSuPass.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateConfirm.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateDownload.cs" />
-    <Compile Include="gtk-gui\MainWindow.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="MainWindow.cs" />
+    <Compile Include="GUPdotNET.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="gtk-gui" />
@@ -58,7 +57,7 @@
       <HintPath>..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\gtk-sharp\2.10.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.0\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="pango-sharp">
       <HintPath>..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\pango-sharp\2.10.0.0__35e10195dab3c99f\pango-sharp.dll</HintPath>
