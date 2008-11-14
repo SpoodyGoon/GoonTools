@@ -30,11 +30,45 @@ namespace GUPdotNET
 {
 	
 	
-	public static class GUPdotNET
+	public class GUPdotNET
 	{
 		
-		private static Hashtable hshOptions = new Hashtable();		
-		public static bool CheckUpdate()
+		private string _OSVersion = "win32";
+		private string _FileSize = null;
+		private string _UpdateURL = null;
+		private int _UpdateMajorVersion = -1;
+		private int _UpdateMinorVersion = -1;
+		
+		#region "Public Properties"
+		
+		public int UpdateMajorVersion
+		{
+			get{return _UpdateMajorVersion;}
+		}
+		
+		public int UpdateMinorVersion
+		{
+			get{return _UpdateMinorVersion;}
+		}
+		
+		public string OSVersion
+		{
+			get{return _OSVersion;}
+		}
+		
+		public string UpdateURL
+		{
+			get{return _UpdateURL;}
+		}
+		
+		public string FileSize
+		{
+			get{return _FileSize;}
+		}
+		
+		#endregion "Public Properties"
+		
+		public bool CheckUpdate()
 		{
 			bool blnSuccess = true;
 			try
@@ -63,7 +97,7 @@ namespace GUPdotNET
 		
 		
 		
-		public static void LoadUpdateInfo()
+		public void LoadUpdateInfo()
 		{		
 			try
 			{
@@ -91,7 +125,7 @@ namespace GUPdotNET
 			}
 		}
 			
-		public static void ParseResponse(Stream s)
+		public void ParseResponse(Stream s)
 		{
 			try
 			{
@@ -101,11 +135,11 @@ namespace GUPdotNET
 		        XmlNodeList nl = xmlDoc.SelectNodes("GUPdotNET");
 				for (int i = 0; i < nl.Count; i++)
 		        {
-					SetOption("NeedToBeUpdated", nl[i].SelectSingleNode("NeedToBeUpdated").InnerText);
-					SetOption("Version", nl[i].SelectSingleNode("Version").InnerText);
-					SetOption("Location", nl[i].SelectSingleNode("Location").InnerText);
-					SetOption("FileSize", nl[i].SelectSingleNode("FileSize").InnerText);
-					SetOption("LinuxFileType", nl[i].SelectSingleNode("LinuxFileType").InnerText);
+//					SetOption("NeedToBeUpdated", nl[i].SelectSingleNode("NeedToBeUpdated").InnerText);
+//					SetOption("Version", nl[i].SelectSingleNode("Version").InnerText);
+//					SetOption("Location", nl[i].SelectSingleNode("Location").InnerText);
+//					SetOption("FileSize", nl[i].SelectSingleNode("FileSize").InnerText);
+//					SetOption("LinuxFileType", nl[i].SelectSingleNode("LinuxFileType").InnerText);
 				}
 			}
 			
@@ -117,30 +151,5 @@ namespace GUPdotNET
 			}
 			
 		}
-		
-		public static string GetOption(string strKey)
-        {
-			if(hshOptions.ContainsKey(strKey))
-                return (string)hshOptions[strKey];
-            else
-                return null;
-        }
-
-        public static void SetOption(string strKey, string strValue)
-        {
-			try
-			{
-	            if(!hshOptions.ContainsKey(strKey))
-	                hshOptions.Add(strKey, strValue);
-				else
-					hshOptions[strKey] = strValue;
-			}
-			catch(Exception doh)
-			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
-			}
-        }
 	}
 }
