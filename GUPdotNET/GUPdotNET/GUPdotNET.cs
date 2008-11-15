@@ -34,11 +34,13 @@ namespace GUPdotNET
 	{
 		
 		private string _OSVersion = "win32";
+		private string _ProgramName = null;
 		private string _FileSize = null;
 		private string _UpdateFileURL = null;
 		private int _UpdateMajorVersion = -1;
 		private int _UpdateMinorVersion = -1;
 		private string _UpdateInfoURL = null;
+		private string _VersionInfo = null;
 		private int _CurrentMajorVersion = -1;
 		private int _CurrentMinorVersion = -1;
 		
@@ -71,7 +73,18 @@ namespace GUPdotNET
 		/// </summary>
 		public string UpdateFileURL
 		{
-			get{return _UpdateURL;}
+			get{return _UpdateFileURL;}
+		}
+		
+		public string VersionInfo
+		{
+			get{return _VersionInfo;}
+		}
+		
+		public string ProgramName
+		{
+			set{_ProgramName = value;}
+			get{return _ProgramName;}
 		}
 		
 		/// <summary>
@@ -128,15 +141,15 @@ namespace GUPdotNET
 			try
 			{
 				LoadUpdateInfo();
-				if(GetOption("NeedToBeUpdated").ToLower() == "no")
+				if(_UpdateMajorVersion > _CurrentMajorVersion || (_UpdateMajorVersion == _CurrentMajorVersion && _UpdateMinorVersion > _CurrentMinorVersion))
 				{
-					Gtk.Application.Quit();
-				}
-				else
-				{	
-					frmUpdateConfirm fm = new frmUpdateConfirm();
+					frmUpdateConfirm fm = new frmUpdateConfirm(this);
 					fm.Show ();
 					Application.Run ();
+				}
+				else
+				{
+					Gtk.Application.Quit();
 				}
 				
 			}
@@ -152,17 +165,17 @@ namespace GUPdotNET
 		
 		
 		public void LoadUpdateInfo()
-		{		
+		{
 			try
 			{
 				//System.Security.Permissions.EnvironmentPermission ep = new EnvironmentPermission(EnvironmentPermissionAccess.AllAccess, System.Environment.CurrentDirectory);
 				string strOSVersion = "";
 				if(ConfigurationManager.AppSettings["OSVersion"].ToString() != String.Empty)
 					strOSVersion = "&OSVersion=" + _OSVersion;
-				string strURI = _UpdateInfoURL + 
-								"?MajorVersion=" + _UpdateMajorVersion.ToString() + 
-								"?MinorVersion=" + _UpdateMinorVersion.ToString() + 
-								strOSVersion;
+				string strURI = _UpdateInfoURL +
+					"?MajorVersion=" + _UpdateMajorVersion.ToString() +
+					"?MinorVersion=" + _UpdateMinorVersion.ToString() +
+					strOSVersion;
 				
 				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strURI);
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
@@ -177,21 +190,21 @@ namespace GUPdotNET
 				md.Destroy();
 			}
 		}
-			
+		
 		public void ParseResponse(Stream s)
 		{
 			try
 			{
 				XmlDocument xmlDoc = new XmlDocument();
-		        xmlDoc.Load(s);
+				xmlDoc.Load(s);
 				
-		        XmlNodeList nl = xmlDoc.SelectNodes("GUPdotNET");
+				XmlNodeList nl = xmlDoc.SelectNodes("GUPdotNET");
 				for (int i = 0; i < nl.Count; i++)
-		        {
+				{
 					_UpdateFileURL = nl[i].SelectSingleNode("NeedToBeUpdated").InnerText;
 					_FileSize = nl[i].SelectSingleNode("Version").InnerText;
-					_UpdateMajorVersion = nl[i].SelectSingleNode("Version").InnerText;
-					_UpdateMinorVersion = nl[i].SelectSingleNode("Version").InnerText;
+					_UpdateMajorVersion = int.Parse(nl[i].SelectSingleNode("Version").InnerText);
+					_UpdateMinorVersion = int.Parse(nl[i].SelectSingleNode("Version").InnerText);
 				}
 			}
 			
