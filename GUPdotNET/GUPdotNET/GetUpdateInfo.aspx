@@ -24,33 +24,44 @@
 	
 	void Page_Load()
 	{
-		string strLinuxFile_rpm ="http://www.brdstudio.net/ff/FFMod.7z";
-		string strLinuxFile_bin = "http://www.brdstudio.net/ff/FFMod.7z";
-		string strLinuxFile_src = "http://www.brdstudio.net/ff/FFMod.7z";
-		string strWindowsFile = "http://www.brdstudio.net/ff/FFMod.7z";
-		string OSVersion = null;
-		string strLinuxFileType = null;
-		double dblLastestVersion = 0.01;
-		string strLatestVersion = "0.01";
-		string strWindows_FileSize = "269357";
+		string _LinuxFile_rpm ="http://www.brdstudio.net/ff/FFMod.7z";
+		string _LinuxFile_bin = "http://www.brdstudio.net/ff/FFMod.7z";
+		string _LinuxFile_src = "http://www.brdstudio.net/ff/FFMod.7z";
+		string _WindowsFile = "http://www.brdstudio.net/ff/FFMod.7z";
+		string _UpdateFileURL = null;
+		string _OSVersion = null;
+		string _LinuxFileType = null;
+		int _UpdateMajorVersion = 0;
+		int _UpdateMinorVersion = 1;
+		string _LatestVersion = "0.01";
+		string _FileSize = null;
+		string _Windows_FileSize = "269357";
 		string strLinux_src_FileSize = "269357";
 		string strLinux_rpm_FileSize = "269357";
 		string strLinux_bin_FileSize = "269357";
 		
 		if(Request.QueryString["OSVersion"] != null)
-			OSVersion = Request.QueryString["OSVersion"].ToString();
+		{
+			_OSVersion = Request.QueryString["OSVersion"].ToString();
+			_UpdateFileURL = _WindowsFile;
+			_FileSize = _Windows_FileSize;
+		}
 		else
+		{
 			OSVersion = "win32"; // Assume Windows 32 bit
+		}	
+
+		
 			
 		double dblCurrentVersioin = double.Parse(Request.QueryString["Version"].ToString());
 		
-		if(dblCurrentVersioin < dblLastestVersion)
-		{
 			Response.Write("<?xml version=\"1.0\"?>");
 			Response.Write("<GUPdotNET>");
-			Response.Write("<NeedToBeUpdated>yes</NeedToBeUpdated>");
-			Response.Write("<Version>" + strLatestVersion + "</Version>");
-			Response.Write("<FileSize>" + strFileSize + "</FileSize>");
+			Response.Write("<UpdateFileURL>" + _UpdateFileURL + "</UpdateFileURL>");
+			Response.Write("<UpdateMajorVersion>" + strLatestVersion + "</UpdateMajorVersion>");
+			Response.Write("<UpdateMinorVersion>" + strLatestVersion + "</UpdateMinorVersion>");
+			Response.Write("<LatestVersion>" + _LatestVersion + "</LatestVersion>");
+			Response.Write("<FileSize>" + _FileSize + "</FileSize>");
 			
 			if(OSVersion == "Linux")
 				Response.Write("<Location>" + strLinuxFile_rpm + "</Location>");
@@ -58,17 +69,6 @@
 				Response.Write("<Location>" + strWindowsFile + "</Location>");
 			Response.Write("<LinuxFileType>" + strLinuxFileType + "</LinuxFileType>");
 			Response.Write("</GUPdotNET>");
-		}
-		else
-		{
-			Response.Write("<?xml version=\"1.0\"?>");
-			Response.Write("<GUPdotNET>");
-			Response.Write("<NeedToBeUpdated>no</NeedToBeUpdated>");
-			Response.Write("<Version></Version>");
-			Response.Write("<Location></Location>");
-			Response.Write("<LinuxFileType></LinuxFileType>");
-			Response.Write("</GUPdotNET>");
-			Response.Write("<LinuxFileType></LinuxFileType>");
-		}
+		
 	}
 </script>

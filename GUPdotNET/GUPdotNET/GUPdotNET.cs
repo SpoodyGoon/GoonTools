@@ -35,35 +35,89 @@ namespace GUPdotNET
 		
 		private string _OSVersion = "win32";
 		private string _FileSize = null;
-		private string _UpdateURL = null;
+		private string _UpdateFileURL = null;
 		private int _UpdateMajorVersion = -1;
 		private int _UpdateMinorVersion = -1;
+		private string _UpdateInfoURL = null;
+		private int _CurrentMajorVersion = -1;
+		private int _CurrentMinorVersion = -1;
 		
 		#region "Public Properties"
 		
+		/// <summary>
+		///  This is the major version
+		///  recieved from the web site
+		///  containing the update information
+		/// </summary>
 		public int UpdateMajorVersion
 		{
 			get{return _UpdateMajorVersion;}
 		}
 		
+		/// <summary>
+		///  This is the minor version
+		///  recieved from the web site
+		///  containing the update information
+		/// </summary>
 		public int UpdateMinorVersion
 		{
 			get{return _UpdateMinorVersion;}
 		}
 		
-		public string OSVersion
-		{
-			get{return _OSVersion;}
-		}
-		
-		public string UpdateURL
+		/// <summary>
+		///  This is URL for the update/installer
+		///  recieved from the web site
+		///  containing the update information
+		/// </summary>
+		public string UpdateFileURL
 		{
 			get{return _UpdateURL;}
 		}
 		
+		/// <summary>
+		///  This is the size of update/installer
+		///  recieved from the web site
+		///  containing the update information
+		/// </summary>
 		public string FileSize
 		{
 			get{return _FileSize;}
+		}
+		
+		/// <summary>
+		///  This is the major version
+		///  Passed in by the program calling the GUPdotNET assembly/class
+		/// </summary>
+		public int CurrentMajorVersion
+		{
+			set{_CurrentMajorVersion=value;}
+		}
+		
+		/// <summary>
+		///  This is the minor version
+		///  Passed in by the program calling the GUPdotNET assembly/class
+		/// </summary>
+		public int CurrentMinorVersion
+		{
+			set{_CurrentMinorVersion=value;}
+		}
+		
+		/// <summary>
+		///  This is the Operating System info
+		///  Passed in by the program calling the GUPdotNET assembly/class
+		/// </summary>
+		public string OSVersion
+		{
+			set{_OSVersion=value;}
+		}
+		
+		/// <summary>
+		///  This is the major version
+		///  Passed in by the program calling the GUPdotNET assembly/class
+		/// </summary>
+		public string UpdateInfoURL
+		{
+			set{_UpdateInfoURL=value;}
 		}
 		
 		#endregion "Public Properties"
@@ -101,14 +155,13 @@ namespace GUPdotNET
 		{		
 			try
 			{
-				Console.WriteLine("version " + ConfigurationManager.AppSettings["MajorVersion"].ToString());
 				//System.Security.Permissions.EnvironmentPermission ep = new EnvironmentPermission(EnvironmentPermissionAccess.AllAccess, System.Environment.CurrentDirectory);
 				string strOSVersion = "";
 				if(ConfigurationManager.AppSettings["OSVersion"].ToString() != String.Empty)
-					strOSVersion = "&OSVersion=" + ConfigurationManager.AppSettings["OSVersion"].ToString();
-				string strURI = ConfigurationManager.AppSettings["InfoUrl"].ToString() + 
-								"?MajorVersion=" + ConfigurationManager.AppSettings["MajorVersion"].ToString() + 
-								"?MinorVersion=" + ConfigurationManager.AppSettings["MinorVersion"].ToString() + 
+					strOSVersion = "&OSVersion=" + _OSVersion;
+				string strURI = _UpdateInfoURL + 
+								"?MajorVersion=" + _UpdateMajorVersion.ToString() + 
+								"?MinorVersion=" + _UpdateMinorVersion.ToString() + 
 								strOSVersion;
 				
 				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strURI);
@@ -135,11 +188,10 @@ namespace GUPdotNET
 		        XmlNodeList nl = xmlDoc.SelectNodes("GUPdotNET");
 				for (int i = 0; i < nl.Count; i++)
 		        {
-//					SetOption("NeedToBeUpdated", nl[i].SelectSingleNode("NeedToBeUpdated").InnerText);
-//					SetOption("Version", nl[i].SelectSingleNode("Version").InnerText);
-//					SetOption("Location", nl[i].SelectSingleNode("Location").InnerText);
-//					SetOption("FileSize", nl[i].SelectSingleNode("FileSize").InnerText);
-//					SetOption("LinuxFileType", nl[i].SelectSingleNode("LinuxFileType").InnerText);
+					_UpdateFileURL = nl[i].SelectSingleNode("NeedToBeUpdated").InnerText;
+					_FileSize = nl[i].SelectSingleNode("Version").InnerText;
+					_UpdateMajorVersion = nl[i].SelectSingleNode("Version").InnerText;
+					_UpdateMinorVersion = nl[i].SelectSingleNode("Version").InnerText;
 				}
 			}
 			
