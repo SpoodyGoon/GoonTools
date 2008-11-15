@@ -30,16 +30,18 @@ namespace GUPdotNET
 	public partial class frmUpdateDownload : Gtk.Dialog
 	{
 		
-		public frmUpdateDownload()
+		private GUPdotNET _GUPdotNET;
+		public frmUpdateDownload(GUPdotNET gdn)
 		{
 			this.Build();
+			_GUPdotNET = gdn;
 			try
 			{
 				this.progressbar1.DoubleBuffered= true;
 				this.Title = ConfigurationManager.AppSettings["MessageBoxTitle"].ToString();
-				this.lblProgramTitle.Text = "<span size=\"xx-large\"><b>" + ConfigurationManager.AppSettings["MessageBoxTitle"].ToString() + "</b></span>";
+				this.lblProgramTitle.Text = "<span size=\"xx-large\"><b>" + _GUPdotNET.ProgramName + "</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "Downloading the update for " + ConfigurationManager.AppSettings["ProgramName"].ToString() + ".\r\nPlease be patient.";
+				this.lblUpdateMessage.Text = "Downloading the update for " + _GUPdotNET.ProgramName + ".\r\nPlease be patient.";
 				this.ShowNow();
 				System.Threading.Thread.Sleep(1000);
 				GetUpdateFile();
@@ -56,7 +58,7 @@ namespace GUPdotNET
 		{
 			try
 			{
-				string strLocation = GUPdotNET.GetOption("Location");
+				string strLocation = _GUPdotNET.UpdateFileURL;
 				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strLocation);
 				
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
@@ -65,7 +67,7 @@ namespace GUPdotNET
 				System.Diagnostics.Debug.WriteLine("got here " + strFilePath);
 				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
 				BinaryWriter br = new BinaryWriter(fs);
-				long lgFileSize = long.Parse(GUPdotNET.GetOption("FileSize"));
+				long lgFileSize = long.Parse(_GUPdotNET.FileSize);
 				long lgFileProgress = 0;
 				
 				byte[] b = new byte[2048];
