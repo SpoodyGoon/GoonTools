@@ -12,9 +12,10 @@
   <StartMode startupentry="GUPdotNET_Testing" single="True">
     <Execute type="None" entry="GUPdotNET_Testing" />
     <Execute type="None" entry="GUPdotNET" />
+    <Execute type="None" entry="GUPdotNET" />
   </StartMode>
   <Entries>
     <Entry filename="GUPdotNET_Testing/GUPdotNET_Testing.mdp" />
-    <Entry filename="../GUPdotNET/GUPdotNET/GUPdotNET.mdp" />
+    <Entry filename="../GUPdotNET/GUPdotNET.mdp" />
   </Entries>
 </Combine>
