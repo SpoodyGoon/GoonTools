@@ -46,7 +46,6 @@ namespace GUPdotNET
 		private string _UpdateFileURL = null;
 		private int _UpdateMajorVersion = -1;
 		private int _UpdateMinorVersion = -1;
-		private int _FileSize = -1;
 		private string _LatestVersion = null;
 		private string _Error = null;
 		
@@ -91,16 +90,6 @@ namespace GUPdotNET
 		{
 			set{_ProgramName = value;}
 			get{return _ProgramName;}
-		}
-		
-		/// <summary>
-		///  This is the size of update/installer
-		///  recieved from the web site
-		///  containing the update information
-		/// </summary>
-		public int FileSize
-		{
-			get{return _FileSize;}
 		}
 		
 		private string Error
@@ -210,7 +199,6 @@ namespace GUPdotNET
 					_UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText;
 					_UpdateMajorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMajorVersion").InnerText);
 					_UpdateMinorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMinorVersion").InnerText);
-					_FileSize = int.Parse(nl[i].SelectSingleNode("FileSize").InnerText);
 					_LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText;
 					_Error = nl[i].SelectSingleNode("Error").InnerText;
 				}
@@ -224,13 +212,5 @@ namespace GUPdotNET
 			}
 			
 		}
-	}
-	
-	public enum InstallType
-	{
-		Windows,
-		Linux_rpm,
-		Linux_bin,
-		Linux_src
 	}
 }

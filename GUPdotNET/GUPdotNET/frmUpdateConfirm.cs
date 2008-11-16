@@ -34,8 +34,8 @@ namespace GUPdotNET
 			_GUPdotNET = gdn;
 			try
 			{
-				this.Title = ConfigurationManager.AppSettings["MessageBoxTitle"].ToString();
-				this.lblProgramTitle.Text = "<span size=\"xx-large\"><b>" + _GUPdotNET.ProgramName + "</b></span>";
+				this.Title = _GUPdotNET.ProgramName;
+				this.lblProgramTitle.Text = "<span size=\"xx-large\"><b>" + _GUPdotNET.ProgramName + " Update</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
 				this.lblUpdateMessage.Text = "There is an update available for " + _GUPdotNET.ProgramName + ".\r\nWould you like to upgrate to version: " + _GUPdotNET.LatestVersion + " now?";
 			}
@@ -51,25 +51,6 @@ namespace GUPdotNET
 		{
 			try
 			{
-				if(this.cbxAutoCheck.Active == true)
-				{
-					if(File.Exists("gdnFirstRunNo.txt"))
-						File.Delete("gdnFirstRunNo.txt");
-					System.IO.StreamWriter sw = new StreamWriter("gdnFirstRunYes.txt");
-					sw.WriteLine("Yes");
-					sw.Flush();
-					sw.Close();
-					
-				}
-				else
-				{
-					if(File.Exists("gdnFirstRunYes.txt"))
-						System.IO.File.Delete("gdnFirstRunYes.txt");
-					System.IO.StreamWriter sw = new StreamWriter("gdnFirstRunNo.txt");
-					sw.WriteLine("No");
-					sw.Close();
-					sw.Flush();
-				}
 				this.Hide();
 				frmUpdateDownload fm = new frmUpdateDownload(_GUPdotNET);
 				fm.Run();
