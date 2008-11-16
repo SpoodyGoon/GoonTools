@@ -48,37 +48,23 @@
 
             #endregion "Install Files URL"
 
-            #region "Install File Sizes"
-
-            int _Windows_FileSize = 277504;
-            int _Linux_rpm_FileSize = 277504;
-            int _Linux_bin_FileSize = 277504;
-            int _Linux_src_FileSize = 277504;
-
-            #endregion  "Install File Sizes"
-
             switch (Request.QueryString["InstallType"].ToString())
             {
                 case "Windows":
                     _UpdateFileURL = _WindowsFile;
-                    _FileSize = _Windows_FileSize;
                     break;
                 case "Linux_rpm":
                     _UpdateFileURL = _LinuxFile_rpm;
-                    _FileSize = _Linux_rpm_FileSize;
                     break;
                 case "Linux_bin":
                     _UpdateFileURL = _LinuxFile_bin;
-                    _FileSize = _Linux_bin_FileSize;
                     break;
                 case "Linux_src":
                     _UpdateFileURL = _LinuxFile_src;
-                    _FileSize = _Linux_src_FileSize;
                     break;
                 default:
                     // default is windows
                     _UpdateFileURL = _WindowsFile;
-                    _FileSize = _Windows_FileSize;
                     break;
             }
         }
@@ -93,7 +79,6 @@
         Response.Write("<UpdateMajorVersion>" + _UpdateMajorVersion.ToString() + "</UpdateMajorVersion>");
         Response.Write("<UpdateMinorVersion>" + _UpdateMinorVersion.ToString() + "</UpdateMinorVersion>");
         Response.Write("<LatestVersion>" + _LatestVersion + "</LatestVersion>");
-        Response.Write("<FileSize>" + _FileSize.ToString() + "</FileSize>");
         Response.Write("<Error>" + _Error + "</Error>");
         Response.Write("</GUPdotNET>");
 

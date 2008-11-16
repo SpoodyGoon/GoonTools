@@ -37,8 +37,9 @@ namespace GUPdotNET
 			_GUPdotNET = gdn;
 			try
 			{
+				
 				this.progressbar1.DoubleBuffered= true;
-				this.Title = ConfigurationManager.AppSettings["MessageBoxTitle"].ToString();
+				this.Title =_GUPdotNET.ProgramName;
 				this.lblProgramTitle.Text = "<span size=\"xx-large\"><b>" + _GUPdotNET.ProgramName + "</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
 				this.lblUpdateMessage.Text = "Downloading the update for " + _GUPdotNET.ProgramName + ".\r\nPlease be patient.";
@@ -64,10 +65,8 @@ namespace GUPdotNET
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				string strFilePath = System.Environment.GetEnvironmentVariable("TEMP") + @"\" + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
-				//System.Diagnostics.Debug.WriteLine("got here " + strFilePath);
+				System.Diagnostics.Debug.WriteLine("got here " + strFilePath);
 				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
-				BinaryWriter br = new BinaryWriter(fs);
-				long lgFileSize = long.Parse(_GUPdotNET.FileSize.ToString());
 				long lgFileProgress = 0;
 				
 				byte[] b = new byte[2048];
@@ -90,7 +89,7 @@ namespace GUPdotNET
 		        
 				this.progressbar1.Text = "Done";
 				
-				System.Diagnostics.Process.Start(strFilePath);
+				//System.Diagnostics.Process.Start(strFilePath);
 			}
 			catch(Exception doh)
 			{
