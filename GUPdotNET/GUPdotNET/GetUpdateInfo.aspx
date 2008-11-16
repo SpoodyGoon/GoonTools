@@ -1,74 +1,102 @@
 <%@ Page Language="C#" %>
+
 <%@ Import Namespace="System" %>
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="System.Web" %>
+
 <script runat="server">
 
-// GetUpdateInfo.aspx
-// 
-// Copyright (C) 2008 SpoodyGoon
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-	
-	void Page_Load()
-	{
-		string _LinuxFile_rpm ="http://www.brdstudio.net/ff/FFMod.7z";
-		string _LinuxFile_bin = "http://www.brdstudio.net/ff/FFMod.7z";
-		string _LinuxFile_src = "http://www.brdstudio.net/ff/FFMod.7z";
-		string _WindowsFile = "http://www.brdstudio.net/ff/FFMod.7z";
-		string _UpdateFileURL = null;
-		string _OSVersion = null;
-		string _LinuxFileType = null;
-		int _UpdateMajorVersion = 0;
-		int _UpdateMinorVersion = 1;
-		string _LatestVersion = "0.01";
-		string _FileSize = null;
-		string _Windows_FileSize = "269357";
-		string strLinux_src_FileSize = "269357";
-		string strLinux_rpm_FileSize = "269357";
-		string strLinux_bin_FileSize = "269357";
-		
-		if(Request.QueryString["OSVersion"] != null)
-		{
-			_OSVersion = Request.QueryString["OSVersion"].ToString();
-			_UpdateFileURL = _WindowsFile;
-			_FileSize = _Windows_FileSize;
-		}
-		else
-		{
-			OSVersion = "win32"; // Assume Windows 32 bit
-		}	
+    // GetUpdateInfo.aspx
+    // 
+    // Copyright (C) 2008 SpoodyGoon
+    //
+    // This program is free software: you can redistribute it and/or modify
+    // it under the terms of the GNU General Public License as published by
+    // the Free Software Foundation, either version 3 of the License, or
+    // (at your option) any later version.
+    //
+    // This program is distributed in the hope that it will be useful,
+    // but WITHOUT ANY WARRANTY; without even the implied warranty of
+    // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    // GNU General Public License for more details.
+    //
+    // You should have received a copy of the GNU General Public License
+    // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    //
 
-		
-			
-		double dblCurrentVersioin = double.Parse(Request.QueryString["Version"].ToString());
-		
-			Response.Write("<?xml version=\"1.0\"?>");
-			Response.Write("<GUPdotNET>");
-			Response.Write("<UpdateFileURL>" + _UpdateFileURL + "</UpdateFileURL>");
-			Response.Write("<UpdateMajorVersion>" + strLatestVersion + "</UpdateMajorVersion>");
-			Response.Write("<UpdateMinorVersion>" + strLatestVersion + "</UpdateMinorVersion>");
-			Response.Write("<LatestVersion>" + _LatestVersion + "</LatestVersion>");
-			Response.Write("<FileSize>" + _FileSize + "</FileSize>");
-			
-			if(OSVersion == "Linux")
-				Response.Write("<Location>" + strLinuxFile_rpm + "</Location>");
-			else
-				Response.Write("<Location>" + strWindowsFile + "</Location>");
-			Response.Write("<LinuxFileType>" + strLinuxFileType + "</LinuxFileType>");
-			Response.Write("</GUPdotNET>");
-		
-	}
+    void Page_Load()
+    {
+        #region "Feedback Variables"
+
+        int _UpdateMajorVersion = 0;
+        int _UpdateMinorVersion = 2;
+        int _FileSize = -1;
+        string _LatestVersion = "0.1";
+        string _UpdateFileURL = "";
+        string _Error = "";
+
+        #endregion  "Feedback Variables"
+
+        try
+        {
+            #region "Install Files URL"
+
+            string _WindowsFile = "http://brdstudio.net/monotodo/monotodo.exe";
+            string _LinuxFile_rpm = "http://brdstudio.net/monotodo/monotodo.exe";
+            string _LinuxFile_bin = "http://brdstudio.net/monotodo/monotodo.exe";
+            string _LinuxFile_src = "http://brdstudio.net/monotodo/monotodo.exe";
+
+            #endregion "Install Files URL"
+
+            #region "Install File Sizes"
+
+            int _Windows_FileSize = 277504;
+            int _Linux_rpm_FileSize = 277504;
+            int _Linux_bin_FileSize = 277504;
+            int _Linux_src_FileSize = 277504;
+
+            #endregion  "Install File Sizes"
+
+            switch (Request.QueryString["InstallType"].ToString())
+            {
+                case "Windows":
+                    _UpdateFileURL = _WindowsFile;
+                    _FileSize = _Windows_FileSize;
+                    break;
+                case "Linux_rpm":
+                    _UpdateFileURL = _LinuxFile_rpm;
+                    _FileSize = _Linux_rpm_FileSize;
+                    break;
+                case "Linux_bin":
+                    _UpdateFileURL = _LinuxFile_bin;
+                    _FileSize = _Linux_bin_FileSize;
+                    break;
+                case "Linux_src":
+                    _UpdateFileURL = _LinuxFile_src;
+                    _FileSize = _Linux_src_FileSize;
+                    break;
+                default:
+                    // default is windows
+                    _UpdateFileURL = _WindowsFile;
+                    _FileSize = _Windows_FileSize;
+                    break;
+            }
+        }
+        catch (Exception Ex)
+        {
+            _Error = Ex.ToString();
+        }
+
+        Response.Write("<?xml version=\"1.0\"?>");
+        Response.Write("<GUPdotNET>");
+        Response.Write("<UpdateFileURL>" + _UpdateFileURL + "</UpdateFileURL>");
+        Response.Write("<UpdateMajorVersion>" + _UpdateMajorVersion.ToString() + "</UpdateMajorVersion>");
+        Response.Write("<UpdateMinorVersion>" + _UpdateMinorVersion.ToString() + "</UpdateMinorVersion>");
+        Response.Write("<LatestVersion>" + _LatestVersion + "</LatestVersion>");
+        Response.Write("<FileSize>" + _FileSize.ToString() + "</FileSize>");
+        Response.Write("<Error>" + _Error + "</Error>");
+        Response.Write("</GUPdotNET>");
+
+    }
 </script>
+

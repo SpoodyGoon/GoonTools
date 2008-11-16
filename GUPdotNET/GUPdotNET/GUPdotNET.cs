@@ -30,19 +30,25 @@ namespace GUPdotNET
 {
 	
 	
-	public class GUPdotNET
+	public class UpdateCheck
 	{
+		public UpdateCheck()
+		{
+			// default constructor
+		}
 		
-		private string _OSVersion = "win32";
+		private InstallType _InstallType = InstallType.Windows; // windows is the default
+		private string _UpdateInfoURL = null;
+		private int _CurrentMajorVersion = -1;
+		private int _CurrentMinorVersion = -1;
 		private string _ProgramName = null;
-		private string _FileSize = null;
+		
 		private string _UpdateFileURL = null;
 		private int _UpdateMajorVersion = -1;
 		private int _UpdateMinorVersion = -1;
-		private string _UpdateInfoURL = null;
-		private string _VersionInfo = null;
-		private int _CurrentMajorVersion = -1;
-		private int _CurrentMinorVersion = -1;
+		private int _FileSize = -1;
+		private string _LatestVersion = null;
+		private string _Error = null;
 		
 		#region "Public Properties"
 		
@@ -76,9 +82,9 @@ namespace GUPdotNET
 			get{return _UpdateFileURL;}
 		}
 		
-		public string VersionInfo
+		public string LatestVersion
 		{
-			get{return _VersionInfo;}
+			get{return _LatestVersion;}
 		}
 		
 		public string ProgramName
@@ -92,9 +98,14 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		public string FileSize
+		public int FileSize
 		{
 			get{return _FileSize;}
+		}
+		
+		private string Error
+		{
+			get{return _Error;}
 		}
 		
 		/// <summary>
@@ -119,9 +130,9 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public string OSVersion
+		public InstallType MyInstallType
 		{
-			set{_OSVersion=value;}
+			set{_InstallType=value;}
 		}
 		
 		/// <summary>
@@ -135,7 +146,7 @@ namespace GUPdotNET
 		
 		#endregion "Public Properties"
 		
-		public bool CheckUpdate()
+		public bool RunCheck()
 		{
 			bool blnSuccess = true;
 			try
@@ -169,13 +180,8 @@ namespace GUPdotNET
 			try
 			{
 				//System.Security.Permissions.EnvironmentPermission ep = new EnvironmentPermission(EnvironmentPermissionAccess.AllAccess, System.Environment.CurrentDirectory);
-				string strOSVersion = "";
-				if(ConfigurationManager.AppSettings["OSVersion"].ToString() != String.Empty)
-					strOSVersion = "&OSVersion=" + _OSVersion;
 				string strURI = _UpdateInfoURL +
-					"?MajorVersion=" + _UpdateMajorVersion.ToString() +
-					"?MinorVersion=" + _UpdateMinorVersion.ToString() +
-					strOSVersion;
+					"?InstallType=" + _InstallType.ToString();
 				
 				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strURI);
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
@@ -201,10 +207,12 @@ namespace GUPdotNET
 				XmlNodeList nl = xmlDoc.SelectNodes("GUPdotNET");
 				for (int i = 0; i < nl.Count; i++)
 				{
-					_UpdateFileURL = nl[i].SelectSingleNode("NeedToBeUpdated").InnerText;
-					_FileSize = nl[i].SelectSingleNode("Version").InnerText;
-					_UpdateMajorVersion = int.Parse(nl[i].SelectSingleNode("Version").InnerText);
-					_UpdateMinorVersion = int.Parse(nl[i].SelectSingleNode("Version").InnerText);
+					_UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText;
+					_UpdateMajorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMajorVersion").InnerText);
+					_UpdateMinorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMinorVersion").InnerText);
+					_FileSize = int.Parse(nl[i].SelectSingleNode("FileSize").InnerText);
+					_LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText;
+					_Error = nl[i].SelectSingleNode("Error").InnerText;
 				}
 			}
 			
@@ -216,5 +224,13 @@ namespace GUPdotNET
 			}
 			
 		}
+	}
+	
+	public enum InstallType
+	{
+		Windows,
+		Linux_rpm,
+		Linux_bin,
+		Linux_src
 	}
 }

@@ -34,6 +34,12 @@ public partial class MainWindow: Gtk.Window
 
 	protected virtual void OnBtnTestClicked (object sender, System.EventArgs e)
 	{
-		GUPdotNET.GUPdotNET.CheckUpdate();
+		UpdateCheck gdn = new UpdateCheck();
+		gdn.MyInstallType = InstallType.Windows;
+		gdn.CurrentMajorVersion = 0;
+		gdn.CurrentMinorVersion = 1;
+		gdn.ProgramName = "GUPdotNet Test";
+		gdn.UpdateInfoURL = "http://brdstudio.net/monotodo/GetUpdateInfo.aspx";
+		gdn.RunCheck();
 	}
 }
