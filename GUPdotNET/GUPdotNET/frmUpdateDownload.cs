@@ -30,8 +30,8 @@ namespace GUPdotNET
 	public partial class frmUpdateDownload : Gtk.Dialog
 	{
 		
-		private GUPdotNET _GUPdotNET;
-		public frmUpdateDownload(GUPdotNET gdn)
+		private UpdateCheck _GUPdotNET;
+		public frmUpdateDownload(UpdateCheck gdn)
 		{
 			this.Build();
 			_GUPdotNET = gdn;
@@ -64,10 +64,10 @@ namespace GUPdotNET
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				string strFilePath = System.Environment.GetEnvironmentVariable("TEMP") + @"\" + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
-				System.Diagnostics.Debug.WriteLine("got here " + strFilePath);
+				//System.Diagnostics.Debug.WriteLine("got here " + strFilePath);
 				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
 				BinaryWriter br = new BinaryWriter(fs);
-				long lgFileSize = long.Parse(_GUPdotNET.FileSize);
+				long lgFileSize = long.Parse(_GUPdotNET.FileSize.ToString());
 				long lgFileProgress = 0;
 				
 				byte[] b = new byte[2048];
@@ -87,9 +87,10 @@ namespace GUPdotNET
 		         }
 		         s.Close();
 		         fs.Close();
+		        
 				this.progressbar1.Text = "Done";
 				
-				//System.Diagnostics.Process.Start(strFilePath);
+				System.Diagnostics.Process.Start(strFilePath);
 			}
 			catch(Exception doh)
 			{
