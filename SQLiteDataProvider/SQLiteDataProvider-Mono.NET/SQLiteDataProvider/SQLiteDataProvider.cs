@@ -49,8 +49,18 @@ namespace SQLiteDataProvider
 		private int _TimeOut = 300;
 		private string _ExceptionMessage = null;
         private ConnectionStringType _ConnStringType = ConnectionStringType.FromCallingCode;
+        private int _BusyTimeout = 600;
 
 		#region "Public Properties"
+		
+        /// <summary>
+        ///  Sets of gets the connection busy time out
+        /// </summary>
+		public int BusyTimeout
+		{
+			set{ _BusyTimeout = value;}
+			get{ return _BusyTimeout;}
+		}
 		
         /// <summary>
         ///  Sets of gets the connection time out
@@ -180,6 +190,7 @@ namespace SQLiteDataProvider
 				{
                     sqlCN = new SqliteConnection(ConfigurationManager.AppSettings[_ConnString].ToString());				
 				}
+				sqlCN.BusyTimeout = _BusyTimeout;
 			}
 			catch(Exception ex)
 			{
