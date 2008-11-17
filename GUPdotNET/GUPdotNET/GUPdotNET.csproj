@@ -28,21 +28,22 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="docs\GUPdotNET_gpl_License.txt" />
     <None Include="GetUpdateInfo.aspx" />
     <None Include="gtk-gui\gui.stetic" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="frmFirstRun.cs" />
     <Compile Include="frmSuPass.cs" />
     <Compile Include="frmUpdateConfirm.cs" />
     <Compile Include="frmUpdateDownload.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="gtk-gui\GUPdotNET.frmFirstRun.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmSuPass.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateConfirm.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateDownload.cs" />
     <Compile Include="GUPdotNET.cs" />
+    <Compile Include="PublicEnums.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="docs" />
     <Folder Include="gtk-gui" />
     <Reference Include="atk-sharp">
       <HintPath>..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\atk-sharp\2.10.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
@@ -57,7 +58,7 @@
       <HintPath>..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\gtk-sharp\2.10.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.0\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="pango-sharp">
       <HintPath>..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\pango-sharp\2.10.0.0__35e10195dab3c99f\pango-sharp.dll</HintPath>
