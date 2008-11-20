@@ -27,7 +27,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="docs\GUPdotNET_gpl_License.txt" />
     <None Include="GetUpdateInfo.aspx" />
     <None Include="gtk-gui\gui.stetic" />
