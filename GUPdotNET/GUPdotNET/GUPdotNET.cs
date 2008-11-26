@@ -42,6 +42,7 @@ namespace GUPdotNET
 		private int _CurrentMajorVersion = -1;
 		private int _CurrentMinorVersion = -1;
 		private string _ProgramName = null;
+		private bool _SilentCheck = true;
 		
 		private string _UpdateFileURL = null;
 		private int _UpdateMajorVersion = -1;
@@ -133,6 +134,11 @@ namespace GUPdotNET
 			set{_UpdateInfoURL=value;}
 		}
 		
+		public bool SilentCheck
+		{
+			set{_SilentCheck=value;}
+		}
+		
 		#endregion "Public Properties"
 		
 		public bool RunCheck()
@@ -149,7 +155,12 @@ namespace GUPdotNET
 				}
 				else
 				{
-					Gtk.Application.Quit();
+					if(_SilentCheck == false)
+					{
+						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Not updates avalable at this time." ,"No updates");
+						md.Run();
+						md.Destroy();
+					}					
 				}
 				
 			}

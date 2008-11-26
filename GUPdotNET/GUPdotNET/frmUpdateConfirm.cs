@@ -66,7 +66,7 @@ namespace GUPdotNET
 
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
-			Gtk.Application.Quit();
+			this.Hide();
 		}
 	}
 }
