@@ -28,6 +28,7 @@ namespace GUPdotNET_Testing
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();
+			
 		}
 	}
 }
