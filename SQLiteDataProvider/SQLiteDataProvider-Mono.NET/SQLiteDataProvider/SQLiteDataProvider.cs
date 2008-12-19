@@ -404,6 +404,56 @@ namespace SQLiteDataProvider
 			return arrReturn;
 		}
 		
+		/// <summary>
+		/// Intended to return on single datarow in an array list
+		/// </summary>
+		/// <param name="strSQL"></param>
+		/// <returns></returns>
+		public ArrayList ExecuteArrayListRow(string strSQL)
+		{
+			ArrayList arrReturn = new ArrayList();
+			SqliteConnection sqlCN = GetConn();
+			SqliteCommand sqlCMD = new SqliteCommand(strSQL, sqlCN);
+			sqlCMD.CommandType = CommandType.Text;
+			sqlCMD.CommandTimeout = _TimeOut;
+			SqliteDataReader sqlReader = null;
+			
+			bool lockedDatabaseException = true;
+			while ( lockedDatabaseException )
+			{
+				try
+				{
+					sqlCN.Open();
+					sqlReader = sqlCMD.ExecuteReader();
+					while(sqlReader.Read())
+					{
+						for(int i = 0; i < sqlReader.FieldCount; i++)
+						{
+							arrReturn.Add((object)sqlReader[i]);
+						}
+						
+					}
+					sqlReader.Close();
+					sqlCN.Close();
+					lockedDatabaseException = false;
+				}
+				catch(Exception ex)
+				{
+					if (ex.Message.ToLower().IndexOf("database is locked") > -1)
+					{
+						lockedDatabaseException = true;
+						System.Threading.Thread.Sleep(100);
+					}
+					else
+					{
+						lockedDatabaseException = false;
+						throw new Exception(ex.ToString());
+					}
+				}
+			}
+			return arrReturn;
+		}
+		
 		#endregion "Return Array Lists"
 		
 		#region "Scalar and NonQuery"
