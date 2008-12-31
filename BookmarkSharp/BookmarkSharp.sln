@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+# SharpDevelop 3.0.0.3326
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkSharpWebService", "BookmarkSharpWebService\BookmarkSharpWebService.csproj", "{904DF89A-704F-4CA3-B506-B756C372E541}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkSharpClient", "BookmarkSharpClient\BookmarkSharpClient.csproj", "{9C32CDF4-6904-401D-BF45-CE2C6548C41D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteDataProvider", "SQLiteDataProvider\SQLiteDataProvider.csproj", "{6F62FC76-BBA2-4E2F-B92E-9E67F672455C}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{904DF89A-704F-4CA3-B506-B756C372E541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904DF89A-704F-4CA3-B506-B756C372E541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904DF89A-704F-4CA3-B506-B756C372E541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904DF89A-704F-4CA3-B506-B756C372E541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C32CDF4-6904-401D-BF45-CE2C6548C41D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C32CDF4-6904-401D-BF45-CE2C6548C41D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C32CDF4-6904-401D-BF45-CE2C6548C41D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C32CDF4-6904-401D-BF45-CE2C6548C41D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F62FC76-BBA2-4E2F-B92E-9E67F672455C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F62FC76-BBA2-4E2F-B92E-9E67F672455C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F62FC76-BBA2-4E2F-B92E-9E67F672455C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F62FC76-BBA2-4E2F-B92E-9E67F672455C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
