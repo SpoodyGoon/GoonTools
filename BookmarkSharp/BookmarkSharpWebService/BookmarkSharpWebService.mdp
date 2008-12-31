@@ -1,0 +1,28 @@
+<Project releaseversion="0.1" name="BookmarkSharpWebService" fileversion="2.0" language="C#" DefaultNamespace="BookmarkSharpWebService" clr-version="Net_2_0" Configuration="Debug" Platform="AnyCPU" AssemblyName="BookmarkSharpWebService" OutputPath="bin\" ctype="DotNetProject">
+  <Contents>
+    <File name="AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Bookmark.cs" subtype="Code" buildaction="Compile" />
+    <File name="BookmarkSharp.cs" subtype="Code" buildaction="Compile" dependson="/home/spoodygoon/Projects/BookmarkSharp/BookmarkSharp/BookmarkSharpWebService/BookmarkSharp.asmx" />
+    <File name="Encryption.cs" subtype="Code" buildaction="Compile" />
+    <File name="Properties/Settings.Designer.cs" subtype="Code" buildaction="Compile" dependson="/home/spoodygoon/Projects/BookmarkSharp/BookmarkSharp/BookmarkSharpWebService/Properties/Settings.settings" />
+    <File name="SQLiteDataProvider.cs" subtype="Code" buildaction="Compile" />
+    <File name="BookmarkSharp.resx" subtype="Code" buildaction="EmbedAsResource" dependson="/home/spoodygoon/Projects/BookmarkSharp/BookmarkSharp/BookmarkSharpWebService/BookmarkSharp.cs" resource_id="BookmarkSharpWebService.BookmarkSharp.resources" />
+    <File name="app.config" subtype="Code" buildaction="Nothing" />
+    <File name="BookmarkSharp.asmx" subtype="Code" buildaction="Nothing" />
+    <File name="dsBookmarks.xsc" subtype="Code" buildaction="Nothing" dependson="/home/spoodygoon/Projects/BookmarkSharp/BookmarkSharp/BookmarkSharpWebService/dsBookmarks.xsd" />
+    <File name="Properties/Settings.settings" subtype="Code" buildaction="Nothing" />
+    <File name="Web.config" subtype="Code" buildaction="Nothing" />
+  </Contents>
+  <References>
+    <ProjectReference type="Gac" localcopy="True" refto="System" />
+    <ProjectReference type="Assembly" localcopy="True" refto="../../../../../../Program Files/Mono-1.9.1/lib/mono/gac/System.Configuration/2.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Data" />
+    <ProjectReference type="Assembly" localcopy="True" refto="../../../../../../Program Files/Mono-1.9.1/lib/mono/gac/System.Data/2.0.0.0__b77a5c561934e089/System.Data.dll" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Data.SQLite" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Drawing" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Web" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Web.Services" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Windows.Forms" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Xml" />
+  </References>
+</Project>
