@@ -257,9 +257,6 @@ namespace SQLiteDataProvider
 		///  this will parse out that single row into a hash table
 		///  not for use with web services
 		/// </summary>
-		/// <param name="strSQL"></param>
-		/// <example><code>Hashtable hshReturn = new Hashtable();</code></example>
-		/// <returns></returns>
 		public Hashtable ExecuteHashTable(string strSQL)
 		{
 			Hashtable hshReturn = new Hashtable();
@@ -494,6 +491,8 @@ namespace SQLiteDataProvider
 				}
 			}
 		}
+		
+		
 		
 		/// <summary>
 		///  Executes Scalar when the last_insert_rowid statement
@@ -731,15 +730,67 @@ namespace SQLiteDataProvider
 			return ls;
 		}
 		
+		/*
+		public Gtk.ListStore ExecuteListStore(string strSQL, out Gtk.ListStore ls)
+		{
+			SqliteConnection sqlCN = GetConn();
+			SqliteCommand sqlCMD = new SqliteCommand(strSQL, sqlCN);
+			sqlCMD.CommandType = CommandType.Text;
+			sqlCMD.CommandTimeout = _TimeOut;
+			SqliteDataReader sqlReader = null;
+			DataTable dtTypes = null;
+			try
+			{
+				sqlCN.Open();
+				sqlReader = sqlCMD.ExecuteReader();
+				GLib.GType[] gt = ls.ColumnTypes;
+				 
+				dtTypes = sqlReader.GetSchemaTable();
+				// create our system types for the list store
+				System.Type[] oType = new System.Type[dtTypes.Rows.Count];
+				for(int i = 0; i < dtTypes.Rows.Count; i++)
+				{
+					oType[i] = typeof(string);
+				}
+				ls = new Gtk.ListStore(oType);
+				
+				while(sqlReader.Read())
+				{
+					ls.AppendValues(sqlReader[0].ToString(), sqlReader[1].ToString());
+				}
+				sqlReader.Close();
+				sqlCN.Close();
+			}
+			catch(Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.ToString());
+				throw new Exception(ex.ToString());
+			}
+			finally
+			{
+				if(sqlCN.State != ConnectionState.Closed)
+					sqlCN.Close();
+				
+				if(dtTypes.Rows.Count > 0)
+					dtTypes.Clear();
+				
+				sqlCN.Dispose();
+				sqlCMD.Dispose();
+				sqlReader.Dispose();
+				dtTypes.Dispose();
+			}
+			return ls;
+		}
+		
+		*/
+		
 		/// <summary>
 		///  Returns a Gtk.ListStore inteded for use with Gtk.ComboBoxes
 		///  This specifies which column is the Text/Name and which column will be the ID/Value column
 		/// </summary>
 		/// <param name="strSQL"></param>
-		/// <param name="strName"></param>
-		/// <param name="strValue"></param>
 		/// <returns>Gtk.ListStore</returns>
-		public Gtk.ListStore ExecuteListStore(string strSQL, string strName, string strValue)
+		public Gtk.ListStore ExecuteComboModel(string strSQL)
 		{
 			SqliteConnection sqlCN = GetConn();
 			SqliteCommand sqlCMD = new SqliteCommand(strSQL, sqlCN);
@@ -757,7 +808,7 @@ namespace SQLiteDataProvider
 					sqlReader = sqlCMD.ExecuteReader();
 					while(sqlReader.Read())
 					{
-						ls.AppendValues(sqlReader[strValue].ToString(), sqlReader[strName].ToString());
+						ls.AppendValues(sqlReader[0].ToString(), sqlReader[1].ToString());
 					}
 					sqlReader.Close();
 					sqlCN.Close();
