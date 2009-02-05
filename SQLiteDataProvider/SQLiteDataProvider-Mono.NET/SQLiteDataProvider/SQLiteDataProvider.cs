@@ -1,24 +1,23 @@
-#region "License"
-
-// SQLiteDataProvider.cs
-// 
-// Copyright (C) 2008 SpoodyGoon
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-
-#endregion "License"
+/*************************************************************************
+*                     SQLiteDataProvider.cs                                       
+*                                                                      
+*             Copyright (C) 2009 Andrew York <spoodygoon@gmail.com>
+*                                                                       
+*************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
 
 #region "Description"
 
@@ -687,24 +686,28 @@ namespace SQLiteDataProvider
 			sqlCMD.CommandTimeout = _TimeOut;
 			SqliteDataReader sqlReader = null;
 			DataTable dtTypes = null;
-			Gtk.ListStore ls;
+			Gtk.ListStore  ls;
 			try
 			{
 				sqlCN.Open();
 				sqlReader = sqlCMD.ExecuteReader();
 				
 				dtTypes = sqlReader.GetSchemaTable();
+				
+				int intFieldCount = sqlReader.FieldCount;
 				// create our system types for the list store
-				System.Type[] oType = new System.Type[dtTypes.Rows.Count];
-				for(int i = 0; i < dtTypes.Rows.Count; i++)
+				System.Type[] oType = new System.Type[intFieldCount];
+				object[] values = new object[intFieldCount];
+				for(int i = 0; i < intFieldCount; i++)
 				{
-					oType[i] = typeof(string);
+					oType[i] = (Type) dtTypes.Rows[i]["DataType"];
 				}
 				ls = new Gtk.ListStore(oType);
 				
 				while(sqlReader.Read())
 				{
-					ls.AppendValues(sqlReader[0].ToString(), sqlReader[1].ToString());
+					sqlReader.GetValues(values);
+					ls.AppendValues(values);
 				}
 				sqlReader.Close();
 				sqlCN.Close();
@@ -730,59 +733,7 @@ namespace SQLiteDataProvider
 			return ls;
 		}
 		
-		/*
-		public Gtk.ListStore ExecuteListStore(string strSQL, out Gtk.ListStore ls)
-		{
-			SqliteConnection sqlCN = GetConn();
-			SqliteCommand sqlCMD = new SqliteCommand(strSQL, sqlCN);
-			sqlCMD.CommandType = CommandType.Text;
-			sqlCMD.CommandTimeout = _TimeOut;
-			SqliteDataReader sqlReader = null;
-			DataTable dtTypes = null;
-			try
-			{
-				sqlCN.Open();
-				sqlReader = sqlCMD.ExecuteReader();
-				GLib.GType[] gt = ls.ColumnTypes;
-				 
-				dtTypes = sqlReader.GetSchemaTable();
-				// create our system types for the list store
-				System.Type[] oType = new System.Type[dtTypes.Rows.Count];
-				for(int i = 0; i < dtTypes.Rows.Count; i++)
-				{
-					oType[i] = typeof(string);
-				}
-				ls = new Gtk.ListStore(oType);
-				
-				while(sqlReader.Read())
-				{
-					ls.AppendValues(sqlReader[0].ToString(), sqlReader[1].ToString());
-				}
-				sqlReader.Close();
-				sqlCN.Close();
-			}
-			catch(Exception ex)
-			{
-				System.Diagnostics.Debug.WriteLine(ex.ToString());
-				throw new Exception(ex.ToString());
-			}
-			finally
-			{
-				if(sqlCN.State != ConnectionState.Closed)
-					sqlCN.Close();
-				
-				if(dtTypes.Rows.Count > 0)
-					dtTypes.Clear();
-				
-				sqlCN.Dispose();
-				sqlCMD.Dispose();
-				sqlReader.Dispose();
-				dtTypes.Dispose();
-			}
-			return ls;
-		}
 		
-		*/
 		
 		/// <summary>
 		///  Returns a Gtk.ListStore inteded for use with Gtk.ComboBoxes
