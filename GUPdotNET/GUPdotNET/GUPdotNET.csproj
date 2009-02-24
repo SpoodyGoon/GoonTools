@@ -57,7 +57,7 @@
       <HintPath>..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\gtk-sharp\2.10.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="pango-sharp">
       <HintPath>..\..\..\..\..\Program Files\Mono-1.9.1\lib\mono\gac\pango-sharp\2.10.0.0__35e10195dab3c99f\pango-sharp.dll</HintPath>
