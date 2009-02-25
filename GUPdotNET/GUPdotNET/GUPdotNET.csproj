@@ -3,11 +3,12 @@
     <ProjectGuid>{4C89213F-F2F0-417D-AB7F-850D2BC47DC7}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>GUPdotNET</RootNamespace>
     <AssemblyName>GUPdotNET</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\ayork\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <StartupObject>GUPdotNET.MainClass</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -39,6 +40,7 @@
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateConfirm.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateDownload.cs" />
     <Compile Include="GUPdotNET.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="PublicEnums.cs" />
   </ItemGroup>
   <ItemGroup>
