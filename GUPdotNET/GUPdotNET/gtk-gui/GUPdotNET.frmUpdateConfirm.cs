@@ -35,6 +35,7 @@ namespace GUPdotNET {
             Stetic.Gui.Initialize(this);
             // Widget GUPdotNET.frmUpdateConfirm
             this.Name = "GUPdotNET.frmUpdateConfirm";
+            this.Title = Mono.Unix.Catalog.GetString("window1");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.AllowShrink = true;
             this.DefaultWidth = 325;

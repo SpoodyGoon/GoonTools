@@ -28,20 +28,14 @@ using Gtk;
 
 namespace GUPdotNET
 {
-	
-	
 	public class UpdateCheck
 	{
-		public UpdateCheck()
-		{
-			// default constructor
-		}
-		
 		private InstallType _InstallType = InstallType.Windows; // windows is the default
 		private string _UpdateInfoURL = null;
 		private int _CurrentMajorVersion = -1;
 		private int _CurrentMinorVersion = -1;
 		private string _ProgramName = null;
+		private string _ProgramFullPath=null;
 		private bool _SilentCheck = true;
 		
 		private string _UpdateFileURL = null;
@@ -49,7 +43,7 @@ namespace GUPdotNET
 		private int _UpdateMinorVersion = -1;
 		private string _LatestVersion = null;
 		private string _Error = null;
-		
+		private System.Diagnostics.Process _CallingProcess;
 		#region "Public Properties"
 		
 		/// <summary>
@@ -57,7 +51,7 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		public int UpdateMajorVersion
+		public  int UpdateMajorVersion
 		{
 			get{return _UpdateMajorVersion;}
 		}
@@ -67,7 +61,7 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		public int UpdateMinorVersion
+		public  int UpdateMinorVersion
 		{
 			get{return _UpdateMinorVersion;}
 		}
@@ -77,23 +71,29 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		public string UpdateFileURL
+		public  string UpdateFileURL
 		{
 			get{return _UpdateFileURL;}
 		}
 		
-		public string LatestVersion
+		public  string LatestVersion
 		{
 			get{return _LatestVersion;}
 		}
 		
-		public string ProgramName
+		public  string ProgramName
 		{
 			set{_ProgramName = value;}
 			get{return _ProgramName;}
 		}
 		
-		private string Error
+		public  System.Diagnostics.Process CallingProcess
+		{
+			set{_CallingProcess = value;}
+			get{return _CallingProcess;}
+		}
+		
+		private  string Error
 		{
 			get{return _Error;}
 		}
@@ -102,7 +102,7 @@ namespace GUPdotNET
 		///  This is the major version
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public int CurrentMajorVersion
+		public  int CurrentMajorVersion
 		{
 			set{_CurrentMajorVersion=value;}
 		}
@@ -111,7 +111,7 @@ namespace GUPdotNET
 		///  This is the minor version
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public int CurrentMinorVersion
+		public  int CurrentMinorVersion
 		{
 			set{_CurrentMinorVersion=value;}
 		}
@@ -120,7 +120,7 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public InstallType MyInstallType
+		public  InstallType MyInstallType
 		{
 			set{_InstallType=value;}
 		}
@@ -129,19 +129,25 @@ namespace GUPdotNET
 		///  This is the major version
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public string UpdateInfoURL
+		public  string UpdateInfoURL
 		{
 			set{_UpdateInfoURL=value;}
 		}
 		
-		public bool SilentCheck
+		public  bool SilentCheck
 		{
 			set{_SilentCheck=value;}
 		}
 		
+		public  string ProgramFullPath
+		{
+			get{return _ProgramFullPath;}
+			set{_ProgramFullPath = value;}
+		}
+		
 		#endregion "Public Properties"
 		
-		public bool RunCheck()
+		public void RunCheck()
 		{
 			bool blnSuccess = true;
 			try
@@ -170,7 +176,7 @@ namespace GUPdotNET
 				md.Run();
 				md.Destroy();
 			}
-			return blnSuccess;
+			//return blnSuccess;
 		}
 		
 		

@@ -18,6 +18,7 @@
 using System;
 using GUPdotNET;
 using Gtk;
+using System.Threading;
 
 public partial class MainWindow: Gtk.Window
 {	
@@ -34,12 +35,19 @@ public partial class MainWindow: Gtk.Window
 
 	protected virtual void OnBtnTestClicked (object sender, System.EventArgs e)
 	{
+//		MonoToDo.SaveThread.clsSaveTasks sv = new MonoToDo.SaveThread.clsSaveTasks((DataSet)_DataSource, _ToDoPage.CurrTimeTaskID);
+//				Thread thrSave = new Thread(new ThreadStart(sv.SaveAll) );
+//				thrSave.Start();
+		//Console.WriteLine(System.Diagnostics.Process.GetCurrentProcess()..ProcessName.ToString());
 		UpdateCheck gdn = new UpdateCheck();
 		gdn.MyInstallType = InstallType.Windows;
 		gdn.CurrentMajorVersion = 0;
 		gdn.CurrentMinorVersion = 1;
 		gdn.ProgramName = "GUPdotNet Test";
-		gdn.UpdateInfoURL = "http://brdstudio.net/monotodo/GetUpdateInfo.aspx";
-		gdn.RunCheck();
+		gdn.UpdateInfoURL = "http://brdstudio.net/gupdotnet/GetUpdateInfo.aspx";
+		gdn.CallingProcess = System.Diagnostics.Process.GetCurrentProcess();
+		//System.Diagnostics.Process proc = new System.Diagnostics.Process();
+		
+		//System.Diagnostics.Process.Start(gdn.RunCheck());
 	}
 }

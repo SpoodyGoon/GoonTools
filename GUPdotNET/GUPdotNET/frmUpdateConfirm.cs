@@ -51,10 +51,12 @@ namespace GUPdotNET
 		{
 			try
 			{
-				this.Hide();
-				frmUpdateDownload fm = new frmUpdateDownload(_GUPdotNET);
-				fm.Run();
-				fm.Dispose();
+				Console.WriteLine(_GUPdotNET.CallingProcess.Id.ToString());
+				_GUPdotNET.CallingProcess.Kill();
+//				this.Hide();
+//				frmUpdateDownload fm = new frmUpdateDownload(_GUPdotNET);
+//				fm.Run();
+//				fm.Dispose();
 			}
 			catch(Exception doh)
 			{
