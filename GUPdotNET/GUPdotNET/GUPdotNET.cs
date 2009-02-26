@@ -30,28 +30,111 @@ namespace GUPdotNET
 {
 	public class UpdateCheck
 	{
-		private InstallType _InstallType = InstallType.Windows; // windows is the default
+		// value from the calling application or from the app con
+		private string _InstallType = null; 
+		private string _ProgramName = null;
 		private string _UpdateInfoURL = null;
 		private int _CurrentMajorVersion = -1;
 		private int _CurrentMinorVersion = -1;
-		private string _ProgramName = null;
-		private string _ProgramFullPath=null;
 		private bool _SilentCheck = true;
+		private string _CallingApplication = null;
 		
+		// values that are imported from the aspx file on the listed web site
 		private string _UpdateFileURL = null;
 		private int _UpdateMajorVersion = -1;
 		private int _UpdateMinorVersion = -1;
 		private string _LatestVersion = null;
 		private string _Error = null;
-		private System.Diagnostics.Process _CallingProcess;
-		#region "Public Properties"
+		
+		#region Public Properties Local
+		
+		/// <summary>
+		///  This is the Operating System info
+		///  Passed in by the program calling the GUPdotNET assembly/class
+		/// </summary>
+		public string InstallType
+		{
+			set{_InstallType=value;}
+			get{return _InstallType;}
+		}
+		
+		/// <summary>
+		///  the freindly name of the application
+		/// </summary>
+		public  string ProgramName
+		{
+			set{_ProgramName = value;}
+			get{return _ProgramName;}
+		}
+		
+		/// <summary>
+		///  This is URL for the web site
+		///  containing the update information
+		/// </summary>
+		 public string UpdateInfoURL
+		{
+			set{_UpdateInfoURL = value;}
+			get{return _UpdateInfoURL;}
+		}
+		
+		/// <summary>
+		///  This is the major version of the application
+		///  we are looking to update
+		/// </summary>
+		 public int CurrentMajorVersion
+		{
+			set{_CurrentMajorVersion=value;}
+			get{return _CurrentMajorVersion;}
+		}
+		
+		/// <summary>
+		///  This is the minor version or the application
+		///  we are looking to update
+		/// </summary>
+		 public int CurrentMinorVersion
+		{
+			set{_CurrentMinorVersion=value;}
+			get{return _CurrentMinorVersion;}
+		}
+		
+		/// <summary>
+		///  if this is set to true this will 
+		///  not report if no connection is made to the
+		///  web server or if other interuptions occur
+		/// </summary>
+		 public bool SilentCheck
+		{
+			set{_SilentCheck=value;}
+			get{return _SilentCheck;}
+		}
+		
+		/// <summary>
+		///  The name of the application that we are looking to update
+		/// </summary>
+		 public string CallingApplication
+		{
+			set{_CallingApplication = value;}
+			get{return _CallingApplication;}
+		}
+		
+		#endregion Public Properties Local
+		
+		#region Public Properties Web Server
+		
+		/// <summary>
+		///  The file that is the updated installation
+		/// </summary>
+		public string UpdateFileURL
+		{
+			get{return _UpdateFileURL;}
+		}
 		
 		/// <summary>
 		///  This is the major version
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		public  int UpdateMajorVersion
+		 public int UpdateMajorVersion
 		{
 			get{return _UpdateMajorVersion;}
 		}
@@ -61,93 +144,31 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		public  int UpdateMinorVersion
+		 public int UpdateMinorVersion
 		{
 			get{return _UpdateMinorVersion;}
 		}
 		
 		/// <summary>
-		///  This is URL for the update/installer
-		///  recieved from the web site
-		///  containing the update information
+		///  this is a generic string of the updatable version
 		/// </summary>
-		public  string UpdateFileURL
-		{
-			get{return _UpdateFileURL;}
-		}
-		
-		public  string LatestVersion
+		 public string LatestVersion
 		{
 			get{return _LatestVersion;}
 		}
 		
-		public  string ProgramName
-		{
-			set{_ProgramName = value;}
-			get{return _ProgramName;}
-		}
-		
-		public  System.Diagnostics.Process CallingProcess
-		{
-			set{_CallingProcess = value;}
-			get{return _CallingProcess;}
-		}
-		
-		private  string Error
+		/// <summary>
+		///  this contains any error that is returned from the
+		///  web site portion of the app
+		/// </summary>
+		public string Error
 		{
 			get{return _Error;}
 		}
 		
-		/// <summary>
-		///  This is the major version
-		///  Passed in by the program calling the GUPdotNET assembly/class
-		/// </summary>
-		public  int CurrentMajorVersion
-		{
-			set{_CurrentMajorVersion=value;}
-		}
+		#endregion Public Properties Web Server
 		
-		/// <summary>
-		///  This is the minor version
-		///  Passed in by the program calling the GUPdotNET assembly/class
-		/// </summary>
-		public  int CurrentMinorVersion
-		{
-			set{_CurrentMinorVersion=value;}
-		}
-		
-		/// <summary>
-		///  This is the Operating System info
-		///  Passed in by the program calling the GUPdotNET assembly/class
-		/// </summary>
-		public  InstallType MyInstallType
-		{
-			set{_InstallType=value;}
-		}
-		
-		/// <summary>
-		///  This is the major version
-		///  Passed in by the program calling the GUPdotNET assembly/class
-		/// </summary>
-		public  string UpdateInfoURL
-		{
-			set{_UpdateInfoURL=value;}
-		}
-		
-		public  bool SilentCheck
-		{
-			set{_SilentCheck=value;}
-		}
-		
-		public  string ProgramFullPath
-		{
-			get{return _ProgramFullPath;}
-			set{_ProgramFullPath = value;}
-		}
-		
-		#endregion "Public Properties"
-		
-		public void RunCheck()
+		 public void RunCheck()
 		{
 			bool blnSuccess = true;
 			try
@@ -166,7 +187,7 @@ namespace GUPdotNET
 						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Not updates avalable at this time." ,"No updates");
 						md.Run();
 						md.Destroy();
-					}					
+					}
 				}
 				
 			}
@@ -181,13 +202,13 @@ namespace GUPdotNET
 		
 		
 		
-		public void LoadUpdateInfo()
+		 public void LoadUpdateInfo()
 		{
 			try
 			{
 				//System.Security.Permissions.EnvironmentPermission ep = new EnvironmentPermission(EnvironmentPermissionAccess.AllAccess, System.Environment.CurrentDirectory);
 				string strURI = _UpdateInfoURL +
-					"?InstallType=" + _InstallType.ToString();
+					"?InstallType=" + _InstallType;
 				
 				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strURI);
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
@@ -203,7 +224,7 @@ namespace GUPdotNET
 			}
 		}
 		
-		public void ParseResponse(Stream s)
+		 public void ParseResponse(Stream s)
 		{
 			try
 			{

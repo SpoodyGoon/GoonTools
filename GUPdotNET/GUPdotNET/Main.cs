@@ -17,6 +17,7 @@
 //
 
 using System;
+using System.Configuration;
 using Gtk;
 
 namespace GUPdotNET
@@ -26,14 +27,33 @@ namespace GUPdotNET
 		public static void Main (string[] args)
 		{
 			Application.Init ();
-			UpdateCheck gdn = new UpdateCheck();
-			//gdn.MyInstallType = args[0].ToString();
-			gdn.CurrentMajorVersion = int.Parse(args[0].ToString());
-			gdn.CurrentMinorVersion =  int.Parse(args[0].ToString());
-			gdn.ProgramName =  args[0].ToString();
-			gdn.UpdateInfoURL = args[0].ToString();
-			gdn.CallingProcess = System.Diagnostics.Process.GetCurrentProcess();
-			System.Diagnostics.Process proc = new System.Diagnostics.Process();
+			
+			UpdateCheck uc = new UpdateCheck();
+			// if there are no arguments then we are using the
+			// app config file
+			if(args.Length == 0)
+			{
+				uc.InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
+				uc.ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
+				uc.UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+				uc.CurrentMajorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMajorVersion"].ToString());
+				uc.CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMinorVersion"].ToString());
+				uc.SilentCheck = Convert.ToBoolean(ConfigurationManager.AppSettings["SilentCheck"].ToString());
+				uc.CallingApplication = ConfigurationManager.AppSettings["CallingApplication"].ToString();
+				
+			}
+			else
+			{
+				uc.InstallType = args[0].ToString();
+				uc.ProgramName = args[0].ToString();
+				uc.UpdateInfoURL = args[0].ToString();
+				uc.CurrentMajorVersion = Convert.ToInt32(args[0].ToString());
+				uc.CurrentMinorVersion = Convert.ToInt32(args[0].ToString());
+				uc.SilentCheck = Convert.ToBoolean(args[0].ToString());
+				uc.CallingApplication = args[0].ToString();
+			}
+			uc.RunCheck();
+			
 			Application.Run ();
 			
 		}

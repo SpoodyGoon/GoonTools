@@ -50,13 +50,11 @@ namespace GUPdotNET
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
 			try
-			{
-				Console.WriteLine(_GUPdotNET.CallingProcess.Id.ToString());
-				_GUPdotNET.CallingProcess.Kill();
-//				this.Hide();
-//				frmUpdateDownload fm = new frmUpdateDownload(_GUPdotNET);
-//				fm.Run();
-//				fm.Dispose();
+			{				
+				this.Hide();
+				frmUpdateDownload fm = new frmUpdateDownload(_GUPdotNET);
+				fm.Run();
+				fm.Dispose();
 			}
 			catch(Exception doh)
 			{
