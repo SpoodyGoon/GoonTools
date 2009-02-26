@@ -39,13 +39,13 @@ public partial class MainWindow: Gtk.Window
 //				Thread thrSave = new Thread(new ThreadStart(sv.SaveAll) );
 //				thrSave.Start();
 		//Console.WriteLine(System.Diagnostics.Process.GetCurrentProcess()..ProcessName.ToString());
-		UpdateCheck gdn = new UpdateCheck();
-		gdn.MyInstallType = InstallType.Windows;
-		gdn.CurrentMajorVersion = 0;
-		gdn.CurrentMinorVersion = 1;
-		gdn.ProgramName = "GUPdotNet Test";
-		gdn.UpdateInfoURL = "http://brdstudio.net/gupdotnet/GetUpdateInfo.aspx";
-		gdn.CallingProcess = System.Diagnostics.Process.GetCurrentProcess();
+//		UpdateCheck gdn = new UpdateCheck();
+//		gdn.MyInstallType = InstallType.Windows;
+//		gdn.CurrentMajorVersion = 0;
+//		gdn.CurrentMinorVersion = 1;
+//		gdn.ProgramName = "GUPdotNet Test";
+//		gdn.UpdateInfoURL = "http://brdstudio.net/gupdotnet/GetUpdateInfo.aspx";
+//		gdn.CallingProcess = System.Diagnostics.Process.GetCurrentProcess();
 		//System.Diagnostics.Process proc = new System.Diagnostics.Process();
 		
 		//System.Diagnostics.Process.Start(gdn.RunCheck());
