@@ -1,0 +1,16 @@
+C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\GUPdotNET_Testing.exe.config
+C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\GUPdotNET_Testing.exe
+C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\GUPdotNET.pdb
+C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\obj\Debug\GUPdotNET_Testing.exe
+C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\art-sharp.dll
+C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\Mono.Posix.dll
+C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\GUPdotNET.exe
+C:\Users\Andy\Documents\temp\GUPdotNET\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\app.config
+C:\Users\Andy\Documents\temp\GUPdotNET\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\GUPdotNET_Testing.exe.config
+C:\Users\Andy\Documents\temp\GUPdotNET\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\GUPdotNET_Testing.exe
+C:\Users\Andy\Documents\temp\GUPdotNET\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\art-sharp.dll
+C:\Users\Andy\Documents\temp\GUPdotNET\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\GUPdotNET.exe
+C:\Users\Andy\Documents\temp\GUPdotNET\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\bin\Debug\GUPdotNET.pdb
+C:\Users\Andy\Documents\temp\GUPdotNET\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Andy\Documents\temp\GUPdotNET\GUPdotNET\GUPdotNET_Testing\GUPdotNET_Testing\obj\Debug\GUPdotNET_Testing.exe
