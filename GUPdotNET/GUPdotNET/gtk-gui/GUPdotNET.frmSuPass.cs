@@ -15,7 +15,11 @@ namespace GUPdotNET {
         
         private Gtk.VBox vbox2;
         
+        private Gtk.Alignment alignment1;
+        
         private Gtk.Label label1;
+        
+        private Gtk.HSeparator hseparator1;
         
         private Gtk.HBox hbox1;
         
@@ -23,9 +27,15 @@ namespace GUPdotNET {
         
         private Gtk.Label label2;
         
-        private Gtk.Alignment alignment1;
+        private Gtk.Alignment alignment2;
         
         private Gtk.Entry entry1;
+        
+        private Gtk.Alignment alignment3;
+        
+        private Gtk.Label label3;
+        
+        private Gtk.HSeparator hseparator2;
         
         private Gtk.Button buttonCancel;
         
@@ -48,15 +58,27 @@ namespace GUPdotNET {
             this.vbox2.Name = "vbox2";
             this.vbox2.Spacing = 6;
             // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment1.Name = "alignment1";
+            // Container child alignment1.Gtk.Container+ContainerChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
             this.label1.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"xx-large\"><b>Administrator Password Needed</b></span>");
             this.label1.UseMarkup = true;
-            this.vbox2.Add(this.label1);
-            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.vbox2[this.label1]));
-            w2.Position = 0;
-            w2.Expand = false;
-            w2.Fill = false;
+            this.alignment1.Add(this.label1);
+            this.vbox2.Add(this.alignment1);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
+            w3.Position = 0;
+            w3.Expand = false;
+            w3.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.hseparator1 = new Gtk.HSeparator();
+            this.hseparator1.Name = "hseparator1";
+            this.vbox2.Add(this.hseparator1);
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox2[this.hseparator1]));
+            w4.Position = 1;
+            w4.Expand = false;
+            w4.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.hbox1 = new Gtk.HBox();
             this.hbox1.Name = "hbox1";
@@ -66,53 +88,75 @@ namespace GUPdotNET {
             this.image1.Name = "image1";
             this.image1.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-warning", Gtk.IconSize.Dialog, 32);
             this.hbox1.Add(this.image1);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox1[this.image1]));
-            w3.Position = 0;
-            w3.Expand = false;
-            w3.Fill = false;
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox1[this.image1]));
+            w5.Position = 0;
+            w5.Expand = false;
+            w5.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
             this.label2.LabelProp = Mono.Unix.Catalog.GetString("In order to update this program you need to enter the administrator password or restart this program running as the administrator.");
             this.label2.Wrap = true;
             this.hbox1.Add(this.label2);
-            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.hbox1[this.label2]));
-            w4.Position = 1;
-            w4.Expand = false;
-            w4.Fill = false;
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.hbox1[this.label2]));
+            w6.Position = 1;
+            w6.Expand = false;
+            w6.Fill = false;
             this.vbox2.Add(this.hbox1);
-            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox2[this.hbox1]));
-            w5.Position = 1;
-            w5.Expand = false;
-            w5.Fill = false;
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox2[this.hbox1]));
+            w7.Position = 2;
+            w7.Expand = false;
+            w7.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
-            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment1.Name = "alignment1";
-            this.alignment1.LeftPadding = ((uint)(15));
-            this.alignment1.RightPadding = ((uint)(15));
-            // Container child alignment1.Gtk.Container+ContainerChild
+            this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment2.Name = "alignment2";
+            this.alignment2.LeftPadding = ((uint)(15));
+            this.alignment2.RightPadding = ((uint)(15));
+            // Container child alignment2.Gtk.Container+ContainerChild
             this.entry1 = new Gtk.Entry();
             this.entry1.CanFocus = true;
             this.entry1.Name = "entry1";
             this.entry1.IsEditable = true;
             this.entry1.InvisibleChar = '●';
-            this.alignment1.Add(this.entry1);
-            this.vbox2.Add(this.alignment1);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
-            w7.Position = 2;
-            w7.Expand = false;
-            w7.Fill = false;
+            this.alignment2.Add(this.entry1);
+            this.vbox2.Add(this.alignment2);
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment2]));
+            w9.Position = 3;
+            w9.Expand = false;
+            w9.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment3.Name = "alignment3";
+            // Container child alignment3.Gtk.Container+ContainerChild
+            this.label3 = new Gtk.Label();
+            this.label3.Name = "label3";
+            this.label3.LabelProp = Mono.Unix.Catalog.GetString("In order to update this program you need to enter the administrator password or restart this program running as the administrator.");
+            this.label3.Wrap = true;
+            this.alignment3.Add(this.label3);
+            this.vbox2.Add(this.alignment3);
+            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment3]));
+            w11.Position = 4;
+            w11.Expand = false;
+            w11.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.hseparator2 = new Gtk.HSeparator();
+            this.hseparator2.Name = "hseparator2";
+            this.vbox2.Add(this.hseparator2);
+            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox2[this.hseparator2]));
+            w12.Position = 5;
+            w12.Expand = false;
+            w12.Fill = false;
             w1.Add(this.vbox2);
-            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
-            w8.Position = 0;
-            w8.Expand = false;
-            w8.Fill = false;
+            Gtk.Box.BoxChild w13 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
+            w13.Position = 0;
+            w13.Expand = false;
+            w13.Fill = false;
             // Internal child GUPdotNET.frmSuPass.ActionArea
-            Gtk.HButtonBox w9 = this.ActionArea;
-            w9.Name = "dialog1_ActionArea";
-            w9.Spacing = 6;
-            w9.BorderWidth = ((uint)(5));
-            w9.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w14 = this.ActionArea;
+            w14.Name = "dialog1_ActionArea";
+            w14.Spacing = 6;
+            w14.BorderWidth = ((uint)(5));
+            w14.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -122,9 +166,9 @@ namespace GUPdotNET {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w10 = ((Gtk.ButtonBox.ButtonBoxChild)(w9[this.buttonCancel]));
-            w10.Expand = false;
-            w10.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w15 = ((Gtk.ButtonBox.ButtonBoxChild)(w14[this.buttonCancel]));
+            w15.Expand = false;
+            w15.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -134,15 +178,15 @@ namespace GUPdotNET {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w11 = ((Gtk.ButtonBox.ButtonBoxChild)(w9[this.buttonOk]));
-            w11.Position = 1;
-            w11.Expand = false;
-            w11.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w16 = ((Gtk.ButtonBox.ButtonBoxChild)(w14[this.buttonOk]));
+            w16.Position = 1;
+            w16.Expand = false;
+            w16.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 772;
-            this.DefaultHeight = 300;
+            this.DefaultWidth = 468;
+            this.DefaultHeight = 275;
             this.Show();
         }
     }

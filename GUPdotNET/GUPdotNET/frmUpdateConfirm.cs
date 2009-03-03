@@ -36,11 +36,7 @@ namespace GUPdotNET
 			this.Build();
 			_GUPdotNET = gdn;
 			try
-			{
-				// TODO: remove this in the stetic file
-				this.cbxAutoCheck.Visible = false;
-				this.cbxAutoCheck.ShowAll();
-				
+			{				
 				this.Title = _GUPdotNET.ProgramName;
 				this.lblProgramTitle.Text = "<span size=\"xx-large\"><b>" + _GUPdotNET.ProgramName + " Update</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
