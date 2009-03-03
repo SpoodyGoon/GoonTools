@@ -50,6 +50,7 @@ namespace GUPdotNET
 				this.lblProgramTitle.UseMarkup = true;
 				this.lblUpdateMessage.Text = "Downloading the update for " + _GUPdotNET.ProgramName + ".\r\nPlease be patient.";
 				this.ShowNow();
+				GLib.Timeout.Add(10, new GLib.TimeoutHandler(UpdateProgress));			
 				System.Threading.Thread.Sleep(3000);
 				StartDownload();
 			}
@@ -66,13 +67,11 @@ namespace GUPdotNET
 			// Creating our two threads. The ThreadStart delegate is points to
 			// the method being run in a new thread.
 			Thread firstRunner = new Thread (new ThreadStart (this.GetUpdateFile));
-			Thread secondRunner = new Thread (new ThreadStart (this.UpDateProgressBar));
 			
 			// Starting our two threads. Thread.Sleep(10) gives the first Thread
 			// 10 miliseconds more time.
 			firstRunner.Start ();
 			Thread.Sleep (100);
-			secondRunner.Start ();
 
 			
 		}
@@ -107,7 +106,7 @@ namespace GUPdotNET
 		         }
 		         s.Close();
 		         fs.Close();
-				//System.Diagnostics.Process.Start(strFilePath);
+				System.Diagnostics.Process.Start(strFilePath);
 			}
 			catch(Exception doh)
 			{
@@ -116,11 +115,6 @@ namespace GUPdotNET
 				md.Destroy();
 			}
 	      
-		}
-		
-		private void UpDateProgressBar()
-		{
-			GLib.Timeout.Add(10, new GLib.TimeoutHandler(UpdateProgress));			
 		}
 		
 		private bool UpdateProgress()
