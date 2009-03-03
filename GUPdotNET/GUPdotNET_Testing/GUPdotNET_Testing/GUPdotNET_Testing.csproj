@@ -48,6 +48,8 @@
     <None Include="gtk-gui\gui.stetic" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin" />
+    <Folder Include="bin\Debug" />
     <Folder Include="gtk-gui" />
     <Reference Include="art-sharp">
       <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\art-sharp\2.16.0.0__35e10195dab3c99f\art-sharp.dll</HintPath>
