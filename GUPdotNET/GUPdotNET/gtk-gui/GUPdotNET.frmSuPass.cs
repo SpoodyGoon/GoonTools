@@ -43,13 +43,13 @@ namespace GUPdotNET {
             Stetic.Gui.Initialize(this);
             // Widget GUPdotNET.frmSuPass
             this.WidthRequest = 450;
-            this.HeightRequest = 250;
+            this.HeightRequest = 275;
             this.Name = "GUPdotNET.frmSuPass";
             this.Title = Mono.Unix.Catalog.GetString("Administrator Password Needed");
             this.Icon = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-warning", Gtk.IconSize.Menu, 16);
             this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.Modal = true;
             this.AllowShrink = true;
-            this.DefaultHeight = 1;
             this.HasSeparator = false;
             // Internal child GUPdotNET.frmSuPass.VBox
             Gtk.VBox w1 = this.VBox;
@@ -67,7 +67,7 @@ namespace GUPdotNET {
             // Container child alignment1.Gtk.Container+ContainerChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"x-large\"><b>Administrator Password Needed</b></span>");
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"large\"><b>Administrator Password Needed</b></span>");
             this.label1.UseMarkup = true;
             this.alignment1.Add(this.label1);
             this.vbox2.Add(this.alignment1);
@@ -91,7 +91,8 @@ namespace GUPdotNET {
             this.label2 = new Gtk.Label();
             this.label2.WidthRequest = 410;
             this.label2.Name = "label2";
-            this.label2.LabelProp = Mono.Unix.Catalog.GetString("In order to update this program you need to enter the administrator password or restart this program running as the administrator.");
+            this.label2.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"small\">In order to update this program you need to enter the administrator password or restart this program running as the administrator.</span>");
+            this.label2.UseMarkup = true;
             this.label2.Wrap = true;
             this.alignment3.Add(this.label2);
             this.vbox2.Add(this.alignment3);
@@ -122,12 +123,12 @@ namespace GUPdotNET {
             this.alignment2.Name = "alignment2";
             this.alignment2.LeftPadding = ((uint)(20));
             this.alignment2.TopPadding = ((uint)(8));
-            this.alignment2.BottomPadding = ((uint)(13));
+            this.alignment2.BottomPadding = ((uint)(8));
             // Container child alignment2.Gtk.Container+ContainerChild
             this.label3 = new Gtk.Label();
-            this.label3.WidthRequest = 345;
+            this.label3.WidthRequest = 375;
             this.label3.Name = "label3";
-            this.label3.LabelProp = Mono.Unix.Catalog.GetString("<b>Please Note:</b> the administrator password will not be saved by this program and is not used for any other purpose than to install this update.");
+            this.label3.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"small\"><b>Please Note:</b> the administrator password will not be saved by this program and is not used for any other purpose than to install this update.</span>");
             this.label3.UseMarkup = true;
             this.label3.Wrap = true;
             this.alignment2.Add(this.label3);
@@ -181,7 +182,8 @@ namespace GUPdotNET {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 458;
+            this.DefaultWidth = 456;
+            this.DefaultHeight = 306;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
             this.buttonOk.Clicked += new System.EventHandler(this.OnButtonOkClicked);

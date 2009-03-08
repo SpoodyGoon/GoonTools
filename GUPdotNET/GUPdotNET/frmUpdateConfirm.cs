@@ -38,9 +38,11 @@ namespace GUPdotNET
 			try
 			{				
 				this.Title = _GUPdotNET.ProgramName;
-				this.lblProgramTitle.Text = "<span size=\"x-large\"><b>" + _GUPdotNET.ProgramName + " Update</b></span>";
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + _GUPdotNET.ProgramName + " Update</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "There is an update available for " + _GUPdotNET.ProgramName + ".\r\nWould you like to upgrate to version: " + _GUPdotNET.LatestVersion + " now?";
+				this.lblUpdateMessage.Text = "<span size=\"small\">There is an update available for " + _GUPdotNET.ProgramName + ".\r\nWould you like to upgrate to version: " + _GUPdotNET.LatestVersion + " now?</span>";
+				this.lblUpdateMessage.UseMarkup = true;
+				this.lblUpdateMessage.Wrap = true;
 			}
 			catch(Exception doh)
 			{

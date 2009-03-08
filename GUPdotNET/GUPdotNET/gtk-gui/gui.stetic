@@ -9,7 +9,7 @@
     <property name="Title" translatable="yes">window1</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="AllowShrink">True</property>
-    <property name="DefaultWidth">325</property>
+    <property name="DefaultWidth">350</property>
     <property name="DefaultHeight">150</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
@@ -53,13 +53,12 @@
                   <widget class="Gtk.Label" id="lblUpdateMessage">
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">null</property>
+                    <property name="UseMarkup">True</property>
                     <property name="Wrap">True</property>
                   </widget>
                   <packing>
                     <property name="Position">2</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
+                    <property name="AutoSize">False</property>
                   </packing>
                 </child>
               </widget>
@@ -72,8 +71,6 @@
           <packing>
             <property name="Position">0</property>
             <property name="AutoSize">False</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>
@@ -224,15 +221,15 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.frmSuPass" design-size="458 276">
+  <widget class="Gtk.Dialog" id="GUPdotNET.frmSuPass" design-size="456 306">
     <property name="MemberName" />
     <property name="WidthRequest">450</property>
-    <property name="HeightRequest">250</property>
+    <property name="HeightRequest">275</property>
     <property name="Title" translatable="yes">Administrator Password Needed</property>
     <property name="Icon">stock:gtk-dialog-warning Menu</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
     <property name="AllowShrink">True</property>
-    <property name="DefaultHeight">1</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <property name="HasSeparator">False</property>
@@ -252,7 +249,7 @@
                 <child>
                   <widget class="Gtk.Label" id="label1">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;span size="x-large"&gt;&lt;b&gt;Administrator Password Needed&lt;/b&gt;&lt;/span&gt;</property>
+                    <property name="LabelProp" translatable="yes">&lt;span size="large"&gt;&lt;b&gt;Administrator Password Needed&lt;/b&gt;&lt;/span&gt;</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                 </child>
@@ -283,7 +280,8 @@
                   <widget class="Gtk.Label" id="label2">
                     <property name="MemberName" />
                     <property name="WidthRequest">410</property>
-                    <property name="LabelProp" translatable="yes">In order to update this program you need to enter the administrator password or restart this program running as the administrator.</property>
+                    <property name="LabelProp" translatable="yes">&lt;span size="small"&gt;In order to update this program you need to enter the administrator password or restart this program running as the administrator.&lt;/span&gt;</property>
+                    <property name="UseMarkup">True</property>
                     <property name="Wrap">True</property>
                   </widget>
                 </child>
@@ -324,12 +322,12 @@
                 <property name="Xalign">0.01</property>
                 <property name="LeftPadding">20</property>
                 <property name="TopPadding">8</property>
-                <property name="BottomPadding">13</property>
+                <property name="BottomPadding">8</property>
                 <child>
                   <widget class="Gtk.Label" id="label3">
                     <property name="MemberName" />
-                    <property name="WidthRequest">345</property>
-                    <property name="LabelProp" translatable="yes">&lt;b&gt;Please Note:&lt;/b&gt; the administrator password will not be saved by this program and is not used for any other purpose than to install this update.</property>
+                    <property name="WidthRequest">375</property>
+                    <property name="LabelProp" translatable="yes">&lt;span size="small"&gt;&lt;b&gt;Please Note:&lt;/b&gt; the administrator password will not be saved by this program and is not used for any other purpose than to install this update.&lt;/span&gt;</property>
                     <property name="UseMarkup">True</property>
                     <property name="Wrap">True</property>
                   </widget>
