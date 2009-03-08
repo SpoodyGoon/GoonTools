@@ -51,8 +51,8 @@ namespace GUPdotNET
 				this.lblUpdateMessage.Text = "Downloading the update for " + _GUPdotNET.ProgramName + ".\r\nPlease be patient.";
 				this.ShowNow();
 				//bool blnTestWrite = TestReadWriteFile();
-				GLib.Timeout.Add(10, new GLib.TimeoutHandler(UpdateProgress));			
-				System.Threading.Thread.Sleep(3000);
+				//GLib.Timeout.Add(10, new GLib.TimeoutHandler(UpdateProgress));			
+				System.Threading.Thread.Sleep(1000);
 				StartDownload();
 			}
 			catch(Exception doh)
@@ -86,8 +86,9 @@ namespace GUPdotNET
 				
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
-				string strFilePath = System.Environment.GetEnvironmentVariable("TEMP") + @"\" + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
-				System.Diagnostics.Debug.WriteLine("got here " + strFilePath);
+				
+				string strFilePath = System.IO.Path.GetTempPath() + System.IO.Path.PathSeparator.ToString() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
+				Console.WriteLine("got here " + strFilePath + " upload file loc " + strLocation);
 				_FileSize = wsp.ContentLength;
 				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
 				long lgFileProgress = 0;
@@ -97,7 +98,8 @@ namespace GUPdotNET
 		         {
 		            int n = s.Read(b, 0, b.Length);
 		            _Downloaded = lgFileProgress += b.Length;
-		            
+					UpdateProgressFraction((float)_Downloaded/_FileSize);
+		            //Console.WriteLine("Downloaded " + _Downloaded.ToString() + " File Size " + this._FileSize.ToString());
 		            if (n > 0)
 		            {
 		               fs.Write(b, 0, n);
@@ -118,15 +120,10 @@ namespace GUPdotNET
 	      
 		}
 		
-		private bool UpdateProgress()
-		{
-			if(_Downloaded > 0 && _FileSize > 0)
-			{
-				this.progressbar1.Fraction = (_Downloaded/_FileSize);			
-		    	this.progressbar1.ShowNow();
-			}
-		    return _ThreadActive;
-		}
+		void UpdateProgressFraction(float f) {
+		    Application.Invoke(delegate {
+		        progressbar1.Fraction = f;
+	    });
 		
 		private bool TestReadWriteFile()
 		{
