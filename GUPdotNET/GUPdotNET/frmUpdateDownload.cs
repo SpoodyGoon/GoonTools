@@ -37,6 +37,7 @@ namespace GUPdotNET
 		private long _FileSize = 0;
 		private long _Downloaded = 0;
 		private bool _ThreadActive = true;
+		private Thread firstRunner;
 		public frmUpdateDownload(UpdateCheck gdn)
 		{
 			this.Build();
@@ -46,13 +47,10 @@ namespace GUPdotNET
 				
 				this.progressbar1.DoubleBuffered= true;
 				this.Title =_GUPdotNET.ProgramName;
-				this.lblProgramTitle.Text = "<span size=\"xx-large\"><b>" + _GUPdotNET.ProgramName + "</b></span>";
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + _GUPdotNET.ProgramName + "</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
 				this.lblUpdateMessage.Text = "Downloading the update for " + _GUPdotNET.ProgramName + ".\r\nPlease be patient.";
 				this.ShowNow();
-				//bool blnTestWrite = TestReadWriteFile();
-				//GLib.Timeout.Add(10, new GLib.TimeoutHandler(UpdateProgress));			
-				System.Threading.Thread.Sleep(1000);
 				StartDownload();
 			}
 			catch(Exception doh)
@@ -67,13 +65,12 @@ namespace GUPdotNET
 		{
 			// Creating our two threads. The ThreadStart delegate is points to
 			// the method being run in a new thread.
-			Thread firstRunner = new Thread (new ThreadStart (this.GetUpdateFile));
+			firstRunner = new Thread (new ThreadStart (this.GetUpdateFile));
 			
 			// Starting our two threads. Thread.Sleep(10) gives the first Thread
 			// 10 miliseconds more time.
 			firstRunner.Start ();
 			Thread.Sleep (100);
-
 			
 		}
 		
@@ -88,28 +85,29 @@ namespace GUPdotNET
 				System.IO.Stream s = wsp.GetResponseStream();
 				
 				string strFilePath = System.IO.Path.GetTempPath() + System.IO.Path.PathSeparator.ToString() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
-				Console.WriteLine("got here " + strFilePath + " upload file loc " + strLocation);
 				_FileSize = wsp.ContentLength;
 				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
 				long lgFileProgress = 0;
 				
 				byte[] b = new byte[2048];
-		         while (true)
+		         while (_ThreadActive)
 		         {
+					
 		            int n = s.Read(b, 0, b.Length);
 		            _Downloaded = lgFileProgress += b.Length;
 					UpdateProgressFraction((float)_Downloaded/_FileSize);
-		            //Console.WriteLine("Downloaded " + _Downloaded.ToString() + " File Size " + this._FileSize.ToString());
 		            if (n > 0)
 		            {
 		               fs.Write(b, 0, n);
 		            }
 		            else
-		               break;
+						break;					
 		         }
 		         s.Close();
 		         fs.Close();
-				System.Diagnostics.Process.Start(strFilePath);
+				
+				if(_ThreadActive == true)
+					StartInstallPackage(System.IO.Path.GetFullPath(strFilePath));
 			}
 			catch(Exception doh)
 			{
@@ -120,28 +118,40 @@ namespace GUPdotNET
 	      
 		}
 		
-		void UpdateProgressFraction(float f) {
+		void UpdateProgressFraction(float f) 
+		{
 		    Application.Invoke(delegate {
 		        progressbar1.Fraction = f;
-	    });
-		
-		private bool TestReadWriteFile()
+			});
+		}
+
+		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
-			bool blnCanWrite = true;
-			try
+			_ThreadActive = false;
+		}
+		
+		private void StartInstallPackage(string strFile)
+		{
+			// ask the user to save changes and close calling application
+			string strRequest = "Preparing to install please save and close " + _GUPdotNET.ProgramName + " before we continue";
+			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, strRequest);
+			md.Run();
+			md.Destroy();
+			
+			switch(_GUPdotNET.InstallType)
 			{
-				byte[] info = new System.Text.UTF8Encoding(true).GetBytes("Test File");
-				System.IO.FileStream fs = new FileStream(_GUPdotNET.ProgramFullPath.Substring(0, _GUPdotNET.ProgramFullPath.LastIndexOf(@"\")), FileMode.OpenOrCreate);
-				fs.Write(info, 0, info.Length);
-				fs.Close();
-				fs.Dispose();
-				File.Delete(_GUPdotNET.ProgramFullPath);
+			case "Win32":
+				System.Diagnostics.Process.Start(strFile);
+				break;
+			case "Linux_rpm":
+				break;
+			case "Linux_src":
+				break;
+			case "Linux_bin":
+				break;
+			default:
+				throw new Exception("Invalid Install Type");
 			}
-			catch(Exception ex)
-			{
-				blnCanWrite = false;
-			}
-			return blnCanWrite;
 		}
 
 	}
