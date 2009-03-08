@@ -34,7 +34,7 @@ namespace GUPdotNET {
             this.Title = Mono.Unix.Catalog.GetString("window1");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.AllowShrink = true;
-            this.DefaultWidth = 325;
+            this.DefaultWidth = 350;
             this.DefaultHeight = 150;
             // Internal child GUPdotNET.frmUpdateConfirm.VBox
             Gtk.VBox w1 = this.VBox;
@@ -70,20 +70,17 @@ namespace GUPdotNET {
             this.lblUpdateMessage = new Gtk.Label();
             this.lblUpdateMessage.Name = "lblUpdateMessage";
             this.lblUpdateMessage.LabelProp = Mono.Unix.Catalog.GetString("null");
+            this.lblUpdateMessage.UseMarkup = true;
             this.lblUpdateMessage.Wrap = true;
             this.vbox3.Add(this.lblUpdateMessage);
             Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox3[this.lblUpdateMessage]));
             w4.Position = 2;
-            w4.Expand = false;
-            w4.Fill = false;
             this.vbox2.Add(this.vbox3);
             Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox2[this.vbox3]));
             w5.Position = 0;
             w1.Add(this.vbox2);
             Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
             w6.Position = 0;
-            w6.Expand = false;
-            w6.Fill = false;
             // Internal child GUPdotNET.frmUpdateConfirm.ActionArea
             Gtk.HButtonBox w7 = this.ActionArea;
             w7.Name = "dialog1_ActionArea";

@@ -50,7 +50,7 @@ namespace GUPdotNET
 				this.lblProgramTitle.UseMarkup = true;
 				this.lblUpdateMessage.Text = "Downloading the update for " + _GUPdotNET.ProgramName + ".\r\nPlease be patient.";
 				this.ShowNow();
-				bool blnTestWrite = TestReadWriteFile();
+				//bool blnTestWrite = TestReadWriteFile();
 				GLib.Timeout.Add(10, new GLib.TimeoutHandler(UpdateProgress));			
 				System.Threading.Thread.Sleep(3000);
 				StartDownload();
@@ -128,12 +128,12 @@ namespace GUPdotNET
 		    return _ThreadActive;
 		}
 		
-		private void TestReadWriteFile()
+		private bool TestReadWriteFile()
 		{
 			bool blnCanWrite = true;
 			try
 			{
-				byte[] info = new UTF8Encoding(true).GetBytes("Test File");
+				byte[] info = new System.Text.UTF8Encoding(true).GetBytes("Test File");
 				System.IO.FileStream fs = new FileStream(_GUPdotNET.ProgramFullPath.Substring(0, _GUPdotNET.ProgramFullPath.LastIndexOf(@"\")), FileMode.OpenOrCreate);
 				fs.Write(info, 0, info.Length);
 				fs.Close();
