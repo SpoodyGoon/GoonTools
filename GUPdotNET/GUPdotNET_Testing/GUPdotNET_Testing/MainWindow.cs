@@ -50,4 +50,21 @@ public partial class MainWindow: Gtk.Window
 		up.UpdateInfoURL = @"http://brdstudio.net/gupdotnet/GetUpdateInfo.aspx";
 		up.RunCheck();
 	}
+
+	protected virtual void OnBtnQuitClicked (object sender, System.EventArgs e)
+	{
+		Gtk.Application.Quit();
+	}
+
+	protected virtual void OnBtnTestAssemblyClicked (object sender, System.EventArgs e)
+	{
+	}
+
+	protected virtual void OnBtnTestProcWithArgsClicked (object sender, System.EventArgs e)
+	{
+	}
+
+	protected virtual void OnBtnTestProcNoArgsClicked (object sender, System.EventArgs e)
+	{
+	}
 }

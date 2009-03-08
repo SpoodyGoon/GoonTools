@@ -107,6 +107,7 @@ namespace GUPdotNET {
             this.DefaultWidth = 373;
             this.DefaultHeight = 177;
             this.Show();
+            this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
         }
     }
 }
