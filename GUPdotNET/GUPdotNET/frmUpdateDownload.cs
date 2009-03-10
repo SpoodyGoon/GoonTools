@@ -22,6 +22,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Security.Permissions;
 using System.Threading;
 using System.Configuration;
 using Gtk;
@@ -38,6 +39,7 @@ namespace GUPdotNET
 		private long _Downloaded = 0;
 		private bool _ThreadActive = true;
 		private Thread firstRunner;
+		private string _AdminPass = null;
 		public frmUpdateDownload(UpdateCheck gdn)
 		{
 			this.Build();
@@ -138,20 +140,42 @@ namespace GUPdotNET
 			md.Run();
 			md.Destroy();
 			
-			switch(_GUPdotNET.InstallType)
+			
+			if(HasAccess(_GUPdotNET.ProgramFullPath) == true)
 			{
-			case "Win32":
-				System.Diagnostics.Process.Start(strFile);
-				break;
-			case "Linux_rpm":
-				break;
-			case "Linux_src":
-				break;
-			case "Linux_bin":
-				break;
-			default:
-				throw new Exception("Invalid Install Type");
+				frmSuPass fm = new frmSuPass();
+				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
+				if(rsp == ResponseType.Ok)
+				{
+					_AdminPass = fm.AdminPass;
+					frmInstallDialog fm2 = new frmInstallDialog(_GUPdotNET, _AdminPass, strFile);
+					fm2.Run();
+					fm2.Destroy();
+				}
+				else
+				{
+					// TODO: find a path out of the program
+				}					
+				fm.Destroy();
 			}
+		}
+		
+		private bool HasAccess(string strPath)
+		{
+			// assume the user has access 
+			bool blnHasAccess = true;
+			
+			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, strPath);
+			try
+			{
+			    f2.Demand();
+			}
+			catch (System.Security.SecurityException s)
+			{
+				blnHasAccess = false;
+			    Console.WriteLine(s.Message);
+			}
+			return blnHasAccess;
 		}
 
 	}
