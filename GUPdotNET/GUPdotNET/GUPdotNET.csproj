@@ -32,7 +32,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <RegisterForComInterop>False</RegisterForComInterop>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <BaseAddress>4194304</BaseAddress>
     <PlatformTarget>x86</PlatformTarget>
     <FileAlignment>4096</FileAlignment>
@@ -45,10 +45,12 @@
     <None Include="gtk-gui\gui.stetic" />
     <None Include="web_files\GetUpdateInfo.aspx" />
     <None Include="work_files\FlowChart.dia" />
+    <Compile Include="frmInstallDialog.cs" />
     <Compile Include="frmSuPass.cs" />
     <Compile Include="frmUpdateConfirm.cs" />
     <Compile Include="frmUpdateDownload.cs" />
     <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.frmInstallDialog.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmSuPass.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateConfirm.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateDownload.cs" />
@@ -64,7 +66,7 @@
     <Folder Include="web_files" />
     <Folder Include="work_files" />
     <Reference Include="art-sharp">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\art-sharp\2.16.0.0__35e10195dab3c99f\art-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files %28x86%29\Mono-2.2\lib\mono\gac\art-sharp\2.16.0.0__35e10195dab3c99f\art-sharp.dll</HintPath>
     </Reference>
     <Reference Include="atk-sharp">
       <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
@@ -79,7 +81,7 @@
       <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files %28x86%29\Mono-2.2\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="pango-sharp">
       <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\pango-sharp\2.12.0.0__35e10195dab3c99f\pango-sharp.dll</HintPath>
