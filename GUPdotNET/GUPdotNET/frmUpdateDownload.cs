@@ -1,8 +1,8 @@
 /*************************************************************************
- *                      frmUpdateDownload.cs                                   
- *                                                                       
- *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>         
- *                                                                        
+ *                      frmUpdateDownload.cs
+ *
+ *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>
+ *
  *************************************************************************/
 /*
  * This program is free software: you can redistribute it and/or modify
@@ -34,24 +34,22 @@ namespace GUPdotNET
 	public partial class frmUpdateDownload : Gtk.Dialog
 	{
 		
-		private UpdateCheck _GUPdotNET;
 		private long _FileSize = 0;
 		private long _Downloaded = 0;
 		private bool _ThreadActive = true;
 		private Thread firstRunner;
 		private string _AdminPass = null;
-		public frmUpdateDownload(UpdateCheck gdn)
+		public frmUpdateDownload()
 		{
 			this.Build();
-			_GUPdotNET = gdn;
 			try
 			{
 				
 				this.progressbar1.DoubleBuffered= true;
-				this.Title =_GUPdotNET.ProgramName;
-				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + _GUPdotNET.ProgramName + "</b></span>";
+				this.Title = GUPdotNET.ProgramName;
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + GUPdotNET.ProgramName + "</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "Downloading the update for " + _GUPdotNET.ProgramName + ".\r\nPlease be patient.";
+				this.lblUpdateMessage.Text = "Downloading the update for " + GUPdotNET.ProgramName + ".\r\nPlease be patient.";
 				this.ShowNow();
 				StartDownload();
 			}
@@ -61,7 +59,7 @@ namespace GUPdotNET
 				md.Run();
 				md.Destroy();
 			}
-		} 
+		}
 		
 		private void StartDownload()
 		{
@@ -80,33 +78,33 @@ namespace GUPdotNET
 		{
 			try
 			{
-				string strLocation = _GUPdotNET.UpdateFileURL;
+				string strLocation = GUPdotNET.UpdateFileURL;
 				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strLocation);
 				
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				
-				string strFilePath = System.IO.Path.GetTempPath() + System.IO.Path.PathSeparator.ToString() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
+				string strFilePath = System.IO.Path.GetTempPath() + System.IO.Path.DirectorySeparatorChar.ToString() + strLocation.Substring(strLocation.LastIndexOf(System.IO.Path.DirectorySeparatorChar.ToString()) + 1, strLocation.Length - (strLocation.LastIndexOf(System.IO.Path.DirectorySeparatorChar.ToString()) +1));
 				_FileSize = wsp.ContentLength;
 				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
 				long lgFileProgress = 0;
 				
 				byte[] b = new byte[2048];
-		         while (_ThreadActive)
-		         {
+				while (_ThreadActive)
+				{
 					
-		            int n = s.Read(b, 0, b.Length);
-		            _Downloaded = lgFileProgress += b.Length;
+					int n = s.Read(b, 0, b.Length);
+					_Downloaded = lgFileProgress += b.Length;
 					UpdateProgressFraction((float)_Downloaded/_FileSize);
-		            if (n > 0)
-		            {
-		               fs.Write(b, 0, n);
-		            }
-		            else
-						break;					
-		         }
-		         s.Close();
-		         fs.Close();
+					if (n > 0)
+					{
+						fs.Write(b, 0, n);
+					}
+					else
+						break;
+				}
+				s.Close();
+				fs.Close();
 				
 				if(_ThreadActive == true)
 					StartInstallPackage(System.IO.Path.GetFullPath(strFilePath));
@@ -117,14 +115,15 @@ namespace GUPdotNET
 				md.Run();
 				md.Destroy();
 			}
-	      
+			
 		}
 		
-		void UpdateProgressFraction(float f) 
+		void UpdateProgressFraction(float f)
 		{
-		    Application.Invoke(delegate {
-		        progressbar1.Fraction = f;
-			});
+			Application.Invoke(delegate {
+			                   	progressbar1.Text = f.ToString("P");
+			                   	progressbar1.Fraction = f;
+			                   });
 		}
 
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
@@ -135,45 +134,45 @@ namespace GUPdotNET
 		private void StartInstallPackage(string strFile)
 		{
 			// ask the user to save changes and close calling application
-			string strRequest = "Preparing to install please save and close " + _GUPdotNET.ProgramName + " before we continue";
+			string strRequest = "Preparing to install please save and close " + GUPdotNET.ProgramName + " before we continue";
 			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, strRequest);
 			md.Run();
 			md.Destroy();
 			
 			
-			if(HasAccess(_GUPdotNET.ProgramFullPath) == true)
+			if(HasAccess(GUPdotNET.ProgramFullPath) == true)
 			{
 				frmSuPass fm = new frmSuPass();
 				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
 				if(rsp == ResponseType.Ok)
 				{
 					_AdminPass = fm.AdminPass;
-					frmInstallDialog fm2 = new frmInstallDialog(_GUPdotNET, _AdminPass, strFile);
+					frmInstallDialog fm2 = new frmInstallDialog(_AdminPass, strFile);
 					fm2.Run();
 					fm2.Destroy();
 				}
 				else
 				{
 					// TODO: find a path out of the program
-				}					
+				}
 				fm.Destroy();
 			}
 		}
 		
 		private bool HasAccess(string strPath)
 		{
-			// assume the user has access 
+			// assume the user has access
 			bool blnHasAccess = true;
 			
 			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, strPath);
 			try
 			{
-			    f2.Demand();
+				f2.Demand();
 			}
 			catch (System.Security.SecurityException s)
 			{
 				blnHasAccess = false;
-			    Console.WriteLine(s.Message);
+				Console.WriteLine(s.Message);
 			}
 			return blnHasAccess;
 		}

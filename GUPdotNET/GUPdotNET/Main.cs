@@ -1,8 +1,8 @@
 /*************************************************************************
- *                      Main.cs                                     
- *                                                                       
- *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>         
- *                                                                        
+ *                      Main.cs
+ *
+ *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>
+ *
  *************************************************************************/
 /*
  * This program is free software: you can redistribute it and/or modify
@@ -30,34 +30,39 @@ namespace GUPdotNET
 		public static void Main (string[] args)
 		{
 			Application.Init ();
-			
-			UpdateCheck uc = new UpdateCheck();
-			// if there are no arguments then we are using the
-			// app config file
-			if(args.Length == 0)
-			{
-				uc.InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
-				uc.ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
-				uc.UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
-				uc.CurrentMajorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMajorVersion"].ToString());
-				uc.CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMinorVersion"].ToString());
-				uc.SilentCheck = Convert.ToBoolean(ConfigurationManager.AppSettings["SilentCheck"].ToString());
-				uc.CallingApplication = ConfigurationManager.AppSettings["CallingApplication"].ToString();
-				
-			}
-			else
-			{
-				uc.InstallType = args[0].ToString();
-				uc.ProgramName = args[0].ToString();
-				uc.UpdateInfoURL = args[0].ToString();
-				uc.CurrentMajorVersion = Convert.ToInt32(args[0].ToString());
-				uc.CurrentMinorVersion = Convert.ToInt32(args[0].ToString());
-				uc.SilentCheck = Convert.ToBoolean(args[0].ToString());
-				uc.CallingApplication = args[0].ToString();
-			}
-			uc.RunCheck();
-			
 			Application.Run ();
+			try
+			{
+				if(args.Length == 0)
+				{
+					GUPdotNET.InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
+					GUPdotNET.ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
+					GUPdotNET.UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+					GUPdotNET.CurrentMajorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMajorVersion"].ToString());
+					GUPdotNET.CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMinorVersion"].ToString());
+					GUPdotNET.SilentCheck = Convert.ToBoolean(ConfigurationManager.AppSettings["SilentCheck"].ToString());
+					GUPdotNET.CallingApplication = ConfigurationManager.AppSettings["CallingApplication"].ToString();
+					
+				}
+				else
+				{
+					GUPdotNET.InstallType = args[0].ToString();
+					GUPdotNET.ProgramName = args[0].ToString();
+					GUPdotNET.UpdateInfoURL = args[0].ToString();
+					GUPdotNET.CurrentMajorVersion = Convert.ToInt32(args[0].ToString());
+					GUPdotNET.CurrentMinorVersion = Convert.ToInt32(args[0].ToString());
+					GUPdotNET.SilentCheck = Convert.ToBoolean(args[0].ToString());
+					GUPdotNET.CallingApplication = args[0].ToString();
+				}
+				UpdateCheck uc = new UpdateCheck();
+				uc.RunCheck();
+			}
+			catch(Exception doh)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
+				md.Run();
+				md.Destroy();
+			}
 			
 		}
 	}

@@ -30,17 +30,15 @@ namespace GUPdotNET
 	
 	public partial class frmUpdateConfirm : Gtk.Dialog
 	{
-		private UpdateCheck _GUPdotNET;
-		public frmUpdateConfirm(UpdateCheck gdn)
+		public frmUpdateConfirm()
 		{
 			this.Build();
-			_GUPdotNET = gdn;
 			try
 			{				
-				this.Title = _GUPdotNET.ProgramName;
-				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + _GUPdotNET.ProgramName + " Update</b></span>";
+				this.Title = GUPdotNET.ProgramName;
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + GUPdotNET.ProgramName + " Update</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "<span size=\"small\">There is an update available for " + _GUPdotNET.ProgramName + ".\r\nWould you like to upgrate to version: " + _GUPdotNET.LatestVersion + " now?</span>";
+				this.lblUpdateMessage.Text = "<span size=\"small\">There is an update available for " + GUPdotNET.ProgramName + ".\r\nWould you like to upgrate to version: " + GUPdotNET.LatestVersion + " now?</span>";
 				this.lblUpdateMessage.UseMarkup = true;
 				this.lblUpdateMessage.Wrap = true;
 			}
@@ -58,7 +56,7 @@ namespace GUPdotNET
 			try
 			{				
 				this.Hide();
-				frmUpdateDownload fm = new frmUpdateDownload(_GUPdotNET);
+				frmUpdateDownload fm = new frmUpdateDownload();
 				fm.Run();
 				fm.Dispose();
 			}
