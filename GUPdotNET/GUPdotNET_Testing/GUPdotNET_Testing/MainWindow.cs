@@ -37,20 +37,6 @@ public partial class MainWindow: Gtk.Window
 		a.RetVal = true;
 	}
 
-	protected virtual void OnBtnTestClicked (object sender, System.EventArgs e)
-	{
-		Assembly assm= Assembly.GetExecutingAssembly();
-		UpdateCheck up = new UpdateCheck();
-		up.CallingApplication = assm.GetName().FullName;
-		up.ProgramFullPath = Assembly.GetEntryAssembly().CodeBase;
-		up.CurrentMajorVersion = 0;
-		up.CurrentMinorVersion = 1;
-		up.InstallType = "Win32";
-		up.ProgramName = "GUPdotNET Testing";
-		up.UpdateInfoURL = @"http://brdstudio.net/gupdotnet/GetUpdateInfo.aspx";
-		up.RunCheck();
-	}
-
 	protected virtual void OnBtnQuitClicked (object sender, System.EventArgs e)
 	{
 		Gtk.Application.Quit();
@@ -58,6 +44,16 @@ public partial class MainWindow: Gtk.Window
 
 	protected virtual void OnBtnTestAssemblyClicked (object sender, System.EventArgs e)
 	{
+		Assembly assm= Assembly.GetExecutingAssembly();
+		GUPdotNET.GUPdotNET.CallingApplication = assm.GetName().FullName;
+		GUPdotNET.GUPdotNET.ProgramFullPath = Assembly.GetEntryAssembly().CodeBase;
+		GUPdotNET.GUPdotNET.CurrentMajorVersion = 0;
+		GUPdotNET.GUPdotNET.CurrentMinorVersion = 1;
+		GUPdotNET.GUPdotNET.InstallType = "Win32";
+		GUPdotNET.GUPdotNET.ProgramName = "GUPdotNET Testing";
+		GUPdotNET.GUPdotNET.UpdateInfoURL = @"http://brdstudio.net/gupdotnet/GetUpdateInfo.aspx";
+		UpdateCheck up = new UpdateCheck();
+		up.RunCheck();
 	}
 
 	protected virtual void OnBtnTestProcWithArgsClicked (object sender, System.EventArgs e)
@@ -66,5 +62,9 @@ public partial class MainWindow: Gtk.Window
 
 	protected virtual void OnBtnTestProcNoArgsClicked (object sender, System.EventArgs e)
 	{
+		Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Got Here");
+		md.Run();
+		md.Destroy();
+		System.Diagnostics.Process.Start(Assembly.GetEntryAssembly().CodeBase + System.IO.Path.DirectorySeparatorChar.ToString() + "GUPdotNET.exe");
 	}
 }

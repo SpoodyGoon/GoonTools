@@ -1,54 +1,36 @@
-/*************************************************************************
- *                      GUPdotNET.cs                                     
- *                                                                       
- *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>         
- *                                                                        
- *************************************************************************/
 /*
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * Created by SharpDevelop.
+ * User: ayork
+ * Date: 3/12/2009
+ * Time: 2:31 PM
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-
 using System;
-using System.IO;
-using System.Net;
-using System.Xml;
-using System.Collections;
-using System.Configuration;
-using System.Security;
-using System.Security.Permissions;
-using Gtk;
 
 namespace GUPdotNET
 {
-	public class UpdateCheck
+	/// <summary>
+	/// Description of GUPdotNET.
+	/// </summary>
+	public static class GUPdotNET
 	{
 		// value from the calling application or from the app con
-		private string _InstallType = null; 
-		private string _ProgramName = null;
-		private string _ProgramFullPath = null;
-		private string _UpdateInfoURL = null;
-		private int _CurrentMajorVersion = -1;
-		private int _CurrentMinorVersion = -1;
-		private bool _SilentCheck = true;
-		private string _CallingApplication = null;
+		private static string _InstallType = null;
+		private static string _ProgramName = null;
+		private static string _ProgramFullPath = null;
+		private static string _UpdateInfoURL = null;
+		private static int _CurrentMajorVersion = -1;
+		private static int _CurrentMinorVersion = -1;
+		private static bool _SilentCheck = true;
+		private static string _CallingApplication = null;
 		
 		// values that are imported from the aspx file on the listed web site
-		private string _UpdateFileURL = null;
-		private int _UpdateMajorVersion = -1;
-		private int _UpdateMinorVersion = -1;
-		private string _LatestVersion = null;
-		private string _Error = null;
+		private static string _UpdateFileURL = null;
+		private static int _UpdateMajorVersion = -1;
+		private static int _UpdateMinorVersion = -1;
+		private static string _LatestVersion = null;
+		private static string _Error = null;
 		
 		#region Public Properties Local
 		
@@ -56,7 +38,7 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public string InstallType
+		public static string InstallType
 		{
 			set{_InstallType=value;}
 			get{return _InstallType;}
@@ -65,7 +47,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  the freindly name of the application
 		/// </summary>
-		public  string ProgramName
+		public static  string ProgramName
 		{
 			set{_ProgramName = value;}
 			get{return _ProgramName;}
@@ -74,7 +56,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  full path to the application we are updating
 		/// </summary>
-		public  string ProgramFullPath
+		public static  string ProgramFullPath
 		{
 			set{_ProgramFullPath = value;}
 			get{return _ProgramFullPath;}
@@ -84,7 +66,7 @@ namespace GUPdotNET
 		///  This is URL for the web site
 		///  containing the update information
 		/// </summary>
-		 public string UpdateInfoURL
+		public static string UpdateInfoURL
 		{
 			set{_UpdateInfoURL = value;}
 			get{return _UpdateInfoURL;}
@@ -94,7 +76,7 @@ namespace GUPdotNET
 		///  This is the major version of the application
 		///  we are looking to update
 		/// </summary>
-		 public int CurrentMajorVersion
+		public static int CurrentMajorVersion
 		{
 			set{_CurrentMajorVersion=value;}
 			get{return _CurrentMajorVersion;}
@@ -104,18 +86,18 @@ namespace GUPdotNET
 		///  This is the minor version or the application
 		///  we are looking to update
 		/// </summary>
-		 public int CurrentMinorVersion
+		public static int CurrentMinorVersion
 		{
 			set{_CurrentMinorVersion=value;}
 			get{return _CurrentMinorVersion;}
 		}
 		
 		/// <summary>
-		///  if this is set to true this will 
+		///  if this is set to true this will
 		///  not report if no connection is made to the
 		///  web server or if other interuptions occur
 		/// </summary>
-		 public bool SilentCheck
+		public static bool SilentCheck
 		{
 			set{_SilentCheck=value;}
 			get{return _SilentCheck;}
@@ -124,7 +106,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  The name of the application that we are looking to update
 		/// </summary>
-		 public string CallingApplication
+		public static string CallingApplication
 		{
 			set{_CallingApplication = value;}
 			get{return _CallingApplication;}
@@ -137,8 +119,9 @@ namespace GUPdotNET
 		/// <summary>
 		///  The file that is the updated installation
 		/// </summary>
-		public string UpdateFileURL
+		public static string UpdateFileURL
 		{
+			set{_UpdateFileURL=value;}
 			get{return _UpdateFileURL;}
 		}
 		
@@ -147,8 +130,9 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		 public int UpdateMajorVersion
+		public static int UpdateMajorVersion
 		{
+			set{_UpdateMajorVersion= value;}
 			get{return _UpdateMajorVersion;}
 		}
 		
@@ -157,16 +141,18 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		 public int UpdateMinorVersion
+		public static int UpdateMinorVersion
 		{
+			set{_UpdateMinorVersion = value;}
 			get{return _UpdateMinorVersion;}
 		}
 		
 		/// <summary>
 		///  this is a generic string of the updatable version
 		/// </summary>
-		 public string LatestVersion
+		public static string LatestVersion
 		{
+			set{_LatestVersion=value;}
 			get{return _LatestVersion;}
 		}
 		
@@ -174,97 +160,14 @@ namespace GUPdotNET
 		///  this contains any error that is returned from the
 		///  web site portion of the app
 		/// </summary>
-		public string Error
+		public static string Error
 		{
+			set{_Error=value;}
 			get{return _Error;}
 		}
 		
 		#endregion Public Properties Web Server
 		
-		 public void RunCheck()
-		{
-			//bool blnSuccess = true;
-			try
-			{
-				// TODO: add process to check the file permissions on the program full path
-				// to see if an admin password is needed
-				
-				LoadUpdateInfo();
-				if(_UpdateMajorVersion > _CurrentMajorVersion || (_UpdateMajorVersion == _CurrentMajorVersion && _UpdateMinorVersion > _CurrentMinorVersion))
-				{
-					frmUpdateConfirm fm = new frmUpdateConfirm(this);
-					fm.Show ();
-					Application.Run ();
-				}
-				else
-				{
-					if(_SilentCheck == false)
-					{
-						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Not updates avalable at this time." ,"No updates");
-						md.Run();
-						md.Destroy();
-					}
-				}
-				
-			}
-			catch(Exception doh)
-			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
-			}
-			//return blnSuccess;
-		}
 		
-		
-		
-		 public void LoadUpdateInfo()
-		{
-			try
-			{
-				//System.Security.Permissions.EnvironmentPermission ep = new EnvironmentPermission(EnvironmentPermissionAccess.AllAccess, System.Environment.CurrentDirectory);
-				string strURI = _UpdateInfoURL +
-					"?InstallType=" + _InstallType;
-				
-				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strURI);
-				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
-				System.IO.Stream s = wsp.GetResponseStream();
-				// Parse out the xml that has been returned
-				ParseResponse(s);
-			}
-			catch(Exception doh)
-			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
-			}
-		}
-		
-		 public void ParseResponse(Stream s)
-		{
-			try
-			{
-				XmlDocument xmlDoc = new XmlDocument();
-				xmlDoc.Load(s);
-				
-				XmlNodeList nl = xmlDoc.SelectNodes("GUPdotNET");
-				for (int i = 0; i < nl.Count; i++)
-				{
-					_UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText;
-					_UpdateMajorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMajorVersion").InnerText);
-					_UpdateMinorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMinorVersion").InnerText);
-					_LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText;
-					_Error = nl[i].SelectSingleNode("Error").InnerText;
-				}
-			}
-			
-			catch(Exception doh)
-			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
-			}
-			
-		}
 	}
 }
