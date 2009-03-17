@@ -67,10 +67,10 @@ namespace GUPdotNET
 			// the method being run in a new thread.
 			firstRunner = new Thread (new ThreadStart (this.GetUpdateFile));
 			
+			//System.Diagnostics.Debug.WriteLine("start download");
 			// Starting our two threads. Thread.Sleep(10) gives the first Thread
 			// 10 miliseconds more time.
 			firstRunner.Start ();
-			Thread.Sleep (100);
 			
 		}
 		
@@ -84,7 +84,9 @@ namespace GUPdotNET
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				
-				string strFilePath = System.IO.Path.GetTempPath() + System.IO.Path.DirectorySeparatorChar.ToString() + strLocation.Substring(strLocation.LastIndexOf(System.IO.Path.DirectorySeparatorChar.ToString()) + 1, strLocation.Length - (strLocation.LastIndexOf(System.IO.Path.DirectorySeparatorChar.ToString()) +1));
+				string strFilePath = System.IO.Path.GetTempPath() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
+				System.Diagnostics.Debug.WriteLine("download " + strFilePath);
+			
 				_FileSize = wsp.ContentLength;
 				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
 				long lgFileProgress = 0;
@@ -121,8 +123,11 @@ namespace GUPdotNET
 		void UpdateProgressFraction(float f)
 		{
 			Application.Invoke(delegate {
-			                   	progressbar1.Text = f.ToString("P");
+			                   	//progressbar1.Text = f.ToString("P");
+			                   	System.Diagnostics.Debug.WriteLine("update download");
+			
 			                   	progressbar1.Fraction = f;
+			                   	
 			                   });
 		}
 
@@ -135,28 +140,29 @@ namespace GUPdotNET
 		{
 			// ask the user to save changes and close calling application
 			string strRequest = "Preparing to install please save and close " + GUPdotNET.ProgramName + " before we continue";
-			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, strRequest);
+			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
 			md.Run();
 			md.Destroy();
 			
 			
-			if(HasAccess(GUPdotNET.ProgramFullPath) == true)
-			{
-				frmSuPass fm = new frmSuPass();
-				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
-				if(rsp == ResponseType.Ok)
-				{
-					_AdminPass = fm.AdminPass;
-					frmInstallDialog fm2 = new frmInstallDialog(_AdminPass, strFile);
-					fm2.Run();
-					fm2.Destroy();
-				}
-				else
-				{
-					// TODO: find a path out of the program
-				}
-				fm.Destroy();
-			}
+//			if(HasAccess(GUPdotNET.ProgramFullPath) == false)
+//			{
+//				frmSuPass fm = new frmSuPass();
+//				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
+//				if(rsp == ResponseType.Ok)
+//				{
+//					_AdminPass = fm.AdminPass;
+//					frmInstallDialog fm2 = new frmInstallDialog(_AdminPass, strFile);
+//					fm2.Run();
+//					fm2.Destroy();
+//				}
+//				else
+//				{
+//					// TODO: find a path out of the program
+//				}
+//				fm.Destroy();
+//			}
+			System.Diagnostics.Process.Start(strFile);
 		}
 		
 		private bool HasAccess(string strPath)
