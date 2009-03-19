@@ -65,7 +65,7 @@
     <Folder Include="web_files" />
     <Folder Include="work_files" />
     <Reference Include="art-sharp">
-      <HintPath>..\..\..\..\..\..\Program Files %28x86%29\Mono-2.2\lib\mono\gac\art-sharp\2.16.0.0__35e10195dab3c99f\art-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\art-sharp\2.16.0.0__35e10195dab3c99f\art-sharp.dll</HintPath>
     </Reference>
     <Reference Include="atk-sharp">
       <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
@@ -80,7 +80,7 @@
       <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\..\..\..\Program Files %28x86%29\Mono-2.2\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="pango-sharp">
       <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\pango-sharp\2.12.0.0__35e10195dab3c99f\pango-sharp.dll</HintPath>

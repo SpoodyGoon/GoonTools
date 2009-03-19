@@ -47,7 +47,9 @@ namespace GUPdotNET
 				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
 				md.Run();
 				md.Destroy();
-			}		
+			}	
+			this.Focus = lblProgramTitle;
+			this.KeepAbove = true;
 			this.ShowAll();
 		}
 

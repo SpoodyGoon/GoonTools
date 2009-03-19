@@ -23,6 +23,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Security.Permissions;
+using System.Diagnostics;
 using System.Threading;
 using System.Configuration;
 using Gtk;
@@ -86,7 +87,7 @@ namespace GUPdotNET
 				
 				string strFilePath = System.IO.Path.GetTempPath() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
 				System.Diagnostics.Debug.WriteLine("download " + strFilePath);
-			
+				
 				_FileSize = wsp.ContentLength;
 				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
 				long lgFileProgress = 0;
@@ -109,7 +110,7 @@ namespace GUPdotNET
 				fs.Close();
 				
 				if(_ThreadActive == true)
-					StartInstallPackage(System.IO.Path.GetFullPath(strFilePath));
+					StartInstallWin32(System.IO.Path.GetFullPath(strFilePath));
 			}
 			catch(Exception doh)
 			{
@@ -125,7 +126,7 @@ namespace GUPdotNET
 			Application.Invoke(delegate {
 			                   	//progressbar1.Text = f.ToString("P");
 			                   	System.Diagnostics.Debug.WriteLine("update download");
-			
+			                   	
 			                   	progressbar1.Fraction = f;
 			                   	
 			                   });
@@ -136,13 +137,19 @@ namespace GUPdotNET
 			_ThreadActive = false;
 		}
 		
-		private void StartInstallPackage(string strFile)
+		private void StartInstallWin32(string strFile)
 		{
-			// ask the user to save changes and close calling application
-			string strRequest = "Preparing to install please save and close " + GUPdotNET.ProgramName + " before we continue";
-			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
-			md.Run();
-			md.Destroy();
+			bool blnProgramOpen = FindWindow(GUPdotNET.CallingApplication);
+			while(blnProgramOpen == true)
+			{
+				// ask the user to save changes and close calling application
+				string strRequest = "To continue the install please save open files and close " + GUPdotNET.ProgramName + " before we continue";
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
+				md.Run();
+				md.Destroy();
+				
+				blnProgramOpen = FindWindow(GUPdotNET.CallingApplication);				
+			}
 			
 			
 //			if(HasAccess(GUPdotNET.ProgramFullPath) == false)
@@ -181,6 +188,21 @@ namespace GUPdotNET
 				Console.WriteLine(s.Message);
 			}
 			return blnHasAccess;
+		}
+		
+		private bool FindWindow(string strProcessName)
+		{
+			bool blnReturn = false;
+			Process[] processes = Process.GetProcessesByName(strProcessName);
+			foreach (Process p in processes)
+			{
+				//IntPtr pFoundWindow = p.MainWindowHandle;
+				// Do something with the handle...
+				
+				// if we get here the process is still running
+				blnReturn = true;
+			}
+			return blnReturn;
 		}
 
 	}
