@@ -33,7 +33,47 @@ namespace GUPdotNET
 {
 	public class UpdateCheck
 	{
-		 public void RunCheck()
+		public string InstallType
+		{
+			set{GUPdotNET.InstallType=value;}
+		}
+		
+		public  string ProgramName
+		{
+			set{GUPdotNET.ProgramName = value;}
+		}
+		
+		public  string ProgramFullPath
+		{
+			set{GUPdotNET.ProgramFullPath = value;}
+		}
+		
+		public string UpdateInfoURL
+		{
+			set{GUPdotNET.UpdateInfoURL = value;}
+		}
+		
+		public int CurrentMajorVersion
+		{
+			set{GUPdotNET.CurrentMajorVersion=value;}
+		}
+		
+		public int CurrentMinorVersion
+		{
+			set{GUPdotNET.CurrentMinorVersion=value;}
+		}
+		
+		public bool SilentCheck
+		{
+			set{GUPdotNET.SilentCheck=value;}
+		}
+		
+		public string CallingApplication
+		{
+			set{GUPdotNET.CallingApplication = value;}
+		}
+
+		public void RunCheck()
 		{
 			try
 			{
@@ -63,7 +103,7 @@ namespace GUPdotNET
 			}
 		}
 		
-		 public void LoadUpdateInfo()
+		 private void LoadUpdateInfo()
 		{
 			try
 			{
@@ -80,7 +120,7 @@ namespace GUPdotNET
 			}
 		}
 		
-		 public void ParseResponse(Stream s)
+		 private void ParseResponse(Stream s)
 		{
 			try
 			{
