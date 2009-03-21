@@ -152,23 +152,23 @@ namespace GUPdotNET
 			}
 			
 			
-//			if(HasAccess(GUPdotNET.ProgramFullPath) == false)
-//			{
-//				frmSuPass fm = new frmSuPass();
-//				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
-//				if(rsp == ResponseType.Ok)
-//				{
-//					_AdminPass = fm.AdminPass;
-//					frmInstallDialog fm2 = new frmInstallDialog(_AdminPass, strFile);
-//					fm2.Run();
-//					fm2.Destroy();
-//				}
-//				else
-//				{
-//					// TODO: find a path out of the program
-//				}
-//				fm.Destroy();
-//			}
+			if(HasAccess(GUPdotNET.ProgramFullPath) == false)
+			{
+				frmSuPass fm = new frmSuPass();
+				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
+				if(rsp == ResponseType.Ok)
+				{
+					_AdminPass = fm.AdminPass;
+					frmInstallDialog fm2 = new frmInstallDialog(_AdminPass, strFile);
+					fm2.Run();
+					fm2.Destroy();
+				}
+				else
+				{
+					// TODO: find a path out of the program
+				}
+				fm.Destroy();
+			}
 			System.Diagnostics.Process.Start(strFile);
 		}
 		

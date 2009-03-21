@@ -13,7 +13,7 @@ namespace GUPdotNET
 	/// <summary>
 	/// Description of GUPdotNET.
 	/// </summary>
-	public static class GUPdotNET
+	internal static class GUPdotNET
 	{
 		// value from the calling application or from the app con
 		private static string _InstallType = null;
@@ -38,7 +38,7 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public static string InstallType
+		internal static string InstallType
 		{
 			set{_InstallType=value;}
 			get{return _InstallType;}
@@ -47,7 +47,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  the freindly name of the application
 		/// </summary>
-		public static  string ProgramName
+		internal static  string ProgramName
 		{
 			set{_ProgramName = value;}
 			get{return _ProgramName;}
@@ -56,7 +56,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  full path to the application we are updating
 		/// </summary>
-		public static  string ProgramFullPath
+		internal static  string ProgramFullPath
 		{
 			set{_ProgramFullPath = value;}
 			get{return _ProgramFullPath;}
@@ -66,7 +66,7 @@ namespace GUPdotNET
 		///  This is URL for the web site
 		///  containing the update information
 		/// </summary>
-		public static string UpdateInfoURL
+		internal static string UpdateInfoURL
 		{
 			set{_UpdateInfoURL = value;}
 			get{return _UpdateInfoURL;}
@@ -76,7 +76,7 @@ namespace GUPdotNET
 		///  This is the major version of the application
 		///  we are looking to update
 		/// </summary>
-		public static int CurrentMajorVersion
+		internal static int CurrentMajorVersion
 		{
 			set{_CurrentMajorVersion=value;}
 			get{return _CurrentMajorVersion;}
@@ -86,7 +86,7 @@ namespace GUPdotNET
 		///  This is the minor version or the application
 		///  we are looking to update
 		/// </summary>
-		public static int CurrentMinorVersion
+		internal static int CurrentMinorVersion
 		{
 			set{_CurrentMinorVersion=value;}
 			get{return _CurrentMinorVersion;}
@@ -97,7 +97,7 @@ namespace GUPdotNET
 		///  not report if no connection is made to the
 		///  web server or if other interuptions occur
 		/// </summary>
-		public static bool SilentCheck
+		internal static bool SilentCheck
 		{
 			set{_SilentCheck=value;}
 			get{return _SilentCheck;}
@@ -106,7 +106,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  The name of the application that we are looking to update
 		/// </summary>
-		public static string CallingApplication
+		internal static string CallingApplication
 		{
 			set{_CallingApplication = value;}
 			get{return _CallingApplication;}
@@ -119,7 +119,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  The file that is the updated installation
 		/// </summary>
-		public static string UpdateFileURL
+		internal static string UpdateFileURL
 		{
 			set{_UpdateFileURL=value;}
 			get{return _UpdateFileURL;}
@@ -130,7 +130,7 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		public static int UpdateMajorVersion
+		internal static int UpdateMajorVersion
 		{
 			set{_UpdateMajorVersion= value;}
 			get{return _UpdateMajorVersion;}
@@ -141,7 +141,7 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		public static int UpdateMinorVersion
+		internal static int UpdateMinorVersion
 		{
 			set{_UpdateMinorVersion = value;}
 			get{return _UpdateMinorVersion;}
@@ -150,7 +150,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  this is a generic string of the updatable version
 		/// </summary>
-		public static string LatestVersion
+		internal static string LatestVersion
 		{
 			set{_LatestVersion=value;}
 			get{return _LatestVersion;}
@@ -160,7 +160,7 @@ namespace GUPdotNET
 		///  this contains any error that is returned from the
 		///  web site portion of the app
 		/// </summary>
-		public static string Error
+		internal static string Error
 		{
 			set{_Error=value;}
 			get{return _Error;}
