@@ -38,7 +38,7 @@ namespace GUPdotNET
 			set{GUPdotNET.InstallType=value;}
 		}
 		
-		public  string ProgramName
+		public string ProgramName
 		{
 			set{GUPdotNET.ProgramName = value;}
 		}
