@@ -51,7 +51,7 @@ namespace GUPdotNET {
             // Container child vbox3.Gtk.Box+BoxChild
             this.lblProgramTitle = new Gtk.Label();
             this.lblProgramTitle.Name = "lblProgramTitle";
-            this.lblProgramTitle.LabelProp = Mono.Unix.Catalog.GetString("null");
+            this.lblProgramTitle.LabelProp = Mono.Unix.Catalog.GetString("Title");
             this.lblProgramTitle.UseMarkup = true;
             this.vbox3.Add(this.lblProgramTitle);
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.vbox3[this.lblProgramTitle]));
@@ -69,7 +69,7 @@ namespace GUPdotNET {
             // Container child vbox3.Gtk.Box+BoxChild
             this.lblUpdateMessage = new Gtk.Label();
             this.lblUpdateMessage.Name = "lblUpdateMessage";
-            this.lblUpdateMessage.LabelProp = Mono.Unix.Catalog.GetString("null");
+            this.lblUpdateMessage.LabelProp = Mono.Unix.Catalog.GetString("Message");
             this.lblUpdateMessage.UseMarkup = true;
             this.lblUpdateMessage.Wrap = true;
             this.vbox3.Add(this.lblUpdateMessage);
