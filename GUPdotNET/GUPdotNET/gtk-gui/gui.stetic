@@ -28,7 +28,7 @@
                 <child>
                   <widget class="Gtk.Label" id="lblProgramTitle">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">null</property>
+                    <property name="LabelProp" translatable="yes">Title</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
@@ -52,7 +52,7 @@
                 <child>
                   <widget class="Gtk.Label" id="lblUpdateMessage">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">null</property>
+                    <property name="LabelProp" translatable="yes">Message</property>
                     <property name="UseMarkup">True</property>
                     <property name="Wrap">True</property>
                   </widget>
