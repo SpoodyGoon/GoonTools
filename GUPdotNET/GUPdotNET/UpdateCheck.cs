@@ -77,6 +77,7 @@ namespace GUPdotNET
 		{
 			try
 			{
+				// TODO: add method to check for internet connection
 				LoadUpdateInfo();
 				if(GUPdotNET.UpdateMajorVersion > GUPdotNET.CurrentMajorVersion || (GUPdotNET.UpdateMajorVersion == GUPdotNET.CurrentMajorVersion && GUPdotNET.UpdateMinorVersion > GUPdotNET.CurrentMinorVersion))
 				{
