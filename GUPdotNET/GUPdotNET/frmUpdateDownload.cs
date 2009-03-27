@@ -31,7 +31,6 @@ using Gtk;
 namespace GUPdotNET
 {
 	
-	
 	public partial class frmUpdateDownload : Gtk.Dialog
 	{
 		
