@@ -77,13 +77,18 @@ namespace GUPdotNET
 		{
 			try
 			{
-				// TODO: add method to check for internet connection
 				LoadUpdateInfo();
 				if(GUPdotNET.UpdateMajorVersion > GUPdotNET.CurrentMajorVersion || (GUPdotNET.UpdateMajorVersion == GUPdotNET.CurrentMajorVersion && GUPdotNET.UpdateMinorVersion > GUPdotNET.CurrentMinorVersion))
 				{
-					frmUpdateConfirm fm = new frmUpdateConfirm();
-					fm.Show ();
-					Application.Run ();
+					frmUpdateConfirm fm1 = new frmUpdateConfirm();
+					Gtk.ResponseType resp1 = (Gtk.ResponseType)fm1.Run();
+					if(resp1 == Gtk.ResponseType.Yes)
+					{
+						frmUpdateDownload fm2 = new frmUpdateDownload();
+						Gtk.ResponseType resp2 = (Gtk.ResponseType)fm2.Run();
+						fm2.Destroy();
+					}
+					fm1.Destroy();					
 				}
 				else
 				{
@@ -113,6 +118,11 @@ namespace GUPdotNET
 				System.IO.Stream s = wsp.GetResponseStream();
 				ParseResponse(s);
 			}
+			catch(WebException e)
+			{
+				// if we get a web exception exit the update
+				ExitUpdate("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message);				
+			}
 			catch(Exception doh)
 			{
 				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
@@ -125,10 +135,12 @@ namespace GUPdotNET
 		{
 			try
 			{
+				// get the xml that defines the update
 				XmlDocument xmlDoc = new XmlDocument();
 				xmlDoc.Load(s);
 				
 				XmlNodeList nl = xmlDoc.SelectNodes("GUPdotNET");
+				// parse out the GUPdotNET element children
 				for (int i = 0; i < nl.Count; i++)
 				{
 					GUPdotNET.UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText;
@@ -137,6 +149,9 @@ namespace GUPdotNET
 					GUPdotNET.LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText;
 					GUPdotNET.Error = nl[i].SelectSingleNode("Error").InnerText;
 				}
+				// check for an error from the server
+				if(GUPdotNET.Error.Length > 2)
+					ExitUpdate("Error parsing the update xml file - " + System.Environment.NewLine + GUPdotNET.Error);
 			}
 			catch(Exception doh)
 			{
@@ -146,5 +161,18 @@ namespace GUPdotNET
 			}
 			
 		}
+		 
+		 private void ExitUpdate(string strExitMess)
+		 {
+		 	// if we don't want a silent check tell the user
+		 	// why we can't update
+		 	if(GUPdotNET.SilentCheck == false && strExitMess != null)
+		 	{
+		 		Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, strExitMess, "Exiting Update");
+				md.Run();
+				md.Destroy();
+		 	}
+		 	
+		 }
 	}
 }

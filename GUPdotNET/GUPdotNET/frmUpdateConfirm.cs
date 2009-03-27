@@ -1,8 +1,8 @@
 /*************************************************************************
- *                      frmUpdateConfirm.cs                                     
- *                                                                       
- *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>         
- *                                                                        
+ *                      frmUpdateConfirm.cs
+ *
+ *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>
+ *
  *************************************************************************/
 /*
  * This program is free software: you can redistribute it and/or modify
@@ -27,14 +27,14 @@ using Gtk;
 namespace GUPdotNET
 {
 	
-	
 	public partial class frmUpdateConfirm : Gtk.Dialog
 	{
 		public frmUpdateConfirm()
 		{
 			this.Build();
 			try
-			{				
+			{
+				
 				this.Title = GUPdotNET.ProgramName;
 				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + GUPdotNET.ProgramName + " Update</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
@@ -47,7 +47,7 @@ namespace GUPdotNET
 				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
 				md.Run();
 				md.Destroy();
-			}	
+			}
 			this.Focus = lblProgramTitle;
 			this.KeepAbove = true;
 			this.ShowAll();
@@ -55,24 +55,13 @@ namespace GUPdotNET
 
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
-			try
-			{				
-				this.Hide();
-				frmUpdateDownload fm = new frmUpdateDownload();
-				fm.Run();
-				fm.Dispose();
-			}
-			catch(Exception doh)
-			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
-			}
+			this.Respond(ResponseType.Yes);
+			this.Hide();
 		}
 
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
-			// TODO: set up logic to exit the update process
+			this.Respond(ResponseType.No);
 			this.Hide();
 		}
 	}
