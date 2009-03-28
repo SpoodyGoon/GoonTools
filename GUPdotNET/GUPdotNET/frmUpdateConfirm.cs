@@ -55,13 +55,11 @@ namespace GUPdotNET
 
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
-			this.Respond(ResponseType.Yes);
 			this.Hide();
 		}
 
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
-			this.Respond(ResponseType.No);
 			this.Hide();
 		}
 	}

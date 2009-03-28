@@ -5,6 +5,11 @@
 //
 
 using System;
+using System.IO;
+using System.Net;
+using System.Security.Permissions;
+using System.Diagnostics;
+using Gtk;
 
 namespace GUPdotNET
 {
@@ -39,6 +44,76 @@ namespace GUPdotNET
 			default:
 				throw new Exception("Invalid Install Type");
 			}
+		}
+		
+		
+		
+		private void StartInstallWin32(string strFile)
+		{
+			bool blnProgramOpen = FindWindow(GUPdotNET.CallingApplication);
+			while(blnProgramOpen == true)
+			{
+				// ask the user to save changes and close calling application
+				string strRequest = "To continue the install please save open files and close " + GUPdotNET.ProgramName + " before we continue";
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
+				md.Run();
+				md.Destroy();
+				
+				blnProgramOpen = FindWindow(GUPdotNET.CallingApplication);				
+			}
+			
+			
+			if(HasAccess(GUPdotNET.ProgramFullPath) == false)
+			{
+				frmSuPass fm = new frmSuPass();
+				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
+				if(rsp == ResponseType.Ok)
+				{
+					_AdminPass = fm.AdminPass;
+					frmInstallDialog fm2 = new frmInstallDialog(_AdminPass, strFile);
+					fm2.Run();
+					fm2.Destroy();
+				}
+				else
+				{
+					// TODO: find a path out of the program
+				}
+				fm.Destroy();
+			}
+			System.Diagnostics.Process.Start(strFile);
+		}
+		
+		private bool HasAccess(string strPath)
+		{
+			// assume the user has access
+			bool blnHasAccess = true;
+			
+			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, strPath);
+			try
+			{
+				f2.Demand();
+			}
+			catch (System.Security.SecurityException s)
+			{
+				blnHasAccess = false;
+				Console.WriteLine(s.Message);
+			}
+			return blnHasAccess;
+		}
+		
+		private bool FindWindow(string strProcessName)
+		{
+			bool blnReturn = false;
+			Process[] processes = Process.GetProcessesByName(strProcessName);
+			foreach (Process p in processes)
+			{
+				//IntPtr pFoundWindow = p.MainWindowHandle;
+				// Do something with the handle...
+				
+				// if we get here the process is still running
+				blnReturn = true;
+			}
+			return blnReturn;
 		}
 	}
 }

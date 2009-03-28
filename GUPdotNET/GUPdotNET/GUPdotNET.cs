@@ -15,6 +15,9 @@ namespace GUPdotNET
 	/// </summary>
 	internal static class GUPdotNET
 	{
+		
+        #region Local Variable Declaration
+		
 		// value from the calling application or from the app con
 		private static string _InstallType = null;
 		private static string _ProgramName = null;
@@ -25,12 +28,18 @@ namespace GUPdotNET
 		private static bool _SilentCheck = true;
 		private static string _CallingApplication = null;
 		
+		#endregion Local Variable Declaration
+		
+		#region Web Variable Declaration
+		
 		// values that are imported from the aspx file on the listed web site
 		private static string _UpdateFileURL = null;
 		private static int _UpdateMajorVersion = -1;
 		private static int _UpdateMinorVersion = -1;
 		private static string _LatestVersion = null;
 		private static string _Error = null;
+		
+		#endregion Web Variable Declaration
 		
 		#region Public Properties Local
 		

@@ -21,16 +21,27 @@ namespace GUPdotNET {
         
         private Gtk.HSeparator hseparator1;
         
+        private Gtk.Alignment alignment1;
+        
         private Gtk.ProgressBar progressbar1;
         
-        private Gtk.Button buttonCancel;
+        private Gtk.Alignment alignment2;
+        
+        private Gtk.HSeparator hseparator2;
+        
+        private Gtk.Button btnCancel;
+        
+        private Gtk.Button btnOk;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget GUPdotNET.frmUpdateDownload
             this.Name = "GUPdotNET.frmUpdateDownload";
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.AllowShrink = true;
+            this.DestroyWithParent = true;
+            this.HasSeparator = false;
             // Internal child GUPdotNET.frmUpdateDownload.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
@@ -47,8 +58,6 @@ namespace GUPdotNET {
             this.vbox2.Add(this.lblProgramTitle);
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.vbox2[this.lblProgramTitle]));
             w2.Position = 0;
-            w2.Expand = false;
-            w2.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.lblUpdateMessage = new Gtk.Label();
             this.lblUpdateMessage.Name = "lblUpdateMessage";
@@ -57,8 +66,6 @@ namespace GUPdotNET {
             this.vbox2.Add(this.lblUpdateMessage);
             Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox2[this.lblUpdateMessage]));
             w3.Position = 1;
-            w3.Expand = false;
-            w3.Fill = false;
             w3.Padding = ((uint)(5));
             // Container child vbox2.Gtk.Box+BoxChild
             this.hseparator1 = new Gtk.HSeparator();
@@ -69,45 +76,75 @@ namespace GUPdotNET {
             w4.Expand = false;
             w4.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment1.Name = "alignment1";
+            this.alignment1.LeftPadding = ((uint)(10));
+            this.alignment1.RightPadding = ((uint)(10));
+            // Container child alignment1.Gtk.Container+ContainerChild
             this.progressbar1 = new Gtk.ProgressBar();
             this.progressbar1.WidthRequest = 98;
             this.progressbar1.Name = "progressbar1";
+            this.progressbar1.Text = Mono.Unix.Catalog.GetString("Starting Download");
             this.progressbar1.Ellipsize = ((Pango.EllipsizeMode)(1));
-            this.vbox2.Add(this.progressbar1);
-            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox2[this.progressbar1]));
-            w5.Position = 3;
-            w5.Expand = false;
-            w5.Fill = false;
-            w1.Add(this.vbox2);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
-            w6.Position = 0;
+            this.alignment1.Add(this.progressbar1);
+            this.vbox2.Add(this.alignment1);
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
+            w6.Position = 3;
             w6.Expand = false;
             w6.Fill = false;
-            // Internal child GUPdotNET.frmUpdateDownload.ActionArea
-            Gtk.HButtonBox w7 = this.ActionArea;
-            w7.Name = "dialog1_ActionArea";
-            w7.Spacing = 6;
-            w7.BorderWidth = ((uint)(5));
-            w7.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
-            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-            this.buttonCancel = new Gtk.Button();
-            this.buttonCancel.CanDefault = true;
-            this.buttonCancel.CanFocus = true;
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.UseStock = true;
-            this.buttonCancel.UseUnderline = true;
-            this.buttonCancel.Label = "gtk-cancel";
-            this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w8 = ((Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonCancel]));
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment2.Name = "alignment2";
+            // Container child alignment2.Gtk.Container+ContainerChild
+            this.hseparator2 = new Gtk.HSeparator();
+            this.hseparator2.Name = "hseparator2";
+            this.alignment2.Add(this.hseparator2);
+            this.vbox2.Add(this.alignment2);
+            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment2]));
+            w8.Position = 4;
             w8.Expand = false;
             w8.Fill = false;
+            w1.Add(this.vbox2);
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
+            w9.Position = 0;
+            // Internal child GUPdotNET.frmUpdateDownload.ActionArea
+            Gtk.HButtonBox w10 = this.ActionArea;
+            w10.Name = "dialog1_ActionArea";
+            w10.Spacing = 6;
+            w10.BorderWidth = ((uint)(5));
+            w10.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
+            this.btnCancel = new Gtk.Button();
+            this.btnCancel.CanDefault = true;
+            this.btnCancel.CanFocus = true;
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.UseStock = true;
+            this.btnCancel.UseUnderline = true;
+            this.btnCancel.Label = "gtk-cancel";
+            this.AddActionWidget(this.btnCancel, -6);
+            Gtk.ButtonBox.ButtonBoxChild w11 = ((Gtk.ButtonBox.ButtonBoxChild)(w10[this.btnCancel]));
+            w11.Expand = false;
+            w11.Fill = false;
+            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
+            this.btnOk = new Gtk.Button();
+            this.btnOk.CanFocus = true;
+            this.btnOk.Name = "btnOk";
+            this.btnOk.UseStock = true;
+            this.btnOk.UseUnderline = true;
+            this.btnOk.Label = "gtk-ok";
+            this.AddActionWidget(this.btnOk, -5);
+            Gtk.ButtonBox.ButtonBoxChild w12 = ((Gtk.ButtonBox.ButtonBoxChild)(w10[this.btnOk]));
+            w12.Position = 1;
+            w12.Expand = false;
+            w12.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 373;
-            this.DefaultHeight = 177;
+            this.DefaultHeight = 182;
             this.Show();
-            this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
+            this.btnCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
+            this.btnOk.Clicked += new System.EventHandler(this.OnBtnOkClicked);
         }
     }
 }

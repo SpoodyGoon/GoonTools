@@ -77,18 +77,35 @@ namespace GUPdotNET
 		{
 			try
 			{
+				Gtk.ResponseType UpConResp = ResponseType.None;
+				Gtk.ResponseType UpDownResp = ResponseType.None;
+				
+				// load the update info from the web
 				LoadUpdateInfo();
+				// check if we need an update via the major and minor version
 				if(GUPdotNET.UpdateMajorVersion > GUPdotNET.CurrentMajorVersion || (GUPdotNET.UpdateMajorVersion == GUPdotNET.CurrentMajorVersion && GUPdotNET.UpdateMinorVersion > GUPdotNET.CurrentMinorVersion))
 				{
-					frmUpdateConfirm fm1 = new frmUpdateConfirm();
-					Gtk.ResponseType resp1 = (Gtk.ResponseType)fm1.Run();
-					if(resp1 == Gtk.ResponseType.Yes)
+					// tell the user there is an update availalbe
+					// and ask if they would like to update
+					frmUpdateConfirm UpCon = new frmUpdateConfirm();
+					UpConResp = (Gtk.ResponseType)UpCon.Run();
+					UpCon.Destroy();	
+					
+					// if the user wants an update start the update dialog
+					if(UpConResp == Gtk.ResponseType.Yes)
 					{
-						frmUpdateDownload fm2 = new frmUpdateDownload();
-						Gtk.ResponseType resp2 = (Gtk.ResponseType)fm2.Run();
-						fm2.Destroy();
+						frmUpdateDownload UpDown = new frmUpdateDownload();
+						UpDownResp = (Gtk.ResponseType)UpDown.Run();
+						UpDown.Destroy();
 					}
-					fm1.Destroy();					
+					
+					// if the download was sucessful then procede with the install
+					if(UpDownResp == ResponseType.Ok)
+					{
+						
+					}
+					
+					
 				}
 				else
 				{
