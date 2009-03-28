@@ -38,13 +38,14 @@ namespace GUPdotNET
 		private long _Downloaded = 0;
 		private bool _ThreadActive = true;
 		private Thread firstRunner;
-		private string _AdminPass = null;
+		private string _TempFilePath = null;
+		// return all errors to the main update class
+		private string _ErrorMess = null;
 		public frmUpdateDownload()
 		{
 			this.Build();
 			try
 			{
-				
 				this.progressbar1.DoubleBuffered= true;
 				this.Title = GUPdotNET.ProgramName;
 				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + GUPdotNET.ProgramName + "</b></span>";
@@ -53,16 +54,35 @@ namespace GUPdotNET
 				this.ShowNow();
 				StartDownload();
 			}
-			catch(Exception doh)
+			catch(Exception ex)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
+				this.Respond(Gtk.ResponseType.Help);
+				// if we get a web exception exit the update
+				_ErrorMess = "Non Web Response error downloading update " + System.Environment.NewLine + ex.Message;
+				this.Hide();
 			}
 		}
 		
+        #region Public Properties
+
+		public string TempFilePath
+		{
+			get{return _TempFilePath;}
+		}
+		
+		public string ErrorMess
+		{
+			get{return _ErrorMess;}
+		}
+		
+       #endregion Public Properties
+		
 		private void StartDownload()
 		{
+			// we don't want to be closing during the download
+			// so disable the ok button
+			btnOk.Sensitive = false;
+			
 			// Creating our two threads. The ThreadStart delegate is points to
 			// the method being run in a new thread.
 			firstRunner = new Thread (new ThreadStart (this.GetUpdateFile));
@@ -78,17 +98,17 @@ namespace GUPdotNET
 		{
 			try
 			{
+				float fltTemp = 0.0f;
 				string strLocation = GUPdotNET.UpdateFileURL;
 				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strLocation);
 				
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				
-				string strFilePath = System.IO.Path.GetTempPath() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
-				System.Diagnostics.Debug.WriteLine("download " + strFilePath);
+				_TempFilePath = System.IO.Path.GetTempPath() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
 				
 				_FileSize = wsp.ContentLength;
-				FileStream fs = new FileStream(strFilePath, FileMode.Create, FileAccess.Write);
+				FileStream fs = new FileStream(_TempFilePath, FileMode.Create, FileAccess.Write);
 				long lgFileProgress = 0;
 				
 				byte[] b = new byte[2048];
@@ -97,7 +117,19 @@ namespace GUPdotNET
 					
 					int n = s.Read(b, 0, b.Length);
 					_Downloaded = lgFileProgress += b.Length;
-					UpdateProgressFraction((float)_Downloaded/_FileSize);
+					// to make sure we don't get any funny filesizes from the web response
+					// make sure we don't go over 1.0 for the progress bar
+					fltTemp = (float)_Downloaded/_FileSize;
+					Console.WriteLine("fraction " + fltTemp.ToString());
+					if(fltTemp >= 0 && fltTemp <= 1.0) 
+					{
+						UpdateProgressFraction(fltTemp);
+					}
+					else if(fltTemp < 1.0)
+					{
+						UpdateProgressFraction((float)1.0f);
+					}
+						
 					if (n > 0)
 					{
 						fs.Write(b, 0, n);
@@ -108,14 +140,27 @@ namespace GUPdotNET
 				s.Close();
 				fs.Close();
 				
-				if(_ThreadActive == true)
-					StartInstallWin32(System.IO.Path.GetFullPath(strFilePath));
+				// if the _ThreadActive flag is false that means the users
+				// has asked for a cancel close this dialog and return cancel
+				if(_ThreadActive == false)
+				{
+					this.Respond(Gtk.ResponseType.Cancel);
+					this.Hide();
+				}
 			}
-			catch(Exception doh)
+			catch(WebException e)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
+				this.Respond(Gtk.ResponseType.Help);
+				// if we get a web exception exit the update
+				_ErrorMess = "Unable to connect to the update web site - " + System.Environment.NewLine + e.Message;
+				this.Hide();
+			}
+			catch(Exception ex)
+			{
+				this.Respond(Gtk.ResponseType.Help);
+				// if we get a web exception exit the update
+				_ErrorMess = "Non Web Response error downloading update " + System.Environment.NewLine + ex.Message;
+				this.Hide();
 			}
 			
 		}
@@ -123,9 +168,7 @@ namespace GUPdotNET
 		void UpdateProgressFraction(float f)
 		{
 			Application.Invoke(delegate {
-			                   	//progressbar1.Text = f.ToString("P");
-			                   	System.Diagnostics.Debug.WriteLine("update download");
-			                   	
+			                   	progressbar1.Text = f.ToString();
 			                   	progressbar1.Fraction = f;
 			                   	
 			                   });
@@ -133,75 +176,13 @@ namespace GUPdotNET
 
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
+			this.progressbar1.Text = "Canceling Download";
 			_ThreadActive = false;
 		}
-		
-		private void StartInstallWin32(string strFile)
+
+		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
 		{
-			bool blnProgramOpen = FindWindow(GUPdotNET.CallingApplication);
-			while(blnProgramOpen == true)
-			{
-				// ask the user to save changes and close calling application
-				string strRequest = "To continue the install please save open files and close " + GUPdotNET.ProgramName + " before we continue";
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
-				md.Run();
-				md.Destroy();
-				
-				blnProgramOpen = FindWindow(GUPdotNET.CallingApplication);				
-			}
-			
-			
-			if(HasAccess(GUPdotNET.ProgramFullPath) == false)
-			{
-				frmSuPass fm = new frmSuPass();
-				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
-				if(rsp == ResponseType.Ok)
-				{
-					_AdminPass = fm.AdminPass;
-					frmInstallDialog fm2 = new frmInstallDialog(_AdminPass, strFile);
-					fm2.Run();
-					fm2.Destroy();
-				}
-				else
-				{
-					// TODO: find a path out of the program
-				}
-				fm.Destroy();
-			}
-			System.Diagnostics.Process.Start(strFile);
-		}
-		
-		private bool HasAccess(string strPath)
-		{
-			// assume the user has access
-			bool blnHasAccess = true;
-			
-			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, strPath);
-			try
-			{
-				f2.Demand();
-			}
-			catch (System.Security.SecurityException s)
-			{
-				blnHasAccess = false;
-				Console.WriteLine(s.Message);
-			}
-			return blnHasAccess;
-		}
-		
-		private bool FindWindow(string strProcessName)
-		{
-			bool blnReturn = false;
-			Process[] processes = Process.GetProcessesByName(strProcessName);
-			foreach (Process p in processes)
-			{
-				//IntPtr pFoundWindow = p.MainWindowHandle;
-				// Do something with the handle...
-				
-				// if we get here the process is still running
-				blnReturn = true;
-			}
-			return blnReturn;
+			this.Hide();
 		}
 
 	}

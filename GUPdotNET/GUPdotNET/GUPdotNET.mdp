@@ -30,6 +30,8 @@
     <File name="UpdateCheck.cs" subtype="Code" buildaction="Compile" />
     <File name="frmReTry.cs" subtype="Code" buildaction="Compile" />
     <File name="gtk-gui/GUPdotNET.frmReTry.cs" subtype="Code" buildaction="Compile" />
+    <File name="frmError.cs" subtype="Code" buildaction="Compile" />
+    <File name="gtk-gui/GUPdotNET.frmError.cs" subtype="Code" buildaction="Compile" />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
