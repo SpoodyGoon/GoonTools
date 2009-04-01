@@ -47,10 +47,10 @@ namespace GUPdotNET
 			try
 			{
 				this.progressbar1.DoubleBuffered= true;
-				this.Title = GUPdotNET.ProgramName;
-				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + GUPdotNET.ProgramName + "</b></span>";
+				this.Title = GUPdotNET.ProgramTitle;
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + GUPdotNET.ProgramTitle + "</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "Downloading the update for " + GUPdotNET.ProgramName + ".\r\nPlease be patient.";
+				this.lblUpdateMessage.Text = "Downloading the update for " + GUPdotNET.ProgramTitle + ".\r\nPlease be patient.";
 				this.ShowNow();
 				StartDownload();
 			}

@@ -23,8 +23,8 @@ namespace GUPdotNET
 		{
 			this.Build();
 			_AdminPass = AdminPass;
-			this.Title = GUPdotNET.ProgramName;
-			this.lblTitle.Text = "<span size=\"large\"><b>Installing " +  GUPdotNET.ProgramName + "</b></span>";
+			this.Title = GUPdotNET.ProgramTitle;
+			this.lblTitle.Text = "<span size=\"large\"><b>Installing " +  GUPdotNET.ProgramTitle + "</b></span>";
 			this.lblTitle.UseMarkup = true;
 			this.lblMessage.Text = "Starting Install";
 			this.lblMessage.UseMarkup = true;
@@ -50,16 +50,16 @@ namespace GUPdotNET
 		
 		private void StartInstallWin32(string strFile)
 		{
-			bool blnProgramOpen = FindWindow(GUPdotNET.CallingApplication);
+			bool blnProgramOpen = FindWindow(GUPdotNET.ProgramName);
 			while(blnProgramOpen == true)
 			{
 				// ask the user to save changes and close calling application
-				string strRequest = "To continue the install please save open files and close " + GUPdotNET.ProgramName + " before we continue";
+				string strRequest = "To continue the install please save open files and close " + GUPdotNET.ProgramTitle + " before we continue";
 				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
 				md.Run();
 				md.Destroy();
 				
-				blnProgramOpen = FindWindow(GUPdotNET.CallingApplication);				
+				blnProgramOpen = FindWindow(GUPdotNET.ProgramName);				
 			}
 			
 			

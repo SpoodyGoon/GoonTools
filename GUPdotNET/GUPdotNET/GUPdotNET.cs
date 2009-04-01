@@ -20,13 +20,15 @@ namespace GUPdotNET
 		
 		// value from the calling application or from the app con
 		private static string _InstallType = null;
-		private static string _ProgramName = null;
+		private static string _ProgramTitle = null;
+		// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
 		private static string _ProgramFullPath = null;
+		// this is the actual name of the program i.e. MyProgram.exe
+		private static string _ProgramName = null;
 		private static string _UpdateInfoURL = null;
 		private static int _CurrentMajorVersion = -1;
 		private static int _CurrentMinorVersion = -1;
 		private static bool _SilentCheck = true;
-		private static string _CallingApplication = null;
 		
 		#endregion Local Variable Declaration
 		
@@ -56,10 +58,10 @@ namespace GUPdotNET
 		/// <summary>
 		///  the freindly name of the application
 		/// </summary>
-		internal static  string ProgramName
+		internal static  string ProgramTitle
 		{
-			set{_ProgramName = value;}
-			get{return _ProgramName;}
+			set{_ProgramTitle = value;}
+			get{return _ProgramTitle;}
 		}
 		
 		/// <summary>
@@ -69,6 +71,12 @@ namespace GUPdotNET
 		{
 			set{_ProgramFullPath = value;}
 			get{return _ProgramFullPath;}
+		}
+		
+		internal static string ProgramName
+		{
+			set{_ProgramName = value;}
+			get{return _ProgramName;}
 		}
 		
 		/// <summary>
@@ -110,15 +118,6 @@ namespace GUPdotNET
 		{
 			set{_SilentCheck=value;}
 			get{return _SilentCheck;}
-		}
-		
-		/// <summary>
-		///  The name of the application that we are looking to update
-		/// </summary>
-		internal static string CallingApplication
-		{
-			set{_CallingApplication = value;}
-			get{return _CallingApplication;}
 		}
 		
 		#endregion Public Properties Local
