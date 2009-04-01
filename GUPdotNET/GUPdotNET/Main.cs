@@ -1,5 +1,5 @@
 /*************************************************************************
- *                      frmUpdateConfirm.cs
+ *                      Main.cs
  *
  *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>
  *
@@ -9,7 +9,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -20,27 +20,35 @@
  */
 
 using System;
-using System.IO;
 using System.Configuration;
 using Gtk;
 
 namespace GUPdotNET
 {
-	
-	public partial class frmUpdateConfirm : Gtk.Dialog
+	class MainClass
 	{
-		public frmUpdateConfirm()
+		public static void Main (string[] args)
 		{
-			this.Build();
+			Application.Init ();
+			Application.Run ();
 			try
 			{
-				
-				this.Title = GUPdotNET.ProgramTitle;
-				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + GUPdotNET.ProgramTitle + " Update</b></span>";
-				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "<span size=\"small\">There is an update available for " + GUPdotNET.ProgramTitle + ".\r\nWould you like to upgrate to version: " + GUPdotNET.LatestVersion + " now?</span>";
-				this.lblUpdateMessage.UseMarkup = true;
-				this.lblUpdateMessage.Wrap = true;
+				if(args[0] != null)
+				{
+					GUPdotNET.ProgramName = System.IO.Path.GetFileName(args[0]);
+					GUPdotNET.ProgramFullPath = System.IO.Path.GetDirectoryName(args[0]);
+					if(args[1] == "true")
+						GUPdotNET.SilentCheck = true;
+					else
+						GUPdotNET.SilentCheck = false;
+				}
+				GUPdotNET.InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
+				GUPdotNET.ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
+				GUPdotNET.UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+				GUPdotNET.CurrentMajorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMajorVersion"].ToString());
+				GUPdotNET.CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMinorVersion"].ToString());
+				UpdateCheck uc = new UpdateCheck();
+				uc.RunCheck();
 			}
 			catch(Exception doh)
 			{
@@ -48,19 +56,7 @@ namespace GUPdotNET
 				md.Run();
 				md.Destroy();
 			}
-			this.Focus = lblProgramTitle;
-			this.KeepAbove = true;
-			this.ShowAll();
-		}
-
-		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
-		{
-			this.Hide();
-		}
-
-		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
-		{
-			this.Hide();
+			
 		}
 	}
 }

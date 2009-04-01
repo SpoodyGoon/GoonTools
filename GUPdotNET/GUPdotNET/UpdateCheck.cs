@@ -40,7 +40,7 @@ namespace GUPdotNET
 		
 		public string ProgramName
 		{
-			set{GUPdotNET.ProgramName = value;}
+			set{GUPdotNET.ProgramTitle = value;}
 		}
 		
 		public  string ProgramFullPath
@@ -66,11 +66,6 @@ namespace GUPdotNET
 		public bool SilentCheck
 		{
 			set{GUPdotNET.SilentCheck=value;}
-		}
-		
-		public string CallingApplication
-		{
-			set{GUPdotNET.CallingApplication = value;}
 		}
 
 		public void RunCheck()
