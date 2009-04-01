@@ -29,10 +29,9 @@ namespace GUPdotNET
 	{
 		public static void Main (string[] args)
 		{
-			Application.Init ();
-			Application.Run ();
 			try
 			{
+				Application.Init ();
 				if(args[0] != null)
 				{
 					GUPdotNET.ProgramName = System.IO.Path.GetFileName(args[0]);
@@ -49,6 +48,8 @@ namespace GUPdotNET
 				GUPdotNET.CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMinorVersion"].ToString());
 				UpdateCheck uc = new UpdateCheck();
 				uc.RunCheck();
+				Application.Run ();
+				
 			}
 			catch(Exception doh)
 			{
