@@ -2,8 +2,12 @@
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
-    <target-gtk-version>2.12.6</target-gtk-version>
+    <target-gtk-version>2.10</target-gtk-version>
   </configuration>
+  <import>
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="../bin/Debug/GUPdotNET.dll" internal="true" />
+  </import>
   <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateConfirm" design-size="338 143">
     <property name="MemberName" />
     <property name="Title" translatable="yes">window1</property>
