@@ -97,7 +97,7 @@ namespace GUPdotNET
 					// if the download was sucessful then procede with the install
 					if(UpDownResp == ResponseType.Ok)
 					{
-						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Not updates avalable at this time." ,"No updates");
+						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Stopped here Woohoo");
 						md.Run();
 						md.Destroy();
 					}
@@ -108,7 +108,7 @@ namespace GUPdotNET
 				{
 					if(GUPdotNET.SilentCheck == false)
 					{
-						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Not updates avalable at this time." ,"No updates");
+						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "No updates avalable at this time." ,"No updates");
 						md.Run();
 						md.Destroy();
 					}
@@ -117,7 +117,7 @@ namespace GUPdotNET
 			}
 			catch(Exception doh)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Stopped here Woohoo");
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "No updates avalable at this time." ,"No updates");
 				md.Run();
 				md.Destroy();
 			}
