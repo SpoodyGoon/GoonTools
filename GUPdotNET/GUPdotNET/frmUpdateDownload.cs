@@ -38,7 +38,6 @@ namespace GUPdotNET
 		private long _Downloaded = 0;
 		private bool _ThreadActive = true;
 		private Thread firstRunner;
-		private string _TempFilePath = null;
 		// return all errors to the main update class
 		private string _ErrorMess = null;
 		public frmUpdateDownload()
@@ -67,7 +66,7 @@ namespace GUPdotNET
 
 		public string TempFilePath
 		{
-			get{return _TempFilePath;}
+			get{return GUPdotNET.TempInstallerPath;}
 		}
 		
 		public string ErrorMess
@@ -105,10 +104,10 @@ namespace GUPdotNET
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				
-				_TempFilePath = System.IO.Path.GetTempPath() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
+				GUPdotNET.TempInstallerPath = System.IO.Path.GetTempPath() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
 				
 				_FileSize = wsp.ContentLength;
-				FileStream fs = new FileStream(_TempFilePath, FileMode.Create, FileAccess.Write);
+				FileStream fs = new FileStream(GUPdotNET.TempInstallerPath, FileMode.Create, FileAccess.Write);
 				long lgFileProgress = 0;
 				
 				byte[] b = new byte[2048];

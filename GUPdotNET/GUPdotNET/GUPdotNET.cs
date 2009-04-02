@@ -13,7 +13,7 @@ namespace GUPdotNET
 	/// <summary>
 	/// Description of GUPdotNET.
 	/// </summary>
-	internal static class GUPdotNET
+	public static class GUPdotNET
 	{
 		
         #region Local Variable Declaration
@@ -28,7 +28,8 @@ namespace GUPdotNET
 		private static string _UpdateInfoURL = null;
 		private static int _CurrentMajorVersion = -1;
 		private static int _CurrentMinorVersion = -1;
-		private static bool _SilentCheck = true;
+		private static bool _SilentCheck = false;
+		private static string _TempInstallerPath = null;
 		
 		#endregion Local Variable Declaration
 		
@@ -53,6 +54,12 @@ namespace GUPdotNET
 		{
 			set{_InstallType=value;}
 			get{return _InstallType;}
+		}
+		
+		internal static string TempInstallerPath
+		{
+			set{_TempInstallerPath=value;}
+			get{return _TempInstallerPath;}
 		}
 		
 		/// <summary>

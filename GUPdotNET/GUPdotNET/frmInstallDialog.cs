@@ -19,36 +19,37 @@ namespace GUPdotNET
 	{
 		
 		private string _AdminPass = null;
-		public frmInstallDialog(string AdminPass, string InstallPath)
+		public frmInstallDialog()
 		{
 			this.Build();
-			_AdminPass = AdminPass;
+			
 			this.Title = GUPdotNET.ProgramTitle;
 			this.lblTitle.Text = "<span size=\"large\"><b>Installing " +  GUPdotNET.ProgramTitle + "</b></span>";
 			this.lblTitle.UseMarkup = true;
 			this.lblMessage.Text = "Starting Install";
 			this.lblMessage.UseMarkup = true;
 			this.ShowNow();
-				
+			
 			switch(GUPdotNET.InstallType)
 			{
-			case "Win32":
-				System.Diagnostics.Process.Start(InstallPath);
-				break;
-			case "Linux_rpm":
-				break;
-			case "Linux_src":
-				break;
-			case "Linux_bin":
-				break;
-			default:
-				throw new Exception("Invalid Install Type");
+				case "Win32":
+					StartInstallWin32();
+					break;
+				case "Linux_rpm":
+					
+					break;
+				case "Linux_src":
+					break;
+				case "Linux_bin":
+					break;
+				default:
+					throw new Exception("Invalid Install Type");
 			}
 		}
 		
 		
 		
-		private void StartInstallWin32(string strFile)
+		private void StartInstallWin32()
 		{
 			bool blnProgramOpen = FindWindow(GUPdotNET.ProgramName);
 			while(blnProgramOpen == true)
@@ -59,36 +60,37 @@ namespace GUPdotNET
 				md.Run();
 				md.Destroy();
 				
-				blnProgramOpen = FindWindow(GUPdotNET.ProgramName);				
+				blnProgramOpen = FindWindow(GUPdotNET.ProgramName);
 			}
 			
-			
-			if(HasAccess(GUPdotNET.ProgramFullPath) == false)
+			if(!HasAccess())
 			{
 				frmSuPass fm = new frmSuPass();
 				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
 				if(rsp == ResponseType.Ok)
 				{
-					_AdminPass = fm.AdminPass;
-					frmInstallDialog fm2 = new frmInstallDialog(_AdminPass, strFile);
-					fm2.Run();
-					fm2.Destroy();
+					System.Diagnostics.Process.Start(GUPdotNET.TempInstallerPath);
 				}
 				else
 				{
-					// TODO: find a path out of the program
+					this.Respond(Gtk.ResponseType.Cancel);
+					this.Hide();
 				}
 				fm.Destroy();
 			}
-			System.Diagnostics.Process.Start(strFile);
+			else
+			{
+				System.Diagnostics.Process.Start(GUPdotNET.TempInstallerPath);
+			}
+			
 		}
 		
-		private bool HasAccess(string strPath)
+		private bool HasAccess()
 		{
 			// assume the user has access
 			bool blnHasAccess = true;
 			
-			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, strPath);
+			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, GUPdotNET.TempInstallerPath);
 			try
 			{
 				f2.Demand();
