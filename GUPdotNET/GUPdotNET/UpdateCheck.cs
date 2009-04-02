@@ -1,8 +1,8 @@
 /*************************************************************************
- *                      GUPdotNET.cs                                     
- *                                                                       
- *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>         
- *                                                                        
+ *                      GUPdotNET.cs
+ *
+ *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>
+ *
  *************************************************************************/
 /*
  * This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@ using System.Xml;
 using System.Collections;
 using System.Configuration;
 using System.Security;
+using System.Reflection;
 using System.Security.Permissions;
 using Gtk;
 
@@ -68,12 +69,15 @@ namespace GUPdotNET
 			set{GUPdotNET.SilentCheck=value;}
 		}
 
-		public void RunCheck()
+		public void RunCheck(bool blnSilentCheck)
 		{
 			try
 			{
 				Gtk.ResponseType UpConResp = ResponseType.None;
 				Gtk.ResponseType UpDownResp = ResponseType.None;
+				
+				// load the local data
+				LoadLocalInfo(blnSilentCheck);
 				
 				// load the update info from the web
 				LoadUpdateInfo();
@@ -84,7 +88,7 @@ namespace GUPdotNET
 					// and ask if they would like to update
 					frmUpdateConfirm UpCon = new frmUpdateConfirm();
 					UpConResp = (Gtk.ResponseType)UpCon.Run();
-					UpCon.Destroy();	
+					UpCon.Destroy();
 					
 					// if the user wants an update start the update dialog
 					if(UpConResp == Gtk.ResponseType.Yes)
@@ -97,12 +101,10 @@ namespace GUPdotNET
 					// if the download was sucessful then procede with the install
 					if(UpDownResp == ResponseType.Ok)
 					{
-						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Stopped here Woohoo");
-						md.Run();
-						md.Destroy();
+						frmInstallDialog Inst = new frmInstallDialog();
+						Inst.Run();
+						Inst.Destroy();
 					}
-					
-					
 				}
 				else
 				{
@@ -117,13 +119,27 @@ namespace GUPdotNET
 			}
 			catch(Exception doh)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "No updates avalable at this time." ,"No updates");
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString() ,"Error");
 				md.Run();
 				md.Destroy();
 			}
 		}
 		
-		 private void LoadUpdateInfo()
+		private void LoadLocalInfo(bool blnSilentCheck)
+		{
+			GUPdotNET.SilentCheck = blnSilentCheck;
+			GUPdotNET.ProgramFullPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().FullName);
+			GUPdotNET.ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
+			GUPdotNET.InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
+			GUPdotNET.ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
+			GUPdotNET.UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+			GUPdotNET.CurrentMajorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMajorVersion"].ToString());
+			GUPdotNET.CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMinorVersion"].ToString());
+		}
+		
+		#region Update Info Web
+		
+		private void LoadUpdateInfo()
 		{
 			try
 			{
@@ -135,7 +151,7 @@ namespace GUPdotNET
 			catch(WebException e)
 			{
 				// if we get a web exception exit the update
-				ExitUpdate("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message);				
+				ExitUpdate("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message);
 			}
 			catch(Exception doh)
 			{
@@ -145,7 +161,7 @@ namespace GUPdotNET
 			}
 		}
 		
-		 private void ParseResponse(Stream s)
+		private void ParseResponse(Stream s)
 		{
 			try
 			{
@@ -175,18 +191,20 @@ namespace GUPdotNET
 			}
 			
 		}
-		 
-		 private void ExitUpdate(string strExitMess)
-		 {
-		 	// if we don't want a silent check tell the user
-		 	// why we can't update
-		 	if(GUPdotNET.SilentCheck == false && strExitMess != null)
-		 	{
-		 		Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, strExitMess, "Exiting Update");
+		
+		#endregion Update Info Web
+		
+		private void ExitUpdate(string strExitMess)
+		{
+			// if we don't want a silent check tell the user
+			// why we can't update
+			if(GUPdotNET.SilentCheck == false && strExitMess != null)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, strExitMess, "Exiting Update");
 				md.Run();
 				md.Destroy();
-		 	}
-		 	
-		 }
+			}
+			
+		}
 	}
 }

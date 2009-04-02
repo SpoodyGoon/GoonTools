@@ -3,15 +3,15 @@
     <ProjectGuid>{4C89213F-F2F0-417D-AB7F-850D2BC47DC7}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\ayork\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>True</NoStdLib>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <StartupObject>GUPdotNET.MainClass</StartupObject>
-    <StartArguments>YahtzeeSharp.exe false</StartArguments>
+    <StartupObject>MainClass</StartupObject>
+    <StartArguments>true</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -67,34 +67,38 @@
     <Folder Include="web_files" />
     <Folder Include="work_files" />
     <Reference Include="art-sharp">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\art-sharp\2.16.0.0__35e10195dab3c99f\art-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\art-sharp\2.16.0.0__35e10195dab3c99f\art-sharp.dll</HintPath>
     </Reference>
     <Reference Include="atk-sharp">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="gdk-sharp">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\gdk-sharp\2.12.0.0__35e10195dab3c99f\gdk-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\gdk-sharp\2.12.0.0__35e10195dab3c99f\gdk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="glib-sharp">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\glib-sharp\2.12.0.0__35e10195dab3c99f\glib-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\glib-sharp\2.12.0.0__35e10195dab3c99f\glib-sharp.dll</HintPath>
     </Reference>
     <Reference Include="gtk-sharp">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\..\..\Program Files %28x86%29\Mono-2.2\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
     </Reference>
+    <Reference Include="mscorlib" />
     <Reference Include="pango-sharp">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\pango-sharp\2.12.0.0__35e10195dab3c99f\pango-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\pango-sharp\2.12.0.0__35e10195dab3c99f\pango-sharp.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\System\2.0.0.0__b77a5c561934e089\System.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\System\2.0.0.0__b77a5c561934e089\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\System.Configuration\2.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\System.Configuration\2.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\System.Data\2.0.0.0__b77a5c561934e089\System.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.2\lib\mono\gac\System.Xml\2.0.0.0__b77a5c561934e089\System.Xml.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\System.Xml\2.0.0.0__b77a5c561934e089\System.Xml.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

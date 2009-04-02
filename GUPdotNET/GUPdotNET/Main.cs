@@ -20,45 +20,23 @@
  */
 
 using System;
-using System.Configuration;
 using Gtk;
 
-namespace GUPdotNET
+class MainClass
 {
-	class MainClass
+	public static void Main (string[] args)
 	{
-		public static void Main (string[] args)
+		Application.Init ();
+		bool blnSilentCheck = false;
+		if(args[0] != null)
 		{
-			try
-			{
-				Application.Init ();
-				if(args[0] != null)
-				{
-					GUPdotNET.ProgramName = System.IO.Path.GetFileName(args[0]);
-					GUPdotNET.ProgramFullPath = System.IO.Path.GetDirectoryName(args[0]);
-					if(args[1] == "true")
-						GUPdotNET.SilentCheck = true;
-					else
-						GUPdotNET.SilentCheck = false;
-				}
-				System.Diagnostics.Debug.WriteLine(GUPdotNET.ProgramFullPath + " - " + GUPdotNET.ProgramName);
-				GUPdotNET.InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
-				GUPdotNET.ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
-				GUPdotNET.UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
-				GUPdotNET.CurrentMajorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMajorVersion"].ToString());
-				GUPdotNET.CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMinorVersion"].ToString());
-				UpdateCheck uc = new UpdateCheck();
-				uc.RunCheck();
-				Application.Run ();
-				
-			}
-			catch(Exception doh)
-			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
-			}
-			
+			// we pass in weather or not we want the update to
+			// notify the users of errors and bad connections, etc....
+			if(args[0] == "true")
+				blnSilentCheck = true;
 		}
+		GUPdotNET.UpdateCheck uc = new GUPdotNET.UpdateCheck();
+		uc.RunCheck(blnSilentCheck);
+		Application.Run ();
 	}
 }
