@@ -41,6 +41,7 @@ namespace GUPdotNET
 					else
 						GUPdotNET.SilentCheck = false;
 				}
+				System.Diagnostics.Debug.WriteLine(GUPdotNET.ProgramFullPath + " - " + GUPdotNET.ProgramName);
 				GUPdotNET.InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
 				GUPdotNET.ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
 				GUPdotNET.UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
