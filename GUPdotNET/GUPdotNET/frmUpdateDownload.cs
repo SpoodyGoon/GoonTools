@@ -116,11 +116,19 @@ namespace GUPdotNET
 				{
 					
 					int n = s.Read(b, 0, b.Length);
-					_Downloaded = lgFileProgress += b.Length;
+					_Downloaded = lgFileProgress += n;
+						
+					if (n > 0)
+					{
+						fs.Write(b, 0, n);
+					}
+					else
+						break;
+					
 					// to make sure we don't get any funny filesizes from the web response
 					// make sure we don't go over 1.0 for the progress bar
 					fltTemp = (float)_Downloaded/_FileSize;
-					Console.WriteLine("fraction " + fltTemp.ToString());
+					Console.WriteLine("fraction " + fltTemp.ToString() + " dowloaded " + _Downloaded.ToString() + " File Size " + _FileSize.ToString());
 					if(fltTemp >= 0 && fltTemp <= 1.0) 
 					{
 						UpdateProgressFraction(fltTemp);
@@ -129,13 +137,6 @@ namespace GUPdotNET
 					{
 						UpdateProgressFraction((float)1.0f);
 					}
-						
-					if (n > 0)
-					{
-						fs.Write(b, 0, n);
-					}
-					else
-						break;
 				}
 				s.Close();
 				fs.Close();
@@ -146,6 +147,10 @@ namespace GUPdotNET
 				{
 					this.Respond(Gtk.ResponseType.Cancel);
 					this.Hide();
+				}
+				else
+				{
+					btnOk.Sensitive = true;	
 				}
 			}
 			catch(WebException e)
@@ -168,7 +173,7 @@ namespace GUPdotNET
 		void UpdateProgressFraction(float f)
 		{
 			Application.Invoke(delegate {
-			                   	progressbar1.Text = f.ToString();
+			                   	progressbar1.Text = f.ToString("p");
 			                   	progressbar1.Fraction = f;
 			                   	
 			                   });
