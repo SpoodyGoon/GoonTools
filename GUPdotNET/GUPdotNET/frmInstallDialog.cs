@@ -19,6 +19,8 @@ namespace GUPdotNET
 	{
 		
 		private string _AdminPass = null;
+		// this is the global flag signaling if we want to cancel the update
+		private bool _Cancel = false;
 		public frmInstallDialog()
 		{
 			this.Build();
@@ -33,7 +35,7 @@ namespace GUPdotNET
 			switch(GUPdotNET.InstallType)
 			{
 				case "Win32":
-					StartInstallWin32();
+					PrepInstallWin32();
 					break;
 				case "Linux_rpm":
 					
@@ -49,40 +51,49 @@ namespace GUPdotNET
 		
 		
 		
-		private void StartInstallWin32()
+		private void PrepInstallWin32()
 		{
+			Gtk.ResponseType resp = ResponseType.None;
+			
 			bool blnProgramOpen = FindWindow(GUPdotNET.ProgramName);
-			while(blnProgramOpen == true)
+			while(blnProgramOpen == true && _Cancel == false)
 			{
 				// ask the user to save changes and close calling application
 				string strRequest = "To continue the install please save open files and close " + GUPdotNET.ProgramTitle + " before we continue";
 				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
-				md.Run();
-				md.Destroy();
-				
-				blnProgramOpen = FindWindow(GUPdotNET.ProgramName);
-			}
-			
-			if(!HasAccess())
-			{
-				frmSuPass fm = new frmSuPass();
-				Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
-				if(rsp == ResponseType.Ok)
+				if(((Gtk.ResponseType)md.Run()) == ResponseType.Ok)
 				{
-					System.Diagnostics.Process.Start(GUPdotNET.TempInstallerPath);
+					blnProgramOpen = FindWindow(GUPdotNET.ProgramName);
 				}
 				else
 				{
+					_Cancel = true;
 					this.Respond(Gtk.ResponseType.Cancel);
 					this.Hide();
 				}
-				fm.Destroy();
-			}
-			else
-			{
-				System.Diagnostics.Process.Start(GUPdotNET.TempInstallerPath);
+				md.Destroy();
 			}
 			
+			if(_Cancel == false)
+			{
+				bool blnHasAccess = HasAccess();
+				while(blnHasAccess == false && _Cancel == false)
+				{
+					frmSuPass fm = new frmSuPass();
+					Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
+					if(rsp == ResponseType.Ok)
+					{
+						blnHasAccess = HasAccess();
+					}
+					else
+					{
+						_Cancel= true;
+						this.Respond(Gtk.ResponseType.Cancel);
+						this.Hide();
+					}
+					fm.Destroy();
+				}
+			}			
 		}
 		
 		private bool HasAccess()
