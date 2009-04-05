@@ -128,7 +128,7 @@ namespace GUPdotNET
 		private void LoadLocalInfo(bool blnSilentCheck)
 		{
 			GUPdotNET.SilentCheck = blnSilentCheck;
-			GUPdotNET.ProgramFullPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().FullName);
+			GUPdotNET.ProgramFullPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
 			GUPdotNET.ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
 			GUPdotNET.InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
 			GUPdotNET.ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();

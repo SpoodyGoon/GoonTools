@@ -127,7 +127,7 @@ namespace GUPdotNET
 					// to make sure we don't get any funny filesizes from the web response
 					// make sure we don't go over 1.0 for the progress bar
 					fltTemp = (float)_Downloaded/_FileSize;
-					Console.WriteLine("fraction " + fltTemp.ToString() + " dowloaded " + _Downloaded.ToString() + " File Size " + _FileSize.ToString());
+					// Console.WriteLine("fraction " + fltTemp.ToString() + " dowloaded " + _Downloaded.ToString() + " File Size " + _FileSize.ToString());
 					if(fltTemp >= 0 && fltTemp <= 1.0) 
 					{
 						UpdateProgressFraction(fltTemp);
