@@ -47,7 +47,7 @@ namespace GUPdotNET {
             Stetic.Gui.Initialize(this);
             // Widget GUPdotNET.frmSuPass
             this.WidthRequest = 450;
-            this.HeightRequest = 275;
+            this.HeightRequest = 250;
             this.Name = "GUPdotNET.frmSuPass";
             this.Title = Mono.Unix.Catalog.GetString("Administrator Password Needed");
             this.Icon = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-warning", Gtk.IconSize.Menu, 16);
@@ -204,7 +204,7 @@ namespace GUPdotNET {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 456;
-            this.DefaultHeight = 306;
+            this.DefaultHeight = 250;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
             this.buttonOk.Clicked += new System.EventHandler(this.OnButtonOkClicked);

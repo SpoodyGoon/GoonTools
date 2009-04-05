@@ -46,12 +46,12 @@ namespace GUPdotNET
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
 			// TODO: if the admin password is needed and it is not provided exit the program
-			
+			this.Hide();
 		}
 
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
-			
+			this.Hide();
 		}
 	}
 }

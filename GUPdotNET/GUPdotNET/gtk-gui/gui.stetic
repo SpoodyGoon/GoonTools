@@ -265,10 +265,10 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.frmSuPass" design-size="456 306">
+  <widget class="Gtk.Dialog" id="GUPdotNET.frmSuPass" design-size="456 250">
     <property name="MemberName" />
     <property name="WidthRequest">450</property>
-    <property name="HeightRequest">275</property>
+    <property name="HeightRequest">250</property>
     <property name="Title" translatable="yes">Administrator Password Needed</property>
     <property name="Icon">stock:gtk-dialog-warning Menu</property>
     <property name="WindowPosition">CenterOnParent</property>
