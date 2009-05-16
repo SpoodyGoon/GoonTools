@@ -24,3 +24,8 @@ void frmLists::changeEvent(QEvent *e)
         break;
     }
 }
+
+void frmLists::on_buttonBox_accepted()
+{
+    this->close();
+}

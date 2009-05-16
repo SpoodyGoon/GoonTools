@@ -19,6 +19,9 @@ protected:
 
 private:
     Ui::frmLists *m_ui;
+
+private slots:
+    void on_buttonBox_accepted();
 };
 
 #endif // FRMLISTS_H
