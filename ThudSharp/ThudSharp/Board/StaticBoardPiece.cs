@@ -1,21 +1,34 @@
 
 using System;
+using System.ComponentModel; 
 
 namespace ThudSharp
 {	
 	
+	[System.ComponentModel.ToolboxItem(true)]
 	public class StaticBoardPiece : Gtk.DrawingArea 
 	{
 		private StaticPieceType _BoardType;
 		private int _Left = 0;
 		private int _Top = 0;
 		private Gdk.Pixbuf _BoardPiece;
-		public StaticBoardPiece(StaticPieceType pt, int X, int Y)
+		public StaticBoardPiece(StaticPieceType pt)
 		{
 			_BoardType = pt;
-			_Left = X;
-			_Top = Y;
 			// Insert initialization code here.
+		}
+		
+		public StaticBoardPiece()
+		{
+			_BoardType = StaticPieceType.Dark;
+			// Insert initialization code here.
+		}	
+		
+		 [Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Content), DefaultValue(true)] 
+		public StaticPieceType BoardType
+		{
+			get{return _BoardType;}
+			set{_BoardType = value;}
 		}
 		
 		protected override bool OnButtonPressEvent(Gdk.EventButton ev)
@@ -53,8 +66,8 @@ namespace ThudSharp
 		protected override void OnSizeRequested(ref Gtk.Requisition requisition)
 		{
 			// Calculate desired size here.
-			//requisition.Height = 50;
-			//requisition.Width = 50;
+			requisition.Height = 45;
+			requisition.Width = 45;
 		}
 	}
 }
