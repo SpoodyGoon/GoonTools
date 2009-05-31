@@ -31,7 +31,9 @@ namespace ThudSharp
 			this.WidthRequest = img.Width;
 			this.HeightRequest = img.Height;
 			win.DrawPixbuf(Style.BackgroundGC(Gtk.StateType.Normal),img, 0,0, area.X, area.Y,img.Width, img.Height, Gdk.RgbDither.Normal, 0,0);
+			StaticBoardPiece sp = new StaticBoardPiece(StaticPieceType.Dark, 5, 5);
 			
+			//win.DrawDrawable(Style.ForegroundGC(Gtk.StateType.Normal), sp.Visual, 0,0, 5,5, 50,50);
 			
 			
 			base.OnExposeEvent(args);
