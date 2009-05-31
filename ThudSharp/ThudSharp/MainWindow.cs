@@ -3,9 +3,13 @@ using Gtk;
 
 public partial class MainWindow: Gtk.Window
 {	
+	private Gtk.Fixed _Fix = new Gtk.Fixed();
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		
+		frame1.Add(_Fix);
+		
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
