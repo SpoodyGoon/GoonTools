@@ -4,7 +4,7 @@ using System;
 namespace ThudSharp
 {	
 	
-	public class StaticBoardPiece : Gtk.DrawingArea
+	public class StaticBoardPiece : Gtk.DrawingArea 
 	{
 		private StaticPieceType _BoardType;
 		private int _Left = 0;
