@@ -88,7 +88,7 @@
     <Compile Include="Common\Options.cs" />
     <Compile Include="Board\ThudGameBoard.cs" />
     <Compile Include="Board\StaticBoardPiece.cs" />
-    <Compile Include="Board\BoardPieceType.cs" />
+    <Compile Include="Board\BoardEnums.cs" />
     <Compile Include="gtk-gui\ThudSharp.MainWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

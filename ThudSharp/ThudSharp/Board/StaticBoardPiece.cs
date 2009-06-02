@@ -24,7 +24,8 @@ namespace ThudSharp
 			// Insert initialization code here.
 		}	
 		
-		 [Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Content), DefaultValue(true)] 
+		
+		[Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Content), DefaultValue(true)] 
 		public StaticPieceType BoardType
 		{
 			get{return _BoardType;}
