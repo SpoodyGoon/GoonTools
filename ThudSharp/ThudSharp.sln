@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-# SharpDevelop 3.1.0.3848
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThudSharp", "ThudSharp\ThudSharp.csproj", "{A01F2E05-B105-407E-BA32-D2666BCC7D6D}"
 EndProject
 Global
