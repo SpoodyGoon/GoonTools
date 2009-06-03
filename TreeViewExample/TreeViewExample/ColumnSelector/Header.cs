@@ -23,22 +23,19 @@ namespace GoonTools.ColumnSelector
 			return base.OnButtonPressEvent(evnt);
 		}
 		
-		[GLib.DefaultSignalHandlerAttribute()]
-		[GLib.ConnectBeforeAttribute()]		
+		[GLib.ConnectBefore]
 		protected override bool OnExposeEvent(Gdk.EventExpose evnt)
 		{
 			Gdk.Window win = evnt.Window;
 			Gdk.Rectangle area = evnt.Area;
 			
-			win.DrawRectangle(Style.BlackGC, true, area.X, area.Y, 50, 50);
-			this.HeightRequest = 50;
-			this.WidthRequest = 50;
-			win.Show();
-			this.ShowAll();
+			win.DrawRectangle(Style.DarkGC(StateType.Normal), true, this.Allocation.X, this.Allocation.Y, 10,10);
+			win.DrawRectangle(Style.BlackGC,false,area);
 			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Got Here");
 			md.Run();
 			md.Destroy();
-			return base.OnExposeEvent(evnt);
+			base.OnExposeEvent(evnt);
+			return true;
 		}
 		
 		[GLib.ConnectBefore]
