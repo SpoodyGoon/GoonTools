@@ -46,7 +46,7 @@
       <HintPath>..\..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.4\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files %28x86%29\Mono-2.2\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
@@ -62,13 +62,13 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="TreeView\ListsTreeView.cs" />
     <Compile Include="TreeView\ListsTreeView_Designer.cs" />
     <Compile Include="ColumnSelector\PopupWindow.cs" />
@@ -80,6 +80,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Folder Include="Properties" />
     <Folder Include="TreeView\" />
     <Folder Include="ColumnSelector\" />
   </ItemGroup>
