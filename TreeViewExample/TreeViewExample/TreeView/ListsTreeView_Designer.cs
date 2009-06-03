@@ -85,7 +85,7 @@ namespace TaskList
 			this.AppendColumn (colListName);
 			this.AppendColumn (colDate);
 			this.AppendColumn (colIsActive);
-			this.AppendColumn(new GoonTools.ColumnSelector.TreeColumnSelector());
+			this.AppendColumn(new GoonTools.ColumnSelector.TreeColumnSelector(this.Columns, this.Allocation));
 			
 			// set up the columns
 			Gtk.CellRendererText cellListID = new Gtk.CellRendererText ();
