@@ -11,12 +11,13 @@ namespace GoonTools.ColumnSelector
 		
 		public TreeColumnSelector()
 		{
-			GoonTools.ColumnSelector.Header hd = new GoonTools.ColumnSelector.Header();
-			
-			this.Widget = hd;
 			this.MinWidth = 25;
 			this.Clickable = true;
 			this.Resizable = true;
+			this.Visible = true;
+			GoonTools.ColumnSelector.Header h = new GoonTools.ColumnSelector.Header();
+			this.Widget=h;
+			this.Alignment = 0.01;
 		}
 	}
 }
