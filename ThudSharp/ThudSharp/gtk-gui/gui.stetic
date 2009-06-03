@@ -326,6 +326,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece10">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -346,6 +347,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece100">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -366,6 +368,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece101">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -386,6 +389,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece102">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -406,6 +410,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece103">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -426,6 +431,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece104">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -446,6 +452,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece105">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -466,6 +473,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece106">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -488,6 +496,7 @@
                                 <property name="MemberName" />
                                 <property name="WidthRequest">45</property>
                                 <property name="HeightRequest">45</property>
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -508,6 +517,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece108">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -526,6 +536,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece109">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -546,6 +557,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece11">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -566,6 +578,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece110">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -586,6 +599,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece111">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -606,6 +620,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece112">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -626,6 +641,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece113">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -646,6 +662,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece114">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -666,6 +683,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece115">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -686,6 +704,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece116">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -706,6 +725,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece117">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -726,6 +746,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece118">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -746,6 +767,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece119">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -766,6 +788,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece12">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -786,6 +809,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece120">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -806,6 +830,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece121">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -826,6 +851,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece122">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">9</property>
@@ -846,6 +872,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece123">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -866,6 +893,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece124">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -886,6 +914,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece125">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">12</property>
@@ -906,6 +935,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece126">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">13</property>
@@ -926,6 +956,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece127">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">14</property>
@@ -946,6 +977,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece128">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">14</property>
@@ -966,6 +998,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece129">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">14</property>
@@ -986,6 +1019,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece13">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -1006,6 +1040,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece130">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">14</property>
@@ -1026,6 +1061,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece131">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1046,6 +1082,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece132">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1066,6 +1103,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece133">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">12</property>
@@ -1086,6 +1124,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece134">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">13</property>
@@ -1106,6 +1145,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece135">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">14</property>
@@ -1126,6 +1166,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece136">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1146,6 +1187,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece137">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1166,6 +1208,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece138">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1186,6 +1229,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece139">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1206,6 +1250,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece14">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -1226,6 +1271,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece140">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1246,6 +1292,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece141">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1266,6 +1313,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece142">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1286,6 +1334,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece143">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1306,6 +1355,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece144">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1326,6 +1376,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece145">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1346,6 +1397,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece146">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">10</property>
@@ -1366,6 +1418,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece147">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1386,6 +1439,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece148">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1406,6 +1460,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece149">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1426,6 +1481,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece15">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -1446,6 +1502,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece150">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1466,6 +1523,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece151">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1486,6 +1544,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece152">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1506,6 +1565,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece153">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1526,6 +1586,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece154">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1546,6 +1607,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece155">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">11</property>
@@ -1566,6 +1628,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece156">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">12</property>
@@ -1586,6 +1649,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece157">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">12</property>
@@ -1606,6 +1670,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece158">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">12</property>
@@ -1626,6 +1691,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece159">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">12</property>
@@ -1646,6 +1712,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece16">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -1666,6 +1733,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece160">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">12</property>
@@ -1686,6 +1754,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece161">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">12</property>
@@ -1706,6 +1775,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece162">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">12</property>
@@ -1726,6 +1796,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece163">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">13</property>
@@ -1746,6 +1817,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece164">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">13</property>
@@ -1766,6 +1838,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece165">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">13</property>
@@ -1786,6 +1859,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece166">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">13</property>
@@ -1806,6 +1880,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece17">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -1826,6 +1901,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece18">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -1846,6 +1922,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece19">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -1866,6 +1943,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece2">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="LeftAttach">6</property>
@@ -1884,6 +1962,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece20">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -1904,6 +1983,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece21">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -1924,6 +2004,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece22">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -1944,6 +2025,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece23">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -1964,6 +2046,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece24">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -1984,6 +2067,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece25">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2004,6 +2088,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece26">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2024,6 +2109,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece27">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2044,6 +2130,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece28">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2064,6 +2151,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece29">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2084,6 +2172,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece3">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="LeftAttach">9</property>
@@ -2102,6 +2191,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece30">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2122,6 +2212,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece31">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2142,6 +2233,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece32">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2162,6 +2254,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece33">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2182,6 +2275,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece34">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2202,6 +2296,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece35">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">3</property>
@@ -2222,6 +2317,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece36">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2240,6 +2336,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece37">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2260,6 +2357,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece38">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2280,6 +2378,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece39">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2300,6 +2399,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece4">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="LeftAttach">7</property>
@@ -2318,6 +2418,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece40">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2338,6 +2439,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece41">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2358,6 +2460,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece42">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2378,6 +2481,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece43">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2398,6 +2502,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece44">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2418,6 +2523,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece45">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2438,6 +2544,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece46">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2458,6 +2565,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece47">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2478,6 +2586,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece48">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">4</property>
@@ -2498,6 +2607,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece49">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2518,6 +2628,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece5">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="LeftAttach">8</property>
@@ -2536,6 +2647,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece50">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2556,6 +2668,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece51">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2576,6 +2689,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece52">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2596,6 +2710,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece53">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2616,6 +2731,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece54">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2636,6 +2752,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece55">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2656,6 +2773,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece56">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2676,6 +2794,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece57">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2696,6 +2815,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece58">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2716,6 +2836,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece59">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2736,6 +2857,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece6">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="LeftAttach">5</property>
@@ -2754,6 +2876,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece60">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2774,6 +2897,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece61">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2794,6 +2918,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece62">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">5</property>
@@ -2814,6 +2939,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece63">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -2832,6 +2958,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece64">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -2852,6 +2979,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece65">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -2872,6 +3000,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece66">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -2892,6 +3021,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece67">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -2912,6 +3042,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece68">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -2932,6 +3063,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece69">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -2952,6 +3084,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece7">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">13</property>
@@ -2972,6 +3105,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece70">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -2992,6 +3126,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece71">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -3012,6 +3147,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece72">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -3032,6 +3168,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece73">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -3052,6 +3189,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece74">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -3072,6 +3210,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece75">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -3092,6 +3231,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece76">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -3112,6 +3252,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece77">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">6</property>
@@ -3132,6 +3273,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece78">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3150,6 +3292,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece79">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3170,6 +3313,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece8">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -3190,6 +3334,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece80">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3210,6 +3355,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece81">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3230,6 +3376,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece82">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3250,6 +3397,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece83">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3270,6 +3418,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece84">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3290,6 +3439,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece85">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3310,6 +3460,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece86">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3330,6 +3481,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece87">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3350,6 +3502,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece88">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3370,6 +3523,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece89">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3390,6 +3544,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece9">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -3410,6 +3565,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece90">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3430,6 +3586,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece91">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3450,6 +3607,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece92">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">7</property>
@@ -3470,6 +3628,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece93">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -3488,6 +3647,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece94">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -3508,6 +3668,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece95">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -3528,6 +3689,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece96">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -3548,6 +3710,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece97">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -3568,6 +3731,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece98">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>
@@ -3588,6 +3752,7 @@
                             <child>
                               <widget class="ThudSharp.StaticBoardPiece" id="staticboardpiece99">
                                 <property name="MemberName" />
+                                <property name="IsAltPiece">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">8</property>

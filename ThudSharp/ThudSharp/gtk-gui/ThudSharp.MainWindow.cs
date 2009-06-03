@@ -477,6 +477,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece10 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece10.Name = "staticboardpiece10";
+            this.staticboardpiece10.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece10);
             Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece10]));
             w7.TopAttach = ((uint)(1));
@@ -488,6 +489,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece100 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece100.Name = "staticboardpiece100";
+            this.staticboardpiece100.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece100);
             Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece100]));
             w8.TopAttach = ((uint)(8));
@@ -499,6 +501,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece101 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece101.Name = "staticboardpiece101";
+            this.staticboardpiece101.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece101);
             Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece101]));
             w9.TopAttach = ((uint)(8));
@@ -510,6 +513,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece102 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece102.Name = "staticboardpiece102";
+            this.staticboardpiece102.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece102);
             Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece102]));
             w10.TopAttach = ((uint)(8));
@@ -521,6 +525,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece103 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece103.Name = "staticboardpiece103";
+            this.staticboardpiece103.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece103);
             Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece103]));
             w11.TopAttach = ((uint)(8));
@@ -532,6 +537,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece104 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece104.Name = "staticboardpiece104";
+            this.staticboardpiece104.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece104);
             Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece104]));
             w12.TopAttach = ((uint)(8));
@@ -543,6 +549,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece105 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece105.Name = "staticboardpiece105";
+            this.staticboardpiece105.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece105);
             Gtk.Table.TableChild w13 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece105]));
             w13.TopAttach = ((uint)(8));
@@ -554,6 +561,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece106 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece106.Name = "staticboardpiece106";
+            this.staticboardpiece106.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece106);
             Gtk.Table.TableChild w14 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece106]));
             w14.TopAttach = ((uint)(8));
@@ -567,6 +575,7 @@ namespace ThudSharp {
             this.staticboardpiece107.WidthRequest = 45;
             this.staticboardpiece107.HeightRequest = 45;
             this.staticboardpiece107.Name = "staticboardpiece107";
+            this.staticboardpiece107.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece107);
             Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece107]));
             w15.TopAttach = ((uint)(8));
@@ -578,6 +587,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece108 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece108.Name = "staticboardpiece108";
+            this.staticboardpiece108.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece108);
             Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece108]));
             w16.TopAttach = ((uint)(9));
@@ -587,6 +597,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece109 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece109.Name = "staticboardpiece109";
+            this.staticboardpiece109.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece109);
             Gtk.Table.TableChild w17 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece109]));
             w17.TopAttach = ((uint)(9));
@@ -598,6 +609,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece11 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece11.Name = "staticboardpiece11";
+            this.staticboardpiece11.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece11);
             Gtk.Table.TableChild w18 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece11]));
             w18.TopAttach = ((uint)(1));
@@ -609,6 +621,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece110 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece110.Name = "staticboardpiece110";
+            this.staticboardpiece110.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece110);
             Gtk.Table.TableChild w19 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece110]));
             w19.TopAttach = ((uint)(9));
@@ -620,6 +633,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece111 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece111.Name = "staticboardpiece111";
+            this.staticboardpiece111.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece111);
             Gtk.Table.TableChild w20 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece111]));
             w20.TopAttach = ((uint)(9));
@@ -631,6 +645,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece112 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece112.Name = "staticboardpiece112";
+            this.staticboardpiece112.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece112);
             Gtk.Table.TableChild w21 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece112]));
             w21.TopAttach = ((uint)(9));
@@ -642,6 +657,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece113 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece113.Name = "staticboardpiece113";
+            this.staticboardpiece113.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece113);
             Gtk.Table.TableChild w22 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece113]));
             w22.TopAttach = ((uint)(9));
@@ -653,6 +669,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece114 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece114.Name = "staticboardpiece114";
+            this.staticboardpiece114.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece114);
             Gtk.Table.TableChild w23 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece114]));
             w23.TopAttach = ((uint)(9));
@@ -664,6 +681,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece115 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece115.Name = "staticboardpiece115";
+            this.staticboardpiece115.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece115);
             Gtk.Table.TableChild w24 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece115]));
             w24.TopAttach = ((uint)(9));
@@ -675,6 +693,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece116 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece116.Name = "staticboardpiece116";
+            this.staticboardpiece116.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece116);
             Gtk.Table.TableChild w25 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece116]));
             w25.TopAttach = ((uint)(9));
@@ -686,6 +705,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece117 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece117.Name = "staticboardpiece117";
+            this.staticboardpiece117.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece117);
             Gtk.Table.TableChild w26 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece117]));
             w26.TopAttach = ((uint)(9));
@@ -697,6 +717,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece118 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece118.Name = "staticboardpiece118";
+            this.staticboardpiece118.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece118);
             Gtk.Table.TableChild w27 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece118]));
             w27.TopAttach = ((uint)(9));
@@ -708,6 +729,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece119 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece119.Name = "staticboardpiece119";
+            this.staticboardpiece119.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece119);
             Gtk.Table.TableChild w28 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece119]));
             w28.TopAttach = ((uint)(9));
@@ -719,6 +741,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece12 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece12.Name = "staticboardpiece12";
+            this.staticboardpiece12.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece12);
             Gtk.Table.TableChild w29 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece12]));
             w29.TopAttach = ((uint)(1));
@@ -730,6 +753,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece120 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece120.Name = "staticboardpiece120";
+            this.staticboardpiece120.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece120);
             Gtk.Table.TableChild w30 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece120]));
             w30.TopAttach = ((uint)(9));
@@ -741,6 +765,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece121 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece121.Name = "staticboardpiece121";
+            this.staticboardpiece121.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece121);
             Gtk.Table.TableChild w31 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece121]));
             w31.TopAttach = ((uint)(9));
@@ -752,6 +777,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece122 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece122.Name = "staticboardpiece122";
+            this.staticboardpiece122.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece122);
             Gtk.Table.TableChild w32 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece122]));
             w32.TopAttach = ((uint)(9));
@@ -763,6 +789,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece123 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece123.Name = "staticboardpiece123";
+            this.staticboardpiece123.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece123);
             Gtk.Table.TableChild w33 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece123]));
             w33.TopAttach = ((uint)(10));
@@ -774,6 +801,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece124 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece124.Name = "staticboardpiece124";
+            this.staticboardpiece124.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece124);
             Gtk.Table.TableChild w34 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece124]));
             w34.TopAttach = ((uint)(11));
@@ -785,6 +813,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece125 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece125.Name = "staticboardpiece125";
+            this.staticboardpiece125.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece125);
             Gtk.Table.TableChild w35 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece125]));
             w35.TopAttach = ((uint)(12));
@@ -796,6 +825,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece126 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece126.Name = "staticboardpiece126";
+            this.staticboardpiece126.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece126);
             Gtk.Table.TableChild w36 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece126]));
             w36.TopAttach = ((uint)(13));
@@ -807,6 +837,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece127 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece127.Name = "staticboardpiece127";
+            this.staticboardpiece127.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece127);
             Gtk.Table.TableChild w37 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece127]));
             w37.TopAttach = ((uint)(14));
@@ -818,6 +849,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece128 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece128.Name = "staticboardpiece128";
+            this.staticboardpiece128.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece128);
             Gtk.Table.TableChild w38 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece128]));
             w38.TopAttach = ((uint)(14));
@@ -829,6 +861,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece129 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece129.Name = "staticboardpiece129";
+            this.staticboardpiece129.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece129);
             Gtk.Table.TableChild w39 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece129]));
             w39.TopAttach = ((uint)(14));
@@ -840,6 +873,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece13 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece13.Name = "staticboardpiece13";
+            this.staticboardpiece13.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece13);
             Gtk.Table.TableChild w40 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece13]));
             w40.TopAttach = ((uint)(1));
@@ -851,6 +885,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece130 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece130.Name = "staticboardpiece130";
+            this.staticboardpiece130.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece130);
             Gtk.Table.TableChild w41 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece130]));
             w41.TopAttach = ((uint)(14));
@@ -862,6 +897,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece131 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece131.Name = "staticboardpiece131";
+            this.staticboardpiece131.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece131);
             Gtk.Table.TableChild w42 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece131]));
             w42.TopAttach = ((uint)(10));
@@ -873,6 +909,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece132 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece132.Name = "staticboardpiece132";
+            this.staticboardpiece132.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece132);
             Gtk.Table.TableChild w43 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece132]));
             w43.TopAttach = ((uint)(11));
@@ -884,6 +921,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece133 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece133.Name = "staticboardpiece133";
+            this.staticboardpiece133.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece133);
             Gtk.Table.TableChild w44 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece133]));
             w44.TopAttach = ((uint)(12));
@@ -895,6 +933,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece134 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece134.Name = "staticboardpiece134";
+            this.staticboardpiece134.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece134);
             Gtk.Table.TableChild w45 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece134]));
             w45.TopAttach = ((uint)(13));
@@ -906,6 +945,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece135 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece135.Name = "staticboardpiece135";
+            this.staticboardpiece135.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece135);
             Gtk.Table.TableChild w46 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece135]));
             w46.TopAttach = ((uint)(14));
@@ -917,6 +957,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece136 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece136.Name = "staticboardpiece136";
+            this.staticboardpiece136.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece136);
             Gtk.Table.TableChild w47 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece136]));
             w47.TopAttach = ((uint)(10));
@@ -928,6 +969,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece137 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece137.Name = "staticboardpiece137";
+            this.staticboardpiece137.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece137);
             Gtk.Table.TableChild w48 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece137]));
             w48.TopAttach = ((uint)(10));
@@ -939,6 +981,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece138 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece138.Name = "staticboardpiece138";
+            this.staticboardpiece138.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece138);
             Gtk.Table.TableChild w49 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece138]));
             w49.TopAttach = ((uint)(10));
@@ -950,6 +993,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece139 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece139.Name = "staticboardpiece139";
+            this.staticboardpiece139.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece139);
             Gtk.Table.TableChild w50 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece139]));
             w50.TopAttach = ((uint)(10));
@@ -961,6 +1005,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece14 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece14.Name = "staticboardpiece14";
+            this.staticboardpiece14.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece14);
             Gtk.Table.TableChild w51 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece14]));
             w51.TopAttach = ((uint)(1));
@@ -972,6 +1017,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece140 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece140.Name = "staticboardpiece140";
+            this.staticboardpiece140.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece140);
             Gtk.Table.TableChild w52 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece140]));
             w52.TopAttach = ((uint)(10));
@@ -983,6 +1029,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece141 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece141.Name = "staticboardpiece141";
+            this.staticboardpiece141.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece141);
             Gtk.Table.TableChild w53 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece141]));
             w53.TopAttach = ((uint)(10));
@@ -994,6 +1041,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece142 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece142.Name = "staticboardpiece142";
+            this.staticboardpiece142.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece142);
             Gtk.Table.TableChild w54 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece142]));
             w54.TopAttach = ((uint)(10));
@@ -1005,6 +1053,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece143 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece143.Name = "staticboardpiece143";
+            this.staticboardpiece143.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece143);
             Gtk.Table.TableChild w55 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece143]));
             w55.TopAttach = ((uint)(10));
@@ -1016,6 +1065,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece144 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece144.Name = "staticboardpiece144";
+            this.staticboardpiece144.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece144);
             Gtk.Table.TableChild w56 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece144]));
             w56.TopAttach = ((uint)(10));
@@ -1027,6 +1077,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece145 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece145.Name = "staticboardpiece145";
+            this.staticboardpiece145.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece145);
             Gtk.Table.TableChild w57 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece145]));
             w57.TopAttach = ((uint)(10));
@@ -1038,6 +1089,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece146 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece146.Name = "staticboardpiece146";
+            this.staticboardpiece146.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece146);
             Gtk.Table.TableChild w58 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece146]));
             w58.TopAttach = ((uint)(10));
@@ -1049,6 +1101,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece147 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece147.Name = "staticboardpiece147";
+            this.staticboardpiece147.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece147);
             Gtk.Table.TableChild w59 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece147]));
             w59.TopAttach = ((uint)(11));
@@ -1060,6 +1113,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece148 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece148.Name = "staticboardpiece148";
+            this.staticboardpiece148.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece148);
             Gtk.Table.TableChild w60 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece148]));
             w60.TopAttach = ((uint)(11));
@@ -1071,6 +1125,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece149 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece149.Name = "staticboardpiece149";
+            this.staticboardpiece149.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece149);
             Gtk.Table.TableChild w61 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece149]));
             w61.TopAttach = ((uint)(11));
@@ -1082,6 +1137,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece15 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece15.Name = "staticboardpiece15";
+            this.staticboardpiece15.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece15);
             Gtk.Table.TableChild w62 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece15]));
             w62.TopAttach = ((uint)(2));
@@ -1093,6 +1149,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece150 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece150.Name = "staticboardpiece150";
+            this.staticboardpiece150.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece150);
             Gtk.Table.TableChild w63 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece150]));
             w63.TopAttach = ((uint)(11));
@@ -1104,6 +1161,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece151 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece151.Name = "staticboardpiece151";
+            this.staticboardpiece151.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece151);
             Gtk.Table.TableChild w64 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece151]));
             w64.TopAttach = ((uint)(11));
@@ -1115,6 +1173,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece152 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece152.Name = "staticboardpiece152";
+            this.staticboardpiece152.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece152);
             Gtk.Table.TableChild w65 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece152]));
             w65.TopAttach = ((uint)(11));
@@ -1126,6 +1185,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece153 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece153.Name = "staticboardpiece153";
+            this.staticboardpiece153.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece153);
             Gtk.Table.TableChild w66 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece153]));
             w66.TopAttach = ((uint)(11));
@@ -1137,6 +1197,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece154 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece154.Name = "staticboardpiece154";
+            this.staticboardpiece154.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece154);
             Gtk.Table.TableChild w67 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece154]));
             w67.TopAttach = ((uint)(11));
@@ -1148,6 +1209,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece155 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece155.Name = "staticboardpiece155";
+            this.staticboardpiece155.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece155);
             Gtk.Table.TableChild w68 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece155]));
             w68.TopAttach = ((uint)(11));
@@ -1159,6 +1221,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece156 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece156.Name = "staticboardpiece156";
+            this.staticboardpiece156.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece156);
             Gtk.Table.TableChild w69 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece156]));
             w69.TopAttach = ((uint)(12));
@@ -1170,6 +1233,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece157 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece157.Name = "staticboardpiece157";
+            this.staticboardpiece157.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece157);
             Gtk.Table.TableChild w70 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece157]));
             w70.TopAttach = ((uint)(12));
@@ -1181,6 +1245,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece158 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece158.Name = "staticboardpiece158";
+            this.staticboardpiece158.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece158);
             Gtk.Table.TableChild w71 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece158]));
             w71.TopAttach = ((uint)(12));
@@ -1192,6 +1257,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece159 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece159.Name = "staticboardpiece159";
+            this.staticboardpiece159.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece159);
             Gtk.Table.TableChild w72 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece159]));
             w72.TopAttach = ((uint)(12));
@@ -1203,6 +1269,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece16 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece16.Name = "staticboardpiece16";
+            this.staticboardpiece16.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece16);
             Gtk.Table.TableChild w73 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece16]));
             w73.TopAttach = ((uint)(2));
@@ -1214,6 +1281,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece160 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece160.Name = "staticboardpiece160";
+            this.staticboardpiece160.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece160);
             Gtk.Table.TableChild w74 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece160]));
             w74.TopAttach = ((uint)(12));
@@ -1225,6 +1293,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece161 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece161.Name = "staticboardpiece161";
+            this.staticboardpiece161.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece161);
             Gtk.Table.TableChild w75 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece161]));
             w75.TopAttach = ((uint)(12));
@@ -1236,6 +1305,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece162 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece162.Name = "staticboardpiece162";
+            this.staticboardpiece162.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece162);
             Gtk.Table.TableChild w76 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece162]));
             w76.TopAttach = ((uint)(12));
@@ -1247,6 +1317,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece163 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece163.Name = "staticboardpiece163";
+            this.staticboardpiece163.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece163);
             Gtk.Table.TableChild w77 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece163]));
             w77.TopAttach = ((uint)(13));
@@ -1258,6 +1329,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece164 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece164.Name = "staticboardpiece164";
+            this.staticboardpiece164.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece164);
             Gtk.Table.TableChild w78 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece164]));
             w78.TopAttach = ((uint)(13));
@@ -1269,6 +1341,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece165 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece165.Name = "staticboardpiece165";
+            this.staticboardpiece165.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece165);
             Gtk.Table.TableChild w79 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece165]));
             w79.TopAttach = ((uint)(13));
@@ -1280,6 +1353,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece166 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece166.Name = "staticboardpiece166";
+            this.staticboardpiece166.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece166);
             Gtk.Table.TableChild w80 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece166]));
             w80.TopAttach = ((uint)(13));
@@ -1291,6 +1365,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece17 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece17.Name = "staticboardpiece17";
+            this.staticboardpiece17.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece17);
             Gtk.Table.TableChild w81 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece17]));
             w81.TopAttach = ((uint)(2));
@@ -1302,6 +1377,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece18 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece18.Name = "staticboardpiece18";
+            this.staticboardpiece18.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece18);
             Gtk.Table.TableChild w82 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece18]));
             w82.TopAttach = ((uint)(2));
@@ -1313,6 +1389,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece19 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece19.Name = "staticboardpiece19";
+            this.staticboardpiece19.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece19);
             Gtk.Table.TableChild w83 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece19]));
             w83.TopAttach = ((uint)(2));
@@ -1324,6 +1401,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece2 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece2.Name = "staticboardpiece2";
+            this.staticboardpiece2.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece2);
             Gtk.Table.TableChild w84 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece2]));
             w84.LeftAttach = ((uint)(6));
@@ -1333,6 +1411,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece20 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece20.Name = "staticboardpiece20";
+            this.staticboardpiece20.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece20);
             Gtk.Table.TableChild w85 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece20]));
             w85.TopAttach = ((uint)(2));
@@ -1344,6 +1423,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece21 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece21.Name = "staticboardpiece21";
+            this.staticboardpiece21.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece21);
             Gtk.Table.TableChild w86 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece21]));
             w86.TopAttach = ((uint)(2));
@@ -1355,6 +1435,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece22 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece22.Name = "staticboardpiece22";
+            this.staticboardpiece22.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece22);
             Gtk.Table.TableChild w87 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece22]));
             w87.TopAttach = ((uint)(2));
@@ -1366,6 +1447,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece23 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece23.Name = "staticboardpiece23";
+            this.staticboardpiece23.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece23);
             Gtk.Table.TableChild w88 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece23]));
             w88.TopAttach = ((uint)(2));
@@ -1377,6 +1459,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece24 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece24.Name = "staticboardpiece24";
+            this.staticboardpiece24.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece24);
             Gtk.Table.TableChild w89 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece24]));
             w89.TopAttach = ((uint)(4));
@@ -1388,6 +1471,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece25 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece25.Name = "staticboardpiece25";
+            this.staticboardpiece25.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece25);
             Gtk.Table.TableChild w90 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece25]));
             w90.TopAttach = ((uint)(3));
@@ -1399,6 +1483,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece26 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece26.Name = "staticboardpiece26";
+            this.staticboardpiece26.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece26);
             Gtk.Table.TableChild w91 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece26]));
             w91.TopAttach = ((uint)(3));
@@ -1410,6 +1495,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece27 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece27.Name = "staticboardpiece27";
+            this.staticboardpiece27.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece27);
             Gtk.Table.TableChild w92 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece27]));
             w92.TopAttach = ((uint)(3));
@@ -1421,6 +1507,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece28 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece28.Name = "staticboardpiece28";
+            this.staticboardpiece28.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece28);
             Gtk.Table.TableChild w93 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece28]));
             w93.TopAttach = ((uint)(3));
@@ -1432,6 +1519,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece29 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece29.Name = "staticboardpiece29";
+            this.staticboardpiece29.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece29);
             Gtk.Table.TableChild w94 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece29]));
             w94.TopAttach = ((uint)(3));
@@ -1443,6 +1531,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece3 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece3.Name = "staticboardpiece3";
+            this.staticboardpiece3.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece3);
             Gtk.Table.TableChild w95 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece3]));
             w95.LeftAttach = ((uint)(9));
@@ -1452,6 +1541,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece30 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece30.Name = "staticboardpiece30";
+            this.staticboardpiece30.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece30);
             Gtk.Table.TableChild w96 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece30]));
             w96.TopAttach = ((uint)(3));
@@ -1463,6 +1553,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece31 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece31.Name = "staticboardpiece31";
+            this.staticboardpiece31.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece31);
             Gtk.Table.TableChild w97 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece31]));
             w97.TopAttach = ((uint)(3));
@@ -1474,6 +1565,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece32 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece32.Name = "staticboardpiece32";
+            this.staticboardpiece32.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece32);
             Gtk.Table.TableChild w98 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece32]));
             w98.TopAttach = ((uint)(3));
@@ -1485,6 +1577,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece33 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece33.Name = "staticboardpiece33";
+            this.staticboardpiece33.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece33);
             Gtk.Table.TableChild w99 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece33]));
             w99.TopAttach = ((uint)(3));
@@ -1496,6 +1589,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece34 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece34.Name = "staticboardpiece34";
+            this.staticboardpiece34.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece34);
             Gtk.Table.TableChild w100 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece34]));
             w100.TopAttach = ((uint)(3));
@@ -1507,6 +1601,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece35 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece35.Name = "staticboardpiece35";
+            this.staticboardpiece35.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece35);
             Gtk.Table.TableChild w101 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece35]));
             w101.TopAttach = ((uint)(3));
@@ -1518,6 +1613,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece36 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece36.Name = "staticboardpiece36";
+            this.staticboardpiece36.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece36);
             Gtk.Table.TableChild w102 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece36]));
             w102.TopAttach = ((uint)(5));
@@ -1527,6 +1623,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece37 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece37.Name = "staticboardpiece37";
+            this.staticboardpiece37.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece37);
             Gtk.Table.TableChild w103 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece37]));
             w103.TopAttach = ((uint)(4));
@@ -1538,6 +1635,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece38 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece38.Name = "staticboardpiece38";
+            this.staticboardpiece38.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece38);
             Gtk.Table.TableChild w104 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece38]));
             w104.TopAttach = ((uint)(4));
@@ -1549,6 +1647,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece39 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece39.Name = "staticboardpiece39";
+            this.staticboardpiece39.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece39);
             Gtk.Table.TableChild w105 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece39]));
             w105.TopAttach = ((uint)(4));
@@ -1560,6 +1659,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece4 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece4.Name = "staticboardpiece4";
+            this.staticboardpiece4.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece4);
             Gtk.Table.TableChild w106 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece4]));
             w106.LeftAttach = ((uint)(7));
@@ -1569,6 +1669,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece40 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece40.Name = "staticboardpiece40";
+            this.staticboardpiece40.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece40);
             Gtk.Table.TableChild w107 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece40]));
             w107.TopAttach = ((uint)(4));
@@ -1580,6 +1681,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece41 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece41.Name = "staticboardpiece41";
+            this.staticboardpiece41.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece41);
             Gtk.Table.TableChild w108 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece41]));
             w108.TopAttach = ((uint)(4));
@@ -1591,6 +1693,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece42 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece42.Name = "staticboardpiece42";
+            this.staticboardpiece42.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece42);
             Gtk.Table.TableChild w109 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece42]));
             w109.TopAttach = ((uint)(4));
@@ -1602,6 +1705,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece43 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece43.Name = "staticboardpiece43";
+            this.staticboardpiece43.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece43);
             Gtk.Table.TableChild w110 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece43]));
             w110.TopAttach = ((uint)(4));
@@ -1613,6 +1717,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece44 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece44.Name = "staticboardpiece44";
+            this.staticboardpiece44.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece44);
             Gtk.Table.TableChild w111 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece44]));
             w111.TopAttach = ((uint)(4));
@@ -1624,6 +1729,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece45 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece45.Name = "staticboardpiece45";
+            this.staticboardpiece45.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece45);
             Gtk.Table.TableChild w112 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece45]));
             w112.TopAttach = ((uint)(4));
@@ -1635,6 +1741,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece46 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece46.Name = "staticboardpiece46";
+            this.staticboardpiece46.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece46);
             Gtk.Table.TableChild w113 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece46]));
             w113.TopAttach = ((uint)(4));
@@ -1646,6 +1753,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece47 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece47.Name = "staticboardpiece47";
+            this.staticboardpiece47.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece47);
             Gtk.Table.TableChild w114 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece47]));
             w114.TopAttach = ((uint)(4));
@@ -1657,6 +1765,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece48 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece48.Name = "staticboardpiece48";
+            this.staticboardpiece48.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece48);
             Gtk.Table.TableChild w115 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece48]));
             w115.TopAttach = ((uint)(4));
@@ -1668,6 +1777,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece49 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece49.Name = "staticboardpiece49";
+            this.staticboardpiece49.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece49);
             Gtk.Table.TableChild w116 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece49]));
             w116.TopAttach = ((uint)(5));
@@ -1679,6 +1789,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece5 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece5.Name = "staticboardpiece5";
+            this.staticboardpiece5.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece5);
             Gtk.Table.TableChild w117 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece5]));
             w117.LeftAttach = ((uint)(8));
@@ -1688,6 +1799,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece50 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece50.Name = "staticboardpiece50";
+            this.staticboardpiece50.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece50);
             Gtk.Table.TableChild w118 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece50]));
             w118.TopAttach = ((uint)(5));
@@ -1699,6 +1811,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece51 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece51.Name = "staticboardpiece51";
+            this.staticboardpiece51.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece51);
             Gtk.Table.TableChild w119 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece51]));
             w119.TopAttach = ((uint)(5));
@@ -1710,6 +1823,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece52 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece52.Name = "staticboardpiece52";
+            this.staticboardpiece52.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece52);
             Gtk.Table.TableChild w120 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece52]));
             w120.TopAttach = ((uint)(5));
@@ -1721,6 +1835,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece53 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece53.Name = "staticboardpiece53";
+            this.staticboardpiece53.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece53);
             Gtk.Table.TableChild w121 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece53]));
             w121.TopAttach = ((uint)(5));
@@ -1732,6 +1847,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece54 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece54.Name = "staticboardpiece54";
+            this.staticboardpiece54.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece54);
             Gtk.Table.TableChild w122 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece54]));
             w122.TopAttach = ((uint)(5));
@@ -1743,6 +1859,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece55 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece55.Name = "staticboardpiece55";
+            this.staticboardpiece55.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece55);
             Gtk.Table.TableChild w123 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece55]));
             w123.TopAttach = ((uint)(5));
@@ -1754,6 +1871,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece56 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece56.Name = "staticboardpiece56";
+            this.staticboardpiece56.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece56);
             Gtk.Table.TableChild w124 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece56]));
             w124.TopAttach = ((uint)(5));
@@ -1765,6 +1883,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece57 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece57.Name = "staticboardpiece57";
+            this.staticboardpiece57.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece57);
             Gtk.Table.TableChild w125 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece57]));
             w125.TopAttach = ((uint)(5));
@@ -1776,6 +1895,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece58 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece58.Name = "staticboardpiece58";
+            this.staticboardpiece58.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece58);
             Gtk.Table.TableChild w126 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece58]));
             w126.TopAttach = ((uint)(5));
@@ -1787,6 +1907,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece59 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece59.Name = "staticboardpiece59";
+            this.staticboardpiece59.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece59);
             Gtk.Table.TableChild w127 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece59]));
             w127.TopAttach = ((uint)(5));
@@ -1798,6 +1919,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece6 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece6.Name = "staticboardpiece6";
+            this.staticboardpiece6.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece6);
             Gtk.Table.TableChild w128 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece6]));
             w128.LeftAttach = ((uint)(5));
@@ -1807,6 +1929,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece60 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece60.Name = "staticboardpiece60";
+            this.staticboardpiece60.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece60);
             Gtk.Table.TableChild w129 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece60]));
             w129.TopAttach = ((uint)(5));
@@ -1818,6 +1941,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece61 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece61.Name = "staticboardpiece61";
+            this.staticboardpiece61.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece61);
             Gtk.Table.TableChild w130 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece61]));
             w130.TopAttach = ((uint)(5));
@@ -1829,6 +1953,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece62 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece62.Name = "staticboardpiece62";
+            this.staticboardpiece62.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece62);
             Gtk.Table.TableChild w131 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece62]));
             w131.TopAttach = ((uint)(5));
@@ -1840,6 +1965,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece63 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece63.Name = "staticboardpiece63";
+            this.staticboardpiece63.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece63);
             Gtk.Table.TableChild w132 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece63]));
             w132.TopAttach = ((uint)(6));
@@ -1849,6 +1975,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece64 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece64.Name = "staticboardpiece64";
+            this.staticboardpiece64.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece64);
             Gtk.Table.TableChild w133 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece64]));
             w133.TopAttach = ((uint)(6));
@@ -1860,6 +1987,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece65 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece65.Name = "staticboardpiece65";
+            this.staticboardpiece65.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece65);
             Gtk.Table.TableChild w134 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece65]));
             w134.TopAttach = ((uint)(6));
@@ -1871,6 +1999,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece66 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece66.Name = "staticboardpiece66";
+            this.staticboardpiece66.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece66);
             Gtk.Table.TableChild w135 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece66]));
             w135.TopAttach = ((uint)(6));
@@ -1882,6 +2011,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece67 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece67.Name = "staticboardpiece67";
+            this.staticboardpiece67.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece67);
             Gtk.Table.TableChild w136 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece67]));
             w136.TopAttach = ((uint)(6));
@@ -1893,6 +2023,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece68 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece68.Name = "staticboardpiece68";
+            this.staticboardpiece68.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece68);
             Gtk.Table.TableChild w137 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece68]));
             w137.TopAttach = ((uint)(6));
@@ -1904,6 +2035,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece69 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece69.Name = "staticboardpiece69";
+            this.staticboardpiece69.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece69);
             Gtk.Table.TableChild w138 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece69]));
             w138.TopAttach = ((uint)(6));
@@ -1915,6 +2047,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece7 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece7.Name = "staticboardpiece7";
+            this.staticboardpiece7.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece7);
             Gtk.Table.TableChild w139 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece7]));
             w139.TopAttach = ((uint)(13));
@@ -1926,6 +2059,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece70 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece70.Name = "staticboardpiece70";
+            this.staticboardpiece70.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece70);
             Gtk.Table.TableChild w140 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece70]));
             w140.TopAttach = ((uint)(6));
@@ -1937,6 +2071,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece71 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece71.Name = "staticboardpiece71";
+            this.staticboardpiece71.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece71);
             Gtk.Table.TableChild w141 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece71]));
             w141.TopAttach = ((uint)(6));
@@ -1948,6 +2083,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece72 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece72.Name = "staticboardpiece72";
+            this.staticboardpiece72.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece72);
             Gtk.Table.TableChild w142 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece72]));
             w142.TopAttach = ((uint)(6));
@@ -1959,6 +2095,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece73 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece73.Name = "staticboardpiece73";
+            this.staticboardpiece73.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece73);
             Gtk.Table.TableChild w143 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece73]));
             w143.TopAttach = ((uint)(6));
@@ -1970,6 +2107,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece74 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece74.Name = "staticboardpiece74";
+            this.staticboardpiece74.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece74);
             Gtk.Table.TableChild w144 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece74]));
             w144.TopAttach = ((uint)(6));
@@ -1981,6 +2119,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece75 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece75.Name = "staticboardpiece75";
+            this.staticboardpiece75.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece75);
             Gtk.Table.TableChild w145 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece75]));
             w145.TopAttach = ((uint)(6));
@@ -1992,6 +2131,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece76 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece76.Name = "staticboardpiece76";
+            this.staticboardpiece76.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece76);
             Gtk.Table.TableChild w146 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece76]));
             w146.TopAttach = ((uint)(6));
@@ -2003,6 +2143,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece77 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece77.Name = "staticboardpiece77";
+            this.staticboardpiece77.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece77);
             Gtk.Table.TableChild w147 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece77]));
             w147.TopAttach = ((uint)(6));
@@ -2014,6 +2155,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece78 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece78.Name = "staticboardpiece78";
+            this.staticboardpiece78.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece78);
             Gtk.Table.TableChild w148 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece78]));
             w148.TopAttach = ((uint)(7));
@@ -2023,6 +2165,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece79 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece79.Name = "staticboardpiece79";
+            this.staticboardpiece79.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece79);
             Gtk.Table.TableChild w149 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece79]));
             w149.TopAttach = ((uint)(7));
@@ -2034,6 +2177,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece8 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece8.Name = "staticboardpiece8";
+            this.staticboardpiece8.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece8);
             Gtk.Table.TableChild w150 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece8]));
             w150.TopAttach = ((uint)(1));
@@ -2045,6 +2189,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece80 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece80.Name = "staticboardpiece80";
+            this.staticboardpiece80.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece80);
             Gtk.Table.TableChild w151 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece80]));
             w151.TopAttach = ((uint)(7));
@@ -2056,6 +2201,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece81 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece81.Name = "staticboardpiece81";
+            this.staticboardpiece81.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece81);
             Gtk.Table.TableChild w152 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece81]));
             w152.TopAttach = ((uint)(7));
@@ -2067,6 +2213,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece82 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece82.Name = "staticboardpiece82";
+            this.staticboardpiece82.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece82);
             Gtk.Table.TableChild w153 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece82]));
             w153.TopAttach = ((uint)(7));
@@ -2078,6 +2225,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece83 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece83.Name = "staticboardpiece83";
+            this.staticboardpiece83.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece83);
             Gtk.Table.TableChild w154 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece83]));
             w154.TopAttach = ((uint)(7));
@@ -2089,6 +2237,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece84 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece84.Name = "staticboardpiece84";
+            this.staticboardpiece84.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece84);
             Gtk.Table.TableChild w155 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece84]));
             w155.TopAttach = ((uint)(7));
@@ -2100,6 +2249,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece85 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece85.Name = "staticboardpiece85";
+            this.staticboardpiece85.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece85);
             Gtk.Table.TableChild w156 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece85]));
             w156.TopAttach = ((uint)(7));
@@ -2111,6 +2261,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece86 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece86.Name = "staticboardpiece86";
+            this.staticboardpiece86.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece86);
             Gtk.Table.TableChild w157 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece86]));
             w157.TopAttach = ((uint)(7));
@@ -2122,6 +2273,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece87 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece87.Name = "staticboardpiece87";
+            this.staticboardpiece87.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece87);
             Gtk.Table.TableChild w158 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece87]));
             w158.TopAttach = ((uint)(7));
@@ -2133,6 +2285,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece88 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece88.Name = "staticboardpiece88";
+            this.staticboardpiece88.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece88);
             Gtk.Table.TableChild w159 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece88]));
             w159.TopAttach = ((uint)(7));
@@ -2144,6 +2297,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece89 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece89.Name = "staticboardpiece89";
+            this.staticboardpiece89.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece89);
             Gtk.Table.TableChild w160 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece89]));
             w160.TopAttach = ((uint)(7));
@@ -2155,6 +2309,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece9 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece9.Name = "staticboardpiece9";
+            this.staticboardpiece9.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece9);
             Gtk.Table.TableChild w161 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece9]));
             w161.TopAttach = ((uint)(1));
@@ -2166,6 +2321,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece90 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece90.Name = "staticboardpiece90";
+            this.staticboardpiece90.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece90);
             Gtk.Table.TableChild w162 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece90]));
             w162.TopAttach = ((uint)(7));
@@ -2177,6 +2333,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece91 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece91.Name = "staticboardpiece91";
+            this.staticboardpiece91.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece91);
             Gtk.Table.TableChild w163 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece91]));
             w163.TopAttach = ((uint)(7));
@@ -2188,6 +2345,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece92 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece92.Name = "staticboardpiece92";
+            this.staticboardpiece92.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece92);
             Gtk.Table.TableChild w164 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece92]));
             w164.TopAttach = ((uint)(7));
@@ -2199,6 +2357,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece93 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece93.Name = "staticboardpiece93";
+            this.staticboardpiece93.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece93);
             Gtk.Table.TableChild w165 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece93]));
             w165.TopAttach = ((uint)(8));
@@ -2208,6 +2367,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece94 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece94.Name = "staticboardpiece94";
+            this.staticboardpiece94.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece94);
             Gtk.Table.TableChild w166 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece94]));
             w166.TopAttach = ((uint)(8));
@@ -2219,6 +2379,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece95 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece95.Name = "staticboardpiece95";
+            this.staticboardpiece95.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece95);
             Gtk.Table.TableChild w167 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece95]));
             w167.TopAttach = ((uint)(8));
@@ -2230,6 +2391,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece96 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece96.Name = "staticboardpiece96";
+            this.staticboardpiece96.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece96);
             Gtk.Table.TableChild w168 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece96]));
             w168.TopAttach = ((uint)(8));
@@ -2241,6 +2403,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece97 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece97.Name = "staticboardpiece97";
+            this.staticboardpiece97.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece97);
             Gtk.Table.TableChild w169 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece97]));
             w169.TopAttach = ((uint)(8));
@@ -2252,6 +2415,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece98 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece98.Name = "staticboardpiece98";
+            this.staticboardpiece98.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece98);
             Gtk.Table.TableChild w170 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece98]));
             w170.TopAttach = ((uint)(8));
@@ -2263,6 +2427,7 @@ namespace ThudSharp {
             // Container child GameTable.Gtk.Table+TableChild
             this.staticboardpiece99 = new ThudSharp.StaticBoardPiece();
             this.staticboardpiece99.Name = "staticboardpiece99";
+            this.staticboardpiece99.IsAltPiece = false;
             this.GameTable.Add(this.staticboardpiece99);
             Gtk.Table.TableChild w171 = ((Gtk.Table.TableChild)(this.GameTable[this.staticboardpiece99]));
             w171.TopAttach = ((uint)(8));
