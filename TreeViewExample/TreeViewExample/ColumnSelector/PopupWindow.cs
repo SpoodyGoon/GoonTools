@@ -8,27 +8,30 @@ namespace GoonTools.ColumnSelector
 	
 	public partial class PopupWindow : Gtk.Window
 	{
-		private Gtk.TreeView _ColumnSelectorTreeView;
-		private Gtk.TreeView _CallingTreeView;
-		public PopupWindow( Gtk.TreeView parent, int x, int y, int width, int height) : base(Gtk.WindowType.Popup)
+		private Gtk.TreeViewColumn[] _Columns;
+		private Gdk.Rectangle _TreeViewArea;
+		private Gdk.Rectangle _TreeViewColumnArea;
+		public PopupWindow(Gtk.TreeViewColumn[] col, Gdk.Rectangle TreeViewRec, Gdk.Rectangle ColHeaderRec) : base(Gtk.WindowType.Popup)
 		{
-			_CallingTreeView = parent;
+			_Columns = col;
+			_TreeViewArea = TreeViewRec;
+			_TreeViewColumnArea = ColHeaderRec;
 			
 			this.Resizable = true;
 			this.Visible = false;
-			this.WidthRequest = width;
-			this.HeightRequest = height;
-			this.Move(x - width, y);
+//			this.WidthRequest = width;
+//			this.HeightRequest = height;
+//			this.Move(x - width, y);
 //			_ColumnSelectorTreeView = new ColumnSelectorTreeView(this);
 //			swColumnSelector.Add(_ColumnSelectorTreeView);
 			this.ShowAll();
 			
 		}
 		
-		internal Gtk.TreeView ParentTree
-		{
-			get{return _CallingTreeView;}
-		}
+//		internal Gtk.TreeView ParentTree
+//		{
+//			get{return _CallingTreeView;}
+//		}
 		
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
@@ -43,15 +46,15 @@ namespace GoonTools.ColumnSelector
 		
 		public void ShowPopUp()
 		{			
-			this.Visible = true;
-			this.HeightRequest = (_ColumnSelectorTreeView.Allocation.Bottom - _ColumnSelectorTreeView.Allocation.Top) + 45;			
-			HollyLibrary.GrabUtil.GrabWindow(this);
-			this.ShowAll();
+//			this.Visible = true;
+//			this.HeightRequest = (_ColumnSelectorTreeView.Allocation.Bottom - _ColumnSelectorTreeView.Allocation.Top) + 45;			
+//			HollyLibrary.GrabUtil.GrabWindow(this);
+//			this.ShowAll();
 		}
 		
 		public void AddColumn(int Index, bool IsVisible, string ColumnTitle)
 		{
-			((Gtk.ListStore)_ColumnSelectorTreeView.Model).AppendValues(Index, IsVisible, ColumnTitle);
+//			((Gtk.ListStore)_ColumnSelectorTreeView.Model).AppendValues(Index, IsVisible, ColumnTitle);
 		}
 
 		private void Close()
