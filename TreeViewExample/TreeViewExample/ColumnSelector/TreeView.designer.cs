@@ -27,7 +27,7 @@ namespace GoonTools
 	public partial class ColumnSelectorTreeView : Gtk.TreeView
 	{
 		private Gtk.ListStore _ColumnStore = new Gtk.ListStore(typeof(int),typeof(bool), typeof(string));
-		private Gtk.Window _Parent;
+		private GoonTools.ColumnSelector.PopupWindow _Parent;
 		private void Build()
 		{
 			this.HeadersVisible = false;
@@ -61,7 +61,7 @@ namespace GoonTools
 			colIsVisible.PackStart (cellIsVisible, false);
 			
 			Gtk.CellRendererText cellColumnTitle = new Gtk.CellRendererText ();
-			cellColumnTitle.Width = 150;
+			cellColumnTitle.Width = 50;
 			colColumnTitle.PackStart (cellColumnTitle, true);
 			
 			colIndex.AddAttribute(cellIndex, "text", 0);

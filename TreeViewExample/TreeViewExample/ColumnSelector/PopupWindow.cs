@@ -9,20 +9,21 @@ namespace GoonTools.ColumnSelector
 	public class PopupWindow : Gtk.Window
 	{
 		private Gtk.TreeViewColumn[] _Columns;
-		private Gdk.Rectangle _TreeViewArea;
 		private Gdk.Rectangle _TreeViewColumnArea;
 		private Gtk.ScrolledWindow swColumnSelector;
 		private GoonTools.ColumnSelectorTreeView _ColumnSelectorTreeView;
-		public PopupWindow(Gtk.TreeViewColumn[] col, Gdk.Rectangle TreeViewRec, Gdk.Rectangle ColHeaderRec) : base(Gtk.WindowType.Popup)
+		private int _Width = 100;
+		private int _Height = 200;
+		public PopupWindow(Gtk.TreeViewColumn[] col, Gdk.Rectangle ColHeaderRec) : base(Gtk.WindowType.Popup)
 		{
 			Build();
 			_Columns = col;
-			_TreeViewArea = TreeViewRec;
-			_TreeViewColumnArea = ColHeaderRec;
-
-//			this.WidthRequest = width;
-//			this.HeightRequest = height;
-//			this.Move(x - width, y);
+			_TreeViewColumnArea = ColHeaderRec;		
+			
+			//System.Diagnostics.Debug.WriteLine(_Left.ToString() + " - " + _Top.ToString());
+			this.WidthRequest = _Width;
+			this.HeightRequest = _Height;
+			this.Move(ColHeaderRec.Left - _Width, ColHeaderRec.Top + 3);
 			_ColumnSelectorTreeView = new ColumnSelectorTreeView(this);
 			swColumnSelector.Add(_ColumnSelectorTreeView);
 			this.ShowAll();
@@ -57,14 +58,15 @@ namespace GoonTools.ColumnSelector
 			hbuttonbox1.Name = "hbuttonbox1";
 			hbuttonbox1.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
 			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-			 Gtk.Button btnClose = new Gtk.Button();
-			btnClose.WidthRequest = 16;
+			Gtk.Button btnClose = new Gtk.Button();
+			btnClose.WidthRequest = 6;
 			btnClose.HeightRequest = 16;
 			btnClose.CanFocus = true;
+			btnClose.ResizeMode = ResizeMode.Immediate;
 			btnClose.Name = "btnClose";
 			btnClose.Relief = ((Gtk.ReliefStyle)(2));
 			// Container child btnClose.Gtk.Container+ContainerChild
-			 Gtk.Alignment alignment1 = new Gtk.Alignment(1F, 0.5F, 0.01F, 0.01F);
+			Gtk.Alignment alignment1 = new Gtk.Alignment(1F, 0.5F, 0.01F, 0.01F);
 			alignment1.WidthRequest = 16;
 			alignment1.HeightRequest = 16;
 			alignment1.Name = "alignment1";
@@ -75,12 +77,11 @@ namespace GoonTools.ColumnSelector
 			lblClose.Name = "lblClose";
 			lblClose.Xalign = 1F;
 			lblClose.Yalign = 0.01F;
-			lblClose.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"small\"><b>X</b></span>");
+			lblClose.LabelProp = Mono.Unix.Catalog.GetString("<span color=\"black\" size=\"small\"><b>X</b></span>");
 			lblClose.UseMarkup = true;
 			lblClose.Justify = ((Gtk.Justification)(1));
-			lblClose.WidthChars = 1;
+			lblClose.WidthChars = 5;
 			lblClose.MaxWidthChars = 5;
-			lblClose.SingleLineMode = true;
 			alignment1.Add(lblClose);
 			btnClose.Add(alignment1);
 			btnClose.Label = null;
@@ -122,15 +123,17 @@ namespace GoonTools.ColumnSelector
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
 			this.Show();
+			btnClose.EnterNotifyEvent += new EnterNotifyEventHandler(btnClose_EnterNotifyEvent);
+			btnClose.LeaveNotifyEvent += new LeaveNotifyEventHandler(btnClose_LeaveNotifyEvent);
 			btnClose.Clicked += new System.EventHandler(this.OnBtnCloseClicked);
 		}
 		
 		#endregion Build GUI
 		
-//		internal Gtk.TreeView ParentTree
-//		{
-//			get{return _CallingTreeView;}
-//		}
+		internal Gtk.TreeViewColumn[] Columns
+		{
+			get{return _Columns;}
+		}
 		
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
@@ -143,7 +146,7 @@ namespace GoonTools.ColumnSelector
 		}
 
 		
-		public void ShowPopUp()
+		internal void ShowPopUp()
 		{
 			this.Visible = true;
 			//this.HeightRequest = (_ColumnSelectorTreeView.Allocation.Bottom - _ColumnSelectorTreeView.Allocation.Top) + 45;
@@ -151,7 +154,7 @@ namespace GoonTools.ColumnSelector
 			this.ShowAll();
 		}
 		
-		public void AddColumn(int Index, bool IsVisible, string ColumnTitle)
+		internal void AddColumn(int Index, bool IsVisible, string ColumnTitle)
 		{
 			_ColumnSelectorTreeView.ColumnStore.AppendValues(Index, IsVisible, ColumnTitle);
 		}
@@ -167,13 +170,23 @@ namespace GoonTools.ColumnSelector
 		{
 			this.Close();
 			return base.OnButtonPressEvent(evnt);
-		}	protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
-		{this.Close();
+		}	
+		
+		protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
+		{
+			this.Close();
 		}
 
+		protected void btnClose_EnterNotifyEvent(object sender, EnterNotifyEventArgs args)
+		{
+			Gtk.Button btn = (Gtk.Button)sender;
+			btn.State = StateType.Normal;
+		}		
 
-
-
-
+		private void btnClose_LeaveNotifyEvent(object sender, LeaveNotifyEventArgs args)
+		{
+			Gtk.Button btn = (Gtk.Button)sender;
+			btn.State = StateType.Normal;
+		}
 	}
 }
