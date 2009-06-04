@@ -23,13 +23,14 @@ namespace ThudSharp
 		public StaticBoardPiece(StaticPieceType pt)
 		{
 			_PieceType = pt;
+			
 			// Insert initialization code here.
 		}
 		
 		public StaticBoardPiece()
 		{
 			_PieceType = StaticPieceType.Dark;
-			// Insert initialization code here.
+			
 		}	
 		
 		public string ID
@@ -50,6 +51,19 @@ namespace ThudSharp
 			set{_PieceType = value;}
 		}
 		
+		[GLib.ConnectBeforeAttribute()]
+		[GLib.DefaultSignalHandlerAttribute()]
+		protected override bool OnEnterNotifyEvent(Gdk.EventCrossing evnt)
+		{
+			evnt.Window.DrawRectangle(Style.WhiteGC, true, this.Allocation);
+			this.QueueDraw();
+			this.ShowAll();
+			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "got here");
+				md.Run();
+				md.Destroy();
+			return base.OnEnterNotifyEvent(evnt);
+		}
+		
 		protected override bool OnButtonPressEvent(Gdk.EventButton ev)
 		{
 			// Insert button press handling code here.
@@ -62,9 +76,9 @@ namespace ThudSharp
 			Gdk.Rectangle area = args.Area;
 			
 			if(_PieceType == StaticPieceType.Dark)
-				_BoardPiece = Gdk.Pixbuf.LoadFromResource("BoardPieceDark.png");
+				_BoardPiece = GoonTools.Common.BoardPieceDark;
 			else
-				_BoardPiece = Gdk.Pixbuf.LoadFromResource("BoardPieceLight.png");
+				_BoardPiece = GoonTools.Common.BoardPieceLight;
 			
 			this.WidthRequest = _BoardPiece.Width;
 			this.HeightRequest = _BoardPiece.Height;
@@ -72,16 +86,7 @@ namespace ThudSharp
 			
 			
 			base.OnExposeEvent(args);
-			// Insert drawing code here.
 			return true;
-		}
-		
-		protected override void OnRealized ()
-		{
-			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Got Here");
-			md.Run();
-			md.Destroy();
-			base.OnRealized ();
 		}
 
 		
