@@ -35,7 +35,9 @@ namespace GoonTools
 	{
 		private static GoonTools.Options _Option;
 		private static GoonTools.EnviromentData _EnvData = new GoonTools.EnviromentData();
-				
+		private static Gdk.Pixbuf _BoardBackGround = new Gdk.Pixbuf(_EnvData.ImageFolder + "background.png");
+		private static Gdk.Pixbuf _BoardPieceDark = new Gdk.Pixbuf(_EnvData.ImageFolder + "BoardPieceDark.png");
+		private static Gdk.Pixbuf _BoardPieceLight = new Gdk.Pixbuf(_EnvData.ImageFolder + "BoardPieceLight.png");
 		#region Public Properties
 		
 		public static GoonTools.Options Option
@@ -46,6 +48,21 @@ namespace GoonTools
 		public static GoonTools.EnviromentData EnvData
 		{
 			get{return _EnvData;}
+		}
+		
+		public static Gdk.Pixbuf BoardBackGround
+		{
+			get{return _BoardBackGround; }
+		}
+		
+		public static Gdk.Pixbuf BoardPieceDark
+		{
+			get{return _BoardPieceDark; }
+		}
+		
+		public static Gdk.Pixbuf BoardPieceLight
+		{
+			get{return _BoardPieceLight; }
 		}
 		
 		#endregion Public Properties

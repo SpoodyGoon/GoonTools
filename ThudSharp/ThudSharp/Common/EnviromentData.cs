@@ -60,8 +60,8 @@ namespace GoonTools
 		
 		private string GetAppPath()
 		{
-			string strAppPath = Assembly.GetEntryAssembly().CodeBase;
-			strAppPath = strAppPath.Substring(0, strAppPath.LastIndexOf(GetDirChar()) + 1);
+			string strAppPath = Assembly.GetExecutingAssembly().CodeBase;
+			strAppPath = strAppPath.Substring(0, strAppPath.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar) + 1);
 			return strAppPath;
 		}
 		
@@ -83,6 +83,11 @@ namespace GoonTools
 		private string AppDataPath()
 		{
 			return System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + GetDirChar() + _AppName + GetDirChar();
+		}
+		
+		public string ImageFolder
+		{
+			get{return AppPath.Replace("file:///","") +  "images" + System.IO.Path.AltDirectorySeparatorChar.ToString();}
 		}
 	}
 }

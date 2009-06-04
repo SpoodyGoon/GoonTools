@@ -65,18 +65,21 @@
     <EmbeddedResource Include="images\board_piece50_2.png">
       <LogicalName>board_piece50_2.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="images\BoardPieceDark.png">
+    <Content Include="images\BoardPieceDark.png">
       <LogicalName>BoardPieceDark.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\BoardPieceLight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\BoardPieceLight.png">
       <LogicalName>BoardPieceLight.png</LogicalName>
-    </EmbeddedResource>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="images\InGameLogo.png">
       <LogicalName>InGameLogo.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="images\background.png">
+    <Content Include="images\background.png">
       <LogicalName>background.png</LogicalName>
-    </EmbeddedResource>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="Main.cs" />
