@@ -11,12 +11,12 @@ namespace GoonTools.ColumnSelector
 		private Gtk.Fixed fx = new Gtk.Fixed();
 		private Gtk.Image img = new Gtk.Image(Gdk.Pixbuf.LoadFromResource("columnpicker.png"));
 		private Gtk.TreeViewColumn[] _Columns;
-		private Gdk.Rectangle _TreeViewArea;
-		public TreeColumnSelector(Gtk.TreeViewColumn[] cols, Gdk.Rectangle rec)
+		public TreeColumnSelector(Gtk.TreeViewColumn[] cols)
 		{
 			_Columns = cols;
-			_TreeViewArea = rec;
 			this.MinWidth = 25;
+			this.MaxWidth = 25;
+			this.FixedWidth = 25;
 			this.Clickable = true;
 			this.Resizable = false;
 			this.Visible = true;
@@ -34,7 +34,13 @@ namespace GoonTools.ColumnSelector
 		{
 			try
 			{
-				PopupWindow pop = new PopupWindow(_Columns, _TreeViewArea, fx.Allocation);
+				int x, y, width = 100, height = 200;
+				// get the position of the parent window
+				this.TreeView.ParentWindow.GetPosition( out x, out y );	
+				// now find the treeview
+				x = x + this.TreeView.Allocation.Right;
+				y += this.TreeView.Allocation.Top + fx.Allocation.Bottom;
+				PopupWindow pop = new PopupWindow(_Columns, new Gdk.Rectangle(x, y, width, height));
 				for(int i = 0; i< _Columns.Length; i++)
 				{
 					if(_Columns[i].Title != "")

@@ -29,14 +29,14 @@ namespace GoonTools
 	/// </summary>
 	public partial class ColumnSelectorTreeView : Gtk.TreeView
 	{
-		public ColumnSelectorTreeView(Gtk.Window parent)
+		public ColumnSelectorTreeView(GoonTools.ColumnSelector.PopupWindow parent)
 		{
 			this.Build();
-			//_Parent = parent;
+			_Parent = parent;
 		}
 		
 		
-		public ListStore ColumnStore
+		internal ListStore ColumnStore
 		{
 			get{return _ColumnStore;}
 		}
@@ -64,13 +64,13 @@ namespace GoonTools
 
 		private void ColumnSelectorTreeView_CursorChanged(object sender, EventArgs e)
 		{
-//			Gtk.TreeIter iter;
-//			if(this.Selection.GetSelected(out iter))
-//			{
-//				bool blnIsChecked = Convert.ToBoolean(_ColumnStore.GetValue(iter, 1)) ? false:true;
-//				((MonoToDo.CustomWidgets.ColumnSelector)_Parent).ParentTree.Columns[Convert.ToInt16(_ColumnStore.GetValue(iter, 0))].Visible = blnIsChecked;
-//				_ColumnStore.SetValue(iter, 1, blnIsChecked);
-//			}
+			Gtk.TreeIter iter;
+			if(this.Selection.GetSelected(out iter))
+			{
+				bool blnIsChecked = Convert.ToBoolean(_ColumnStore.GetValue(iter, 1)) ? false:true;
+				_Parent.Columns[Convert.ToInt16(_ColumnStore.GetValue(iter, 0))].Visible = blnIsChecked;
+				_ColumnStore.SetValue(iter, 1, blnIsChecked);
+			}
 		}
 	}
 }
