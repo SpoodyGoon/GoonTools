@@ -31,8 +31,14 @@ namespace GoonTools
 	{
 		public ColumnSelectorTreeView(Gtk.Window parent)
 		{
-			//this.Build();
+			this.Build();
 			//_Parent = parent;
+		}
+		
+		
+		public ListStore ColumnStore
+		{
+			get{return _ColumnStore;}
 		}
 		
 		private void cellIsVisible_Toggled (object sender, ToggledArgs args)

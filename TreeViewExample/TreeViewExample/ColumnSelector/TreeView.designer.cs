@@ -32,8 +32,8 @@ namespace GoonTools
 		{
 			this.HeadersVisible = false;
 			this.Sensitive = true;
-//			this.RulesHint = true;
-//			this.EnableGridLines = Gtk.TreeViewGridLines.Both;
+			this.RulesHint = true;
+			this.EnableGridLines = Gtk.TreeViewGridLines.Horizontal;
 			
 			Gtk.TreeViewColumn colIndex = new Gtk.TreeViewColumn();
 			colIndex.Visible = false;

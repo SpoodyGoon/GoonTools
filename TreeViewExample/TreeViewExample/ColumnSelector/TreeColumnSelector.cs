@@ -21,7 +21,7 @@ namespace GoonTools.ColumnSelector
 			this.Resizable = false;
 			this.Visible = true;
 			
-			img.SetPadding(3,0);			
+			img.SetPadding(3,0);
 			fx.SizeAllocate(img.Allocation);
 			fx.Put(img, 0,0);
 			fx.ShowAll();
@@ -32,7 +32,23 @@ namespace GoonTools.ColumnSelector
 
 		private void TreeColumnSelector_Clicked(object sender, EventArgs e)
 		{
-			PopupWindow pop = new PopupWindow(_Columns, _TreeViewArea, fx.Allocation);
+			try
+			{
+				PopupWindow pop = new PopupWindow(_Columns, _TreeViewArea, fx.Allocation);
+				for(int i = 0; i< _Columns.Length; i++)
+				{
+					if(_Columns[i].Title != "")
+						pop.AddColumn(i, _Columns[i].Visible, _Columns[i].Title);
+				}
+				pop.ShowPopUp();
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString());
+				md.Run();
+				md.Destroy();
+			}
+			
 		}
 	}
 }
