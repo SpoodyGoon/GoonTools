@@ -61,7 +61,6 @@ namespace GoonTools
 						_ColumnStore.SetValue(iter, 1, blnIsChecked);
 					}
 				}
-				
 			}
 			return base.OnButtonPressEvent(evnt);
 		}
