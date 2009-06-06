@@ -34,6 +34,11 @@ namespace TaskList
 		{
 			_Parent = parent;
 			Build();
+			ls.AppendValues(1, "Develop a Mono application for the XO laptop", "21 Apr 2009", true);
+			ls.AppendValues(2, "Custom controls with MonoDevelop and GTK#", "18 May 2008", true);
+			ls.AppendValues(3, "A google search application using Gtk#", "14 Jan 2005", false);
+			ls.AppendValues(4, "Todolist for Linux", "26 Jan 2008", true);
+			ls.AppendValues(5, "Using MySQL from C# and Mono.NET", "3 Jul 2005", false);
 		}
 		
 		#region Public Properties
