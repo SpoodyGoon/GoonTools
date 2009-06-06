@@ -32,16 +32,19 @@ namespace GoonTools
 		{
 			this.HeadersVisible = false;
 			this.Sensitive = true;
-			this.RulesHint = true;
+			//this.RulesHint = true;
 			this.EnableGridLines = Gtk.TreeViewGridLines.Horizontal;
 			
 			Gtk.TreeViewColumn colIndex = new Gtk.TreeViewColumn();
+			colIndex.Title = "Index";
 			colIndex.Visible = false;
 			
 			Gtk.TreeViewColumn colIsVisible = new Gtk.TreeViewColumn ();
+			colIsVisible.Title = "IsVisible";
 			colIsVisible.Clickable = true;
 			
 			Gtk.TreeViewColumn colColumnTitle = new Gtk.TreeViewColumn ();
+			colColumnTitle.Title="Title";
 			colColumnTitle.Expand = true;
 			
 			this.AppendColumn(colIndex);
@@ -55,7 +58,6 @@ namespace GoonTools
 			cellIsVisible.Mode = CellRendererMode.Editable;
 			cellIsVisible.Sensitive = true;
 			cellIsVisible.Activatable = true;
-			cellIsVisible.Toggled += new Gtk.ToggledHandler(cellIsVisible_Toggled);
 			cellIsVisible.Xalign = 0.5f;
 			cellIsVisible.Width = 20;			
 			colIsVisible.PackStart (cellIsVisible, false);
@@ -69,7 +71,7 @@ namespace GoonTools
 			colColumnTitle.AddAttribute (cellColumnTitle, "text", 2);
 			this.Sensitive = true;
 			this.CanFocus= true;
-			this.CursorChanged += new EventHandler(ColumnSelectorTreeView_CursorChanged);
+			this.HoverSelection = true;
 			this.Model = _ColumnStore;
 		}
 	}
