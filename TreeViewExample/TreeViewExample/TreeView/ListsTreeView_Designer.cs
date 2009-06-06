@@ -46,36 +46,24 @@ namespace TaskList
 			// treeview set up
 			// Create a column for the List ID
 			Gtk.TreeViewColumn colListID = new Gtk.TreeViewColumn ();
-			colListID.Clickable = true;
-			colListID.Reorderable = true;
-			colListID.Clicked +=  new EventHandler (Column_Clicked);
 			colListID.Visible = false;
 			colListID.Title = "ID";
 			
 			// Create a column for the list name
 			Gtk.TreeViewColumn colListName = new Gtk.TreeViewColumn ();
-			colListName.Clickable = true;
-			colListName.Clicked +=  new EventHandler (Column_Clicked);
 			colListName.Expand = true;
-			colListID.Reorderable = true;
 			colListName.Resizable = true;
 			colListName.Visible = true;
 			colListName.Title = "List Name";
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colDate = new Gtk.TreeViewColumn ();
-			colDate.Clickable = true;
-			colDate.Reorderable = true;
-			colDate.Clicked +=  new EventHandler (Column_Clicked);
 			colDate.Resizable = true;
 			colDate.Visible = true;
 			colDate.Title = "Date";
 			
 			// Create a column for the Archive
 			Gtk.TreeViewColumn colIsActive = new Gtk.TreeViewColumn ();
-			colIsActive.Clickable = true;
-			colIsActive.Reorderable = true;
-			colIsActive.Clicked +=  new EventHandler (Column_Clicked);
 			colIsActive.Resizable = false;
 			colIsActive.Title = "Active";
 			colIsActive.Visible = true;			
@@ -96,17 +84,15 @@ namespace TaskList
 			Gtk.CellRendererText cellListName = new Gtk.CellRendererText ();
 			cellListName.Width=250;
 			cellListName.Editable = true;
-			cellListName.Edited += cellListName_Edited;
 			colListName.PackStart (cellListName, true);
 			
 			Gtk.CellRendererText cellDate = new Gtk.CellRendererText ();
-			cellDate.Alignment=Pango.Alignment.Right;
+			cellDate.Xalign = 1.0f;
 			cellDate.Width=70;
 			colDate.PackStart (cellDate, true);
 			
 			Gtk.CellRendererToggle cellIsActive = new Gtk.CellRendererToggle ();
 			cellIsActive.Width=30;
-			cellIsActive.Toggled += new Gtk.ToggledHandler(this.cellIsActive_Toggled);
 			colIsActive.PackStart (cellIsActive, false);
 			
 			// Tell the Cell Renderers which item(frmMain)s in the model to display
@@ -114,22 +100,8 @@ namespace TaskList
 			colListName.AddAttribute (cellListName, "text", 1);
 			colDate.AddAttribute (cellDate, "text", 2);
 			colIsActive.AddAttribute(cellIsActive, "active", 3);
+			this.Model = ls;
 			
-			// Create the filter and tell it to use the liststore as it's base Model
-			filter = new Gtk.TreeModelFilter (ls, null);
-			// Specify the function that determines which rows to filter out and which ones to display
-			filter.VisibleFunc = new TreeModelFilterVisibleFunc(filter_VisibleFunc);
-			
-			//this.RowActivated += ListTreeView_RowActivated;
-			this.Model = filter;
 		}
-	}
-	
-	enum ListColumns
-	{
-		ListID,
-		ListName,
-		DateCreated,
-		IsActive
 	}
 }
