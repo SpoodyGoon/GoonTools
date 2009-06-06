@@ -35,7 +35,7 @@ namespace TaskList
 		private bool _ShowOnlyActive = false;
 		private bool _FilterActive = true;
 		private Gtk.TreeModelFilter filter;
-		private Gtk.ListStore ls = new Gtk.ListStore(typeof(String), typeof(String), typeof(String), typeof(Boolean));
+		private Gtk.ListStore ls = new Gtk.ListStore(typeof(int), typeof(string), typeof(string), typeof(bool));
 		private void Build()
 		{
 			this.HeadersClickable = true;
@@ -100,7 +100,8 @@ namespace TaskList
 			colListName.PackStart (cellListName, true);
 			
 			Gtk.CellRendererText cellDate = new Gtk.CellRendererText ();
-			cellDate.Width=30;
+			cellDate.Alignment=Pango.Alignment.Right;
+			cellDate.Width=70;
 			colDate.PackStart (cellDate, true);
 			
 			Gtk.CellRendererToggle cellIsActive = new Gtk.CellRendererToggle ();
