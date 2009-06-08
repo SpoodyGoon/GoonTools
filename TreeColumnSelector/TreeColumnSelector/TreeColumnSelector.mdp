@@ -1,0 +1,34 @@
+<Project name="TreeColumnSelector" fileversion="2.0" releaseversion="0.1" language="C#" DefaultNamespace="TreeColumnSelector" Configuration="Debug" Platform="AnyCPU" AssemblyName="TreeColumnSelector" MonoTargetFrameworkVersion="v2.0" SourceAnalysisOverrideSettingsFile="C:\Users\Andy\AppData\Roaming\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis" TargetFrameworkVersion="v3.5" AllowUnsafeBlocks="False" NoStdLib="False" WarningLevel="4" TreatWarningsAsErrors="false" targetFramework="3.5" ctype="DotNetProject">
+  <Configurations active="Debug">
+    <Configuration name="Debug" Optimize="False" CheckForOverflowUnderflow="True" DefineConstants="DEBUG;TRACE" ctype="DotNetProjectConfiguration">
+      <Output directory="bin\Debug\" assembly="TreeColumnSelector" />
+      <Build debugmode="True" target="Library" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" />
+      <EnvironmentVariables />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="False" unsafecodeallowed="False" generateoverflowchecks="True" definesymbols="DEBUG;TRACE" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+    <Configuration name="Release" Optimize="True" CheckForOverflowUnderflow="False" DefineConstants="TRACE" ctype="DotNetProjectConfiguration">
+      <Output directory="bin\Release\" assembly="TreeColumnSelector" />
+      <Build debugmode="False" target="Library" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="False" definesymbols="TRACE" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+  </Configurations>
+  <Contents>
+    <File name="AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="GrabUtil.cs" subtype="Code" buildaction="Compile" />
+    <File name="PopupWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="TreeColumnSelector.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColumnSelectorTreeView.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColumnSelectorTreeView.designer.cs" subtype="Code" buildaction="Compile" />
+    <File name="columnpicker.png" subtype="Code" buildaction="EmbedAsResource" />
+  </Contents>
+  <References>
+    <ProjectReference type="Gac" localcopy="True" refto="atk-sharp" />
+    <ProjectReference type="Gac" localcopy="True" refto="gdk-sharp" />
+    <ProjectReference type="Gac" localcopy="True" refto="glib-sharp" />
+    <ProjectReference type="Gac" localcopy="True" refto="gtk-sharp" />
+    <ProjectReference type="Gac" localcopy="True" refto="pango-sharp" />
+    <ProjectReference type="Gac" localcopy="True" refto="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </References>
+</Project>
