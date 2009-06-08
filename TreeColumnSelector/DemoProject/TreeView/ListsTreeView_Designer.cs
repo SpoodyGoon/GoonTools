@@ -28,7 +28,7 @@ using Gtk;
 namespace TaskList
 {
 	
-	internal partial class ListsTreeView : Gtk.TreeView
+	public partial class ListsTreeView : Gtk.TreeView
 	{
 		private Gtk.Window _Parent;
 		private string _FilterText = "";
@@ -46,6 +46,7 @@ namespace TaskList
 			// treeview set up
 			// Create a column for the List ID
 			Gtk.TreeViewColumn colListID = new Gtk.TreeViewColumn ();
+			colListID.Alignment=0.5f;
 			colListID.Visible = false;
 			colListID.Title = "ID";
 			
@@ -54,16 +55,17 @@ namespace TaskList
 			colListName.Expand = true;
 			colListName.Resizable = true;
 			colListName.Visible = true;
-			colListName.Title = "List Name";
+			colListName.Title = "  List Name";
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colDate = new Gtk.TreeViewColumn ();
 			colDate.Resizable = true;
 			colDate.Visible = true;
-			colDate.Title = "Date";
+			colDate.Title = "  Date";
 			
 			// Create a column for the Archive
 			Gtk.TreeViewColumn colIsActive = new Gtk.TreeViewColumn ();
+			colIsActive.Alignment=0.5f;
 			colIsActive.Resizable = false;
 			colIsActive.Title = "Active";
 			colIsActive.Visible = true;			
@@ -83,15 +85,17 @@ namespace TaskList
 			
 			Gtk.CellRendererText cellListName = new Gtk.CellRendererText ();
 			cellListName.Width=250;
+			cellListName.Xalign=0.9f;
 			cellListName.Editable = true;
 			colListName.PackStart (cellListName, true);
 			
 			Gtk.CellRendererText cellDate = new Gtk.CellRendererText ();
-			cellDate.Xalign = 1.0f;
+			cellDate.Xalign = 0.9f;
 			cellDate.Width=70;
 			colDate.PackStart (cellDate, true);
 			
 			Gtk.CellRendererToggle cellIsActive = new Gtk.CellRendererToggle ();
+			cellIsActive.Xalign=0.9f;
 			cellIsActive.Width=30;
 			colIsActive.PackStart (cellIsActive, false);
 			
