@@ -1,0 +1,60 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{9A2A10EA-4266-4175-9BB0-63C98F227476}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TreeColumnSelector</RootNamespace>
+    <AssemblyName>TreeColumnSelector</AssemblyName>
+    <MonoTargetFrameworkVersion>v2.0</MonoTargetFrameworkVersion>
+    <SourceAnalysisOverrideSettingsFile>C:\Users\Andy\AppData\Roaming\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="atk-sharp" />
+    <Reference Include="gdk-sharp" />
+    <Reference Include="glib-sharp" />
+    <Reference Include="gtk-sharp" />
+    <Reference Include="pango-sharp" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="GrabUtil.cs" />
+    <Compile Include="PopupWindow.cs" />
+    <Compile Include="TreeColumnSelector.cs" />
+    <Compile Include="ColumnSelectorTreeView.cs" />
+    <Compile Include="ColumnSelectorTreeView.designer.cs" />
+    <EmbeddedResource Include="columnpicker.png">
+      <LogicalName>columnpicker.png</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MonoBuildTasksPath)\Mono.Build.CSharp.targets" />
+</Project>
