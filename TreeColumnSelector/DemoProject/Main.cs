@@ -1,7 +1,7 @@
 using System;
 using Gtk;
 
-namespace TreeViewExample
+namespace DemoProject
 {
 	class MainClass
 	{
