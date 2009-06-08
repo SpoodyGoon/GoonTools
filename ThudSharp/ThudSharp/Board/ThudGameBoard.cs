@@ -28,7 +28,6 @@ namespace ThudSharp
 			{
 			Gdk.Window win = args.Window;
 			Gdk.Rectangle area = args.Area;
-			
 			// Add the background image
 			Gdk.Pixbuf img = GoonTools.Common.BoardBackGround;
 			this.WidthRequest = img.Width;
