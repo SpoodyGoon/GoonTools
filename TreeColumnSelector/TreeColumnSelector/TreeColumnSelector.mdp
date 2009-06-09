@@ -1,13 +1,12 @@
 <Project name="TreeColumnSelector" fileversion="2.0" releaseversion="0.1" language="C#" DefaultNamespace="TreeColumnSelector" Configuration="Debug" Platform="AnyCPU" AssemblyName="TreeColumnSelector" MonoTargetFrameworkVersion="v2.0" SourceAnalysisOverrideSettingsFile="C:\Users\Andy\AppData\Roaming\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis" TargetFrameworkVersion="v3.5" AllowUnsafeBlocks="False" NoStdLib="False" WarningLevel="4" TreatWarningsAsErrors="false" targetFramework="3.5" ctype="DotNetProject">
   <Configurations active="Debug">
-    <Configuration name="Debug" Optimize="False" CheckForOverflowUnderflow="True" DefineConstants="DEBUG;TRACE" ctype="DotNetProjectConfiguration">
+    <Configuration name="Debug" Optimize="false" CheckForOverflowUnderflow="true" DefineConstants="DEBUG;TRACE" RegisterForComInterop="False" GenerateSerializationAssemblies="Auto" BaseAddress="4194304" PlatformTarget="x86" FileAlignment="4096" WarningLevel="4" ctype="DotNetProjectConfiguration">
       <Output directory="bin\Debug\" assembly="TreeColumnSelector" />
       <Build debugmode="True" target="Library" />
       <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" />
-      <EnvironmentVariables />
       <CodeGeneration compiler="Mcs" warninglevel="4" optimize="False" unsafecodeallowed="False" generateoverflowchecks="True" definesymbols="DEBUG;TRACE" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
-    <Configuration name="Release" Optimize="True" CheckForOverflowUnderflow="False" DefineConstants="TRACE" ctype="DotNetProjectConfiguration">
+    <Configuration name="Release" Optimize="true" CheckForOverflowUnderflow="False" DefineConstants="TRACE" RegisterForComInterop="False" GenerateSerializationAssemblies="Auto" BaseAddress="4194304" PlatformTarget="x86" FileAlignment="4096" WarningLevel="4" ctype="DotNetProjectConfiguration">
       <Output directory="bin\Release\" assembly="TreeColumnSelector" />
       <Build debugmode="False" target="Library" />
       <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" />

@@ -22,13 +22,15 @@
 
 using System;
 using Gtk;
+using HollyLibrary;
 
 public partial class MainWindow: Gtk.Window
 {	
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
-		swLists.Add(new TaskList.ListsTreeView(this));	
+		swLists.Add(new TaskList.ListsTreeView(this));
+		//frame1.Add(new h
 		this.ShowAll();
 	}
 	
