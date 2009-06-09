@@ -2,7 +2,7 @@
  *                      ListTreeView.cs
  *
  *	 	Copyright (C) 2009
- *		Andrew York <MonoToDo@brdstudio.net>
+ *		Andrew York <goontools@brdstudio.net>
  *
  *************************************************************************/
 /*

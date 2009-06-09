@@ -1,8 +1,8 @@
 /*************************************************************************
- *                      ListTreeView_Designer.cs
+ *                      ListTreeView.designer.cs
  *
  *	 	Copyright (C) 2009
- *		Andrew York <MonoToDo@brdstudio.net>
+ *		Andrew York <goontools@brdstudio.net>
  *
  *************************************************************************/
 /*
@@ -31,10 +31,6 @@ namespace TaskList
 	public partial class ListsTreeView : Gtk.TreeView
 	{
 		private Gtk.Window _Parent;
-		private string _FilterText = "";
-		private bool _ShowOnlyActive = false;
-		private bool _FilterActive = true;
-		private Gtk.TreeModelFilter filter;
 		private Gtk.ListStore ls = new Gtk.ListStore(typeof(int), typeof(string), typeof(string), typeof(bool));
 		private void Build()
 		{
@@ -52,16 +48,18 @@ namespace TaskList
 			
 			// Create a column for the list name
 			Gtk.TreeViewColumn colListName = new Gtk.TreeViewColumn ();
+			colListName.Alignment=0.05f;
 			colListName.Expand = true;
 			colListName.Resizable = true;
 			colListName.Visible = true;
-			colListName.Title = "  List Name";
+			colListName.Title = "List Name";
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colDate = new Gtk.TreeViewColumn ();
+			colDate.Alignment=0.05f;
 			colDate.Resizable = true;
 			colDate.Visible = true;
-			colDate.Title = "  Date";
+			colDate.Title = "Date";
 			
 			// Create a column for the Archive
 			Gtk.TreeViewColumn colIsActive = new Gtk.TreeViewColumn ();

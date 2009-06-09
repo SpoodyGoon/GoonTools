@@ -1,3 +1,6 @@
+﻿//  NOTE: Taken from Holly Gtk Widgets - A free library of .NET/GTK# widgets
+//	http://code.google.com/p/holly-gtk-widgets/
+
 // GrabUtil.cs created with MonoDevelop
 // User: dantes at 7:52 PM 4/13/2008
 //

@@ -1,8 +1,8 @@
 /*************************************************************************
- *                      frmAbout.cs
+ *                      ColumnSelectorTreeView.cs
  *
- * 		Copyright (C) Date: 4/25/2009 - Time: 9:06 PM
- *		User: Andy - <goontools@brdstudio.net>
+ *	 	Copyright (C) 2009
+ *		Andrew York <goontools@brdstudio.net>
  *
  *************************************************************************/
 /*
@@ -19,6 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+ 
 using System;
 using Gtk;
 
