@@ -48,7 +48,7 @@ namespace TaskList
 			
 			// Create a column for the list name
 			Gtk.TreeViewColumn colListName = new Gtk.TreeViewColumn ();
-			colListName.Alignment=0.05f;
+			colListName.Alignment=0.02f;
 			colListName.Expand = true;
 			colListName.Resizable = true;
 			colListName.Visible = true;
@@ -83,17 +83,15 @@ namespace TaskList
 			
 			Gtk.CellRendererText cellListName = new Gtk.CellRendererText ();
 			cellListName.Width=250;
-			cellListName.Xalign=0.9f;
 			cellListName.Editable = true;
 			colListName.PackStart (cellListName, true);
 			
 			Gtk.CellRendererText cellDate = new Gtk.CellRendererText ();
-			cellDate.Xalign = 0.9f;
 			cellDate.Width=70;
 			colDate.PackStart (cellDate, true);
 			
 			Gtk.CellRendererToggle cellIsActive = new Gtk.CellRendererToggle ();
-			cellIsActive.Xalign=0.9f;
+			cellIsActive.Xalign=0.5f;
 			cellIsActive.Width=30;
 			colIsActive.PackStart (cellIsActive, false);
 			

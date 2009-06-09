@@ -30,16 +30,15 @@ namespace GoonTools.ColumnSelector
 	{
 		private Gtk.TreeViewColumn[] _Columns;
 		private ColumnSelectorTreeView _ColumnSelectorTreeView;
-		private int _InitialWidth = 100;
-		private int _InitialHeight = 200;
+		// the padding is just used to help fine tune the format of the popup window
 		private int _Padding = 3;
 		public PopupWindow(Gtk.TreeViewColumn[] col, Gdk.Rectangle ColHeaderRec) : base(Gtk.WindowType.Popup)
 		{
 			Build();
 			_Columns = col;
-			this.WidthRequest = _InitialWidth;
-			this.HeightRequest = _InitialHeight;
-			this.Move(ColHeaderRec.Left - _InitialWidth + _Padding, ColHeaderRec.Top + _Padding);
+			this.WidthRequest = ColHeaderRec.Width;
+			this.HeightRequest = ColHeaderRec.Height;
+			this.Move(ColHeaderRec.Left - ColHeaderRec.Width + _Padding, ColHeaderRec.Top + _Padding);
 			this.ShowAll();
 		}
 		
@@ -61,6 +60,7 @@ namespace GoonTools.ColumnSelector
 			Gtk.Alignment GtkAlignment1 = new Gtk.Alignment(0F, 0F, 1F, 1F);
 			Gtk.ScrolledWindow  GtkScrolledWindow1 = new Gtk.ScrolledWindow();
 			GtkScrolledWindow1.ShadowType = Gtk.ShadowType.EtchedOut;
+			// add the child treeview to the window
 			_ColumnSelectorTreeView = new ColumnSelectorTreeView(this);
 			GtkScrolledWindow1.Add(_ColumnSelectorTreeView);
 			GtkAlignment1.Add(GtkScrolledWindow1);			
@@ -73,6 +73,10 @@ namespace GoonTools.ColumnSelector
 		
 		#endregion Build GUI
 		
+		/// <summary>
+		///  this property gives access to the columns
+		///  for the child treeview
+		/// </summary>
 		internal Gtk.TreeViewColumn[] Columns
 		{
 			get{return _Columns;}
@@ -94,6 +98,14 @@ namespace GoonTools.ColumnSelector
 			this.ShowAll();
 		}
 		
+		/// <summary>
+		///  This add the columns from the treeview we are adjusting
+		///  to the child treeview that will display 
+		///  and control the visiblity of the columns on the parent treeivew
+		/// </summary>
+		/// <param name="Index"></param>
+		/// <param name="IsVisible"></param>
+		/// <param name="ColumnTitle"></param>
 		internal void AddColumn(int Index, bool IsVisible, string ColumnTitle)
 		{
 			_ColumnSelectorTreeView.ColumnStore.AppendValues(Index, IsVisible, ColumnTitle);
@@ -105,6 +117,14 @@ namespace GoonTools.ColumnSelector
 			this.Destroy();
 		}
 
+		/// <summary>
+		///  this event lets us close the popup window
+		///  and release the grab we got through the HollyLibrary
+		///  without this event getting the focus back from this window
+		///  in a Linux/Gnome enviroment is very hard. lol
+		/// </summary>
+		/// <param name="evnt"></param>
+		/// <returns></returns>
 		[GLib.DefaultSignalHandlerAttribute()]
 		protected override bool OnButtonPressEvent(Gdk.EventButton evnt)
 		{
