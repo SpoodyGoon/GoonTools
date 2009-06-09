@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
- 
+
 using System;
 using Gtk;
 
@@ -35,20 +35,16 @@ namespace GoonTools.ColumnSelector
 		public TreeColumnSelector(Gtk.TreeViewColumn[] cols)
 		{
 			_Columns = cols;
-			this.MinWidth = 25;
-			this.MaxWidth = 25;
 			this.FixedWidth = 25;
-			this.Clickable = true;
+			this.Clickable=true;
 			this.Resizable = false;
-			this.Visible = true;
 			
 			img.SetPadding(3,0);
 			fx.SizeAllocate(img.Allocation);
 			fx.Put(img, 0,0);
 			fx.ShowAll();
 			this.Widget = (Gtk.Widget)fx;
-			this.Clicked += new EventHandler(TreeColumnSelector_Clicked);
-			
+			this.Clicked += new EventHandler(TreeColumnSelector_Clicked);			
 		}
 
 		private void TreeColumnSelector_Clicked(object sender, EventArgs e)
@@ -57,8 +53,8 @@ namespace GoonTools.ColumnSelector
 			{
 				int x, y, width = 100, height = 200;
 				// get the position of the parent window
-				this.TreeView.ParentWindow.GetPosition( out x, out y );	
-				// now find the treeview
+				this.TreeView.ParentWindow.GetPosition( out x, out y );
+				// now find the treeviews allocation
 				x = x + this.TreeView.Allocation.Right;
 				y += this.TreeView.Allocation.Top + fx.Allocation.Bottom;
 				PopupWindow pop = new PopupWindow(_Columns, new Gdk.Rectangle(x, y, width, height));
@@ -71,7 +67,7 @@ namespace GoonTools.ColumnSelector
 			}
 			catch(Exception ex)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString());
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, true, "<b>GoonTools Column Selector</b>\n" + ex.ToString(), "GoonTools Column Selector Error");
 				md.Run();
 				md.Destroy();
 			}
