@@ -56,7 +56,7 @@
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
     <Compile Include="TreeView\ListsTreeView.cs" />
-    <Compile Include="TreeView\ListsTreeView_Designer.cs" />
+    <Compile Include="TreeView\ListsTreeView.designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
