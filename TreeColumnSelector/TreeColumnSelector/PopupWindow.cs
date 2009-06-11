@@ -38,7 +38,7 @@ namespace GoonTools.ColumnSelector
 			_Columns = col;
 			this.WidthRequest = ColHeaderRec.Width;
 			this.HeightRequest = ColHeaderRec.Height;
-			this.Move(ColHeaderRec.Left - ColHeaderRec.Width + _Padding, ColHeaderRec.Top + _Padding);
+			this.Move(ColHeaderRec.Left - ColHeaderRec.Width + _Padding, ColHeaderRec.Top + 5);
 			this.ShowAll();
 		}
 		
