@@ -56,7 +56,7 @@ namespace TaskList
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colDate = new Gtk.TreeViewColumn ();
-			colDate.Alignment=0.05f;
+			colDate.Alignment=0.5f;
 			colDate.Resizable = true;
 			colDate.Visible = true;
 			colDate.Title = "Date";
@@ -82,16 +82,18 @@ namespace TaskList
 			colListID.PackStart (cellListID, false);
 			
 			Gtk.CellRendererText cellListName = new Gtk.CellRendererText ();
-			cellListName.Width=250;
+			cellListName.Width=350;
 			cellListName.Editable = true;
 			colListName.PackStart (cellListName, true);
 			
 			Gtk.CellRendererText cellDate = new Gtk.CellRendererText ();
-			cellDate.Width=70;
+			cellDate.Xalign=0.95f;
+			cellDate.Width=110;
 			colDate.PackStart (cellDate, true);
 			
 			Gtk.CellRendererToggle cellIsActive = new Gtk.CellRendererToggle ();
 			cellIsActive.Xalign=0.5f;
+			cellIsActive.Xpad=(uint)5;
 			cellIsActive.Width=30;
 			colIsActive.PackStart (cellIsActive, false);
 			
