@@ -73,7 +73,7 @@ namespace GoonTools
 		{
 			// search for the options file if it exists load it
 			// if it has not been saved load the defaults
-			if(File.Exists(EnvData.SavePath + "Options.dat"))
+			if(File.Exists(EnvData.SaveFolder + "Options.dat"))
 			{
 				LoadOptions();
 			}
@@ -88,7 +88,7 @@ namespace GoonTools
 			try
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				Stream stream = new FileStream(EnvData.SavePath + "Options.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
+				Stream stream = new FileStream(EnvData.SaveFolder + "Options.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
 				_Option = (GoonTools.Options) formatter.Deserialize(stream);
 				stream.Close();
 			}
@@ -105,7 +105,7 @@ namespace GoonTools
 			try
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				Stream stream = new FileStream(EnvData.SavePath + "Options.dat", FileMode.Create, FileAccess.Write, FileShare.None);
+				Stream stream = new FileStream(EnvData.SaveFolder + "Options.dat", FileMode.Create, FileAccess.Write, FileShare.None);
 				formatter.Serialize(stream, _Option);
 				stream.Close();
 			}
@@ -123,7 +123,7 @@ namespace GoonTools
 		
 		public static void LogError(string ErrorString)
 		{
-			StreamWriter sw = new StreamWriter(EnvData.SavePath + "error.log", true);
+			StreamWriter sw = new StreamWriter(EnvData.SaveFolder + "error.log", true);
 			sw.Write("\n--------------------------------------------------------------------");
 			sw.Write("\n---- " + DateTime.Now.ToString());
 			sw.Write("\n" + ErrorString);
