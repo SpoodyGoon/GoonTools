@@ -5,22 +5,15 @@ using System.ComponentModel;
 
 namespace ThudSharp
 {	
-	public enum StaticPieceType
-	{
-		Light,
-		Dark
-	}
-	
-	[System.ComponentModel.ToolboxItem(true)]
 	public class StaticBoardPiece : Gtk.DrawingArea 
 	{
-		private StaticPieceType _PieceType;
+		private NonMovablePieceType _PieceType;
 		private int _Left = 0;
 		private int _Top = 0;
 		private Gdk.Pixbuf _BoardPiece;
 		private string Test = "";
 		private bool _IsAltPiece =false;
-		public StaticBoardPiece(StaticPieceType pt)
+		public StaticBoardPiece(NonMovablePieceType pt)
 		{
 			_PieceType = pt;
 			
@@ -29,7 +22,7 @@ namespace ThudSharp
 		
 		public StaticBoardPiece()
 		{
-			_PieceType = StaticPieceType.Dark;
+			_PieceType = NonMovablePieceType.Dark;
 			
 		}	
 		
@@ -45,7 +38,7 @@ namespace ThudSharp
 			set{_IsAltPiece=value;}
 		}
 		
-		public ThudSharp.StaticPieceType PieceType
+		public NonMovablePieceType PieceType
 		{
 			get{return _PieceType;}
 			set{_PieceType = value;}
@@ -75,7 +68,7 @@ namespace ThudSharp
 			Gdk.Window win = args.Window;
 			Gdk.Rectangle area = args.Area;
 			
-			if(_PieceType == StaticPieceType.Dark)
+			if(_PieceType == NonMovablePieceType.Dark)
 				_BoardPiece = GoonTools.Common.BoardPieceDark;
 			else
 				_BoardPiece = GoonTools.Common.BoardPieceLight;

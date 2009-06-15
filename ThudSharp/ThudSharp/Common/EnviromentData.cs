@@ -33,27 +33,47 @@ namespace GoonTools
 	/// </summary>
 	public class EnviromentData
 	{
-		private string _AppName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+		private string _AppName;
+		private string _AppPath;
+		private string _DirChar;
+		private string _OS;
+		private string _ImageFolder;
+		private string _SaveFolder;
+		public EnviromentData()
+		{
+			_AppPath=GetAppPath();
+			_AppName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+			_OS=System.Environment.OSVersion.Platform.ToString();
+			_DirChar=GetDirChar();
+			_ImageFolder=GetImageFolder();
+			_SaveFolder=GetSaveFolder();
+		}
+		
 		#region Public Properties
 		
 		public string AppPath
 		{
-			get{ return GetAppPath();}
+			get{ return _AppPath;}
 		}
 		
 		public string DirChar
 		{
-			get{return GetDirChar();}
+			get{return _DirChar;}
 		}
 		
 		public string OS
 		{
-			get{return System.Environment.OSVersion.Platform.ToString();}
+			get{return _OS;}
 		}
 		
-		public string SavePath
+		public string SaveFolder
 		{
-			get{return AppDataPath();}
+			get{return _SaveFolder;}
+		}
+		
+		public string ImageFolder
+		{
+			get{return _ImageFolder;}
 		}
 		
 		#endregion Public Properties
@@ -61,7 +81,7 @@ namespace GoonTools
 		private string GetAppPath()
 		{
 			string strAppPath = Assembly.GetExecutingAssembly().CodeBase;
-			strAppPath = strAppPath.Substring(0, strAppPath.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar) + 1);
+			strAppPath = strAppPath.Substring(0, strAppPath.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar) + 1).Replace("file:///","");
 			return strAppPath;
 		}
 		
@@ -80,14 +100,14 @@ namespace GoonTools
 			return strDirChar;
 		}		
 		
-		private string AppDataPath()
+		private string GetSaveFolder()
 		{
 			return System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + GetDirChar() + _AppName + GetDirChar();
 		}
 		
-		public string ImageFolder
+		private string GetImageFolder()
 		{
-			get{return AppPath.Replace("file:///","") +  "images" + System.IO.Path.AltDirectorySeparatorChar.ToString();}
+			return _AppPath +  "images" + System.IO.Path.AltDirectorySeparatorChar.ToString();
 		}
 	}
 }
