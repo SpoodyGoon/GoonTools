@@ -1,26 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!--------------------------------------------------------------------------->  
-<!--                           INTRODUCTION                                
+<html><head>
+<!---------------------------------------------------------------------------> <!-- INTRODUCTION The Code Project article submission template (HTML version) Using this template will help us post your article sooner. To use, just follow the 3 easy steps below: 1. Fill in the article description details 2. Add links to your images and downloads 3. Include the main article text That's all there is to it! All formatting will be done by our submission scripts and style sheets. --> <!--------------------------------------------------------------------------><!-- IGNORE THIS SECTION --><title>The Code Project</title>
 
- The Code Project article submission template (HTML version)
-
-Using this template will help us post your article sooner. To use, just 
-follow the 3 easy steps below:
- 
-     1. Fill in the article description details
-     2. Add links to your images and downloads
-     3. Include the main article text
-
-That's all there is to it! All formatting will be done by our submission
-scripts and style sheets. 
-
--->  
-<!--------------------------------------------------------------------------->  
-<!--                        IGNORE THIS SECTION                            -->
-<html>
-<head>
-<title>The Code Project</title>
-<Style>
+<style>
 BODY, P, TD { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt }
 H2,H3,H4,H5 { color: #ff9900; font-weight: bold; }
 H2 { font-size: 13pt; }
@@ -31,80 +13,61 @@ CODE { COLOR: #990000; FONT-FAMILY: "Courier New", Courier, mono; }
 </style>
 <link rel="stylesheet" type="text/css" href="http://www.codeproject.com/App_Themes/NetCommunity/CodeProject.css">
 </head>
-<body bgcolor="#FFFFFF" color=#000000>
-<!--------------------------------------------------------------------------->  
+  
 
 
-<!-------------------------------     STEP 1      --------------------------->
-<!--  Fill in the details (CodeProject will reformat this section for you) -->
-
-<pre>
-Title:       Article Title Goes Here
-Author:      Author Name 
-Email:       author@email.com
-Member ID:   12345
-Language:    C++, C# 2.0 etc
-Platform:    Windows, .NET 3.0 etc
-Technology:  ASP.NET, GDI+
-Level:       Beginner, Intermediate, Advanced
-Description: An article on something-or-other
-Section      Suggest a section...
-SubSection   Suggest a subsection...
-License:     Choose your license (<a href="http://www.codeproject.com/info/licenses.aspx">CPOL, CPL, MIT, etc</a>)
-</pre>
-
-<!-------------------------------     STEP 2      --------------------------->
-<!--  Include download and sample image information.                       --> 
-
-<ul class=download>
-<li><a href="Article_demo.zip">Download demo project - XXX Kb </a></li>
-<li><a href="Article_src.zip">Download source - XXX Kb</a></li>
+<body color="#000000" style="background-color: rgb(255, 255, 255);">
+<!---->---------------------------------------------------------------------------&gt;
+<!------------------------------- STEP 1 --------------------------><!-- Fill in the details (CodeProject will reformat this section for you) -->
+<pre>Title: Article Title Goes Here<br>Author: Author Name <br>Email: author@email.com<br>Member ID: 12345<br>Language: C++, C# 2.0 etc<br>Platform: Windows, .NET 3.0 etc<br>Technology: ASP.NET, GDI+<br>Level: Beginner, Intermediate, Advanced<br>Description: An article on something-or-other<br>Section Suggest a section...<br>SubSection Suggest a subsection...<br>License: Choose your license (<a href="http://www.codeproject.com/info/licenses.aspx">CPOL, CPL, MIT, etc</a>)<br></pre>
+<!------------------------------- STEP 2 -------------------------->
+<!-- Include download and sample image information. -->
+<ul class="download">
+<li><a href="Article_demo.zip">Download demo
+project - XXX Kb </a></li>
+<li><a href="Article_src.zip">Download source -
+XXX Kb</a></li>
 </ul>
-
-<p><img src="Article.gif" alt="Sample Image - maximum width is 600 pixels" width=400 height=200></p>
-
-
-<!-------------------------------     STEP 3      --------------------------->
-
-<!--  Add the article text. Please use simple formatting (<h2>, <p> etc)   --> 
-
+<p style="padding-left: 35px;"><img src="screen.png" alt="TreeView Column Selector" id="imgScreenShot" border="0"></p>
+<!------------------------------- STEP 3 -------------------------->
+<!-- Add the article text. Please use simple formatting -->
 <h2>Introduction</h2>
-
-<p>What the article/code snippet does, why it's useful, the problem it solves etc.
-
+<p>I was needing a way to select what columns needed to be
+visible for a Mono/Gtk# application. There is no default right click
+select for the TreeView so I desided to use an empty column header
+similar to the way Mozilla's Thunderbird uses.</p>
 <h2>Background (optional)</h2>
-
-<p>Is there any background to this article that may be useful such as an introduction
-to the basic ideas presented?
-
+<p>This article assume the reader has at least the basic concepts of
+using the Gtk TreeView and a ListStore. If not there are some great
+started guides located at&nbsp;<a href="http://www.mono-project.com/">Mono-Project</a> web site located below under "Points of Interest".
+</p>
 <h2>Using the Code</h2>
-
-<p>A brief description of how to use the article or code. The class names, the
+<p>A brief description of how to use the article or code. The
+class names, the
 methods and properties, any tricks or tips.
-
-<p>Blocks of code should be wrapped in &lt;pre> tags like this:
-
-<pre>
-
-//
-// Any source code blocks look like this
-//
-
-</pre>
-
-<p>Variable or class names should be wrapped in &lt;code> tags like <code>this</code>.
-
+</p>
+<p>Blocks of code should be wrapped in &lt;pre&gt; tags
+like this:
+</p>
+<pre>//<br>// Any source code blocks look like this<br>//<br></pre>
+<p>Variable or class names should be wrapped in
+&lt;code&gt; tags like <code>this</code>.
+</p>
 <h2>Points of Interest</h2>
-
-<p>Did you learn anything interesting/fun/annoying while writing the code? Did you
-do anything particularly clever or wild or zany?
-
+<p>Did you learn anything interesting/fun/annoying while writing
+the code? Did you
+do anything particularly clever or wild or zany?</p>
+<p>The following are a few resource I found helpful with this
+project:</p>
+<ul>
+<li><a title="Mono" href="http://www.mono-project.com/" target="_blank">Mono</a></li>
+<li><a title="MonoDevelop" href="http://www.monodevelop.com/Main_Page" target="_blank">MonoDevelop</a></li>
+<li><a href="http://code.google.com/p/holly-gtk-widgets/">Holly
+Gtk Widgets - A free library of .NET/GTK# widgets</a>
+</li>
+</ul>
 <h2>History</h2>
-
-<p>Keep a running update of any changes or improvements you've made here.
-
-
-<!-------------------------------    That's it!   --------------------------->
-</body>
-
-</html>
+<p>Keep a running update of any changes or improvements you've
+made here.
+<!------------------------------- That's it! --------------------------></p>
+</body></html>
