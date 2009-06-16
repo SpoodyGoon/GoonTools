@@ -5,6 +5,7 @@ using System.ComponentModel;
 
 namespace ThudSharp
 {	
+	[System.ComponentModel.ToolboxItem(true)]
 	public class StaticBoardPiece : Gtk.DrawingArea 
 	{
 		private NonMovablePieceType _PieceType;
@@ -45,7 +46,6 @@ namespace ThudSharp
 		}
 		
 		[GLib.ConnectBeforeAttribute()]
-		[GLib.DefaultSignalHandlerAttribute()]
 		protected override bool OnEnterNotifyEvent(Gdk.EventCrossing evnt)
 		{
 			evnt.Window.DrawRectangle(Style.WhiteGC, true, this.Allocation);
@@ -57,12 +57,14 @@ namespace ThudSharp
 			return base.OnEnterNotifyEvent(evnt);
 		}
 		
+		[GLib.ConnectBeforeAttribute()]
 		protected override bool OnButtonPressEvent(Gdk.EventButton ev)
 		{
 			// Insert button press handling code here.
 			return base.OnButtonPressEvent(ev);
 		}
 		
+		[GLib.ConnectBeforeAttribute()]
 		protected override bool OnExposeEvent(Gdk.EventExpose args)
 		{
 			Gdk.Window win = args.Window;

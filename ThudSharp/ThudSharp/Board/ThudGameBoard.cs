@@ -33,11 +33,6 @@ namespace ThudSharp
 				this.WidthRequest = img.Width;
 				this.HeightRequest = img.Height;
 				win.DrawPixbuf(Style.BackgroundGC(Gtk.StateType.Normal),img, 0,0, area.X, area.Y,img.Width, img.Height, Gdk.RgbDither.Normal, 0,0);
-				
-				// add the table we are using for the board layout
-				Gtk.Alignment al = new Alignment(0.5f, 0.5f, 0.5f, 0.5f);
-				Gtk.Table tb = new Table(15,15,true);
-				
 			}
 			catch(Exception ex)
 			{
