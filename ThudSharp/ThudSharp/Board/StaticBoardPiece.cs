@@ -6,7 +6,7 @@ using System.ComponentModel;
 namespace ThudSharp
 {	
 	[System.ComponentModel.ToolboxItem(true)]
-	public class StaticBoardPiece : Gtk.DrawingArea 
+	public class StaticBoardPiece :  Gtk.DrawingArea
 	{
 		private NonMovablePieceType _PieceType;
 		private int _Left = 0;
@@ -17,7 +17,7 @@ namespace ThudSharp
 		public StaticBoardPiece(NonMovablePieceType pt)
 		{
 			_PieceType = pt;
-			
+			this.Sensitive = true;
 			// Insert initialization code here.
 		}
 		
@@ -39,12 +39,20 @@ namespace ThudSharp
 			set{_IsAltPiece=value;}
 		}
 		
+		[DesignOnly(true)]
 		public NonMovablePieceType PieceType
 		{
 			get{return _PieceType;}
 			set{_PieceType = value;}
 		}
 		
+		[GLib.DefaultSignalHandlerAttribute()]
+		protected override void OnSelectionGet(SelectionData selection_data, uint info, uint time_)
+		{
+			base.OnSelectionGet(selection_data, info, time_);
+		}
+		
+		[GLib.DefaultSignalHandlerAttribute()]
 		[GLib.ConnectBeforeAttribute()]
 		protected override bool OnEnterNotifyEvent(Gdk.EventCrossing evnt)
 		{
@@ -54,19 +62,23 @@ namespace ThudSharp
 			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "got here");
 				md.Run();
 				md.Destroy();
-			return base.OnEnterNotifyEvent(evnt);
+			return true;// base.OnEnterNotifyEvent(evnt);
 		}
 		
 		[GLib.ConnectBeforeAttribute()]
 		protected override bool OnButtonPressEvent(Gdk.EventButton ev)
 		{
 			// Insert button press handling code here.
+			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "got here");
+				md.Run();
+				md.Destroy();
 			return base.OnButtonPressEvent(ev);
 		}
 		
 		[GLib.ConnectBeforeAttribute()]
 		protected override bool OnExposeEvent(Gdk.EventExpose args)
 		{
+			base.OnExposeEvent(args);
 			Gdk.Window win = args.Window;
 			Gdk.Rectangle area = args.Area;
 			
@@ -78,10 +90,8 @@ namespace ThudSharp
 			this.WidthRequest = _BoardPiece.Width;
 			this.HeightRequest = _BoardPiece.Height;
 			win.DrawPixbuf(Style.ForegroundGC(Gtk.StateType.Normal),_BoardPiece, 0,0, _Left, _Top,_BoardPiece.Width, _BoardPiece.Height, Gdk.RgbDither.Normal, 0,0);
-			
-			
-			base.OnExposeEvent(args);
-			return true;
+			this.ShowAll();
+			return false;
 		}
 
 		
