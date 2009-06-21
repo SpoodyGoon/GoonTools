@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -42,9 +42,7 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\..\..\..\Program Files %28x86%29\Mono-2.2\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Posix" />
     <Reference Include="System" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
@@ -67,18 +65,15 @@
       <LogicalName>board_piece50_2.png</LogicalName>
     </EmbeddedResource>
     <Content Include="images\BoardPieceDark.png">
-      <LogicalName>BoardPieceDark.png</LogicalName>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="images\BoardPieceLight.png">
-      <LogicalName>BoardPieceLight.png</LogicalName>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="images\InGameLogo.png">
       <LogicalName>InGameLogo.png</LogicalName>
     </EmbeddedResource>
     <Content Include="images\background.png">
-      <LogicalName>background.png</LogicalName>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="gtk-gui\generated.cs" />
@@ -94,6 +89,16 @@
     <Compile Include="Board\StaticBoardPiece.cs" />
     <Compile Include="Board\BoardEnums.cs" />
     <Compile Include="gtk-gui\ThudSharp.MainWindow.cs" />
+    <Content Include="images\Dwarf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\Troll.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="Board\BoardPiece.cs" />
+    <Compile Include="gtk-gui\ThudSharp.BoardPiece.cs" />
+    <Compile Include="Board\GameBoard.cs" />
+    <Compile Include="gtk-gui\ThudSharp.GameBoard.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

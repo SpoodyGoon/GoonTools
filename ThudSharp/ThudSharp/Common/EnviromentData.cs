@@ -81,7 +81,7 @@ namespace GoonTools
 		private string GetAppPath()
 		{
 			string strAppPath = Assembly.GetExecutingAssembly().CodeBase;
-			strAppPath = strAppPath.Substring(0, strAppPath.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar) + 1).Replace("file:///","");
+			strAppPath = strAppPath.Substring(0, strAppPath.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar) + 1).Replace(@"file://","");
 			return strAppPath;
 		}
 		
@@ -107,7 +107,7 @@ namespace GoonTools
 		
 		private string GetImageFolder()
 		{
-			return _AppPath +  "images" + System.IO.Path.AltDirectorySeparatorChar.ToString();
+			return _AppPath +  "images" + GetDirChar();
 		}
 	}
 }
