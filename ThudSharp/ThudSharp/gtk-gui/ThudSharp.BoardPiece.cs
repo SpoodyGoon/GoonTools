@@ -19,6 +19,8 @@ namespace ThudSharp {
         
         private Gtk.Image imgMovable;
         
+        private Gtk.EventBox eventbox1;
+        
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ThudSharp.BoardPiece
@@ -32,16 +34,31 @@ namespace ThudSharp {
             this.fxContainer.HasWindow = false;
             // Container child fxContainer.Gtk.Fixed+FixedChild
             this.imgBackground = new Gtk.Image();
+            this.imgBackground.WidthRequest = 45;
+            this.imgBackground.HeightRequest = 45;
+            this.imgBackground.Events = ((Gdk.EventMask)(790526));
             this.imgBackground.Name = "imgBackground";
-            this.imgBackground.Pixbuf = new Gdk.Pixbuf(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "./bin/Debug/images/BoardPieceLight.png"));
             this.fxContainer.Add(this.imgBackground);
             // Container child fxContainer.Gtk.Fixed+FixedChild
             this.imgMovable = new Gtk.Image();
+            this.imgMovable.WidthRequest = 45;
+            this.imgMovable.HeightRequest = 45;
+            this.imgMovable.Events = ((Gdk.EventMask)(790526));
             this.imgMovable.Name = "imgMovable";
             this.imgMovable.Xpad = 2;
             this.imgMovable.Ypad = 2;
-            this.imgMovable.Pixbuf = new Gdk.Pixbuf(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "./bin/Debug/images/Dwarf.png"));
             this.fxContainer.Add(this.imgMovable);
+            // Container child fxContainer.Gtk.Fixed+FixedChild
+            this.eventbox1 = new Gtk.EventBox();
+            this.eventbox1.WidthRequest = 43;
+            this.eventbox1.HeightRequest = 43;
+            this.eventbox1.Name = "eventbox1";
+            this.eventbox1.AboveChild = true;
+            this.eventbox1.VisibleWindow = false;
+            this.fxContainer.Add(this.eventbox1);
+            Gtk.Fixed.FixedChild w3 = ((Gtk.Fixed.FixedChild)(this.fxContainer[this.eventbox1]));
+            w3.X = 2;
+            w3.Y = 2;
             this.Add(this.fxContainer);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

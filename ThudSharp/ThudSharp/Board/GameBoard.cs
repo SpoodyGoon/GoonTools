@@ -12,6 +12,7 @@ namespace ThudSharp
 		public GameBoard()
 		{
 			this.Build();
+			this.imgBoardBackGround.Pixbuf = GoonTools.Common.BoardBackGround;
 		}
 	}
 }

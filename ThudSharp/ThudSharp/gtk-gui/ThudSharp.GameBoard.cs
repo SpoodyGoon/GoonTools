@@ -360,10 +360,11 @@ namespace ThudSharp {
             this.fixed1.HasWindow = false;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.imgBoardBackGround = new Gtk.Image();
+            this.imgBoardBackGround.WidthRequest = 712;
+            this.imgBoardBackGround.HeightRequest = 712;
             this.imgBoardBackGround.Name = "imgBoardBackGround";
             this.imgBoardBackGround.Xpad = 2;
             this.imgBoardBackGround.Ypad = 2;
-            this.imgBoardBackGround.Pixbuf = new Gdk.Pixbuf(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "./bin/Debug/images/background.png"));
             this.fixed1.Add(this.imgBoardBackGround);
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.tblGameBoard = new Gtk.Table(((uint)(15)), ((uint)(15)), true);
@@ -453,6 +454,7 @@ namespace ThudSharp {
             this.boardpiece104 = new ThudSharp.BoardPiece();
             this.boardpiece104.Events = ((Gdk.EventMask)(256));
             this.boardpiece104.Name = "boardpiece104";
+            this.boardpiece104.MovablePiece = "Troll";
             this.boardpiece104.AltBackGround = false;
             this.tblGameBoard.Add(this.boardpiece104);
             Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.tblGameBoard[this.boardpiece104]));
@@ -493,7 +495,7 @@ namespace ThudSharp {
             this.boardpiece107 = new ThudSharp.BoardPiece();
             this.boardpiece107.Events = ((Gdk.EventMask)(256));
             this.boardpiece107.Name = "boardpiece107";
-            this.boardpiece107.MovablePiece = "Troll";
+            this.boardpiece107.MovablePiece = "";
             this.boardpiece107.AltBackGround = false;
             this.tblGameBoard.Add(this.boardpiece107);
             Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.tblGameBoard[this.boardpiece107]));
@@ -546,7 +548,7 @@ namespace ThudSharp {
             this.boardpiece110 = new ThudSharp.BoardPiece();
             this.boardpiece110.Events = ((Gdk.EventMask)(256));
             this.boardpiece110.Name = "boardpiece110";
-            this.boardpiece110.MovablePiece = "Troll";
+            this.boardpiece110.MovablePiece = "";
             this.boardpiece110.AltBackGround = true;
             this.tblGameBoard.Add(this.boardpiece110);
             Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.tblGameBoard[this.boardpiece110]));
@@ -560,7 +562,7 @@ namespace ThudSharp {
             this.boardpiece111 = new ThudSharp.BoardPiece();
             this.boardpiece111.Events = ((Gdk.EventMask)(256));
             this.boardpiece111.Name = "boardpiece111";
-            this.boardpiece111.MovablePiece = "Troll";
+            this.boardpiece111.MovablePiece = "";
             this.boardpiece111.AltBackGround = false;
             this.tblGameBoard.Add(this.boardpiece111);
             Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.tblGameBoard[this.boardpiece111]));

@@ -14,6 +14,12 @@ namespace ThudSharp
 		public BoardPiece()
 		{
 			this.Build();
+			this.eventbox1.EnterNotifyEvent += HandleEnterNotifyEvent;
+		}
+
+		void HandleEnterNotifyEvent(object o, EnterNotifyEventArgs args)
+		{
+			Console.WriteLine("Enter Event");
 		}
 		
 		
@@ -36,11 +42,11 @@ namespace ThudSharp
 			{
 				if(_MovablePiece=="Troll")
 				{
-					
+					imgMovable.Pixbuf = GoonTools.Common.Troll;
 				}
 				else if(_MovablePiece == "Dwarf")
 				{
-					
+					imgMovable.Pixbuf = GoonTools.Common.Dwarf;					
 				}
 				
 				if(_AltBackGround == false)
@@ -60,7 +66,6 @@ namespace ThudSharp
 			}
 			return base.OnExposeEvent (evnt);
 		}
-
 
 		
 	}

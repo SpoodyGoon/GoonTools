@@ -200,16 +200,36 @@
         <child>
           <widget class="Gtk.Image" id="imgBackground">
             <property name="MemberName" />
-            <property name="Pixbuf">file:./bin/Debug/images/BoardPieceLight.png</property>
+            <property name="WidthRequest">45</property>
+            <property name="HeightRequest">45</property>
+            <property name="Events">ExposureMask, PointerMotionMask, PointerMotionHintMask, ButtonMotionMask, Button1MotionMask, Button2MotionMask, Button3MotionMask, ButtonPressMask, ButtonReleaseMask, KeyPressMask, KeyReleaseMask, ProximityInMask, ProximityOutMask</property>
           </widget>
         </child>
         <child>
           <widget class="Gtk.Image" id="imgMovable">
             <property name="MemberName" />
+            <property name="WidthRequest">45</property>
+            <property name="HeightRequest">45</property>
+            <property name="Events">ExposureMask, PointerMotionMask, PointerMotionHintMask, ButtonMotionMask, Button1MotionMask, Button2MotionMask, Button3MotionMask, ButtonPressMask, ButtonReleaseMask, KeyPressMask, KeyReleaseMask, ProximityInMask, ProximityOutMask</property>
             <property name="Xpad">2</property>
             <property name="Ypad">2</property>
-            <property name="Pixbuf">file:./bin/Debug/images/Dwarf.png</property>
           </widget>
+        </child>
+        <child>
+          <widget class="Gtk.EventBox" id="eventbox1">
+            <property name="MemberName" />
+            <property name="WidthRequest">43</property>
+            <property name="HeightRequest">43</property>
+            <property name="AboveChild">True</property>
+            <property name="VisibleWindow">False</property>
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="X">2</property>
+            <property name="Y">2</property>
+          </packing>
         </child>
       </widget>
     </child>
@@ -224,9 +244,10 @@
         <child>
           <widget class="Gtk.Image" id="imgBoardBackGround">
             <property name="MemberName" />
+            <property name="WidthRequest">712</property>
+            <property name="HeightRequest">712</property>
             <property name="Xpad">2</property>
             <property name="Ypad">2</property>
-            <property name="Pixbuf">file:./bin/Debug/images/background.png</property>
           </widget>
         </child>
         <child>
@@ -554,6 +575,7 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece104">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">Troll</property>
                 <property name="AltBackGround">False</property>
               </widget>
               <packing>
@@ -621,7 +643,7 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece107">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="MovablePiece">Troll</property>
+                <property name="MovablePiece" />
                 <property name="AltBackGround">False</property>
               </widget>
               <packing>
@@ -710,7 +732,7 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece110">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="MovablePiece">Troll</property>
+                <property name="MovablePiece" />
                 <property name="AltBackGround">True</property>
               </widget>
               <packing>
@@ -733,7 +755,7 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece111">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="MovablePiece">Troll</property>
+                <property name="MovablePiece" />
                 <property name="AltBackGround">False</property>
               </widget>
               <packing>
