@@ -1,4 +1,4 @@
-﻿/*************************************************************************
+/*************************************************************************
  *                      Global.cs
  *
  *	 	Copyright (C) 2009
@@ -81,7 +81,15 @@ namespace GoonTools
 		private string GetAppPath()
 		{
 			string strAppPath = Assembly.GetExecutingAssembly().CodeBase;
-			strAppPath = strAppPath.Substring(0, strAppPath.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar) + 1).Replace(@"file://","");
+			if(System.Environment.OSVersion.Platform == PlatformID.Win32NT)
+			{
+				strAppPath = strAppPath.Substring(0, strAppPath.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar) + 1).Replace(@"file:///","");
+			}
+			else
+			{
+				
+				strAppPath = strAppPath.Substring(0, strAppPath.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar) + 1).Replace(@"file://","");
+			}
 			return strAppPath;
 		}
 		
@@ -98,7 +106,7 @@ namespace GoonTools
 			}
 			
 			return strDirChar;
-		}		
+		}
 		
 		private string GetSaveFolder()
 		{
@@ -107,7 +115,7 @@ namespace GoonTools
 		
 		private string GetImageFolder()
 		{
-			return _AppPath +  "images" + GetDirChar();
+			return _AppPath +  "images" + System.IO.Path.AltDirectorySeparatorChar.ToString();
 		}
 	}
 }

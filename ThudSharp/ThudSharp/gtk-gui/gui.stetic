@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/ThudSharp.exe" internal="true" />
+    <widget-library name="..\bin\Debug\ThudSharp.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="ThudSharp.MainWindow" design-size="1016 773">
     <action-group name="Default">
@@ -204,32 +204,6 @@
             <property name="HeightRequest">45</property>
             <property name="Events">ExposureMask, PointerMotionMask, PointerMotionHintMask, ButtonMotionMask, Button1MotionMask, Button2MotionMask, Button3MotionMask, ButtonPressMask, ButtonReleaseMask, KeyPressMask, KeyReleaseMask, ProximityInMask, ProximityOutMask</property>
           </widget>
-        </child>
-        <child>
-          <widget class="Gtk.Image" id="imgMovable">
-            <property name="MemberName" />
-            <property name="WidthRequest">45</property>
-            <property name="HeightRequest">45</property>
-            <property name="Events">ExposureMask, PointerMotionMask, PointerMotionHintMask, ButtonMotionMask, Button1MotionMask, Button2MotionMask, Button3MotionMask, ButtonPressMask, ButtonReleaseMask, KeyPressMask, KeyReleaseMask, ProximityInMask, ProximityOutMask</property>
-            <property name="Xpad">2</property>
-            <property name="Ypad">2</property>
-          </widget>
-        </child>
-        <child>
-          <widget class="Gtk.EventBox" id="eventbox1">
-            <property name="MemberName" />
-            <property name="WidthRequest">43</property>
-            <property name="HeightRequest">43</property>
-            <property name="AboveChild">True</property>
-            <property name="VisibleWindow">False</property>
-            <child>
-              <placeholder />
-            </child>
-          </widget>
-          <packing>
-            <property name="X">2</property>
-            <property name="Y">2</property>
-          </packing>
         </child>
       </widget>
     </child>
@@ -4096,6 +4070,34 @@
             <property name="X">14</property>
             <property name="Y">14</property>
           </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="ThudSharp.MovablePiece" design-size="56 45">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.EventBox" id="evtPiece">
+        <property name="MemberName" />
+        <property name="WidthRequest">43</property>
+        <property name="HeightRequest">43</property>
+        <property name="AboveChild">True</property>
+        <property name="VisibleWindow">False</property>
+        <property name="BorderWidth">2</property>
+        <signal name="ButtonPressEvent" handler="OnEvtPieceButtonPressEvent" />
+        <signal name="ButtonReleaseEvent" handler="OnEvtPieceButtonReleaseEvent" />
+        <signal name="ExposeEvent" handler="OnEvtPieceExposeEvent" />
+        <signal name="EnterNotifyEvent" handler="OnEvtPieceEnterNotifyEvent" />
+        <child>
+          <widget class="Gtk.Image" id="imgMovable">
+            <property name="MemberName" />
+            <property name="WidthRequest">45</property>
+            <property name="HeightRequest">45</property>
+            <property name="Events">ExposureMask, PointerMotionMask, PointerMotionHintMask, ButtonMotionMask, Button1MotionMask, Button2MotionMask, Button3MotionMask, ButtonPressMask, ButtonReleaseMask, KeyPressMask, KeyReleaseMask, ProximityInMask, ProximityOutMask</property>
+            <property name="Xpad">2</property>
+            <property name="Ypad">2</property>
+          </widget>
         </child>
       </widget>
     </child>

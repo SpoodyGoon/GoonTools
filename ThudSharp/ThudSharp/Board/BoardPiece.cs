@@ -9,19 +9,28 @@ namespace ThudSharp
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class BoardPiece : Gtk.Bin
 	{
-		private string _MovablePiece = "None";
+		private string _MovablePiece = "";
 		private bool _AltBackGround = false;
 		public BoardPiece()
 		{
 			this.Build();
-			this.eventbox1.EnterNotifyEvent += HandleEnterNotifyEvent;
+			
+			MovablePieceType mpt = MovablePieceType.None;
+			if(_MovablePiece=="Troll")
+			{
+				mpt = MovablePieceType.Troll;
+			}
+			else if(_MovablePiece == "Dwarf")
+			{
+				mpt = MovablePieceType.Dwarf;
+			}
+			MovablePiece mp = new MovablePiece(mpt);
+			fxContainer.Add(mp);
+			Gtk.Fixed.FixedChild we6 = ((Gtk.Fixed.FixedChild)(fxContainer[mp]));
+			we6.X = 0;
+			we6.Y = 0;
+			this.ShowAll();
 		}
-
-		void HandleEnterNotifyEvent(object o, EnterNotifyEventArgs args)
-		{
-			Console.WriteLine("Enter Event");
-		}
-		
 		
 		public string MovablePiece
 		{
@@ -40,14 +49,6 @@ namespace ThudSharp
 		{
 			try
 			{
-				if(_MovablePiece=="Troll")
-				{
-					imgMovable.Pixbuf = GoonTools.Common.Troll;
-				}
-				else if(_MovablePiece == "Dwarf")
-				{
-					imgMovable.Pixbuf = GoonTools.Common.Dwarf;					
-				}
 				
 				if(_AltBackGround == false)
 				{
@@ -57,6 +58,7 @@ namespace ThudSharp
 				{
 					imgBackground.Pixbuf = GoonTools.Common.BoardPieceLight;
 				}
+				this.ShowAll();
 			}
 			catch(Exception ex)
 			{

@@ -13,8 +13,8 @@ namespace ThudSharp
 	
 	public enum MovablePieceType
 	{
-		[System.ComponentModel.DescriptionAttribute("None")]  None,
-		[System.ComponentModel.DescriptionAttribute("Dwarf")]  Dwarf,
-		[System.ComponentModel.DescriptionAttribute("Troll")]  Troll
+		None,
+		Dwarf,
+		Troll
 	}
 }

@@ -99,6 +99,8 @@
     <Compile Include="gtk-gui\ThudSharp.BoardPiece.cs" />
     <Compile Include="Board\GameBoard.cs" />
     <Compile Include="gtk-gui\ThudSharp.GameBoard.cs" />
+    <Compile Include="Board\MovablePiece.cs" />
+    <Compile Include="gtk-gui\ThudSharp.MovablePiece.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
