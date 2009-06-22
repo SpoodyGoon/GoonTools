@@ -35,9 +35,11 @@ namespace GoonTools
 	{
 		private static GoonTools.Options _Option;
 		private static GoonTools.EnviromentData _EnvData = new GoonTools.EnviromentData();
-		private static Gdk.Pixbuf _BoardBackGround = new Gdk.Pixbuf(_EnvData.ImageFolder );
+		private static Gdk.Pixbuf _BoardBackGround = new Gdk.Pixbuf(_EnvData.ImageFolder + "background.png" );
 		private static Gdk.Pixbuf _BoardPieceDark = new Gdk.Pixbuf(_EnvData.ImageFolder + "BoardPieceDark.png");
 		private static Gdk.Pixbuf _BoardPieceLight = new Gdk.Pixbuf(_EnvData.ImageFolder + "BoardPieceLight.png");
+		private static Gdk.Pixbuf _Troll = new Gdk.Pixbuf(_EnvData.ImageFolder + "Troll.png");
+		private static Gdk.Pixbuf _Dwarf = new Gdk.Pixbuf(_EnvData.ImageFolder + "Dwarf.png");
 		#region Public Properties
 		
 		public static GoonTools.Options Option
@@ -63,6 +65,16 @@ namespace GoonTools
 		public static Gdk.Pixbuf BoardPieceLight
 		{
 			get{return _BoardPieceLight; }
+		}
+		
+		public static Gdk.Pixbuf Troll
+		{
+			get{return _Troll; }
+		}
+		
+		public static Gdk.Pixbuf Dwarf
+		{
+			get{return _Dwarf; }
 		}
 		
 		#endregion Public Properties
