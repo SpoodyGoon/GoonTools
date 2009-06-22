@@ -13,6 +13,12 @@ namespace ThudSharp
 		{
 			this.Build();
 			this.imgBoardBackGround.Pixbuf = GoonTools.Common.BoardBackGround;
+			ShowAll();
+		}
+		
+		public BoardPiece GetBoardPiece(int col, int row)
+		{
+			
 		}
 	}
 }
