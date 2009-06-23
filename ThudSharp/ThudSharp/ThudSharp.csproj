@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -58,12 +58,6 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="images\board_piece50_1.png">
-      <LogicalName>board_piece50_1.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\board_piece50_2.png">
-      <LogicalName>board_piece50_2.png</LogicalName>
-    </EmbeddedResource>
     <Content Include="images\BoardPieceDark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -106,9 +100,5 @@
   <ItemGroup>
     <Folder Include="images\" />
     <Folder Include="Board\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="images\board_piece1.png" />
-    <None Include="images\board_piece2.png" />
   </ItemGroup>
 </Project>
