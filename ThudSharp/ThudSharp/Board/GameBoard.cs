@@ -16,9 +16,9 @@ namespace ThudSharp
 			ShowAll();
 		}
 		
-		public BoardPiece GetBoardPiece(int col, int row)
-		{
-			
-		}
+//		public BoardPiece GetBoardPiece(int col, int row)
+//		{
+//			
+//		}
 	}
 }
