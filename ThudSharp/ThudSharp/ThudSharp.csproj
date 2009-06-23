@@ -79,8 +79,6 @@
     <Compile Include="Common\Const.cs" />
     <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="Common\Options.cs" />
-    <Compile Include="Board\ThudGameBoard.cs" />
-    <Compile Include="Board\StaticBoardPiece.cs" />
     <Compile Include="Board\BoardEnums.cs" />
     <Compile Include="gtk-gui\ThudSharp.MainWindow.cs" />
     <Content Include="images\Dwarf.png">
