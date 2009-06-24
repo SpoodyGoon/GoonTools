@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="..\bin\Debug\ThudSharp.exe" internal="true" />
+    <widget-library name="../bin/Debug/ThudSharp.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="ThudSharp.MainWindow" design-size="1016 773">
     <action-group name="Default">
@@ -202,13 +202,14 @@
             <property name="MemberName" />
             <property name="WidthRequest">45</property>
             <property name="HeightRequest">45</property>
+            <property name="CanFocus">True</property>
             <property name="Events">ExposureMask, PointerMotionMask, PointerMotionHintMask, ButtonMotionMask, Button1MotionMask, Button2MotionMask, Button3MotionMask, ButtonPressMask, ButtonReleaseMask, KeyPressMask, KeyReleaseMask, ProximityInMask, ProximityOutMask</property>
           </widget>
         </child>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ThudSharp.GameBoard" design-size="1085 972">
+  <widget class="Gtk.Bin" id="ThudSharp.GameBoard" design-size="4948 972">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -233,195 +234,18 @@
             <property name="RowSpacing">1</property>
             <property name="ColumnSpacing">1</property>
             <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece1">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
               </widget>
               <packing>
-                <property name="LeftAttach">5</property>
-                <property name="RightAttach">6</property>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="LeftAttach">10</property>
+                <property name="RightAttach">11</property>
                 <property name="AutoSize">True</property>
                 <property name="XOptions">Fill</property>
                 <property name="YOptions">Fill</property>
@@ -437,7 +261,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece10">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -459,13 +285,15 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece100">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
                 <property name="BottomAttach">8</property>
-                <property name="LeftAttach">7</property>
-                <property name="RightAttach">8</property>
+                <property name="LeftAttach">9</property>
+                <property name="RightAttach">10</property>
                 <property name="AutoSize">True</property>
                 <property name="XOptions">Fill</property>
                 <property name="YOptions">Fill</property>
@@ -482,7 +310,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Troll</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -504,7 +333,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece102">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -527,7 +358,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Troll</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -550,7 +382,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Troll</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -573,7 +406,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Troll</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -595,7 +429,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece106">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -617,8 +453,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece107">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="MovablePiece" />
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -640,7 +477,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece108">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -662,7 +501,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece109">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -684,7 +525,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece11">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -706,8 +549,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece110">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="MovablePiece" />
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -729,8 +573,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece111">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="MovablePiece" />
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -752,7 +597,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece112">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -774,7 +621,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece113">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -796,7 +645,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece114">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -818,7 +669,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece115">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -840,7 +693,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece116">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -862,7 +717,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece117">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -884,7 +741,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece118">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -906,7 +765,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece119">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -928,7 +789,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece12">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -950,7 +813,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece120">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -972,7 +837,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece121">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -994,7 +861,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece122">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -1016,7 +885,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece123">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -1038,7 +909,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece124">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -1060,7 +933,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece125">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -1082,7 +957,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece126">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -1105,7 +982,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -1125,7 +1003,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece128">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -1146,7 +1026,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -1167,7 +1048,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -1190,7 +1072,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -1211,7 +1094,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1233,7 +1117,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece132">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1255,7 +1141,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece133">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1277,7 +1165,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece134">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1299,7 +1189,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece135">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1321,7 +1213,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece136">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1343,7 +1237,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece137">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1365,7 +1261,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece138">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1387,7 +1285,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece139">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1410,7 +1310,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -1432,7 +1333,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece140">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1454,7 +1357,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece141">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1476,7 +1381,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece142">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1499,7 +1406,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">10</property>
@@ -1522,7 +1430,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1544,7 +1453,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece145">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1566,7 +1477,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece146">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1588,7 +1501,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece147">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1610,7 +1525,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece148">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1632,7 +1549,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece149">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1654,7 +1573,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece15">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -1676,7 +1597,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece150">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1698,7 +1621,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece151">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1720,7 +1645,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece152">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1742,7 +1669,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece153">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1765,7 +1694,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">11</property>
@@ -1784,11 +1714,36 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece155">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">2</property>
+                <property name="BottomAttach">3</property>
+                <property name="LeftAttach">2</property>
+                <property name="RightAttach">3</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece156">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">12</property>
@@ -1810,7 +1765,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece157">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">12</property>
@@ -1832,7 +1789,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece158">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">12</property>
@@ -1854,7 +1813,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece159">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">12</property>
@@ -1876,7 +1837,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece16">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -1898,7 +1861,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece160">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">12</property>
@@ -1920,7 +1885,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece161">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">12</property>
@@ -1942,7 +1909,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece162">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">12</property>
@@ -1964,7 +1933,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece163">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">12</property>
@@ -1987,7 +1958,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">12</property>
@@ -2010,7 +1982,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">13</property>
@@ -2032,7 +2005,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece166">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">13</property>
@@ -2054,7 +2029,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece167">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">13</property>
@@ -2076,7 +2053,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece168">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">13</property>
@@ -2098,7 +2077,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece169">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">13</property>
@@ -2120,7 +2101,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece17">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -2142,7 +2125,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece170">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">13</property>
@@ -2165,7 +2150,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">13</property>
@@ -2188,7 +2174,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">14</property>
@@ -2211,7 +2198,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">14</property>
@@ -2233,7 +2221,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece174">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">14</property>
@@ -2256,7 +2246,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">14</property>
@@ -2279,7 +2270,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">14</property>
@@ -2298,10 +2290,80 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece177">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">2</property>
+                <property name="BottomAttach">3</property>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece178">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">2</property>
+                <property name="BottomAttach">3</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece179">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">3</property>
+                <property name="BottomAttach">4</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece18">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -2320,10 +2382,240 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece180">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">3</property>
+                <property name="BottomAttach">4</property>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece181">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">4</property>
+                <property name="BottomAttach">5</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece182">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">10</property>
+                <property name="RightAttach">11</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece183">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">11</property>
+                <property name="RightAttach">12</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece184">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">12</property>
+                <property name="RightAttach">13</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece185">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">13</property>
+                <property name="RightAttach">14</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece186">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece187">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece188">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="LeftAttach">13</property>
+                <property name="RightAttach">14</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece189">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="LeftAttach">12</property>
+                <property name="RightAttach">13</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece19">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -2342,11 +2634,246 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece190">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="LeftAttach">11</property>
+                <property name="RightAttach">12</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece191">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">2</property>
+                <property name="BottomAttach">3</property>
+                <property name="LeftAttach">12</property>
+                <property name="RightAttach">13</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece192">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">2</property>
+                <property name="BottomAttach">3</property>
+                <property name="LeftAttach">13</property>
+                <property name="RightAttach">14</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece193">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">2</property>
+                <property name="BottomAttach">3</property>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece194">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">3</property>
+                <property name="BottomAttach">4</property>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece195">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">3</property>
+                <property name="BottomAttach">4</property>
+                <property name="LeftAttach">13</property>
+                <property name="RightAttach">14</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece196">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">4</property>
+                <property name="BottomAttach">5</property>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece197">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">10</property>
+                <property name="BottomAttach">11</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece198">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">11</property>
+                <property name="BottomAttach">12</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece199">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">12</property>
+                <property name="BottomAttach">13</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece2">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="LeftAttach">6</property>
@@ -2366,7 +2893,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece20">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -2385,10 +2914,250 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece200">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">12</property>
+                <property name="BottomAttach">13</property>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece201">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">11</property>
+                <property name="BottomAttach">12</property>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece202">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">12</property>
+                <property name="BottomAttach">13</property>
+                <property name="LeftAttach">2</property>
+                <property name="RightAttach">3</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece203">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">13</property>
+                <property name="BottomAttach">14</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece204">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">13</property>
+                <property name="BottomAttach">14</property>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece205">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">13</property>
+                <property name="BottomAttach">14</property>
+                <property name="LeftAttach">2</property>
+                <property name="RightAttach">3</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece206">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">13</property>
+                <property name="BottomAttach">14</property>
+                <property name="LeftAttach">3</property>
+                <property name="RightAttach">4</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece207">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="LeftAttach">4</property>
+                <property name="RightAttach">5</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece208">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="LeftAttach">3</property>
+                <property name="RightAttach">4</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece209">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="LeftAttach">2</property>
+                <property name="RightAttach">3</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece21">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -2407,11 +3176,250 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece210">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece211">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece212">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece213">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">13</property>
+                <property name="BottomAttach">14</property>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece214">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">12</property>
+                <property name="BottomAttach">13</property>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece215">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">11</property>
+                <property name="BottomAttach">12</property>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece216">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">10</property>
+                <property name="BottomAttach">11</property>
+                <property name="LeftAttach">14</property>
+                <property name="RightAttach">15</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece217">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">11</property>
+                <property name="BottomAttach">12</property>
+                <property name="LeftAttach">13</property>
+                <property name="RightAttach">14</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece218">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">12</property>
+                <property name="BottomAttach">13</property>
+                <property name="LeftAttach">13</property>
+                <property name="RightAttach">14</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece219">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">13</property>
+                <property name="BottomAttach">14</property>
+                <property name="LeftAttach">13</property>
+                <property name="RightAttach">14</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece22">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -2430,11 +3438,156 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece220">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="LeftAttach">13</property>
+                <property name="RightAttach">14</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece221">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="LeftAttach">12</property>
+                <property name="RightAttach">13</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece222">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">13</property>
+                <property name="BottomAttach">14</property>
+                <property name="LeftAttach">12</property>
+                <property name="RightAttach">13</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece223">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">12</property>
+                <property name="BottomAttach">13</property>
+                <property name="LeftAttach">12</property>
+                <property name="RightAttach">13</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece224">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">13</property>
+                <property name="BottomAttach">14</property>
+                <property name="LeftAttach">11</property>
+                <property name="RightAttach">12</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece225">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">14</property>
+                <property name="BottomAttach">15</property>
+                <property name="LeftAttach">11</property>
+                <property name="RightAttach">12</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece23">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2456,7 +3609,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece24">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2478,7 +3633,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece25">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2500,7 +3657,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece26">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2522,7 +3681,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece27">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2544,7 +3705,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece28">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2566,7 +3729,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece29">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2588,7 +3753,8 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece3">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="LeftAttach">7</property>
@@ -2608,7 +3774,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece30">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2630,7 +3798,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece31">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2652,7 +3822,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece32">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2675,7 +3847,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -2698,7 +3871,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2720,7 +3894,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece35">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2742,7 +3918,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece36">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2764,7 +3942,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece37">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2786,7 +3966,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece38">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2808,7 +3990,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece39">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2831,7 +4015,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="LeftAttach">8</property>
@@ -2851,7 +4036,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece40">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2873,7 +4060,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece41">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2895,7 +4084,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece42">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2917,7 +4108,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece43">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2939,7 +4132,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece44">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2961,7 +4156,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece45">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -2984,7 +4181,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -3007,7 +4205,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3029,7 +4228,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece48">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3051,7 +4252,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece49">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3074,7 +4277,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="LeftAttach">9</property>
@@ -3094,7 +4298,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece50">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3116,7 +4322,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece51">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3138,7 +4346,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece52">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3160,7 +4370,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece53">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3182,7 +4394,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece54">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3204,7 +4418,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece55">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3226,7 +4442,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece56">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3248,7 +4466,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece57">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3270,7 +4490,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece58">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3292,7 +4514,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece59">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3311,10 +4535,34 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece6">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">Dwarf</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">5</property>
+                <property name="RightAttach">6</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece60">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3337,7 +4585,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3358,7 +4607,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -3380,7 +4630,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece63">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -3402,7 +4654,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece64">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -3425,7 +4679,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -3448,7 +4703,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -3470,7 +4726,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece67">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -3492,7 +4750,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece68">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -3514,7 +4774,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece69">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -3537,7 +4799,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Dwarf</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -3559,7 +4822,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece70">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -3581,7 +4846,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece71">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -3600,10 +4867,166 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece72">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">4</property>
+                <property name="RightAttach">5</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece73">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">3</property>
+                <property name="RightAttach">4</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece74">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">2</property>
+                <property name="RightAttach">3</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece75">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece76">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece77">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece78">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece79">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -3625,7 +5048,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece8">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -3647,7 +5072,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece80">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -3669,7 +5096,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece81">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -3691,7 +5120,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece82">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -3713,7 +5144,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece83">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -3735,7 +5168,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece84">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -3757,7 +5192,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece85">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -3779,7 +5216,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece86">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -3801,7 +5240,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece87">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -3820,10 +5261,60 @@
               </packing>
             </child>
             <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece88">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="LeftAttach">2</property>
+                <property name="RightAttach">3</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ThudSharp.BoardPiece" id="boardpiece89">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="LeftAttach">3</property>
+                <property name="RightAttach">4</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ThudSharp.BoardPiece" id="boardpiece9">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -3845,7 +5336,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece90">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -3867,7 +5360,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece91">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -3889,13 +5384,15 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece92">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">None</property>
+                <property name="Blank">True</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
                 <property name="BottomAttach">8</property>
-                <property name="LeftAttach">9</property>
-                <property name="RightAttach">10</property>
+                <property name="LeftAttach">7</property>
+                <property name="RightAttach">8</property>
                 <property name="AutoSize">True</property>
                 <property name="XOptions">Fill</property>
                 <property name="YOptions">Fill</property>
@@ -3911,7 +5408,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece93">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -3933,7 +5432,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece94">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">True</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -3956,7 +5457,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Troll</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -3979,7 +5481,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Troll</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -4002,7 +5505,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Troll</property>
-                <property name="AltBackGround">True</property>
+                <property name="BackGround">Light</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -4024,7 +5528,9 @@
               <widget class="ThudSharp.BoardPiece" id="boardpiece98">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
-                <property name="AltBackGround">False</property>
+                <property name="MovablePiece">None</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -4047,7 +5553,8 @@
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="MovablePiece">Troll</property>
-                <property name="AltBackGround">False</property>
+                <property name="BackGround">Dark</property>
+                <property name="Blank">False</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
