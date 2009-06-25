@@ -12,6 +12,7 @@ namespace ThudSharp
 		public GameBoard()
 		{
 			this.Build();
+			BoardPiece[,] bps = new BoardPiece[15, 15];
 			this.imgBoardBackGround.Pixbuf = GoonTools.Common.BoardBackGround;
 			BoardPiece bp;
 			for(int i = 0; i < 15; i++)
