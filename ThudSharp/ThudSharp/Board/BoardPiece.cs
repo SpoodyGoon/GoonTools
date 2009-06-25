@@ -9,37 +9,32 @@ namespace ThudSharp
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class BoardPiece : Gtk.Bin
 	{
-		private string _MovablePiece = "None";
-		private string _BackGround = "None";
+		private MovablePieceType _MovablePiece = MovablePieceType.None;
+		private NonMovablePieceType _BackGround = NonMovablePieceType.None;
 		private bool _Blank = true;
-		public BoardPiece()
+		private int _Row = 0;
+		private int _Col = 0;
+		public BoardPiece(int row, int col)
 		{
 			this.Build();
+			_Row = row;
+			_Col = col;
 			
-//			MovablePieceType mpt = MovablePieceType.None;
-//			if(_MovablePiece=="Troll")
-//			{
-//				mpt = MovablePieceType.Troll;
-//			}
-//			else if(_MovablePiece == "Dwarf")
-//			{
-//				mpt = MovablePieceType.Dwarf;
-//			}
-//			MovablePiece mp = new MovablePiece(mpt);
-//			fxContainer.Add(mp);
-//			Gtk.Fixed.FixedChild we6 = ((Gtk.Fixed.FixedChild)(fxContainer[mp]));
-//			we6.X = 0;
-//			we6.Y = 0;
+			if((IsEven(_Row) && IsEven(_Col)) || (IsOdd(_Row) && IsOdd(_Col)))
+				_BackGround = NonMovablePieceType.Dark;
+			else
+				_BackGround = NonMovablePieceType.Light;
+			
 			this.ShowAll();
 		}
 		
-		public string MovablePiece
+		public MovablePieceType MovablePiece
 		{
 			get{return _MovablePiece;}
 			set{_MovablePiece=value;}
 		}
 		
-		public string BackGround
+		public NonMovablePieceType BackGround
 		{
 			get{return _BackGround;}
 			set{_BackGround=value;}
@@ -51,20 +46,32 @@ namespace ThudSharp
 			set{_Blank=value;}
 		}
 		
+		public int Row
+		{
+			get{return _Row;}
+			set{_Row=value;}
+		}
+		
+		public int Col
+		{
+			get{return _Col;}
+			set{_Col=value;}
+		}
+		
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
 			try
 			{
 				if(_Blank == false)
-				{				
-					if(_BackGround == "Dark")
-					{
-						imgBackground.Pixbuf = GoonTools.Common.BoardPieceDark;
-					}
-					else
-					{
-						imgBackground.Pixbuf = GoonTools.Common.BoardPieceLight;
-					}
+				{
+//					if(_BackGround == "Dark")
+//					{
+//						imgBackground.Pixbuf = GoonTools.Common.BoardPieceDark;
+//					}
+//					else
+//					{
+//						imgBackground.Pixbuf = GoonTools.Common.BoardPieceLight;
+//					}
 				}
 				this.ShowAll();
 			}
@@ -76,7 +83,15 @@ namespace ThudSharp
 			}
 			return base.OnExposeEvent (evnt);
 		}
-
 		
+		private bool IsEven(int intValue)
+		{
+			return ((intValue & 1) == 0);
+		}
+
+		private bool IsOdd(int intValue)
+		{
+			return ((intValue & 1) == 1);
+		}
 	}
 }
