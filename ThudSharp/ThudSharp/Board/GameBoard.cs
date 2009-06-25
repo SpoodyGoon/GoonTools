@@ -19,19 +19,17 @@ namespace ThudSharp
 			{
 				for(int j=0; j < 15; j++)
 				{
-					bp = new BoardPiece();
-					bp.MovablePiece == "Troll";
-					bp.BackGround == "Light";
+					bp = new BoardPiece(i, j);
 				}
 			}
-			
+			//int[][] BlankArray= new int[][]{new int[0,0], new int[0,1], new int[0,2], new int[0,3], new int[0,4], new int[0,5,]};
 			ShowAll();
 			
 		}
 		
 //		public BoardPiece GetBoardPiece(int col, int row)
 //		{
-//			
+//
 //		}
 	}
 }
