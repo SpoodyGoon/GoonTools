@@ -70,6 +70,8 @@
     <Content Include="images\background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Board\GameBoardColumnCollection.cs" />
+    <Compile Include="Board\GameBoardRow.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="Main.cs" />
