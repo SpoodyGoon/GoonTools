@@ -9,13 +9,12 @@ namespace ThudSharp
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class GameBoard : Gtk.Bin
 	{
-		
+		private BoardPiece[,] bps = new BoardPiece[15, 15];				
 		public GameBoard()
 		{
 			this.Build();
 			try
 			{
-				BoardPiece[,] bps = new BoardPiece[15, 15];
 				this.imgBoardBackGround.Pixbuf = GoonTools.Common.BoardBackGround;
 				BoardPiece bp;
 				Gtk.Table.TableChild tc;
@@ -51,9 +50,49 @@ namespace ThudSharp
 			
 		}
 		
-//		public BoardPiece GetBoardPiece(int col, int row)
-//		{
-//
-//		}
+		public void StartGame()
+		{
+			bps[0,5].SetPiece(MovablePieceType.Dwarf);
+			bps[0,6].SetPiece(MovablePieceType.Dwarf);
+			bps[0,8].SetPiece(MovablePieceType.Dwarf);
+			bps[0,9].SetPiece(MovablePieceType.Dwarf);
+			bps[1,4].SetPiece(MovablePieceType.Dwarf);
+			bps[1,10].SetPiece(MovablePieceType.Dwarf);
+			bps[2,3].SetPiece(MovablePieceType.Dwarf);
+			bps[2,11].SetPiece(MovablePieceType.Dwarf);
+			bps[3,2].SetPiece(MovablePieceType.Dwarf);
+			bps[3,12].SetPiece(MovablePieceType.Dwarf);			
+			bps[4,1].SetPiece(MovablePieceType.Dwarf);
+			bps[4,13].SetPiece(MovablePieceType.Dwarf);
+			bps[5,0].SetPiece(MovablePieceType.Dwarf);
+			bps[5,14].SetPiece(MovablePieceType.Dwarf);			
+			bps[6,0].SetPiece(MovablePieceType.Dwarf);
+			bps[6,6].SetPiece(MovablePieceType.Troll);
+			bps[6,7].SetPiece(MovablePieceType.Troll);
+			bps[6,8].SetPiece(MovablePieceType.Troll);
+			bps[6,14].SetPiece(MovablePieceType.Dwarf);
+			bps[7,6].SetPiece(MovablePieceType.Troll);
+			bps[7,8].SetPiece(MovablePieceType.Troll);
+			bps[8,0].SetPiece(MovablePieceType.Dwarf);
+			bps[8,6].SetPiece(MovablePieceType.Troll);
+			bps[8,7].SetPiece(MovablePieceType.Troll);
+			bps[8,8].SetPiece(MovablePieceType.Troll);
+			bps[8,14].SetPiece(MovablePieceType.Dwarf);	
+			bps[9,0].SetPiece(MovablePieceType.Dwarf);
+			bps[9,14].SetPiece(MovablePieceType.Dwarf);			
+			bps[10,1].SetPiece(MovablePieceType.Dwarf);
+			bps[10,13].SetPiece(MovablePieceType.Dwarf);
+			bps[11,2].SetPiece(MovablePieceType.Dwarf);
+			bps[11,12].SetPiece(MovablePieceType.Dwarf);
+			bps[12,3].SetPiece(MovablePieceType.Dwarf);
+			bps[12,11].SetPiece(MovablePieceType.Dwarf);
+			bps[13,4].SetPiece(MovablePieceType.Dwarf);
+			bps[13,10].SetPiece(MovablePieceType.Dwarf);
+			bps[14,5].SetPiece(MovablePieceType.Dwarf);
+			bps[14,6].SetPiece(MovablePieceType.Dwarf);
+			bps[14,8].SetPiece(MovablePieceType.Dwarf);
+			bps[14,9].SetPiece(MovablePieceType.Dwarf);
+			this.ShowAll();
+		}
 	}
 }
