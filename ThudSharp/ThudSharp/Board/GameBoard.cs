@@ -1,5 +1,6 @@
 
 using System;
+using Gtk;
 
 namespace ThudSharp
 {
@@ -12,25 +13,40 @@ namespace ThudSharp
 		public GameBoard()
 		{
 			this.Build();
-			BoardPiece[][] bps = new BoardPiece[15][15];
-			this.imgBoardBackGround.Pixbuf = GoonTools.Common.BoardBackGround;
-			BoardPiece bp;
-			for(int i = 0; i < 15; i++)
+			try
 			{
-				for(int j=0; j < 15; j++)
+				BoardPiece[,] bps = new BoardPiece[15, 15];
+				this.imgBoardBackGround.Pixbuf = GoonTools.Common.BoardBackGround;
+				BoardPiece bp;
+				Gtk.Table.TableChild tc;
+				for(uint i = 0; i < 15; i++)
 				{
-					bp = new BoardPiece(i, j);
+					for(uint j=0; j < 15; j++)
+					{
+						// create our new board piece
+						bp = new BoardPiece(i, j);
+						// add the board piece to our controling array
+						bps[i,j] = bp;
+						// add the board piece to the table
+						GameTable.Add(bp);
+						// set the location of the board piece on the table
+						tc = ((Gtk.Table.TableChild)(GameTable[bp]));
+						tc.LeftAttach = j;
+						tc.RightAttach = j + 1;
+						tc.TopAttach = i;
+						tc.BottomAttach = i + 1;
+						tc.XPadding = 0;
+						tc.YPadding = 0;
+					}
 				}
+				
 			}
-			int[][] BlankArray= new int[10][];
-			BlankArray[0] = new int[10]{0,1,2,3,4,10,11,12,13,14};
-			BlankArray[1] = new int[8]{0,1,2,3,4,10,11,12,13,14};
-			BlankArray[2] = new int[6]{0,1,2,3,4,10,11,12,13,14};
-			BlankArray[3] = new int[4]{0,1,2,3,4,10,11,12,13,14};
-			BlankArray[4] = new int[2]{0,1,2,3,4,10,11,12,13,14};
-			BlankArray[0] = new int[10]{0,1,2,3,4,10,11,12,13,14}
-			BlankArray[0] = new int[10]{0,1,2,3,4,10,11,12,13,14}
-			//{new int[0,0], new int[0,1], new int[0,2], new int[0,3], new int[0,4], new int[0,5,]};
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString());
+				md.Run();
+				md.Destroy();
+			}
 			ShowAll();
 			
 		}
