@@ -23,6 +23,7 @@ namespace ThudSharp
 		public MovablePiece (MovablePieceType PT)
 		{
 			this.Build ();
+			_PieceType = PT;
 			this.evtPiece.VisibleWindow = false;
 			this.evtPiece.AboveChild = true;
 			if(_PieceType== MovablePieceType.Troll)
@@ -38,6 +39,7 @@ namespace ThudSharp
 		
 		protected virtual void OnEvtPieceButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
 		{
+			Console.WriteLine("Button Press " + args.Event.Button.ToString());
 		}
 
 		protected virtual void OnEvtPieceButtonReleaseEvent (object o, Gtk.ButtonReleaseEventArgs args)

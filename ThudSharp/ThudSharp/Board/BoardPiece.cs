@@ -106,5 +106,16 @@ namespace ThudSharp
 		{
 			return ((intValue & 1) == 1);
 		}
+		
+		public void SetPiece(MovablePieceType mpt)
+		{
+			MovablePiece mp = new MovablePiece(mpt);
+			fxContainer.Add(mp);
+			Gtk.Fixed.FixedChild fxc = ((Gtk.Fixed.FixedChild)(fxContainer[mp]));
+            fxc.X = 0;
+            fxc.Y = 0;
+            this.ShowAll();
+			
+		}
 	}
 }

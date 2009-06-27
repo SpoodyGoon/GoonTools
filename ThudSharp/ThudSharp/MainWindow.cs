@@ -20,7 +20,8 @@ namespace ThudSharp
 	
 		protected virtual void OnNewActionActivated (object sender, System.EventArgs e)
 		{
-			
+			gameboard1.StartGame();
+			this.ShowAll();
 		}
 	
 		protected virtual void OnQuitActionActivated (object sender, System.EventArgs e)
@@ -31,5 +32,7 @@ namespace ThudSharp
 		protected virtual void OnAboutActionActivated (object sender, System.EventArgs e)
 		{
 		}
+		
+		
 	}
 }
