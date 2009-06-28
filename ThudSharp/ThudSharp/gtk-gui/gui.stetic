@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="..\bin\Debug\ThudSharp.exe" internal="true" />
+    <widget-library name="../bin/Debug/ThudSharp.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="ThudSharp.MainWindow" design-size="1016 773">
     <action-group name="Default">
@@ -91,7 +91,29 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder />
+                  <widget class="Gtk.VBox" id="vbox3">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.DrawingArea" id="drawingarea1">
+                        <property name="MemberName" />
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
                 </child>
               </widget>
               <packing>
@@ -196,6 +218,7 @@
         <property name="MemberName" />
         <property name="WidthRequest">45</property>
         <property name="HeightRequest">45</property>
+        <property name="Events">ExposureMask, PointerMotionMask, PointerMotionHintMask, ButtonMotionMask, Button1MotionMask, Button2MotionMask, Button3MotionMask, ButtonPressMask, ButtonReleaseMask, PropertyChangeMask, VisibilityNotifyMask</property>
         <property name="HasWindow">False</property>
         <child>
           <widget class="Gtk.Image" id="imgBackground">
@@ -204,6 +227,15 @@
             <property name="HeightRequest">45</property>
             <property name="CanFocus">True</property>
             <property name="Events">ExposureMask, PointerMotionMask, PointerMotionHintMask, ButtonMotionMask, Button1MotionMask, Button2MotionMask, Button3MotionMask, ButtonPressMask, ButtonReleaseMask, KeyPressMask, KeyReleaseMask, ProximityInMask, ProximityOutMask</property>
+          </widget>
+        </child>
+        <child>
+          <widget class="Gtk.Image" id="imgHighLight">
+            <property name="MemberName" />
+            <property name="WidthRequest">45</property>
+            <property name="HeightRequest">45</property>
+            <property name="Visible">False</property>
+            <property name="Sensitive">False</property>
           </widget>
         </child>
       </widget>

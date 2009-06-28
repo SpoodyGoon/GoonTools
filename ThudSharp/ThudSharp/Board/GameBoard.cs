@@ -9,7 +9,8 @@ namespace ThudSharp
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class GameBoard : Gtk.Bin
 	{
-		private BoardPiece[,] bps = new BoardPiece[15, 15];				
+		private BoardPiece[,] bps = new BoardPiece[15, 15];
+		private Gtk.Window _ParentWindow;
 		public GameBoard()
 		{
 			this.Build();

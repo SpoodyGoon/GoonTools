@@ -20,6 +20,7 @@ namespace ThudSharp
 	public partial class MovablePiece : Gtk.Bin
 	{
 		private MovablePieceType _PieceType = MovablePieceType.None;
+		private bool _IsActive = false;
 		public MovablePiece (MovablePieceType PT)
 		{
 			this.Build ();
@@ -37,9 +38,36 @@ namespace ThudSharp
 			this.ShowAll();
 		}
 		
+		#region Public Properties
+		
+		public bool IsActive
+		{
+			get{return _IsActive;}
+			set{_IsActive=value;}
+		}
+		
+		#endregion Public Properties
+		
+		#region Widget Events
+		
 		protected virtual void OnEvtPieceButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
 		{
-			Console.WriteLine("Button Press " + args.Event.Button.ToString());
+			if(args.Event.Button == 1 && _IsActive == false)
+			{
+				_IsActive = true;
+				BoardPiece bp = (BoardPiece)this.Parent.Parent;
+				bp.SetSelected(true, true);
+				((MainWindow)this.Toplevel).SelectNotify(_PieceType, bp.Row, bp.Col);
+			}
+			else if((args.Event.Button == 1 || args.Event.Button == 3) && (_IsActive == true))
+			{
+				_IsActive = false;
+				// cancel select/active
+				BoardPiece bp = (BoardPiece)this.Parent.Parent;
+				bp.SetSelected(false, false);
+			}
+			
+			//Console.WriteLine("Button Press " + args.Event.Button.ToString() + " Name " + w.Name);
 		}
 
 		protected virtual void OnEvtPieceButtonReleaseEvent (object o, Gtk.ButtonReleaseEventArgs args)
@@ -55,5 +83,7 @@ namespace ThudSharp
 		{
 			Console.WriteLine("Enter Notify " + _PieceType.ToString());
 		}
+		
+		#endregion Widget Events
 	}
 }
