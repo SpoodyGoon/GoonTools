@@ -8,7 +8,8 @@ namespace ThudSharp
 	{	
 		public MainWindow (): base (Gtk.WindowType.Toplevel)
 		{
-			Build ();			
+			Build ();	
+			
 			this.ShowAll();
 		}
 		
@@ -33,6 +34,9 @@ namespace ThudSharp
 		{
 		}
 		
-		
+		public void SelectNotify(MovablePieceType mpt, uint row, uint col)
+		{
+			Console.WriteLine("Active notify");
+		}
 	}
 }
