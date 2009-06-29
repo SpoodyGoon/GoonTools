@@ -51,6 +51,23 @@ namespace ThudSharp
 			
 		}
 		
+		private void ShowMoveOptions(MovablePieceType mp)
+		{
+		
+			
+		}
+		
+		private void ShowTrollMoves()
+		{
+			
+			
+		}
+		
+		private void ShowDwarfMoves()
+		{
+			
+		}
+		
 		public void StartGame()
 		{
 			bps[0,5].SetPiece(MovablePieceType.Dwarf);
