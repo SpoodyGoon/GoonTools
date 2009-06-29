@@ -1,5 +1,6 @@
 
 using System;
+using Cairo;
 using Gtk;
 
 namespace ThudSharp
@@ -22,10 +23,6 @@ namespace ThudSharp
 		public BoardPiece(uint row, uint col)
 		{
 			this.Build();
-			
-//			imgHighLight.Pixbuf = GoonTools.Common.HighLight;
-//			imgHighLight.Visible = false;
-//			imgHighLight.DoubleBuffered = true;
 			
 			_Row = row;
 			_Col = col;
@@ -107,7 +104,7 @@ namespace ThudSharp
 		{
 			get{return _Col;}
 			set{_Col=value;}
-		}		
+		}
 		
 		#endregion Public Properites
 		
@@ -118,20 +115,39 @@ namespace ThudSharp
 			MovablePiece mp = new MovablePiece(mpt);
 			fxContainer.Add(mp);
 			Gtk.Fixed.FixedChild fxc = ((Gtk.Fixed.FixedChild)(fxContainer[mp]));
-            fxc.X = 0;
-            fxc.Y = 0;
-            this.ShowAll();
+			fxc.X = 0;
+			fxc.Y = 0;
+			this.ShowAll();
 			
 		}
 		
 		public void SetSelected(bool blnIsSelected, bool blnIsActive)
 		{
-			_IsSelected = blnIsSelected;
-			_IsActive = blnIsActive;
 			
-			imgBackground.Mask.DrawRectangle (Style.LightGC(StateType.Active), true, 0, 0,45, 45);
-			this.ShowAll();
-			Console.WriteLine("Set Selected");
+			try
+			{
+				if(blnIsSelected == true)
+				{
+					imgHighLight.Pixbuf = GoonTools.Common.HighLight;
+					imgHighLight.Visible = true;
+					imgHighLight.DoubleBuffered = true;
+				}
+				else
+				{
+					imgHighLight.Pixbuf = null;
+				}
+				_IsSelected = blnIsSelected;
+				_IsActive = blnIsActive;
+				this.ShowAll();
+//				System.Diagnostics.Debug.WriteLine("set selected");
+//				Console.WriteLine("Set Selected");
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString());
+				md.Run();
+				md.Destroy();
+			}
 		}
 		
 		#endregion Public Methods
