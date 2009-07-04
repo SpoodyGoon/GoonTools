@@ -15,6 +15,7 @@ namespace ThudSharp
 	{
 		None,
 		Dwarf,
-		Troll
+		Troll,
+		Rock
 	}
 }

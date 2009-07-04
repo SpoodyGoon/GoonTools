@@ -14,26 +14,26 @@ namespace ThudSharp
 	/// <summary>
 	/// Description of GameBoardColumnCollection.
 	/// </summary>
-	public class GameBoardColumnCollection : ICollection, IEnumerable
+	public class BoardPieceCollection : ICollection, IEnumerable
 	{
-		ArrayList _GameBoardColumns = new ArrayList();
-		public GameBoardColumnCollection()
+		ArrayList _BoardPieces = new ArrayList();
+		public BoardPieceCollection()
 		{
 		}
 		
 		public int Count 
 		{
-			get { return _GameBoardColumns.Count; }
+			get { return _BoardPieces.Count; }
 		}
 
 		public bool IsReadOnly 
 		{
-			get { return _GameBoardColumns.IsReadOnly; }
+			get { return _BoardPieces.IsReadOnly; }
 		}
 
 		public bool IsSynchronized 
 		{
-			get { return _GameBoardColumns.IsSynchronized; }
+			get { return _BoardPieces.IsSynchronized; }
 		}
 
 		public object SyncRoot 
@@ -41,44 +41,44 @@ namespace ThudSharp
 			get { return this; }
 		}
 
-		public void Add (GameBoard gb)
+		public void Add (BoardPiece bp)
 		{
-			_GameBoardColumns.Add (gb);
+			_BoardPieces.Add (bp);
 		}
 
-		public bool Contains(GameBoard gb)
+		public bool Contains(BoardPiece bp)
 		{
-			return _GameBoardColumns.Contains (gb);
+			return _BoardPieces.Contains (bp);
 		}
 
 		public void CopyTo (Array array, int index)
 		{
-			_GameBoardColumns.CopyTo(array, index);
+			_BoardPieces.CopyTo(array, index);
 		}
 
 		public IEnumerator GetEnumerator ()
 		{
-			return _GameBoardColumns.GetEnumerator ();
+			return _BoardPieces.GetEnumerator ();
 		}
 
-		public void Remove (GameBoard gb)
+		public void Remove (BoardPiece bp)
 		{
-			_GameBoardColumns.Remove(gb);
+			_BoardPieces.Remove(bp);
 		}
 
 		public void Clear()
 		{
-			_GameBoardColumns.Clear();
+			_BoardPieces.Clear();
 		}
 		
-		public GameBoard this [int index] 
+		public BoardPiece this [int index] 
 		{
 			get 
 			{
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException ("index");
 
-				return (GameBoard)_GameBoardColumns[index];
+				return (BoardPiece)_BoardPieces[index];
 			}
 		}
 	}
