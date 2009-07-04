@@ -41,6 +41,7 @@ namespace GoonTools
 		private static Gdk.Pixbuf _HighLight = new Gdk.Pixbuf(_EnvData.ImageFolder + "HighLight.png");
 		private static Gdk.Pixbuf _Troll = new Gdk.Pixbuf(_EnvData.ImageFolder + "Troll.png");
 		private static Gdk.Pixbuf _Dwarf = new Gdk.Pixbuf(_EnvData.ImageFolder + "Dwarf.png");
+		private static Gdk.Pixbuf _Rock = new Gdk.Pixbuf(_EnvData.ImageFolder + "Rock.png");
 		#region Public Properties
 		
 		public static GoonTools.Options Option
@@ -81,6 +82,11 @@ namespace GoonTools
 		public static Gdk.Pixbuf Dwarf
 		{
 			get{return _Dwarf; }
+		}
+		
+		public static Gdk.Pixbuf Rock
+		{
+			get{return _Rock; }
 		}
 		
 		#endregion Public Properties

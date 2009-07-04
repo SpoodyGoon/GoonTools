@@ -20,11 +20,15 @@ namespace ThudSharp
 	public partial class MovablePiece : Gtk.Bin
 	{
 		private MovablePieceType _PieceType = MovablePieceType.None;
+		private GameBoard _GameBoard;
+		private BoardPiece _CurrentBoardPiece;
 		private bool _IsActive = false;
-		public MovablePiece (MovablePieceType PT)
+		public MovablePiece (MovablePieceType PT, GameBoard GB, BoardPiece BP)
 		{
 			this.Build ();
 			_PieceType = PT;
+			_GameBoard = GB;
+			_CurrentBoardPiece = BP;
 			this.evtPiece.VisibleWindow = false;
 			this.evtPiece.AboveChild = true;
 			if(_PieceType== MovablePieceType.Troll)
@@ -34,6 +38,10 @@ namespace ThudSharp
 			else if(_PieceType== MovablePieceType.Dwarf)
 			{
 				imgMovable.Pixbuf = GoonTools.Common.Dwarf;
+			}
+			else if(_PieceType == MovablePieceType.Rock)
+			{
+				imgMovable.Pixbuf = GoonTools.Common.Rock;
 			}
 			this.ShowAll();
 		}
@@ -46,6 +54,18 @@ namespace ThudSharp
 			set{_IsActive=value;}
 		}
 		
+		public MovablePieceType PieceType
+		{
+			get{return _PieceType;}
+			set{_PieceType=value;}
+		}
+		
+		public BoardPiece CurrentBoardPiece
+		{
+			get{return _CurrentBoardPiece;}
+			set{_CurrentBoardPiece=value;}
+		}
+		
 		#endregion Public Properties
 		
 		#region Widget Events
@@ -55,16 +75,12 @@ namespace ThudSharp
 			if(args.Event.Button == 1 && _IsActive == false)
 			{
 				_IsActive = true;
-				BoardPiece bp = (BoardPiece)this.Parent.Parent;
-				bp.SetSelected(true, true);
-				((MainWindow)this.Toplevel).SelectNotify(_PieceType, bp.Row, bp.Col);
+				_GameBoard.ShowMoveOptions(this);
 			}
 			else if((args.Event.Button == 1 || args.Event.Button == 3) && (_IsActive == true))
 			{
-				_IsActive = false;
-				// cancel select/active
-				BoardPiece bp = (BoardPiece)this.Parent.Parent;
-				bp.SetSelected(false, false);
+				_IsActive = false;				
+				_GameBoard.ClearMoveOptions(this);
 			}
 			
 			//Console.WriteLine("Button Press " + args.Event.Button.ToString() + " Name " + w.Name);

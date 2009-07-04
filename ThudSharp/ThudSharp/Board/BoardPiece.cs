@@ -12,7 +12,7 @@ namespace ThudSharp
 	{
 		private MovablePieceType _MovablePiece = MovablePieceType.None;
 		private NonMovablePieceType _BackGround = NonMovablePieceType.None;
-		private bool _Blank = true;
+		private bool _Blank = false;
 		private uint _Row = 0;
 		private uint _Col = 0;
 		private bool _IsActive = false;
@@ -110,9 +110,10 @@ namespace ThudSharp
 		
 		#region Public Methods
 		
-		public void SetPiece(MovablePieceType mpt)
+		public void SetPiece(MovablePieceType mpt, GameBoard gb)
 		{
-			MovablePiece mp = new MovablePiece(mpt);
+			_MovablePiece = mpt;
+			MovablePiece mp = new MovablePiece(mpt, gb, this);
 			fxContainer.Add(mp);
 			Gtk.Fixed.FixedChild fxc = ((Gtk.Fixed.FixedChild)(fxContainer[mp]));
 			fxc.X = 0;
