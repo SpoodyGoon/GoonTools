@@ -122,6 +122,12 @@ namespace ThudSharp
 			
 		}
 		
+		public void RemovePiece(MovablePieceType mpt, GameBoard gb)
+		{
+			
+			
+		}
+		
 		public void SetSelected(bool blnIsSelected, bool blnIsActive)
 		{
 			

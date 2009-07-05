@@ -80,7 +80,7 @@ namespace ThudSharp
 			else if((args.Event.Button == 1 || args.Event.Button == 3) && (_IsActive == true))
 			{
 				_IsActive = false;				
-				_GameBoard.ClearMoveOptions(this);
+				_GameBoard.ClearMoveOptions();
 			}
 			
 			//Console.WriteLine("Button Press " + args.Event.Button.ToString() + " Name " + w.Name);
