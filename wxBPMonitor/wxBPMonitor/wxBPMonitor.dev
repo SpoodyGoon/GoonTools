@@ -1,7 +1,7 @@
 [Project]
 FileName=wxBPMonitor.dev
 Name=wxBPMonitor
-UnitCount=9
+UnitCount=12
 PchHead=-1
 PchSource=-1
 Ver=3
@@ -13,7 +13,7 @@ Folders=
 [Unit1]
 FileName=wxBPMonitorApp.cpp
 CompileCpp=1
-Folder=wxBPMonitor
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -23,7 +23,7 @@ BuildCmd=
 [Unit2]
 FileName=wxBPMonitorApp.h
 CompileCpp=1
-Folder=wxBPMonitor
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -32,7 +32,7 @@ BuildCmd=
 
 [Unit3]
 FileName=wxBPMonitorApp.rc
-Folder=wxBPMonitor
+Folder=Resources
 Compile=1
 Link=0
 Priority=1000
@@ -42,7 +42,7 @@ BuildCmd=
 [Unit4]
 FileName=frmMain.h
 CompileCpp=1
-Folder=wxBPMonitor
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -52,7 +52,7 @@ BuildCmd=
 [Unit5]
 FileName=frmMain.cpp
 CompileCpp=1
-Folder=wxBPMonitor
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -61,7 +61,7 @@ BuildCmd=
 
 [Unit6]
 FileName=frmMain.wxform
-Folder=wxBPMonitor
+Folder=
 Compile=0
 Link=0
 Priority=1000
@@ -145,7 +145,7 @@ compilerType=1
 [Unit7]
 FileName=frmEntry.cpp
 CompileCpp=1
-Folder=wxBPMonitor
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -155,7 +155,7 @@ BuildCmd=
 [Unit8]
 FileName=frmEntry.h
 CompileCpp=1
-Folder=wxBPMonitor
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -164,7 +164,36 @@ BuildCmd=
 
 [Unit9]
 FileName=frmEntry.wxform
-Folder=wxBPMonitor
+Folder=
+Compile=0
+Link=0
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit10]
+FileName=frmPerson.h
+CompileCpp=1
+Folder=  class frmEntry  /  void CreateGUIControls ()   
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=frmPerson.cpp
+CompileCpp=1
+Folder=  class frmEntry  /  void CreateGUIControls ()   
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit12]
+FileName=frmPerson.wxform
+Folder=  class frmEntry  /  void CreateGUIControls ()   
 Compile=0
 Link=0
 Priority=1000
