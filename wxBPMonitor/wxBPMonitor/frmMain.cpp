@@ -9,11 +9,13 @@
 
 #include "frmMain.h"
 #include "frmEntry.h"
+#include "frmPerson.h"
 //Do not add custom headers between
 //Header Include Start and Header Include End
 //wxDev-C++ designer will remove them
 ////Header Include Start
-#include "Images/frmMain_tbNewEntry_XPM.xpm"
+#include "Images/frmMain_tbEntry_XPM.xpm"
+#include "Images/frmMain_tbPerson_XPM.xpm"
 ////Header Include End
 //----------------------------------------------------------------------------
 // frmMain
@@ -26,7 +28,9 @@ BEGIN_EVENT_TABLE(frmMain,wxFrame)
 	////Manual Code End
 	
 	EVT_CLOSE(frmMain::OnClose)
-	EVT_MENU(ID_TBNEWENTRY,frmMain::tbNewEntryClick)
+	EVT_MENU(tbEntry,frmMain::tbEntryClick)
+	EVT_MENU(mnuQuit, frmMain::mnuQuit_Clicked)
+	EVT_MENU(tbPerson,frmMain::tbEditUserClick)
 END_EVENT_TABLE()
 ////Event Table End
 
@@ -48,19 +52,34 @@ void frmMain::CreateGUIControls()
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
-	WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(312,21));
-	WxToolBar1->SetFont(wxFont(8, wxSWISS, wxNORMAL,wxNORMAL, false, wxT("Tahoma")));
+	WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	this->SetSizer(WxBoxSizer1);
+	this->SetAutoLayout(true);
 
-	wxBitmap tbNewEntry_BITMAP (frmMain_tbNewEntry_XPM);
-	wxBitmap tbNewEntry_DISABLE_BITMAP (wxNullBitmap);
-	WxToolBar1->AddTool(ID_TBNEWENTRY, wxT("New Entry"), tbNewEntry_BITMAP, tbNewEntry_DISABLE_BITMAP, wxITEM_NORMAL, wxT("New Entry"), wxT("Click here to enter a new blood pressure reading"));
+	WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0, 0), wxSize(312, 29), wxTB_DOCKABLE | wxTB_HORIZONTAL | wxTB_HORZ_LAYOUT);
+
+	wxBitmap tbPerson_BITMAP (frmMain_tbPerson_XPM);
+	wxBitmap tbPerson_DISABLE_BITMAP (wxNullBitmap);
+	WxToolBar1->AddTool(tbPerson, wxT("New"), tbPerson_BITMAP, tbPerson_DISABLE_BITMAP, wxITEM_NORMAL, wxT("Edit Users"), wxT(""));
+
+	WxMenuBar1 = new wxMenuBar();
+	wxMenu *mnuFile_Mnu_Obj = new wxMenu(0);
+	mnuFile_Mnu_Obj->Append(mnuQuit, wxT("Quit"), wxT(""), wxITEM_NORMAL);
+	WxMenuBar1->Append(mnuFile_Mnu_Obj, wxT("File"));
+	SetMenuBar(WxMenuBar1);
+
+	wxBitmap tbEntry_BITMAP (frmMain_tbEntry_XPM);
+	wxBitmap tbEntry_DISABLE_BITMAP (wxNullBitmap);
+	WxToolBar1->AddTool(tbEntry, wxT(""), tbEntry_BITMAP, tbEntry_DISABLE_BITMAP, wxITEM_NORMAL, wxT(""), wxT(""));
 
 	WxToolBar1->SetToolBitmapSize(wxSize(16,16));
 	WxToolBar1->Realize();
 	SetToolBar(WxToolBar1);
 	SetTitle(wxT("Blood Pressure Monitor"));
 	SetIcon(wxNullIcon);
-	SetSize(8,8,320,334);
+	
+	GetSizer()->Layout();
+	GetSizer()->Fit(this);
 	Center();
 	
 	////GUI Items Creation End
@@ -74,9 +93,26 @@ void frmMain::OnClose(wxCloseEvent& event)
 /*
  * tbNewEntryClick
  */
-void frmMain::tbNewEntryClick(wxCommandEvent& event)
-{
-	frmEntry* fm = new frmEntry(NULL);
+void frmMain::tbEditUserClick(wxCommandEvent& event)
+{    
+	frmPerson* fm = new frmPerson(NULL);
 	fm->ShowModal();
 
+}
+
+/*
+ * mnuQuit_Clicked
+ */
+void frmMain::mnuQuit_Clicked(wxCommandEvent& event)
+{
+	// insert your code here
+}
+
+/*
+ * tbEntryClick
+ */
+void frmMain::tbEntryClick(wxCommandEvent& event)
+{	
+	frmEntry* fm = new frmEntry(NULL);
+	fm->ShowModal();
 }

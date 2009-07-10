@@ -25,8 +25,10 @@
 //Header Include Start and Header Include End.
 //wxDev-C++ designer will remove them. Add custom headers after the block.
 ////Header Include Start
+#include <wx/statline.h>
 #include <wx/grid.h>
 #include <wx/button.h>
+#include <wx/textctrl.h>
 #include <wx/stattext.h>
 #include <wx/sizer.h>
 ////Header Include End
@@ -51,11 +53,17 @@ class frmPerson : public wxDialog
 		//GUI Control Declaration Start and GUI Control Declaration End.
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
+		wxButton *WxButton3;
+		wxButton *WxButton2;
+		wxBoxSizer *WxBoxSizer4;
+		wxStaticLine *WxStaticLine1;
 		wxGrid *dgPerson;
-		wxButton *WxButton1;
+		wxBoxSizer *WxBoxSizer3;
+		wxButton *btnAddEdit;
+		wxTextCtrl *txtPersonName;
 		wxStaticText *WxStaticText1;
-		wxFlexGridSizer *WxFlexGridSizer2;
-		wxFlexGridSizer *WxFlexGridSizer1;
+		wxBoxSizer *WxBoxSizer2;
+		wxBoxSizer *WxBoxSizer1;
 		////GUI Control Declaration End
 		
 	private:
@@ -66,9 +74,13 @@ class frmPerson : public wxDialog
 		enum
 		{
 			////GUI Enum Control ID Start
-			ID_DGPERSON = 1054,
-			ID_WXBUTTON1 = 1053,
-			ID_WXSTATICTEXT1 = 1052,
+			ID_WXBUTTON3 = 1072,
+			ID_WXBUTTON2 = 1071,
+			ID_WXSTATICLINE1 = 1073,
+			ID_DGPERSON = 1064,
+			ID_BTNADDEDIT = 1061,
+			ID_TXTPERSONNAME = 1060,
+			ID_WXSTATICTEXT1 = 1059,
 			////GUI Enum Control ID End
 			ID_DUMMY_VALUE_ //don't remove this value unless you have other enum values
 		};

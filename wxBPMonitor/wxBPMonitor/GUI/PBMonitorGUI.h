@@ -18,19 +18,20 @@
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/toolbar.h>
+#include <wx/sizer.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
 #include <wx/button.h>
-#include <wx/sizer.h>
 #include <wx/statline.h>
 #include <wx/grid.h>
 #include <wx/dialog.h>
 #include <wx/statbmp.h>
-#include <wx/combobox.h>
+#include <wx/choice.h>
 #include <wx/datectrl.h>
 #include <wx/dateevt.h>
+#include <wx/spinctrl.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -56,7 +57,7 @@ class frmMain : public wxFrame
 		
 	
 	public:
-		frmMain( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Blood Pressure Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,446 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxTAB_TRAVERSAL, const wxString& name = wxT("frmMainWindow") );
+		frmMain( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Blood Pressure Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,446 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxDOUBLE_BORDER|wxRAISED_BORDER|wxSTATIC_BORDER|wxTAB_TRAVERSAL, const wxString& name = wxT("frmMainWindow") );
 		~frmMain();
 	
 };
@@ -74,14 +75,18 @@ class frmPerson : public wxDialog
 		wxTextCtrl* txtPersonName;
 		wxButton* btnAddEdit;
 		wxStaticLine* m_staticline1;
+		
 		wxGrid* dgPerson;
+		wxStaticLine* m_staticline3;
+		wxButton* btnClose;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void btnAddEdit_OnClick( wxCommandEvent& event ){ event.Skip(); }
+		virtual void btnClose_Clicked( wxCommandEvent& event ){ event.Skip(); }
 		
 	
 	public:
-		frmPerson( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Add/Edit Person"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 438,421 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxSTAY_ON_TOP, const wxString& name = wxT("frmPersonWindow") );
+		frmPerson( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Add/Edit Person"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 438,402 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxSTAY_ON_TOP, const wxString& name = wxT("frmPersonWindow") );
 		~frmPerson();
 	
 };
@@ -96,13 +101,29 @@ class frmEntry : public wxDialog
 	protected:
 		wxStaticText* m_staticText2;
 		wxStaticBitmap* m_bitmap1;
-		wxStaticText* m_staticText3;
-		wxComboBox* m_comboBox1;
-		wxStaticText* m_staticText4;
-		wxDatePickerCtrl* m_datePicker1;
+		wxStaticText* m_staticText8;
+		wxChoice* ddlName;
+		wxStaticText* m_staticText9;
+		wxDatePickerCtrl* dteEntryDate;
+		wxStaticText* m_staticText10;
+		wxSpinCtrl* txtSystolic;
+		wxStaticText* m_staticText11;
+		wxSpinCtrl* txtDiastolic;
+		wxStaticText* m_staticText12;
+		wxSpinCtrl* txtHeartRate;
+		wxStaticText* m_staticText13;
+		wxTextCtrl* txtNotes;
+		wxStaticLine* m_staticline2;
+		wxButton* btnCancel;
+		wxButton* btnOk;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void btnCancel_Clicked( wxCommandEvent& event ){ event.Skip(); }
+		virtual void btnOk_Clicked( wxCommandEvent& event ){ event.Skip(); }
+		
 	
 	public:
-		frmEntry( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Blood Presure Entry"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 493,388 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE );
+		frmEntry( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Blood Presure Entry"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 493,498 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE );
 		~frmEntry();
 	
 };
