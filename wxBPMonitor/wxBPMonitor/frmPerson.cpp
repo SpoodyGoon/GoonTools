@@ -46,29 +46,44 @@ void frmPerson::CreateGUIControls()
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
-	WxFlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
-	this->SetSizer(WxFlexGridSizer1);
+	WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	this->SetSizer(WxBoxSizer1);
 	this->SetAutoLayout(true);
 
-	WxFlexGridSizer2 = new wxFlexGridSizer(0, 2, 0, 0);
-	WxFlexGridSizer1->Add(WxFlexGridSizer2, 1, wxALIGN_CENTER | wxALL, 5);
+	WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1->Add(WxBoxSizer2, 3, wxALIGN_LEFT | wxALIGN_RIGHT | wxALIGN_TOP | wxALIGN_CENTER | wxALIGN_CENTER_HORIZONTAL | wxEXPAND | wxALL | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 5);
 
-	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, wxT("WxStaticText1"), wxPoint(5,9), wxDefaultSize, 0, wxT("WxStaticText1"));
-	WxStaticText1->SetFont(wxFont(8, wxSWISS, wxNORMAL,wxNORMAL, false, wxT("Tahoma")));
-	WxFlexGridSizer2->Add(WxStaticText1,0,wxALIGN_CENTER | wxALL,5);
+	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, wxT("Person Name:"), wxPoint(5, 9), wxDefaultSize, 0, wxT("WxStaticText1"));
+	WxBoxSizer2->Add(WxStaticText1,0,wxALIGN_CENTER | wxALL,5);
 
-	WxButton1 = new wxButton(this, ID_WXBUTTON1, wxT("WxButton1"), wxPoint(90,5), wxSize(88,25), 0, wxDefaultValidator, wxT("WxButton1"));
-	WxButton1->SetFont(wxFont(8, wxSWISS, wxNORMAL,wxNORMAL, false, wxT("Tahoma")));
-	WxFlexGridSizer2->Add(WxButton1,0,wxALIGN_CENTER | wxALL,5);
+	txtPersonName = new wxTextCtrl(this, ID_TXTPERSONNAME, wxT(""), wxPoint(86, 8), wxSize(121, 19), 0, wxDefaultValidator, wxT("txtPersonName"));
+	WxBoxSizer2->Add(txtPersonName,0,wxALIGN_CENTER | wxALL,5);
 
-	dgPerson = new wxGrid(this, ID_DGPERSON, wxPoint(5,50), wxSize(337,315));
-	dgPerson->SetFont(wxFont(8, wxSWISS, wxNORMAL,wxNORMAL, false, wxT("Tahoma")));
-	dgPerson->SetDefaultColSize(100);
+	btnAddEdit = new wxButton(this, ID_BTNADDEDIT, wxT("Add/Edit"), wxPoint(217, 5), wxSize(75, 25), 0, wxDefaultValidator, wxT("btnAddEdit"));
+	WxBoxSizer2->Add(btnAddEdit,0,wxALIGN_CENTER | wxALL,5);
+
+	WxBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1->Add(WxBoxSizer3, 8, wxALIGN_LEFT | wxALIGN_RIGHT | wxALIGN_CENTER | wxEXPAND | wxALL, 5);
+
+	dgPerson = new wxGrid(this, ID_DGPERSON, wxPoint(5, 5), wxSize(500, 250));
+	dgPerson->SetDefaultColSize(50);
 	dgPerson->SetDefaultRowSize(25);
 	dgPerson->SetRowLabelSize(50);
 	dgPerson->SetColLabelSize(25);
-	dgPerson->CreateGrid(5,2,wxGrid::wxGridSelectCells);
-	WxFlexGridSizer1->Add(dgPerson,0,wxALIGN_CENTER | wxALL,5);
+	dgPerson->CreateGrid(5,5,wxGrid::wxGridSelectCells);
+	WxBoxSizer3->Add(dgPerson,5,wxALIGN_LEFT | wxALIGN_RIGHT | wxALIGN_CENTER | wxEXPAND | wxALL,5);
+
+	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(185, 320), wxSize(150, -1), wxLI_HORIZONTAL);
+	WxBoxSizer1->Add(WxStaticLine1,0,wxALIGN_CENTER | wxALL,5);
+
+	WxBoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1->Add(WxBoxSizer4, 0, wxALIGN_BOTTOM | wxALIGN_CENTER_HORIZONTAL | wxEXPAND | wxBOTTOM, 5);
+
+	WxButton2 = new wxButton(this, ID_WXBUTTON2, wxT("WxButton2"), wxPoint(5, 5), wxSize(75, 25), 0, wxDefaultValidator, wxT("WxButton2"));
+	WxBoxSizer4->Add(WxButton2,0,wxALIGN_CENTER | wxALL,5);
+
+	WxButton3 = new wxButton(this, ID_WXBUTTON3, wxT("WxButton3"), wxPoint(90, 5), wxSize(75, 25), 0, wxDefaultValidator, wxT("WxButton3"));
+	WxBoxSizer4->Add(WxButton3,0,wxALIGN_CENTER | wxALL,5);
 
 	SetTitle(wxT("Person Dialog"));
 	SetIcon(wxNullIcon);

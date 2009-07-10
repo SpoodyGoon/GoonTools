@@ -1,23 +1,24 @@
 # Project: wxBPMonitor
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ 6.10.2 on 08/07/09 22:09
+# Makefile created by wxDev-C++ 7.0 on 10/07/09 14:31
 
 CPP       = g++.exe
 CC        = gcc.exe
-WINDRES   = windres.exe
-OBJ       = Objects/MingW/wxBPMonitorApp.o Objects/MingW/frmMain.o Objects/MingW/frmEntry.o Objects/MingW/wxBPMonitor_private.res
-LINKOBJ   = Objects/MingW/wxBPMonitorApp.o Objects/MingW/frmMain.o Objects/MingW/frmEntry.o Objects/MingW/wxBPMonitor_private.res
-LIBS      = -L"C:/Program Files (x86)/Dev-Cpp/Lib" -mwindows -lwxmsw28 -lwxmsw28_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -g3 
-INCS      = -I"include"
-CXXINCS   = -I"C:/Program Files (x86)/Dev-Cpp/lib/gcc/mingw32/3.4.2/include" -I"C:/Program Files (x86)/Dev-Cpp/include/c++/3.4.2/backward" -I"C:/Program Files (x86)/Dev-Cpp/include/c++/3.4.2/mingw32" -I"C:/Program Files (x86)/Dev-Cpp/include/c++/3.4.2" -I"C:/Program Files (x86)/Dev-Cpp/include" -I"C:/Program Files (x86)/Dev-Cpp/" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/msw" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/generic" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/fl" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/gizmos" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/html" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/mmedia" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/net" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/ogl" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/plot" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/protocol" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/stc" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/svg" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/xml" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx/xrc" -I"C:/Program Files (x86)/Dev-Cpp/include/common/wx" -I"C:/Program Files (x86)/Dev-Cpp/include/common"
-RCINCS    = --include-dir "C:/PROGRA~2/Dev-Cpp/include/common"
+WINDRES   = "windres.exe"
+OBJ       = Objects/MingW/wxBPMonitorApp.o Objects/MingW/frmMain.o Objects/MingW/frmEntry.o Objects/MingW/frmPerson.o Objects/MingW/wxBPMonitor_private.res
+LINKOBJ   = Objects/MingW/wxBPMonitorApp.o Objects/MingW/frmMain.o Objects/MingW/frmEntry.o Objects/MingW/frmPerson.o Objects/MingW/wxBPMonitor_private.res
+LIBS      = -L"C:/Program Files/Dev-Cpp/Lib" -mwindows -lwxmsw28 -lwxmsw28_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -g3 
+INCS      = -I"C:/Program Files/Dev-Cpp/Include"
+CXXINCS   = -I"C:/Program Files/Dev-Cpp/lib/gcc/mingw32/3.4.5/include" -I"C:/Program Files/Dev-Cpp/include/c++/3.4.5/backward" -I"C:/Program Files/Dev-Cpp/include/c++/3.4.5/mingw32" -I"C:/Program Files/Dev-Cpp/include/c++/3.4.5" -I"C:/Program Files/Dev-Cpp/include" -I"C:/Program Files/Dev-Cpp/" -I"C:/Program Files/Dev-Cpp/include/3rdparty/wx/plotctrl" -I"C:/Program Files/Dev-Cpp/include/3rdparty/wx/sheet" -I"C:/Program Files/Dev-Cpp/include/3rdparty/wx/treemultictrl" -I"C:/Program Files/Dev-Cpp/include/3rdparty/wx/things" -I"C:/Program Files/Dev-Cpp/include/3rdparty/wx" -I"C:/Program Files/Dev-Cpp/include/3rdparty" -I"C:/Program Files/Dev-Cpp/include/common/wx/msw" -I"C:/Program Files/Dev-Cpp/include/common/wx/generic" -I"C:/Program Files/Dev-Cpp/include/common/wx/fl" -I"C:/Program Files/Dev-Cpp/include/common/wx/gizmos" -I"C:/Program Files/Dev-Cpp/include/common/wx/html" -I"C:/Program Files/Dev-Cpp/include/common/wx/mmedia" -I"C:/Program Files/Dev-Cpp/include/common/wx/net" -I"C:/Program Files/Dev-Cpp/include/common/wx/ogl" -I"C:/Program Files/Dev-Cpp/include/common/wx/plot" -I"C:/Program Files/Dev-Cpp/include/common/wx/protocol" -I"C:/Program Files/Dev-Cpp/include/common/wx/stc" -I"C:/Program Files/Dev-Cpp/include/common/wx/svg" -I"C:/Program Files/Dev-Cpp/include/common/wx/xml" -I"C:/Program Files/Dev-Cpp/include/common/wx/xrc" -I"C:/Program Files/Dev-Cpp/include/common/wx" -I"C:/Program Files/Dev-Cpp/include/common"
+RCINCS    = --include-dir "C:/PROGRA~1/Dev-Cpp/include/common"
 BIN       = Output/MingW/wxBPMonitor.exe
-DEFINES   =  -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__
+DEFINES   = -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__
 CXXFLAGS  = $(CXXINCS) $(DEFINES) -fno-exceptions -fno-pcc-struct-return -fstrict-aliasing -Wall -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__   -fexpensive-optimizations -O3 -g3
 CFLAGS    = $(INCS) $(DEFINES) -fno-exceptions -fno-pcc-struct-return -fstrict-aliasing -Wall -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__   -fexpensive-optimizations -O3 -g3
 GPROF     = gprof.exe
 RM        = rm -f
+WXLIBNAME = wxmsw28
 LINK      = g++.exe
 
 .PHONY: all all-before all-after clean clean-custom
@@ -27,16 +28,19 @@ clean: clean-custom
 	$(RM) $(OBJ) $(BIN)
 
 $(BIN): $(OBJ)
-	$(LINK) $(LINKOBJ) -o "Output\MingW\wxBPMonitor.exe" $(LIBS)
+	$(LINK) $(LINKOBJ) -o "Output\MingW\wxBPMonitor.exe" $(LIBS) 
 
 Objects/MingW/wxBPMonitorApp.o: $(GLOBALDEPS) wxBPMonitorApp.cpp wxBPMonitorApp.h frmMain.h
 	$(CPP) -c wxBPMonitorApp.cpp -o Objects/MingW/wxBPMonitorApp.o $(CXXFLAGS)
 
-Objects/MingW/frmMain.o: $(GLOBALDEPS) frmMain.cpp frmMain.h frmEntry.h Images/frmMain_tbNewEntry_XPM.xpm
+Objects/MingW/frmMain.o: $(GLOBALDEPS) frmMain.cpp frmMain.h frmEntry.h frmPerson.h Images/frmMain_tbEntry_XPM.xpm Images/frmMain_tbPerson_XPM.xpm
 	$(CPP) -c frmMain.cpp -o Objects/MingW/frmMain.o $(CXXFLAGS)
 
 Objects/MingW/frmEntry.o: $(GLOBALDEPS) frmEntry.cpp frmEntry.h
 	$(CPP) -c frmEntry.cpp -o Objects/MingW/frmEntry.o $(CXXFLAGS)
 
+Objects/MingW/frmPerson.o: $(GLOBALDEPS) frmPerson.cpp frmPerson.h
+	$(CPP) -c frmPerson.cpp -o Objects/MingW/frmPerson.o $(CXXFLAGS)
+
 Objects/MingW/wxBPMonitor_private.res: Objects/MingW/wxBPMonitor_private.rc wxBPMonitorApp.rc 
-	$(WINDRES) --input-format=rc -o Objects/MingW/wxBPMonitor_private.res $(RCINCS) Objects/MingW/WXBPMO~1.RC -O coff
+	$(WINDRES) --input-format=rc -o Objects/MingW/wxBPMonitor_private.res $(RCINCS) Objects/MingW/wxBPMonitor_private.rc -O coff
