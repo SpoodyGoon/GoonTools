@@ -35,7 +35,7 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-#define wxID_frmMain 1000
+#define wxID_frmMainGUI 1000
 #define wxID_mnuNewEntry 1001
 #define wxID_mnuUserEdit 1002
 #define wxID_mnuQuit 1003
@@ -44,7 +44,7 @@
 #define wxID_tbUserEdit 1006
 #define wxID_tbQuit 1007
 #define wxID_sbMain 1008
-#define wxID_frmPerson 1009
+#define wxID_frmPersonGUI 1009
 #define wxID_m_staticText1 1010
 #define wxID_txtPersonName 1011
 #define wx_IDbtnAddEdit 1012
@@ -52,7 +52,7 @@
 #define wxID_dgPerson 1014
 #define wxID_m_staticline3 1015
 #define ID_btnClose 1016
-#define wxID_frmEntry 1017
+#define wxID_frmEntryGUI 1017
 #define wxID_m_staticText2 1018
 #define wxID_imgHeader 1019
 #define wxID_m_staticText8 1020
@@ -70,14 +70,14 @@
 #define wxID_m_staticline2 1032
 #define wxID_btnCancel2 1033
 #define wxID_btnOk2 1034
-#define wxID_frmAbout 1035
+#define wxID_frmAboutGUI 1035
 #define wxID_m_bitmap2 1036
 #define wxID_btnClose3 1037
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class frmMain
+/// Class frmMainGUI
 ///////////////////////////////////////////////////////////////////////////////
-class frmMain : public wxFrame 
+class frmMainGUI : public wxFrame 
 {
 	private:
 	
@@ -102,15 +102,15 @@ class frmMain : public wxFrame
 	public:
 		wxMenuItem* mnuNewEntry;
 		wxMenuItem* mnuUserEdit;
-		frmMain( wxWindow* parent, wxWindowID id = wxID_frmMain, const wxString& title = wxT("Blood Pressure Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,446 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxDOUBLE_BORDER|wxRAISED_BORDER|wxSTATIC_BORDER|wxTAB_TRAVERSAL, const wxString& name = wxT("frmMain") );
-		~frmMain();
+		frmMainGUI( wxWindow* parent, wxWindowID id = wxID_frmMainGUI, const wxString& title = wxT("Blood Pressure Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,446 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxDOUBLE_BORDER|wxRAISED_BORDER|wxSTATIC_BORDER|wxTAB_TRAVERSAL, const wxString& name = wxT("frmMain") );
+		~frmMainGUI();
 	
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class frmPerson
+/// Class frmPersonGUI
 ///////////////////////////////////////////////////////////////////////////////
-class frmPerson : public wxDialog 
+class frmPersonGUI : public wxDialog 
 {
 	private:
 	
@@ -131,15 +131,15 @@ class frmPerson : public wxDialog
 		
 	
 	public:
-		frmPerson( wxWindow* parent, wxWindowID id = wxID_frmPerson, const wxString& title = wxT("Add/Edit Person"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 438,402 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxSTAY_ON_TOP, const wxString& name = wxT("frmPerson") );
-		~frmPerson();
+		frmPersonGUI( wxWindow* parent, wxWindowID id = wxID_frmPersonGUI, const wxString& title = wxT("Add/Edit Person"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 438,402 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxSTAY_ON_TOP, const wxString& name = wxT("frmPerson") );
+		~frmPersonGUI();
 	
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class frmEntry
+/// Class frmEntryGUI
 ///////////////////////////////////////////////////////////////////////////////
-class frmEntry : public wxDialog 
+class frmEntryGUI : public wxDialog 
 {
 	private:
 	
@@ -168,15 +168,15 @@ class frmEntry : public wxDialog
 	
 	public:
 		wxStaticBitmap* imgHeader;
-		frmEntry( wxWindow* parent, wxWindowID id = wxID_frmEntry, const wxString& title = wxT("Blood Presure Entry"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 493,498 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE );
-		~frmEntry();
+		frmEntryGUI( wxWindow* parent, wxWindowID id = wxID_frmEntryGUI, const wxString& title = wxT("Blood Presure Entry"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 493,498 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE );
+		~frmEntryGUI();
 	
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class frmAbout
+/// Class frmAboutGUI
 ///////////////////////////////////////////////////////////////////////////////
-class frmAbout : public wxDialog 
+class frmAboutGUI : public wxDialog 
 {
 	private:
 	
@@ -190,8 +190,8 @@ class frmAbout : public wxDialog
 		
 	
 	public:
-		frmAbout( wxWindow* parent, wxWindowID id = wxID_frmAbout, const wxString& title = wxT("About wx BP Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 513,531 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxSTAY_ON_TOP );
-		~frmAbout();
+		frmAboutGUI( wxWindow* parent, wxWindowID id = wxID_frmAboutGUI, const wxString& title = wxT("About wx BP Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 513,531 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxSTAY_ON_TOP );
+		~frmAboutGUI();
 	
 };
 

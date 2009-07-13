@@ -9,7 +9,7 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-frmMain::frmMain( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style, const wxString& name ) : wxFrame( parent, id, title, pos, size, style, name )
+frmMainGUI::frmMainGUI( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style, const wxString& name ) : wxFrame( parent, id, title, pos, size, style, name )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	
@@ -58,30 +58,30 @@ frmMain::frmMain( wxWindow* parent, wxWindowID id, const wxString& title, const 
 	this->Centre( wxBOTH );
 	
 	// Connect Events
-	this->Connect( mnuNewEntry->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::mnuNewEntry_Clicked ) );
-	this->Connect( mnuUserEdit->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::mnuUserEdit_Clicked ) );
-	this->Connect( mnuQuit->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::mnuQuit_Clicked ) );
-	this->Connect( mnuAbout->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::mnuAbout_Clicked ) );
-	this->Connect( wxID_tbNewEntry, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::tbNewEntry_MenuSelect ));
-	this->Connect( wxID_tbNewEntry, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMain::tbNewEntry_Clicked ) );
-	this->Connect( wxID_tbUserEdit, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMain::tbEditUsers_Clicked ) );
-	this->Connect( wxID_tbQuit, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMain::tbQuit_Clicked ) );
+	this->Connect( mnuNewEntry->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::mnuNewEntry_Clicked ) );
+	this->Connect( mnuUserEdit->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::mnuUserEdit_Clicked ) );
+	this->Connect( mnuQuit->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::mnuQuit_Clicked ) );
+	this->Connect( mnuAbout->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::mnuAbout_Clicked ) );
+	this->Connect( wxID_tbNewEntry, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::tbNewEntry_MenuSelect ));
+	this->Connect( wxID_tbNewEntry, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMainGUI::tbNewEntry_Clicked ) );
+	this->Connect( wxID_tbUserEdit, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMainGUI::tbEditUsers_Clicked ) );
+	this->Connect( wxID_tbQuit, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMainGUI::tbQuit_Clicked ) );
 }
 
-frmMain::~frmMain()
+frmMainGUI::~frmMainGUI()
 {
 	// Disconnect Events
-	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::mnuNewEntry_Clicked ) );
-	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::mnuUserEdit_Clicked ) );
-	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::mnuQuit_Clicked ) );
-	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::mnuAbout_Clicked ) );
-	this->Disconnect( wxID_tbNewEntry, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMain::tbNewEntry_MenuSelect ));
-	this->Disconnect( wxID_tbNewEntry, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMain::tbNewEntry_Clicked ) );
-	this->Disconnect( wxID_tbUserEdit, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMain::tbEditUsers_Clicked ) );
-	this->Disconnect( wxID_tbQuit, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMain::tbQuit_Clicked ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::mnuNewEntry_Clicked ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::mnuUserEdit_Clicked ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::mnuQuit_Clicked ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::mnuAbout_Clicked ) );
+	this->Disconnect( wxID_tbNewEntry, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( frmMainGUI::tbNewEntry_MenuSelect ));
+	this->Disconnect( wxID_tbNewEntry, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMainGUI::tbNewEntry_Clicked ) );
+	this->Disconnect( wxID_tbUserEdit, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMainGUI::tbEditUsers_Clicked ) );
+	this->Disconnect( wxID_tbQuit, wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( frmMainGUI::tbQuit_Clicked ) );
 }
 
-frmPerson::frmPerson( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style, const wxString& name ) : wxDialog( parent, id, title, pos, size, style, name )
+frmPersonGUI::frmPersonGUI( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style, const wxString& name ) : wxDialog( parent, id, title, pos, size, style, name )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	
@@ -160,18 +160,18 @@ frmPerson::frmPerson( wxWindow* parent, wxWindowID id, const wxString& title, co
 	this->Centre( wxBOTH );
 	
 	// Connect Events
-	btnAddEdit->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmPerson::btnAddEdit_OnClick ), NULL, this );
-	btnClose->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmPerson::btnClose_Clicked ), NULL, this );
+	btnAddEdit->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmPersonGUI::btnAddEdit_OnClick ), NULL, this );
+	btnClose->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmPersonGUI::btnClose_Clicked ), NULL, this );
 }
 
-frmPerson::~frmPerson()
+frmPersonGUI::~frmPersonGUI()
 {
 	// Disconnect Events
-	btnAddEdit->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmPerson::btnAddEdit_OnClick ), NULL, this );
-	btnClose->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmPerson::btnClose_Clicked ), NULL, this );
+	btnAddEdit->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmPersonGUI::btnAddEdit_OnClick ), NULL, this );
+	btnClose->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmPersonGUI::btnClose_Clicked ), NULL, this );
 }
 
-frmEntry::frmEntry( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+frmEntryGUI::frmEntryGUI( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	
@@ -266,18 +266,18 @@ frmEntry::frmEntry( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	this->Layout();
 	
 	// Connect Events
-	btnCancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmEntry::btnCancel_Clicked ), NULL, this );
-	btnOk->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmEntry::btnOk_Clicked ), NULL, this );
+	btnCancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmEntryGUI::btnCancel_Clicked ), NULL, this );
+	btnOk->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmEntryGUI::btnOk_Clicked ), NULL, this );
 }
 
-frmEntry::~frmEntry()
+frmEntryGUI::~frmEntryGUI()
 {
 	// Disconnect Events
-	btnCancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmEntry::btnCancel_Clicked ), NULL, this );
-	btnOk->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmEntry::btnOk_Clicked ), NULL, this );
+	btnCancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmEntryGUI::btnCancel_Clicked ), NULL, this );
+	btnOk->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmEntryGUI::btnOk_Clicked ), NULL, this );
 }
 
-frmAbout::frmAbout( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+frmAboutGUI::frmAboutGUI( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	
@@ -309,11 +309,11 @@ frmAbout::frmAbout( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	this->Layout();
 	
 	// Connect Events
-	btnClose->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmAbout::btnClose_Clicked ), NULL, this );
+	btnClose->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmAboutGUI::btnClose_Clicked ), NULL, this );
 }
 
-frmAbout::~frmAbout()
+frmAboutGUI::~frmAboutGUI()
 {
 	// Disconnect Events
-	btnClose->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmAbout::btnClose_Clicked ), NULL, this );
+	btnClose->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frmAboutGUI::btnClose_Clicked ), NULL, this );
 }

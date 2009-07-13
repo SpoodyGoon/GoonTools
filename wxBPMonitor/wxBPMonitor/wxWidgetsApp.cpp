@@ -1,6 +1,6 @@
 #include <wx/image.h>
-#include "Main.h"
-#include "wxBPMonitorGUIfrmMain.h"
+#include "wxWidgetsApp.h"
+#include "frmMain.h"
 
 IMPLEMENT_APP(wxWidgetsApp)
 

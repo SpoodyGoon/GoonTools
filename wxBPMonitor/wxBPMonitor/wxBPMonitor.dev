@@ -11,9 +11,9 @@ ProfileIndex=0
 Folders=
 
 [Unit11]
-FileName=wxBPMonitorGUIfrmPerson.cpp
+FileName=wxBPMonitor.h
 CompileCpp=1
-Folder=
+Folder=wxBPMonitor
 Compile=1
 Link=1
 Priority=1000
@@ -21,9 +21,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit12]
-FileName=wxBPMonitorGUIfrmPerson.h
+FileName=wxBPMonitor.cpp
 CompileCpp=1
-Folder=
+Folder=wxBPMonitor
 Compile=1
 Link=1
 Priority=1000
@@ -31,7 +31,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1]
-FileName=Main.h
+FileName=wxWidgetsApp.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -41,47 +41,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=Main.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit3]
-FileName=wxBPMonitor.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
-FileName=wxBPMonitor.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit5]
-FileName=wxBPMonitorGUIfrmAbout.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit6]
-FileName=wxBPMonitorGUIfrmAbout.h
+FileName=wxWidgetsApp.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -91,9 +51,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=wxBPMonitorGUIfrmEntry.cpp
+FileName=frmAbout.cpp
 CompileCpp=1
-Folder=
+Folder=wxBPMonitor
 Compile=1
 Link=1
 Priority=1000
@@ -101,9 +61,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=wxBPMonitorGUIfrmEntry.h
+FileName=frmAbout.h
 CompileCpp=1
-Folder=
+Folder=wxBPMonitor
 Compile=1
 Link=1
 Priority=1000
@@ -111,9 +71,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=wxBPMonitorGUIfrmMain.cpp
+FileName=frmEntry.cpp
 CompileCpp=1
-Folder=
+Folder=wxBPMonitor
 Compile=1
 Link=1
 Priority=1000
@@ -121,9 +81,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=wxBPMonitorGUIfrmMain.h
+FileName=frmEntry.h
 CompileCpp=1
-Folder=
+Folder=wxBPMonitor
 Compile=1
 Link=1
 Priority=1000
@@ -134,7 +94,7 @@ BuildCmd=
 Major=0
 Minor=1
 Release=0
-Build=33
+Build=50
 LanguageID=1033
 CharsetID=1252
 CompanyName=GoonTools
@@ -159,7 +119,7 @@ ResourceIncludes="C:\Users\Andy\Documents\C++ Projects\wxBPMonitor\Output\MingW\
 MakeIncludes=
 Compiler=-fno-exceptions_@@_-fno-pcc-struct-return_@@_-fstrict-aliasing_@@_-Wall_@@_-D__WXMSW___@@_-D__GNUWIN32___@@_-D__WIN95___@@_
 CppCompiler=-fno-exceptions_@@_-fno-pcc-struct-return_@@_-fstrict-aliasing_@@_-Wall_@@_-D__WXMSW___@@_-D__GNUWIN32___@@_-D__WIN95___@@_
-Linker=-mwindows_@@_-lwxmsw28_@@_-lwxmsw28_gl_@@_-lwxtiff_@@_-lwxjpeg_@@_-lwxpng_@@_-lwxzlib_@@_-lwxregex_@@_-lwxexpat_@@_-lkernel32_@@_-luser32_@@_-lgdi32_@@_-lcomdlg32_@@_-lwinspool_@@_-lwinmm_@@_-lshell32_@@_-lcomctl32_@@_-lole32_@@_-loleaut32_@@_-luuid_@@_-lrpcrt4_@@_-ladvapi32_@@_-lwsock32_@@_-lodbc32_@@_-lopengl32_@@_"../../../../../Program Files (x86)/Dev-Cpp/lib/libwxpng.a"_@@_
+Linker=-mwindows_@@_-lwxmsw28_@@_-lwxmsw28_gl_@@_-lwxtiff_@@_-lwxjpeg_@@_-lwxpng_@@_-lwxzlib_@@_-lwxregex_@@_-lwxexpat_@@_-lkernel32_@@_-luser32_@@_-lgdi32_@@_-lcomdlg32_@@_-lwinspool_@@_-lwinmm_@@_-lshell32_@@_-lcomctl32_@@_-lole32_@@_-loleaut32_@@_-luuid_@@_-lrpcrt4_@@_-ladvapi32_@@_-lwsock32_@@_-lodbc32_@@_-lopengl32_@@_
 PreprocDefines=__WXMSW___@@___GNUWIN32___@@___WIN95___@@_
 CompilerSettings=0000000001001001000000
 Icon=
@@ -265,4 +225,44 @@ Link=0
 Priority=1000
 OverrideBuildCmd=1
 BuildCmd=<override this command>
+
+[Unit3]
+FileName=frmMain.cpp
+CompileCpp=1
+Folder=wxBPMonitor
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit4]
+FileName=frmMain.h
+CompileCpp=1
+Folder=wxBPMonitor
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit5]
+FileName=frmPerson.cpp
+CompileCpp=1
+Folder=wxBPMonitor
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit6]
+FileName=frmPerson.h
+CompileCpp=1
+Folder=wxBPMonitor
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
 
