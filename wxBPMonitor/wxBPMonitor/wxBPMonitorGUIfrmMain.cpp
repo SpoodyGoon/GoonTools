@@ -1,5 +1,5 @@
 #include "wxBPMonitorGUIfrmMain.h"
-
+#include <wx/msgdlg.h>
 wxBPMonitorGUIfrmMain::wxBPMonitorGUIfrmMain( wxWindow* parent )
 :
 frmMain( parent )
@@ -9,7 +9,8 @@ frmMain( parent )
 
 void wxBPMonitorGUIfrmMain::mnuNewEntry_Clicked( wxCommandEvent& event )
 {
-	// TODO: Implement mnuNewEntry_Clicked
+	wxMessageBox( wxT("OnButtonSendClick() event fired.") );
+
 }
 
 void wxBPMonitorGUIfrmMain::mnuUserEdit_Clicked( wxCommandEvent& event )
@@ -24,7 +25,13 @@ void wxBPMonitorGUIfrmMain::mnuQuit_Clicked( wxCommandEvent& event )
 
 void wxBPMonitorGUIfrmMain::mnuAbout_Clicked( wxCommandEvent& event )
 {
-	// TODO: Implement mnuAbout_Clicked
+	wxMessageBox( wxT("OnButtonSendClick() event fired.") );
+}
+
+void wxBPMonitorGUIfrmMain::tbNewEntry_MenuSelect( wxCommandEvent& event )
+{
+	wxMessageBox( wxT("OnButtonSendClick() event fired.") );
+
 }
 
 void wxBPMonitorGUIfrmMain::tbNewEntry_Clicked( wxCommandEvent& event )

@@ -1,7 +1,7 @@
 # Project: wxBPMonitor
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ 7.0 on 11/07/09 17:55
+# Makefile created by wxDev-C++ 7.0 on 12/07/09 16:33
 
 CPP       = g++.exe
 CC        = gcc.exe

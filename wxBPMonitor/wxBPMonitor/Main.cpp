@@ -1,3 +1,4 @@
+#include <wx/image.h>
 #include "Main.h"
 #include "wxBPMonitorGUIfrmMain.h"
 
@@ -14,6 +15,7 @@ wxWidgetsApp::~wxWidgetsApp()
 
 bool wxWidgetsApp::OnInit()
 {
+    wxImage::AddHandler( new wxPNGHandler );
     frmMain* fm = new frmMain( (wxWindow*)NULL );
     fm ->Show();
     SetTopWindow( fm );
