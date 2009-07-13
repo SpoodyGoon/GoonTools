@@ -35,6 +35,44 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
+#define wxID_frmMain 1000
+#define wxID_mnuNewEntry 1001
+#define wxID_mnuUserEdit 1002
+#define wxID_mnuQuit 1003
+#define wxID_mnuAbout 1004
+#define wxID_tbNewEntry 1005
+#define wxID_tbUserEdit 1006
+#define wxID_tbQuit 1007
+#define wxID_sbMain 1008
+#define wxID_frmPerson 1009
+#define wxID_m_staticText1 1010
+#define wxID_txtPersonName 1011
+#define wx_IDbtnAddEdit 1012
+#define wxID_m_staticline1 1013
+#define wxID_dgPerson 1014
+#define wxID_m_staticline3 1015
+#define ID_btnClose 1016
+#define wxID_frmEntry 1017
+#define wxID_m_staticText2 1018
+#define wxID_imgHeader 1019
+#define wxID_m_staticText8 1020
+#define wxID_ddlName 1021
+#define wxID_m_staticText9 1022
+#define wxID_dteEntryDate 1023
+#define wxID_m_staticText10 1024
+#define wxID_txtSystolic 1025
+#define wxID_m_staticText11 1026
+#define wxID_txtDiastolic 1027
+#define wxID_m_staticText12 1028
+#define wxID_txtHeartRate 1029
+#define wxID_m_staticText13 1030
+#define wxID_txtNotes 1031
+#define wxID_m_staticline2 1032
+#define wxID_btnCancel2 1033
+#define wxID_btnOk2 1034
+#define wxID_frmAbout 1035
+#define wxID_m_bitmap2 1036
+#define wxID_btnClose3 1037
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class frmMain
@@ -55,13 +93,16 @@ class frmMain : public wxFrame
 		virtual void mnuUserEdit_Clicked( wxCommandEvent& event ){ event.Skip(); }
 		virtual void mnuQuit_Clicked( wxCommandEvent& event ){ event.Skip(); }
 		virtual void mnuAbout_Clicked( wxCommandEvent& event ){ event.Skip(); }
+		virtual void tbNewEntry_MenuSelect( wxCommandEvent& event ){ event.Skip(); }
 		virtual void tbNewEntry_Clicked( wxCommandEvent& event ){ event.Skip(); }
 		virtual void tbEditUsers_Clicked( wxCommandEvent& event ){ event.Skip(); }
 		virtual void tbQuit_Clicked( wxCommandEvent& event ){ event.Skip(); }
 		
 	
 	public:
-		frmMain( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Blood Pressure Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,446 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxDOUBLE_BORDER|wxRAISED_BORDER|wxSTATIC_BORDER|wxTAB_TRAVERSAL, const wxString& name = wxT("frmMainWindow") );
+		wxMenuItem* mnuNewEntry;
+		wxMenuItem* mnuUserEdit;
+		frmMain( wxWindow* parent, wxWindowID id = wxID_frmMain, const wxString& title = wxT("Blood Pressure Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,446 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxDOUBLE_BORDER|wxRAISED_BORDER|wxSTATIC_BORDER|wxTAB_TRAVERSAL, const wxString& name = wxT("frmMain") );
 		~frmMain();
 	
 };
@@ -90,7 +131,7 @@ class frmPerson : public wxDialog
 		
 	
 	public:
-		frmPerson( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Add/Edit Person"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 438,402 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxSTAY_ON_TOP, const wxString& name = wxT("frmPersonWindow") );
+		frmPerson( wxWindow* parent, wxWindowID id = wxID_frmPerson, const wxString& title = wxT("Add/Edit Person"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 438,402 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxSTAY_ON_TOP, const wxString& name = wxT("frmPerson") );
 		~frmPerson();
 	
 };
@@ -127,7 +168,7 @@ class frmEntry : public wxDialog
 	
 	public:
 		wxStaticBitmap* imgHeader;
-		frmEntry( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Blood Presure Entry"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 493,498 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE );
+		frmEntry( wxWindow* parent, wxWindowID id = wxID_frmEntry, const wxString& title = wxT("Blood Presure Entry"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 493,498 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE );
 		~frmEntry();
 	
 };
@@ -149,7 +190,7 @@ class frmAbout : public wxDialog
 		
 	
 	public:
-		frmAbout( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("About wx BP Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 513,531 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxSTAY_ON_TOP );
+		frmAbout( wxWindow* parent, wxWindowID id = wxID_frmAbout, const wxString& title = wxT("About wx BP Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 513,531 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxSTAY_ON_TOP );
 		~frmAbout();
 	
 };

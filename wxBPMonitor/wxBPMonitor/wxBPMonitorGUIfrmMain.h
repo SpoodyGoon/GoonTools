@@ -17,6 +17,7 @@ protected:
 	void mnuUserEdit_Clicked( wxCommandEvent& event );
 	void mnuQuit_Clicked( wxCommandEvent& event );
 	void mnuAbout_Clicked( wxCommandEvent& event );
+	void tbNewEntry_MenuSelect( wxCommandEvent& event );
 	void tbNewEntry_Clicked( wxCommandEvent& event );
 	void tbEditUsers_Clicked( wxCommandEvent& event );
 	void tbQuit_Clicked( wxCommandEvent& event );
