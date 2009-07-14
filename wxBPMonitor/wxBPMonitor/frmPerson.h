@@ -13,7 +13,9 @@ class frmPerson : public frmPersonGUI
 {
 protected:
 	// Handlers for frmPersonGUI events.
+	void btnClear_Clicked( wxCommandEvent& event );
 	void btnAddEdit_OnClick( wxCommandEvent& event );
+	void dgPerson_CellSelected( wxGridEvent& event );
 	void btnClose_Clicked( wxCommandEvent& event );
 	
 public:

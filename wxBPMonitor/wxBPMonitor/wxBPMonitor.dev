@@ -94,7 +94,7 @@ BuildCmd=
 Major=0
 Minor=1
 Release=0
-Build=50
+Build=57
 LanguageID=1033
 CharsetID=1252
 CompanyName=GoonTools
@@ -191,40 +191,24 @@ CompilerSet=5
 CompilerType=5
 
 [Unit13]
-FileName=images\edit_add.png
-Folder=images
-Compile=0
-Link=0
+FileName=3rdParty\wxsqlite3.cpp
+Folder=wxBPMonitor
+Compile=1
+Link=1
 Priority=1000
-OverrideBuildCmd=1
-BuildCmd=<override this command>
-
-[Unit14]
-FileName=images\edit_user.png
-Folder=images
-Compile=0
-Link=0
-Priority=1000
-OverrideBuildCmd=1
-BuildCmd=<override this command>
-
-[Unit15]
-FileName=images\exit.png
-Folder=images
-Compile=0
-Link=0
-Priority=1000
-OverrideBuildCmd=1
-BuildCmd=<override this command>
+OverrideBuildCmd=0
+BuildCmd=
+CompileCpp=1
 
 [Unit16]
-FileName=images\package_favourite.png
-Folder=images
-Compile=0
-Link=0
+FileName=3rdParty\wx\wxsqlite3dyn.h
+Folder=wxBPMonitor
+Compile=1
+Link=1
 Priority=1000
-OverrideBuildCmd=1
-BuildCmd=<override this command>
+OverrideBuildCmd=0
+BuildCmd=
+CompileCpp=1
 
 [Unit3]
 FileName=frmMain.cpp
@@ -258,6 +242,36 @@ BuildCmd=
 
 [Unit6]
 FileName=frmPerson.h
+CompileCpp=1
+Folder=wxBPMonitor
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit17]
+FileName=3rdParty\wx\wxsqlite3opt.h
+CompileCpp=1
+Folder=wxBPMonitor
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit14]
+FileName=3rdParty\wx\wxsqlite3.h
+CompileCpp=1
+Folder=wxBPMonitor
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit15]
+FileName=3rdParty\wx\wxsqlite3def.h
 CompileCpp=1
 Folder=wxBPMonitor
 Compile=1

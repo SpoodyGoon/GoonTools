@@ -73,6 +73,7 @@
 #define wxID_frmAboutGUI 1035
 #define wxID_m_bitmap2 1036
 #define wxID_btnClose3 1037
+#define wxID_frmMedicineGUI 1038
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class frmMainGUI
@@ -118,6 +119,7 @@ class frmPersonGUI : public wxDialog
 		
 		wxStaticText* m_staticText1;
 		wxTextCtrl* txtPersonName;
+		wxButton* btnClear;
 		wxButton* btnAddEdit;
 		wxStaticLine* m_staticline1;
 		
@@ -126,7 +128,9 @@ class frmPersonGUI : public wxDialog
 		wxButton* btnClose;
 		
 		// Virtual event handlers, overide them in your derived class
+		virtual void btnClear_Clicked( wxCommandEvent& event ){ event.Skip(); }
 		virtual void btnAddEdit_OnClick( wxCommandEvent& event ){ event.Skip(); }
+		virtual void dgPerson_CellSelected( wxGridEvent& event ){ event.Skip(); }
 		virtual void btnClose_Clicked( wxCommandEvent& event ){ event.Skip(); }
 		
 	
@@ -192,6 +196,49 @@ class frmAboutGUI : public wxDialog
 	public:
 		frmAboutGUI( wxWindow* parent, wxWindowID id = wxID_frmAboutGUI, const wxString& title = wxT("About wx BP Monitor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 513,531 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxSTAY_ON_TOP );
 		~frmAboutGUI();
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class frmMedicineGUI
+///////////////////////////////////////////////////////////////////////////////
+class frmMedicineGUI : public wxDialog 
+{
+	private:
+	
+	protected:
+		
+		wxGrid* dgMedicine;
+		wxButton* btnDelete;
+		wxButton* btnEdit;
+		wxButton* btnNew;
+		wxStaticLine* m_staticline1;
+		
+		wxStaticText* m_staticText18;
+		wxTextCtrl* txtMedicine;
+		wxStaticText* m_staticText19;
+		wxTextCtrl* txtDosage;
+		wxStaticText* m_staticText20;
+		wxDatePickerCtrl* dteStartDate;
+		wxStaticText* m_staticText21;
+		wxDatePickerCtrl* dteEndDate;
+		wxStaticText* m_staticText22;
+		wxTextCtrl* txtDoctorName;
+		wxStaticLine* m_staticline3;
+		wxButton* btnClose;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void dgParent_CellChanged( wxGridEvent& event ){ event.Skip(); }
+		virtual void dgParent_RightClick( wxGridEvent& event ){ event.Skip(); }
+		virtual void btnDelete_Clicked( wxCommandEvent& event ){ event.Skip(); }
+		virtual void btnEdit_OnClick( wxCommandEvent& event ){ event.Skip(); }
+		virtual void btnNew_Clicked( wxCommandEvent& event ){ event.Skip(); }
+		virtual void btnClose_Clicked( wxCommandEvent& event ){ event.Skip(); }
+		
+	
+	public:
+		frmMedicineGUI( wxWindow* parent, wxWindowID id = wxID_frmMedicineGUI, const wxString& title = wxT("Manage Medicine List"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 544,498 ), long style = wxDEFAULT_DIALOG_STYLE );
+		~frmMedicineGUI();
 	
 };
 
