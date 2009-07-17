@@ -1,60 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  
   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
   <title>ClientDialog</title>
 
-
+  
+  
   <style type="text/css">
 #WinFrame {
   border: 2px groove #000000;
   background-color: #428484;
-  float: left;
 }
 #TitleBar {
-  border: 2px solid #d4d0c8;
-  background-color: #34549b;
+  border: 1px solid black;
   cursor: move;
   height: 25px;
-  position: relative;
-  float: left;
-  width: 392px;
-  font-weight: inherit;
-  clear: left;
-  display: block;
 }
 #Content {
   border: 2px solid black;
-  width: 392px;
   height: 345px;
-  display: block;
   float: left;
-  clear: both;
-  overflow: hidden;
-  position: relative;
+  padding:5px;
   background-color: #d4d0c8;
-}
-#Close {
-  border: 2px solid #000000;
-  padding: 1px 2px;
-  font-style: normal;
-  text-transform: uppercase;
-  color: red;
-  font-weight: bold;
-  text-align: center;
-  position: relative;
-  height: 18px;
-  display: block;
-  clear: none;
-  width: 18px;
-  float: left;
-  font-family: Arial Black;
-  font-size: 10pt;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  background-color: #d8d8ad;
 }
 #TitleText {
   font-family: Arial,Helvetica,sans-serif;
@@ -65,71 +32,40 @@
   text-transform: capitalize;
   text-align: center;
   font-size: 12pt;
-  position: relative;
-  display: block;
-  clear: both;
-  width: 358px;
   margin-top: 3px;
   margin-bottom: 3px;
 }
+#Close {
+  border: 2px solid #000000;
+  padding: 1px 2px;
+  font-style: normal;
+  text-transform: uppercase;
+  color: #ff4221;
+  font-weight: bolder;
+  text-align: center;
+  height: 18px;
+  width: 18px;
+  float: left;
+  font-family: DejaVu Sans;
+  font-size: 12pt;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  background-color: #f6f8da;
+}
 
   </style>
-</head>
-
-<body>
-
-<div id="WinFrame">
-<div id="TitleBar">
-<div id="TitleText">Title</div>
-
-<div id="Close">X</div>
-
-</div>
-
-<div id="Content">
-<table style="text-align: left; width: 200px;" border="1" cellpadding="2" cellspacing="2">
-
+</head><body><br />
+<table id="WinFrame" cellpadding="0" cellspacing="0" width="650">
   <tbody>
-
     <tr>
-
-      <td>test</td>
-
-      <td>test</td>
-
-      <td>test</td>
-
+      <td id="TitleBar"><span id="TitleText">Title</span><span id="Close">X</span> </td>
     </tr>
-
     <tr>
-
-      <td>test</td>
-
-      <td>test</td>
-
-      <td>test</td>
-
+      <td id="Content">I am Content. </td>
     </tr>
-
-    <tr>
-
-      <td>test</td>
-
-      <td>test</td>
-
-      <td>test</td>
-
-    </tr>
-
   </tbody>
 </table>
-
-</div>
-
-</div>
-
 <br />
+</div>
 
-</body>
-
-</html>
+</body></html>
