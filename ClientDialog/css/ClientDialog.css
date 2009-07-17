@@ -8,7 +8,7 @@
 	border-right:double 5px rgb(33,33,33);
 	border-bottom:double 5px rgb(33,33,33);
 	background-color:rgb(85,85,85);
-	display: table;
+	table-layout:fixed;
 	position: static;
 }
 #DialogTableHead
@@ -24,7 +24,7 @@
   border-width: thick medium medium;
   width: 500px;
   height: 350px;
-  display: table;
+  table-layout: fixed;
   position: static;
 }
 #TitleRow 
@@ -34,7 +34,6 @@
   font-weight: bold;
   height: 25px;
   width:100%;
-  display: table-row;
   position: relative;
 }
 #TitleCell
@@ -46,9 +45,8 @@
   text-transform: capitalize;
   text-align: center;
   font-weight: bold;
-  font-family: Arial Black;
+  font-family: Arial;
   position: relative;
-  display: table-cell;
   text-decoration: none;
   font-size: 12pt;
 }
@@ -58,11 +56,10 @@
   border-right: thick solid #336666;
   margin: 5px;
   color: red;
-  font-family: Arial Black;
+  font-family: Arial;
   font-size: 14px;
   width: 22px;
   background-color: silver;
-  display: table-cell;
   position: static;
 }
 #Content
@@ -71,7 +68,6 @@
   padding: 5px;
   background-color: #f0f0c0;
   clear: none;
-  display: table-cell;
   position: static;
 }
 #CloseImage 
