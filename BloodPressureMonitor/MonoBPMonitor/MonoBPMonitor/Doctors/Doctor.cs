@@ -1,5 +1,9 @@
 
+
 using System;
+using Gtk;
+using SQLiteDataProvider;
+using GoonTools;
 
 namespace MonoBPMonitor
 {
@@ -11,7 +15,7 @@ namespace MonoBPMonitor
 		private string _DoctorName= "New Doctor";
 		private string _Location = "";
 		private string _PhoneNum = "";
-		private int _PersonID;
+		private int _UserID;
 		
 		#region Construtors
 		
@@ -19,21 +23,27 @@ namespace MonoBPMonitor
 		{
 		}
 		
-		public Doctor(string doctorname, string location, string phonenum, int personid)
+		public Doctor(string doctorname, int userid)
+		{
+			_DoctorName= doctorname;
+			_UserID=userid;
+		}
+		
+		public Doctor(string doctorname, string location, string phonenum, int userid)
 		{
 			_DoctorName= doctorname;
 			_Location=location;
 			_PhoneNum =phonenum;
-			_PersonID=personid;
+			_UserID=userid;
 		}
 		
-		public Doctor(int doctorid, string doctorname, string location, string phonenum, int personid)
+		public Doctor(int doctorid, string doctorname, string location, string phonenum, int userid)
 		{
 			_DoctorID = doctorid;
 			_DoctorName= doctorname;
 			_Location=location;
 			_PhoneNum =phonenum;
-			_PersonID=personid;
+			_UserID=userid;
 		}
 		
 		#endregion Construtors
@@ -63,32 +73,73 @@ namespace MonoBPMonitor
 			get{return _PhoneNum;}	
 		}
 		
-		public int PersonID
+		public int UserID
 		{
-			set{_PersonID=value;}
-			get{return _PersonID;}	
+			set{_UserID=value;}
+			get{return _UserID;}	
 		}
 		
 		#endregion Public Properties
 		
-		#region Public Properties
+		#region Public Methods
 		
 		public void Add()
 		{
-			
+			try
+			{
+				if(_DoctorID > 0)
+				{
+					DataProvider dp = new DataProvider(Common.Option.ConnString);
+					_DoctorID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Doctor(DoctorName, Location, PhoneNum, UserID)VALUES('" + _DoctorName + "','" + _Location + "','" + _PhoneNum + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
+					dp.Dispose();
+				}
+				else
+				{
+					throw new Exception("Attempting to add a Doctor that already exists");
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
 		}
 		
 		public void Update()
 		{
-			
+			try
+			{
+				if(_DoctorID != 0)
+				{
+					DataProvider dp = new DataProvider(Common.Option.ConnString);
+					dp.ExecuteNonQuery("UPDATE tb_Doctor SET DoctorName = '" + _DoctorName + "', Location = '" + _Location + "', PhoneNum = '" + _PhoneNum + "', UserID = " + _UserID.ToString() + " WHERE DoctorID = " + _DoctorID.ToString() + ";");
+					dp.Dispose();
+				}
+				else
+				{
+					throw new Exception("Cannont update a Doctor that is not already in the database");
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
 		}
 		
 		public void Remove()
 		{
-			
+			try
+			{
+				DataProvider dp = new DataProvider(Common.Option.ConnString);
+				dp.ExecuteNonQuery("DELETE FROM tb_Doctor WHERE DoctorID = " + _DoctorID.ToString() + ";");
+				dp.Dispose();
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
 		}
 		
-		#endregion Public Properties
+		#endregion Public Methods
 		
 		
 	}

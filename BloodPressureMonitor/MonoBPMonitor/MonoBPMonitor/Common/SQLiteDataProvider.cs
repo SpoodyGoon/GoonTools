@@ -50,7 +50,7 @@ namespace SQLiteDataProvider
 		private int _BusyTimeout = 300;
 		private string _ExceptionMessage = null;
 
-		#region "Public Properties"
+		#region Public Properties
 		
 		/// <summary>
 		///  Sets of gets the connection busy time out
@@ -87,9 +87,9 @@ namespace SQLiteDataProvider
 			get { return _ExceptionMessage; }
 		}
 
-		#endregion "Public Properties"
+		#endregion Public Properties
 		
-		#region "Class Constructors"
+		#region Class Constructors
 		
 		/// <summary>
 		/// Base Class Constructor
@@ -131,9 +131,9 @@ namespace SQLiteDataProvider
 			
 		}
 		
-		#endregion "Class Constructors"
-
-		#region "Main Connection"
+		#endregion Class Constructors
+		
+		#region Main Connection
 		
 		/// <summary>
 		///  Creates a new database connection
@@ -155,9 +155,9 @@ namespace SQLiteDataProvider
 			return sqlCN;
 		}
 		
-		#endregion "Main Connection"
+		#endregion Main Connection
 		
-		#region "Boolean"
+		#region Boolean
 		
 		/// <summary>
 		///  Returns true if rows exist and false if they do not
@@ -203,9 +203,9 @@ namespace SQLiteDataProvider
 			return blnHasRows;
 		}
 		
-		#endregion "Boolean"
+		#endregion Boolean
 		
-		#region "Hashtable"
+		#region Hashtable
 		
 		/// <summary>
 		///  use this ONLY when you are certain only on row will return
@@ -257,9 +257,9 @@ namespace SQLiteDataProvider
 			return hshReturn;
 		}
 		
-		#endregion "Hashtable"
+		#endregion Hashtable
 		
-		#region "Return Array Lists"
+		#region Return Array Lists
 		
 		/// <summary>
 		///  Used to return only the first column
@@ -406,9 +406,9 @@ namespace SQLiteDataProvider
 			return arrReturn;
 		}
 		
-		#endregion "Return Array Lists"
+		#endregion Return Array Lists
 		
-		#region "Scalar and NonQuery"
+		#region Scalar and NonQuery
 		
 		/// <summary>
 		///  Used to execute non-queries
@@ -505,26 +505,15 @@ namespace SQLiteDataProvider
 			return strReturn;
 		}
 		
-		#endregion "Scalar and NonQuery"
+		#endregion Scalar and NonQuery
 		
-		#region "DataSets and DataTables"
+		#region DataSets and DataTables
 		
-		/// <summary>
-		/// Returns a DataSet without naming it
-		/// </summary>
-		/// <param name="strSQL"></param>
-		/// <returns></returns>
 		public DataSet ExecuteDataSet(string strSQL)
 		{
 			return ExecuteDataSet(strSQL, null);
 		}
 		
-		/// <summary>
-		///  Returns a DataSet and sets it's name
-		/// </summary>
-		/// <param name="strSQL"></param>
-		/// <param name="strDataSetName"></param>
-		/// <returns></returns>
 		public DataSet ExecuteDataSet(string strSQL, string strDataSetName)
 		{
 			SqliteConnection sqlCN = GetConn();
@@ -619,119 +608,7 @@ namespace SQLiteDataProvider
 			return dt;
 		}
 		
-		#endregion "DataSets and DataTables"
-		
-		#region "ListStore and TreeStore"
-		/*
-		 * Not too sure where the ListStore and the TreeStore are going or if they will work well
-		 * I have had some problems with the data types not being correct
-		 * in the calling code - but that could very well be a brain fart on my part
-		 */
-		/// <summary>
-		///  Returns a Gtk.ListStore inteded for use with Gtk.ComboBoxes
-		///  This assumes that the first column in the dataset will be the value column
-		///  and the second column in the dataset will be the text column
-		/// </summary>
-		/// <param name="strSQL"/>
-		/// <returns>Gtk.ListStore</returns>
-		public Gtk.ListStore ExecuteListStore(System.Type[] tp, string strSQL)
-		{
-			SqliteConnection sqlCN = GetConn();
-			SqliteCommand sqlCMD = new SqliteCommand(strSQL, sqlCN);
-			sqlCMD.CommandType = CommandType.Text;
-			sqlCMD.CommandTimeout = _TimeOut;
-			SqliteDataReader sqlReader = null;
-			DataTable dtTypes = null;
-			Gtk.ListStore ls = new ListStore(tp);
-			object[] objValues = new object[ls.NColumns];
-			try
-			{
-//				System.Type[] _type = new Type[ls.NColumns];
-//				for(int i = 0;i<ls.NColumns;i++)
-//					_type[i] = ls.GetColumnType(i);
-				
-				sqlCN.Open();
-				sqlReader = sqlCMD.ExecuteReader();
-				while(sqlReader.Read())
-				{
-					sqlReader.GetValues(objValues);
-					ls.AppendValues(objValues);
-				}
-				sqlReader.Close();
-				sqlCN.Close();
-			}
-			catch(Exception ex)
-			{
-				System.Diagnostics.Debug.WriteLine(ex.ToString());
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString());
-				md.Run();
-				md.Destroy();
-				throw new Exception(ex.ToString());
-			}
-			finally
-			{
-				if(sqlCN.State != ConnectionState.Closed)
-					sqlCN.Close();
-				
-				if(dtTypes.Rows.Count > 0)
-					dtTypes.Clear();
-				
-				sqlCN.Dispose();
-				sqlCMD.Dispose();
-				sqlReader.Dispose();
-				dtTypes.Dispose();
-			}
-			return ls;
-		}
-		
-		/// <summary>
-		///  Returns a Gtk.ListStore inteded for use with Gtk.ComboBoxes
-		///  This specifies which column is the Text/Name and which column will be the ID/Value column
-		/// </summary>
-		/// <param name="strSQL"></param>
-		/// <returns>Gtk.ListStore</returns>
-		public Gtk.ListStore ExecuteComboModel(string strSQL)
-		{
-			SqliteConnection sqlCN = GetConn();
-			SqliteCommand sqlCMD = new SqliteCommand(strSQL, sqlCN);
-			sqlCMD.CommandType = CommandType.Text;
-			sqlCMD.CommandTimeout = _TimeOut;
-			SqliteDataReader sqlReader = null;
-			Gtk.ListStore ls = new Gtk.ListStore(typeof(int), typeof(string));		
-			
-			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
-			{
-				try
-				{
-					sqlCN.Open();
-					sqlReader = sqlCMD.ExecuteReader();
-					while(sqlReader.Read())
-					{
-						ls.AppendValues((int)sqlReader[0], (string)sqlReader[1]);
-					}
-					sqlReader.Close();
-					sqlCN.Close();
-					lockedDatabaseException = false;
-				}
-				catch(Exception ex)
-				{
-					if (ex.Message.ToLower().IndexOf("database is locked") > -1)
-					{
-						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(100);
-					}
-					else
-					{
-						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
-					}
-				}
-			}			
-			return ls;
-		}
-		
-		#endregion "ListStore and TreeStore"
+		#endregion  DataSets and DataTables
 		
 	}
 }
