@@ -81,6 +81,14 @@
     <EmbeddedResource Include="images\date.png">
       <LogicalName>date.png</LogicalName>
     </EmbeddedResource>
+    <Compile Include="Doctors\DoctorTreeView.cs" />
+    <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
+    <Compile Include="Entry\EntryTreeView.cs" />
+    <Compile Include="Entry\EntryTreeView.Designer.cs" />
+    <Compile Include="Medications\MedicationTreeView.cs" />
+    <Compile Include="Medications\MedicationTreeView.Designer.cs" />
+    <Compile Include="Users\UserTreeView.cs" />
+    <Compile Include="Users\UserTreeView.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
