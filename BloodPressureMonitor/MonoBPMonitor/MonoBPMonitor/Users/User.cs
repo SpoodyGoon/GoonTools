@@ -8,7 +8,7 @@ namespace MonoBPMonitor
 {
 	public class User
 	{
-		private int _UserID;
+		private int _UserID = -1;
 		private string _UserName = "New User";
 		private DateTime _DateAdded = DateTime.Now.Date;
 		private bool _IsActive = true;
@@ -67,7 +67,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_UserID > 0)
+				if(_UserID < 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
 					_UserID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_User(UserName, DateAdded, IsActive)VALUES('" + _UserName + "','" + _DateAdded.ToShortDateString() + "','" + _IsActive.ToString() + "'); SELECT last_insert_rowid();" ));
@@ -75,7 +75,7 @@ namespace MonoBPMonitor
 				}
 				else
 				{
-					throw new Exception("Attempting to add a User that already exists");
+					throw new Exception("Attempting to add a User that already exists.\n\n");
 				}
 			}
 			catch(Exception ex)
@@ -88,7 +88,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_UserID != 0)
+				if(_UserID > 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
 					dp.ExecuteNonQuery("UPDATE tb_User SET UserName = '" + _UserName + "', DateAdded = '" + _DateAdded.ToShortDateString() + "', IsActive = '" + _IsActive.ToString() + "' WHERE UserID = " + _UserID.ToString() + ";");
@@ -96,7 +96,7 @@ namespace MonoBPMonitor
 				}
 				else
 				{
-					throw new Exception("Cannont update a User that is not already in the database");
+					throw new Exception("Cannont update a User that is not already in the database.\n\n");
 				}
 			}
 			catch(Exception ex)
