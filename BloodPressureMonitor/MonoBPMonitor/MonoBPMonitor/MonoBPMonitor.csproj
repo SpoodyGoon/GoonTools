@@ -6,11 +6,13 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AssemblyName>MonoBPMonitor</AssemblyName>
     <Description>Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage</Description>
     <StartupObject>MonoBPMonitor.MainClass</StartupObject>
     <ApplicationIcon>images\icon.ico</ApplicationIcon>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\ayork\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <RootNamespace>MonoBPMonitor</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -139,7 +141,7 @@
     <Content Include="data\CreateDB.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\PBMonitor.s3db">
+    <Content Include="data\BPMonitor.s3db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

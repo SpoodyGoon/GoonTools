@@ -53,7 +53,7 @@ namespace MonoBPMonitor.Users
 			colUserName.Visible = true;
 			colUserName.Title = "User";
 			Gtk.CellRendererText cellUserName = new Gtk.CellRendererText ();
-			cellUserName.Width=250;
+			cellUserName.Width=200;
 			cellUserName.Editable = true;
 			//cellUserName.Edited += cellUserName_Edited;
 			colUserName.PackStart (cellUserName, true);
@@ -61,9 +61,9 @@ namespace MonoBPMonitor.Users
 			Gtk.TreeViewColumn colDateAdded = new Gtk.TreeViewColumn ();
 			colDateAdded.Resizable = true;
 			colDateAdded.Visible = true;
-			colDateAdded.Title = "Location";
+			colDateAdded.Title = "Date Added";
 			Gtk.CellRendererText cellDateAdded = new Gtk.CellRendererText ();
-			cellDateAdded.Width=70;
+			cellDateAdded.Width=75;
 			colDateAdded.PackStart (cellDateAdded, true);
 			
 			Gtk.TreeViewColumn colIsActive = new Gtk.TreeViewColumn ();
@@ -71,7 +71,7 @@ namespace MonoBPMonitor.Users
 			colIsActive.Visible = true;
 			colIsActive.Title = "Active";
 			Gtk.CellRendererToggle cellIsActive = new Gtk.CellRendererToggle ();
-			cellIsActive.Width=70;
+			cellIsActive.Width=45;
 			colIsActive.PackStart (cellIsActive, true);
 			
 			this.AppendColumn(colUserID);

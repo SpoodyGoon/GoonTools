@@ -43,6 +43,7 @@ namespace MonoBPMonitor.Users
 		{
 			try
 			{
+				_UserListsStore.Clear();
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
 				DataTable dt = dp.ExecuteDataTable("SELECT UserID, UserName, DateAdded, IsActive FROM tb_User");
 				foreach(DataRow dr in dt.Rows)
@@ -55,6 +56,11 @@ namespace MonoBPMonitor.Users
 			{
 				Common.EnvData.HandleError(ex);
 			}
+		}
+		
+		public void Refresh()
+		{
+			LoadData();
 		}
 		
 		public User IterTaskList(TreeIter iter)
