@@ -10,7 +10,7 @@ namespace MonoBPMonitor
 	
 	public class Entry
 	{
-		private int _BPEntryID;
+		private int _EntryID;
 		private DateTime _EntryDate = DateTime.Now.Date;
 		private int _Systolic = 120;
 		private int _Diastolic= 80;
@@ -24,9 +24,9 @@ namespace MonoBPMonitor
 		{
 		}
 		
-		public Entry(int bpentryid, DateTime entrydate, int systolic, int diastolic, int heartrate, string notes, int userid)
+		public Entry(int entryid, DateTime entrydate, int systolic, int diastolic, int heartrate, string notes, int userid)
 		{
-			_BPEntryID=bpentryid;
+			_EntryID=entryid;
 			_EntryDate=entrydate;
 			_Systolic=systolic;
 			_Diastolic=diastolic;
@@ -57,9 +57,9 @@ namespace MonoBPMonitor
 		
 		#region Public Properties
 		
-		public int BPEntryID
+		public int EntryID
 		{
-			get{return _BPEntryID;}	
+			get{return _EntryID;}	
 		}
 		
 		public DateTime EntryDate
@@ -106,10 +106,10 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_BPEntryID > 0)
+				if(_EntryID > 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					_BPEntryID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_BPEntry(EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID)VALUES('" + _EntryDate.ToShortDateString() + "'," + _Systolic.ToString() + "," + _Diastolic.ToString() + "," + _HeartRate.ToString() + ",'" +_Notes + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
+					_EntryID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_BPEntry(EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID)VALUES('" + _EntryDate.ToShortDateString() + "'," + _Systolic.ToString() + "," + _Diastolic.ToString() + "," + _HeartRate.ToString() + ",'" +_Notes + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
 					dp.Dispose();
 				}
 				else
@@ -127,10 +127,10 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_BPEntryID != 0)
+				if(_EntryID != 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					dp.ExecuteNonQuery("UPDATE tb_BPEntry SET EntryDate = '" + _EntryDate.ToShortDateString() + "', Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE BPEntryID = " + _BPEntryID.ToString() + ";");
+					dp.ExecuteNonQuery("UPDATE tb_BPEntry SET EntryDate = '" + _EntryDate.ToShortDateString() + "', Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE BPEntryID = " + _EntryID.ToString() + ";");
 					dp.Dispose();
 				}
 				else
@@ -149,7 +149,7 @@ namespace MonoBPMonitor
 			try
 			{
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				dp.ExecuteNonQuery("DELETE FROM tb_BPEntry WHERE BPEntryID = " + _BPEntryID.ToString() + ";");
+				dp.ExecuteNonQuery("DELETE FROM tb_BPEntry WHERE BPEntryID = " + _EntryID.ToString() + ";");
 				dp.Dispose();
 			}
 			catch(Exception ex)
