@@ -51,28 +51,31 @@ namespace MonoBPMonitor.Users
 			colUserName.Expand = true;
 			colUserName.Resizable = true;
 			colUserName.Visible = true;
+			colUserName.Alignment = 0.05f;
 			colUserName.Title = "User";
 			Gtk.CellRendererText cellUserName = new Gtk.CellRendererText ();
 			cellUserName.Width=200;
 			cellUserName.Editable = true;
-			//cellUserName.Edited += cellUserName_Edited;
+			cellUserName.Edited += cellUserName_Edited;
 			colUserName.PackStart (cellUserName, true);
 			
 			Gtk.TreeViewColumn colDateAdded = new Gtk.TreeViewColumn ();
-			colDateAdded.Resizable = true;
 			colDateAdded.Visible = true;
+			colDateAdded.Alignment=0.5f;
 			colDateAdded.Title = "Date Added";
 			Gtk.CellRendererText cellDateAdded = new Gtk.CellRendererText ();
-			cellDateAdded.Width=75;
-			colDateAdded.PackStart (cellDateAdded, true);
+			cellDateAdded.Width=80;
+			colDateAdded.PackStart (cellDateAdded, false);
 			
 			Gtk.TreeViewColumn colIsActive = new Gtk.TreeViewColumn ();
-			colIsActive.Resizable = true;
 			colIsActive.Visible = true;
+			colIsActive.Alignment=0.5f;
 			colIsActive.Title = "Active";
 			Gtk.CellRendererToggle cellIsActive = new Gtk.CellRendererToggle ();
 			cellIsActive.Width=45;
-			colIsActive.PackStart (cellIsActive, true);
+			cellIsActive.Sensitive = true;
+			cellIsActive.Toggled += new Gtk.ToggledHandler(this.cellIsActive_Toggled);
+			colIsActive.PackStart (cellIsActive, false);
 			
 			this.AppendColumn(colUserID);
 			this.AppendColumn (colUserName);
@@ -83,7 +86,7 @@ namespace MonoBPMonitor.Users
 			colUserID.SetCellDataFunc(cellUserID, new Gtk.TreeCellDataFunc(RenderUserID));
 			colUserName.SetCellDataFunc(cellUserName, new Gtk.TreeCellDataFunc(RenderUserName));
 			colDateAdded.SetCellDataFunc(cellDateAdded, new Gtk.TreeCellDataFunc(RenderDateAdded));
-			colDateAdded.SetCellDataFunc(cellIsActive, new Gtk.TreeCellDataFunc(RenderIsActive));
+			colIsActive.SetCellDataFunc(cellIsActive, new Gtk.TreeCellDataFunc(RenderIsActive));
 			
 			this.Model =_UserListsStore;
 		}

@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="..\bin\Debug\MonoBPMonitor.exe" internal="true" />
+    <widget-library name="../bin/Debug/MonoBPMonitor.exe" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="edit_user.png">
@@ -246,15 +246,16 @@
   <widget class="Gtk.Dialog" id="MonoBPMonitor.frmUsers" design-size="450 497">
     <property name="MemberName" />
     <property name="WidthRequest">450</property>
-    <property name="HeightRequest">350</property>
+    <property name="HeightRequest">400</property>
     <property name="Title" translatable="yes">User Management</property>
+    <property name="Icon">resource:edit_user.png</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">4</property>
     <property name="AllowShrink">True</property>
     <property name="DefaultWidth">450</property>
-    <property name="DefaultHeight">350</property>
+    <property name="DefaultHeight">400</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -287,13 +288,17 @@
             <child>
               <widget class="Gtk.Alignment" id="alignment3">
                 <property name="MemberName" />
+                <property name="LeftPadding">6</property>
+                <property name="RightPadding">6</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox1">
                     <property name="MemberName" />
-                    <property name="Spacing">6</property>
+                    <property name="Spacing">8</property>
                     <child>
                       <widget class="Gtk.Alignment" id="alignment4">
                         <property name="MemberName" />
+                        <property name="Xscale">0.01</property>
+                        <property name="Xalign">0.98</property>
                         <child>
                           <widget class="Gtk.Label" id="label7">
                             <property name="MemberName" />
@@ -303,7 +308,7 @@
                       </widget>
                       <packing>
                         <property name="Position">0</property>
-                        <property name="AutoSize">True</property>
+                        <property name="AutoSize">False</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
                       </packing>
@@ -314,9 +319,11 @@
                         <child>
                           <widget class="Gtk.Entry" id="txtName">
                             <property name="MemberName" />
+                            <property name="WidthRequest">150</property>
                             <property name="CanFocus">True</property>
                             <property name="IsEditable">True</property>
                             <property name="InvisibleChar">●</property>
+                            <signal name="KeyPressEvent" handler="OnTxtNameKeyPressEvent" />
                           </widget>
                         </child>
                       </widget>
@@ -331,6 +338,7 @@
                         <child>
                           <widget class="Gtk.Button" id="btnAdd">
                             <property name="MemberName" />
+                            <property name="WidthRequest">71</property>
                             <property name="CanFocus">True</property>
                             <property name="UseStock">True</property>
                             <property name="Type">StockItem</property>
@@ -352,7 +360,7 @@
               </widget>
               <packing>
                 <property name="Position">1</property>
-                <property name="AutoSize">True</property>
+                <property name="AutoSize">False</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
               </packing>
