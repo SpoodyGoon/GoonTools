@@ -43,6 +43,7 @@ namespace MonoBPMonitor.Doctors
 		{
 			try
 			{
+				_DoctorListsStore.Clear();
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
 				DataTable dt = dp.ExecuteDataTable("SELECT DoctorID, DoctorName, Location, PhoneNum, UserID FROM tb_Doctor");
 				foreach(DataRow dr in dt.Rows)
@@ -57,10 +58,81 @@ namespace MonoBPMonitor.Doctors
 			}
 		}
 		
-		public Doctor IterTaskList(TreeIter iter)
+		public void Refresh()
+		{
+			this.LoadData();
+		}
+		
+		public Doctor SelectedDoctor(TreeIter iter)
 		{
 			return _DoctorListsStore.GetValue(iter, 0) as Doctor;
 		}
+		
+		#region TreeView Cell Events
+		
+		private void cellDoctorName_Edited(object o, Gtk.EditedArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if (_DoctorListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Doctor d = (Doctor)_DoctorListsStore.GetValue(iter, 0);
+					d.DoctorName = args.NewText;
+					d.Update();
+				}
+			}
+			catch(Exception doh)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
+				md.Run();
+				md.Destroy();
+			}
+		}
+		
+		private void cellLocation_Edited(object o, Gtk.EditedArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if (_DoctorListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Doctor d = (Doctor)_DoctorListsStore.GetValue(iter, 0);
+					d.Location = args.NewText;
+					d.Update();
+				}
+			}
+			catch(Exception doh)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
+				md.Run();
+				md.Destroy();
+			}
+		}
+		
+		private void cellPhoneNum_Edited(object o, Gtk.EditedArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if (_DoctorListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Doctor d = (Doctor)_DoctorListsStore.GetValue(iter, 0);
+					d.PhoneNum = args.NewText;
+					d.Update();
+				}
+			}
+			catch(Exception doh)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
+				md.Run();
+				md.Destroy();
+			}
+		}
+		
+		#endregion TreeView Cell Events
+		
+		#region Cell Data Functions
 		
 		private void RenderDoctorID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
@@ -90,5 +162,7 @@ namespace MonoBPMonitor.Doctors
 			Doctor d = (Doctor)model.GetValue(iter, 0);
 			(cell as Gtk.CellRendererText).Text = d.UserID.ToString();
 		}
+		
+		#endregion Cell Data Functions
 	}
 }

@@ -11,7 +11,7 @@ namespace MonoBPMonitor
 	
 	public class Doctor
 	{
-		private int _DoctorID;
+		private int _DoctorID = -1;
 		private string _DoctorName= "New Doctor";
 		private string _Location = "";
 		private string _PhoneNum = "";
@@ -87,7 +87,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_DoctorID > 0)
+				if(_DoctorID < 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
 					_DoctorID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Doctor(DoctorName, Location, PhoneNum, UserID)VALUES('" + _DoctorName + "','" + _Location + "','" + _PhoneNum + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
@@ -108,7 +108,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_DoctorID != 0)
+				if(_DoctorID > 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
 					dp.ExecuteNonQuery("UPDATE tb_Doctor SET DoctorName = '" + _DoctorName + "', Location = '" + _Location + "', PhoneNum = '" + _PhoneNum + "', UserID = " + _UserID.ToString() + " WHERE DoctorID = " + _DoctorID.ToString() + ";");

@@ -57,9 +57,9 @@ namespace MonoBPMonitor.Doctors
 			colDoctorName.Visible = true;
 			colDoctorName.Title = "Doctor";
 			Gtk.CellRendererText cellDoctorName = new Gtk.CellRendererText ();
-			cellDoctorName.Width=250;
+			cellDoctorName.Width=150;
 			cellDoctorName.Editable = true;
-			//cellDoctorName.Edited += cellDoctorName_Edited;
+			cellDoctorName.Edited += cellDoctorName_Edited;
 			colDoctorName.PackStart (cellDoctorName, true);
 			
 			// Create a column for the date
@@ -68,8 +68,10 @@ namespace MonoBPMonitor.Doctors
 			colLocation.Visible = true;
 			colLocation.Title = "Location";
 			Gtk.CellRendererText cellLocation = new Gtk.CellRendererText ();
-			cellLocation.Width=70;
-			colLocation.PackStart (cellLocation, true);
+			cellLocation.Width=120;
+			cellLocation.Editable = true;
+			cellLocation.Edited += cellLocation_Edited;
+			colLocation.PackStart (cellLocation, false);
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colPhoneNum = new Gtk.TreeViewColumn ();
@@ -77,8 +79,10 @@ namespace MonoBPMonitor.Doctors
 			colPhoneNum.Visible = true;
 			colPhoneNum.Title = "Phone";
 			Gtk.CellRendererText cellPhoneNum = new Gtk.CellRendererText ();
-			cellPhoneNum.Width=70;
-			colPhoneNum.PackStart (cellPhoneNum, true);
+			cellPhoneNum.Width=120;
+			cellPhoneNum.Editable = true;
+			cellPhoneNum.Edited += cellPhoneNum_Edited;
+			colPhoneNum.PackStart (cellPhoneNum, false);
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colUserID = new Gtk.TreeViewColumn ();
@@ -100,7 +104,7 @@ namespace MonoBPMonitor.Doctors
 			colDoctorID.SetCellDataFunc(cellDoctorID, new Gtk.TreeCellDataFunc(RenderDoctorID));
 			colDoctorName.SetCellDataFunc(cellDoctorName, new Gtk.TreeCellDataFunc(RenderDoctorName));
 			colLocation.SetCellDataFunc(cellLocation, new Gtk.TreeCellDataFunc(RenderLocation));
-			colLocation.SetCellDataFunc(cellPhoneNum, new Gtk.TreeCellDataFunc(RenderPhoneNum));
+			colPhoneNum.SetCellDataFunc(cellPhoneNum, new Gtk.TreeCellDataFunc(RenderPhoneNum));
 			colUserID.SetCellDataFunc(cellUserID, new Gtk.TreeCellDataFunc(RenderUserID));
 			
 			this.Model =_DoctorListsStore;
