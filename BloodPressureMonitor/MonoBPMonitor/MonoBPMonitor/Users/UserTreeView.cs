@@ -63,10 +63,56 @@ namespace MonoBPMonitor.Users
 			LoadData();
 		}
 		
-		public User IterTaskList(TreeIter iter)
+		public User SelectedUser(TreeIter iter)
 		{
 			return _UserListsStore.GetValue(iter, 0) as User;
 		}
+		
+		#region TreeView Cell Events
+		
+		private void cellUserName_Edited(object o, Gtk.EditedArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if (_UserListsStore.GetIterFromString (out iter, args.Path))
+				{
+					User u = (User)_UserListsStore.GetValue(iter, 0);
+					u.UserName = args.NewText;
+					u.Update();
+				}
+			}
+			catch(Exception doh)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
+				md.Run();
+				md.Destroy();
+			}
+		}
+		
+		private void cellIsActive_Toggled (object o, ToggledArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if (_UserListsStore.GetIterFromString (out iter, args.Path))
+				{
+					User u = (User)_UserListsStore.GetValue(iter, 0);
+					u.IsActive = u.IsActive ?  false:true;
+					u.Update();
+				}
+			}
+			catch(Exception doh)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
+				md.Run();
+				md.Destroy();
+			}
+		}
+		
+		#endregion TreeView Cell Events
+		
+		#region Cell Render Functions
 		
 		private void RenderUserID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
@@ -91,6 +137,8 @@ namespace MonoBPMonitor.Users
 			User u = (User)model.GetValue(iter, 0);
 			(cell as Gtk.CellRendererToggle).Active = u.IsActive;
 		}
+		
+		#endregion  Cell Render Functions
 		
 	}
 }
