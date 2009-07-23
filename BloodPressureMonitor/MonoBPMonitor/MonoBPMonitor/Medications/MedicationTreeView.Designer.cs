@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
- 
+
 using System;
 using System.Data;
 using System.Collections;
@@ -33,6 +33,7 @@ namespace MonoBPMonitor.Medications
 	public partial class MedicationTreeView : Gtk.TreeView
 	{
 		private Gtk.ListStore _MedicationListsStore = new ListStore(typeof(Medication));
+		private DateTime _CompairDate = new DateTime(1990, 1,1);
 		private void Build()
 		{
 			this.HeadersVisible = true;

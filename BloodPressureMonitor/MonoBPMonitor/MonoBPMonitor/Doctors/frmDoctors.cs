@@ -11,7 +11,6 @@ namespace MonoBPMonitor
 	
 	public partial class frmDoctors : Gtk.Dialog
 	{
-
 		private Doctors.DoctorTreeView tvDoctor;
 		public frmDoctors()
 		{
@@ -28,7 +27,7 @@ namespace MonoBPMonitor
 			if(tvDoctor.Selection.GetSelected(out iter))
 			{
 				Doctor d = (Doctor)tvDoctor.SelectedDoctor(iter);
-				Gtk.MessageDialog md = new MessageDialog(this,DialogFlags.Modal, MessageType.Question, Gtk.ButtonsType.YesNo, false, "Are you sure you want to delete " + d.DoctorName + " ?", "Delete User?");
+				Gtk.MessageDialog md = new MessageDialog(this,DialogFlags.Modal, MessageType.Question, Gtk.ButtonsType.YesNo, false, "Are you sure you want to delete " + d.DoctorName + " ?", "Delete Doctor?");
 				if((Gtk.ResponseType)md.Run() == Gtk.ResponseType.Yes)
 				{
 					d.Remove();
@@ -38,7 +37,7 @@ namespace MonoBPMonitor
 			}
 			else
 			{
-				Gtk.MessageDialog md2 = new MessageDialog(this,DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "You need to select a user to delete.", "No Row Selected");
+				Gtk.MessageDialog md2 = new MessageDialog(this,DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "You need to select a doctor to delete.", "No Row Selected");
 				md2.Run();
 				md2.Destroy();
 			}
@@ -66,8 +65,6 @@ namespace MonoBPMonitor
 				md.Run();
 				md.Destroy();
 			}
-			
-			
 		}
 	}
 }

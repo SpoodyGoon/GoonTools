@@ -11,8 +11,8 @@ namespace MonoBPMonitor
 		private int _MedicineID;
 		private string _MedicineName="New Medicine";
 		private string _Dosage="";
-		private DateTime _StartDate;
-		private DateTime _EndDate;
+		private DateTime _StartDate = new DateTime(1990, 1,1);
+		private DateTime _EndDate = new DateTime(1990, 1,1);
 		private int _DoctorID;
 		private int _UserID;
 		#region Construtors
@@ -32,12 +32,14 @@ namespace MonoBPMonitor
 			_UserID=userid;
 		}		
 		
-		public Medication(string medicinename, string dosage, DateTime startdate, DateTime enddate, int doctorid, int userid)
+		public Medication(string medicinename, string dosage, string startdate, string enddate, int doctorid, int userid)
 		{
 			_MedicineName=medicinename;
 			_Dosage=dosage;
-			_StartDate=startdate;
-			_EndDate=enddate;
+			if(startdate.Trim() != "")
+				_StartDate=DateTime.Parse(startdate);
+			if(enddate.Trim() != "")
+				_EndDate=DateTime.Parse(enddate);
 			_DoctorID=doctorid;
 			_UserID=userid;
 		}	

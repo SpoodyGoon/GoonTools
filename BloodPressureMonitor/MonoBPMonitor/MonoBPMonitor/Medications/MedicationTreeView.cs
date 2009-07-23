@@ -57,7 +57,12 @@ namespace MonoBPMonitor.Medications
 			}
 		}
 		
-		public Medication IterTaskList(TreeIter iter)
+		public void Refresh()
+		{
+			LoadData();
+		}
+		
+		public Medication SelectedMedication(TreeIter iter)
 		{
 			return _MedicationListsStore.GetValue(iter, 0) as Medication;
 		}
@@ -83,13 +88,15 @@ namespace MonoBPMonitor.Medications
 		private void RenderStartDate (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			Medication m = (Medication)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = m.StartDate.ToShortDateString();
+			if(m.StartDate > _CompairDate)
+				(cell as Gtk.CellRendererText).Text = m.StartDate.ToShortDateString();
 		}
 		
 		private void RenderEndDate (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			Medication m = (Medication)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = m.EndDate.ToShortDateString();
+			if(m.EndDate > _CompairDate)
+				(cell as Gtk.CellRendererText).Text = m.EndDate.ToShortDateString();
 		}
 		
 		private void RenderDoctorID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
