@@ -482,18 +482,18 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmDoctors" design-size="459 599">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmDoctors" design-size="650 650">
     <property name="MemberName" />
-    <property name="WidthRequest">450</property>
-    <property name="HeightRequest">350</property>
+    <property name="WidthRequest">650</property>
+    <property name="HeightRequest">650</property>
     <property name="Title" translatable="yes">Doctor Manager</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">3</property>
     <property name="AllowShrink">True</property>
-    <property name="DefaultWidth">450</property>
-    <property name="DefaultHeight">350</property>
+    <property name="DefaultWidth">650</property>
+    <property name="DefaultHeight">650</property>
     <property name="DestroyWithParent">True</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
@@ -542,11 +542,8 @@
                       <widget class="Gtk.Alignment" id="alignment10">
                         <property name="MemberName" />
                         <child>
-                          <widget class="Gtk.ComboBox" id="cboUser">
+                          <widget class="MonoBPMonitor.Users.UserComboBox" id="UserCombo">
                             <property name="MemberName" />
-                            <property name="WidthRequest">175</property>
-                            <property name="IsTextCombo">False</property>
-                            <property name="Items" translatable="yes" />
                           </widget>
                         </child>
                       </widget>
@@ -763,23 +760,8 @@
             <child>
               <widget class="Gtk.HButtonBox" id="hbuttonbox2">
                 <property name="MemberName" />
-                <property name="Size">2</property>
+                <property name="Size">1</property>
                 <property name="LayoutStyle">Spread</property>
-                <child>
-                  <widget class="Gtk.Button" id="btnClear">
-                    <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="UseStock">True</property>
-                    <property name="Type">StockItem</property>
-                    <property name="StockId">gtk-clear</property>
-                    <signal name="Clicked" handler="OnBtnClearClicked" />
-                    <property name="label">gtk-clear</property>
-                  </widget>
-                  <packing>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
                 <child>
                   <widget class="Gtk.Button" id="btnAdd">
                     <property name="MemberName" />
@@ -791,7 +773,6 @@
                     <property name="label">gtk-add</property>
                   </widget>
                   <packing>
-                    <property name="Position">1</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
@@ -922,10 +903,10 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmMedication" design-size="458 496">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmMedication" design-size="760 699">
     <property name="MemberName" />
     <property name="WindowPosition">CenterOnParent</property>
-    <property name="Buttons">2</property>
+    <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <property name="HasSeparator">False</property>
     <child internal-child="VBox">
@@ -937,10 +918,25 @@
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <placeholder />
+              <widget class="Gtk.Alignment" id="alignment3">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.Label" id="label7">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">&lt;big&gt;&lt;b&gt;Manage Medication&lt;/b&gt;&lt;/big&gt;</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
             <child>
-              <widget class="Gtk.Alignment" id="alignment3">
+              <widget class="Gtk.Alignment" id="alignment9">
                 <property name="MemberName" />
                 <property name="Xscale">0.5</property>
                 <property name="Xalign">0.9</property>
@@ -952,6 +948,29 @@
                     <property name="RowSpacing">6</property>
                     <property name="ColumnSpacing">6</property>
                     <property name="BorderWidth">2</property>
+                    <child>
+                      <widget class="Gtk.Alignment" id="alignment1">
+                        <property name="MemberName" />
+                        <child>
+                          <widget class="MonoBPMonitor.Users.UserComboBox" id="cboUser">
+                            <property name="MemberName" />
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="LeftAttach">1</property>
+                        <property name="RightAttach">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="XOptions">Fill</property>
+                        <property name="YOptions">Fill</property>
+                        <property name="XExpand">False</property>
+                        <property name="XFill">True</property>
+                        <property name="XShrink">False</property>
+                        <property name="YExpand">False</property>
+                        <property name="YFill">True</property>
+                        <property name="YShrink">False</property>
+                      </packing>
+                    </child>
                     <child>
                       <widget class="Gtk.Alignment" id="alignment10">
                         <property name="MemberName" />
@@ -1126,6 +1145,31 @@
                       <packing>
                         <property name="TopAttach">5</property>
                         <property name="BottomAttach">6</property>
+                        <property name="LeftAttach">1</property>
+                        <property name="RightAttach">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="XOptions">Fill</property>
+                        <property name="YOptions">Fill</property>
+                        <property name="XExpand">False</property>
+                        <property name="XFill">True</property>
+                        <property name="XShrink">False</property>
+                        <property name="YExpand">False</property>
+                        <property name="YFill">True</property>
+                        <property name="YShrink">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Alignment" id="alignment2">
+                        <property name="MemberName" />
+                        <child>
+                          <widget class="MonoBPMonitor.DoctorComboBox" id="cboDoctor">
+                            <property name="MemberName" />
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="TopAttach">1</property>
+                        <property name="BottomAttach">2</property>
                         <property name="LeftAttach">1</property>
                         <property name="RightAttach">2</property>
                         <property name="AutoSize">True</property>
@@ -1324,50 +1368,6 @@
                         <property name="YShrink">False</property>
                       </packing>
                     </child>
-                    <child>
-                      <widget class="Gtk.ComboBox" id="cboUser">
-                        <property name="MemberName" />
-                        <property name="WidthRequest">175</property>
-                        <property name="IsTextCombo">False</property>
-                        <property name="Items" translatable="yes" />
-                      </widget>
-                      <packing>
-                        <property name="TopAttach">1</property>
-                        <property name="BottomAttach">2</property>
-                        <property name="LeftAttach">1</property>
-                        <property name="RightAttach">2</property>
-                        <property name="AutoSize">True</property>
-                        <property name="XOptions">Fill</property>
-                        <property name="YOptions">Fill</property>
-                        <property name="XExpand">False</property>
-                        <property name="XFill">True</property>
-                        <property name="XShrink">False</property>
-                        <property name="YExpand">False</property>
-                        <property name="YFill">True</property>
-                        <property name="YShrink">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.ComboBox" id="cboUser2">
-                        <property name="MemberName" />
-                        <property name="WidthRequest">175</property>
-                        <property name="IsTextCombo">False</property>
-                        <property name="Items" translatable="yes" />
-                      </widget>
-                      <packing>
-                        <property name="LeftAttach">1</property>
-                        <property name="RightAttach">2</property>
-                        <property name="AutoSize">True</property>
-                        <property name="XOptions">Fill</property>
-                        <property name="YOptions">Fill</property>
-                        <property name="XExpand">False</property>
-                        <property name="XFill">True</property>
-                        <property name="XShrink">False</property>
-                        <property name="YExpand">False</property>
-                        <property name="YFill">True</property>
-                        <property name="YShrink">False</property>
-                      </packing>
-                    </child>
                   </widget>
                 </child>
               </widget>
@@ -1379,13 +1379,126 @@
               </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.Alignment" id="alignment12">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.HButtonBox" id="hbuttonbox2">
+                    <property name="MemberName" />
+                    <property name="Size">1</property>
+                    <child>
+                      <widget class="Gtk.Button" id="btnAdd">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="UseStock">True</property>
+                        <property name="Type">StockItem</property>
+                        <property name="StockId">gtk-add</property>
+                        <signal name="Clicked" handler="OnBtnAddClicked" />
+                        <property name="label">gtk-add</property>
+                      </widget>
+                      <packing>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.Alignment" id="alignment15">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.HSeparator" id="hseparator1">
+                    <property name="MemberName" />
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.Alignment" id="alignment16">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.HButtonBox" id="hbuttonbox3">
+                    <property name="MemberName" />
+                    <property name="Size">1</property>
+                    <property name="LayoutStyle">Start</property>
+                    <child>
+                      <widget class="Gtk.Button" id="btnDelete">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="UseStock">True</property>
+                        <property name="Type">StockItem</property>
+                        <property name="StockId">gtk-delete</property>
+                        <signal name="Clicked" handler="OnBtnDeleteClicked" />
+                        <property name="label">gtk-delete</property>
+                      </widget>
+                      <packing>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">4</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment17">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.ScrolledWindow" id="swMedication">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="ShadowType">In</property>
+                    <child>
+                      <widget class="Gtk.Viewport" id="GtkViewport">
+                        <property name="MemberName" />
+                        <property name="ShadowType">None</property>
+                        <child>
+                          <placeholder />
+                        </child>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">5</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment20">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.HSeparator" id="hseparator2">
+                    <property name="MemberName" />
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">6</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
           </widget>
           <packing>
@@ -1400,37 +1513,21 @@
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <property name="BorderWidth">5</property>
-        <property name="Size">2</property>
-        <property name="LayoutStyle">End</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">Spread</property>
         <child>
-          <widget class="Gtk.Button" id="buttonCancel">
+          <widget class="Gtk.Button" id="btnClose">
             <property name="MemberName" />
             <property name="CanDefault">True</property>
             <property name="CanFocus">True</property>
             <property name="UseStock">True</property>
             <property name="Type">StockItem</property>
-            <property name="StockId">gtk-cancel</property>
-            <property name="ResponseId">-6</property>
-            <property name="label">gtk-cancel</property>
+            <property name="StockId">gtk-close</property>
+            <property name="ResponseId">-7</property>
+            <signal name="Clicked" handler="OnBtnCloseClicked" />
+            <property name="label">gtk-close</property>
           </widget>
           <packing>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.Button" id="buttonOk">
-            <property name="MemberName" />
-            <property name="CanDefault">True</property>
-            <property name="CanFocus">True</property>
-            <property name="UseStock">True</property>
-            <property name="Type">StockItem</property>
-            <property name="StockId">gtk-ok</property>
-            <property name="ResponseId">-5</property>
-            <property name="label">gtk-ok</property>
-          </widget>
-          <packing>
-            <property name="Position">1</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
@@ -1531,7 +1628,7 @@
                         <child>
                           <widget class="Gtk.Label" id="label2">
                             <property name="MemberName" />
-                            <property name="LabelProp" translatable="yes">Person:</property>
+                            <property name="LabelProp" translatable="yes">User:</property>
                           </widget>
                         </child>
                       </widget>
@@ -1696,10 +1793,8 @@
                       <widget class="Gtk.Alignment" id="alignment3">
                         <property name="MemberName" />
                         <child>
-                          <widget class="Gtk.ComboBox" id="cboUser">
+                          <widget class="MonoBPMonitor.Users.UserComboBox" id="cboUser">
                             <property name="MemberName" />
-                            <property name="IsTextCombo">False</property>
-                            <property name="Items" translatable="yes" />
                           </widget>
                         </child>
                       </widget>
@@ -1929,7 +2024,7 @@
         <property name="Spacing">6</property>
         <property name="BorderWidth">5</property>
         <property name="Size">2</property>
-        <property name="LayoutStyle">End</property>
+        <property name="LayoutStyle">Spread</property>
         <child>
           <widget class="Gtk.Button" id="btnCancel">
             <property name="MemberName" />

@@ -90,7 +90,6 @@
     <Compile Include="gtk-gui\MonoBPMonitor.frmUsers.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmDoctors.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmMedication.cs" />
-    <Compile Include="frmBPEntry.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmBPEntry.cs" />
     <Compile Include="frmCalendar.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmCalendar.cs" />
@@ -113,6 +112,8 @@
     <Compile Include="Doctors\Doctor.cs" />
     <Compile Include="Entry\Entry.cs" />
     <Compile Include="Users\UserComboBox.cs" />
+    <Compile Include="Doctors\DoctorComboBox.cs" />
+    <Compile Include="Entry\frmBPEntry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

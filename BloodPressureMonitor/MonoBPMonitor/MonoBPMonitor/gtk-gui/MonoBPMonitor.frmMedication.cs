@@ -17,7 +17,15 @@ namespace MonoBPMonitor {
         
         private Gtk.Alignment alignment3;
         
+        private Gtk.Label label7;
+        
+        private Gtk.Alignment alignment9;
+        
         private Gtk.Table table1;
+        
+        private Gtk.Alignment alignment1;
+        
+        private MonoBPMonitor.Users.UserComboBox cboUser;
         
         private Gtk.Alignment alignment10;
         
@@ -48,6 +56,10 @@ namespace MonoBPMonitor {
         private Gtk.Button btnEndDate;
         
         private Gtk.Image image2;
+        
+        private Gtk.Alignment alignment2;
+        
+        private MonoBPMonitor.DoctorComboBox cboDoctor;
         
         private Gtk.Alignment alignment4;
         
@@ -81,13 +93,31 @@ namespace MonoBPMonitor {
         
         private Gtk.Label label5;
         
-        private Gtk.ComboBox cboUser;
+        private Gtk.Alignment alignment12;
         
-        private Gtk.ComboBox cboUser2;
+        private Gtk.HButtonBox hbuttonbox2;
         
-        private Gtk.Button buttonCancel;
+        private Gtk.Button btnAdd;
         
-        private Gtk.Button buttonOk;
+        private Gtk.Alignment alignment15;
+        
+        private Gtk.HSeparator hseparator1;
+        
+        private Gtk.Alignment alignment16;
+        
+        private Gtk.HButtonBox hbuttonbox3;
+        
+        private Gtk.Button btnDelete;
+        
+        private Gtk.Alignment alignment17;
+        
+        private Gtk.ScrolledWindow swMedication;
+        
+        private Gtk.Alignment alignment20;
+        
+        private Gtk.HSeparator hseparator2;
+        
+        private Gtk.Button btnClose;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -104,14 +134,41 @@ namespace MonoBPMonitor {
             this.vbox2.Name = "vbox2";
             this.vbox2.Spacing = 6;
             // Container child vbox2.Gtk.Box+BoxChild
-            this.alignment3 = new Gtk.Alignment(0.9F, 0.5F, 0.5F, 1F);
+            this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment3.Name = "alignment3";
             // Container child alignment3.Gtk.Container+ContainerChild
+            this.label7 = new Gtk.Label();
+            this.label7.Name = "label7";
+            this.label7.LabelProp = Mono.Unix.Catalog.GetString("<big><b>Manage Medication</b></big>");
+            this.label7.UseMarkup = true;
+            this.alignment3.Add(this.label7);
+            this.vbox2.Add(this.alignment3);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment3]));
+            w3.Position = 0;
+            w3.Expand = false;
+            w3.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment9 = new Gtk.Alignment(0.9F, 0.5F, 0.5F, 1F);
+            this.alignment9.Name = "alignment9";
+            // Container child alignment9.Gtk.Container+ContainerChild
             this.table1 = new Gtk.Table(((uint)(6)), ((uint)(2)), false);
             this.table1.Name = "table1";
             this.table1.RowSpacing = ((uint)(6));
             this.table1.ColumnSpacing = ((uint)(6));
             this.table1.BorderWidth = ((uint)(2));
+            // Container child table1.Gtk.Table+TableChild
+            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment1.Name = "alignment1";
+            // Container child alignment1.Gtk.Container+ContainerChild
+            this.cboUser = new MonoBPMonitor.Users.UserComboBox();
+            this.cboUser.Name = "cboUser";
+            this.alignment1.Add(this.cboUser);
+            this.table1.Add(this.alignment1);
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.alignment1]));
+            w5.LeftAttach = ((uint)(1));
+            w5.RightAttach = ((uint)(2));
+            w5.XOptions = ((Gtk.AttachOptions)(4));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment10 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment10.Name = "alignment10";
@@ -123,13 +180,13 @@ namespace MonoBPMonitor {
             this.txtMedicine.InvisibleChar = '●';
             this.alignment10.Add(this.txtMedicine);
             this.table1.Add(this.alignment10);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.alignment10]));
-            w3.TopAttach = ((uint)(2));
-            w3.BottomAttach = ((uint)(3));
-            w3.LeftAttach = ((uint)(1));
-            w3.RightAttach = ((uint)(2));
-            w3.XOptions = ((Gtk.AttachOptions)(4));
-            w3.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table1[this.alignment10]));
+            w7.TopAttach = ((uint)(2));
+            w7.BottomAttach = ((uint)(3));
+            w7.LeftAttach = ((uint)(1));
+            w7.RightAttach = ((uint)(2));
+            w7.XOptions = ((Gtk.AttachOptions)(4));
+            w7.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment11 = new Gtk.Alignment(0.99F, 0.5F, 0.01F, 1F);
             this.alignment11.Name = "alignment11";
@@ -139,11 +196,11 @@ namespace MonoBPMonitor {
             this.label2.LabelProp = Mono.Unix.Catalog.GetString("Medicine:");
             this.alignment11.Add(this.label2);
             this.table1.Add(this.alignment11);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.alignment11]));
-            w5.TopAttach = ((uint)(2));
-            w5.BottomAttach = ((uint)(3));
-            w5.XOptions = ((Gtk.AttachOptions)(4));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table1[this.alignment11]));
+            w9.TopAttach = ((uint)(2));
+            w9.BottomAttach = ((uint)(3));
+            w9.XOptions = ((Gtk.AttachOptions)(4));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment13 = new Gtk.Alignment(0.99F, 0.5F, 0.01F, 1F);
             this.alignment13.Name = "alignment13";
@@ -153,11 +210,11 @@ namespace MonoBPMonitor {
             this.label1.LabelProp = Mono.Unix.Catalog.GetString("Doctor:");
             this.alignment13.Add(this.label1);
             this.table1.Add(this.alignment13);
-            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table1[this.alignment13]));
-            w7.TopAttach = ((uint)(1));
-            w7.BottomAttach = ((uint)(2));
-            w7.XOptions = ((Gtk.AttachOptions)(4));
-            w7.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.table1[this.alignment13]));
+            w11.TopAttach = ((uint)(1));
+            w11.BottomAttach = ((uint)(2));
+            w11.XOptions = ((Gtk.AttachOptions)(4));
+            w11.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment14 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment14.Name = "alignment14";
@@ -170,13 +227,13 @@ namespace MonoBPMonitor {
             this.txtDosage.InvisibleChar = '●';
             this.alignment14.Add(this.txtDosage);
             this.table1.Add(this.alignment14);
-            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table1[this.alignment14]));
-            w9.TopAttach = ((uint)(3));
-            w9.BottomAttach = ((uint)(4));
-            w9.LeftAttach = ((uint)(1));
-            w9.RightAttach = ((uint)(2));
-            w9.XOptions = ((Gtk.AttachOptions)(4));
-            w9.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w13 = ((Gtk.Table.TableChild)(this.table1[this.alignment14]));
+            w13.TopAttach = ((uint)(3));
+            w13.BottomAttach = ((uint)(4));
+            w13.LeftAttach = ((uint)(1));
+            w13.RightAttach = ((uint)(2));
+            w13.XOptions = ((Gtk.AttachOptions)(4));
+            w13.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment18 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment18.Name = "alignment18";
@@ -191,8 +248,8 @@ namespace MonoBPMonitor {
             this.txtEndDate.IsEditable = false;
             this.txtEndDate.InvisibleChar = '●';
             this.hbox2.Add(this.txtEndDate);
-            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.hbox2[this.txtEndDate]));
-            w10.Position = 0;
+            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.hbox2[this.txtEndDate]));
+            w14.Position = 0;
             // Container child hbox2.Gtk.Box+BoxChild
             this.btnEndDateClean = new Gtk.Button();
             this.btnEndDateClean.CanFocus = true;
@@ -204,10 +261,10 @@ namespace MonoBPMonitor {
             this.btnEndDateClean.Add(this.image5);
             this.btnEndDateClean.Label = null;
             this.hbox2.Add(this.btnEndDateClean);
-            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.hbox2[this.btnEndDateClean]));
-            w12.Position = 1;
-            w12.Expand = false;
-            w12.Fill = false;
+            Gtk.Box.BoxChild w16 = ((Gtk.Box.BoxChild)(this.hbox2[this.btnEndDateClean]));
+            w16.Position = 1;
+            w16.Expand = false;
+            w16.Fill = false;
             // Container child hbox2.Gtk.Box+BoxChild
             this.btnEndDate = new Gtk.Button();
             this.btnEndDate.CanFocus = true;
@@ -219,19 +276,34 @@ namespace MonoBPMonitor {
             this.btnEndDate.Add(this.image2);
             this.btnEndDate.Label = null;
             this.hbox2.Add(this.btnEndDate);
-            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.hbox2[this.btnEndDate]));
-            w14.Position = 2;
-            w14.Expand = false;
-            w14.Fill = false;
+            Gtk.Box.BoxChild w18 = ((Gtk.Box.BoxChild)(this.hbox2[this.btnEndDate]));
+            w18.Position = 2;
+            w18.Expand = false;
+            w18.Fill = false;
             this.alignment18.Add(this.hbox2);
             this.table1.Add(this.alignment18);
-            Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.table1[this.alignment18]));
-            w16.TopAttach = ((uint)(5));
-            w16.BottomAttach = ((uint)(6));
-            w16.LeftAttach = ((uint)(1));
-            w16.RightAttach = ((uint)(2));
-            w16.XOptions = ((Gtk.AttachOptions)(4));
-            w16.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w20 = ((Gtk.Table.TableChild)(this.table1[this.alignment18]));
+            w20.TopAttach = ((uint)(5));
+            w20.BottomAttach = ((uint)(6));
+            w20.LeftAttach = ((uint)(1));
+            w20.RightAttach = ((uint)(2));
+            w20.XOptions = ((Gtk.AttachOptions)(4));
+            w20.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment2.Name = "alignment2";
+            // Container child alignment2.Gtk.Container+ContainerChild
+            this.cboDoctor = new MonoBPMonitor.DoctorComboBox();
+            this.cboDoctor.Name = "cboDoctor";
+            this.alignment2.Add(this.cboDoctor);
+            this.table1.Add(this.alignment2);
+            Gtk.Table.TableChild w22 = ((Gtk.Table.TableChild)(this.table1[this.alignment2]));
+            w22.TopAttach = ((uint)(1));
+            w22.BottomAttach = ((uint)(2));
+            w22.LeftAttach = ((uint)(1));
+            w22.RightAttach = ((uint)(2));
+            w22.XOptions = ((Gtk.AttachOptions)(4));
+            w22.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment4 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment4.Name = "alignment4";
@@ -249,8 +321,8 @@ namespace MonoBPMonitor {
             this.txtStartDate.IsEditable = false;
             this.txtStartDate.InvisibleChar = '●';
             this.hbox3.Add(this.txtStartDate);
-            Gtk.Box.BoxChild w17 = ((Gtk.Box.BoxChild)(this.hbox3[this.txtStartDate]));
-            w17.Position = 0;
+            Gtk.Box.BoxChild w23 = ((Gtk.Box.BoxChild)(this.hbox3[this.txtStartDate]));
+            w23.Position = 0;
             // Container child hbox3.Gtk.Box+BoxChild
             this.btnStartDateClean = new Gtk.Button();
             this.btnStartDateClean.CanFocus = true;
@@ -262,10 +334,10 @@ namespace MonoBPMonitor {
             this.btnStartDateClean.Add(this.image3);
             this.btnStartDateClean.Label = null;
             this.hbox3.Add(this.btnStartDateClean);
-            Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(this.hbox3[this.btnStartDateClean]));
-            w19.Position = 1;
-            w19.Expand = false;
-            w19.Fill = false;
+            Gtk.Box.BoxChild w25 = ((Gtk.Box.BoxChild)(this.hbox3[this.btnStartDateClean]));
+            w25.Position = 1;
+            w25.Expand = false;
+            w25.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.btnStartDate = new Gtk.Button();
             this.btnStartDate.CanFocus = true;
@@ -277,20 +349,20 @@ namespace MonoBPMonitor {
             this.btnStartDate.Add(this.image4);
             this.btnStartDate.Label = null;
             this.hbox3.Add(this.btnStartDate);
-            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.hbox3[this.btnStartDate]));
-            w21.Position = 2;
-            w21.Expand = false;
-            w21.Fill = false;
+            Gtk.Box.BoxChild w27 = ((Gtk.Box.BoxChild)(this.hbox3[this.btnStartDate]));
+            w27.Position = 2;
+            w27.Expand = false;
+            w27.Fill = false;
             this.alignment19.Add(this.hbox3);
             this.alignment4.Add(this.alignment19);
             this.table1.Add(this.alignment4);
-            Gtk.Table.TableChild w24 = ((Gtk.Table.TableChild)(this.table1[this.alignment4]));
-            w24.TopAttach = ((uint)(4));
-            w24.BottomAttach = ((uint)(5));
-            w24.LeftAttach = ((uint)(1));
-            w24.RightAttach = ((uint)(2));
-            w24.XOptions = ((Gtk.AttachOptions)(4));
-            w24.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w30 = ((Gtk.Table.TableChild)(this.table1[this.alignment4]));
+            w30.TopAttach = ((uint)(4));
+            w30.BottomAttach = ((uint)(5));
+            w30.LeftAttach = ((uint)(1));
+            w30.RightAttach = ((uint)(2));
+            w30.XOptions = ((Gtk.AttachOptions)(4));
+            w30.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment5 = new Gtk.Alignment(0.99F, 0.5F, 0.01F, 1F);
             this.alignment5.Name = "alignment5";
@@ -300,11 +372,11 @@ namespace MonoBPMonitor {
             this.label3.LabelProp = Mono.Unix.Catalog.GetString("End Date:");
             this.alignment5.Add(this.label3);
             this.table1.Add(this.alignment5);
-            Gtk.Table.TableChild w26 = ((Gtk.Table.TableChild)(this.table1[this.alignment5]));
-            w26.TopAttach = ((uint)(5));
-            w26.BottomAttach = ((uint)(6));
-            w26.XOptions = ((Gtk.AttachOptions)(4));
-            w26.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w32 = ((Gtk.Table.TableChild)(this.table1[this.alignment5]));
+            w32.TopAttach = ((uint)(5));
+            w32.BottomAttach = ((uint)(6));
+            w32.XOptions = ((Gtk.AttachOptions)(4));
+            w32.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment6 = new Gtk.Alignment(0.99F, 0.5F, 0.01F, 1F);
             this.alignment6.Name = "alignment6";
@@ -314,11 +386,11 @@ namespace MonoBPMonitor {
             this.label4.LabelProp = Mono.Unix.Catalog.GetString("Dosage:");
             this.alignment6.Add(this.label4);
             this.table1.Add(this.alignment6);
-            Gtk.Table.TableChild w28 = ((Gtk.Table.TableChild)(this.table1[this.alignment6]));
-            w28.TopAttach = ((uint)(3));
-            w28.BottomAttach = ((uint)(4));
-            w28.XOptions = ((Gtk.AttachOptions)(4));
-            w28.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w34 = ((Gtk.Table.TableChild)(this.table1[this.alignment6]));
+            w34.TopAttach = ((uint)(3));
+            w34.BottomAttach = ((uint)(4));
+            w34.XOptions = ((Gtk.AttachOptions)(4));
+            w34.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment7 = new Gtk.Alignment(0.99F, 0.5F, 0.01F, 1F);
             this.alignment7.Name = "alignment7";
@@ -328,11 +400,11 @@ namespace MonoBPMonitor {
             this.label6.LabelProp = Mono.Unix.Catalog.GetString("Start Date:");
             this.alignment7.Add(this.label6);
             this.table1.Add(this.alignment7);
-            Gtk.Table.TableChild w30 = ((Gtk.Table.TableChild)(this.table1[this.alignment7]));
-            w30.TopAttach = ((uint)(4));
-            w30.BottomAttach = ((uint)(5));
-            w30.XOptions = ((Gtk.AttachOptions)(4));
-            w30.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w36 = ((Gtk.Table.TableChild)(this.table1[this.alignment7]));
+            w36.TopAttach = ((uint)(4));
+            w36.BottomAttach = ((uint)(5));
+            w36.XOptions = ((Gtk.AttachOptions)(4));
+            w36.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment8 = new Gtk.Alignment(0.99F, 0.5F, 0.01F, 1F);
             this.alignment8.Name = "alignment8";
@@ -342,81 +414,132 @@ namespace MonoBPMonitor {
             this.label5.LabelProp = Mono.Unix.Catalog.GetString("User:");
             this.alignment8.Add(this.label5);
             this.table1.Add(this.alignment8);
-            Gtk.Table.TableChild w32 = ((Gtk.Table.TableChild)(this.table1[this.alignment8]));
-            w32.XOptions = ((Gtk.AttachOptions)(4));
-            w32.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table1.Gtk.Table+TableChild
-            this.cboUser = new Gtk.ComboBox();
-            this.cboUser.WidthRequest = 175;
-            this.cboUser.Name = "cboUser";
-            this.table1.Add(this.cboUser);
-            Gtk.Table.TableChild w33 = ((Gtk.Table.TableChild)(this.table1[this.cboUser]));
-            w33.TopAttach = ((uint)(1));
-            w33.BottomAttach = ((uint)(2));
-            w33.LeftAttach = ((uint)(1));
-            w33.RightAttach = ((uint)(2));
-            w33.XOptions = ((Gtk.AttachOptions)(4));
-            w33.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table1.Gtk.Table+TableChild
-            this.cboUser2 = new Gtk.ComboBox();
-            this.cboUser2.WidthRequest = 175;
-            this.cboUser2.Name = "cboUser2";
-            this.table1.Add(this.cboUser2);
-            Gtk.Table.TableChild w34 = ((Gtk.Table.TableChild)(this.table1[this.cboUser2]));
-            w34.LeftAttach = ((uint)(1));
-            w34.RightAttach = ((uint)(2));
-            w34.XOptions = ((Gtk.AttachOptions)(4));
-            w34.YOptions = ((Gtk.AttachOptions)(4));
-            this.alignment3.Add(this.table1);
-            this.vbox2.Add(this.alignment3);
-            Gtk.Box.BoxChild w36 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment3]));
-            w36.Position = 1;
-            w36.Expand = false;
-            w36.Fill = false;
-            w1.Add(this.vbox2);
-            Gtk.Box.BoxChild w37 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
-            w37.Position = 0;
-            // Internal child MonoBPMonitor.frmMedication.ActionArea
-            Gtk.HButtonBox w38 = this.ActionArea;
-            w38.Name = "dialog1_ActionArea";
-            w38.Spacing = 6;
-            w38.BorderWidth = ((uint)(5));
-            w38.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
-            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-            this.buttonCancel = new Gtk.Button();
-            this.buttonCancel.CanDefault = true;
-            this.buttonCancel.CanFocus = true;
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.UseStock = true;
-            this.buttonCancel.UseUnderline = true;
-            this.buttonCancel.Label = "gtk-cancel";
-            this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w39 = ((Gtk.ButtonBox.ButtonBoxChild)(w38[this.buttonCancel]));
-            w39.Expand = false;
-            w39.Fill = false;
-            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-            this.buttonOk = new Gtk.Button();
-            this.buttonOk.CanDefault = true;
-            this.buttonOk.CanFocus = true;
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.UseStock = true;
-            this.buttonOk.UseUnderline = true;
-            this.buttonOk.Label = "gtk-ok";
-            this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w40 = ((Gtk.ButtonBox.ButtonBoxChild)(w38[this.buttonOk]));
+            Gtk.Table.TableChild w38 = ((Gtk.Table.TableChild)(this.table1[this.alignment8]));
+            w38.XOptions = ((Gtk.AttachOptions)(4));
+            w38.YOptions = ((Gtk.AttachOptions)(4));
+            this.alignment9.Add(this.table1);
+            this.vbox2.Add(this.alignment9);
+            Gtk.Box.BoxChild w40 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment9]));
             w40.Position = 1;
             w40.Expand = false;
             w40.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment12 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment12.Name = "alignment12";
+            // Container child alignment12.Gtk.Container+ContainerChild
+            this.hbuttonbox2 = new Gtk.HButtonBox();
+            this.hbuttonbox2.Name = "hbuttonbox2";
+            // Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+            this.btnAdd = new Gtk.Button();
+            this.btnAdd.CanFocus = true;
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.UseStock = true;
+            this.btnAdd.UseUnderline = true;
+            this.btnAdd.Label = "gtk-add";
+            this.hbuttonbox2.Add(this.btnAdd);
+            Gtk.ButtonBox.ButtonBoxChild w41 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.btnAdd]));
+            w41.Expand = false;
+            w41.Fill = false;
+            this.alignment12.Add(this.hbuttonbox2);
+            this.vbox2.Add(this.alignment12);
+            Gtk.Box.BoxChild w43 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment12]));
+            w43.Position = 2;
+            w43.Expand = false;
+            w43.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment15 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment15.Name = "alignment15";
+            // Container child alignment15.Gtk.Container+ContainerChild
+            this.hseparator1 = new Gtk.HSeparator();
+            this.hseparator1.Name = "hseparator1";
+            this.alignment15.Add(this.hseparator1);
+            this.vbox2.Add(this.alignment15);
+            Gtk.Box.BoxChild w45 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment15]));
+            w45.Position = 3;
+            w45.Expand = false;
+            w45.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment16 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment16.Name = "alignment16";
+            // Container child alignment16.Gtk.Container+ContainerChild
+            this.hbuttonbox3 = new Gtk.HButtonBox();
+            this.hbuttonbox3.Name = "hbuttonbox3";
+            this.hbuttonbox3.LayoutStyle = ((Gtk.ButtonBoxStyle)(3));
+            // Container child hbuttonbox3.Gtk.ButtonBox+ButtonBoxChild
+            this.btnDelete = new Gtk.Button();
+            this.btnDelete.CanFocus = true;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.UseStock = true;
+            this.btnDelete.UseUnderline = true;
+            this.btnDelete.Label = "gtk-delete";
+            this.hbuttonbox3.Add(this.btnDelete);
+            Gtk.ButtonBox.ButtonBoxChild w46 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox3[this.btnDelete]));
+            w46.Expand = false;
+            w46.Fill = false;
+            this.alignment16.Add(this.hbuttonbox3);
+            this.vbox2.Add(this.alignment16);
+            Gtk.Box.BoxChild w48 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment16]));
+            w48.Position = 4;
+            w48.Expand = false;
+            w48.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment17 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment17.Name = "alignment17";
+            // Container child alignment17.Gtk.Container+ContainerChild
+            this.swMedication = new Gtk.ScrolledWindow();
+            this.swMedication.CanFocus = true;
+            this.swMedication.Name = "swMedication";
+            this.swMedication.ShadowType = ((Gtk.ShadowType)(1));
+            this.alignment17.Add(this.swMedication);
+            this.vbox2.Add(this.alignment17);
+            Gtk.Box.BoxChild w50 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment17]));
+            w50.Position = 5;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment20 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment20.Name = "alignment20";
+            // Container child alignment20.Gtk.Container+ContainerChild
+            this.hseparator2 = new Gtk.HSeparator();
+            this.hseparator2.Name = "hseparator2";
+            this.alignment20.Add(this.hseparator2);
+            this.vbox2.Add(this.alignment20);
+            Gtk.Box.BoxChild w52 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment20]));
+            w52.Position = 6;
+            w52.Expand = false;
+            w52.Fill = false;
+            w1.Add(this.vbox2);
+            Gtk.Box.BoxChild w53 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
+            w53.Position = 0;
+            // Internal child MonoBPMonitor.frmMedication.ActionArea
+            Gtk.HButtonBox w54 = this.ActionArea;
+            w54.Name = "dialog1_ActionArea";
+            w54.Spacing = 6;
+            w54.BorderWidth = ((uint)(5));
+            w54.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
+            this.btnClose = new Gtk.Button();
+            this.btnClose.CanDefault = true;
+            this.btnClose.CanFocus = true;
+            this.btnClose.Name = "btnClose";
+            this.btnClose.UseStock = true;
+            this.btnClose.UseUnderline = true;
+            this.btnClose.Label = "gtk-close";
+            this.AddActionWidget(this.btnClose, -7);
+            Gtk.ButtonBox.ButtonBoxChild w55 = ((Gtk.ButtonBox.ButtonBoxChild)(w54[this.btnClose]));
+            w55.Expand = false;
+            w55.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 458;
-            this.DefaultHeight = 496;
+            this.DefaultWidth = 760;
+            this.DefaultHeight = 699;
             this.Show();
             this.btnStartDateClean.Clicked += new System.EventHandler(this.OnBtnStartDateCleanClicked);
             this.btnStartDate.Clicked += new System.EventHandler(this.OnBtnDateClicked);
             this.btnEndDateClean.Clicked += new System.EventHandler(this.OnBtnEndDateCleanClicked);
             this.btnEndDate.Clicked += new System.EventHandler(this.OnBtnDateClicked);
+            this.btnAdd.Clicked += new System.EventHandler(this.OnBtnAddClicked);
+            this.btnDelete.Clicked += new System.EventHandler(this.OnBtnDeleteClicked);
+            this.btnClose.Clicked += new System.EventHandler(this.OnBtnCloseClicked);
         }
     }
 }

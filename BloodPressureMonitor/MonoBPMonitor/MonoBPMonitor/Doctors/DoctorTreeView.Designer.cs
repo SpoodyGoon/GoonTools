@@ -55,6 +55,7 @@ namespace MonoBPMonitor.Doctors
 			colDoctorName.Expand = true;
 			colDoctorName.Resizable = true;
 			colDoctorName.Visible = true;
+			colDoctorName.Alignment = 0.05f;
 			colDoctorName.Title = "Doctor";
 			Gtk.CellRendererText cellDoctorName = new Gtk.CellRendererText ();
 			cellDoctorName.Width=150;
@@ -66,6 +67,7 @@ namespace MonoBPMonitor.Doctors
 			Gtk.TreeViewColumn colLocation = new Gtk.TreeViewColumn ();
 			colLocation.Resizable = true;
 			colLocation.Visible = true;
+			colLocation.Alignment=0.5f;
 			colLocation.Title = "Location";
 			Gtk.CellRendererText cellLocation = new Gtk.CellRendererText ();
 			cellLocation.Width=120;
@@ -78,6 +80,7 @@ namespace MonoBPMonitor.Doctors
 			colPhoneNum.Resizable = true;
 			colPhoneNum.Visible = true;
 			colPhoneNum.Title = "Phone";
+			colPhoneNum.Alignment=0.5f;
 			Gtk.CellRendererText cellPhoneNum = new Gtk.CellRendererText ();
 			cellPhoneNum.Width=120;
 			cellPhoneNum.Editable = true;
@@ -88,6 +91,7 @@ namespace MonoBPMonitor.Doctors
 			Gtk.TreeViewColumn colUserID = new Gtk.TreeViewColumn ();
 			colUserID.Resizable = true;
 			colUserID.Visible = true;
+			colUserID.Alignment=0.05f;
 			colUserID.Title = "User";
 			Gtk.CellRendererText cellUserID = new Gtk.CellRendererText ();
 			cellUserID.Width=120;

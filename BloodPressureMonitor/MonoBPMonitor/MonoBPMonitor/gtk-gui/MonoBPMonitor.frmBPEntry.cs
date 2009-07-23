@@ -61,7 +61,7 @@ namespace MonoBPMonitor {
         
         private Gtk.Alignment alignment3;
         
-        private Gtk.ComboBox cboUser;
+        private MonoBPMonitor.Users.UserComboBox cboUser;
         
         private Gtk.Alignment alignment4;
         
@@ -172,7 +172,7 @@ namespace MonoBPMonitor {
             // Container child alignment11.Gtk.Container+ContainerChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
-            this.label2.LabelProp = Mono.Unix.Catalog.GetString("Person:");
+            this.label2.LabelProp = Mono.Unix.Catalog.GetString("User:");
             this.alignment11.Add(this.label2);
             this.table1.Add(this.alignment11);
             Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table1[this.alignment11]));
@@ -270,7 +270,7 @@ namespace MonoBPMonitor {
             this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment3.Name = "alignment3";
             // Container child alignment3.Gtk.Container+ContainerChild
-            this.cboUser = new Gtk.ComboBox();
+            this.cboUser = new MonoBPMonitor.Users.UserComboBox();
             this.cboUser.Name = "cboUser";
             this.alignment3.Add(this.cboUser);
             this.table1.Add(this.alignment3);
@@ -411,7 +411,7 @@ namespace MonoBPMonitor {
             w42.Name = "dialog1_ActionArea";
             w42.Spacing = 6;
             w42.BorderWidth = ((uint)(5));
-            w42.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            w42.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.btnCancel = new Gtk.Button();
             this.btnCancel.CanDefault = true;
