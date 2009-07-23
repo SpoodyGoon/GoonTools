@@ -36,7 +36,19 @@ namespace MonoBPMonitor
 		protected virtual void OnBtnStartDateCleanClicked (object sender, System.EventArgs e)
 		{
 			txtStartDate.Text = "";
-		}		
+		}
+
+		protected virtual void OnBtnAddClicked (object sender, System.EventArgs e)
+				{
+				}
+
+		protected virtual void OnBtnDeleteClicked (object sender, System.EventArgs e)
+				{
+				}
+
+		protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
+				{
+				}		
 		
 	}
 }

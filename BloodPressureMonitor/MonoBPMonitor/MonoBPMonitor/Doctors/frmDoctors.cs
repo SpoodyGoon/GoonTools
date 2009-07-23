@@ -12,7 +12,6 @@ namespace MonoBPMonitor
 	public partial class frmDoctors : Gtk.Dialog
 	{
 
-		private Gtk.ListStore lsUser = new Gtk.ListStore(typeof(int), typeof(string));
 		private Doctors.DoctorTreeView tvDoctor;
 		public frmDoctors()
 		{
@@ -20,34 +19,8 @@ namespace MonoBPMonitor
 			
 			tvDoctor = new MonoBPMonitor.Doctors.DoctorTreeView();
 			swDoctor.Add(tvDoctor);
-			
-			// set up the user combo box
-			LoadUsers();
-			Gtk.CellRendererText ct = new Gtk.CellRendererText();
-			cboUser.PackStart(ct, true);
-			cboUser.AddAttribute(ct, "text", 1);
-			cboUser.Model = lsUser;
-			Gtk.TreeIter iter;
-			if(lsUser.GetIterFirst(out iter))
-				cboUser.SetActiveIter(iter);
-			//cboUser.Changed += new EventHandler(cboUser_Changed);
-			
 			this.ShowAll();
 		}
-
-//		[GLib.ConnectBeforeAttribute()]
-//		private void cboUser_Changed(object sender, EventArgs e)
-//		{
-//			Gtk.TreeIter iter;
-//			cboUser.GetActiveIter(out iter);
-//			Console.WriteLine("got here " + lsUser.GetValue(iter, 0).ToString());
-//			if(lsUser.GetValue(iter, 0).ToString() == "-1")
-//			{
-//				frmUsers fm = new frmUsers();
-//				fm.Run();
-//				fm.Destroy();
-//			}
-//		}
 
 		protected virtual void OnBtnDeleteClicked (object sender, System.EventArgs e)
 		{
@@ -80,9 +53,7 @@ namespace MonoBPMonitor
 		{
 			if(txtDoctor.Text.Trim() != "")
 			{
-				Gtk.TreeIter iter;
-				cboUser.GetActiveIter(out iter);
-				Doctor d = new Doctor(txtDoctor.Text, txtLocation.Text, txtPhone.Text,Convert.ToInt32(lsUser.GetValue(iter, 0).ToString()));
+				Doctor d = new Doctor(txtDoctor.Text, txtLocation.Text, txtPhone.Text, UserCombo.UserID);
 				d.Add();
 				tvDoctor.Refresh();
 				txtDoctor.Text = "";
@@ -97,35 +68,6 @@ namespace MonoBPMonitor
 			}
 			
 			
-		}
-
-		protected virtual void OnBtnClearClicked (object sender, System.EventArgs e)
-		{
-			txtDoctor.Text = "";
-			txtLocation.Text = "";
-			txtPhone.Text = "";
-		}
-		
-		
-		
-		private void LoadUsers()
-		{
-			try
-			{
-				lsUser.Clear();
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT UserID, UserName FROM tb_User");
-				foreach(DataRow dr in dt.Rows)
-				{
-					lsUser.AppendValues(Convert.ToInt32(dr["UserID"]), dr["UserName"].ToString());
-				}
-				//lsUser.AppendValues(-1, "New User...");
-				
-			}
-			catch(Exception ex)
-			{
-				Common.EnvData.HandleError(ex);
-			}
 		}
 	}
 }

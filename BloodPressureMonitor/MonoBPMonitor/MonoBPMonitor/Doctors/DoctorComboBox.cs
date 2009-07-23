@@ -1,5 +1,5 @@
 /*************************************************************************
- *                      UserComboBox.cs
+ *                      DoctorComboBox.cs
  *
  *	 	Copyright (C) 2009
  *		Andrew York <goontools@brdstudio.net>
@@ -26,43 +26,42 @@ using Gtk;
 using GoonTools;
 using SQLiteDataProvider;
 
-namespace MonoBPMonitor.Users
+namespace MonoBPMonitor
 {	
 	[System.ComponentModel.ToolboxItem(true)]
-	public class UserComboBox : Gtk.ComboBox
-	{		
-		private Gtk.ListStore lsUser = new Gtk.ListStore(typeof(int), typeof(string));
-		private int _UserID;
-		private string _UserName;
-		public UserComboBox()
+	public class DoctorComboBox : Gtk.ComboBox
+	{
+		private Gtk.ListStore lsDoctor = new Gtk.ListStore(typeof(int), typeof(string));
+		private int _DoctorID;
+		private string _DoctorName;
+		public DoctorComboBox()
 		{
-			
-		}
+		}		
 		
 		private void Build()
 		{	
-			LoadUsers();
+			LoadDoctor();
 			Gtk.CellRendererText ct = new Gtk.CellRendererText();
 			this.PackStart(ct, true);
 			this.AddAttribute(ct, "text", 1);
-			this.Model = lsUser;
+			this.Model = lsDoctor;
 			Gtk.TreeIter iter;
-			if(lsUser.GetIterFirst(out iter))
+			if(lsDoctor.GetIterFirst(out iter))
 				this.SetActiveIter(iter);
 		}
 		
-		private void LoadUsers()
+		private void LoadDoctor()
 		{
 			try
 			{
-				lsUser.Clear();
+				lsDoctor.Clear();
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT UserID, UserName FROM tb_User");
+				DataTable dt = dp.ExecuteDataTable("SELECT DoctorID, DoctorName FROM tb_Doctor");
 				foreach(DataRow dr in dt.Rows)
 				{
-					lsUser.AppendValues(Convert.ToInt32(dr["UserID"]), dr["UserName"].ToString());
+					lsDoctor.AppendValues(Convert.ToInt32(dr["DoctorID"]), dr["DoctorName"].ToString());
 				}
-				//lsUser.AppendValues(-1, "New User...");
+				//lsDoctor.AppendValues(-1, "New User...");
 				
 			}
 			catch(Exception ex)
@@ -85,25 +84,24 @@ namespace MonoBPMonitor.Users
 		{
 			Gtk.TreeIter iter;
 			this.GetActiveIter(out iter);
-			_UserID = (int)lsUser.GetValue(iter, 0);
-			_UserName =  (string)lsUser.GetValue(iter, 1);
+			_DoctorID = (int)lsDoctor.GetValue(iter, 0);
+			_DoctorName =  (string)lsDoctor.GetValue(iter, 1);
 			base.OnChanged ();
 		}
 
 			
 		#region Public Properties
 			
-		public string UserName
+		public string DoctorName
 		{
-			get{return _UserName;}
+			get{return _DoctorName;}
 		}
 		
-		public int UserID
+		public int DoctorID
 		{
-			get{return _UserID;}	
+			get{return _DoctorID;}	
 		}
 		
 		#endregion Public Properties
-		
 	}
 }
