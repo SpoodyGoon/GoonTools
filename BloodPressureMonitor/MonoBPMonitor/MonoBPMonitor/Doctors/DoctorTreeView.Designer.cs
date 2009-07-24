@@ -93,7 +93,9 @@ namespace MonoBPMonitor.Doctors
 			colUserID.Visible = true;
 			colUserID.Alignment=0.05f;
 			colUserID.Title = "User";
-			Gtk.CellRendererText cellUserID = new Gtk.CellRendererText ();
+			Users.UserRendererCombo cellUserID = new Users.UserRendererCombo();
+			cellUserID.Edited += cellUserID_Edited;
+			//Gtk.CellRendererText cellUserID = new Gtk.CellRendererText ();
 			cellUserID.Width=120;
 			colUserID.PackStart (cellUserID, true);
 			

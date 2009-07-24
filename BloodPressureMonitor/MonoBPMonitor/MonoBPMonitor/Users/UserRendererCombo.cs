@@ -41,8 +41,9 @@ namespace MonoBPMonitor.Users
 		private Gtk.TreeIter _CurrentIter = Gtk.TreeIter.Zero;
 		public UserRendererCombo()
 		{
-		}
-		
+			Build();
+		}	
+				
 		private void Build()
 		{	
 			LoadUsers();
@@ -62,6 +63,7 @@ namespace MonoBPMonitor.Users
 			lsUser.Foreach(new TreeModelForeachFunc(ForeachUserText));
 		}
 		
+		
 		public void SetTextByID(int intSetText)
 		{
 			_SearchUserID = intSetText;
@@ -70,7 +72,7 @@ namespace MonoBPMonitor.Users
 		
 		private bool ForeachUserText(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
 		{
-			if(_SearchUserID == Convert.ToInt32(lsUser.GetValue(iter, 0)))
+			if(_SearchUserName == lsUser.GetValue(iter, 1).ToString())
 			{
 				this.Text = _UserName = lsUser.GetValue(iter, 1).ToString();
 				_UserID = Convert.ToInt32(lsUser.GetValue(iter, 0));
@@ -82,7 +84,7 @@ namespace MonoBPMonitor.Users
 		
 		private bool ForeachUserID(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
 		{
-			if(_SearchUserName == lsUser.GetValue(iter, 1).ToString())
+			if(_SearchUserID == Convert.ToInt32(lsUser.GetValue(iter, 0)))
 			{
 				this.Text = _UserName = lsUser.GetValue(iter, 1).ToString();
 				_UserID = Convert.ToInt32(lsUser.GetValue(iter, 0));
@@ -111,19 +113,19 @@ namespace MonoBPMonitor.Users
 				Common.EnvData.HandleError(ex);
 			}
 		}
-		
-		
 			
 		#region Public Properties
 			
 		public string UserName
 		{
 			get{return _UserName;}
+			set{SetText(value);}
 		}
 		
 		public int UserID
 		{
-			get{return _UserID;}	
+			get{return _UserID;}
+			set{SetTextByID(value);}
 		}
 		
 		#endregion Public Properties

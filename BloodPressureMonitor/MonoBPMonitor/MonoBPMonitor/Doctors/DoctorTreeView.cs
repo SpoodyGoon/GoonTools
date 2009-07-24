@@ -129,6 +129,28 @@ namespace MonoBPMonitor.Doctors
 				md.Destroy();
 			}
 		}
+
+		private void cellUserID_Edited(object sender, EditedArgs args)
+		{
+			try
+			{
+				Users.UserRendererCombo urc = (Users.UserRendererCombo)sender;
+				Gtk.TreeIter iter;
+				if (_DoctorListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Doctor d = (Doctor)_DoctorListsStore.GetValue(iter, 0);
+					urc.SetText(args.NewText);
+					d.UserID = urc.UserID;
+					d.Update();
+				}
+			}
+			catch(Exception doh)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
+				md.Run();
+				md.Destroy();
+			}
+		}
 		
 		#endregion TreeView Cell Events
 		
@@ -160,7 +182,7 @@ namespace MonoBPMonitor.Doctors
 		private void RenderUserID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			Doctor d = (Doctor)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = d.UserID.ToString();
+			(cell as Users.UserRendererCombo).SetTextByID(d.UserID);
 		}
 		
 		#endregion Cell Data Functions

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -121,6 +121,7 @@
     <EmbeddedResource Include="images\rx.png">
       <LogicalName>rx.png</LogicalName>
     </EmbeddedResource>
+    <None Include="Reports\MainEntry\Description.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -129,6 +130,8 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
+    <Folder Include="Reports" />
+    <Folder Include="Reports\MainEntry" />
     <Folder Include="SetUp\" />
     <Folder Include="Doctors\" />
     <Folder Include="Users\" />
