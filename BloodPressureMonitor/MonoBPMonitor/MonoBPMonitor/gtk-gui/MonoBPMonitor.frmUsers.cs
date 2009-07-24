@@ -54,8 +54,8 @@ namespace MonoBPMonitor {
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget MonoBPMonitor.frmUsers
-            this.WidthRequest = 450;
-            this.HeightRequest = 400;
+            this.WidthRequest = 650;
+            this.HeightRequest = 500;
             this.Name = "MonoBPMonitor.frmUsers";
             this.Title = Mono.Unix.Catalog.GetString("User Management");
             this.Icon = Gdk.Pixbuf.LoadFromResource("edit_user.png");
@@ -64,8 +64,8 @@ namespace MonoBPMonitor {
             this.Modal = true;
             this.BorderWidth = ((uint)(4));
             this.AllowShrink = true;
-            this.DefaultWidth = 450;
-            this.DefaultHeight = 400;
+            this.DefaultWidth = 650;
+            this.DefaultHeight = 500;
             // Internal child MonoBPMonitor.frmUsers.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";

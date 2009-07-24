@@ -93,15 +93,16 @@ namespace MonoBPMonitor {
         
         private Gtk.HSeparator hseparator2;
         
-        private Gtk.Button btnCancel;
-        
-        private Gtk.Button btnOk;
+        private Gtk.Button btnClose;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget MonoBPMonitor.frmBPEntry
+            this.WidthRequest = 500;
             this.Name = "MonoBPMonitor.frmBPEntry";
+            this.Icon = Gdk.Pixbuf.LoadFromResource("icon_small.png");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.DefaultWidth = 500;
             this.HasSeparator = false;
             // Internal child MonoBPMonitor.frmBPEntry.VBox
             Gtk.VBox w1 = this.VBox;
@@ -369,6 +370,8 @@ namespace MonoBPMonitor {
             // Container child vbox2.Gtk.Box+BoxChild
             this.alignment14 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment14.Name = "alignment14";
+            this.alignment14.LeftPadding = ((uint)(5));
+            this.alignment14.RightPadding = ((uint)(5));
             this.alignment14.BorderWidth = ((uint)(2));
             // Container child alignment14.Gtk.Container+ContainerChild
             this.GtkScrolledWindow = new Gtk.ScrolledWindow();
@@ -413,39 +416,24 @@ namespace MonoBPMonitor {
             w42.BorderWidth = ((uint)(5));
             w42.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-            this.btnCancel = new Gtk.Button();
-            this.btnCancel.CanDefault = true;
-            this.btnCancel.CanFocus = true;
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.UseStock = true;
-            this.btnCancel.UseUnderline = true;
-            this.btnCancel.Label = "gtk-cancel";
-            this.AddActionWidget(this.btnCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w43 = ((Gtk.ButtonBox.ButtonBoxChild)(w42[this.btnCancel]));
+            this.btnClose = new Gtk.Button();
+            this.btnClose.CanDefault = true;
+            this.btnClose.CanFocus = true;
+            this.btnClose.Name = "btnClose";
+            this.btnClose.UseStock = true;
+            this.btnClose.UseUnderline = true;
+            this.btnClose.Label = "gtk-close";
+            this.AddActionWidget(this.btnClose, -7);
+            Gtk.ButtonBox.ButtonBoxChild w43 = ((Gtk.ButtonBox.ButtonBoxChild)(w42[this.btnClose]));
             w43.Expand = false;
             w43.Fill = false;
-            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-            this.btnOk = new Gtk.Button();
-            this.btnOk.CanDefault = true;
-            this.btnOk.CanFocus = true;
-            this.btnOk.Name = "btnOk";
-            this.btnOk.UseStock = true;
-            this.btnOk.UseUnderline = true;
-            this.btnOk.Label = "gtk-ok";
-            this.AddActionWidget(this.btnOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w44 = ((Gtk.ButtonBox.ButtonBoxChild)(w42[this.btnOk]));
-            w44.Position = 1;
-            w44.Expand = false;
-            w44.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 422;
             this.DefaultHeight = 596;
             this.Show();
             this.btnDate.Clicked += new System.EventHandler(this.OnBtnDateClicked);
-            this.btnCancel.Clicked += new System.EventHandler(this.OnBtnCancelClicked);
-            this.btnOk.Clicked += new System.EventHandler(this.OnBtnOkClicked);
+            this.btnClose.Clicked += new System.EventHandler(this.OnBtnCloseClicked);
         }
     }
 }

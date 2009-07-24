@@ -123,6 +123,7 @@ namespace MonoBPMonitor {
             Stetic.Gui.Initialize(this);
             // Widget MonoBPMonitor.frmMedication
             this.Name = "MonoBPMonitor.frmMedication";
+            this.Icon = Gdk.Pixbuf.LoadFromResource("rx.png");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.HasSeparator = false;
             // Internal child MonoBPMonitor.frmMedication.VBox

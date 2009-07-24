@@ -43,6 +43,10 @@ namespace MonoBPMonitor {
         
         private Gtk.Action preferencesAction;
         
+        private Gtk.Action doctorPngAction;
+        
+        private Gtk.Action rxPngAction;
+        
         private Gtk.VBox vbox1;
         
         private Gtk.MenuBar menubar1;
@@ -68,10 +72,10 @@ namespace MonoBPMonitor {
             this.NewAction = new Gtk.Action("NewAction", Mono.Unix.Catalog.GetString("New"), null, null);
             this.NewAction.ShortLabel = Mono.Unix.Catalog.GetString("New");
             w1.Add(this.NewAction, null);
-            this.MedicationAction = new Gtk.Action("MedicationAction", Mono.Unix.Catalog.GetString("Medication..."), null, null);
+            this.MedicationAction = new Gtk.Action("MedicationAction", Mono.Unix.Catalog.GetString("Medication..."), null, "rx.png");
             this.MedicationAction.ShortLabel = Mono.Unix.Catalog.GetString("Medication...");
             w1.Add(this.MedicationAction, null);
-            this.DoctorsAction = new Gtk.Action("DoctorsAction", Mono.Unix.Catalog.GetString("Doctors..."), null, null);
+            this.DoctorsAction = new Gtk.Action("DoctorsAction", Mono.Unix.Catalog.GetString("Doctors..."), null, "doctor.png");
             this.DoctorsAction.ShortLabel = Mono.Unix.Catalog.GetString("Doctors...");
             w1.Add(this.DoctorsAction, null);
             this.NewEntryAction = new Gtk.Action("NewEntryAction", Mono.Unix.Catalog.GetString("New Entry..."), null, "edit_add.png");
@@ -83,7 +87,7 @@ namespace MonoBPMonitor {
             this.HelpAction = new Gtk.Action("HelpAction", Mono.Unix.Catalog.GetString("Help"), null, null);
             this.HelpAction.ShortLabel = Mono.Unix.Catalog.GetString("Help");
             w1.Add(this.HelpAction, null);
-            this.AboutAction = new Gtk.Action("AboutAction", Mono.Unix.Catalog.GetString("About"), null, null);
+            this.AboutAction = new Gtk.Action("AboutAction", Mono.Unix.Catalog.GetString("About"), null, "gtk-about");
             this.AboutAction.ShortLabel = Mono.Unix.Catalog.GetString("About");
             w1.Add(this.AboutAction, null);
             this.editaddPngAction = new Gtk.Action("editaddPngAction", null, null, "edit_add.png");
@@ -99,6 +103,10 @@ namespace MonoBPMonitor {
             w1.Add(this.QuitAction, null);
             this.preferencesAction = new Gtk.Action("preferencesAction", null, null, "gtk-preferences");
             w1.Add(this.preferencesAction, null);
+            this.doctorPngAction = new Gtk.Action("doctorPngAction", null, null, "doctor.png");
+            w1.Add(this.doctorPngAction, null);
+            this.rxPngAction = new Gtk.Action("rxPngAction", null, null, "rx.png");
+            w1.Add(this.rxPngAction, null);
             this.UIManager.InsertActionGroup(w1, 0);
             this.AddAccelGroup(this.UIManager.AccelGroup);
             this.WidthRequest = 550;
@@ -116,7 +124,7 @@ namespace MonoBPMonitor {
             this.vbox1.Name = "vbox1";
             this.vbox1.Spacing = 6;
             // Container child vbox1.Gtk.Box+BoxChild
-            this.UIManager.AddUiFromString("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menu name='NewAction' action='NewAction'><menuitem name='NewEntryAction' action='NewEntryAction'/></menu><menuitem name='MedicationAction' action='MedicationAction'/><menuitem name='DoctorsAction' action='DoctorsAction'/><menuitem name='UsersAction' action='UsersAction'/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
+            this.UIManager.AddUiFromString("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewEntryAction' action='NewEntryAction'/><menuitem name='MedicationAction' action='MedicationAction'/><menuitem name='DoctorsAction' action='DoctorsAction'/><menuitem name='UsersAction' action='UsersAction'/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
             this.menubar1 = ((Gtk.MenuBar)(this.UIManager.GetWidget("/menubar1")));
             this.menubar1.Name = "menubar1";
             this.vbox1.Add(this.menubar1);
@@ -125,7 +133,7 @@ namespace MonoBPMonitor {
             w2.Expand = false;
             w2.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
-            this.UIManager.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem name='editaddPngAction' action='editaddPngAction'/><toolitem name='edituserPngAction' action='edituserPngAction'/><separator/><toolitem name='preferencesAction' action='preferencesAction'/><toolitem name='aboutAction' action='aboutAction'/><toolitem name='exitPngAction' action='exitPngAction'/></toolbar></ui>");
+            this.UIManager.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem name='editaddPngAction' action='editaddPngAction'/><toolitem name='edituserPngAction' action='edituserPngAction'/><toolitem name='rxPngAction' action='rxPngAction'/><toolitem name='doctorPngAction' action='doctorPngAction'/><separator/><toolitem name='preferencesAction' action='preferencesAction'/><toolitem name='aboutAction' action='aboutAction'/><separator/><toolitem name='exitPngAction' action='exitPngAction'/></toolbar></ui>");
             this.toolbar1 = ((Gtk.Toolbar)(this.UIManager.GetWidget("/toolbar1")));
             this.toolbar1.Name = "toolbar1";
             this.toolbar1.ShowArrow = false;
@@ -178,6 +186,8 @@ namespace MonoBPMonitor {
             this.aboutAction.Activated += new System.EventHandler(this.OnAboutActionActivated);
             this.QuitAction.Activated += new System.EventHandler(this.OnQuitActionActivated);
             this.preferencesAction.Activated += new System.EventHandler(this.OnPreferencesActionActivated);
+            this.doctorPngAction.Activated += new System.EventHandler(this.OnDoctorPngActionActivated);
+            this.rxPngAction.Activated += new System.EventHandler(this.OnRxPngActionActivated);
         }
     }
 }
