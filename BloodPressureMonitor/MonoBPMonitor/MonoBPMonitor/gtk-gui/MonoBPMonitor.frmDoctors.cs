@@ -82,6 +82,7 @@ namespace MonoBPMonitor {
             this.HeightRequest = 650;
             this.Name = "MonoBPMonitor.frmDoctors";
             this.Title = Mono.Unix.Catalog.GetString("Doctor Manager");
+            this.Icon = Gdk.Pixbuf.LoadFromResource("doctor.png");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.Modal = true;

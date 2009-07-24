@@ -39,6 +39,16 @@
         <property name="Image">resource:icon_small.png</property>
       </source>
     </icon-set>
+    <icon-set id="doctor.png">
+      <source>
+        <property name="Image">resource:doctor.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="rx.png">
+      <source>
+        <property name="Image">resource:rx.png</property>
+      </source>
+    </icon-set>
   </icon-factory>
   <widget class="Gtk.Window" id="MonoBPMonitor.MainWindow" design-size="719 588">
     <action-group name="Default">
@@ -56,12 +66,14 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Medication...</property>
         <property name="ShortLabel" translatable="yes">Medication...</property>
+        <property name="StockId">rx.png</property>
         <signal name="Activated" handler="OnMedicationActionActivated" />
       </action>
       <action id="DoctorsAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Doctors...</property>
         <property name="ShortLabel" translatable="yes">Doctors...</property>
+        <property name="StockId">doctor.png</property>
         <signal name="Activated" handler="OnDoctorsActionActivated" />
       </action>
       <action id="NewEntryAction">
@@ -87,6 +99,7 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">About</property>
         <property name="ShortLabel" translatable="yes">About</property>
+        <property name="StockId">gtk-about</property>
         <signal name="Activated" handler="OnAboutActionActivated" />
       </action>
       <action id="editaddPngAction">
@@ -126,6 +139,18 @@
         <property name="StockId">gtk-preferences</property>
         <signal name="Activated" handler="OnPreferencesActionActivated" />
       </action>
+      <action id="doctorPngAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">doctor.png</property>
+        <signal name="Activated" handler="OnDoctorPngActionActivated" />
+      </action>
+      <action id="rxPngAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">rx.png</property>
+        <signal name="Activated" handler="OnRxPngActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="WidthRequest">550</property>
@@ -147,9 +172,7 @@
             <property name="MemberName" />
             <node name="menubar1" type="Menubar">
               <node type="Menu" action="FileAction">
-                <node type="Menu" action="NewAction">
-                  <node type="Menuitem" action="NewEntryAction" />
-                </node>
+                <node type="Menuitem" action="NewEntryAction" />
                 <node type="Menuitem" action="MedicationAction" />
                 <node type="Menuitem" action="DoctorsAction" />
                 <node type="Menuitem" action="UsersAction" />
@@ -175,9 +198,12 @@
             <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="editaddPngAction" />
               <node type="Toolitem" action="edituserPngAction" />
+              <node type="Toolitem" action="rxPngAction" />
+              <node type="Toolitem" action="doctorPngAction" />
               <node type="Separator" />
               <node type="Toolitem" action="preferencesAction" />
               <node type="Toolitem" action="aboutAction" />
+              <node type="Separator" />
               <node type="Toolitem" action="exitPngAction" />
             </node>
           </widget>
@@ -243,10 +269,10 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmUsers" design-size="450 497">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmUsers" design-size="650 500">
     <property name="MemberName" />
-    <property name="WidthRequest">450</property>
-    <property name="HeightRequest">400</property>
+    <property name="WidthRequest">650</property>
+    <property name="HeightRequest">500</property>
     <property name="Title" translatable="yes">User Management</property>
     <property name="Icon">resource:edit_user.png</property>
     <property name="TypeHint">Dialog</property>
@@ -254,8 +280,8 @@
     <property name="Modal">True</property>
     <property name="BorderWidth">4</property>
     <property name="AllowShrink">True</property>
-    <property name="DefaultWidth">450</property>
-    <property name="DefaultHeight">400</property>
+    <property name="DefaultWidth">650</property>
+    <property name="DefaultHeight">500</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -487,6 +513,7 @@
     <property name="WidthRequest">650</property>
     <property name="HeightRequest">650</property>
     <property name="Title" translatable="yes">Doctor Manager</property>
+    <property name="Icon">resource:doctor.png</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
@@ -905,6 +932,7 @@
   </widget>
   <widget class="Gtk.Dialog" id="MonoBPMonitor.frmMedication" design-size="760 699">
     <property name="MemberName" />
+    <property name="Icon">resource:rx.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
@@ -1535,10 +1563,13 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmBPEntry" design-size="422 596">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmBPEntry" design-size="500 596">
     <property name="MemberName" />
+    <property name="WidthRequest">500</property>
+    <property name="Icon">resource:icon_small.png</property>
     <property name="WindowPosition">CenterOnParent</property>
-    <property name="Buttons">2</property>
+    <property name="DefaultWidth">500</property>
+    <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <property name="HasSeparator">False</property>
     <child internal-child="VBox">
@@ -1965,6 +1996,8 @@
             <child>
               <widget class="Gtk.Alignment" id="alignment14">
                 <property name="MemberName" />
+                <property name="LeftPadding">5</property>
+                <property name="RightPadding">5</property>
                 <property name="BorderWidth">2</property>
                 <child>
                   <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
@@ -2023,39 +2056,21 @@
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <property name="BorderWidth">5</property>
-        <property name="Size">2</property>
+        <property name="Size">1</property>
         <property name="LayoutStyle">Spread</property>
         <child>
-          <widget class="Gtk.Button" id="btnCancel">
+          <widget class="Gtk.Button" id="btnClose">
             <property name="MemberName" />
             <property name="CanDefault">True</property>
             <property name="CanFocus">True</property>
             <property name="UseStock">True</property>
             <property name="Type">StockItem</property>
-            <property name="StockId">gtk-cancel</property>
-            <property name="ResponseId">-6</property>
-            <signal name="Clicked" handler="OnBtnCancelClicked" />
-            <property name="label">gtk-cancel</property>
+            <property name="StockId">gtk-close</property>
+            <property name="ResponseId">-7</property>
+            <signal name="Clicked" handler="OnBtnCloseClicked" />
+            <property name="label">gtk-close</property>
           </widget>
           <packing>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.Button" id="btnOk">
-            <property name="MemberName" />
-            <property name="CanDefault">True</property>
-            <property name="CanFocus">True</property>
-            <property name="UseStock">True</property>
-            <property name="Type">StockItem</property>
-            <property name="StockId">gtk-ok</property>
-            <property name="ResponseId">-5</property>
-            <signal name="Clicked" handler="OnBtnOkClicked" />
-            <property name="label">gtk-ok</property>
-          </widget>
-          <packing>
-            <property name="Position">1</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

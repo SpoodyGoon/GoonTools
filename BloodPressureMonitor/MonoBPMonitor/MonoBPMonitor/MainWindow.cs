@@ -106,6 +106,20 @@ namespace MonoBPMonitor
 			fm.Destroy();
 		}
 
+		protected virtual void OnRxPngActionActivated (object sender, System.EventArgs e)
+		{
+			frmMedication fm = new frmMedication();
+			fm.Run();
+			fm.Destroy();
+		}
+
+		protected virtual void OnDoctorPngActionActivated (object sender, System.EventArgs e)
+		{
+			frmDoctors fm = new frmDoctors();
+			fm.Run();
+			fm.Destroy();
+		}
+
 		
 		
 	}
