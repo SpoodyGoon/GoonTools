@@ -40,11 +40,10 @@ namespace MonoBPMonitor
 				Common.EnvData.HandleError(ex);
 			}
 		}
-		
-		protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
-		{
-			this.Hide();
-		}		
+
+		protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
+				{
+				}		
 		
 	}
 }

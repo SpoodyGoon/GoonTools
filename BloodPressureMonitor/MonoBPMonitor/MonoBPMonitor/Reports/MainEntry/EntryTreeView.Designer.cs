@@ -90,7 +90,7 @@ namespace MonoBPMonitor.Entrys
 			colNotes.Title = "Notes";
 			Gtk.CellRendererText cellNotes = new Gtk.CellRendererText ();
 			cellNotes.Width=50;
-			colNotes.PackStart (cellNotes, false);
+			colNotes.PackStart (cellNotes, true);
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colUserID = new Gtk.TreeViewColumn ();
@@ -111,13 +111,6 @@ namespace MonoBPMonitor.Entrys
 			this.AppendColumn (colUserID);
 			//this.AppendColumn(new GoonTools.ColumnSelector.TreeColumnSelector(this.Columns));
 			
-			colEntryID.SetCellDataFunc(cellEntryID, new Gtk.TreeCellDataFunc(RenderEntryID));
-			colEntryDate.SetCellDataFunc(cellEntryDate, new Gtk.TreeCellDataFunc(RenderEntryDate));
-			colSystolic.SetCellDataFunc(cellSystolic, new Gtk.TreeCellDataFunc(RenderSystolic));
-			colDiastolic.SetCellDataFunc(cellDiastolic, new Gtk.TreeCellDataFunc(RenderDiastolic));
-			colHeartRate.SetCellDataFunc(cellHeartRate, new Gtk.TreeCellDataFunc(RenderHeartRate));
-			colNotes.SetCellDataFunc(cellNotes, new Gtk.TreeCellDataFunc(RenderNotes));
-			colUserID.SetCellDataFunc(cellUserID, new Gtk.TreeCellDataFunc(RenderUserID));
 			
 			this.Model =_EntryListsStore;
 		}

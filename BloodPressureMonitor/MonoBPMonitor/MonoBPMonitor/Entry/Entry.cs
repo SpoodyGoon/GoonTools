@@ -10,7 +10,7 @@ namespace MonoBPMonitor
 	
 	public class Entry
 	{
-		private int _EntryID;
+		private int _EntryID = -1;
 		private DateTime _EntryDate = DateTime.Now.Date;
 		private int _Systolic = 120;
 		private int _Diastolic= 80;
@@ -106,10 +106,10 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_EntryID > 0)
+				if(_EntryID < 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					_EntryID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_BPEntry(EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID)VALUES('" + _EntryDate.ToShortDateString() + "'," + _Systolic.ToString() + "," + _Diastolic.ToString() + "," + _HeartRate.ToString() + ",'" +_Notes + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
+					_EntryID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Entry(EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID)VALUES('" + _EntryDate.ToShortDateString() + "'," + _Systolic.ToString() + "," + _Diastolic.ToString() + "," + _HeartRate.ToString() + ",'" +_Notes + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
 					dp.Dispose();
 				}
 				else
@@ -127,10 +127,10 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_EntryID != 0)
+				if(_EntryID > 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					dp.ExecuteNonQuery("UPDATE tb_BPEntry SET EntryDate = '" + _EntryDate.ToShortDateString() + "', Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE BPEntryID = " + _EntryID.ToString() + ";");
+					dp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDate = '" + _EntryDate.ToShortDateString() + "', Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
 					dp.Dispose();
 				}
 				else
@@ -149,7 +149,7 @@ namespace MonoBPMonitor
 			try
 			{
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				dp.ExecuteNonQuery("DELETE FROM tb_BPEntry WHERE BPEntryID = " + _EntryID.ToString() + ";");
+				dp.ExecuteNonQuery("DELETE FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
 				dp.Dispose();
 			}
 			catch(Exception ex)
