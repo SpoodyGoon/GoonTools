@@ -26,15 +26,16 @@ using Gtk;
 using GoonTools;
 using SQLiteDataProvider;
 
-namespace MonoBPMonitor.Entrys
+namespace MonoBPMonitor.Reports
 {
 	/// <summary>
 	/// Description of EntryTreeView.
 	/// </summary>
-	public partial class EntryTreeView : Gtk.TreeView
+	public partial class EntryRptTreeView : Gtk.TreeView
 	{
-		public EntryTreeView()
+		public EntryRptTreeView(int userid)
 		{
+			_CurrentUser = userid;
 			Build();
 			LoadData();
 		}
@@ -43,12 +44,26 @@ namespace MonoBPMonitor.Entrys
 		{
 			try
 			{
+				int SumSystolic = 0;
+				int SumDiastolic = 0;
+				int SumHeartRate = 0;
+				int RowCount = 1;
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = 1");
+				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = " + _CurrentUser.ToString() + ";");
 				foreach(DataRow dr in dt.Rows)
 				{
-					Entry e = new Entry(Convert.ToInt32(dr["EntryID"]), Convert.ToDateTime(dr["EntryDate"].ToString()), Convert.ToInt32(dr["Systolic"]), Convert.ToInt32(dr["Diastolic"]), Convert.ToInt32(dr["HeartRate"]), dr["Notes"].ToString(), Convert.ToInt32(dr["UserID"]));
-					_EntryListsStore.AppendValues(e);
+					SumSystolic += Convert.ToInt32(dr["Systolic"]);
+					SumDiastolic += Convert.ToInt32(dr["Diastolic"]);
+					SumHeartRate += Convert.ToInt32(dr["HeartRate"]);
+					_EntryRptListsStore.AppendValues(
+					                                 Convert.ToInt32(dr["EntryID"]), 
+					                                 Convert.ToDateTime(dr["EntryDate"].ToString()).ToShortDateString(), 
+					                                 dr["Systolic"].ToString() + "/" + dr["Diastolic"].ToString(), 
+					                                 dr["HeartRate"].ToString(), 
+					                                 (Math.Round((double)SumSystolic/RowCount, 0)).ToString() + "/" + (Math.Round((double)SumDiastolic/RowCount, 0)).ToString(), 
+					                                 (Math.Round((double)SumHeartRate/RowCount, 0)).ToString()
+					                                 );
+					RowCount++;
 				}
 			}
 			catch(Exception ex)
