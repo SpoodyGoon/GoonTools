@@ -50,13 +50,13 @@ namespace MonoBPMonitor
 		{
 			if(txtMedicine.Text.Trim() != "")
 			{
-				Medication m = new Medication(txtMedicine.Text, txtDosage.Text, txtStartDate.Text, txtEndDate.Text, cboDoctor.DoctorID, cboUser.UserID);
-				m.Add();
-				tvMed.Refresh();
-				txtMedicine.Text = "";
-				txtDosage.Text = "";
-				txtStartDate.Text = "";
-				txtEndDate.Text = "";
+//				Medication m = new Medication(txtMedicine.Text, txtDosage.Text, txtStartDate.Text, txtEndDate.Text, cboDoctor.DoctorID, cboUser.UserID);
+//				m.Add();
+//				tvMed.Refresh();
+//				txtMedicine.Text = "";
+//				txtDosage.Text = "";
+//				txtStartDate.Text = "";
+//				txtEndDate.Text = "";
 			}
 		}
 

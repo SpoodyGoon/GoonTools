@@ -50,7 +50,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="MonoBPMonitor.MainWindow" design-size="719 588">
+  <widget class="Gtk.Window" id="MonoBPMonitor.MainWindow" design-size="750 669">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
@@ -153,15 +153,15 @@
       </action>
     </action-group>
     <property name="MemberName" />
-    <property name="WidthRequest">550</property>
-    <property name="HeightRequest">450</property>
+    <property name="WidthRequest">750</property>
+    <property name="HeightRequest">575</property>
     <property name="Title" translatable="yes">Blood Presure Monitor</property>
     <property name="Icon">resource:icon_small.png</property>
     <property name="WindowPosition">Center</property>
     <property name="BorderWidth">3</property>
     <property name="AllowShrink">True</property>
-    <property name="DefaultWidth">550</property>
-    <property name="DefaultHeight">400</property>
+    <property name="DefaultWidth">750</property>
+    <property name="DefaultHeight">575</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -215,38 +215,68 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Frame" id="frame1">
+          <widget class="Gtk.Alignment" id="alignment1">
             <property name="MemberName" />
-            <property name="ShadowType">None</property>
+            <property name="TopPadding">2</property>
+            <property name="BottomPadding">2</property>
             <child>
-              <widget class="Gtk.Alignment" id="GtkAlignment">
+              <widget class="Gtk.HSeparator" id="hseparator1">
                 <property name="MemberName" />
-                <property name="Xalign">0</property>
-                <property name="Yalign">0</property>
-                <property name="LeftPadding">12</property>
-                <child>
-                  <placeholder />
-                </child>
               </widget>
-            </child>
-            <child>
-              <widget class="Gtk.Label" id="GtkLabel3">
-                <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">&lt;b&gt;frame1&lt;/b&gt;</property>
-                <property name="UseMarkup">True</property>
-              </widget>
-              <packing>
-                <property name="type">label_item</property>
-              </packing>
             </child>
           </widget>
           <packing>
             <property name="Position">2</property>
             <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
-          <placeholder />
+          <widget class="Gtk.Alignment" id="alignment3">
+            <property name="MemberName" />
+            <property name="Xscale">0.01</property>
+            <property name="Xalign">0.05</property>
+            <child>
+              <widget class="Gtk.Label" id="label1">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">&lt;b&gt;Double Click on an reading to change it.&lt;/b&gt;</property>
+                <property name="UseMarkup">True</property>
+                <property name="SingleLineMode">True</property>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">3</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Alignment" id="alignment2">
+            <property name="MemberName" />
+            <child>
+              <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.Viewport" id="GtkViewport">
+                    <property name="MemberName" />
+                    <property name="ShadowType">None</property>
+                    <child>
+                      <placeholder />
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">4</property>
+            <property name="AutoSize">True</property>
+          </packing>
         </child>
         <child>
           <widget class="Gtk.Statusbar" id="statusbar1">
@@ -260,7 +290,7 @@
             </child>
           </widget>
           <packing>
-            <property name="Position">4</property>
+            <property name="Position">5</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -569,8 +599,9 @@
                       <widget class="Gtk.Alignment" id="alignment10">
                         <property name="MemberName" />
                         <child>
-                          <widget class="MonoBPMonitor.Users.UserComboBox" id="UserCombo">
+                          <widget class="MonoBPMonitor.Users.UserComboBox" id="cboUser">
                             <property name="MemberName" />
+                            <property name="WidthRequest">200</property>
                           </widget>
                         </child>
                       </widget>
@@ -980,7 +1011,7 @@
                       <widget class="Gtk.Alignment" id="alignment1">
                         <property name="MemberName" />
                         <child>
-                          <widget class="MonoBPMonitor.Users.UserComboBox" id="cboUser">
+                          <widget class="MonoBPMonitor.Users.UserComboBox" id="usercombobox2">
                             <property name="MemberName" />
                           </widget>
                         </child>
@@ -1190,7 +1221,7 @@
                       <widget class="Gtk.Alignment" id="alignment2">
                         <property name="MemberName" />
                         <child>
-                          <widget class="MonoBPMonitor.DoctorComboBox" id="cboDoctor">
+                          <widget class="MonoBPMonitor.Doctors.DoctorComboBox" id="cboDoctor">
                             <property name="MemberName" />
                           </widget>
                         </child>
