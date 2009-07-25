@@ -93,7 +93,9 @@ namespace MonoBPMonitor {
         
         private Gtk.HSeparator hseparator2;
         
-        private Gtk.Button btnClose;
+        private Gtk.Button btnCancel;
+        
+        private Gtk.Button btnOk;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -416,24 +418,37 @@ namespace MonoBPMonitor {
             w42.BorderWidth = ((uint)(5));
             w42.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-            this.btnClose = new Gtk.Button();
-            this.btnClose.CanDefault = true;
-            this.btnClose.CanFocus = true;
-            this.btnClose.Name = "btnClose";
-            this.btnClose.UseStock = true;
-            this.btnClose.UseUnderline = true;
-            this.btnClose.Label = "gtk-close";
-            this.AddActionWidget(this.btnClose, -7);
-            Gtk.ButtonBox.ButtonBoxChild w43 = ((Gtk.ButtonBox.ButtonBoxChild)(w42[this.btnClose]));
+            this.btnCancel = new Gtk.Button();
+            this.btnCancel.CanDefault = true;
+            this.btnCancel.CanFocus = true;
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.UseStock = true;
+            this.btnCancel.UseUnderline = true;
+            this.btnCancel.Label = "gtk-cancel";
+            this.AddActionWidget(this.btnCancel, -6);
+            Gtk.ButtonBox.ButtonBoxChild w43 = ((Gtk.ButtonBox.ButtonBoxChild)(w42[this.btnCancel]));
             w43.Expand = false;
             w43.Fill = false;
+            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
+            this.btnOk = new Gtk.Button();
+            this.btnOk.CanFocus = true;
+            this.btnOk.Name = "btnOk";
+            this.btnOk.UseStock = true;
+            this.btnOk.UseUnderline = true;
+            this.btnOk.Label = "gtk-ok";
+            this.AddActionWidget(this.btnOk, -5);
+            Gtk.ButtonBox.ButtonBoxChild w44 = ((Gtk.ButtonBox.ButtonBoxChild)(w42[this.btnOk]));
+            w44.Position = 1;
+            w44.Expand = false;
+            w44.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultHeight = 596;
             this.Show();
             this.btnDate.Clicked += new System.EventHandler(this.OnBtnDateClicked);
-            this.btnClose.Clicked += new System.EventHandler(this.OnBtnCloseClicked);
+            this.btnCancel.Clicked += new System.EventHandler(this.OnBtnCancelClicked);
+            this.btnOk.Clicked += new System.EventHandler(this.OnBtnOkClicked);
         }
     }
 }

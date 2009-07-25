@@ -44,7 +44,7 @@ namespace MonoBPMonitor.Entrys
 			try
 			{
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
+				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = 1");
 				foreach(DataRow dr in dt.Rows)
 				{
 					Entry e = new Entry(Convert.ToInt32(dr["EntryID"]), Convert.ToDateTime(dr["EntryDate"].ToString()), Convert.ToInt32(dr["Systolic"]), Convert.ToInt32(dr["Diastolic"]), Convert.ToInt32(dr["HeartRate"]), dr["Notes"].ToString(), Convert.ToInt32(dr["UserID"]));
@@ -55,52 +55,6 @@ namespace MonoBPMonitor.Entrys
 			{
 				Common.EnvData.HandleError(ex);
 			}
-		}
-		
-		public Entry IterTaskList(TreeIter iter)
-		{
-			return _EntryListsStore.GetValue(iter, 0) as Entry;
-		}
-		
-		private void RenderEntryID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
-		{
-			Entry e = (Entry)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = e.EntryID.ToString();
-		}
-		
-		private void RenderEntryDate (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
-		{
-			Entry e = (Entry)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = e.EntryDate.ToShortDateString();
-		}
-		
-		private void RenderSystolic (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
-		{
-			Entry e = (Entry)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = e.Systolic.ToString();
-		}
-		
-		private void RenderDiastolic (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
-		{
-			Entry e = (Entry)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = e.Diastolic.ToString();
-		}
-		
-		private void RenderHeartRate (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
-		{
-			Entry e = (Entry)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = e.HeartRate.ToString();
-		}
-		
-		private void RenderNotes (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
-		{
-			Entry e = (Entry)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = e.Notes;
-		}
-		private void RenderUserID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
-		{
-			Entry e = (Entry)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = e.UserID.ToString();
 		}
 	}
 }
