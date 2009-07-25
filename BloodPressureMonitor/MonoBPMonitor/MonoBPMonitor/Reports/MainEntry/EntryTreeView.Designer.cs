@@ -25,14 +25,15 @@ using System.Data;
 using System.Collections;
 using Gtk;
 
-namespace MonoBPMonitor.Entrys
+namespace MonoBPMonitor.Reports
 {
 	/// <summary>
 	/// Description of EntryTreeView_Designer.
 	/// </summary>
-	public partial class EntryTreeView : Gtk.TreeView
+	public partial class EntryRptTreeView : Gtk.TreeView
 	{
-		private Gtk.ListStore _EntryListsStore = new ListStore(typeof(Entry));
+		private Gtk.ListStore _EntryRptListsStore = new ListStore(typeof(int), typeof(string),typeof(string),typeof(string),typeof(string),typeof(string));
+		private int _CurrentUser = 1;
 		private void Build()
 		{
 			this.HeadersVisible = true;
@@ -42,40 +43,26 @@ namespace MonoBPMonitor.Entrys
 			Gtk.TreeViewColumn colEntryID = new Gtk.TreeViewColumn ();
 			colEntryID.Visible = false;
 			colEntryID.Title = "ID";
-			// Cell for the column
 			Gtk.CellRendererText cellEntryID = new Gtk.CellRendererText ();
 			cellEntryID.Width=25;
 			cellEntryID.Xalign = 0.5f;
 			colEntryID.PackStart (cellEntryID, false);
 			
-			// Create a column for the list name
 			Gtk.TreeViewColumn colEntryDate = new Gtk.TreeViewColumn ();
-			colEntryDate.Expand = true;
 			colEntryDate.Visible = true;
 			colEntryDate.Title = "Date";
 			Gtk.CellRendererText cellEntryDate = new Gtk.CellRendererText ();
 			cellEntryDate.Width=75;
 			cellEntryDate.Editable = true;
-			//cellEntryDate.Edited += cellEntryDate_Edited;
 			colEntryDate.PackStart (cellEntryDate, true);
 			
-			// Create a column for the date
-			Gtk.TreeViewColumn colSystolic = new Gtk.TreeViewColumn ();
-			colSystolic.Visible = true;
-			colSystolic.Title = "Systolic";
-			Gtk.CellRendererText cellSystolic = new Gtk.CellRendererText ();
-			cellSystolic.Width=50;
-			colSystolic.PackStart (cellSystolic, false);
+			Gtk.TreeViewColumn colBPReading = new Gtk.TreeViewColumn ();
+			colBPReading.Visible = true;
+			colBPReading.Title = "Blood Pressure";
+			Gtk.CellRendererText cellBPReading = new Gtk.CellRendererText ();
+			cellBPReading.Width=150;
+			colBPReading.PackStart (cellBPReading, true);
 			
-			// Create a column for the date
-			Gtk.TreeViewColumn colDiastolic = new Gtk.TreeViewColumn ();
-			colDiastolic.Visible = true;
-			colDiastolic.Title = "Diastolic";
-			Gtk.CellRendererText cellDiastolic = new Gtk.CellRendererText ();
-			cellDiastolic.Width=50;
-			colDiastolic.PackStart (cellDiastolic, false);
-			
-			// Create a column for the date
 			Gtk.TreeViewColumn colHeartRate = new Gtk.TreeViewColumn ();
 			colHeartRate.Visible = true;
 			colHeartRate.Title = "Heart Rate";
@@ -83,45 +70,39 @@ namespace MonoBPMonitor.Entrys
 			cellHeartRate.Width=50;
 			colHeartRate.PackStart (cellHeartRate, false);
 			
-			// Create a column for the date
-			Gtk.TreeViewColumn colNotes = new Gtk.TreeViewColumn ();
-			colNotes.Visible = true;
-			colNotes.Resizable = true;
-			colNotes.Title = "Notes";
-			Gtk.CellRendererText cellNotes = new Gtk.CellRendererText ();
-			cellNotes.Width=50;
-			colNotes.PackStart (cellNotes, true);
+			Gtk.TreeViewColumn colAvgBPReading = new Gtk.TreeViewColumn ();
+			colAvgBPReading.Visible = true;
+			colAvgBPReading.Title = "Avg Blood Pressure";
+			Gtk.CellRendererText cellAvgBPReading = new Gtk.CellRendererText ();
+			cellAvgBPReading.Width=150;
+			colAvgBPReading.PackStart (cellAvgBPReading, true);
 			
-			// Create a column for the date
-			Gtk.TreeViewColumn colUserID = new Gtk.TreeViewColumn ();
-			colUserID.Resizable = true;
-			colUserID.Visible = true;
-			colUserID.Title = "User";
-			Gtk.CellRendererText cellUserID = new Gtk.CellRendererText ();
-			cellUserID.Width=120;
-			colUserID.PackStart (cellUserID, true);
+			Gtk.TreeViewColumn colAvgHeartRate = new Gtk.TreeViewColumn ();
+			colAvgHeartRate.Visible = true;
+			colAvgHeartRate.Title = "Avg Heart Rate";
+			Gtk.CellRendererText cellAvgHeartRate = new Gtk.CellRendererText ();
+			cellAvgHeartRate.Width=50;
+			colAvgHeartRate.PackStart (cellAvgHeartRate, false);
 			
-			// Add the columns to the TreeView
 			this.AppendColumn(colEntryID);
 			this.AppendColumn (colEntryDate);
-			this.AppendColumn (colSystolic);
-			this.AppendColumn(colDiastolic);
+			this.AppendColumn(colBPReading);
 			this.AppendColumn (colHeartRate);
-			this.AppendColumn (colNotes);
-			this.AppendColumn (colUserID);
+			this.AppendColumn (colAvgBPReading);
+			this.AppendColumn (colAvgHeartRate);
 			//this.AppendColumn(new GoonTools.ColumnSelector.TreeColumnSelector(this.Columns));
 			
 			
-			this.Model =_EntryListsStore;
+			this.Model =_EntryRptListsStore;
 		}
 	}
 	enum EntryColumns
 	{
 		EntryID,
 		EntryDate,
-		Systolic,
+		BPReading,
 		HeartRate,
-		Notes,
-		UserID
+		AvgBPReading,
+		AvgHeartRate
 	}
 }
