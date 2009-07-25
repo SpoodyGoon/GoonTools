@@ -1,5 +1,5 @@
 /*************************************************************************
- *                      DoctorComboBox.cs
+ *                      DoctorRendererCombo.cs
  *
  *	 	Copyright (C) 2009
  *		Andrew York <goontools@brdstudio.net>
@@ -27,30 +27,70 @@ using GoonTools;
 using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Doctors
-{	
-	[System.ComponentModel.ToolboxItem(true)]
-	public class DoctorComboBox : Gtk.ComboBox
+{
+	
+	public class DoctorRendererCombo : Gtk.CellRendererCombo
 	{
+		
 		private Gtk.ListStore lsDoctor = new Gtk.ListStore(typeof(int), typeof(string));
 		private int _DoctorID;
 		private string _DoctorName;
-		public DoctorComboBox()
+		private int _SearchDoctorID;
+		private string _SearchDoctorName;
+		public DoctorRendererCombo()
 		{
-		}		
-		
+			Build();
+		}	
+				
 		private void Build()
 		{	
-			LoadDoctor();
-			Gtk.CellRendererText ct = new Gtk.CellRendererText();
-			this.PackStart(ct, true);
-			this.AddAttribute(ct, "text", 1);
+			LoadDoctors();
+			this.Editable = true;
+			this.TextColumn = 1;
+			this.HasEntry = false;
 			this.Model = lsDoctor;
 			Gtk.TreeIter iter;
+			
 			if(lsDoctor.GetIterFirst(out iter))
-				this.SetActiveIter(iter);
+				this.Text = lsDoctor.GetValue(iter, 1).ToString();
 		}
 		
-		private void LoadDoctor()
+		public void SetText(string strSetText)
+		{
+			_SearchDoctorName = strSetText;
+			lsDoctor.Foreach(new TreeModelForeachFunc(ForeachUserText));
+		}
+		
+		
+		public void SetTextByID(int intSetText)
+		{
+			_SearchDoctorID = intSetText;
+			lsDoctor.Foreach(new TreeModelForeachFunc(ForeachDoctorID));
+		}
+		
+		private bool ForeachUserText(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+		{
+			if(_SearchDoctorName == lsDoctor.GetValue(iter, 1).ToString())
+			{
+				this.Text = _DoctorName = lsDoctor.GetValue(iter, 1).ToString();
+				_DoctorID = Convert.ToInt32(lsDoctor.GetValue(iter, 0));
+				return true;
+			}
+			return false;
+		}
+		
+		private bool ForeachDoctorID(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+		{
+			if(_SearchDoctorID == Convert.ToInt32(lsDoctor.GetValue(iter, 0)))
+			{
+				this.Text = _DoctorName = lsDoctor.GetValue(iter, 1).ToString();
+				_DoctorID = Convert.ToInt32(lsDoctor.GetValue(iter, 0));
+				return true;
+			}
+			return false;
+		}
+		
+		private void LoadDoctors()
 		{
 			try
 			{
@@ -69,37 +109,19 @@ namespace MonoBPMonitor.Doctors
 				Common.EnvData.HandleError(ex);
 			}
 		}
-		
-		[GLib.ConnectBeforeAttribute()]
-		protected override void OnRealized ()
-		{
-			Build();
-			this.WidthRequest = 185;
-			base.OnRealized ();
-		}
-
-		
-		[GLib.ConnectBeforeAttribute()]
-		protected override void OnChanged ()
-		{
-			Gtk.TreeIter iter;
-			this.GetActiveIter(out iter);
-			_DoctorID = (int)lsDoctor.GetValue(iter, 0);
-			_DoctorName =  (string)lsDoctor.GetValue(iter, 1);
-			base.OnChanged ();
-		}
-
 			
 		#region Public Properties
 			
 		public string DoctorName
 		{
 			get{return _DoctorName;}
+			set{SetText(value);}
 		}
 		
 		public int DoctorID
 		{
-			get{return _DoctorID;}	
+			get{return _DoctorID;}
+			set{SetTextByID(value);}
 		}
 		
 		#endregion Public Properties

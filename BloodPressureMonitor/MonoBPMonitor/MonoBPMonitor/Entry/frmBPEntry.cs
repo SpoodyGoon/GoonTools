@@ -1,5 +1,9 @@
 
 using System;
+using System.Data;
+using Gtk;
+using GoonTools;
+using SQLiteDataProvider;
 
 namespace MonoBPMonitor
 {
@@ -11,6 +15,7 @@ namespace MonoBPMonitor
 		public frmBPEntry()
 		{
 			this.Build();
+			txtReadingDate.Text = DateTime.Now.ToShortDateString();
 		}
 		
 		protected virtual void OnBtnDateClicked (object sender, System.EventArgs e)
@@ -24,15 +29,22 @@ namespace MonoBPMonitor
 
 		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
 		{
-			// TODO: add insert update here
-			
-			this.Hide();
+			try
+			{
+				Entry ent = new Entry(Convert.ToDateTime(txtReadingDate.Text), spnSystolic.ValueAsInt, spnDiastolic.ValueAsInt, spnHeartRate.ValueAsInt, txtNotes.Buffer.Text, cboUser.UserID);
+				ent.Add();
+				this.Hide();
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
 		}
 		
 		protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
-				{
+		{
 			this.Hide();
-				}		
+		}		
 		
 	}
 }

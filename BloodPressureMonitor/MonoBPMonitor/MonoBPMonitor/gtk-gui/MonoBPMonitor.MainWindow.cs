@@ -53,11 +53,17 @@ namespace MonoBPMonitor {
         
         private Gtk.Toolbar toolbar1;
         
-        private Gtk.Frame frame1;
+        private Gtk.Alignment alignment1;
         
-        private Gtk.Alignment GtkAlignment;
+        private Gtk.HSeparator hseparator1;
         
-        private Gtk.Label GtkLabel3;
+        private Gtk.Alignment alignment3;
+        
+        private Gtk.Label label1;
+        
+        private Gtk.Alignment alignment2;
+        
+        private Gtk.ScrolledWindow scrolledwindow1;
         
         private Gtk.Statusbar statusbar1;
         
@@ -109,16 +115,16 @@ namespace MonoBPMonitor {
             w1.Add(this.rxPngAction, null);
             this.UIManager.InsertActionGroup(w1, 0);
             this.AddAccelGroup(this.UIManager.AccelGroup);
-            this.WidthRequest = 550;
-            this.HeightRequest = 450;
+            this.WidthRequest = 750;
+            this.HeightRequest = 575;
             this.Name = "MonoBPMonitor.MainWindow";
             this.Title = Mono.Unix.Catalog.GetString("Blood Presure Monitor");
             this.Icon = Gdk.Pixbuf.LoadFromResource("icon_small.png");
             this.WindowPosition = ((Gtk.WindowPosition)(1));
             this.BorderWidth = ((uint)(3));
             this.AllowShrink = true;
-            this.DefaultWidth = 550;
-            this.DefaultHeight = 400;
+            this.DefaultWidth = 750;
+            this.DefaultHeight = 575;
             // Container child MonoBPMonitor.MainWindow.Gtk.Container+ContainerChild
             this.vbox1 = new Gtk.VBox();
             this.vbox1.Name = "vbox1";
@@ -144,31 +150,55 @@ namespace MonoBPMonitor {
             w3.Expand = false;
             w3.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
-            this.frame1 = new Gtk.Frame();
-            this.frame1.Name = "frame1";
-            this.frame1.ShadowType = ((Gtk.ShadowType)(0));
-            // Container child frame1.Gtk.Container+ContainerChild
-            this.GtkAlignment = new Gtk.Alignment(0F, 0F, 1F, 1F);
-            this.GtkAlignment.Name = "GtkAlignment";
-            this.GtkAlignment.LeftPadding = ((uint)(12));
-            this.frame1.Add(this.GtkAlignment);
-            this.GtkLabel3 = new Gtk.Label();
-            this.GtkLabel3.Name = "GtkLabel3";
-            this.GtkLabel3.LabelProp = Mono.Unix.Catalog.GetString("<b>frame1</b>");
-            this.GtkLabel3.UseMarkup = true;
-            this.frame1.LabelWidget = this.GtkLabel3;
-            this.vbox1.Add(this.frame1);
-            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox1[this.frame1]));
+            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment1.Name = "alignment1";
+            this.alignment1.TopPadding = ((uint)(2));
+            this.alignment1.BottomPadding = ((uint)(2));
+            // Container child alignment1.Gtk.Container+ContainerChild
+            this.hseparator1 = new Gtk.HSeparator();
+            this.hseparator1.Name = "hseparator1";
+            this.alignment1.Add(this.hseparator1);
+            this.vbox1.Add(this.alignment1);
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment1]));
             w5.Position = 2;
+            w5.Expand = false;
+            w5.Fill = false;
+            // Container child vbox1.Gtk.Box+BoxChild
+            this.alignment3 = new Gtk.Alignment(0.05F, 0.5F, 0.01F, 1F);
+            this.alignment3.Name = "alignment3";
+            // Container child alignment3.Gtk.Container+ContainerChild
+            this.label1 = new Gtk.Label();
+            this.label1.Name = "label1";
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("<b>Double Click on an reading to change it.</b>");
+            this.label1.UseMarkup = true;
+            this.label1.SingleLineMode = true;
+            this.alignment3.Add(this.label1);
+            this.vbox1.Add(this.alignment3);
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment3]));
+            w7.Position = 3;
+            w7.Expand = false;
+            w7.Fill = false;
+            // Container child vbox1.Gtk.Box+BoxChild
+            this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment2.Name = "alignment2";
+            // Container child alignment2.Gtk.Container+ContainerChild
+            this.scrolledwindow1 = new Gtk.ScrolledWindow();
+            this.scrolledwindow1.CanFocus = true;
+            this.scrolledwindow1.Name = "scrolledwindow1";
+            this.scrolledwindow1.ShadowType = ((Gtk.ShadowType)(1));
+            this.alignment2.Add(this.scrolledwindow1);
+            this.vbox1.Add(this.alignment2);
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment2]));
+            w9.Position = 4;
             // Container child vbox1.Gtk.Box+BoxChild
             this.statusbar1 = new Gtk.Statusbar();
             this.statusbar1.Name = "statusbar1";
             this.statusbar1.Spacing = 6;
             this.vbox1.Add(this.statusbar1);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
-            w6.Position = 4;
-            w6.Expand = false;
-            w6.Fill = false;
+            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
+            w10.Position = 5;
+            w10.Expand = false;
+            w10.Fill = false;
             this.Add(this.vbox1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

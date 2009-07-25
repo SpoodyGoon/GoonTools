@@ -52,7 +52,7 @@ namespace MonoBPMonitor
 		{
 			if(txtDoctor.Text.Trim() != "")
 			{
-				Doctor d = new Doctor(txtDoctor.Text, txtLocation.Text, txtPhone.Text, UserCombo.UserID);
+				Doctor d = new Doctor(txtDoctor.Text, txtLocation.Text, txtPhone.Text, cboUser.UserID);
 				d.Add();
 				tvDoctor.Refresh();
 				txtDoctor.Text = "";

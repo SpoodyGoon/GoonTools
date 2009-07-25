@@ -60,7 +60,7 @@ namespace MonoBPMonitor.Medications
 			Gtk.CellRendererText cellMedicineName = new Gtk.CellRendererText ();
 			cellMedicineName.Width=250;
 			cellMedicineName.Editable = true;
-			//cellMedicineName.Edited += cellMedicineName_Edited;
+			cellMedicineName.Edited += cellMedicineName_Edited;
 			colMedicineName.PackStart (cellMedicineName, true);
 			
 			// Create a column for the date
@@ -70,6 +70,8 @@ namespace MonoBPMonitor.Medications
 			colDosage.Title = "Dosage";
 			Gtk.CellRendererText cellDosage = new Gtk.CellRendererText ();
 			cellDosage.Width=70;
+			cellDosage.Editable = true;
+			cellDosage.Edited += cellDosage_Edited;
 			colDosage.PackStart (cellDosage, true);
 			
 			// Create a column for the date
@@ -79,6 +81,8 @@ namespace MonoBPMonitor.Medications
 			colStartDate.Title = "Start Date";
 			Gtk.CellRendererText cellStartDate = new Gtk.CellRendererText ();
 			cellStartDate.Width=70;
+			cellStartDate.Editable = true;
+			cellStartDate.Edited += cellStartDate_Edited;
 			colStartDate.PackStart (cellStartDate, true);
 			
 			// Create a column for the date
@@ -88,6 +92,8 @@ namespace MonoBPMonitor.Medications
 			colEndDate.Title = "End Date";
 			Gtk.CellRendererText cellEndDate = new Gtk.CellRendererText ();
 			cellEndDate.Width=70;
+			cellEndDate.Editable = true;
+			cellEndDate.Edited += cellEndDate_Edited;
 			colEndDate.PackStart (cellEndDate, true);
 			
 			// Create a column for the date
@@ -95,8 +101,9 @@ namespace MonoBPMonitor.Medications
 			colDoctorID.Resizable = true;
 			colDoctorID.Visible = true;
 			colDoctorID.Title = "Doctor";
-			Gtk.CellRendererText cellDoctorID = new Gtk.CellRendererText ();
+			Doctors.DoctorRendererCombo cellDoctorID = new Doctors.DoctorRendererCombo();
 			cellDoctorID.Width=120;
+			cellDoctorID.Edited += cellDoctorID_Edited;
 			colDoctorID.PackStart (cellDoctorID, true);
 			
 			// Create a column for the date
@@ -104,8 +111,9 @@ namespace MonoBPMonitor.Medications
 			colUserID.Resizable = true;
 			colUserID.Visible = true;
 			colUserID.Title = "User";
-			Gtk.CellRendererText cellUserID = new Gtk.CellRendererText ();
+			Users.UserRendererCombo cellUserID = new Users.UserRendererCombo();
 			cellUserID.Width=120;
+			cellUserID.Edited += cellUserID_Edited;
 			colUserID.PackStart (cellUserID, true);
 			
 			// Add the columns to the TreeView

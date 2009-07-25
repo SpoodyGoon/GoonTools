@@ -179,6 +179,7 @@ namespace MonoBPMonitor.Doctors
 			Doctor d = (Doctor)model.GetValue(iter, 0);
 			(cell as Gtk.CellRendererText).Text = d.PhoneNum;
 		}
+		
 		private void RenderUserID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			Doctor d = (Doctor)model.GetValue(iter, 0);

@@ -67,6 +67,126 @@ namespace MonoBPMonitor.Medications
 			return _MedicationListsStore.GetValue(iter, 0) as Medication;
 		}
 		
+		#region TreeView Cell Events
+		
+		private void cellMedicineName_Edited(object o, Gtk.EditedArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if (_MedicationListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Medication m = (Medication)_MedicationListsStore.GetValue(iter, 0);
+					m.MedicineName = args.NewText;
+					m.Update();
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
+		}
+		
+		private void cellDosage_Edited(object o, Gtk.EditedArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if (_MedicationListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Medication m = (Medication)_MedicationListsStore.GetValue(iter, 0);
+					m.Dosage = args.NewText;
+					m.Update();
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
+		}
+
+		
+		private void cellStartDate_Edited(object o, Gtk.EditedArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if (_MedicationListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Medication m = (Medication)_MedicationListsStore.GetValue(iter, 0);
+					m.StartDate = Convert.ToDateTime(args.NewText);
+					m.Update();
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
+		}
+
+		
+		private void cellEndDate_Edited(object o, Gtk.EditedArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if (_MedicationListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Medication m = (Medication)_MedicationListsStore.GetValue(iter, 0);
+					m.EndDate = Convert.ToDateTime(args.NewText);
+					m.Update();
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
+		}
+
+		private void cellDoctorID_Edited(object sender, EditedArgs args)
+		{
+			try
+			{
+				Doctors.DoctorRendererCombo drc = (Doctors.DoctorRendererCombo)sender;
+				Gtk.TreeIter iter;
+				if (_MedicationListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Medication m = (Medication)_MedicationListsStore.GetValue(iter, 0);
+					drc.SetText(args.NewText);
+					m.DoctorID = drc.DoctorID;
+					m.Update();
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
+		}
+
+		private void cellUserID_Edited(object sender, EditedArgs args)
+		{
+			try
+			{
+				Users.UserRendererCombo urc = (Users.UserRendererCombo)sender;
+				Gtk.TreeIter iter;
+				if (_MedicationListsStore.GetIterFromString (out iter, args.Path))
+				{
+					Medication m = (Medication)_MedicationListsStore.GetValue(iter, 0);
+					urc.SetText(args.NewText);
+					m.UserID = urc.UserID;
+					m.Update();
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
+		}
+		
+		#endregion TreeView Cell Events
+		
+		#region Cell Data Functions
+		
 		private void RenderMedicineID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			Medication m = (Medication)model.GetValue(iter, 0);
@@ -101,14 +221,16 @@ namespace MonoBPMonitor.Medications
 		
 		private void RenderDoctorID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
-			Medication m = (Medication)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = m.DoctorID.ToString();
+			Doctor d = (Doctor)model.GetValue(iter, 0);
+			(cell as Users.UserRendererCombo).SetTextByID(d.DoctorID);
 		}
 		
 		private void RenderUserID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
-			Medication m = (Medication)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = m.UserID.ToString();
+			Doctor d = (Doctor)model.GetValue(iter, 0);
+			(cell as Users.UserRendererCombo).SetTextByID(d.UserID);
 		}
+		
+		#endregion Cell Data Functions
 	}
 }

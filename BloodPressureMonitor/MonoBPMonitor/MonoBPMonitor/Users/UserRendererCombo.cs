@@ -38,7 +38,6 @@ namespace MonoBPMonitor.Users
 		private string _UserName;
 		private int _SearchUserID;
 		private string _SearchUserName;
-		private Gtk.TreeIter _CurrentIter = Gtk.TreeIter.Zero;
 		public UserRendererCombo()
 		{
 			Build();
@@ -76,7 +75,6 @@ namespace MonoBPMonitor.Users
 			{
 				this.Text = _UserName = lsUser.GetValue(iter, 1).ToString();
 				_UserID = Convert.ToInt32(lsUser.GetValue(iter, 0));
-				_CurrentIter = iter;
 				return true;
 			}
 			return false;
@@ -88,7 +86,6 @@ namespace MonoBPMonitor.Users
 			{
 				this.Text = _UserName = lsUser.GetValue(iter, 1).ToString();
 				_UserID = Convert.ToInt32(lsUser.GetValue(iter, 0));
-				_CurrentIter = iter;
 				return true;
 			}
 			return false;
