@@ -55,16 +55,16 @@ namespace MonoBPMonitor.Doctors
 				this.Text = lsDoctor.GetValue(iter, 1).ToString();
 		}
 		
-		public void SetText(string strSetText)
+		public void SetDoctor(string doctorname)
 		{
-			_SearchDoctorName = strSetText;
+			_SearchDoctorName = doctorname;
 			lsDoctor.Foreach(new TreeModelForeachFunc(ForeachUserText));
 		}
 		
 		
-		public void SetTextByID(int intSetText)
+		public void SetDoctor(int doctorid)
 		{
-			_SearchDoctorID = intSetText;
+			_SearchDoctorID = doctorid;
 			lsDoctor.Foreach(new TreeModelForeachFunc(ForeachDoctorID));
 		}
 		
@@ -115,13 +115,13 @@ namespace MonoBPMonitor.Doctors
 		public string DoctorName
 		{
 			get{return _DoctorName;}
-			set{SetText(value);}
+			set{SetDoctor(value);}
 		}
 		
 		public int DoctorID
 		{
 			get{return _DoctorID;}
-			set{SetTextByID(value);}
+			set{SetDoctor(value);}
 		}
 		
 		#endregion Public Properties

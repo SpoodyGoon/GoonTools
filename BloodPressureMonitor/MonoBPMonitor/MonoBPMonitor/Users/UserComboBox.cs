@@ -34,6 +34,8 @@ namespace MonoBPMonitor.Users
 		private Gtk.ListStore lsUser = new Gtk.ListStore(typeof(int), typeof(string));
 		private int _UserID;
 		private string _UserName;
+		private int _SearchUserID;
+		private string _SearchUserName;
 		public UserComboBox()
 		{
 			
@@ -105,5 +107,45 @@ namespace MonoBPMonitor.Users
 		
 		#endregion Public Properties
 		
+		#region Public Methods
+		
+		public void SetUser(string username)
+		{
+			_SearchUserName = username;
+			lsUser.Foreach(new TreeModelForeachFunc(ForeachUserText));
+			
+		}
+		
+		public void SetUser(int userid)
+		{
+			_SearchUserID = userid;
+			lsUser.Foreach(new TreeModelForeachFunc(ForeachUserID));
+		}
+		
+		#endregion Public Methods		
+		
+		private bool ForeachUserText(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+		{
+			if(_SearchUserName == lsUser.GetValue(iter, 1).ToString())
+			{
+				_UserName = lsUser.GetValue(iter, 1).ToString();
+				_UserID = Convert.ToInt32(lsUser.GetValue(iter, 0));
+				this.SetActiveIter(iter);
+				return true;
+			}
+			return false;
+		}
+		
+		private bool ForeachUserID(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+		{
+			if(_SearchUserID == Convert.ToInt32(lsUser.GetValue(iter, 0)))
+			{
+				_UserName = lsUser.GetValue(iter, 1).ToString();
+				_UserID = Convert.ToInt32(lsUser.GetValue(iter, 0));
+				this.SetActiveIter(iter);
+				return true;
+			}
+			return false;
+		}
 	}
 }

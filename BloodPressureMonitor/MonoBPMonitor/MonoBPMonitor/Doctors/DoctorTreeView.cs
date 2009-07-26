@@ -139,7 +139,7 @@ namespace MonoBPMonitor.Doctors
 				if (_DoctorListsStore.GetIterFromString (out iter, args.Path))
 				{
 					Doctor d = (Doctor)_DoctorListsStore.GetValue(iter, 0);
-					urc.SetText(args.NewText);
+					urc.SetUser(args.NewText);
 					d.UserID = urc.UserID;
 					d.Update();
 				}
@@ -183,7 +183,7 @@ namespace MonoBPMonitor.Doctors
 		private void RenderUserID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			Doctor d = (Doctor)model.GetValue(iter, 0);
-			(cell as Users.UserRendererCombo).SetTextByID(d.UserID);
+			(cell as Users.UserRendererCombo).SetUser(d.UserID);
 		}
 		
 		#endregion Cell Data Functions

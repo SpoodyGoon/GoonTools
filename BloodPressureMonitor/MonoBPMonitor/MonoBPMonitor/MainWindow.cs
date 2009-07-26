@@ -30,10 +30,12 @@ namespace MonoBPMonitor
 	
 	public partial class MainWindow : Gtk.Window 
 	{
-		
+		Reports.EntryRptTreeView tvEntityRpt;
 		public MainWindow() : base(Gtk.WindowType.Toplevel) 
 		{
 			this.Build();
+			tvEntityRpt = new Reports.EntryRptTreeView(cboUser.UserID);
+			swEntityRpt.Add(tvEntityRpt);
 			this.ShowAll();
 		}
 		
@@ -104,6 +106,7 @@ namespace MonoBPMonitor
 			frmOptions fm = new frmOptions();
 			fm.Run();
 			fm.Destroy();
+			tvEntityRpt.Refresh(true);
 		}
 
 		protected virtual void OnRxPngActionActivated (object sender, System.EventArgs e)
