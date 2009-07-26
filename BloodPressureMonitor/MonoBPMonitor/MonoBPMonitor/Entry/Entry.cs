@@ -16,9 +16,14 @@ namespace MonoBPMonitor
 		private int _Diastolic= 80;
 		private int _HeartRate = 55;
 		private string _Notes= "";
-		private int _UserID;
+		private int _UserID =1;
 		
 		#region Construtors
+		
+		public Entry()
+		{
+			
+		}
 		
 		public Entry(int entryid, bool open)
 		{
@@ -171,21 +176,13 @@ namespace MonoBPMonitor
 			}
 		}
 		
-//		public Entry Open(int entryid)
-//		{
-//			_EntryID = entryid;
-//			DataProvider dp = new DataProvider(Common.Option.ConnString);
-//			System.Collections.Hashtable htEntry = dp.ExecuteHashTable("SELECT EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
-//			dp.Dispose();
-//			_EntryDate = Convert.ToDateTime(htEntry["EntryDate"]).ToShortDateString();
-//			_Systolic = Convert.ToInt32(htEntry["Systolic"]);
-//			_Diastolic =  Convert.ToInt32(htEntry["Diastolic"]);			
-//			_HeartRate =  Convert.ToInt32(htEntry["HeartRate"]);
-//			_Notes = htEntry["Notes"].ToString();
-//			_UserID = Convert.ToInt32(htEntry["UserID"]);
-//			
-//			return this;
-//		}
+		public void AddUpdate()
+		{
+			if(_EntryID > 0)
+				Update();
+			else
+				Add();
+		}
 		
 		#endregion Public Methods
 	}

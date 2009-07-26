@@ -123,6 +123,10 @@
     <Compile Include="Doctors\DoctorRendererCombo.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.Designer.cs" />
+    <Compile Include="Doctors\QuickDoctor.cs" />
+    <Compile Include="gtk-gui\MonoBPMonitor.QuickDoctor.cs" />
+    <Compile Include="Users\QuickUser.cs" />
+    <Compile Include="gtk-gui\MonoBPMonitor.QuickUser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

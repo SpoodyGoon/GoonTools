@@ -14,6 +14,8 @@ namespace MonoBPMonitor
 		public frmBPEntry()
 		{
 			this.Build();
+			// Start a new Entry
+			_CurrentEntry = new Entry();
 			txtReadingDate.Text = DateTime.Now.ToShortDateString();
 		}
 		
@@ -23,6 +25,7 @@ namespace MonoBPMonitor
 			try
 			{
 				_CurrentEntryID = entryid;
+				// open an existing Entry
 				_CurrentEntry = new Entry(_CurrentEntryID, true);
 				cboUser.SetUser(_CurrentEntry.UserID);
 				txtReadingDate.Text = _CurrentEntry.EntryDate.ToShortDateString();
@@ -49,22 +52,15 @@ namespace MonoBPMonitor
 		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
 		{
 			try
-			{
-				if(_CurrentEntry != null)
-				{
-					_CurrentEntry.EntryDate = Convert.ToDateTime(txtReadingDate.Text);
-					_CurrentEntry.Systolic = spnSystolic.ValueAsInt;
-					_CurrentEntry.Diastolic = spnDiastolic.ValueAsInt;
-					_CurrentEntry.HeartRate = spnHeartRate.ValueAsInt;
-					_CurrentEntry.Notes = txtNotes.Buffer.Text;
-					_CurrentEntry.UserID = cboUser.UserID;
-					_CurrentEntry.Update();
-				}
-				else
-				{					
-					Entry ent = new Entry(Convert.ToDateTime(txtReadingDate.Text), spnSystolic.ValueAsInt, spnDiastolic.ValueAsInt, spnHeartRate.ValueAsInt, txtNotes.Buffer.Text, cboUser.UserID);
-					ent.Add();	
-				}
+			{				
+				_CurrentEntry.EntryDate = Convert.ToDateTime(txtReadingDate.Text);
+				_CurrentEntry.Systolic = spnSystolic.ValueAsInt;
+				_CurrentEntry.Diastolic = spnDiastolic.ValueAsInt;
+				_CurrentEntry.HeartRate = spnHeartRate.ValueAsInt;
+				_CurrentEntry.Notes = txtNotes.Buffer.Text;
+				_CurrentEntry.UserID = cboUser.UserID;
+				_CurrentEntry.AddUpdate();
+				
 				this.Hide();
 			}
 			catch(Exception ex)
