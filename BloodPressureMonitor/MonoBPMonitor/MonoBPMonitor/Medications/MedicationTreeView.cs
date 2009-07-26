@@ -152,7 +152,7 @@ namespace MonoBPMonitor.Medications
 				if (_MedicationListsStore.GetIterFromString (out iter, args.Path))
 				{
 					Medication m = (Medication)_MedicationListsStore.GetValue(iter, 0);
-					drc.SetText(args.NewText);
+					drc.SetDoctor(args.NewText);
 					m.DoctorID = drc.DoctorID;
 					m.Update();
 				}
@@ -172,7 +172,7 @@ namespace MonoBPMonitor.Medications
 				if (_MedicationListsStore.GetIterFromString (out iter, args.Path))
 				{
 					Medication m = (Medication)_MedicationListsStore.GetValue(iter, 0);
-					urc.SetText(args.NewText);
+					urc.SetUser(args.NewText);
 					m.UserID = urc.UserID;
 					m.Update();
 				}
@@ -222,13 +222,13 @@ namespace MonoBPMonitor.Medications
 		private void RenderDoctorID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			Doctor d = (Doctor)model.GetValue(iter, 0);
-			(cell as Users.UserRendererCombo).SetTextByID(d.DoctorID);
+			(cell as Doctors.DoctorRendererCombo).SetDoctor(d.DoctorID);
 		}
 		
 		private void RenderUserID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			Doctor d = (Doctor)model.GetValue(iter, 0);
-			(cell as Users.UserRendererCombo).SetTextByID(d.UserID);
+			(cell as Users.UserRendererCombo).SetUser(d.UserID);
 		}
 		
 		#endregion Cell Data Functions

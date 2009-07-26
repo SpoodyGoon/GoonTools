@@ -44,12 +44,14 @@ namespace MonoBPMonitor.Reports
 		{
 			try
 			{
+				_CurrentHistoryLimit = Common.Option.HistoryDefaultShow;
+				_EntryRptListsStore.Clear();
 				int SumSystolic = 0;
 				int SumDiastolic = 0;
 				int SumHeartRate = 0;
 				int RowCount = 1;
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = " + _CurrentUser.ToString() + ";");
+				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = " + _CurrentUser.ToString() + " LIMIT " + Common.Option.HistoryDefaultShow.ToString() + " ;");
 				foreach(DataRow dr in dt.Rows)
 				{
 					SumSystolic += Convert.ToInt32(dr["Systolic"]);
@@ -65,11 +67,44 @@ namespace MonoBPMonitor.Reports
 					                                 );
 					RowCount++;
 				}
+				this.ShowAll();
 			}
 			catch(Exception ex)
 			{
 				Common.EnvData.HandleError(ex);
 			}
+		}
+		
+		private void EntryRptTreeView_RowActivated(object sender, Gtk.RowActivatedArgs args)
+		{
+			try
+			{
+				Gtk.TreeIter iter;
+				if(this.Selection.GetSelected(out iter))
+				{
+					frmBPEntry fm  = new frmBPEntry((int)_EntryRptListsStore.GetValue(iter, 0));
+					if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
+					{
+						LoadData();	
+					}
+					fm.Destroy();
+				}                         
+			}
+			catch(Exception ex)
+			{
+				Common.EnvData.HandleError(ex);
+			}
+		}
+		
+		public void Refresh()
+		{
+			LoadData();
+		}
+		
+		public void Refresh(bool CheckOptionChange)
+		{
+			if(_CurrentHistoryLimit != Common.Option.HistoryDefaultShow)
+				LoadData();
 		}
 	}
 }

@@ -22,8 +22,9 @@
 
 using System;
 using System.Data;
-using System.Collections;
 using Gtk;
+using GoonTools;
+using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Reports
 {
@@ -33,7 +34,8 @@ namespace MonoBPMonitor.Reports
 	public partial class EntryRptTreeView : Gtk.TreeView
 	{
 		private Gtk.ListStore _EntryRptListsStore = new ListStore(typeof(int), typeof(string),typeof(string),typeof(string),typeof(string),typeof(string));
-		private int _CurrentUser = 1;
+		private int _CurrentUser = 1; // this is the default user
+		private int _CurrentHistoryLimit = 30;// this is the assumed default
 		private void Build()
 		{
 			this.HeadersVisible = true;
@@ -50,39 +52,48 @@ namespace MonoBPMonitor.Reports
 			
 			Gtk.TreeViewColumn colEntryDate = new Gtk.TreeViewColumn ();
 			colEntryDate.Visible = true;
+			colEntryDate.Alignment = 0.15f;
 			colEntryDate.Title = "Date";
 			Gtk.CellRendererText cellEntryDate = new Gtk.CellRendererText ();
-			cellEntryDate.Width=75;
-			cellEntryDate.Editable = true;
+			cellEntryDate.Width=100;
+			cellEntryDate.Xalign=0.5f;
 			colEntryDate.PackStart (cellEntryDate, true);
 			
 			Gtk.TreeViewColumn colBPReading = new Gtk.TreeViewColumn ();
 			colBPReading.Visible = true;
+			colBPReading.Alignment=0.5f;
 			colBPReading.Title = "Blood Pressure";
 			Gtk.CellRendererText cellBPReading = new Gtk.CellRendererText ();
 			cellBPReading.Width=150;
+			cellBPReading.Xalign=0.5f;
 			colBPReading.PackStart (cellBPReading, true);
 			
 			Gtk.TreeViewColumn colHeartRate = new Gtk.TreeViewColumn ();
 			colHeartRate.Visible = true;
+			colHeartRate.Alignment=0.5f;
 			colHeartRate.Title = "Heart Rate";
 			Gtk.CellRendererText cellHeartRate = new Gtk.CellRendererText ();
 			cellHeartRate.Width=50;
-			colHeartRate.PackStart (cellHeartRate, false);
+			cellHeartRate.Xalign=0.5f;
+			colHeartRate.PackStart (cellHeartRate, true);
 			
 			Gtk.TreeViewColumn colAvgBPReading = new Gtk.TreeViewColumn ();
 			colAvgBPReading.Visible = true;
+			colAvgBPReading.Alignment=0.5f;
 			colAvgBPReading.Title = "Avg Blood Pressure";
 			Gtk.CellRendererText cellAvgBPReading = new Gtk.CellRendererText ();
 			cellAvgBPReading.Width=150;
+			cellAvgBPReading.Xalign=0.5f;
 			colAvgBPReading.PackStart (cellAvgBPReading, true);
 			
 			Gtk.TreeViewColumn colAvgHeartRate = new Gtk.TreeViewColumn ();
 			colAvgHeartRate.Visible = true;
+			colAvgHeartRate.Alignment=0.5f;
 			colAvgHeartRate.Title = "Avg Heart Rate";
 			Gtk.CellRendererText cellAvgHeartRate = new Gtk.CellRendererText ();
 			cellAvgHeartRate.Width=50;
-			colAvgHeartRate.PackStart (cellAvgHeartRate, false);
+			cellAvgHeartRate.Xalign=0.5f;
+			colAvgHeartRate.PackStart (cellAvgHeartRate, true);
 			
 			this.AppendColumn(colEntryID);
 			this.AppendColumn (colEntryDate);
@@ -90,9 +101,15 @@ namespace MonoBPMonitor.Reports
 			this.AppendColumn (colHeartRate);
 			this.AppendColumn (colAvgBPReading);
 			this.AppendColumn (colAvgHeartRate);
+			colEntryID.AddAttribute(cellEntryID, "text", 0);
+			colEntryDate.AddAttribute(cellEntryDate, "text", 1);
+			colBPReading.AddAttribute(cellBPReading, "text", 2);
+			colHeartRate.AddAttribute(cellHeartRate, "text", 3);
+			colAvgBPReading.AddAttribute(cellAvgBPReading, "text", 4);
+			colAvgHeartRate.AddAttribute(cellAvgHeartRate, "text", 5);
 			//this.AppendColumn(new GoonTools.ColumnSelector.TreeColumnSelector(this.Columns));
 			
-			
+			this.RowActivated += EntryRptTreeView_RowActivated;
 			this.Model =_EntryRptListsStore;
 		}
 	}

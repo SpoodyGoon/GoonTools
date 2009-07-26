@@ -233,16 +233,53 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Alignment" id="alignment3">
+          <widget class="Gtk.Alignment" id="alignment2">
             <property name="MemberName" />
-            <property name="Xscale">0.01</property>
-            <property name="Xalign">0.05</property>
             <child>
-              <widget class="Gtk.Label" id="label1">
+              <widget class="Gtk.HBox" id="hbox1">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">&lt;b&gt;Double Click on an reading to change it.&lt;/b&gt;</property>
-                <property name="UseMarkup">True</property>
-                <property name="SingleLineMode">True</property>
+                <property name="Homogeneous">True</property>
+                <property name="Spacing">57</property>
+                <child>
+                  <widget class="Gtk.Alignment" id="alignment4">
+                    <property name="MemberName" />
+                    <property name="Xscale">0.01</property>
+                    <property name="Xalign">0.05</property>
+                    <child>
+                      <widget class="Gtk.Label" id="label1">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">&lt;b&gt;Double Click on an reading to change it.&lt;/b&gt;</property>
+                        <property name="UseMarkup">True</property>
+                        <property name="SingleLineMode">True</property>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Alignment" id="alignment5">
+                    <property name="MemberName" />
+                    <property name="Xscale">0.01</property>
+                    <property name="Xalign">0.98</property>
+                    <child>
+                      <widget class="MonoBPMonitor.Users.UserComboBox" id="cboUser">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">200</property>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
               </widget>
             </child>
           </widget>
@@ -254,10 +291,10 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Alignment" id="alignment2">
+          <widget class="Gtk.Alignment" id="alignment3">
             <property name="MemberName" />
             <child>
-              <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
+              <widget class="Gtk.ScrolledWindow" id="swEntityRpt">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="ShadowType">In</property>

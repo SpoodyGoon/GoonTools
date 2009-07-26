@@ -20,8 +20,21 @@ namespace MonoBPMonitor
 		
 		#region Construtors
 		
-		public Entry()
+		public Entry(int entryid, bool open)
 		{
+			if(open)
+			{
+				_EntryID = entryid;
+				DataProvider dp = new DataProvider(Common.Option.ConnString);
+				System.Collections.Hashtable htEntry = dp.ExecuteHashTable("SELECT EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
+				dp.Dispose();
+				_EntryDate = Convert.ToDateTime(htEntry["EntryDate"]);
+				_Systolic = Convert.ToInt32(htEntry["Systolic"]);
+				_Diastolic =  Convert.ToInt32(htEntry["Diastolic"]);			
+				_HeartRate =  Convert.ToInt32(htEntry["HeartRate"]);
+				_Notes = htEntry["Notes"].ToString();
+				_UserID = Convert.ToInt32(htEntry["UserID"]);
+			}
 		}
 		
 		public Entry(int entryid, DateTime entrydate, int systolic, int diastolic, int heartrate, string notes, int userid)
@@ -157,6 +170,22 @@ namespace MonoBPMonitor
 				Common.EnvData.HandleError(ex);
 			}
 		}
+		
+//		public Entry Open(int entryid)
+//		{
+//			_EntryID = entryid;
+//			DataProvider dp = new DataProvider(Common.Option.ConnString);
+//			System.Collections.Hashtable htEntry = dp.ExecuteHashTable("SELECT EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
+//			dp.Dispose();
+//			_EntryDate = Convert.ToDateTime(htEntry["EntryDate"]).ToShortDateString();
+//			_Systolic = Convert.ToInt32(htEntry["Systolic"]);
+//			_Diastolic =  Convert.ToInt32(htEntry["Diastolic"]);			
+//			_HeartRate =  Convert.ToInt32(htEntry["HeartRate"]);
+//			_Notes = htEntry["Notes"].ToString();
+//			_UserID = Convert.ToInt32(htEntry["UserID"]);
+//			
+//			return this;
+//		}
 		
 		#endregion Public Methods
 	}

@@ -56,16 +56,16 @@ namespace MonoBPMonitor.Users
 				this.Text = lsUser.GetValue(iter, 1).ToString();
 		}
 		
-		public void SetText(string strSetText)
+		public void SetUser(string username)
 		{
-			_SearchUserName = strSetText;
+			_SearchUserName = username;
 			lsUser.Foreach(new TreeModelForeachFunc(ForeachUserText));
 		}
 		
 		
-		public void SetTextByID(int intSetText)
+		public void SetUser(int userid)
 		{
-			_SearchUserID = intSetText;
+			_SearchUserID = userid;
 			lsUser.Foreach(new TreeModelForeachFunc(ForeachUserID));
 		}
 		
@@ -116,13 +116,13 @@ namespace MonoBPMonitor.Users
 		public string UserName
 		{
 			get{return _UserName;}
-			set{SetText(value);}
+			set{SetUser(value);}
 		}
 		
 		public int UserID
 		{
 			get{return _UserID;}
-			set{SetTextByID(value);}
+			set{SetUser(value);}
 		}
 		
 		#endregion Public Properties
