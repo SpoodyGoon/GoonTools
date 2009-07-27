@@ -119,6 +119,14 @@ namespace MonoBPMonitor
 			}
 		}
 		
+		public void AddUpdate()
+		{
+			if(_UserID > 0)
+				Update();
+			else
+				Add();
+		}
+		
 		#endregion Public Methods
 	}
 }
