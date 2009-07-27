@@ -15,7 +15,7 @@ namespace MonoBPMonitor
 		private string _DoctorName= "New Doctor";
 		private string _Location = "";
 		private string _PhoneNum = "";
-		private int _UserID;
+		private int _UserID = 1;
 		
 		#region Construtors
 		
@@ -137,6 +137,14 @@ namespace MonoBPMonitor
 			{
 				Common.EnvData.HandleError(ex);
 			}
+		}
+		
+		public void AddUpdate()
+		{
+			if(_DoctorID > 0)
+				Update();
+			else
+				Add();
 		}
 		
 		#endregion Public Methods
