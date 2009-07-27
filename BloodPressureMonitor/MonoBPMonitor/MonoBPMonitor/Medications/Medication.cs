@@ -13,8 +13,8 @@ namespace MonoBPMonitor
 		private string _Dosage="";
 		private DateTime _StartDate = new DateTime(1990, 1,1);
 		private DateTime _EndDate = new DateTime(1990, 1,1);
-		private int _DoctorID;
-		private int _UserID;
+		private int _DoctorID = 1;
+		private int _UserID = 1;
 		#region Construtors
 		
 		public Medication()
@@ -104,7 +104,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_MedicineID > 0)
+				if(_MedicineID < 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
 					_MedicineID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Medicine(MedicineName, Dosage, StartDate,EndDate ,DoctorID, UserID)VALUES('" + _MedicineName + "','" + _Dosage + "','" + _StartDate.ToShortDateString() + "','" + _EndDate.ToShortDateString() + "'," + _DoctorID.ToString() + "," + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
@@ -125,7 +125,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(_MedicineID != 0)
+				if(_MedicineID > 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
 					dp.ExecuteNonQuery("UPDATE tb_Medicine SET MedicineName = '" + _MedicineName + "', Dosage = '" + _Dosage + "', StartDate = '" + _StartDate.ToShortDateString() + "', EndDate = '" + _EndDate.ToShortDateString() + "', DoctorID = " + _DoctorID.ToString() + ", UserID = " + _UserID.ToString() + " WHERE MedicineID = " + _MedicineID.ToString() + ";");
@@ -154,6 +154,14 @@ namespace MonoBPMonitor
 			{
 				Common.EnvData.HandleError(ex);
 			}
+		}
+		
+		public void AddUpdate()
+		{
+			if(_MedicineID > 0)
+				Update();
+			else
+				Add();
 		}
 		
 		#endregion Public Methods
