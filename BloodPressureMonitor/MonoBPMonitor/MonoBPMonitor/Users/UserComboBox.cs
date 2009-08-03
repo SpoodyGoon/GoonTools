@@ -64,7 +64,7 @@ namespace MonoBPMonitor.Users
 				{
 					lsUser.AppendValues(Convert.ToInt32(dr["UserID"]), dr["UserName"].ToString());
 				}
-				//lsUser.AppendValues(-1, "New User...");
+				lsUser.AppendValues(-1, "New User...");
 				
 			}
 			catch(Exception ex)
@@ -87,8 +87,27 @@ namespace MonoBPMonitor.Users
 		{
 			Gtk.TreeIter iter;
 			this.GetActiveIter(out iter);
-			_UserID = (int)lsUser.GetValue(iter, 0);
-			_UserName =  (string)lsUser.GetValue(iter, 1);
+			if(Convert.ToInt32(lsUser.GetValue(iter, 0)) == -1)
+			{
+				MonoBPMonitor.QuickUser fm = new MonoBPMonitor.QuickUser();
+				if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
+				{
+					LoadUsers();
+					SetUser(fm.UserID);
+				}
+				else
+				{
+					// if we don't add a new user then set the 
+					// combo box back to the prevois selection
+					SetUser(_UserID);
+				}
+				fm.Destroy();
+			}
+			else
+			{
+				_UserID = (int)lsUser.GetValue(iter, 0);
+				_UserName =  (string)lsUser.GetValue(iter, 1);
+			}
 			base.OnChanged ();
 		}
 
