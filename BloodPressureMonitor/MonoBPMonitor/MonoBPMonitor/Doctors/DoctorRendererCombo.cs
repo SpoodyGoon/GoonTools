@@ -101,7 +101,7 @@ namespace MonoBPMonitor.Doctors
 				{
 					lsDoctor.AppendValues(Convert.ToInt32(dr["DoctorID"]), dr["DoctorName"].ToString());
 				}
-				//lsDoctor.AppendValues(-1, "New User...");
+				lsDoctor.AppendValues(-1, "New User...");
 				
 			}
 			catch(Exception ex)

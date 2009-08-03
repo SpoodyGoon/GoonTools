@@ -102,7 +102,7 @@ namespace MonoBPMonitor.Users
 				{
 					lsUser.AppendValues(Convert.ToInt32(dr["UserID"]), dr["UserName"].ToString());
 				}
-				//lsUser.AppendValues(-1, "New User...");
+				lsUser.AppendValues(-1, "New User...");
 				
 			}
 			catch(Exception ex)

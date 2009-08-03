@@ -13,6 +13,16 @@ namespace MonoBPMonitor
 			this.Build();
 			
 		}
+		
+		public int UserID
+		{
+			get{return _CurrentUserID;}
+		}
+		
+		public string UserName
+		{
+			get{return _CurrentUserName;}
+		}
 
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
