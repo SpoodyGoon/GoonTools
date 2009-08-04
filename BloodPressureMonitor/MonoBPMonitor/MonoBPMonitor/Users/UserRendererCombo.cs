@@ -110,6 +110,26 @@ namespace MonoBPMonitor.Users
 				Common.EnvData.HandleError(ex);
 			}
 		}
+		
+		protected override void OnEdited (string path, string new_text)
+		{
+			if(new_text == "New User...")
+			{
+				QuickUser fm = new QuickUser();
+				if((Gtk.ResponseType)fm.Run()== Gtk.ResponseType.Ok)
+				{
+					LoadUsers();
+					this.SetUser(fm.UserID);	
+				}
+				else
+				{
+					this.SetUser(_UserID);
+				}
+				fm.Destroy();
+			}
+			base.OnEdited (path, new_text);
+		}
+
 			
 		#region Public Properties
 			

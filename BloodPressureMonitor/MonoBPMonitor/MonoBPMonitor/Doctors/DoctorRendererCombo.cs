@@ -109,6 +109,18 @@ namespace MonoBPMonitor.Doctors
 				Common.EnvData.HandleError(ex);
 			}
 		}
+		
+		protected override void OnEdited (string path, string new_text)
+		{
+			if(new_text == "New User...")
+			{
+				QuickDoctor fm = new QuickDoctor();
+				fm.Run();
+				fm.Destroy();
+			}
+			base.OnEdited (path, new_text);
+		}
+
 			
 		#region Public Properties
 			

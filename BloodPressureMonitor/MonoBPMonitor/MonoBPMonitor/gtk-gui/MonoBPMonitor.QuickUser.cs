@@ -128,7 +128,7 @@ namespace MonoBPMonitor {
             this.buttonOk.UseStock = true;
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
-            this.AddActionWidget(this.buttonOk, -5);
+            w10.Add(this.buttonOk);
             Gtk.ButtonBox.ButtonBoxChild w12 = ((Gtk.ButtonBox.ButtonBoxChild)(w10[this.buttonOk]));
             w12.Position = 1;
             w12.Expand = false;
@@ -139,6 +139,7 @@ namespace MonoBPMonitor {
             this.DefaultWidth = 400;
             this.DefaultHeight = 94;
             this.Show();
+            this.txtUserName.KeyReleaseEvent += new Gtk.KeyReleaseEventHandler(this.OnTxtUserNameKeyReleaseEvent);
             this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
             this.buttonOk.Clicked += new System.EventHandler(this.OnButtonOkClicked);
         }

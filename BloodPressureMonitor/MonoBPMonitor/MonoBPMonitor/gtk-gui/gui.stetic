@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
@@ -3150,6 +3150,7 @@
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">●</property>
+                        <signal name="KeyReleaseEvent" handler="OnTxtUserNameKeyReleaseEvent" />
                       </widget>
                     </child>
                   </widget>
@@ -3218,7 +3219,7 @@
             <property name="UseStock">True</property>
             <property name="Type">StockItem</property>
             <property name="StockId">gtk-ok</property>
-            <property name="ResponseId">-5</property>
+            <property name="ResponseId">-1</property>
             <signal name="Clicked" handler="OnButtonOkClicked" />
             <property name="label">gtk-ok</property>
           </widget>
