@@ -24,107 +24,113 @@ using System;
 using Gtk;
 using GoonTools;
 
-namespace MonoBPMonitor 
+namespace MonoBPMonitor
 {
-	
-	
-	public partial class MainWindow : Gtk.Window 
+
+
+	public partial class MainWindow : Gtk.Window
 	{
 		Reports.EntryRptTreeView tvEntityRpt;
-		public MainWindow() : base(Gtk.WindowType.Toplevel) 
+		public MainWindow () : base(Gtk.WindowType.Toplevel)
 		{
-			this.Build();
-			tvEntityRpt = new Reports.EntryRptTreeView(cboUser.UserID);
-			swEntityRpt.Add(tvEntityRpt);
-			this.ShowAll();
+			this.Build ();
+			tvEntityRpt = new Reports.EntryRptTreeView (cboUser.UserID);
+			swEntityRpt.Add (tvEntityRpt);
+			this.ShowAll ();
 		}
-		
-		protected virtual void OnDeleteEvent(object o, Gtk.DeleteEventArgs args) 
+
+		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-			
+
 		}
 
 		protected virtual void OnNewEntryActionActivated (object sender, System.EventArgs e)
 		{
-			frmBPEntry fm = new frmBPEntry();
-			fm.Run();
-			fm.Destroy();
+			frmBPEntry fm = new frmBPEntry ();
+			fm.Run ();
+			fm.Destroy ();
 		}
 
 		protected virtual void OnMedicationActionActivated (object sender, System.EventArgs e)
-		{			
-			frmMedication fm = new frmMedication();
-			fm.Run();
-			fm.Destroy();
+		{
+			frmMedication fm = new frmMedication ();
+			fm.Run ();
+			fm.Destroy ();
 		}
 
 		protected virtual void OnDoctorsActionActivated (object sender, System.EventArgs e)
-		{			
-			frmDoctors fm = new frmDoctors();
-			fm.Run();
-			fm.Destroy();
+		{
+			frmDoctors fm = new frmDoctors ();
+			fm.Run ();
+			fm.Destroy ();
 		}
 
 		protected virtual void OnUsersActionActivated (object sender, System.EventArgs e)
 		{
-			frmUsers fm = new frmUsers();
-			fm.Run();
-			fm.Destroy();
+			frmUsers fm = new frmUsers ();
+			fm.Run ();
+			fm.Destroy ();
 		}
 
 		protected virtual void OnAboutActionActivated (object sender, System.EventArgs e)
-		{			
-			
+		{
+			frmAbout fm = new frmAbout();
+			fm.Run();
+			fm.Destroy();
 		}
 
 		protected virtual void OnEditaddPngActionActivated (object sender, System.EventArgs e)
-		{			
-			frmBPEntry fm = new frmBPEntry();
-			fm.Run();
-			fm.Destroy();
+		{
+			frmBPEntry fm = new frmBPEntry ();
+			fm.Run ();
+			fm.Destroy ();
 		}
 
 		protected virtual void OnEdituserPngActionActivated (object sender, System.EventArgs e)
-		{			
-			frmUsers fm = new frmUsers();
-			fm.Run();
-			fm.Destroy();
+		{
+			frmUsers fm = new frmUsers ();
+			fm.Run ();
+			fm.Destroy ();
 		}
 
 		protected virtual void OnExitPngActionActivated (object sender, System.EventArgs e)
 		{
-			Gtk.Application.Quit();
+			Gtk.Application.Quit ();
 		}
 
 		protected virtual void OnQuitActionActivated (object sender, System.EventArgs e)
 		{
-			Gtk.Application.Quit();
+			Gtk.Application.Quit ();
 		}
 
 		protected virtual void OnPreferencesActionActivated (object sender, System.EventArgs e)
 		{
-			frmOptions fm = new frmOptions();
-			fm.Run();
-			fm.Destroy();
-			tvEntityRpt.Refresh(true);
+			frmOptions fm = new frmOptions ();
+			fm.Run ();
+			fm.Destroy ();
+			tvEntityRpt.Refresh (true);
 		}
 
 		protected virtual void OnRxPngActionActivated (object sender, System.EventArgs e)
 		{
-			frmMedication fm = new frmMedication();
-			fm.Run();
-			fm.Destroy();
+			frmMedication fm = new frmMedication ();
+			fm.Run ();
+			fm.Destroy ();
 		}
 
 		protected virtual void OnDoctorPngActionActivated (object sender, System.EventArgs e)
 		{
-			frmDoctors fm = new frmDoctors();
+			frmDoctors fm = new frmDoctors ();
+			fm.Run ();
+			fm.Destroy ();
+		}
+
+		protected virtual void OnErrorLogActionActivated (object sender, System.EventArgs e)
+		{
+			frmErrorLog fm = new frmErrorLog ();
 			fm.Run();
 			fm.Destroy();
 		}
-
-		
-		
 	}
-		
+
 }

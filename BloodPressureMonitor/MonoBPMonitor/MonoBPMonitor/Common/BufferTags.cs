@@ -58,6 +58,11 @@ namespace GoonTools
 			tag.Size = (int) Pango.Scale.PangoScale * 15;
 			buffer.TagTable.Add (tag);
 
+			tag  = new TextTag ("sub_heading");
+			tag.Weight = Pango.Weight.Bold;
+			tag.Size = (int) Pango.Scale.PangoScale * 10;
+			buffer.TagTable.Add (tag);
+
 			tag  = new TextTag ("italic");
 			tag.Style = Pango.Style.Italic;
 			buffer.TagTable.Add (tag);
