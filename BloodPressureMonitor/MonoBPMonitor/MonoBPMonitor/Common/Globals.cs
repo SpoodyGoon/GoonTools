@@ -103,9 +103,10 @@ namespace GoonTools.Global
 			if(Common.Option.SaveErrorLog == true)
 			{
 				StreamWriter sw = new StreamWriter(_SavePath + "error.log", true);
-				sw.Write("\n--------------------------------------------------------------------");
-				sw.Write("\n---- " + DateTime.Now.ToString());
-				sw.Write("\n" + ex.ToString());
+				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
+				sw.Write(sw.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
+				sw.Write(sw.NewLine + ex.ToString());
+				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
 				sw.Close();
 			}
 				
@@ -113,6 +114,21 @@ namespace GoonTools.Global
 			md.Run();
 			md.Destroy();
 			
+		}
+		
+		public void CleanErrorLog()
+		{
+			try
+			{
+				if(System.IO.File.Exists(_SavePath + "error.log"))
+				{
+					System.IO.File.Delete(_SavePath + "error.log");
+				}
+			}
+			catch(Exception ex)
+			{
+				HandleError(ex);
+			}
 		}
 		
 		#endregion Error Handling
