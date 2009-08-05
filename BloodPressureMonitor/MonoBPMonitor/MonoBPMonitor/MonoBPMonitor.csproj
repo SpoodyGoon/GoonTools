@@ -168,6 +168,8 @@
     <EmbeddedResource Include="Help\frmAbout.xml">
       <LogicalName>frmAbout.xml</LogicalName>
     </EmbeddedResource>
+    <None Include="Help\icon_large.png" />
+    <None Include="Help\icon_small.png" />
     <None Include="Properties\app.config" />
     <None Include="Reports\MainEntry\Description.txt" />
     <Compile Include="Doctors\DoctorRendererCombo.cs" />
