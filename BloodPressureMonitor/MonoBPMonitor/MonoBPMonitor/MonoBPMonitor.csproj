@@ -122,6 +122,7 @@
     </EmbeddedResource>
     <Compile Include="Doctors\DoctorTreeView.cs" />
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
+    <Compile Include="Help\LoadAbout.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
     <Compile Include="Medications\MedicationTreeView.Designer.cs" />
     <Compile Include="Users\UserRendererCombo.cs" />
@@ -164,6 +165,9 @@
     <EmbeddedResource Include="images\rx.png">
       <LogicalName>rx.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Help\frmAbout.xml">
+      <LogicalName>frmAbout.xml</LogicalName>
+    </EmbeddedResource>
     <None Include="Properties\app.config" />
     <None Include="Reports\MainEntry\Description.txt" />
     <Compile Include="Doctors\DoctorRendererCombo.cs" />
@@ -173,9 +177,7 @@
     <Compile Include="gtk-gui\MonoBPMonitor.QuickDoctor.cs" />
     <Compile Include="Users\QuickUser.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.QuickUser.cs" />
-    <Compile Include="gtk-gui\MonoBPMonitor.frmAbout.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmErrorLog.cs" />
-    <Compile Include="Help\frmAbout.cs" />
     <Compile Include="Help\frmErrorLog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
