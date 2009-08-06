@@ -74,13 +74,14 @@ namespace MonoBPMonitor
 
 		protected virtual void OnAboutActionActivated (object sender, System.EventArgs e)
 		{
+			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
 			Gtk.AboutDialog ad = new Gtk.AboutDialog();
 			ad.Title = "About Mono Blood Pressure Monitor";
 			ad.ProgramName = "Mono Blood Pressure Monitor";
 			ad.Comments = "Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.\n\nIt include methods to track medication as well as doctors but it's main focus is the simple tracking and reporting of blood pressure readings.";
 			ad.License = GoonTools.Const.License;
 			ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
-			ad.Version = "0.0.1";
+			ad.Version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
 			ad.Logo = Gdk.Pixbuf.LoadFromResource("icon_large.png");
 			ad.Icon = Gdk.Pixbuf.LoadFromResource("icon_small.png");
 			ad.AllowShrink = true;

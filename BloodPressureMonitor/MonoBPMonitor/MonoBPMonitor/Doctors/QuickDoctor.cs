@@ -19,6 +19,16 @@ namespace MonoBPMonitor
 			this.Build();
 			cboUser.SetUser(userid);
 		}
+		
+		public int DoctorID
+		{
+			get{return _CurrentDoctorID;}
+		}
+		
+		public string DoctorName
+		{
+			get{return _CurrentDoctorName;}
+		}
 
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{

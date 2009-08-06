@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
- 
+
 using System;
 using System.Data;
 using Gtk;
@@ -27,22 +27,23 @@ using GoonTools;
 using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Users
-{	
+{
 	[System.ComponentModel.ToolboxItem(true)]
 	public class UserComboBox : Gtk.ComboBox
-	{		
+	{
 		private Gtk.ListStore lsUser = new Gtk.ListStore(typeof(int), typeof(string));
 		private int _UserID;
 		private string _UserName;
 		private int _SearchUserID;
 		private string _SearchUserName;
+		private bool _IsLoading = false;
 		public UserComboBox()
 		{
 			
 		}
 		
 		private void Build()
-		{	
+		{
 			LoadUsers();
 			Gtk.CellRendererText ct = new Gtk.CellRendererText();
 			this.PackStart(ct, true);
@@ -57,6 +58,7 @@ namespace MonoBPMonitor.Users
 		{
 			try
 			{
+				_IsLoading = true;
 				lsUser.Clear();
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
 				DataTable dt = dp.ExecuteDataTable("SELECT UserID, UserName FROM tb_User");
@@ -65,7 +67,7 @@ namespace MonoBPMonitor.Users
 					lsUser.AppendValues(Convert.ToInt32(dr["UserID"]), dr["UserName"].ToString());
 				}
 				lsUser.AppendValues(-1, "New User...");
-				
+				_IsLoading = false;				
 			}
 			catch(Exception ex)
 			{
@@ -87,31 +89,34 @@ namespace MonoBPMonitor.Users
 		{
 			try
 			{
-			Gtk.TreeIter iter;
-			this.GetActiveIter(out iter);
-			if(Convert.ToInt32(lsUser.GetValue(iter, 0)) == -1)
-			{
-				MonoBPMonitor.QuickUser fm = new MonoBPMonitor.QuickUser();
-				if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
+				if(!_IsLoading)
 				{
-					LoadUsers();
-					SetUser(fm.UserID);
+					Gtk.TreeIter iter;
+					this.GetActiveIter(out iter);
+					if(Convert.ToInt32(lsUser.GetValue(iter, 0)) == -1)
+					{
+						MonoBPMonitor.QuickUser fm = new MonoBPMonitor.QuickUser();
+						if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
+						{
+							LoadUsers();
+							SetUser(fm.UserID);
+						}
+						else
+						{
+							// if we don't add a new user then set the
+							// combo box back to the prevois selection
+							SetUser(_UserID);
+						}
+						fm.Destroy();
+					}
+					else
+					{
+						_UserID = (int)lsUser.GetValue(iter, 0);
+						_UserName =  (string)lsUser.GetValue(iter, 1);
+					}
 				}
-				else
-				{
-					// if we don't add a new user then set the 
-					// combo box back to the prevois selection
-					SetUser(_UserID);
-				}
-				fm.Destroy();
-			}
-			else
-			{
-				_UserID = (int)lsUser.GetValue(iter, 0);
-				_UserName =  (string)lsUser.GetValue(iter, 1);
-			}
 				
-			base.OnChanged ();
+				base.OnChanged ();
 			}
 			catch(Exception ex)
 			{
@@ -119,9 +124,9 @@ namespace MonoBPMonitor.Users
 			}
 		}
 
-			
+		
 		#region Public Properties
-			
+		
 		public string UserName
 		{
 			get{return _UserName;}
@@ -129,7 +134,7 @@ namespace MonoBPMonitor.Users
 		
 		public int UserID
 		{
-			get{return _UserID;}	
+			get{return _UserID;}
 		}
 		
 		#endregion Public Properties
@@ -149,7 +154,7 @@ namespace MonoBPMonitor.Users
 			lsUser.Foreach(new TreeModelForeachFunc(ForeachUserID));
 		}
 		
-		#endregion Public Methods		
+		#endregion Public Methods
 		
 		private bool ForeachUserText(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
 		{
