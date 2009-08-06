@@ -5,11 +5,11 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("MonoBPMonitor")]
-[assembly: AssemblyDescription("Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.")]
+[assembly: AssemblyDescription("Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.\n\nIt include methods to track medication as well as doctors but it's main focus is the simple tracking and reporting of blood pressure readings.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GoonTools")]
 [assembly: AssemblyProduct("BPMonitor")]
-[assembly: AssemblyCopyright("2009")]
+[assembly: AssemblyCopyright("GoonTools 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

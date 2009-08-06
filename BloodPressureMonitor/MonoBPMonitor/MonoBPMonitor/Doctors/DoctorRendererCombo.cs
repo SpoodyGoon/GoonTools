@@ -101,7 +101,7 @@ namespace MonoBPMonitor.Doctors
 				{
 					lsDoctor.AppendValues(Convert.ToInt32(dr["DoctorID"]), dr["DoctorName"].ToString());
 				}
-				lsDoctor.AppendValues(-1, "New User...");
+//				lsDoctor.AppendValues(-1, "New User...");
 				
 			}
 			catch(Exception ex)
@@ -110,16 +110,16 @@ namespace MonoBPMonitor.Doctors
 			}
 		}
 		
-		protected override void OnEdited (string path, string new_text)
-		{
-			if(new_text == "New User...")
-			{
-				QuickDoctor fm = new QuickDoctor();
-				fm.Run();
-				fm.Destroy();
-			}
-			base.OnEdited (path, new_text);
-		}
+//		protected override void OnEdited (string path, string new_text)
+//		{
+//			if(new_text == "New User...")
+//			{
+//				QuickDoctor fm = new QuickDoctor();
+//				fm.Run();
+//				fm.Destroy();
+//			}
+//			base.OnEdited (path, new_text);
+//		}
 
 			
 		#region Public Properties

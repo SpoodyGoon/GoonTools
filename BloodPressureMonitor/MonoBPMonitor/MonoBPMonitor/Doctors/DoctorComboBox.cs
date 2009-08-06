@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
- 
+
 using System;
 using System.Data;
 using Gtk;
@@ -27,19 +27,22 @@ using GoonTools;
 using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Doctors
-{	
+{
 	[System.ComponentModel.ToolboxItem(true)]
 	public class DoctorComboBox : Gtk.ComboBox
 	{
 		private Gtk.ListStore lsDoctor = new Gtk.ListStore(typeof(int), typeof(string));
 		private int _DoctorID;
 		private string _DoctorName;
+		private int _SearchDoctorID;
+		private string _SearchDoctorName;
+		private bool _IsLoading = false;
 		public DoctorComboBox()
 		{
-		}		
+		}
 		
 		private void Build()
-		{	
+		{
 			LoadDoctor();
 			Gtk.CellRendererText ct = new Gtk.CellRendererText();
 			this.PackStart(ct, true);
@@ -54,6 +57,7 @@ namespace MonoBPMonitor.Doctors
 		{
 			try
 			{
+				_IsLoading = true;
 				lsDoctor.Clear();
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
 				DataTable dt = dp.ExecuteDataTable("SELECT DoctorID, DoctorName FROM tb_Doctor");
@@ -61,8 +65,8 @@ namespace MonoBPMonitor.Doctors
 				{
 					lsDoctor.AppendValues(Convert.ToInt32(dr["DoctorID"]), dr["DoctorName"].ToString());
 				}
-			lsDoctor.AppendValues(-1, "New User...");
-				
+				lsDoctor.AppendValues(-1, "New User...");
+				_IsLoading = false;
 			}
 			catch(Exception ex)
 			{
@@ -81,17 +85,47 @@ namespace MonoBPMonitor.Doctors
 		
 		[GLib.ConnectBeforeAttribute()]
 		protected override void OnChanged ()
-		{
-			Gtk.TreeIter iter;
-			this.GetActiveIter(out iter);
-			_DoctorID = (int)lsDoctor.GetValue(iter, 0);
-			_DoctorName =  (string)lsDoctor.GetValue(iter, 1);
+		{try
+			{
+				if(!_IsLoading)
+				{
+					Gtk.TreeIter iter;
+					this.GetActiveIter(out iter);
+					if(Convert.ToInt32(lsDoctor.GetValue(iter, 0)) == -1)
+					{
+						MonoBPMonitor.QuickDoctor fm = new MonoBPMonitor.QuickDoctor();
+						if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
+						{
+							LoadDoctor();
+							SetDoctor(fm.DoctorID);
+						}
+						else
+						{
+							// if we don't add a new user then set the
+							// combo box back to the prevois selection
+							SetDoctor(_DoctorID);
+						}
+						fm.Destroy();
+					}
+					else
+					{						
+						_DoctorID = (int)lsDoctor.GetValue(iter, 0);
+						_DoctorName =  (string)lsDoctor.GetValue(iter, 1);
+					}
+				}
+				
+				base.OnChanged ();
+			}
+			catch(Exception ex)
+			{
+				GoonTools.Common.EnvData.HandleError(ex);
+			}
 			base.OnChanged ();
 		}
 
-			
+		
 		#region Public Properties
-			
+		
 		public string DoctorName
 		{
 			get{return _DoctorName;}
@@ -99,9 +133,50 @@ namespace MonoBPMonitor.Doctors
 		
 		public int DoctorID
 		{
-			get{return _DoctorID;}	
+			get{return _DoctorID;}
 		}
 		
 		#endregion Public Properties
+		
+		#region Public Methods
+		
+		public void SetDoctor(string doctorname)
+		{
+			_SearchDoctorName = doctorname;
+			lsDoctor.Foreach(new TreeModelForeachFunc(ForeachDoctorText));
+			
+		}
+		
+		public void SetDoctor(int doctorid)
+		{
+			_SearchDoctorID = doctorid;
+			lsDoctor.Foreach(new TreeModelForeachFunc(ForeachDoctorID));
+		}
+		
+		#endregion Public Methods
+		
+		private bool ForeachDoctorText(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+		{
+			if(_SearchDoctorName == lsDoctor.GetValue(iter, 1).ToString())
+			{
+				_DoctorName = lsDoctor.GetValue(iter, 1).ToString();
+				_DoctorID = Convert.ToInt32(lsDoctor.GetValue(iter, 0));
+				this.SetActiveIter(iter);
+				return true;
+			}
+			return false;
+		}
+		
+		private bool ForeachDoctorID(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+		{
+			if(_SearchDoctorID == Convert.ToInt32(lsDoctor.GetValue(iter, 0)))
+			{
+				_DoctorName = lsDoctor.GetValue(iter, 1).ToString();
+				_DoctorID = Convert.ToInt32(lsDoctor.GetValue(iter, 0));
+				this.SetActiveIter(iter);
+				return true;
+			}
+			return false;
+		}
 	}
 }
