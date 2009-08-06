@@ -31,7 +31,8 @@ namespace  GoonTools
 		#region "License Text"
 		
 		public const string License =
-			@"
+			@"                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
@@ -663,7 +664,7 @@ to attach them to the start of each source file to most effectively
 state the exclusion of warranty; and each file should have at least
 the ""copyright"" line and a pointer to where the full notice is found.
 
-    <one line to give the program's name and a brief idea of what it does.>
+    Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.
     Copyright (C) 2009  Andrew York
 
     This program is free software: you can redistribute it and/or modify
@@ -684,7 +685,7 @@ Also add information on how to contact you by electronic and paper mail.
   If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
-    <program>  Copyright (C) 2009  Andrew York
+    MonoBPMonitor  Copyright (C) 2009  Andrew York
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
