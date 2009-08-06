@@ -85,6 +85,8 @@ namespace MonoBPMonitor.Users
 		[GLib.ConnectBeforeAttribute()]
 		protected override void OnChanged ()
 		{
+			try
+			{
 			Gtk.TreeIter iter;
 			this.GetActiveIter(out iter);
 			if(Convert.ToInt32(lsUser.GetValue(iter, 0)) == -1)
@@ -108,7 +110,13 @@ namespace MonoBPMonitor.Users
 				_UserID = (int)lsUser.GetValue(iter, 0);
 				_UserName =  (string)lsUser.GetValue(iter, 1);
 			}
+				
 			base.OnChanged ();
+			}
+			catch(Exception ex)
+			{
+				GoonTools.Common.EnvData.HandleError(ex);
+			}
 		}
 
 			
