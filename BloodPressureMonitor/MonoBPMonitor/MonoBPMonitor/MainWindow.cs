@@ -74,8 +74,7 @@ namespace MonoBPMonitor
 
 		protected virtual void OnAboutActionActivated (object sender, System.EventArgs e)
 		{
-			LoadAbout la = new LoadAbout();
-			la.Show();
+			
 		}
 
 		protected virtual void OnEditaddPngActionActivated (object sender, System.EventArgs e)
