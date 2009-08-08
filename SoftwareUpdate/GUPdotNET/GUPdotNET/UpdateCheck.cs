@@ -143,7 +143,7 @@ namespace GUPdotNET
 		{
 			try
 			{
-				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(GUPdotNET.UpdateInfoURL + "?InstallType=" + GUPdotNET.InstallType);
+				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(ConfigurationManager.AppSettings["UpdateInfoURL"].ToString() + "?InstallType=" + ConfigurationManager.AppSettings["InstallType"].ToString() );
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				ParseResponse(s);

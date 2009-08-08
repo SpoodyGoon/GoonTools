@@ -47,9 +47,9 @@ namespace GUPdotNET
 			{
 				this.progressbar1.DoubleBuffered= true;
 				this.Title = GUPdotNET.ProgramTitle;
-				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + GUPdotNET.ProgramTitle + "</b></span>";
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + ConfigurationManager.AppSettings["ProgramTitle"].ToString() + "</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "Downloading the update for " + GUPdotNET.ProgramTitle + ".\r\nPlease be patient.";
+				this.lblUpdateMessage.Text = "Downloading the update for " + ConfigurationManager.AppSettings["ProgramTitle"].ToString() + ".\r\nPlease be patient.";
 				this.ShowNow();
 				StartDownload();
 			}
