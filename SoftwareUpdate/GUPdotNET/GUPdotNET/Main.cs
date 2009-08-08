@@ -27,13 +27,35 @@ class MainClass
 	public static void Main (string[] args)
 	{
 		Application.Init ();
-		bool blnSilentCheck = false;
-		if(args[0] != null)
+		bool _SilentCheck = false;
+		int _MajorVersion;
+		int _MinorVersion;
+		try
 		{
-			// we pass in weather or not we want the update to
-			// notify the users of errors and bad connections, etc....
-			if(args[0] == "true")
-				blnSilentCheck = true;
+			// the first 2 args are required
+			if(args.Length >= 2)
+			{
+				_MajorVersion = int.Parse(args[0].ToString().Trim());
+				_MinorVersion = int.Parse(args[1].ToString().Trim());
+				
+				if(args[2] != null)
+				{					
+					// the 3 argument if it exists tell the updater if
+					// we want to do the update in the backgound (true) or not
+					if(args[2].ToLower() == "true")
+						_SilentCheck = true;
+				}
+			}
+			else
+			{
+				throw new Exception("Missing version arguments.");
+			}
+		}
+		catch(Exception ex)
+		{
+			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "GUPdotNET update error");
+			md.Run();
+			md.Destroy();
 		}
 		GUPdotNET.UpdateCheck uc = new GUPdotNET.UpdateCheck();
 		uc.RunCheck(blnSilentCheck);
