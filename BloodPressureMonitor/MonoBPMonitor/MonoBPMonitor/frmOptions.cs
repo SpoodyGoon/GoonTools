@@ -19,7 +19,7 @@ namespace MonoBPMonitor
 
 		protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
 		{
-			SaveChanges();
+			SaveChanges(); 
 			this.Hide();
 		}
 		
