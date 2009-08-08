@@ -120,10 +120,9 @@ namespace GoonTools.Global
 		{
 			try
 			{
-				if(System.IO.File.Exists(_SavePath + "error.log"))
-				{
-					System.IO.File.Delete(_SavePath + "error.log");
-				}
+				StreamWriter sw = new StreamWriter(_SavePath + "error.log", false);
+				sw.Write("");
+				sw.Close();
 			}
 			catch(Exception ex)
 			{

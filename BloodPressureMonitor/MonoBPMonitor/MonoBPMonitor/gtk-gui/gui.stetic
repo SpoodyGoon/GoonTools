@@ -485,25 +485,31 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.HButtonBox" id="hbuttonbox2">
+              <widget class="Gtk.Alignment" id="alignment2">
                 <property name="MemberName" />
-                <property name="Spacing">3</property>
-                <property name="Size">1</property>
-                <property name="LayoutStyle">Start</property>
+                <property name="LeftPadding">20</property>
                 <child>
-                  <widget class="Gtk.Button" id="btnDelete">
+                  <widget class="Gtk.HButtonBox" id="hbuttonbox2">
                     <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="UseStock">True</property>
-                    <property name="Type">StockItem</property>
-                    <property name="StockId">gtk-delete</property>
-                    <signal name="Clicked" handler="OnBtnDeleteClicked" />
-                    <property name="label">gtk-delete</property>
+                    <property name="Spacing">3</property>
+                    <property name="Size">1</property>
+                    <property name="LayoutStyle">Start</property>
+                    <child>
+                      <widget class="Gtk.Button" id="btnDelete">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="UseStock">True</property>
+                        <property name="Type">StockItem</property>
+                        <property name="StockId">gtk-delete</property>
+                        <signal name="Clicked" handler="OnBtnDeleteClicked" />
+                        <property name="label">gtk-delete</property>
+                      </widget>
+                      <packing>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
                   </widget>
-                  <packing>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
                 </child>
               </widget>
               <packing>
@@ -534,7 +540,7 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Alignment" id="alignment2">
+              <widget class="Gtk.Alignment" id="alignment8">
                 <property name="MemberName" />
                 <child>
                   <widget class="Gtk.HSeparator" id="hseparator3">
@@ -908,25 +914,31 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.HButtonBox" id="hbuttonbox3">
+              <widget class="Gtk.Alignment" id="alignment2">
                 <property name="MemberName" />
-                <property name="Spacing">3</property>
-                <property name="Size">1</property>
-                <property name="LayoutStyle">Start</property>
+                <property name="LeftPadding">20</property>
                 <child>
-                  <widget class="Gtk.Button" id="btnDelete">
+                  <widget class="Gtk.HButtonBox" id="hbuttonbox3">
                     <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="UseStock">True</property>
-                    <property name="Type">StockItem</property>
-                    <property name="StockId">gtk-delete</property>
-                    <signal name="Clicked" handler="OnBtnDeleteClicked" />
-                    <property name="label">gtk-delete</property>
+                    <property name="Spacing">3</property>
+                    <property name="Size">1</property>
+                    <property name="LayoutStyle">Start</property>
+                    <child>
+                      <widget class="Gtk.Button" id="btnDelete">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="UseStock">True</property>
+                        <property name="Type">StockItem</property>
+                        <property name="StockId">gtk-delete</property>
+                        <signal name="Clicked" handler="OnBtnDeleteClicked" />
+                        <property name="label">gtk-delete</property>
+                      </widget>
+                      <packing>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
                   </widget>
-                  <packing>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
                 </child>
               </widget>
               <packing>
@@ -957,7 +969,7 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Alignment" id="alignment2">
+              <widget class="Gtk.Alignment" id="alignment9">
                 <property name="MemberName" />
                 <child>
                   <widget class="Gtk.HSeparator" id="hseparator3">
@@ -3332,13 +3344,64 @@
               <widget class="Gtk.Alignment" id="alignment3">
                 <property name="MemberName" />
                 <child>
-                  <widget class="Gtk.HSeparator" id="hseparator2">
+                  <widget class="Gtk.HSeparator" id="hseparator1">
                     <property name="MemberName" />
                   </widget>
                 </child>
               </widget>
               <packing>
                 <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment5">
+                <property name="MemberName" />
+                <property name="LeftPadding">20</property>
+                <property name="TopPadding">2</property>
+                <property name="BottomPadding">2</property>
+                <child>
+                  <widget class="Gtk.HButtonBox" id="hbuttonbox2">
+                    <property name="MemberName" />
+                    <property name="Size">1</property>
+                    <property name="LayoutStyle">Start</property>
+                    <child>
+                      <widget class="Gtk.Button" id="btnClearLog">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextAndIcon</property>
+                        <property name="Icon">stock:gtk-clear Menu</property>
+                        <property name="Label" translatable="yes">_Clear Error Log</property>
+                        <signal name="Clicked" handler="OnBtnClearLogClicked" />
+                      </widget>
+                      <packing>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">4</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment6">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.HSeparator" id="hseparator2">
+                    <property name="MemberName" />
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">5</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -3355,7 +3418,7 @@
     <child internal-child="ActionArea">
       <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
         <property name="MemberName" />
-        <property name="Spacing">10</property>
+        <property name="Spacing">6</property>
         <property name="BorderWidth">5</property>
         <property name="Size">1</property>
         <property name="LayoutStyle">Spread</property>
