@@ -31,6 +31,16 @@ namespace MonoBPMonitor {
         
         private Gtk.Alignment alignment3;
         
+        private Gtk.HSeparator hseparator1;
+        
+        private Gtk.Alignment alignment5;
+        
+        private Gtk.HButtonBox hbuttonbox2;
+        
+        private Gtk.Button btnClearLog;
+        
+        private Gtk.Alignment alignment6;
+        
         private Gtk.HSeparator hseparator2;
         
         private Gtk.Button buttonOk;
@@ -111,23 +121,74 @@ namespace MonoBPMonitor {
             this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment3.Name = "alignment3";
             // Container child alignment3.Gtk.Container+ContainerChild
-            this.hseparator2 = new Gtk.HSeparator();
-            this.hseparator2.Name = "hseparator2";
-            this.alignment3.Add(this.hseparator2);
+            this.hseparator1 = new Gtk.HSeparator();
+            this.hseparator1.Name = "hseparator1";
+            this.alignment3.Add(this.hseparator1);
             this.vbox2.Add(this.alignment3);
             Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment3]));
             w10.Position = 3;
             w10.Expand = false;
             w10.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment5 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment5.Name = "alignment5";
+            this.alignment5.LeftPadding = ((uint)(20));
+            this.alignment5.TopPadding = ((uint)(2));
+            this.alignment5.BottomPadding = ((uint)(2));
+            // Container child alignment5.Gtk.Container+ContainerChild
+            this.hbuttonbox2 = new Gtk.HButtonBox();
+            this.hbuttonbox2.Name = "hbuttonbox2";
+            this.hbuttonbox2.LayoutStyle = ((Gtk.ButtonBoxStyle)(3));
+            // Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+            this.btnClearLog = new Gtk.Button();
+            this.btnClearLog.CanFocus = true;
+            this.btnClearLog.Name = "btnClearLog";
+            // Container child btnClearLog.Gtk.Container+ContainerChild
+            Gtk.Alignment w11 = new Gtk.Alignment(0.5F, 0.5F, 0F, 0F);
+            // Container child GtkAlignment.Gtk.Container+ContainerChild
+            Gtk.HBox w12 = new Gtk.HBox();
+            w12.Spacing = 2;
+            // Container child GtkHBox.Gtk.Container+ContainerChild
+            Gtk.Image w13 = new Gtk.Image();
+            w13.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-clear", Gtk.IconSize.Menu, 16);
+            w12.Add(w13);
+            // Container child GtkHBox.Gtk.Container+ContainerChild
+            Gtk.Label w15 = new Gtk.Label();
+            w15.LabelProp = Mono.Unix.Catalog.GetString("_Clear Error Log");
+            w12.Add(w15);
+            w11.Add(w12);
+            this.btnClearLog.Add(w11);
+            this.hbuttonbox2.Add(this.btnClearLog);
+            Gtk.ButtonBox.ButtonBoxChild w19 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.btnClearLog]));
+            w19.Expand = false;
+            w19.Fill = false;
+            this.alignment5.Add(this.hbuttonbox2);
+            this.vbox2.Add(this.alignment5);
+            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment5]));
+            w21.Position = 4;
+            w21.Expand = false;
+            w21.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment6 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment6.Name = "alignment6";
+            // Container child alignment6.Gtk.Container+ContainerChild
+            this.hseparator2 = new Gtk.HSeparator();
+            this.hseparator2.Name = "hseparator2";
+            this.alignment6.Add(this.hseparator2);
+            this.vbox2.Add(this.alignment6);
+            Gtk.Box.BoxChild w23 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment6]));
+            w23.Position = 5;
+            w23.Expand = false;
+            w23.Fill = false;
             w1.Add(this.vbox2);
-            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
-            w11.Position = 0;
+            Gtk.Box.BoxChild w24 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
+            w24.Position = 0;
             // Internal child MonoBPMonitor.frmErrorLog.ActionArea
-            Gtk.HButtonBox w12 = this.ActionArea;
-            w12.Name = "dialog1_ActionArea";
-            w12.Spacing = 10;
-            w12.BorderWidth = ((uint)(5));
-            w12.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+            Gtk.HButtonBox w25 = this.ActionArea;
+            w25.Name = "dialog1_ActionArea";
+            w25.Spacing = 6;
+            w25.BorderWidth = ((uint)(5));
+            w25.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -137,13 +198,14 @@ namespace MonoBPMonitor {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w13 = ((Gtk.ButtonBox.ButtonBoxChild)(w12[this.buttonOk]));
-            w13.Expand = false;
-            w13.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w26 = ((Gtk.ButtonBox.ButtonBoxChild)(w25[this.buttonOk]));
+            w26.Expand = false;
+            w26.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.Show();
+            this.btnClearLog.Clicked += new System.EventHandler(this.OnBtnClearLogClicked);
         }
     }
 }
