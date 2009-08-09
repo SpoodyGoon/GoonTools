@@ -43,10 +43,10 @@
         {
             #region "Install Files URL"
 
-            string _WindowsFile = "http://www.brdstudio.net/gupdotnet/TortoiseSVN-1.5.8.15348-win32-svn-1.5.5.msi";
+            string _WindowsFile = "http://www.brdstudio.net/yahtzeesharp/yathzeesharp.exe";
             string _LinuxFile_rpm = "";
-            string _LinuxFile_bin = "http://www.brdstudio.net/yahtzeesharp/files/YahtzeeSharp-0.1.0b-linux.bin";
-            string _LinuxFile_src = "http://www.brdstudio.net/yahtzeesharp/files/YahtzeeSharp-Mono-Linux_src.tar.gz";
+            string _LinuxFile_bin = "";
+            string _LinuxFile_src = "";
 
             #endregion "Install Files URL"
 			

@@ -28,28 +28,19 @@ class MainClass
 	{
 		Application.Init ();
 		bool _SilentCheck = false;
-		int _MajorVersion;
-		int _MinorVersion;
 		try
 		{
-			// the first 2 args are required
-			if(args.Length >= 2)
-			{
-				_MajorVersion = int.Parse(args[0].ToString().Trim());
-				_MinorVersion = int.Parse(args[1].ToString().Trim());
-				
-				if(args[2] != null)
-				{					
-					// the 3 argument if it exists tell the updater if
-					// we want to do the update in the backgound (true) or not
-					if(args[2].ToLower() == "true")
-						_SilentCheck = true;
-				}
-			}
-			else
-			{
-				throw new Exception("Missing version arguments.");
-			}
+			
+			if(args[0].ToLower() == "true")
+				_SilentCheck = true;
+			
+			GUPdotNET.UpdateCheck uc = new GUPdotNET.UpdateCheck();
+			uc.CurrentMajorVersion = System.Reflection.Assembly.GetCallingAssembly().GetName().Version.Major;
+			uc.CurrentMajorVersion = System.Reflection.Assembly.GetCallingAssembly().GetName().Version.Minor;
+			// TODO: get the job or the full name to check for a lock
+			uc.SilentCheck = _SilentCheck;
+			uc.RunCheck();
+			Application.Run ();
 		}
 		catch(Exception ex)
 		{
@@ -57,8 +48,5 @@ class MainClass
 			md.Run();
 			md.Destroy();
 		}
-		GUPdotNET.UpdateCheck uc = new GUPdotNET.UpdateCheck();
-		uc.RunCheck(blnSilentCheck);
-		Application.Run ();
 	}
 }
