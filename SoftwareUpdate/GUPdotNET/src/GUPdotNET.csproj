@@ -10,11 +10,14 @@
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>True</NoStdLib>
     <WarningLevel>4</WarningLevel>
+    <AssemblyName>GUPdotNET</AssemblyName>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <StartupObject>GUPdotNET.MainClass</StartupObject>
     <StartArguments>true</StartArguments>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <Description>A general purpose update program for Mono/Gtk# to be used cross platform.</Description>
+    <RootNamespace>GUPdotNET</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -50,14 +53,12 @@
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <WarningLevel>4</WarningLevel>
-    <AssemblyName />
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <None Include="app.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="gtk-gui\gui.stetic" />
     <None Include="web_files\GetUpdateInfo.aspx" />
     <None Include="work_files\FlowChart.dia" />
     <Compile Include="frmInstallDialog.cs" />
@@ -72,19 +73,28 @@
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateCheck.cs" />
+    <Compile Include="frmError.cs" />
+    <Compile Include="frmReTry.cs" />
+    <None Include="obj\Debug\GUPdotNET.csproj.FileListAbsolute.txt" />
+    <Compile Include="gtk-gui\GUPdotNET.frmError.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.frmReTry.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\" />
-    <Reference Include="atk-sharp" />
-    <Reference Include="gdk-sharp" />
-    <Reference Include="glib-sharp" />
-    <Reference Include="gtk-sharp" />
     <Reference Include="Mono.Posix" />
     <Reference Include="mscorlib" />
-    <Reference Include="pango-sharp" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
