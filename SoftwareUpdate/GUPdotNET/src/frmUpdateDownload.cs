@@ -40,33 +40,39 @@ namespace GUPdotNET
 		private Thread firstRunner;
 		// return all errors to the main update class
 		private string _ErrorMess = null;
-		public frmUpdateDownload()
+		private string _TempFileLocation= string.Empty;
+		private string _UpdateFileURL = string.Empty;
+		public frmUpdateDownload(string programtitle, string programname, string updatefileurl)
 		{
 			this.Build();
 			try
 			{
+				_UpdateFileURL = updatefileurl;
 				this.progressbar1.DoubleBuffered= true;
-				this.Title = GUPdotNET.ProgramTitle;
-				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + ConfigurationManager.AppSettings["ProgramTitle"].ToString() + "</b></span>";
+				this.Title = programtitle;
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + programname + "</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "Downloading the update for " + ConfigurationManager.AppSettings["ProgramTitle"].ToString() + ".\r\nPlease be patient.";
+				this.lblUpdateMessage.Text = "Downloading the update for " + programname + ".\r\nPlease be patient.";
 				this.ShowNow();
+				// get a unique name for the temporary installer file name
+				_TempFileLocation = GetUniqueFileName(updatefileurl);
 				StartDownload();
 			}
 			catch(Exception ex)
 			{
-				this.Respond(Gtk.ResponseType.Help);
-				// if we get a web exception exit the update
-				_ErrorMess = "Non Web Response error downloading update " + System.Environment.NewLine + ex.Message;
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Non Web Response error downloading update. " + System.Environment.NewLine + ex.Message ,"GUPdotNET Update Download Error");
+				md.Run();
+				md.Destroy();
+				this.Respond(Gtk.ResponseType.Cancel);
 				this.Hide();
 			}
 		}
 		
-        #region Public Properties
+		#region Public Properties
 
 		public string TempFilePath
 		{
-			get{return GUPdotNET.TempInstallerPath;}
+			get{return _TempFileLocation;}
 		}
 		
 		public string ErrorMess
@@ -74,7 +80,27 @@ namespace GUPdotNET
 			get{return _ErrorMess;}
 		}
 		
-       #endregion Public Properties
+		#endregion Public Properties
+		
+		private string GetUniqueFileName(string updatefileurl)
+		{
+			// see if the file has a uniqe name in the systems temp directory
+			// if so return it
+			if(!File.Exists(System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.IO.Path.GetFileName(updatefileurl))))
+				return System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.IO.Path.GetFileName(updatefileurl));
+			
+			// if we get here we need to get a unique file name for the temperary file
+			int FileCount = 1; // incremented to until it + file name is unique
+			string tmpDir = System.IO.Path.GetTempPath();
+			string tmpFileName = System.IO.Path.GetFileNameWithoutExtension(updatefileurl);
+			string tmpExtention = System.IO.Path.GetExtension(updatefileurl);
+			// loop through until it's a unique name
+			while(File.Exists(System.IO.Path.Combine(tmpDir, tmpFileName + FileCount.ToString() + "." + tmpExtention)))
+			{
+				FileCount++;
+			}
+			return System.IO.Path.Combine(tmpDir, tmpFileName + FileCount.ToString() + "." + tmpExtention);
+		}
 		
 		private void StartDownload()
 		{
@@ -98,16 +124,13 @@ namespace GUPdotNET
 			try
 			{
 				float fltTemp = 0.0f;
-				string strLocation = GUPdotNET.UpdateFileURL;
-				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(strLocation);
+				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(_UpdateFileURL);
 				
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				
-				GUPdotNET.TempInstallerPath = System.IO.Path.GetTempPath() + strLocation.Substring(strLocation.LastIndexOf("/") + 1, strLocation.Length - (strLocation.LastIndexOf("/") +1));
-				
 				_FileSize = wsp.ContentLength;
-				FileStream fs = new FileStream(GUPdotNET.TempInstallerPath, FileMode.Create, FileAccess.Write);
+				FileStream fs = new FileStream(_TempFileLocation, FileMode.Create, FileAccess.Write);
 				long lgFileProgress = 0;
 				
 				byte[] b = new byte[2048];
@@ -116,7 +139,7 @@ namespace GUPdotNET
 					
 					int n = s.Read(b, 0, b.Length);
 					_Downloaded = lgFileProgress += n;
-						
+					
 					if (n > 0)
 					{
 						fs.Write(b, 0, n);
@@ -127,8 +150,7 @@ namespace GUPdotNET
 					// to make sure we don't get any funny filesizes from the web response
 					// make sure we don't go over 1.0 for the progress bar
 					fltTemp = (float)_Downloaded/_FileSize;
-					// Console.WriteLine("fraction " + fltTemp.ToString() + " dowloaded " + _Downloaded.ToString() + " File Size " + _FileSize.ToString());
-					if(fltTemp >= 0 && fltTemp <= 1.0) 
+					if(fltTemp >= 0 && fltTemp <= 1.0)
 					{
 						UpdateProgressFraction(fltTemp);
 					}
@@ -149,7 +171,7 @@ namespace GUPdotNET
 				}
 				else
 				{
-					btnOk.Sensitive = true;	
+					btnOk.Sensitive = true;
 				}
 			}
 			catch(WebException e)
@@ -169,7 +191,7 @@ namespace GUPdotNET
 			
 		}
 		
-		void UpdateProgressFraction(float f)
+		private void UpdateProgressFraction(float f)
 		{
 			Application.Invoke(delegate {
 			                   	progressbar1.Text = f.ToString("p");

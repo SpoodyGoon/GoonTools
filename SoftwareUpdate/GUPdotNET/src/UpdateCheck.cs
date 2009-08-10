@@ -1,5 +1,5 @@
 /*************************************************************************
- *                      GUPdotNET.cs
+ *                      UpdateCheck.cs
  *
  *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>
  *
@@ -33,32 +33,32 @@ using Gtk;
 namespace GUPdotNET
 {
 	public class UpdateCheck
-	{				
-        #region Local Variable Declaration
+	{
+		#region Local Variable Declaration
 		
 		// value from the calling application or from the app con
-		private static string _InstallType = null;
-		private static string _ProgramTitle = null;
+		private string _InstallType =  ConfigurationManager.AppSettings["InstallType"].ToString();
+		private string _ProgramTitle =  ConfigurationManager.AppSettings["ProgramTitle"].ToString();
 		// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
-		private static string _ProgramFullPath = null;
+		private string _ProgramFullPath = string.Empty;
 		// this is the actual name of the program i.e. MyProgram.exe
-		private static string _ProgramName = null;
-		private static string _UpdateInfoURL = null;
-		private static int _CurrentMajorVersion = -1;
-		private static int _CurrentMinorVersion = -1;
-		private static bool _SilentCheck = false;
-		private static string _TempInstallerPath = null;
+		private string _ProgramName =  ConfigurationManager.AppSettings["ProgramName"].ToString();
+		private string _UpdateInfoURL =  ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+		private int _CurrentMajorVersion = -1;
+		private int _CurrentMinorVersion = -1;
+		private bool _SilentCheck = false;
+		private string _TempInstallerPath = string.Empty;
 		
 		#endregion Local Variable Declaration
 		
 		#region Web Variable Declaration
 		
 		// values that are imported from the aspx file on the listed web site
-		private static string _UpdateFileURL = null;
-		private static int _UpdateMajorVersion = -1;
-		private static int _UpdateMinorVersion = -1;
-		private static string _LatestVersion = null;
-		private static string _Error = null;
+		private string _UpdateFileURL = null;
+		private int _UpdateMajorVersion = -1;
+		private int _UpdateMinorVersion = -1;
+		private string _LatestVersion = null;
+		private string _Error = null;
 		
 		#endregion Web Variable Declaration
 		
@@ -68,13 +68,13 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		internal static string InstallType
+		internal string InstallType
 		{
 			set{_InstallType=value;}
 			get{return _InstallType;}
 		}
 		
-		internal static string TempInstallerPath
+		internal string TempInstallerPath
 		{
 			set{_TempInstallerPath=value;}
 			get{return _TempInstallerPath;}
@@ -83,7 +83,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  the freindly name of the application
 		/// </summary>
-		internal static  string ProgramTitle
+		internal  string ProgramTitle
 		{
 			set{_ProgramTitle = value;}
 			get{return _ProgramTitle;}
@@ -92,13 +92,13 @@ namespace GUPdotNET
 		/// <summary>
 		///  full path to the application we are updating
 		/// </summary>
-		internal static  string ProgramFullPath
+		internal  string ProgramFullPath
 		{
 			set{_ProgramFullPath = value;}
 			get{return _ProgramFullPath;}
 		}
 		
-		internal static string ProgramName
+		internal string ProgramName
 		{
 			set{_ProgramName = value;}
 			get{return _ProgramName;}
@@ -108,7 +108,7 @@ namespace GUPdotNET
 		///  This is URL for the web site
 		///  containing the update information
 		/// </summary>
-		internal static string UpdateInfoURL
+		internal string UpdateInfoURL
 		{
 			set{_UpdateInfoURL = value;}
 			get{return _UpdateInfoURL;}
@@ -118,7 +118,7 @@ namespace GUPdotNET
 		///  This is the major version of the application
 		///  we are looking to update
 		/// </summary>
-		internal static int CurrentMajorVersion
+		internal int CurrentMajorVersion
 		{
 			set{_CurrentMajorVersion=value;}
 			get{return _CurrentMajorVersion;}
@@ -128,7 +128,7 @@ namespace GUPdotNET
 		///  This is the minor version or the application
 		///  we are looking to update
 		/// </summary>
-		internal static int CurrentMinorVersion
+		internal int CurrentMinorVersion
 		{
 			set{_CurrentMinorVersion=value;}
 			get{return _CurrentMinorVersion;}
@@ -139,7 +139,7 @@ namespace GUPdotNET
 		///  not report if no connection is made to the
 		///  web server or if other interuptions occur
 		/// </summary>
-		internal static bool SilentCheck
+		internal bool SilentCheck
 		{
 			set{_SilentCheck=value;}
 			get{return _SilentCheck;}
@@ -152,7 +152,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  The file that is the updated installation
 		/// </summary>
-		internal static string UpdateFileURL
+		internal string UpdateFileURL
 		{
 			set{_UpdateFileURL=value;}
 			get{return _UpdateFileURL;}
@@ -163,7 +163,7 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		internal static int UpdateMajorVersion
+		internal int UpdateMajorVersion
 		{
 			set{_UpdateMajorVersion= value;}
 			get{return _UpdateMajorVersion;}
@@ -174,7 +174,7 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		internal static int UpdateMinorVersion
+		internal int UpdateMinorVersion
 		{
 			set{_UpdateMinorVersion = value;}
 			get{return _UpdateMinorVersion;}
@@ -183,7 +183,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  this is a generic string of the updatable version
 		/// </summary>
-		internal static string LatestVersion
+		internal string LatestVersion
 		{
 			set{_LatestVersion=value;}
 			get{return _LatestVersion;}
@@ -193,7 +193,7 @@ namespace GUPdotNET
 		///  this contains any error that is returned from the
 		///  web site portion of the app
 		/// </summary>
-		internal static string Error
+		internal string Error
 		{
 			set{_Error=value;}
 			get{return _Error;}
@@ -201,46 +201,49 @@ namespace GUPdotNET
 		
 		#endregion Public Properties Web Server
 
-		public void RunCheck(bool blnSilentCheck)
+		#region Constructors
+		
+		public UpdateCheck()
+		{
+			
+		}
+		
+		#endregion Constructors
+		
+		public void RunUpdateCheck()
 		{
 			try
 			{
-				Gtk.ResponseType UpConResp = ResponseType.None;
-				Gtk.ResponseType UpDownResp = ResponseType.None;
-				
-				// load the local data
-				LoadLocalInfo(blnSilentCheck);
-				
 				// load the update info from the web
-				LoadUpdateInfo();
+				UpdateInfoGet();
 				// check if we need an update via the major and minor version
-				if(GUPdotNET.UpdateMajorVersion > GUPdotNET.CurrentMajorVersion || (GUPdotNET.UpdateMajorVersion == GUPdotNET.CurrentMajorVersion && GUPdotNET.UpdateMinorVersion > GUPdotNET.CurrentMinorVersion))
+				if(_UpdateMajorVersion > _CurrentMajorVersion || (_UpdateMajorVersion == _CurrentMajorVersion && _UpdateMinorVersion > _CurrentMinorVersion))
 				{
 					// tell the user there is an update availalbe
 					// and ask if they would like to update
-					frmUpdateConfirm UpCon = new frmUpdateConfirm();
-					UpConResp = (Gtk.ResponseType)UpCon.Run();
-					UpCon.Destroy();
-					
-					// if the user wants an update start the update dialog
-					if(UpConResp == Gtk.ResponseType.Yes)
+					frmUpdateConfirm dlgConfirm = new frmUpdateConfirm(_ProgramTitle, _ProgramName, _LatestVersion);
+					if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Ok)
 					{
-						frmUpdateDownload UpDown = new frmUpdateDownload();
-						UpDownResp = (Gtk.ResponseType)UpDown.Run();
-						UpDown.Destroy();
+						// update confirmed get installer file
+						frmUpdateDownload dlgDownload = new frmUpdateDownload(_ProgramTitle, _ProgramName, _UpdateFileURL);
+						if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
+						{
+							_TempInstallerPath = dlgDownload.TempFilePath;
+							
+							// if the download was sucessful then procede with the install
+							frmInstallDialog Inst = new frmInstallDialog(_ProgramName, _ProgramTitle, _InstallType, _TempInstallerPath);
+							Inst.Run();
+							Inst.Destroy();
+							
+						}
+						dlgDownload.Destroy();
 					}
-					
-					// if the download was sucessful then procede with the install
-					if(UpDownResp == ResponseType.Ok)
-					{
-						frmInstallDialog Inst = new frmInstallDialog();
-						Inst.Run();
-						Inst.Destroy();
-					}
+					dlgConfirm.Destroy();
 				}
 				else
 				{
-					if(GUPdotNET.SilentCheck == false)
+					// if the update check is not silent notify the user of the results
+					if(_SilentCheck == false)
 					{
 						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "No updates avalable at this time." ,"No updates");
 						md.Run();
@@ -249,32 +252,21 @@ namespace GUPdotNET
 				}
 				
 			}
-			catch(Exception doh)
+			catch(Exception ex)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString() ,"Error");
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString() ,"GUPdotNET Update Error");
 				md.Run();
 				md.Destroy();
 			}
 		}
 		
-		private void LoadLocalInfo(bool blnSilentCheck)
-		{
-			GUPdotNET.SilentCheck = blnSilentCheck;
-			GUPdotNET.ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
-			GUPdotNET.InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
-			GUPdotNET.ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
-			GUPdotNET.UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
-			GUPdotNET.CurrentMajorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMajorVersion"].ToString());
-			GUPdotNET.CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["CurrentMinorVersion"].ToString());
-		}
-		
 		#region Update Info Web
 		
-		private void LoadUpdateInfo()
+		private void UpdateInfoGet()
 		{
 			try
 			{
-				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(ConfigurationManager.AppSettings["UpdateInfoURL"].ToString() + "?InstallType=" + ConfigurationManager.AppSettings["InstallType"].ToString() );
+				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(_UpdateInfoURL + "?InstallType=" + _InstallType );
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				ParseResponse(s);
@@ -304,15 +296,15 @@ namespace GUPdotNET
 				// parse out the GUPdotNET element children
 				for (int i = 0; i < nl.Count; i++)
 				{
-					GUPdotNET.UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText;
-					GUPdotNET.UpdateMajorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMajorVersion").InnerText);
-					GUPdotNET.UpdateMinorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMinorVersion").InnerText);
-					GUPdotNET.LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText;
-					GUPdotNET.Error = nl[i].SelectSingleNode("Error").InnerText;
+					_UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText;
+					_UpdateMajorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMajorVersion").InnerText);
+					_UpdateMinorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMinorVersion").InnerText);
+					_LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText;
+					_Error = nl[i].SelectSingleNode("Error").InnerText;
 				}
 				// check for an error from the server
-				if(GUPdotNET.Error.Length > 2)
-					ExitUpdate("Error parsing the update xml file - " + System.Environment.NewLine + GUPdotNET.Error);
+				if(_Error.Length > 2)
+					ExitUpdate("Error parsing the update xml file - " + System.Environment.NewLine + _Error);
 			}
 			catch(Exception doh)
 			{
@@ -329,7 +321,7 @@ namespace GUPdotNET
 		{
 			// if we don't want a silent check tell the user
 			// why we can't update
-			if(GUPdotNET.SilentCheck == false && strExitMess != null)
+			if(_SilentCheck == false && strExitMess != null)
 			{
 				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, strExitMess, "Exiting Update");
 				md.Run();

@@ -29,16 +29,16 @@ namespace GUPdotNET
 	
 	public partial class frmUpdateConfirm : Gtk.Dialog
 	{
-		public frmUpdateConfirm()
+		public frmUpdateConfirm(string programtitle, string programname, string newversion)
 		{
 			this.Build();
 			try
 			{
 				
-				this.Title = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
-				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + ConfigurationManager.AppSettings["ProgramTitle"].ToString() + " Update</b></span>";
+				this.Title = programtitle;
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + programname + " Update</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "<span size=\"medium\">There is an update available for " + ConfigurationManager.AppSettings["ProgramTitle"].ToString() + ".\r\nWould you like to upgrate to version: " + GUPdotNET.LatestVersion + " now?</span>";
+				this.lblUpdateMessage.Text = "<span size=\"medium\">There is an update available for " + programtitle + ".\r\nWould you like to upgrate to version: " + newversion + " now?</span>";
 				this.lblUpdateMessage.UseMarkup = true;
 				this.lblUpdateMessage.Wrap = true;
 			}
@@ -48,9 +48,6 @@ namespace GUPdotNET
 				md.Run();
 				md.Destroy();
 			}
-			this.Focus = lblProgramTitle;
-			this.KeepAbove = true;
-			this.ShowAll();
 		}
 
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
