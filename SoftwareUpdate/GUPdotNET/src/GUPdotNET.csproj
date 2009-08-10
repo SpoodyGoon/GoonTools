@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectGuid>{4C89213F-F2F0-417D-AB7F-850D2BC47DC7}</ProjectGuid>
@@ -11,7 +11,7 @@
     <NoStdLib>True</NoStdLib>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <StartupObject>MainClass</StartupObject>
+    <StartupObject>GUPdotNET.MainClass</StartupObject>
     <StartArguments>true</StartArguments>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -45,7 +45,6 @@
     <Optimize>false</Optimize>
     <WarningLevel>4</WarningLevel>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <AssemblyName />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -70,14 +69,12 @@
     <Compile Include="gtk-gui\GUPdotNET.frmSuPass.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateConfirm.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateDownload.cs" />
-    <Compile Include="GUPdotNET.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
-    <Reference Include="art-sharp" />
     <Reference Include="atk-sharp" />
     <Reference Include="gdk-sharp" />
     <Reference Include="glib-sharp" />

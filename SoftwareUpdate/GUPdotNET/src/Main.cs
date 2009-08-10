@@ -22,31 +22,35 @@
 using System;
 using Gtk;
 
-class MainClass
+namespace GUPdotNET
 {
-	public static void Main (string[] args)
+	class MainClass
 	{
-		Application.Init ();
-		bool _SilentCheck = false;
-		try
+		public static void Main (string[] args)
 		{
-			
-			if(args[0].ToLower() == "true")
-				_SilentCheck = true;
-			
-			GUPdotNET.UpdateCheck uc = new GUPdotNET.UpdateCheck();
-			uc.CurrentMajorVersion = System.Reflection.Assembly.GetCallingAssembly().GetName().Version.Major;
-			uc.CurrentMajorVersion = System.Reflection.Assembly.GetCallingAssembly().GetName().Version.Minor;
-			// TODO: get the job or the full name to check for a lock
-			uc.SilentCheck = _SilentCheck;
-			uc.RunCheck();
-			Application.Run ();
-		}
-		catch(Exception ex)
-		{
-			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "GUPdotNET update error");
-			md.Run();
-			md.Destroy();
+			Application.Init ();
+			bool _SilentCheck = false;
+			try
+			{
+				
+				if(args[0].ToLower() == "true")
+					_SilentCheck = true;
+				
+				UpdateCheck uc = new UpdateCheck();
+				uc.CurrentMajorVersion = System.Reflection.Assembly.GetCallingAssembly().GetName().Version.Major;
+				uc.CurrentMajorVersion = System.Reflection.Assembly.GetCallingAssembly().GetName().Version.Minor;
+				uc.ProgramFullPath = System.Reflection.Assembly.GetCallingAssembly().GetName().EscapedCodeBase;
+				// TODO: get the job or the full name to check for a lock
+				uc.SilentCheck = _SilentCheck;
+				uc.RunUpdateCheck();
+				Application.Run ();
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "GUPdotNET update error");
+				md.Run();
+				md.Destroy();
+			}
 		}
 	}
 }
