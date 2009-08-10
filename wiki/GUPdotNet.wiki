@@ -1,8 +1,3 @@
 GUPdotNET is a generic update program for use with Mono/Gtk#
 
 =GUPdotNET=
-
-
-== About ==
-
-GUPdotNET is a generic update program for use with Mono/Gtk#
