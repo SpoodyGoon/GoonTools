@@ -1,3 +1,5 @@
 GUPdotNET is a generic update program for use with Mono/Gtk#
 
-=GUPdotNET=
+The first release will be for Windows only, then for Linux installers, Linux rpm/deb and finally for source builds. Hopefully at the end of all this we will have a universal update tool for Mono/Gtk# programs that can be used cross  platform.
+
+For packagers there will be a flag in the app.config to be sure it doesn't interrupt normal page operations.
