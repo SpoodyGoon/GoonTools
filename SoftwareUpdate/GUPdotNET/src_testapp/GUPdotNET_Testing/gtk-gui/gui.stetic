@@ -2,9 +2,13 @@
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
-    <target-gtk-version>2.10.3</target-gtk-version>
+    <target-gtk-version>2.12</target-gtk-version>
   </configuration>
-  <widget class="Gtk.Window" id="MainWindow" design-size="400 257">
+  <import>
+    <widget-library name="../../../src/bin/Debug/GUPdotNET.exe" />
+    <widget-library name="../bin/Debug/GUPdotNet_Testing.exe" internal="true" />
+  </import>
+  <widget class="Gtk.Window" id="MainWindow" design-size="400 140">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -53,48 +57,19 @@
           <widget class="Gtk.VButtonBox" id="vbuttonbox1">
             <property name="MemberName" />
             <property name="Spacing">11</property>
-            <property name="Size">3</property>
+            <property name="Size">1</property>
             <property name="LayoutStyle">Start</property>
             <child>
-              <widget class="Gtk.Button" id="btnTestAssembly">
+              <widget class="Gtk.Button" id="btnTest">
                 <property name="MemberName" />
+                <property name="WidthRequest">136</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Test Assembly</property>
+                <property name="Label" translatable="yes">Run Test</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnTestAssemblyClicked" />
+                <signal name="Clicked" handler="OnBtnTestClicked" />
               </widget>
               <packing>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Button" id="btnTestProcWithArgs">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Process w/ Args</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnTestProcWithArgsClicked" />
-              </widget>
-              <packing>
-                <property name="Position">1</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Button" id="btnTestProcNoArgs">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Process w/o Args</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnTestProcNoArgsClicked" />
-              </widget>
-              <packing>
-                <property name="Position">2</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
               </packing>

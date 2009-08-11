@@ -38,8 +38,6 @@ namespace GUPdotNET
 		private long _Downloaded = 0;
 		private bool _ThreadActive = true;
 		private Thread firstRunner;
-		// return all errors to the main update class
-		private string _ErrorMess = null;
 		private string _TempFileLocation= string.Empty;
 		private string _UpdateFileURL = string.Empty;
 		public frmUpdateDownload(string programtitle, string programname, string updatefileurl)
@@ -49,10 +47,6 @@ namespace GUPdotNET
 			{
 				_UpdateFileURL = updatefileurl;
 				this.progressbar1.DoubleBuffered= true;
-				this.Title = programtitle;
-				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + programname + "</b></span>";
-				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "Downloading the update for " + programname + ".\r\nPlease be patient.";
 				this.ShowNow();
 				// get a unique name for the temporary installer file name
 				_TempFileLocation = GetUniqueFileName(updatefileurl);
@@ -73,11 +67,6 @@ namespace GUPdotNET
 		public string TempFilePath
 		{
 			get{return _TempFileLocation;}
-		}
-		
-		public string ErrorMess
-		{
-			get{return _ErrorMess;}
 		}
 		
 		#endregion Public Properties
@@ -104,9 +93,6 @@ namespace GUPdotNET
 		
 		private void StartDownload()
 		{
-			// we don't want to be closing during the download
-			// so disable the ok button
-			btnOk.Sensitive = false;
 			
 			// Creating our two threads. The ThreadStart delegate is points to
 			// the method being run in a new thread.
@@ -171,21 +157,27 @@ namespace GUPdotNET
 				}
 				else
 				{
-					btnOk.Sensitive = true;
+					this.Respond(Gtk.ResponseType.Ok);
+					this.Hide();
+					
 				}
 			}
 			catch(WebException e)
 			{
-				this.Respond(Gtk.ResponseType.Help);
+				this.Respond(Gtk.ResponseType.Cancel);
 				// if we get a web exception exit the update
-				_ErrorMess = "Unable to connect to the update web site - " + System.Environment.NewLine + e.Message;
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Unable to connect to the update web site - " + System.Environment.NewLine + e.Message ,"GUPdotNET Web Site Connection Error");
+				md.Run();
+				md.Destroy();
 				this.Hide();
 			}
 			catch(Exception ex)
 			{
-				this.Respond(Gtk.ResponseType.Help);
+				this.Respond(Gtk.ResponseType.Cancel);
 				// if we get a web exception exit the update
-				_ErrorMess = "Non Web Response error downloading update " + System.Environment.NewLine + ex.Message;
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Non Web Response error downloading update " + System.Environment.NewLine + ex.Message ,"GUPdotNET Web Site Connection Error");
+				md.Run();
+				md.Destroy();
 				this.Hide();
 			}
 			
@@ -203,12 +195,8 @@ namespace GUPdotNET
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
 			this.progressbar1.Text = "Canceling Download";
+			this.progressbar1.ShowNow();
 			_ThreadActive = false;
-		}
-
-		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
-		{
-			this.Hide();
 		}
 
 	}

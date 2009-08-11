@@ -41,30 +41,13 @@ public partial class MainWindow: Gtk.Window
 	{
 		Gtk.Application.Quit();
 	}
-
-	protected virtual void OnBtnTestAssemblyClicked (object sender, System.EventArgs e)
+	
+	protected virtual void OnBtnTestClicked (object sender, System.EventArgs e)
 	{
-		Assembly assm= Assembly.GetExecutingAssembly();
-		GUPdotNET.GUPdotNET.CallingApplication = assm.GetName().FullName;
-		GUPdotNET.GUPdotNET.ProgramFullPath = Assembly.GetEntryAssembly().CodeBase;
-		GUPdotNET.GUPdotNET.CurrentMajorVersion = 0;
-		GUPdotNET.GUPdotNET.CurrentMinorVersion = 1;
-		GUPdotNET.GUPdotNET.InstallType = "Win32";
-		GUPdotNET.GUPdotNET.ProgramName = "GUPdotNET Testing";
-		GUPdotNET.GUPdotNET.UpdateInfoURL = @"http://brdstudio.net/gupdotnet/GetUpdateInfo.aspx";
-		UpdateCheck up = new UpdateCheck();
-		up.RunCheck();
-	}
-
-	protected virtual void OnBtnTestProcWithArgsClicked (object sender, System.EventArgs e)
-	{
-	}
-
-	protected virtual void OnBtnTestProcNoArgsClicked (object sender, System.EventArgs e)
-	{
-		Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Got Here");
-		md.Run();
-		md.Destroy();
-		System.Diagnostics.Process.Start(Assembly.GetEntryAssembly().CodeBase + System.IO.Path.DirectorySeparatorChar.ToString() + "GUPdotNET.exe");
+		System.Diagnostics.ProcessStartInfo pi = new System.Diagnostics.ProcessStartInfo();
+		pi.UseShellExecute = true;
+		pi.FileName = "Mono " + System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase) ,  "GUPdotNET.exe");
+		pi.Arguments = "True";
+		System.Diagnostics.Process.Start(pi);
 	}
 }
