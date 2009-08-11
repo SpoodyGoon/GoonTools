@@ -32,9 +32,9 @@ namespace GUPdotNET
 			bool _SilentCheck = false;
 			try
 			{
-				
-				if(args[0].ToLower() == "true")
-					_SilentCheck = true;
+//				if(args.Length > 0)
+//					if(args[0].ToLower() == "true")
+//						_SilentCheck = true;
 				
 				UpdateCheck uc = new UpdateCheck();
 				uc.CurrentMajorVersion = System.Reflection.Assembly.GetCallingAssembly().GetName().Version.Major;
