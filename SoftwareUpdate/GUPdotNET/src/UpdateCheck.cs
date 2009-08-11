@@ -238,6 +238,10 @@ namespace GUPdotNET
 						}
 						dlgDownload.Destroy();
 					}
+					else
+					{
+						Application.Quit();
+					}
 					dlgConfirm.Destroy();
 				}
 				else
@@ -257,6 +261,9 @@ namespace GUPdotNET
 				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString() ,"GUPdotNET Update Error");
 				md.Run();
 				md.Destroy();
+				// if we have an exception we want to exit the application 
+				// so it doens't keep on running in the background
+				Gtk.Application.Quit();
 			}
 		}
 		
@@ -274,13 +281,11 @@ namespace GUPdotNET
 			catch(WebException e)
 			{
 				// if we get a web exception exit the update
-				ExitUpdate("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message);
+				throw new Exception("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message);
 			}
-			catch(Exception doh)
+			catch(Exception ex)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
+				throw new Exception(ex.ToString());
 			}
 		}
 		
@@ -304,30 +309,15 @@ namespace GUPdotNET
 				}
 				// check for an error from the server
 				if(_Error.Length > 2)
-					ExitUpdate("Error parsing the update xml file - " + System.Environment.NewLine + _Error);
+					throw new Exception("Error parsing the update xml file - " + System.Environment.NewLine + _Error);
 			}
-			catch(Exception doh)
+			catch(Exception ex)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
+				throw new Exception(ex.ToString());
 			}
 			
 		}
 		
 		#endregion Update Info Web
-		
-		private void ExitUpdate(string strExitMess)
-		{
-			// if we don't want a silent check tell the user
-			// why we can't update
-			if(_SilentCheck == false && strExitMess != null)
-			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, strExitMess, "Exiting Update");
-				md.Run();
-				md.Destroy();
-			}
-			
-		}
 	}
 }

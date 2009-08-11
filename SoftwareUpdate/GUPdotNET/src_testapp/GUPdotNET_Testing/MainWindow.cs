@@ -1,8 +1,8 @@
 /*************************************************************************
- *                      MainWindow.cs                                     
- *                                                                       
- *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>         
- *                                                                        
+ *                      MainWindow.cs
+ *
+ *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>
+ *
  *************************************************************************/
 /*
  * This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,8 @@ using GUPdotNET;
 using Gtk;
 
 public partial class MainWindow: Gtk.Window
-{	
+{
+	System.Diagnostics.Process p;
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
@@ -44,10 +45,18 @@ public partial class MainWindow: Gtk.Window
 	
 	protected virtual void OnBtnTestClicked (object sender, System.EventArgs e)
 	{
-		System.Diagnostics.ProcessStartInfo pi = new System.Diagnostics.ProcessStartInfo();
-		pi.UseShellExecute = true;
-		pi.FileName = "Mono " + System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase) ,  "GUPdotNET.exe");
-		pi.Arguments = "True";
-		System.Diagnostics.Process.Start(pi);
+		try
+		{
+			System.Diagnostics.ProcessStartInfo pi = new System.Diagnostics.ProcessStartInfo();
+			pi.FileName = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase) ,  "GUPdotNET.exe");
+			pi.Arguments = "false";
+			p = System.Diagnostics.Process.Start(pi);
+		}
+		catch(Exception ex)
+		{
+			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString() ,"Error");
+			md.Run();
+			md.Destroy();
+		}
 	}
 }
