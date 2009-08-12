@@ -31,6 +31,7 @@ namespace MonoBPMonitor.Users
 	[System.ComponentModel.ToolboxItem(true)]
 	public class UserComboBox : Gtk.ComboBox
 	{
+		//public event EventHandler OnChanged = this.OnChanged;
 		private Gtk.ListStore lsUser = new Gtk.ListStore(typeof(int), typeof(string));
 		private int _UserID;
 		private string _UserName;

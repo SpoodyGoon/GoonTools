@@ -36,24 +36,33 @@ namespace MonoBPMonitor
 			this.Build ();
 			tvEntityRpt = new Reports.EntryRptTreeView (cboUser.UserID);
 			swEntityRpt.Add (tvEntityRpt);
+			cboUser.Changed += new EventHandler(cboUser_Changed);
 			this.ShowAll ();
+		}
+
+		private void cboUser_Changed(object sender, EventArgs e)
+		{
+			tvEntityRpt.Refresh(cboUser.UserID);
 		}
 
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-
+			Application.Quit();
 		}
 
 		protected virtual void OnNewEntryActionActivated (object sender, System.EventArgs e)
 		{
 			frmBPEntry fm = new frmBPEntry ();
-			fm.Run ();
+			fm.UserID = cboUser.UserID;
+			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
+				tvEntityRpt.Refresh();
 			fm.Destroy ();
 		}
 
 		protected virtual void OnMedicationActionActivated (object sender, System.EventArgs e)
 		{
 			frmMedication fm = new frmMedication ();
+			fm.UserID = cboUser.UserID;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -61,6 +70,7 @@ namespace MonoBPMonitor
 		protected virtual void OnDoctorsActionActivated (object sender, System.EventArgs e)
 		{
 			frmDoctors fm = new frmDoctors ();
+			fm.UserID = cboUser.UserID;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -100,7 +110,10 @@ namespace MonoBPMonitor
 		protected virtual void OnEditaddPngActionActivated (object sender, System.EventArgs e)
 		{
 			frmBPEntry fm = new frmBPEntry ();
-			fm.Run ();
+			fm.UserID = cboUser.UserID;
+			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
+				tvEntityRpt.Refresh();
+			
 			fm.Destroy ();
 		}
 
@@ -132,6 +145,7 @@ namespace MonoBPMonitor
 		protected virtual void OnRxPngActionActivated (object sender, System.EventArgs e)
 		{
 			frmMedication fm = new frmMedication ();
+			fm.UserID = cboUser.UserID;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -139,6 +153,7 @@ namespace MonoBPMonitor
 		protected virtual void OnDoctorPngActionActivated (object sender, System.EventArgs e)
 		{
 			frmDoctors fm = new frmDoctors ();
+			fm.UserID = cboUser.UserID;
 			fm.Run ();
 			fm.Destroy ();
 		}

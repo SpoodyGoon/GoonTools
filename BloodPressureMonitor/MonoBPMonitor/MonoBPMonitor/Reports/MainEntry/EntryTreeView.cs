@@ -51,7 +51,7 @@ namespace MonoBPMonitor.Reports
 				int SumHeartRate = 0;
 				int RowCount = 1;
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = " + _CurrentUser.ToString() + " LIMIT " + Common.Option.HistoryDefaultShow.ToString() + " ;");
+				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = " + _CurrentUser.ToString() + " ORDER BY EntryDate LIMIT " + Common.Option.HistoryDefaultShow.ToString() + " ;");
 				foreach(DataRow dr in dt.Rows)
 				{
 					SumSystolic += Convert.ToInt32(dr["Systolic"]);
@@ -98,6 +98,12 @@ namespace MonoBPMonitor.Reports
 		
 		public void Refresh()
 		{
+			LoadData();
+		}
+		
+		public void Refresh(int userid)
+		{
+			_CurrentUser = userid;
 			LoadData();
 		}
 		

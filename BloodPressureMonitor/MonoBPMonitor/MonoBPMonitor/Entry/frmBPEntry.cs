@@ -40,6 +40,11 @@ namespace MonoBPMonitor
 			}
 		}
 		
+		public int UserID
+		{
+			set{cboUser.SetUser(value);}
+		}
+		
 		protected virtual void OnBtnDateClicked (object sender, System.EventArgs e)
 		{
 			frmCalendar fm = new frmCalendar();

@@ -35,6 +35,11 @@ namespace MonoBPMonitor
 			
 			fm.Destroy();
 		}
+		
+		public int UserID
+		{
+			set{usercombobox2.SetUser(value);}
+		}
 
 		protected virtual void OnBtnEndDateCleanClicked (object sender, System.EventArgs e)
 		{
