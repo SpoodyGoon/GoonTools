@@ -43,6 +43,11 @@ namespace MonoBPMonitor
 			}
 		}
 		
+		public int UserID
+		{
+			set{cboUser.SetUser(value);}
+		}
+		
 		protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
