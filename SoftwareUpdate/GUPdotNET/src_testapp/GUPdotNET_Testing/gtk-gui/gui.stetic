@@ -5,7 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="..\..\..\src\bin\Debug\GUPdotNET.exe" />
+    <widget-library name="..\..\..\src\bin\Debug\GUPdotNET.dll" />
     <widget-library name="..\bin\Debug\GUPdotNet_Testing.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="348 321">

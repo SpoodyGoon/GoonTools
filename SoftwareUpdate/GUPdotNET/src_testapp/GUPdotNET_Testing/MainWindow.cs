@@ -50,7 +50,7 @@ public partial class MainWindow: Gtk.Window
 			System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly();
 			UpdateCheck up = new UpdateCheck();
 			up.InstallType = cboInstallType.ActiveText;
-			up.ProgramTitle =  txtProgramTitle;
+			up.ProgramTitle =  txtProgramTitle.Text;
 			up.ProgramName =  txtProgramName.Text;
 			// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
 			up.ProgramFullPath = assm.GetName().CodeBase;
