@@ -68,13 +68,13 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		internal string InstallType
+		public string InstallType
 		{
 			set{_InstallType=value;}
 			get{return _InstallType;}
 		}
 		
-		internal string TempInstallerPath
+		public string TempInstallerPath
 		{
 			set{_TempInstallerPath=value;}
 			get{return _TempInstallerPath;}
@@ -83,7 +83,7 @@ namespace GUPdotNET
 		/// <summary>
 		///  the freindly name of the application
 		/// </summary>
-		internal  string ProgramTitle
+		public  string ProgramTitle
 		{
 			set{_ProgramTitle = value;}
 			get{return _ProgramTitle;}
@@ -92,13 +92,13 @@ namespace GUPdotNET
 		/// <summary>
 		///  full path to the application we are updating
 		/// </summary>
-		internal  string ProgramFullPath
+		public  string ProgramFullPath
 		{
 			set{_ProgramFullPath = value;}
 			get{return _ProgramFullPath;}
 		}
 		
-		internal string ProgramName
+		public string ProgramName
 		{
 			set{_ProgramName = value;}
 			get{return _ProgramName;}
@@ -108,7 +108,7 @@ namespace GUPdotNET
 		///  This is URL for the web site
 		///  containing the update information
 		/// </summary>
-		internal string UpdateInfoURL
+		public string UpdateInfoURL
 		{
 			set{_UpdateInfoURL = value;}
 			get{return _UpdateInfoURL;}
@@ -118,7 +118,7 @@ namespace GUPdotNET
 		///  This is the major version of the application
 		///  we are looking to update
 		/// </summary>
-		internal int CurrentMajorVersion
+		public int CurrentMajorVersion
 		{
 			set{_CurrentMajorVersion=value;}
 			get{return _CurrentMajorVersion;}
@@ -128,7 +128,7 @@ namespace GUPdotNET
 		///  This is the minor version or the application
 		///  we are looking to update
 		/// </summary>
-		internal int CurrentMinorVersion
+		public int CurrentMinorVersion
 		{
 			set{_CurrentMinorVersion=value;}
 			get{return _CurrentMinorVersion;}
@@ -139,7 +139,7 @@ namespace GUPdotNET
 		///  not report if no connection is made to the
 		///  web server or if other interuptions occur
 		/// </summary>
-		internal bool SilentCheck
+		public bool SilentCheck
 		{
 			set{_SilentCheck=value;}
 			get{return _SilentCheck;}
