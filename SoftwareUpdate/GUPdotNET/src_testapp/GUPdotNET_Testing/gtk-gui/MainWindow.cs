@@ -26,6 +26,10 @@ public partial class MainWindow {
     
     private Gtk.Button btnTest;
     
+    private Gtk.Alignment alignment1;
+    
+    private Gtk.CheckButton cboSilent;
+    
     private Gtk.Alignment alignment4;
     
     private Gtk.HSeparator hseparator2;
@@ -95,6 +99,22 @@ public partial class MainWindow {
         w6.Position = 2;
         w6.Padding = ((uint)(1));
         // Container child vbox1.Gtk.Box+BoxChild
+        this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 0.01F, 1F);
+        this.alignment1.Name = "alignment1";
+        // Container child alignment1.Gtk.Container+ContainerChild
+        this.cboSilent = new Gtk.CheckButton();
+        this.cboSilent.CanFocus = true;
+        this.cboSilent.Name = "cboSilent";
+        this.cboSilent.Label = Mono.Unix.Catalog.GetString("Update Silent");
+        this.cboSilent.DrawIndicator = true;
+        this.cboSilent.UseUnderline = true;
+        this.alignment1.Add(this.cboSilent);
+        this.vbox1.Add(this.alignment1);
+        Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment1]));
+        w8.Position = 3;
+        w8.Expand = false;
+        w8.Fill = false;
+        // Container child vbox1.Gtk.Box+BoxChild
         this.alignment4 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
         this.alignment4.Name = "alignment4";
         // Container child alignment4.Gtk.Container+ContainerChild
@@ -102,10 +122,10 @@ public partial class MainWindow {
         this.hseparator2.Name = "hseparator2";
         this.alignment4.Add(this.hseparator2);
         this.vbox1.Add(this.alignment4);
-        Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment4]));
-        w8.Position = 3;
-        w8.Expand = false;
-        w8.Fill = false;
+        Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment4]));
+        w10.Position = 4;
+        w10.Expand = false;
+        w10.Fill = false;
         // Container child vbox1.Gtk.Box+BoxChild
         this.hbuttonbox2 = new Gtk.HButtonBox();
         this.hbuttonbox2.Name = "hbuttonbox2";
@@ -117,28 +137,28 @@ public partial class MainWindow {
         this.btnQuit.UseUnderline = true;
         this.btnQuit.Label = "gtk-quit";
         this.hbuttonbox2.Add(this.btnQuit);
-        Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.btnQuit]));
-        w9.Expand = false;
-        w9.Fill = false;
+        Gtk.ButtonBox.ButtonBoxChild w11 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.btnQuit]));
+        w11.Expand = false;
+        w11.Fill = false;
         this.vbox1.Add(this.hbuttonbox2);
-        Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox2]));
-        w10.Position = 4;
-        w10.Expand = false;
-        w10.Fill = false;
+        Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox2]));
+        w12.Position = 5;
+        w12.Expand = false;
+        w12.Fill = false;
         // Container child vbox1.Gtk.Box+BoxChild
         this.hbuttonbox1 = new Gtk.HButtonBox();
         this.hbuttonbox1.Name = "hbuttonbox1";
         this.vbox1.Add(this.hbuttonbox1);
-        Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox1]));
-        w11.Position = 5;
-        w11.Expand = false;
-        w11.Fill = false;
+        Gtk.Box.BoxChild w13 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox1]));
+        w13.Position = 6;
+        w13.Expand = false;
+        w13.Fill = false;
         this.Add(this.vbox1);
         if ((this.Child != null)) {
             this.Child.ShowAll();
         }
         this.DefaultWidth = 400;
-        this.DefaultHeight = 140;
+        this.DefaultHeight = 149;
         this.Show();
         this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
         this.btnTest.Clicked += new System.EventHandler(this.OnBtnTestClicked);

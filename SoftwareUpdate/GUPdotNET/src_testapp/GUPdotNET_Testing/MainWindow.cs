@@ -21,12 +21,12 @@
 
 using System;
 using System.Reflection;
+using System.Configuration;
 using GUPdotNET;
 using Gtk;
 
 public partial class MainWindow: Gtk.Window
 {
-	System.Diagnostics.Process p;
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
@@ -47,10 +47,19 @@ public partial class MainWindow: Gtk.Window
 	{
 		try
 		{
-			System.Diagnostics.ProcessStartInfo pi = new System.Diagnostics.ProcessStartInfo();
-			pi.FileName = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase) ,  "GUPdotNET.exe");
-			pi.Arguments = "false";
-			p = System.Diagnostics.Process.Start(pi);
+			System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly();
+			UpdateCheck up = new UpdateCheck();
+			up.InstallType = "Win32"; // ConfigurationManager.AppSettings["InstallType"].ToString();
+			up.ProgramTitle =  ConfigurationManager.AppSettings["ProgramTitle"].ToString();
+			// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
+			up.ProgramFullPath = string.Empty;
+			// this is the actual name of the program i.e. MyProgram.exe
+			up.ProgramName =  assm.GetName().Name;
+			up.UpdateInfoURL =  ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+			up.CurrentMajorVersion = assm.GetName().Version.Major;
+			up.CurrentMinorVersion = assm.GetName().Version.Minor;
+			up.SilentCheck = (bool)cboSilent.Active;
+			up.RunUpdateCheck();
 		}
 		catch(Exception ex)
 		{
