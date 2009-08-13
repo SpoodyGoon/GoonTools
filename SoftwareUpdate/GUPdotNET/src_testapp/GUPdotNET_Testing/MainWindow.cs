@@ -49,16 +49,16 @@ public partial class MainWindow: Gtk.Window
 		{
 			System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly();
 			UpdateCheck up = new UpdateCheck();
-			up.InstallType = "Win32"; // ConfigurationManager.AppSettings["InstallType"].ToString();
-			up.ProgramTitle =  ConfigurationManager.AppSettings["ProgramTitle"].ToString();
+			up.InstallType = cboInstallType.ActiveText;
+			up.ProgramTitle =  txtProgramTitle;
+			up.ProgramName =  txtProgramName.Text;
 			// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
-			up.ProgramFullPath = string.Empty;
+			up.ProgramFullPath = assm.GetName().CodeBase;
 			// this is the actual name of the program i.e. MyProgram.exe
-			up.ProgramName =  assm.GetName().Name;
 			up.UpdateInfoURL =  ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
-			up.CurrentMajorVersion = assm.GetName().Version.Major;
-			up.CurrentMinorVersion = assm.GetName().Version.Minor;
-			up.SilentCheck = (bool)cboSilent.Active;
+			up.CurrentMajorVersion = spnMajor.ValueAsInt;
+			up.CurrentMinorVersion = spnMinorVersion.ValueAsInt;;
+			up.SilentCheck = (bool)cbxSilent.Active;
 			up.RunUpdateCheck();
 		}
 		catch(Exception ex)
