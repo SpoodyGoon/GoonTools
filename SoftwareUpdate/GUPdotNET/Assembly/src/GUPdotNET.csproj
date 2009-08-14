@@ -72,6 +72,10 @@
     <Compile Include="gtk-gui\GUPdotNET.frmReTry.cs" />
     <Compile Include="frmUpdateCheck.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateCheck.cs" />
+    <Compile Include="Common\Const.cs" />
+    <Compile Include="Common\Options.cs" />
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\EnviromentInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Posix" />
@@ -90,5 +94,14 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="images\update_large.png">
+      <LogicalName>update_large.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\update_medium.png">
+      <LogicalName>update_medium.png</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
 </Project>
