@@ -83,14 +83,5 @@ namespace GoonTools.Global
 			set{ _FileVersion = value;}
 			get{ return _FileVersion;}
 		}
-	}	
-		
-		public enum UpdateDateType
-		{
-			Day,
-			Week,
-			Month,
-			Year,
-			Never
-		}
+	}
 }
