@@ -27,11 +27,11 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("GUPdotNET")]
-[assembly: AssemblyDescription("The aim of GUPdotNET is to provide a ready to use and configurable updater which downloads and installs an update package. It has been inspired heavily by GUP (http://sourceforge.net/projects/gup-w32/) and it's current intent is to be a .NET implemetatin of the original GUP with little or no modification beyone the use of the MS .NET and Mono/Gtk# frameworks.")]
+[assembly: AssemblyDescription("General Purpose Update program for Mono/Gtk#.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("(2008) Andrew York")]
+[assembly: AssemblyCopyright("(2009) Andrew York")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

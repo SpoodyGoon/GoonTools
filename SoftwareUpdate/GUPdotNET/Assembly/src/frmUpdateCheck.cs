@@ -34,6 +34,9 @@
 //------------------------------------------------------------------------------
 
 using System;
+using Gtk;
+using GoonTools;
+using GoonTools.Global;
 
 
 namespace GUPdotNET
@@ -41,17 +44,219 @@ namespace GUPdotNET
 	
 	public partial class frmUpdateCheck : Gtk.Dialog
 	{
+		/*
+		#region Local Variable Declaration
+		
+		// value from the calling application or from the app con
+		private string _InstallType =  string.Empty;
+		private string _ProgramTitle =  string.Empty;
+		// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
+		private string _ProgramFullPath = string.Empty;
+		// this is the actual name of the program i.e. MyProgram.exe
+		private string _ProgramName =  string.Empty;
+		private string _UpdateInfoURL =  string.Empty;
+		private int _CurrentMajorVersion = -1;
+		private int _CurrentMinorVersion = -1;
+		private bool _SilentCheck = false;
+		private string _TempInstallerPath = string.Empty;
+		
+		#endregion Local Variable Declaration
+		
+		#region Web Variable Declaration
+		
+		// values that are imported from the aspx file on the listed web site
+		private string _UpdateFileURL = null;
+		private int _UpdateMajorVersion = -1;
+		private int _UpdateMinorVersion = -1;
+		private string _LatestVersion = null;
+		private string _Error = null;
+		
+		#endregion Web Variable Declaration
+		
+		#region Public Properties Local
+		
+		/// <summary>
+		///  This is the Operating System info
+		///  Passed in by the program calling the GUPdotNET assembly/class
+		/// </summary>
+		public string InstallType
+		{
+			set{_InstallType=value;}
+			get{return _InstallType;}
+		}
+		
+		public string TempInstallerPath
+		{
+			set{_TempInstallerPath=value;}
+			get{return _TempInstallerPath;}
+		}
+		
+		/// <summary>
+		///  the freindly name of the application
+		/// </summary>
+		public  string ProgramTitle
+		{
+			set{_ProgramTitle = value;}
+			get{return _ProgramTitle;}
+		}
+		
+		/// <summary>
+		///  full path to the application we are updating
+		/// </summary>
+		public  string ProgramFullPath
+		{
+			set{_ProgramFullPath = value;}
+			get{return _ProgramFullPath;}
+		}
+		
+		public string ProgramName
+		{
+			set{_ProgramName = value;}
+			get{return _ProgramName;}
+		}
+		
+		/// <summary>
+		///  This is URL for the web site
+		///  containing the update information
+		/// </summary>
+		public string UpdateInfoURL
+		{
+			set{_UpdateInfoURL = value;}
+			get{return _UpdateInfoURL;}
+		}
+		
+		/// <summary>
+		///  This is the major version of the application
+		///  we are looking to update
+		/// </summary>
+		public int CurrentMajorVersion
+		{
+			set{_CurrentMajorVersion=value;}
+			get{return _CurrentMajorVersion;}
+		}
+		
+		/// <summary>
+		///  This is the minor version or the application
+		///  we are looking to update
+		/// </summary>
+		public int CurrentMinorVersion
+		{
+			set{_CurrentMinorVersion=value;}
+			get{return _CurrentMinorVersion;}
+		}
+		
+		/// <summary>
+		///  if this is set to true this will
+		///  not report if no connection is made to the
+		///  web server or if other interuptions occur
+		/// </summary>
+		public bool SilentCheck
+		{
+			set{_SilentCheck=value;}
+			get{return _SilentCheck;}
+		}
+		
+		#endregion Public Properties Local
+		
+		#region Public Properties Web Server
+		
+		/// <summary>
+		///  The file that is the updated installation
+		/// </summary>
+		internal string UpdateFileURL
+		{
+			set{_UpdateFileURL=value;}
+			get{return _UpdateFileURL;}
+		}
+		
+		/// <summary>
+		///  This is the major version
+		///  recieved from the web site
+		///  containing the update information
+		/// </summary>
+		internal int UpdateMajorVersion
+		{
+			set{_UpdateMajorVersion= value;}
+			get{return _UpdateMajorVersion;}
+		}
+		
+		/// <summary>
+		///  This is the minor version
+		///  recieved from the web site
+		///  containing the update information
+		/// </summary>
+		internal int UpdateMinorVersion
+		{
+			set{_UpdateMinorVersion = value;}
+			get{return _UpdateMinorVersion;}
+		}
+		
+		/// <summary>
+		///  this is a generic string of the updatable version
+		/// </summary>
+		internal string LatestVersion
+		{
+			set{_LatestVersion=value;}
+			get{return _LatestVersion;}
+		}
+		
+		/// <summary>
+		///  this contains any error that is returned from the
+		///  web site portion of the app
+		/// </summary>
+		internal string Error
+		{
+			set{_Error=value;}
+			get{return _Error;}
+		}
+		
+		#endregion Public Properties Web Server
+		
+		*/
 		public frmUpdateCheck()
 		{
 			this.Build();
+			LoadOptions();
+		}
+		
+		private void LoadOptions()
+		{			
+			Common.LoadAll();
+			cboUpdateTimeType.AppendText(UpdateDateType.Day.ToString());
+			cboUpdateTimeType.AppendText(UpdateDateType.Week.ToString());
+			cboUpdateTimeType.AppendText(UpdateDateType.Month.ToString());
+			cboUpdateTimeType.AppendText(UpdateDateType.Year.ToString());
+			cboUpdateTimeType.AppendText(UpdateDateType.Never.ToString());
+			//cboUpdateTimeType.ActiveText =0;		
+			cbxAutoUpdate.Active = Common.Option.AutoUpdate;
+			spnUpdateTimeAmount.Value = Common.Option.UpdateTimeAmount;
+			
 		}
 		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
+			Common.SaveOptions();
+			this.Hide();
 		}
 		
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
+			this.Hide();
+		}		
+		
+		protected virtual void OnBtnAboutClicked (object sender, System.EventArgs e)
+		{
+			btnAbout.Relief = ReliefStyle.None;
+		}
+			
+		protected virtual void OnBtnAboutPressed (object sender, System.EventArgs e)
+		{
+			btnAbout.Relief = ReliefStyle.None;
+		}
+		
+		protected virtual void OnBtnAboutEntered (object sender, System.EventArgs e)
+		{
+			btnAbout.Relief = ReliefStyle.None;
 		}
 	}
 }
