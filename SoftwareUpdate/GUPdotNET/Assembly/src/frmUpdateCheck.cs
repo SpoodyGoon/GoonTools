@@ -34,6 +34,7 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Reflection;
 using Gtk;
 using GoonTools;
 using GoonTools.Global;
@@ -42,9 +43,8 @@ using GoonTools.Global;
 namespace GUPdotNET
 {
 	
-	public partial class frmUpdateCheck : Gtk.Dialog
+	public partial class frmUpdateCheck : Gtk.Window
 	{
-		/*
 		#region Local Variable Declaration
 		
 		// value from the calling application or from the app con
@@ -212,22 +212,31 @@ namespace GUPdotNET
 		
 		#endregion Public Properties Web Server
 		
-		*/
-		public frmUpdateCheck()
+		#region Constructors
+		
+		public frmUpdateCheck(): base (Gtk.WindowType.Toplevel)
 		{
 			this.Build();
+			Common.LoadAll();			
+		}
+		
+		#endregion Constructors
+		
+		[GLib.DefaultSignalHandlerAttribute()]
+		protected override void OnShown()
+		{
 			LoadOptions();
+			base.OnShown();
 		}
 		
 		private void LoadOptions()
 		{			
-			Common.LoadAll();
 			cboUpdateTimeType.AppendText(UpdateDateType.Day.ToString());
 			cboUpdateTimeType.AppendText(UpdateDateType.Week.ToString());
 			cboUpdateTimeType.AppendText(UpdateDateType.Month.ToString());
 			cboUpdateTimeType.AppendText(UpdateDateType.Year.ToString());
 			cboUpdateTimeType.AppendText(UpdateDateType.Never.ToString());
-			//cboUpdateTimeType.ActiveText =0;		
+			cboUpdateTimeType.Active = (int)Common.Option.UpdateTimeType;
 			cbxAutoUpdate.Active = Common.Option.AutoUpdate;
 			spnUpdateTimeAmount.Value = Common.Option.UpdateTimeAmount;
 			
@@ -242,13 +251,37 @@ namespace GUPdotNET
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
-		}		
+		}
+		
 		
 		protected virtual void OnBtnAboutClicked (object sender, System.EventArgs e)
 		{
 			btnAbout.Relief = ReliefStyle.None;
+			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+			Gtk.AboutDialog ad = new Gtk.AboutDialog();
+			ad.Title = "About GUPdotNET";
+			ad.ProgramName = "GUPdotNET (Generic Update Program)";
+			ad.Comments ="";
+			ad.License = GoonTools.Const.License;
+			ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
+			ad.Version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
+			ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
+			ad.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
+			ad.AllowShrink = true;
+			ad.AllowGrow = true;
+			ad.Copyright = "GoonTools 2009";
+			ad.HasSeparator = true;
+			ad.Modal = true;
+			ad.WidthRequest = 550;
+			ad.HeightRequest = 300;
+			ad.Website = "http://brdstudio.net/mbpmonitor/";
+			ad.WebsiteLabel = "http://brdstudio.net/mbpmonitor/";
+			ad.Run();
+			ad.Destroy();
 		}
-			
+	
+
+		
 		protected virtual void OnBtnAboutPressed (object sender, System.EventArgs e)
 		{
 			btnAbout.Relief = ReliefStyle.None;
