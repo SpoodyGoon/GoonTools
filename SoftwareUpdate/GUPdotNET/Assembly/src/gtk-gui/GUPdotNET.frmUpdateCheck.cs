@@ -37,7 +37,15 @@ namespace GUPdotNET {
         
         private Gtk.Alignment alignment4;
         
+        private Gtk.HBox hbox3;
+        
+        private Gtk.Alignment alignment11;
+        
         private Gtk.CheckButton cbxAutoUpdate;
+        
+        private Gtk.Alignment alignment12;
+        
+        private Gtk.Button btnCheckNow;
         
         private Gtk.Frame frame1;
         
@@ -153,21 +161,53 @@ namespace GUPdotNET {
             // Container child vbox2.Gtk.Box+BoxChild
             this.alignment4 = new Gtk.Alignment(0.5F, 0.5F, 0.5F, 1F);
             this.alignment4.Name = "alignment4";
-            this.alignment4.LeftPadding = ((uint)(25));
-            this.alignment4.RightPadding = ((uint)(25));
+            this.alignment4.LeftPadding = ((uint)(10));
+            this.alignment4.RightPadding = ((uint)(10));
             // Container child alignment4.Gtk.Container+ContainerChild
+            this.hbox3 = new Gtk.HBox();
+            this.hbox3.Name = "hbox3";
+            this.hbox3.Spacing = 20;
+            // Container child hbox3.Gtk.Box+BoxChild
+            this.alignment11 = new Gtk.Alignment(0.5F, 0.5F, 0.5F, 1F);
+            this.alignment11.Name = "alignment11";
+            this.alignment11.TopPadding = ((uint)(5));
+            this.alignment11.BottomPadding = ((uint)(5));
+            // Container child alignment11.Gtk.Container+ContainerChild
             this.cbxAutoUpdate = new Gtk.CheckButton();
             this.cbxAutoUpdate.CanFocus = true;
             this.cbxAutoUpdate.Name = "cbxAutoUpdate";
             this.cbxAutoUpdate.Label = Mono.Unix.Catalog.GetString("Check for updates automatically.");
             this.cbxAutoUpdate.DrawIndicator = true;
             this.cbxAutoUpdate.UseUnderline = true;
-            this.alignment4.Add(this.cbxAutoUpdate);
-            this.vbox2.Add(this.alignment4);
-            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment4]));
-            w12.Position = 2;
+            this.alignment11.Add(this.cbxAutoUpdate);
+            this.hbox3.Add(this.alignment11);
+            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.hbox3[this.alignment11]));
+            w12.Position = 0;
             w12.Expand = false;
             w12.Fill = false;
+            // Container child hbox3.Gtk.Box+BoxChild
+            this.alignment12 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment12.Name = "alignment12";
+            this.alignment12.LeftPadding = ((uint)(5));
+            this.alignment12.RightPadding = ((uint)(5));
+            // Container child alignment12.Gtk.Container+ContainerChild
+            this.btnCheckNow = new Gtk.Button();
+            this.btnCheckNow.CanFocus = true;
+            this.btnCheckNow.Name = "btnCheckNow";
+            this.btnCheckNow.UseUnderline = true;
+            this.btnCheckNow.Label = Mono.Unix.Catalog.GetString("Check Now...");
+            this.alignment12.Add(this.btnCheckNow);
+            this.hbox3.Add(this.alignment12);
+            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.hbox3[this.alignment12]));
+            w14.Position = 1;
+            w14.Expand = false;
+            w14.Fill = false;
+            this.alignment4.Add(this.hbox3);
+            this.vbox2.Add(this.alignment4);
+            Gtk.Box.BoxChild w16 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment4]));
+            w16.Position = 2;
+            w16.Expand = false;
+            w16.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.frame1 = new Gtk.Frame();
             this.frame1.Name = "frame1";
@@ -191,10 +231,10 @@ namespace GUPdotNET {
             this.label2.LabelProp = Mono.Unix.Catalog.GetString("Check ");
             this.alignment5.Add(this.label2);
             this.hbox1.Add(this.alignment5);
-            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment5]));
-            w14.Position = 0;
-            w14.Expand = false;
-            w14.Fill = false;
+            Gtk.Box.BoxChild w18 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment5]));
+            w18.Position = 0;
+            w18.Expand = false;
+            w18.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
             this.alignment6 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment6.Name = "alignment6";
@@ -208,10 +248,10 @@ namespace GUPdotNET {
             this.spnUpdateTimeAmount.Value = 1;
             this.alignment6.Add(this.spnUpdateTimeAmount);
             this.hbox1.Add(this.alignment6);
-            Gtk.Box.BoxChild w16 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment6]));
-            w16.Position = 1;
-            w16.Expand = false;
-            w16.Fill = false;
+            Gtk.Box.BoxChild w20 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment6]));
+            w20.Position = 1;
+            w20.Expand = false;
+            w20.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
             this.alignment7 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment7.Name = "alignment7";
@@ -221,10 +261,10 @@ namespace GUPdotNET {
             this.label3.LabelProp = Mono.Unix.Catalog.GetString("time(s) every");
             this.alignment7.Add(this.label3);
             this.hbox1.Add(this.alignment7);
-            Gtk.Box.BoxChild w18 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment7]));
-            w18.Position = 2;
-            w18.Expand = false;
-            w18.Fill = false;
+            Gtk.Box.BoxChild w22 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment7]));
+            w22.Position = 2;
+            w22.Expand = false;
+            w22.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
             this.alignment8 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment8.Name = "alignment8";
@@ -234,29 +274,29 @@ namespace GUPdotNET {
             this.cboUpdateTimeType.Name = "cboUpdateTimeType";
             this.alignment8.Add(this.cboUpdateTimeType);
             this.hbox1.Add(this.alignment8);
-            Gtk.Box.BoxChild w20 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment8]));
-            w20.Position = 3;
-            w20.Expand = false;
-            w20.Fill = false;
+            Gtk.Box.BoxChild w24 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment8]));
+            w24.Position = 3;
+            w24.Expand = false;
+            w24.Fill = false;
             this.GtkAlignment2.Add(this.hbox1);
             this.frame1.Add(this.GtkAlignment2);
             this.vbox2.Add(this.frame1);
-            Gtk.Box.BoxChild w23 = ((Gtk.Box.BoxChild)(this.vbox2[this.frame1]));
-            w23.Position = 3;
-            w23.Expand = false;
-            w23.Fill = false;
+            Gtk.Box.BoxChild w27 = ((Gtk.Box.BoxChild)(this.vbox2[this.frame1]));
+            w27.Position = 3;
+            w27.Expand = false;
+            w27.Fill = false;
             this.alignment1.Add(this.vbox2);
             w1.Add(this.alignment1);
-            Gtk.Box.BoxChild w25 = ((Gtk.Box.BoxChild)(w1[this.alignment1]));
-            w25.Position = 0;
-            w25.Expand = false;
-            w25.Fill = false;
+            Gtk.Box.BoxChild w29 = ((Gtk.Box.BoxChild)(w1[this.alignment1]));
+            w29.Position = 0;
+            w29.Expand = false;
+            w29.Fill = false;
             // Internal child GUPdotNET.frmUpdateCheck.ActionArea
-            Gtk.HButtonBox w26 = this.ActionArea;
-            w26.Name = "dialog1_ActionArea";
-            w26.Spacing = 6;
-            w26.BorderWidth = ((uint)(5));
-            w26.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+            Gtk.HButtonBox w30 = this.ActionArea;
+            w30.Name = "dialog1_ActionArea";
+            w30.Spacing = 6;
+            w30.BorderWidth = ((uint)(5));
+            w30.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -266,9 +306,9 @@ namespace GUPdotNET {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w27 = ((Gtk.ButtonBox.ButtonBoxChild)(w26[this.buttonCancel]));
-            w27.Expand = false;
-            w27.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w31 = ((Gtk.ButtonBox.ButtonBoxChild)(w30[this.buttonCancel]));
+            w31.Expand = false;
+            w31.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -278,19 +318,20 @@ namespace GUPdotNET {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w28 = ((Gtk.ButtonBox.ButtonBoxChild)(w26[this.buttonOk]));
-            w28.Position = 1;
-            w28.Expand = false;
-            w28.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w32 = ((Gtk.ButtonBox.ButtonBoxChild)(w30[this.buttonOk]));
+            w32.Position = 1;
+            w32.Expand = false;
+            w32.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 400;
-            this.DefaultHeight = 183;
+            this.DefaultWidth = 468;
+            this.DefaultHeight = 211;
             this.Hide();
             this.btnAbout.Clicked += new System.EventHandler(this.OnBtnAboutClicked);
             this.btnAbout.Entered += new System.EventHandler(this.OnBtnAboutEntered);
             this.btnAbout.Pressed += new System.EventHandler(this.OnBtnAboutPressed);
+            this.btnCheckNow.Clicked += new System.EventHandler(this.OnBtnCheckNowClicked);
             this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
             this.buttonOk.Clicked += new System.EventHandler(this.OnButtonOkClicked);
         }
