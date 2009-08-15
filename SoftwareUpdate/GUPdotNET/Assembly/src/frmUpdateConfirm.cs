@@ -20,8 +20,6 @@
  */
 
 using System;
-using System.IO;
-using System.Configuration;
 using Gtk;
 
 namespace GUPdotNET
@@ -35,7 +33,12 @@ namespace GUPdotNET
 			try
 			{
 				
-				
+				this.Title = programtitle;
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + programname + " Update</b></span>";
+				this.lblProgramTitle.UseMarkup = true;
+				this.lblUpdateMessage.Text = "<span size=\"medium\">There is an update available for " + programtitle + ".\r\nWould you like to upgrate to version: " + newversion + " now?</span>";
+				this.lblUpdateMessage.UseMarkup = true;
+				this.lblUpdateMessage.Wrap = true;
 			}
 			catch(Exception doh)
 			{
@@ -43,53 +46,15 @@ namespace GUPdotNET
 				md.Run();
 				md.Destroy();
 			}
-		}	
-		
-		protected virtual void OnBtnAboutClicked (object sender, System.EventArgs e)
-		{
-			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
-			Gtk.AboutDialog ad = new Gtk.AboutDialog();
-			ad.Title = "About GUPdotNET";
-			ad.ProgramName = "GUPdotNET";
-			ad.Comments = "General Purpose Update program for Mono/Gtk#.";
-			ad.License = GoonTools.Const.License;
-			ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
-			ad.Version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
-			ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
-			ad.Icon = Gdk.Pixbuf.LoadFromResource("update_medium.png");
-			ad.AllowShrink = true;
-			ad.AllowGrow = true;
-			ad.Copyright = "GoonTools 2009";
-			ad.HasSeparator = true;
-			ad.Modal = true;
-			ad.WidthRequest = 550;
-			ad.HeightRequest = 300;
-			ad.Website = "http://brdstudio.net/mbpmonitor/";
-			ad.WebsiteLabel = "http://brdstudio.net/mbpmonitor/";
-			ad.Run();
-			ad.Destroy();
-		}	
-	
-		protected virtual void OnBtnAboutPressed (object sender, System.EventArgs e)
-		{
-			btnAbout.Relief = ReliefStyle.None;
 		}
-			
-		protected virtual void OnBtnAboutEntered (object sender, System.EventArgs e)
-		{
-			btnAbout.Relief = ReliefStyle.None;
-		}		
 		
-		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
+		protected virtual void OnBtnNoClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
 		}
 			
-		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
+		protected virtual void OnBtnYesClicked (object sender, System.EventArgs e)
 		{
-			this.Hide();
 		}
-
 	}
-
 }

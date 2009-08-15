@@ -76,6 +76,7 @@
     <Compile Include="Common\Options.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\EnviromentInfo.cs" />
+    <Compile Include="Common\CommonEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Posix" />
