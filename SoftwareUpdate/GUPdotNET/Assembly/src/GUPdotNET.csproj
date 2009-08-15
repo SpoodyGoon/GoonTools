@@ -101,6 +101,9 @@
     <EmbeddedResource Include="images\update_medium.png">
       <LogicalName>update_medium.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="images\update_small.png">
+      <LogicalName>update_small.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
