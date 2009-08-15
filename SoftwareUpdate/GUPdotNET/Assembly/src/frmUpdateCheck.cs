@@ -34,10 +34,16 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.IO;
+using System.Net;
+using System.Xml;
+using System.Collections;
+using System.Configuration;
+using System.Security;
 using System.Reflection;
+using System.Security.Permissions;
 using Gtk;
 using GoonTools;
-using GoonTools.Global;
 
 
 namespace GUPdotNET
@@ -48,12 +54,14 @@ namespace GUPdotNET
 		#region Local Variable Declaration
 		
 		// value from the calling application or from the app con
-		private string _InstallType =  string.Empty;
 		private string _ProgramTitle =  string.Empty;
-		// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
-		private string _ProgramFullPath = string.Empty;
 		// this is the actual name of the program i.e. MyProgram.exe
 		private string _ProgramName =  string.Empty;
+		private GoonTools.OperatingSystem _OS = GoonTools.OperatingSystem.None;
+		private GoonTools.InstallType _CurrentInstallType = GoonTools.InstallType.None;
+		// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
+		private string _ProgramFullPath = string.Empty;
+		// this is the http URL where we get the update info from
 		private string _UpdateInfoURL =  string.Empty;
 		private int _CurrentMajorVersion = -1;
 		private int _CurrentMinorVersion = -1;
@@ -65,31 +73,22 @@ namespace GUPdotNET
 		#region Web Variable Declaration
 		
 		// values that are imported from the aspx file on the listed web site
-		private string _UpdateFileURL = null;
-		private int _UpdateMajorVersion = -1;
-		private int _UpdateMinorVersion = -1;
-		private string _LatestVersion = null;
-		private string _Error = null;
+		// Major version of the update program
+        private int _UpdateMajorVersion = -1;
+		// Minor version of the update program
+        private int _UpdateMinorVersion = -1;
+		// friendly version string format
+        private string _LatestVersion = string.Empty;
+		// http URL of the new program
+        private string _UpdateFileURL = string.Empty;
+		// http URL of the update details if any
+        private string _UpdateDetailsURL = string.Empty;
+		// for any error that may happen
+        private string _Error = string.Empty;
 		
 		#endregion Web Variable Declaration
 		
 		#region Public Properties Local
-		
-		/// <summary>
-		///  This is the Operating System info
-		///  Passed in by the program calling the GUPdotNET assembly/class
-		/// </summary>
-		public string InstallType
-		{
-			set{_InstallType=value;}
-			get{return _InstallType;}
-		}
-		
-		public string TempInstallerPath
-		{
-			set{_TempInstallerPath=value;}
-			get{return _TempInstallerPath;}
-		}
 		
 		/// <summary>
 		///  the freindly name of the application
@@ -101,18 +100,41 @@ namespace GUPdotNET
 		}
 		
 		/// <summary>
+		/// this is the actual name of the program i.e. MyProgram.exe
+		/// </summary>		
+		public string ProgramName
+		{
+			set{_ProgramName = value;}
+			get{return _ProgramName;}
+		}
+		
+		/// <summary>
+		///  This is the Operating System info
+		///  Passed in by the program calling the GUPdotNET assembly/class
+		/// </summary>
+		public GoonTools.OperatingSystem OS
+		{
+			set{_OS=value;}
+			get{return _OS;}
+		}
+		
+		/// <summary>
+		///  This is the Operating System info
+		///  Passed in by the program calling the GUPdotNET assembly/class
+		/// </summary>
+		public GoonTools.InstallType CurrentInstallType
+		{
+			set{_CurrentInstallType=value;}
+			get{return _CurrentInstallType;}
+		}
+		
+		/// <summary>
 		///  full path to the application we are updating
 		/// </summary>
 		public  string ProgramFullPath
 		{
 			set{_ProgramFullPath = value;}
 			get{return _ProgramFullPath;}
-		}
-		
-		public string ProgramName
-		{
-			set{_ProgramName = value;}
-			get{return _ProgramName;}
 		}
 		
 		/// <summary>
@@ -154,6 +176,16 @@ namespace GUPdotNET
 		{
 			set{_SilentCheck=value;}
 			get{return _SilentCheck;}
+		}
+		
+		/// <summary>
+		/// This is the directory on the local maching
+		/// where the new package will be stored and ran from
+		/// </summary>
+		internal string TempInstallerPath
+		{
+			set{_TempInstallerPath=value;}
+			get{return _TempInstallerPath;}
 		}
 		
 		#endregion Public Properties Local
@@ -201,6 +233,15 @@ namespace GUPdotNET
 		}
 		
 		/// <summary>
+		///  http URL of the update details if any        
+		/// </summary>
+		internal string UpdateDetailsURL
+		{
+			set{_UpdateDetailsURL=value;}
+			get{return _UpdateDetailsURL;}
+		}
+		
+		/// <summary>
 		///  this contains any error that is returned from the
 		///  web site portion of the app
 		/// </summary>
@@ -214,10 +255,20 @@ namespace GUPdotNET
 		
 		#region Constructors
 		
+		private bool _ShowOptions = false;
 		public frmUpdateCheck()
 		{
 			this.Build();
-			Common.LoadAll();			
+			Common.LoadAll();
+			this.Visible = false;
+			this.ShowAll();	
+		}
+		
+		public frmUpdateCheck(bool showoptions)
+		{
+			this.Build();
+			_ShowOptions = showoptions;
+			Common.LoadAll();
 		}
 		
 		#endregion Constructors
@@ -225,11 +276,23 @@ namespace GUPdotNET
 		[GLib.DefaultSignalHandlerAttribute()]
 		protected override void OnShown()
 		{
-			LoadOptions();
+					
+			if(_ShowOptions == true)
+			{
+				LoadControls();
+				this.Visible = true;
+			}
+			else
+			{
+				this.Visible = false;
+				RunUpdateCheck();
+			}
+			this.ShowAll();
+			
 			base.OnShown();
 		}
 		
-		private void LoadOptions()
+		private void LoadControls()
 		{			
 			cboUpdateTimeType.AppendText(UpdateDateType.Day.ToString());
 			cboUpdateTimeType.AppendText(UpdateDateType.Week.ToString());
@@ -290,6 +353,128 @@ namespace GUPdotNET
 		protected virtual void OnBtnAboutEntered (object sender, System.EventArgs e)
 		{
 			btnAbout.Relief = ReliefStyle.None;
+		}		
+		
+		protected virtual void OnBtnCheckNowClicked (object sender, System.EventArgs e)
+		{
+			RunUpdateCheck();
 		}
+		
+		#region Update Process
+		
+		public void RunUpdateCheck()
+		{
+			try
+			{
+				// load the update info from the web
+				UpdateInfoGet();
+				// check if we need an update via the major and minor version
+				if(_UpdateMajorVersion > _CurrentMajorVersion || (_UpdateMajorVersion == _CurrentMajorVersion && _UpdateMinorVersion > _CurrentMinorVersion))
+				{
+					// tell the user there is an update availalbe
+					// and ask if they would like to update
+					frmUpdateConfirm dlgConfirm = new frmUpdateConfirm(_ProgramTitle, _ProgramName, _LatestVersion);
+					if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Ok)
+					{
+						// update confirmed get installer file
+						frmUpdateDownload dlgDownload = new frmUpdateDownload(_ProgramTitle, _ProgramName, _UpdateFileURL);
+						if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
+						{
+							_TempInstallerPath = dlgDownload.TempFilePath;
+							
+							// if the download was sucessful then procede with the install
+							frmInstallDialog Inst = new frmInstallDialog(_ProgramName, _ProgramTitle, _OS, _CurrentInstallType, _TempInstallerPath);
+							Inst.Run();
+							Inst.Destroy();
+							
+						}
+						dlgDownload.Destroy();
+					}
+					else
+					{
+						Application.Quit();
+					}
+					dlgConfirm.Destroy();
+				}
+				else
+				{
+					// if the update check is not silent notify the user of the results
+					if(_SilentCheck == false)
+					{
+						Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "No updates avalable at this time." ,"No updates");
+						md.Run();
+						md.Destroy();
+					}
+				}
+				
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString() ,"GUPdotNET Update Error");
+				md.Run();
+				md.Destroy();
+				// if we have an exception we want to exit the application 
+				// so it doens't keep on running in the background
+				Gtk.Application.Quit();
+			}
+		}
+		
+		#endregion Update Process
+		
+		#region Update Info Web
+		
+		private void UpdateInfoGet()
+		{
+			try
+			{
+				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(_UpdateInfoURL + "?InstallType=" + _CurrentInstallType.ToString() + "&OS=" + _OS.ToString());
+				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
+				System.IO.Stream s = wsp.GetResponseStream();
+				ParseResponse(s);
+			}
+			catch(WebException e)
+			{
+				// if we get a web exception exit the update
+				throw new Exception("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message);
+			}
+			catch(Exception ex)
+			{
+				throw new Exception(ex.ToString());
+			}
+		}
+		
+		private void ParseResponse(Stream s)
+		{
+			try
+			{
+				// get the xml that defines the update
+				XmlDocument xmlDoc = new XmlDocument();
+				xmlDoc.Load(s);
+				
+				XmlNodeList nl = xmlDoc.SelectNodes("GUPdotNET");
+				// parse out the GUPdotNET element children
+				for (int i = 0; i < nl.Count; i++)
+				{
+					_UpdateMajorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMajorVersion").InnerText.Trim());
+					_UpdateMinorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMinorVersion").InnerText.Trim());
+					_LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText.Trim();
+					_UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText.Trim();
+					_UpdateDetailsURL = nl[i].SelectSingleNode("UpdateDetailsURL").InnerText.Trim();
+					_Error = nl[i].SelectSingleNode("Error").InnerText.Trim();
+				}
+				// check for an error from the server
+				if(_Error.Length > 2)
+					throw new Exception("Error parsing the update xml file - " + System.Environment.NewLine + _Error);
+			}
+			catch(Exception ex)
+			{
+				throw new Exception(ex.ToString());
+			}
+			
+		}
+		
+		#endregion Update Info Web
+		
+		
 	}
 }

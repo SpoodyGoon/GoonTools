@@ -37,13 +37,13 @@ namespace GUPdotNET
 		#region Local Variable Declaration
 		
 		// value from the calling application or from the app con
-		private string _InstallType =  ConfigurationManager.AppSettings["InstallType"].ToString();
-		private string _ProgramTitle =  ConfigurationManager.AppSettings["ProgramTitle"].ToString();
+		private string _InstallType = string.Empty;
+		private string _ProgramTitle = string.Empty;
 		// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
 		private string _ProgramFullPath = string.Empty;
 		// this is the actual name of the program i.e. MyProgram.exe
-		private string _ProgramName =  ConfigurationManager.AppSettings["ProgramName"].ToString();
-		private string _UpdateInfoURL =  ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+		private string _ProgramName = string.Empty;
+		private string _UpdateInfoURL = string.Empty;
 		private int _CurrentMajorVersion = -1;
 		private int _CurrentMinorVersion = -1;
 		private bool _SilentCheck = false;

@@ -28,19 +28,55 @@
 
     void Page_Load()
     {
-        #region "Feedback Variables"
+    	System.Text.StringBuilder sbResponse = new System.Text.StringBuilder();
+    
+    	#region Input Variables
+    	
+    	// the operating system for the update 
+    	// expected values (Windows, Linux, Mac, BSD)
+    	private string _OS = string.Empty;
+    	// the type of install for the update
+    	// expected values (Installer,RPM, DEB, BIN, TGZ, SRC)  
+    	private string _InstallType = string.Empty;
+    	
+    	#endregion Input Variables
+    	
+        #region Feedback Variables
 
+		// Major version of the update program
         int _UpdateMajorVersion = 0;
+        // Minor version of the update program
         int _UpdateMinorVersion = 2;
-        int _FileSize = 18722816;
+        // friendly version string format
         string _LatestVersion = "0.2";
-        string _UpdateFileURL = "";
-        string _Error = "";
+        // http URL of the new program
+        string _UpdateFileURL = string.Empty;
+        // http URL of the update details if any
+        string _UpdateDetailsURL = string.Empty;
+        // for any error that may happen
+        string _Error = string.Empty;
 
-        #endregion  "Feedback Variables"
+        #endregion  Feedback Variables
 		
 		try
         {
+        
+        	#region Get Input
+        	
+        	if(Request.QueryString["InstallType"] != null)
+        		_InstallType = Request.QueryString["InstallType"].ToString();
+        	else
+        		throw new Exception("Missing Install Type - Invalid Request");
+        		
+        	if(Request.QueryString["OS"] != null)
+        		_OS = Request.QueryString["OS"].ToString();
+        	else
+        		throw new Exception("Missing Operating System - Invalid Request");
+        		
+        	
+        	
+        	#endregion Get Input
+        	
             #region "Install Files URL"
 
             string _WindowsFile = "http://www.brdstudio.net/yahtzeesharp/yathzeesharp.exe";
@@ -50,28 +86,26 @@
 
             #endregion "Install Files URL"
 			
-			if(Request.QueryString["InstallType"] != null)
+			switch (Request.QueryString["InstallType"].ToString())
 			{
-				switch (Request.QueryString["InstallType"].ToString())
-				{
-					case "Win32":
-						_UpdateFileURL = _WindowsFile;
-						break;
-					case "Linux_rpm":
-						_UpdateFileURL = _LinuxFile_rpm;
-						break;
-					case "Linux_bin":
-						_UpdateFileURL = _LinuxFile_bin;
-						break;
-					case "Linux_src":
-						_UpdateFileURL = _LinuxFile_src;
-						break;
-					default:
-						// default is windows
-						_UpdateFileURL = _WindowsFile;
-						break;
-				}
+				case "Windows":
+					_UpdateFileURL = _WindowsFile;
+					break;
+				case "Linux":
+					_UpdateFileURL = _LinuxFile_rpm;
+					break;
+				case "Mac":
+					_UpdateFileURL = _LinuxFile_src;
+					break;
+				case "BSD":
+					_UpdateFileURL = _LinuxFile_bin;
+					break;
+				default:
+					// default is windows
+					_UpdateFileURL = _WindowsFile;
+					break;
 			}
+			
 			else
 			{
 				_Error = "InstallType Not Set";
@@ -84,10 +118,11 @@
 
         Response.Write("<?xml version=\"1.0\"?>");
         Response.Write("<GUPdotNET>");
-        Response.Write("<UpdateFileURL>" + _UpdateFileURL + "</UpdateFileURL>");
         Response.Write("<UpdateMajorVersion>" + _UpdateMajorVersion.ToString() + "</UpdateMajorVersion>");
         Response.Write("<UpdateMinorVersion>" + _UpdateMinorVersion.ToString() + "</UpdateMinorVersion>");
         Response.Write("<LatestVersion>" + _LatestVersion + "</LatestVersion>");
+        Response.Write("<UpdateFileURL>" + _UpdateFileURL + "</UpdateFileURL>");
+        Response.Write("<UpdateDetailsURL>" + _UpdateDetailsURL + "</UpdateDetailsURL>");
         Response.Write("<Error>" + _Error + "</Error>");
         Response.Write("</GUPdotNET>");
 

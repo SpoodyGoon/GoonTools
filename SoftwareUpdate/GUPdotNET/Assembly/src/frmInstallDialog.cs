@@ -35,9 +35,19 @@ namespace GUPdotNET
 		// this is the global flag signaling if we want to cancel the update
 		private bool _Cancel = false;
 		private bool _IsSystemInstall = true;
-		public frmInstallDialog(string programname, string programtitle, string intstalltype, string tempinstallerpath)
+		private string _ProgramTitle = string.Empty;
+		private string _ProgramName = string.Empty;
+		private string _TempInstallerPath = string.Empty;
+		private GoonTools.OperatingSystem _OS = GoonTools.OperatingSystem.None;
+		private GoonTools.InstallType _CurrentInstallType = GoonTools.InstallType.None;
+		public frmInstallDialog(string programname, string programtitle, GoonTools.OperatingSystem os, GoonTools.InstallType currentinstalltype, string _TempInstallerPath)
 		{
 			this.Build();
+			_ProgramTitle = programtitle;
+			_ProgramName = programname;
+			_CurrentInstallType = currentinstalltype;
+			_OS = os;
+			_TempInstallerPath = _TempInstallerPath;
 			
 			this.Title = programtitle;
 			this.lblTitle.Text = "<span size=\"large\"><b>Installing " +  programtitle + "</b></span>";
@@ -46,20 +56,20 @@ namespace GUPdotNET
 			this.lblMessage.UseMarkup = true;
 			this.ShowNow();
 			
-			switch(intstalltype)
+			switch(os)
 			{
-				case "Win32":
-					PrepInstallWin32(programname, programtitle, tempinstallerpath);
+				case GoonTools.OperatingSystem.Windows:
+					PrepInstallWin32();
 					break;
-				case "Linux_rpm":
+				case GoonTools.OperatingSystem.Linux:
 					PrepInstallLinux();
 					InstallLinuxRPM();
 					break;
-				case "Linux_src":
+				case GoonTools.OperatingSystem.Mac:
 					PrepInstallLinux();
 				InstallLinuxSource();
 					break;
-				case "Linux_bin":
+				case GoonTools.OperatingSystem.BSD:
 					PrepInstallLinux();
 			 		InstallLinuxBin();
 					break;
@@ -191,19 +201,19 @@ namespace GUPdotNET
 		
 		#region Windows Install
 		
-		private void PrepInstallWin32(string programname, string programtitle, string tempinstallerpath)
+		private void PrepInstallWin32()
 		{
 			Gtk.ResponseType resp = ResponseType.None;
 			
-			bool blnProgramOpen = FindWindow(programname);
+			bool blnProgramOpen = FindWindow(_ProgramName);
 			while(blnProgramOpen == true && _Cancel == false)
 			{
 				// ask the user to save changes and close calling application
-				string strRequest = "To continue the install please save open files and close " + programtitle + " before we continue";
+				string strRequest = "To continue the install please save open files and close " + _ProgramTitle + " before we continue";
 				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
 				if(((Gtk.ResponseType)md.Run()) == ResponseType.Ok)
 				{
-					blnProgramOpen = FindWindow(programname);
+					blnProgramOpen = FindWindow(_ProgramName);
 				}
 				else
 				{
@@ -216,14 +226,14 @@ namespace GUPdotNET
 			
 			if(_Cancel == false)
 			{
-				bool blnHasAccess = HasAccess(tempinstallerpath);
+				bool blnHasAccess = HasAccess(_TempInstallerPath);
 				while(blnHasAccess == false && _Cancel == false)
 				{
 					frmSuPass fm = new frmSuPass();
 					Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
 					if(rsp == ResponseType.Ok)
 					{
-						blnHasAccess = HasAccess(tempinstallerpath);
+						blnHasAccess = HasAccess(_TempInstallerPath);
 					}
 					else
 					{
@@ -236,12 +246,12 @@ namespace GUPdotNET
 			}			
 		}
 		
-		private bool HasAccess(string tempinstallerpath)
+		private bool HasAccess(string _TempInstallerPath)
 		{
 			// assume the user has access
 			bool blnHasAccess = true;
 			
-			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, tempinstallerpath);
+			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, _TempInstallerPath);
 			try
 			{
 				f2.Demand();

@@ -18,7 +18,8 @@ namespace GoonTools
 		Windows,
 		Linux,
 		Mac,
-		BSD
+		BSD,
+		None // for initialization
 	}
 	
 	
@@ -29,6 +30,7 @@ namespace GoonTools
 		DEB, // Linux Package Installer
 		BIN, // Linux Binary
 		TGZ, // Linux Slackware
-		SRC  // Generic Source
+		SRC,  // Generic Source
+		None // for initialization
 	}
 }

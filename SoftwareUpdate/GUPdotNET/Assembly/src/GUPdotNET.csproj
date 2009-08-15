@@ -67,7 +67,6 @@
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateConfirm.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmUpdateDownload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UpdateCheck.cs" />
     <Compile Include="frmReTry.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmReTry.cs" />
     <Compile Include="frmUpdateCheck.cs" />
