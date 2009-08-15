@@ -43,7 +43,7 @@ using GoonTools.Global;
 namespace GUPdotNET
 {
 	
-	public partial class frmUpdateCheck : Gtk.Window
+	public partial class frmUpdateCheck : Gtk.Dialog
 	{
 		#region Local Variable Declaration
 		
@@ -214,7 +214,7 @@ namespace GUPdotNET
 		
 		#region Constructors
 		
-		public frmUpdateCheck(): base (Gtk.WindowType.Toplevel)
+		public frmUpdateCheck()
 		{
 			this.Build();
 			Common.LoadAll();			

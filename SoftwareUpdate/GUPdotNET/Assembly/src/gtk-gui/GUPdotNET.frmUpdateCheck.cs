@@ -286,7 +286,7 @@ namespace GUPdotNET {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 400;
-            this.DefaultHeight = 168;
+            this.DefaultHeight = 183;
             this.Hide();
             this.btnAbout.Clicked += new System.EventHandler(this.OnBtnAboutClicked);
             this.btnAbout.Entered += new System.EventHandler(this.OnBtnAboutEntered);
