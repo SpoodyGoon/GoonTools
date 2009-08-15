@@ -55,7 +55,9 @@ namespace GoonTools
 		public static void LoadAll()
 		{
 			try
-			{				   
+			{
+				if(!Directory.Exists(EnvData.SavePath))
+				   Directory.CreateDirectory(EnvData.SavePath);
 				// search for the options file if it exists load it
 				// if it has not been saved load the defaults
 				if(File.Exists(EnvData.SavePath + _OptionsFileName))
