@@ -80,7 +80,11 @@ public partial class MainWindow {
     
     private Gtk.VButtonBox vbuttonbox1;
     
-    private Gtk.Button btnTest;
+    private Gtk.HButtonBox hbuttonbox1;
+    
+    private Gtk.Button btnRunTest;
+    
+    private Gtk.Button btnOptions;
     
     private Gtk.Alignment alignment11;
     
@@ -90,7 +94,7 @@ public partial class MainWindow {
     
     private Gtk.Button btnQuit;
     
-    private Gtk.HButtonBox hbuttonbox1;
+    private Gtk.HButtonBox hbuttonbox3;
     
     protected virtual void Build() {
         Stetic.Gui.Initialize(this);
@@ -363,21 +367,40 @@ public partial class MainWindow {
         this.vbuttonbox1.Name = "vbuttonbox1";
         this.vbuttonbox1.Spacing = 11;
         this.vbuttonbox1.LayoutStyle = ((Gtk.ButtonBoxStyle)(3));
-        // Container child vbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-        this.btnTest = new Gtk.Button();
-        this.btnTest.WidthRequest = 136;
-        this.btnTest.CanFocus = true;
-        this.btnTest.Name = "btnTest";
-        this.btnTest.UseUnderline = true;
-        this.btnTest.Label = Mono.Unix.Catalog.GetString("Run Test");
-        this.vbuttonbox1.Add(this.btnTest);
-        Gtk.ButtonBox.ButtonBoxChild w33 = ((Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox1[this.btnTest]));
-        w33.Expand = false;
-        w33.Fill = false;
         this.vbox1.Add(this.vbuttonbox1);
-        Gtk.Box.BoxChild w34 = ((Gtk.Box.BoxChild)(this.vbox1[this.vbuttonbox1]));
-        w34.Position = 4;
-        w34.Padding = ((uint)(1));
+        Gtk.Box.BoxChild w33 = ((Gtk.Box.BoxChild)(this.vbox1[this.vbuttonbox1]));
+        w33.Position = 4;
+        w33.Padding = ((uint)(1));
+        // Container child vbox1.Gtk.Box+BoxChild
+        this.hbuttonbox1 = new Gtk.HButtonBox();
+        this.hbuttonbox1.Name = "hbuttonbox1";
+        this.hbuttonbox1.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+        // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
+        this.btnRunTest = new Gtk.Button();
+        this.btnRunTest.CanFocus = true;
+        this.btnRunTest.Name = "btnRunTest";
+        this.btnRunTest.UseUnderline = true;
+        this.btnRunTest.Label = Mono.Unix.Catalog.GetString("Run Update Test");
+        this.hbuttonbox1.Add(this.btnRunTest);
+        Gtk.ButtonBox.ButtonBoxChild w34 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.btnRunTest]));
+        w34.Expand = false;
+        w34.Fill = false;
+        // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
+        this.btnOptions = new Gtk.Button();
+        this.btnOptions.CanFocus = true;
+        this.btnOptions.Name = "btnOptions";
+        this.btnOptions.UseUnderline = true;
+        this.btnOptions.Label = Mono.Unix.Catalog.GetString("Update Options");
+        this.hbuttonbox1.Add(this.btnOptions);
+        Gtk.ButtonBox.ButtonBoxChild w35 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.btnOptions]));
+        w35.Position = 1;
+        w35.Expand = false;
+        w35.Fill = false;
+        this.vbox1.Add(this.hbuttonbox1);
+        Gtk.Box.BoxChild w36 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox1]));
+        w36.Position = 5;
+        w36.Expand = false;
+        w36.Fill = false;
         // Container child vbox1.Gtk.Box+BoxChild
         this.alignment11 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
         this.alignment11.Name = "alignment11";
@@ -386,13 +409,12 @@ public partial class MainWindow {
         this.hseparator2.Name = "hseparator2";
         this.alignment11.Add(this.hseparator2);
         this.vbox1.Add(this.alignment11);
-        Gtk.Box.BoxChild w36 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment11]));
-        w36.Position = 5;
-        w36.Expand = false;
-        w36.Fill = false;
+        Gtk.Box.BoxChild w38 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment11]));
+        w38.Position = 6;
+        w38.Expand = false;
+        w38.Fill = false;
         // Container child vbox1.Gtk.Box+BoxChild
         this.hbuttonbox2 = new Gtk.HButtonBox();
-        this.hbuttonbox2.Name = "hbuttonbox2";
         // Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
         this.btnQuit = new Gtk.Button();
         this.btnQuit.CanFocus = true;
@@ -401,30 +423,32 @@ public partial class MainWindow {
         this.btnQuit.UseUnderline = true;
         this.btnQuit.Label = "gtk-quit";
         this.hbuttonbox2.Add(this.btnQuit);
-        Gtk.ButtonBox.ButtonBoxChild w37 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.btnQuit]));
-        w37.Expand = false;
-        w37.Fill = false;
-        this.vbox1.Add(this.hbuttonbox2);
-        Gtk.Box.BoxChild w38 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox2]));
-        w38.Position = 6;
-        w38.Expand = false;
-        w38.Fill = false;
-        // Container child vbox1.Gtk.Box+BoxChild
-        this.hbuttonbox1 = new Gtk.HButtonBox();
-        this.vbox1.Add(this.hbuttonbox1);
-        Gtk.Box.BoxChild w39 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox1]));
-        w39.Position = 7;
+        Gtk.ButtonBox.ButtonBoxChild w39 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.btnQuit]));
         w39.Expand = false;
         w39.Fill = false;
+        this.vbox1.Add(this.hbuttonbox2);
+        Gtk.Box.BoxChild w40 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox2]));
+        w40.Position = 7;
+        w40.Expand = false;
+        w40.Fill = false;
+        // Container child vbox1.Gtk.Box+BoxChild
+        this.hbuttonbox3 = new Gtk.HButtonBox();
+        this.hbuttonbox3.Name = "hbuttonbox3";
+        this.vbox1.Add(this.hbuttonbox3);
+        Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox3]));
+        w41.Position = 8;
+        w41.Expand = false;
+        w41.Fill = false;
         this.Add(this.vbox1);
         if ((this.Child != null)) {
             this.Child.ShowAll();
         }
         this.DefaultWidth = 348;
-        this.DefaultHeight = 321;
+        this.DefaultHeight = 492;
         this.Show();
         this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
-        this.btnTest.Clicked += new System.EventHandler(this.OnBtnTestClicked);
+        this.btnRunTest.Clicked += new System.EventHandler(this.OnBtnTestClicked);
+        this.btnOptions.Clicked += new System.EventHandler(this.OnBtnOptionsClicked);
         this.btnQuit.Clicked += new System.EventHandler(this.OnBtnQuitClicked);
     }
 }

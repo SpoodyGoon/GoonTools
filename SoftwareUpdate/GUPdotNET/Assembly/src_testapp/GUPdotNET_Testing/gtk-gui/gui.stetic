@@ -5,10 +5,10 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="..\..\..\src\bin\Debug\GUPdotNET.dll" />
-    <widget-library name="..\bin\Debug\GUPdotNet_Testing.exe" internal="true" />
+    <widget-library name="../../../src/bin/Debug/GUPdotNET.dll" />
+    <widget-library name="../bin/Debug/GUPdotNet_Testing.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="348 321">
+  <widget class="Gtk.Window" id="MainWindow" design-size="348 492">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -76,6 +76,7 @@
                         <property name="CanFocus">True</property>
                         <property name="Text" translatable="yes">GUPdotNET_Testing</property>
                         <property name="IsEditable">True</property>
+                        <property name="InvisibleChar">●</property>
                       </widget>
                     </child>
                   </widget>
@@ -374,6 +375,7 @@ LinuxSrc</property>
                         <property name="CanFocus">True</property>
                         <property name="Text" translatable="yes">GUPdotNET Testing Program</property>
                         <property name="IsEditable">True</property>
+                        <property name="InvisibleChar">●</property>
                       </widget>
                     </child>
                   </widget>
@@ -421,15 +423,26 @@ LinuxSrc</property>
           <widget class="Gtk.VButtonBox" id="vbuttonbox1">
             <property name="MemberName" />
             <property name="Spacing">11</property>
-            <property name="Size">1</property>
+            <property name="Size">0</property>
             <property name="LayoutStyle">Start</property>
+          </widget>
+          <packing>
+            <property name="Position">4</property>
+            <property name="AutoSize">True</property>
+            <property name="Padding">1</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HButtonBox" id="hbuttonbox1">
+            <property name="MemberName" />
+            <property name="Size">2</property>
+            <property name="LayoutStyle">Spread</property>
             <child>
-              <widget class="Gtk.Button" id="btnTest">
+              <widget class="Gtk.Button" id="btnRunTest">
                 <property name="MemberName" />
-                <property name="WidthRequest">136</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Run Test</property>
+                <property name="Label" translatable="yes">Run Update Test</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBtnTestClicked" />
               </widget>
@@ -438,11 +451,27 @@ LinuxSrc</property>
                 <property name="Fill">False</property>
               </packing>
             </child>
+            <child>
+              <widget class="Gtk.Button" id="btnOptions">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Update Options</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnOptionsClicked" />
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
           </widget>
           <packing>
-            <property name="Position">4</property>
+            <property name="Position">5</property>
             <property name="AutoSize">True</property>
-            <property name="Padding">1</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
@@ -455,7 +484,7 @@ LinuxSrc</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">5</property>
+            <property name="Position">6</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -482,19 +511,19 @@ LinuxSrc</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">6</property>
+            <property name="Position">7</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HButtonBox" id="hbuttonbox1">
+          <widget class="Gtk.HButtonBox" id="hbuttonbox3">
             <property name="MemberName" />
             <property name="Size">0</property>
           </widget>
           <packing>
-            <property name="Position">7</property>
+            <property name="Position">8</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
