@@ -47,19 +47,19 @@ public partial class MainWindow: Gtk.Window
 	{
 		try
 		{
-//			System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly();
-//			frmUpdateCheck up = new frmUpdateCheck();
-//			up.InstallType = cboInstallType.ActiveText;
-//			up.ProgramTitle =  txtProgramTitle.Text;
-//			up.ProgramName =  txtProgramName.Text;
-//			// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
-//			up.ProgramFullPath = assm.GetName().CodeBase;
-//			// this is the actual name of the program i.e. MyProgram.exe
-//			up.UpdateInfoURL =  ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
-//			up.CurrentMajorVersion = spnMajor.ValueAsInt;
-//			up.CurrentMinorVersion = spnMinorVersion.ValueAsInt;;
-//			up.SilentCheck = (bool)cbxSilent.Active;
-//			up.RunUpdateCheck();
+			System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly();
+			frmUpdateCheck up = new frmUpdateCheck();
+			up.InstallType = cboInstallType.ActiveText;
+			up.ProgramTitle =  txtProgramTitle.Text;
+			up.ProgramName =  txtProgramName.Text;
+			// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
+			up.ProgramFullPath = assm.GetName().CodeBase;
+			// this is the actual name of the program i.e. MyProgram.exe
+			up.UpdateInfoURL =  ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+			up.CurrentMajorVersion = spnMajor.ValueAsInt;
+			up.CurrentMinorVersion = spnMinorVersion.ValueAsInt;;
+			up.SilentCheck = (bool)cbxSilent.Active;
+			up.RunUpdateCheck();
 		}
 		catch(Exception ex)
 		{

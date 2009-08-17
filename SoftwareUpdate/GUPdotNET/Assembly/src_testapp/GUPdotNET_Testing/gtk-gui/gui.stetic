@@ -420,19 +420,6 @@ LinuxSrc</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.VButtonBox" id="vbuttonbox1">
-            <property name="MemberName" />
-            <property name="Spacing">11</property>
-            <property name="Size">0</property>
-            <property name="LayoutStyle">Start</property>
-          </widget>
-          <packing>
-            <property name="Position">4</property>
-            <property name="AutoSize">True</property>
-            <property name="Padding">1</property>
-          </packing>
-        </child>
-        <child>
           <widget class="Gtk.HButtonBox" id="hbuttonbox1">
             <property name="MemberName" />
             <property name="Size">2</property>
@@ -468,11 +455,14 @@ LinuxSrc</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">5</property>
+            <property name="Position">4</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
+        </child>
+        <child>
+          <placeholder />
         </child>
         <child>
           <widget class="Gtk.Alignment" id="alignment11">
