@@ -1,5 +1,5 @@
 ﻿/*************************************************************************
- *                      Global.cs
+ *                      EnviromentInfo.cs
  *
  *	 	Copyright (C) 2009
  *		Andrew York <goontools@brdstudio.net>
@@ -26,19 +26,24 @@ using System.Reflection;
 using Gtk;
 using Mono.Unix;
 
-namespace GoonTools.Global
+namespace GoonTools.Helper
 {
 	/// <summary>
-	///  This class contains data that is related to the
-	///  enviroment around the probram
+	///  This class contains information we need to know
+	///  about the enviroment we are working in
 	/// </summary>
 	public class EnviromentInfo
 	{		
+		#region Private Properties
+		
 		private string _OS = string.Empty;
 		private string _DirChar = string.Empty;
 		private string _AppPath = string.Empty;
 		private string _SavePath = string.Empty;
 		private string _DefaultsPath = string.Empty;
+		
+		#endregion Private Properties
+		
 		public EnviromentInfo()
 		{
 			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();

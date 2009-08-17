@@ -2,7 +2,7 @@
  *                      Common.cs
  *
  *	 	Copyright (C) 2009
- *		Andrew York <MonoToDo@brdstudio.net>
+ *		Andrew York <goontools@brdstudio.net>
  *
  *************************************************************************/
 /*
@@ -33,17 +33,22 @@ namespace GoonTools
 	/// </summary>
 	public static class Common
 	{
-		private static GoonTools.Global.Options _Option;
-		private static GoonTools.Global.EnviromentInfo _EnvData = new GoonTools.Global.EnviromentInfo();
-		private static string _OptionsFileName = "GUPdotNET.dat"; 
+		#region Private Properties
+		
+		private static GoonTools.Helper.Options _Option;
+		private static GoonTools.Helper.EnviromentInfo _EnvData = new GoonTools.Helper.EnviromentInfo();
+		private static string _OptionsFileName = "GUPdotNET.dat"; 		
+		
+		#endregion Private Properties
+		
 		#region Public Properties
 		
-		public static GoonTools.Global.Options Option
+		public static GoonTools.Helper.Options Option
 		{
 			get{return _Option;}
 		}
 		
-		public static GoonTools.Global.EnviromentInfo EnvData
+		public static GoonTools.Helper.EnviromentInfo EnvData
 		{
 			get{return _EnvData;}
 		}
@@ -66,7 +71,7 @@ namespace GoonTools
 				}
 				else
 				{
-					_Option = new GoonTools.Global.Options();
+					_Option = new GoonTools.Helper.Options();
 					SaveOptions();
 				}
 				
@@ -83,7 +88,7 @@ namespace GoonTools
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-				_Option = (GoonTools.Global.Options) formatter.Deserialize(stream);
+				_Option = (GoonTools.Helper.Options) formatter.Deserialize(stream);
 				stream.Close();
 			}
 			catch(Exception ex)

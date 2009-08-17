@@ -26,10 +26,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-    void Page_Load()
+    protected virtual void Page_Load()
     {
-    	System.Text.StringBuilder sbResponse = new System.Text.StringBuilder();
-    
     	#region Input Variables
     	
     	// the operating system for the update 
@@ -52,12 +50,16 @@
         // http URL of the new program
         string _UpdateFileURL = string.Empty;
         // http URL of the update details if any
+        // this is intended for the change log put it could change
+        // for starting it will be just a text file.
         string _UpdateDetailsURL = string.Empty;
         // for any error that may happen
         string _Error = string.Empty;
 
         #endregion  Feedback Variables
-		
+		System.Text.StringBuilder sbResponse = new System.Text.StringBuilder();
+    
+    	
 		try
         {
         
@@ -73,42 +75,37 @@
         	else
         		throw new Exception("Missing Operating System - Invalid Request");
         		
-        	
-        	
         	#endregion Get Input
         	
-            #region "Install Files URL"
-
-            string _WindowsFile = "http://www.brdstudio.net/yahtzeesharp/yathzeesharp.exe";
-            string _LinuxFile_rpm = "";
-            string _LinuxFile_bin = "";
-            string _LinuxFile_src = "";
-
-            #endregion "Install Files URL"
-			
-			switch (Request.QueryString["InstallType"].ToString())
+        	// start our xml string
+        	sbResponse.Append("<UpdateMajorVersion>" + _UpdateMajorVersion.ToString() + "</UpdateMajorVersion>");
+	        sbResponse.Append("<UpdateMinorVersion>" + _UpdateMinorVersion.ToString() + "</UpdateMinorVersion>");
+	        sbResponse.Append("<LatestVersion>" + _LatestVersion + "</LatestVersion>");
+        
+            switch (_OS)
 			{
 				case "Windows":
-					_UpdateFileURL = _WindowsFile;
+					sbResponse.Append("<UpdateFileURL>http://www.brdstudio.net/yahtzeesharp/yathzeesharp.exe</UpdateFileURL>");
+					sbResponse.Append("<UpdateDetailsURL>http://www.brdstudio.net/yahtzeesharp/yathzeesharp.exe</UpdateDetailsURL>");
 					break;
 				case "Linux":
-					_UpdateFileURL = _LinuxFile_rpm;
+					sbResponse.Append("<UpdateFileURL></UpdateFileURL>");
+					sbResponse.Append("<UpdateDetailsURL></UpdateDetailsURL>");
+					_Error = "Sorry Linux is not currently supported";
 					break;
 				case "Mac":
-					_UpdateFileURL = _LinuxFile_src;
+					sbResponse.Append("<UpdateFileURL></UpdateFileURL>");
+					sbResponse.Append("<UpdateDetailsURL></UpdateDetailsURL>");
+					_Error = "Sorry Mac is not currently supported";
 					break;
 				case "BSD":
-					_UpdateFileURL = _LinuxFile_bin;
+					sbResponse.Append("<UpdateFileURL></UpdateFileURL>");
+					sbResponse.Append("<UpdateDetailsURL></UpdateDetailsURL>");
+					_Error = "Sorry BSD is not currently supported";
 					break;
 				default:
-					// default is windows
-					_UpdateFileURL = _WindowsFile;
+					_Error = "Should not get here";
 					break;
-			}
-			
-			else
-			{
-				_Error = "InstallType Not Set";
 			}
 		}
 		catch (Exception Ex)
@@ -118,11 +115,7 @@
 
         Response.Write("<?xml version=\"1.0\"?>");
         Response.Write("<GUPdotNET>");
-        Response.Write("<UpdateMajorVersion>" + _UpdateMajorVersion.ToString() + "</UpdateMajorVersion>");
-        Response.Write("<UpdateMinorVersion>" + _UpdateMinorVersion.ToString() + "</UpdateMinorVersion>");
-        Response.Write("<LatestVersion>" + _LatestVersion + "</LatestVersion>");
-        Response.Write("<UpdateFileURL>" + _UpdateFileURL + "</UpdateFileURL>");
-        Response.Write("<UpdateDetailsURL>" + _UpdateDetailsURL + "</UpdateDetailsURL>");
+        Response.Write(sbResponse.ToString());
         Response.Write("<Error>" + _Error + "</Error>");
         Response.Write("</GUPdotNET>");
 
