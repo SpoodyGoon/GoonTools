@@ -22,13 +22,15 @@
 
 
 /************************* Global Variables ********************************/
+
+#region Input Variables
     	
 // the operating system for the update 
 // expected values (Windows, Linux, Mac, BSD)
-$OS = "";
+$OS = '';
 // the type of install for the update
 // expected values (Installer,RPM, DEB, BIN, TGZ, SRC)  
-$InstallType = "";
+$InstallType = '';
 
 #endregion Input Variables
 
@@ -39,50 +41,55 @@ $UpdateMajorVersion = 0;
 // Minor version of the update program
 $UpdateMinorVersion = 2;
 // friendly version string format
-$LatestVersion = "0.2";
+$LatestVersion = '0.2';
 // http URL of the new program
-$UpdateFileURL = "";
+$UpdateFileURL = '';
 // http URL of the update details if any
 // this is intended for the change log put it could change
 // for starting it will be just a text file.
-$UpdateDetailsURL = "";
+$UpdateDetailsURL = '';
 // for any error that may happen
-$Error = "";
+$UpdateError = '';
 
+#endregion Feedback Variables
+
+#region Validate Input 
 
   if(!$_GET['OS']) 
   {
-      $Error .= "Missing OS - Invalid Request\n";
+      $UpdateError .= "Missing OS - Invalid Request\n";
   }
   
   if(!$_GET['InstallType'])
   { 
-      $Error .= "Missing Install Type - Invalid Request\n";
+      $UpdateError .= "Missing Install Type - Invalid Request\n";
   }
+  
+#endregion Validate Input 
 
   switch($_GET['OS'])
   {
-      case "Windows":
-	    $UpdateFileURL = "http://www.brdstudio.net/gupdotnet/gupdotnet.7z";
-	    $UpdateDetailsURL = "http://www.brdstudio.net/gupdotnet/testchangelog.txt";
+      case 'Windows':
+	    $UpdateFileURL = 'http://www.brdstudio.net/gupdotnet/gupdotnet.7z';
+	    $UpdateDetailsURL = 'http://www.brdstudio.net/gupdotnet/testchangelog.txt';
 	  break;
-      case "Linux":
-	    $UpdateFileURL = "";
-	    $UpdateDetailsURL = "";
-	    $Error .= "Sorry Linux is not currently supported";
+      case 'Linux':
+	    $UpdateFileURL = '';
+	    $UpdateDetailsURL = '';
+	    $UpdateError .= "Sorry Linux is not currently supported\n";
 	  break;
-      case "Mac":
-	    $UpdateFileURL = "";
-	    $UpdateDetailsURL = "";
-	    $Error .= "Sorry Mac is not currently supported";
+      case 'Mac':
+	    $UpdateFileURL = '';
+	    $UpdateDetailsURL = '';
+	    $UpdateError .= "Sorry Mac is not currently supported\n";
 	  break;
-      case "BSD":
-	    $UpdateFileURL = "";
-	    $UpdateDetailsURL = "";
-	    $Error .= "Sorry BSD is not currently supported";
+      case 'BSD':
+	    $UpdateFileURL = '';
+	    $UpdateDetailsURL = '';
+	    $UpdateError .= "Sorry BSD is not currently supported\n";
 	  break;
       default:
-	  $Error .= "Should not get here";
+	  $UpdateError .= "Should not get here\n";
 	  break;
 
   }
@@ -95,7 +102,7 @@ print "<UpdateMinorVersion>$UpdateMinorVersion</UpdateMinorVersion>";
 print "<LatestVersion>$LatestVersion</LatestVersion>";
 print "<UpdateFileURL>$UpdateFileURL</UpdateFileURL>";
 print "<UpdateDetailsURL>$UpdateDetailsURL</UpdateDetailsURL>";
-print "<Error>$Error</Error>";
+print "<Error>$UpdateError</Error>";
 print "</GUPdotNET>";
 
 ?>
