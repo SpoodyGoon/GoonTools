@@ -1,0 +1,9 @@
+#summary One-sentence summary of this page.
+
+= A Simple Blood Pressure Monitor for Windows and Linux=
+
+
+
+Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.
+
+It include methods to track medication as well as doctors but it's main focus is the simple tracking and reporting of blood pressure readings.
