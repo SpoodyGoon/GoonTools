@@ -53,6 +53,7 @@ namespace MonoBPMonitor.Medications
 			
 			// Create a column for the list name
 			Gtk.TreeViewColumn colMedicineName = new Gtk.TreeViewColumn ();
+			colMedicineName.MinWidth = 150;
 			colMedicineName.Expand = true;
 			colMedicineName.Resizable = true;
 			colMedicineName.Visible = true;
@@ -65,6 +66,7 @@ namespace MonoBPMonitor.Medications
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colDosage = new Gtk.TreeViewColumn ();
+			colDosage.MinWidth = 70;
 			colDosage.Resizable = true;
 			colDosage.Visible = true;
 			colDosage.Title = "Dosage";
@@ -76,6 +78,7 @@ namespace MonoBPMonitor.Medications
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colStartDate = new Gtk.TreeViewColumn ();
+			colStartDate.MinWidth = 70;
 			colStartDate.Resizable = true;
 			colStartDate.Visible = true;
 			colStartDate.Title = "Start Date";
@@ -87,6 +90,7 @@ namespace MonoBPMonitor.Medications
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colEndDate = new Gtk.TreeViewColumn ();
+			colEndDate.MinWidth = 70;
 			colEndDate.Resizable = true;
 			colEndDate.Visible = true;
 			colEndDate.Title = "End Date";
@@ -98,6 +102,7 @@ namespace MonoBPMonitor.Medications
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colDoctorID = new Gtk.TreeViewColumn ();
+			colDoctorID.MinWidth = 120;
 			colDoctorID.Resizable = true;
 			colDoctorID.Visible = true;
 			colDoctorID.Title = "Doctor";
@@ -108,6 +113,7 @@ namespace MonoBPMonitor.Medications
 			
 			// Create a column for the date
 			Gtk.TreeViewColumn colUserID = new Gtk.TreeViewColumn ();
+			colUserID.MinWidth = 120;
 			colUserID.Resizable = true;
 			colUserID.Visible = true;
 			colUserID.Title = "User";
