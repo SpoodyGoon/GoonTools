@@ -26,7 +26,7 @@ using System.Reflection;
 using Gtk;
 using Mono.Unix;
 
-namespace GoonTools.Helper
+namespace GUPdotNET.Helper
 {
 	/// <summary>
 	///  This class contains information we need to know

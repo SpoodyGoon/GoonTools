@@ -24,7 +24,7 @@ using System;
 using System.IO;
 using Gtk;
 
-namespace GoonTools
+namespace GUPdotNET
 {
 	/// <summary>
 	/// This is a static class that holds values that
@@ -35,20 +35,20 @@ namespace GoonTools
 	{
 		#region Private Properties
 		
-		private static GoonTools.Helper.Options _Option;
-		private static GoonTools.Helper.EnviromentInfo _EnvData = new GoonTools.Helper.EnviromentInfo();
+		private static GUPdotNET.Helper.Options _Option;
+		private static GUPdotNET.Helper.EnviromentInfo _EnvData = new GUPdotNET.Helper.EnviromentInfo();
 		private static string _OptionsFileName = "GUPdotNET.dat"; 		
 		
 		#endregion Private Properties
 		
 		#region Public Properties
 		
-		public static GoonTools.Helper.Options Option
+		public static GUPdotNET.Helper.Options Option
 		{
 			get{return _Option;}
 		}
 		
-		public static GoonTools.Helper.EnviromentInfo EnvData
+		public static GUPdotNET.Helper.EnviromentInfo EnvData
 		{
 			get{return _EnvData;}
 		}
@@ -71,7 +71,7 @@ namespace GoonTools
 				}
 				else
 				{
-					_Option = new GoonTools.Helper.Options();
+					_Option = new GUPdotNET.Helper.Options();
 					SaveOptions();
 				}
 				
@@ -88,7 +88,7 @@ namespace GoonTools
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-				_Option = (GoonTools.Helper.Options) formatter.Deserialize(stream);
+				_Option = (GUPdotNET.Helper.Options) formatter.Deserialize(stream);
 				stream.Close();
 			}
 			catch(Exception ex)

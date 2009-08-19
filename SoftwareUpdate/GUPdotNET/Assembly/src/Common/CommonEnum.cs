@@ -23,7 +23,7 @@
 
 using System;
 
-namespace GoonTools
+namespace GUPdotNET
 {		
 	public enum UpdateDateType
 	{
