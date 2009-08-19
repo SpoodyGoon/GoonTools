@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Data">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.4.2\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.4.2\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
@@ -186,6 +186,10 @@
     <Folder Include="Medications\" />
     <Folder Include="Properties\" />
     <Folder Include="Entry\" />
+    <ProjectReference Include="..\..\..\GUPdotNET\GUPdotNET.csproj">
+      <Project>{4C89213F-F2F0-417D-AB7F-850D2BC47DC7}</Project>
+      <Name>GUPdotNET</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\CreateDB.sql">
