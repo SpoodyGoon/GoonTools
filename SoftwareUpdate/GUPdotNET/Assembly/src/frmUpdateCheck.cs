@@ -43,7 +43,6 @@ using System.Security;
 using System.Reflection;
 using System.Security.Permissions;
 using Gtk;
-using GoonTools;
 
 
 namespace GUPdotNET
@@ -57,8 +56,8 @@ namespace GUPdotNET
 		private string _ProgramTitle =  string.Empty;
 		// this is the actual name of the program i.e. MyProgram.exe
 		private string _ProgramName =  string.Empty;
-		private GoonTools.OperatingSystem _OS = GoonTools.OperatingSystem.None;
-		private GoonTools.InstallType _CurrentInstallType = GoonTools.InstallType.None;
+		private GUPdotNET.OperatingSystem _OS = GUPdotNET.OperatingSystem.None;
+		private GUPdotNET.InstallType _CurrentInstallType = GUPdotNET.InstallType.None;
 		// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
 		private string _ProgramFullPath = string.Empty;
 		// this is the http URL where we get the update info from
@@ -112,7 +111,7 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public GoonTools.OperatingSystem OS
+		public GUPdotNET.OperatingSystem OS
 		{
 			set{_OS=value;}
 			get{return _OS;}
@@ -122,7 +121,7 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public GoonTools.InstallType CurrentInstallType
+		public GUPdotNET.InstallType CurrentInstallType
 		{
 			set{_CurrentInstallType=value;}
 			get{return _CurrentInstallType;}
@@ -325,7 +324,7 @@ namespace GUPdotNET
 			ad.Title = "About GUPdotNET";
 			ad.ProgramName = "GUPdotNET (Generic Update Program)";
 			ad.Comments ="";
-			ad.License = GoonTools.Const.License;
+			ad.License = GUPdotNET.Const.License;
 			ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
 			ad.Version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
 			ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
@@ -353,7 +352,8 @@ namespace GUPdotNET
 		protected virtual void OnBtnAboutEntered (object sender, System.EventArgs e)
 		{
 			btnAbout.Relief = ReliefStyle.None;
-		}		
+		}
+		
 		
 		protected virtual void OnBtnCheckNowClicked (object sender, System.EventArgs e)
 		{

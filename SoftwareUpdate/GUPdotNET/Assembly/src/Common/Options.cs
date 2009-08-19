@@ -22,7 +22,7 @@
 
 using System;
 
-namespace GoonTools.Helper
+namespace GUPdotNET.Helper
 {
 	[Serializable]
 	public class Options

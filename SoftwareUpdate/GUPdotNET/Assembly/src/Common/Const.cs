@@ -22,7 +22,7 @@
 
 using System;
 
-namespace  GoonTools
+namespace  GUPdotNET
 {
 	public static class Const
 	{

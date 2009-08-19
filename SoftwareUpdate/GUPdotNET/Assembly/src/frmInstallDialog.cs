@@ -38,9 +38,9 @@ namespace GUPdotNET
 		private string _ProgramTitle = string.Empty;
 		private string _ProgramName = string.Empty;
 		private string _TempInstallerPath = string.Empty;
-		private GoonTools.OperatingSystem _OS = GoonTools.OperatingSystem.None;
-		private GoonTools.InstallType _CurrentInstallType = GoonTools.InstallType.None;
-		public frmInstallDialog(string programname, string programtitle, GoonTools.OperatingSystem os, GoonTools.InstallType currentinstalltype, string _TempInstallerPath)
+		private GUPdotNET.OperatingSystem _OS = GUPdotNET.OperatingSystem.None;
+		private GUPdotNET.InstallType _CurrentInstallType = GUPdotNET.InstallType.None;
+		public frmInstallDialog(string programname, string programtitle, GUPdotNET.OperatingSystem os, GUPdotNET.InstallType currentinstalltype, string _TempInstallerPath)
 		{
 			this.Build();
 			_ProgramTitle = programtitle;
@@ -58,18 +58,18 @@ namespace GUPdotNET
 			
 			switch(os)
 			{
-				case GoonTools.OperatingSystem.Windows:
+				case GUPdotNET.OperatingSystem.Windows:
 					PrepInstallWin32();
 					break;
-				case GoonTools.OperatingSystem.Linux:
+				case GUPdotNET.OperatingSystem.Linux:
 					PrepInstallLinux();
 					InstallLinuxRPM();
 					break;
-				case GoonTools.OperatingSystem.Mac:
+				case GUPdotNET.OperatingSystem.Mac:
 					PrepInstallLinux();
 				InstallLinuxSource();
 					break;
-				case GoonTools.OperatingSystem.BSD:
+				case GUPdotNET.OperatingSystem.BSD:
 					PrepInstallLinux();
 			 		InstallLinuxBin();
 					break;
