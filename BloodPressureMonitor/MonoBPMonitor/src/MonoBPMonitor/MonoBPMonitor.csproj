@@ -186,10 +186,6 @@
     <Folder Include="Medications\" />
     <Folder Include="Properties\" />
     <Folder Include="Entry\" />
-    <ProjectReference Include="..\..\..\GUPdotNET\GUPdotNET.csproj">
-      <Project>{4C89213F-F2F0-417D-AB7F-850D2BC47DC7}</Project>
-      <Name>GUPdotNET</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\CreateDB.sql">

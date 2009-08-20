@@ -51,6 +51,7 @@ namespace MonoBPMonitor.Reports
 				int SumHeartRate = 0;
 				int RowCount = 1;
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
+				// TODO: sort by date not working correctly sorting like a number
 				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = " + _CurrentUser.ToString() + " ORDER BY EntryDate LIMIT " + Common.Option.HistoryDefaultShow.ToString() + " ;");
 				foreach(DataRow dr in dt.Rows)
 				{
