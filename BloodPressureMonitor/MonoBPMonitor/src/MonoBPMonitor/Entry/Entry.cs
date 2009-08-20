@@ -10,6 +10,7 @@ namespace MonoBPMonitor
 	
 	public class Entry
 	{
+		// TODO: Entry also needs to have a time
 		private int _EntryID = -1;
 		private DateTime _EntryDate = DateTime.Now.Date;
 		private int _Systolic = 120;

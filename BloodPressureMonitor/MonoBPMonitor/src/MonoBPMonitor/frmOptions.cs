@@ -10,6 +10,7 @@ namespace MonoBPMonitor
 
 		public frmOptions()
 		{
+			// TODO: add checkbox to not have any sort at all.
 			this.Build();
 			cbxUpdates.Active= GoonTools.Common.Option.CheckForUpdates;
 			spnDefaultHistory.Value = (double)GoonTools.Common.Option.HistoryDefaultShow;
