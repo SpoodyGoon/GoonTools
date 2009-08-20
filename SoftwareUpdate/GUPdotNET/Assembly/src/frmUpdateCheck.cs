@@ -56,8 +56,8 @@ namespace GUPdotNET
 		private string _ProgramTitle =  string.Empty;
 		// this is the actual name of the program i.e. MyProgram.exe
 		private string _ProgramName =  string.Empty;
-		private GUPdotNET.OperatingSystem _OS = GUPdotNET.OperatingSystem.None;
-		private GUPdotNET.InstallType _CurrentInstallType = GUPdotNET.InstallType.None;
+		private string _OS = string.Empty;
+		private string _CurrentInstallType = string.Empty;
 		// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
 		private string _ProgramFullPath = string.Empty;
 		// this is the http URL where we get the update info from
@@ -111,7 +111,7 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public GUPdotNET.OperatingSystem OS
+		public string OS
 		{
 			set{_OS=value;}
 			get{return _OS;}
@@ -121,7 +121,7 @@ namespace GUPdotNET
 		///  This is the Operating System info
 		///  Passed in by the program calling the GUPdotNET assembly/class
 		/// </summary>
-		public GUPdotNET.InstallType CurrentInstallType
+		public string CurrentInstallType
 		{
 			set{_CurrentInstallType=value;}
 			get{return _CurrentInstallType;}
@@ -258,6 +258,7 @@ namespace GUPdotNET
 		public frmUpdateCheck()
 		{
 			this.Build();
+			LoadAppSetting();
 			Common.LoadAll();
 			this.Visible = false;
 			this.ShowAll();	
@@ -267,10 +268,24 @@ namespace GUPdotNET
 		{
 			this.Build();
 			_ShowOptions = showoptions;
+			LoadAppSetting();
 			Common.LoadAll();
 		}
 		
 		#endregion Constructors
+		
+		public void LoadAppSetting()
+		{			
+			System.Reflection.Assembly asm = System.Reflection.Assembly.GetCallingAssembly();
+			_OS = ConfigurationManager.AppSettings["OS"].ToString();
+			_CurrentInstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
+			_UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+			_ProgramName = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+			_ProgramTitle = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+			_CurrentMajorVersion = asm.GetName().Version.Major;
+			_CurrentMinorVersion = asm.GetName().Version.Minor;
+			_ProgramFullPath = asm.GetName().CodeBase;			
+		}
 		
 		[GLib.DefaultSignalHandlerAttribute()]
 		protected override void OnShown()

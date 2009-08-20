@@ -26,7 +26,7 @@
 #region Input Variables
     	
 // the operating system for the update 
-// expected values (Windows, Linux, Mac, BSD)
+// expected values (Windows, Linux, Mac)
 $OS = '';
 // the type of install for the update
 // expected values (Installer,RPM, DEB, BIN, TGZ, SRC)  

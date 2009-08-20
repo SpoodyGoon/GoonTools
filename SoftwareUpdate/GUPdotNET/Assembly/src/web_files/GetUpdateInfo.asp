@@ -47,7 +47,7 @@
 		'#endregion Get Input
 			
 		' get the correct urls per OS and InstallType
-		' expected OS values (Windows, Linux, Mac, BSD)
+		' expected OS values (Windows, Linux, Mac)
 		' expected InstallType values (Installer,RPM, DEB, BIN, TGZ, SRC)  
 		Select Case OS
 			Case "Windows":

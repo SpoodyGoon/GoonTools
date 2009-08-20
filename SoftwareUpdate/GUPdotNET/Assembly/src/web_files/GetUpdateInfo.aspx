@@ -31,7 +31,7 @@
 		#region Input Variables
     	
     	// the operating system for the update 
-    	// expected values (Windows, Linux, Mac, BSD)
+    	// expected values (Windows, Linux, Mac)
     	private string OS = string.Empty;
     	// the type of install for the update
     	// expected values (Installer,RPM, DEB, BIN, TGZ, SRC)  
