@@ -23,6 +23,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Configuration;
 using Gtk;
 using Mono.Unix;
 
@@ -36,11 +37,9 @@ namespace GUPdotNET.Helper
 	{		
 		#region Private Properties
 		
-		private string _OS = string.Empty;
 		private string _DirChar = string.Empty;
-		private string _AppPath = string.Empty;
 		private string _SavePath = string.Empty;
-		private string _DefaultsPath = string.Empty;
+		private string _BasePath = string.Empty;
 		
 		#endregion Private Properties
 		
@@ -48,11 +47,8 @@ namespace GUPdotNET.Helper
 		{
 			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
 			
-			// set the operating system
-			_OS=System.Environment.OSVersion.Platform.ToString();
-			
 			// set the directory character string
-			if(System.Environment.OSVersion.Platform == PlatformID.Win32NT)
+			if(ConfigurationManager.AppSettings["OS"].ToString() == "Windows")
 			{
 				_DirChar = @"\";
 			}
@@ -61,32 +57,21 @@ namespace GUPdotNET.Helper
 				_DirChar = @"/";
 			}
 			
-			// set the app path
-			_AppPath = asm.CodeBase.Substring(0, asm.CodeBase.LastIndexOf(_DirChar) + 1).Replace("file://","");
-			
-			// set the location of the save data for the user
-			_SavePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + _DirChar + asm.GetName().Name + _DirChar;
-			
-			// get the defaults path - this is where we keep the things we copy over
-			// when setting up a new user
-			_DefaultsPath = _AppPath + "data" + _DirChar;
+			_BasePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + _DirChar + asm.GetName().Name + _DirChar;
+			_SavePath = _BasePath +  ConfigurationManager.AppSettings["ProgramName"].ToString() + _DirChar;
+						
 		}
 		
 		#region Public Properties
-		
-		public string OS
-		{
-			get{return _OS;}
-		}
 		
 		public string DirChar
 		{
 			get{return _DirChar;}
 		}
 		
-		public string AppPath
+		public string BasePath
 		{
-			get{ return _AppPath;}
+			get{return _BasePath;}
 		}
 		
 		public string SavePath
@@ -94,20 +79,34 @@ namespace GUPdotNET.Helper
 			get{return _SavePath;}
 		}
 		
-		public string DefaultsPath
-		{
-			get{return _DefaultsPath;}
-		}
-		
 		#endregion Public Properties
 		
-		#region Error Handling
+		public void LogUpdate(string ResultMess)
+		{
+			try
+			{
+				if(Common.Option.SaveUpdateLog == true)
+				{
+					StreamWriter sw = new StreamWriter(_SavePath + "update.log", true);
+					sw.Write(sw.NewLine + "####################################");
+					sw.Write(sw.NewLine + " " + DateTime.Now.ToString() + " ");
+					sw.Write(sw.NewLine + ResultMess + sw.NewLine + sw.NewLine);
+					sw.Close();
+				}
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+				md.Run();
+				md.Destroy();
+			}
+		}
 		
 		public void HandleError(Exception ex)
 		{
 			if(Common.Option.SaveErrorLog == true)
 			{
-				StreamWriter sw = new StreamWriter(_SavePath + "gupdotnet_error.log", true);
+				StreamWriter sw = new StreamWriter(_SavePath + "error.log", true);
 				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
 				sw.Write(sw.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
 				sw.Write(sw.NewLine + ex.ToString());
@@ -120,21 +119,5 @@ namespace GUPdotNET.Helper
 			md.Destroy();
 			
 		}
-		
-		public void CleanErrorLog()
-		{
-			try
-			{
-				StreamWriter sw = new StreamWriter(_SavePath + "error.log", false);
-				sw.Write("");
-				sw.Close();
-			}
-			catch(Exception ex)
-			{
-				HandleError(ex);
-			}
-		}
-		
-		#endregion Error Handling
 	}
 }
