@@ -55,7 +55,10 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="web_files\GetUpdateInfo.asp" />
     <None Include="web_files\GetUpdateInfo.aspx" />
+    <None Include="web_files\GetUpdateInfo.php" />
+    <None Include="web_files\XMLTemplate.xml" />
     <None Include="work_files\FlowChart.dia" />
     <Compile Include="frmInstallDialog.cs" />
     <Compile Include="frmSuPass.cs" />

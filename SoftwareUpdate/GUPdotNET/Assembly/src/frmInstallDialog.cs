@@ -38,16 +38,16 @@ namespace GUPdotNET
 		private string _ProgramTitle = string.Empty;
 		private string _ProgramName = string.Empty;
 		private string _TempInstallerPath = string.Empty;
-		private GUPdotNET.OperatingSystem _OS = GUPdotNET.OperatingSystem.None;
-		private GUPdotNET.InstallType _CurrentInstallType = GUPdotNET.InstallType.None;
-		public frmInstallDialog(string programname, string programtitle, GUPdotNET.OperatingSystem os, GUPdotNET.InstallType currentinstalltype, string _TempInstallerPath)
+		private string _OS = string.Empty;
+		private string _CurrentInstallType = string.Empty;
+		public frmInstallDialog(string programname, string programtitle, string os, string currentinstalltype, string _tempinstallerpath)
 		{
 			this.Build();
 			_ProgramTitle = programtitle;
 			_ProgramName = programname;
 			_CurrentInstallType = currentinstalltype;
 			_OS = os;
-			_TempInstallerPath = _TempInstallerPath;
+			_TempInstallerPath = _tempinstallerpath;
 			
 			this.Title = programtitle;
 			this.lblTitle.Text = "<span size=\"large\"><b>Installing " +  programtitle + "</b></span>";
@@ -58,20 +58,16 @@ namespace GUPdotNET
 			
 			switch(os)
 			{
-				case GUPdotNET.OperatingSystem.Windows:
+				case "Windows":
 					PrepInstallWin32();
 					break;
-				case GUPdotNET.OperatingSystem.Linux:
+				case "Linux":
 					PrepInstallLinux();
 					InstallLinuxRPM();
 					break;
-				case GUPdotNET.OperatingSystem.Mac:
+				case "Mac":
 					PrepInstallLinux();
 				InstallLinuxSource();
-					break;
-				case GUPdotNET.OperatingSystem.BSD:
-					PrepInstallLinux();
-			 		InstallLinuxBin();
 					break;
 				default:
 					throw new Exception("Invalid Install Type");
@@ -203,8 +199,6 @@ namespace GUPdotNET
 		
 		private void PrepInstallWin32()
 		{
-			Gtk.ResponseType resp = ResponseType.None;
-			
 			bool blnProgramOpen = FindWindow(_ProgramName);
 			while(blnProgramOpen == true && _Cancel == false)
 			{
