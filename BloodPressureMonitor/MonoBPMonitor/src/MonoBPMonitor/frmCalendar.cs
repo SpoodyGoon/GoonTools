@@ -22,7 +22,9 @@ namespace MonoBPMonitor
 		
 		public void SetDate(DateTime dtmDateSet)
 		{
-			calendar2.Date = dtmDateSet;
+			calendar2.Date = dtmDateSet.Date;
+			spnHour.Value = dtmDateSet.Hour;
+			spnMinute.Value = dtmDateSet.Minute;
 		}
 		
 		protected virtual void OnCalendar2DaySelectedDoubleClick (object sender, System.EventArgs e)
