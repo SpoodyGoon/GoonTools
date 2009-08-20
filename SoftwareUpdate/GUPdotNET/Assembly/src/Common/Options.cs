@@ -28,7 +28,7 @@ namespace GUPdotNET.Helper
 	public class Options
 	{
 		private int _UpdateTimeAmount = 1;
-		private UpdateDateType _UpdateTimeType;
+		private string _UpdateTimeType;
 		private bool _AutoUpdate = true;
 		private bool _SaveErrorLog = false;
 		private bool _SaveUpdateLog = true;
@@ -42,7 +42,7 @@ namespace GUPdotNET.Helper
 			get{ return _UpdateTimeAmount;}
 		}
 		
-		public UpdateDateType UpdateTimeType
+		public string UpdateTimeType
 		{
 			set{ _UpdateTimeType = value;}
 			get{ return _UpdateTimeType;}

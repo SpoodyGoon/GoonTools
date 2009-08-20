@@ -8,7 +8,7 @@
     <MonoTargetFrameworkVersion>v2.0</MonoTargetFrameworkVersion>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\ayork\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <StartupObject>GUPdotNET_Testing.MainClass</StartupObject>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <WarningLevel>4</WarningLevel>
