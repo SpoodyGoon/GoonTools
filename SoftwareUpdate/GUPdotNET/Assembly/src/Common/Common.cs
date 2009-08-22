@@ -35,7 +35,6 @@ namespace GUPdotNET
 	{
 		#region Private Properties
 		
-		private static string[] _DateLengths = new string[]{"Day", "Week", "Month", "Year", "Never"};
 		private static GUPdotNET.Helper.Options _Option;
 		private static GUPdotNET.Helper.EnviromentInfo _EnvData = new GUPdotNET.Helper.EnviromentInfo();
 		private static string _OptionsFileName = "GUPdotNET.dat"; 		
@@ -43,11 +42,6 @@ namespace GUPdotNET
 		#endregion Private Properties
 		
 		#region Public Properties
-		
-		public static string[] DateLengths
-		{
-			get{return _DateLengths;}
-		}
 		
 		public static GUPdotNET.Helper.Options Option
 		{

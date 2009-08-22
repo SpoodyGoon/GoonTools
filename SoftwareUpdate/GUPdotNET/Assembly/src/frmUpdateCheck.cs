@@ -272,37 +272,21 @@ namespace GUPdotNET
 			_ProgramFullPath = asm.GetName().CodeBase;
 		}
 		
-		[GLib.DefaultSignalHandlerAttribute()]
-		protected override void OnShown()
-		{
-			
-			if(_ShowOptions == true)
-			{
-				LoadControls();
-				this.Visible = true;
-			}
-			else
-			{
-				this.Visible = false;
-				RunUpdateCheck();
-			}
-			this.ShowAll();
-			
-			base.OnShown();
-		}
-		
 		private void LoadControls()
 		{
 			try
 			{
-				int Selected = 0;
-				for(int i=0; i < Common.DateLengths.Length; i++)
-				{				
-					cboUpdateTimeType.AppendText(Common.DateLengths[i]);
-					if(Common.DateLengths[i] == Common.Option.UpdateTimeType)
-						Selected = i;
-				}
-				cboUpdateTimeType.Active = Selected;
+//				cboUpdateTimeType = ComboBox.NewText();
+//				int Selected = 0;
+//				for(int i=0; i < Common.DateLengths.Length; i++)
+//				{				
+//					cboUpdateTimeType.AppendText(Common.DateLengths[i]);
+//					if(Common.DateLengths[i] == Common.Option.UpdateTimeType)
+//						Selected = i;
+//				}
+				//ICollection ic = new CommaDelimitedStringCollection("Day", "Week", "Month", "Year", "Never");
+				//ArrayList TimeType = new ArrayList(ic);
+				//cboUpdateTimeType..Active = _DateLengths.;
 				cbxAutoUpdate.Active = Common.Option.AutoUpdate;
 				spnUpdateTimeAmount.Value = Common.Option.UpdateTimeAmount;
 			}
@@ -331,11 +315,11 @@ namespace GUPdotNET
 			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
 			Gtk.AboutDialog ad = new Gtk.AboutDialog();
 			ad.Title = "About GUPdotNET";
-			ad.ProgramName = "GUPdotNET (Generic Update Program)";
-			ad.Comments ="";
+			ad.ProgramName = "GUPdotNET";
+			ad.Comments ="General Purpose Update program for Mono/Gtk#.";
 			ad.License = GUPdotNET.Const.License;
 			ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
-			ad.Version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
+			ad.Version = " " + asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
 			ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
 			ad.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
 			ad.AllowShrink = true;
@@ -343,16 +327,14 @@ namespace GUPdotNET
 			ad.Copyright = "GoonTools 2009";
 			ad.HasSeparator = true;
 			ad.Modal = true;
-			ad.WidthRequest = 550;
-			ad.HeightRequest = 300;
+			ad.BorderWidth = 8;
+			ad.WidthRequest = 350;
+//			ad.HeightRequest = 300;
 			ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
 			ad.WebsiteLabel = "GUPdotNET Web Site";
-			ad.Decorated = false;
 			ad.Run();
 			ad.Destroy();
 		}
-		
-
 		
 		protected virtual void OnBtnAboutPressed (object sender, System.EventArgs e)
 		{
