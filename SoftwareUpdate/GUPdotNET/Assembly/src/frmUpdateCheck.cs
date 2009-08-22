@@ -299,12 +299,14 @@ namespace GUPdotNET
 		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
+			Console.WriteLine("got here");
 			Common.SaveOptions();
 			this.Hide();
 		}
 		
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
+			System.Diagnostics.Debug.WriteLine("got here");
 			this.Hide();
 		}
 		
