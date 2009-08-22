@@ -5,7 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="../bin/Debug/GUPdotNET.dll" internal="true" />
+    <widget-library name="..\bin\Debug\GUPdotNET.dll" internal="true" />
   </import>
   <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateConfirm" design-size="428 152">
     <property name="MemberName" />
@@ -752,7 +752,6 @@
     <property name="Modal">True</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
-    <property name="HasSeparator">False</property>
     <child internal-child="VBox">
       <widget class="Gtk.VBox" id="dialog1_VBox">
         <property name="MemberName" />
@@ -816,7 +815,7 @@
                                     <property name="MemberName" />
                                     <property name="Xalign">1</property>
                                     <property name="Yalign">0.01</property>
-                                    <property name="LabelProp" translatable="yes">&lt;span size="x-small" color="blue"&gt;&lt;u&gt;About GUPdotNET&lt;/u&gt;&lt;/span&gt;</property>
+                                    <property name="LabelProp" translatable="yes">&lt;span size="8500" color="#00006B"&gt;&lt;b&gt;&lt;u&gt;&lt;tt&gt;About GUPdotNET&lt;/tt&gt;&lt;/u&gt;&lt;/b&gt;&lt;/span&gt;</property>
                                     <property name="UseMarkup">True</property>
                                   </widget>
                                 </child>
@@ -898,9 +897,11 @@
                             <child>
                               <widget class="Gtk.Button" id="btnCheckNow">
                                 <property name="MemberName" />
+                                <property name="WidthRequest">100</property>
+                                <property name="HeightRequest">20</property>
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextOnly</property>
-                                <property name="Label" translatable="yes">Check Now...</property>
+                                <property name="Label" translatable="yes">  Check Now...  </property>
                                 <property name="UseUnderline">True</property>
                                 <signal name="Clicked" handler="OnBtnCheckNowClicked" />
                               </widget>
@@ -908,7 +909,7 @@
                           </widget>
                           <packing>
                             <property name="Position">1</property>
-                            <property name="AutoSize">True</property>
+                            <property name="AutoSize">False</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
                           </packing>
@@ -1004,7 +1005,12 @@
                                     <property name="MemberName" />
                                     <property name="WidthRequest">125</property>
                                     <property name="IsTextCombo">True</property>
-                                    <property name="Items" translatable="yes" />
+                                    <property name="Items" translatable="yes">Day
+Week
+Month
+Year
+Never</property>
+                                    <property name="Active">0</property>
                                   </widget>
                                 </child>
                               </widget>
