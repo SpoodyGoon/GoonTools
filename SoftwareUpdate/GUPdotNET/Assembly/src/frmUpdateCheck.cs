@@ -275,18 +275,8 @@ namespace GUPdotNET
 		private void LoadControls()
 		{
 			try
-			{
-//				cboUpdateTimeType = ComboBox.NewText();
-//				int Selected = 0;
-//				for(int i=0; i < Common.DateLengths.Length; i++)
-//				{				
-//					cboUpdateTimeType.AppendText(Common.DateLengths[i]);
-//					if(Common.DateLengths[i] == Common.Option.UpdateTimeType)
-//						Selected = i;
-//				}
-				//ICollection ic = new CommaDelimitedStringCollection("Day", "Week", "Month", "Year", "Never");
-				//ArrayList TimeType = new ArrayList(ic);
-				//cboUpdateTimeType..Active = _DateLengths.;
+			{				
+				cboUpdateTimeType.Model.Foreach(new TreeModelForeachFunc(cboUpdateTimeType_ForeEach));
 				cbxAutoUpdate.Active = Common.Option.AutoUpdate;
 				spnUpdateTimeAmount.Value = Common.Option.UpdateTimeAmount;
 			}
@@ -294,6 +284,16 @@ namespace GUPdotNET
 			{
 				Common.EnvData.HandleError(ex);
 			}
+		}
+		
+		private bool cboUpdateTimeType_ForeEach(TreeModel model, TreePath path, TreeIter iter)
+		{
+			if((string) model.GetValue (iter, 0) == Common.Option.UpdateTimeType)
+			{
+				cboUpdateTimeType.SetActiveIter(iter);
+				return true;
+			}
+			return false;
 		}
 	
 		
@@ -466,9 +466,26 @@ namespace GUPdotNET
 			}
 			
 		}
+
 		
 		#endregion Update Info Web
 		
-		
+		protected virtual void OnCbxAutoUpdateToggled (object sender, System.EventArgs e)
+		{
+			Common.Option.AutoUpdate = (bool)cbxAutoUpdate.Active;
+		}
+	
+		protected virtual void OnCboUpdateTimeTypeChanged (object sender, System.EventArgs e)
+		{
+			TreeIter iter;	
+			if (cboUpdateTimeType.GetActiveIter (out iter))
+				Common.Option.UpdateTimeType = (string) cboUpdateTimeType.Model.GetValue (iter, 0);
+		}
+			
+		protected virtual void OnSpnUpdateTimeAmountValueChanged (object sender, System.EventArgs e)
+		{
+			
+			 Common.Option.UpdateTimeAmount =spnUpdateTimeAmount.ValueAsInt;	
+		}
 	}
 }

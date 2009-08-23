@@ -5,7 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="..\bin\Debug\GUPdotNET.dll" internal="true" />
+    <widget-library name="../bin/Debug/GUPdotNET.dll" internal="true" />
   </import>
   <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateConfirm" design-size="428 152">
     <property name="MemberName" />
@@ -773,7 +773,7 @@
                           <widget class="Gtk.Alignment" id="alignment9">
                             <property name="MemberName" />
                             <property name="Xscale">0.01</property>
-                            <property name="Xalign">0.8</property>
+                            <property name="Xalign">0.84</property>
                             <property name="TopPadding">8</property>
                             <child>
                               <widget class="Gtk.Label" id="label1">
@@ -811,7 +811,7 @@
                                     <property name="MemberName" />
                                     <property name="Xalign">1</property>
                                     <property name="Yalign">0.01</property>
-                                    <property name="LabelProp" translatable="yes">&lt;span size="8500" color="#00006B"&gt;&lt;b&gt;&lt;u&gt;&lt;tt&gt;About GUPdotNET&lt;/tt&gt;&lt;/u&gt;&lt;/b&gt;&lt;/span&gt;</property>
+                                    <property name="LabelProp" translatable="yes">&lt;span size="7500" color="#00006B"&gt;&lt;b&gt;&lt;u&gt;&lt;tt&gt;About GUPdotNET&lt;/tt&gt;&lt;/u&gt;&lt;/b&gt;&lt;/span&gt;</property>
                                     <property name="UseMarkup">True</property>
                                   </widget>
                                 </child>
@@ -860,7 +860,7 @@
                     <child>
                       <widget class="Gtk.HBox" id="hbox3">
                         <property name="MemberName" />
-                        <property name="Spacing">20</property>
+                        <property name="Spacing">10</property>
                         <child>
                           <widget class="Gtk.Alignment" id="alignment11">
                             <property name="MemberName" />
@@ -875,6 +875,7 @@
                                 <property name="DrawIndicator">True</property>
                                 <property name="HasLabel">True</property>
                                 <property name="UseUnderline">True</property>
+                                <signal name="Toggled" handler="OnCbxAutoUpdateToggled" />
                               </widget>
                             </child>
                           </widget>
@@ -893,7 +894,6 @@
                             <child>
                               <widget class="Gtk.Button" id="btnCheckNow">
                                 <property name="MemberName" />
-                                <property name="WidthRequest">100</property>
                                 <property name="HeightRequest">20</property>
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextOnly</property>
@@ -966,6 +966,7 @@
                                     <property name="ClimbRate">1</property>
                                     <property name="Numeric">True</property>
                                     <property name="Value">1</property>
+                                    <signal name="ValueChanged" handler="OnSpnUpdateTimeAmountValueChanged" />
                                   </widget>
                                 </child>
                               </widget>
@@ -1007,6 +1008,7 @@ Month
 Year
 Never</property>
                                     <property name="Active">0</property>
+                                    <signal name="Changed" handler="OnCboUpdateTimeTypeChanged" />
                                   </widget>
                                 </child>
                               </widget>
