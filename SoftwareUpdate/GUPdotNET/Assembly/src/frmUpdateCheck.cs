@@ -479,7 +479,7 @@ namespace GUPdotNET
 		{
 			TreeIter iter;	
 			if (cboUpdateTimeType.GetActiveIter (out iter))
-				Common.Option.UpdateTimeType = (string) cboUpdateTimeType.Model.GetValue (iter, 0);
+				Common.Option.UpdateTimeType = cboUpdateTimeType.Model.GetValue(iter, 0).ToString();
 		}
 			
 		protected virtual void OnSpnUpdateTimeAmountValueChanged (object sender, System.EventArgs e)

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectGuid>{954A4986-D34B-408D-9F9E-A179B219BD9E}</ProjectGuid>
@@ -62,9 +62,7 @@
     <Compile Include="MainWindow.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.4.2\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Posix" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
@@ -77,10 +75,6 @@
       <Name>GUPdotNET</Name>
     </ProjectReference>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin" />
-    <Folder Include="bin\Debug" />
   </ItemGroup>
   <Import Project="$(MonoBuildTasksPath)\Mono.Build.CSharp.targets" />
   <ItemGroup>
