@@ -129,7 +129,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateDownload" design-size="373 101">
+  <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateDownload" design-size="373 120">
     <property name="MemberName" />
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
