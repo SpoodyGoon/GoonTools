@@ -246,6 +246,7 @@ namespace GUPdotNET
 			LoadAppSetting();
 			Common.LoadAll();
 			this.Visible = false;
+			LoadControls();
 			this.ShowAll();
 		}
 		
@@ -255,6 +256,7 @@ namespace GUPdotNET
 			_ShowOptions = showoptions;
 			LoadAppSetting();
 			Common.LoadAll();
+			LoadControls();
 		}
 		
 		#endregion Constructors

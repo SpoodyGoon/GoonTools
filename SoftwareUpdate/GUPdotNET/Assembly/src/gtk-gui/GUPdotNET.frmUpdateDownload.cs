@@ -130,7 +130,7 @@ namespace GUPdotNET {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 373;
-            this.DefaultHeight = 101;
+            this.DefaultHeight = 120;
             w10.Hide();
             this.Show();
             this.btnCancel1.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
