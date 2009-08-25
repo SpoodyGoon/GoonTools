@@ -50,11 +50,14 @@ namespace GUPdotNET
 		
 		protected virtual void OnBtnNoClicked (object sender, System.EventArgs e)
 		{
+			this.Respond(Gtk.ResponseType.No);
 			this.Hide();
 		}
 			
 		protected virtual void OnBtnYesClicked (object sender, System.EventArgs e)
 		{
+			this.Respond(Gtk.ResponseType.Yes);
+			this.Hide();
 		}
 	}
 }

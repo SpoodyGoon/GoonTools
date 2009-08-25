@@ -45,6 +45,7 @@ namespace GUPdotNET
 			this.Build();
 			try
 			{
+				
 				_UpdateFileURL = updatefileurl;
 				this.progressbar1.DoubleBuffered= true;
 				this.ShowNow();

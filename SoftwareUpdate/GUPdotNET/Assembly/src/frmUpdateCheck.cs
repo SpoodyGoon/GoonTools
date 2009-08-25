@@ -261,6 +261,8 @@ namespace GUPdotNET
 		
 		#endregion Constructors
 		
+		#region Data and Widget Loading
+		
 		public void LoadAppSetting()
 		{
 			System.Reflection.Assembly asm = System.Reflection.Assembly.GetCallingAssembly();
@@ -297,7 +299,10 @@ namespace GUPdotNET
 			}
 			return false;
 		}
+		
+		#endregion Data and Widget Loading
 	
+		#region Button Events
 		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
@@ -356,6 +361,8 @@ namespace GUPdotNET
 			RunUpdateCheck();
 		}
 		
+		#endregion Button Events
+		
 		#region Update Process
 		
 		public void RunUpdateCheck()
@@ -370,8 +377,10 @@ namespace GUPdotNET
 					// tell the user there is an update availalbe
 					// and ask if they would like to update
 					frmUpdateConfirm dlgConfirm = new frmUpdateConfirm(_ProgramTitle, _ProgramName, _LatestVersion);
-					if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Ok)
+					if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
 					{
+						this.Visible = false;
+						this.ShowAll();
 						// update confirmed get installer file
 						frmUpdateDownload dlgDownload = new frmUpdateDownload(_ProgramTitle, _ProgramName, _UpdateFileURL);
 						if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
@@ -391,6 +400,10 @@ namespace GUPdotNET
 						Application.Quit();
 					}
 					dlgConfirm.Destroy();
+					
+					this.Visible = true;
+					this.ShowAll();
+						
 				}
 				else
 				{
@@ -456,7 +469,7 @@ namespace GUPdotNET
 					_LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText.Trim();
 					_UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText.Trim();
 					_UpdateDetailsURL = nl[i].SelectSingleNode("UpdateDetailsURL").InnerText.Trim();
-					_Error = nl[i].SelectSingleNode("Error").InnerText.Trim();
+					_Error = nl[i].SelectSingleNode("UpdateError").InnerText.Trim();
 				}
 				// check for an error from the server
 				if(_Error.Length > 2)
@@ -472,7 +485,8 @@ namespace GUPdotNET
 		
 		#endregion Update Info Web
 		
-		protected virtual void OnCbxAutoUpdateToggled (object sender, System.EventArgs e)
+
+		protected virtual void OnCbxAutoUpdateToggled (object sender, System.EventArgs e)
 		{
 			Common.Option.AutoUpdate = (bool)cbxAutoUpdate.Active;
 		}

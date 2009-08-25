@@ -51,8 +51,8 @@
 		' expected InstallType values (Installer,RPM, DEB, BIN, TGZ, SRC)  
 		Select Case OS
 			Case "Windows":
-				UpdateFileURL = "http://www.brdstudio.net/yahtzeesharp/yathzeesharp.exe"
-				UpdateDetailsURL = "http://www.brdstudio.net/yahtzeesharp/yathzeesharp.exe"
+				UpdateFileURL = "http://www.brdstudio.net/yahtzeesharp/files/YahtzeeSharp-Mono-Setup.exe"
+				UpdateDetailsURL = ""
 			Case "Linux":
 				UpdateFileURL = ""
 				UpdateDetailsURL = ""
