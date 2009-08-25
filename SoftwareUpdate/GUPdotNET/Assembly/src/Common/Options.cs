@@ -30,10 +30,8 @@ namespace GUPdotNET.Helper
 		private int _UpdateTimeAmount = 1;
 		private string _UpdateTimeType;
 		private bool _AutoUpdate = true;
-		private bool _SaveErrorLog = false;
-		private bool _SaveUpdateLog = true;
-		private DateTime _LastUpdate = DateTime.Today;
-		private DateTime _LastUpdateCheck = DateTime.Today;
+		private DateTime _LastUpdate = DateTime.Now;
+		private DateTime _LastUpdateCheck = DateTime.Now;
 		private int _FileVersion = 1; // the file version does not nessicarily match the application version
 		
 		public int UpdateTimeAmount
@@ -64,18 +62,6 @@ namespace GUPdotNET.Helper
 		{
 			set{_LastUpdateCheck=value;}
 			get{return _LastUpdateCheck;}
-		}
-		
-		public bool SaveUpdateLog
-		{
-			set{_SaveUpdateLog=value;}
-			get{return _SaveUpdateLog;}
-		}
-		
-		public bool SaveErrorLog
-		{
-			set{_SaveErrorLog=value;}
-			get{return _SaveErrorLog;}
 		}
 		
 		public int FileVersion
