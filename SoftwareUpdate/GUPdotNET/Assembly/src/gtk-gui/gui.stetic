@@ -738,14 +738,21 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateCheck" design-size="468 211">
+  <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateCheck" design-size="475 175">
     <property name="MemberName" />
+    <property name="WidthRequest">475</property>
+    <property name="HeightRequest">175</property>
     <property name="Visible">False</property>
     <property name="Title" translatable="yes">GUPdotNET Update Options</property>
     <property name="Icon">resource:update_medium.png</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
+    <property name="BorderWidth">2</property>
+    <property name="AllowShrink">True</property>
+    <property name="DefaultWidth">475</property>
+    <property name="DefaultHeight">175</property>
+    <property name="DestroyWithParent">True</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -773,7 +780,7 @@
                           <widget class="Gtk.Alignment" id="alignment9">
                             <property name="MemberName" />
                             <property name="Xscale">0.01</property>
-                            <property name="Xalign">0.84</property>
+                            <property name="Xalign">0.8</property>
                             <property name="TopPadding">8</property>
                             <child>
                               <widget class="Gtk.Label" id="label1">
@@ -894,7 +901,7 @@
                             <child>
                               <widget class="Gtk.Button" id="btnCheckNow">
                                 <property name="MemberName" />
-                                <property name="HeightRequest">20</property>
+                                <property name="HeightRequest">14</property>
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextOnly</property>
                                 <property name="Label" translatable="yes">  Check Now...  </property>
@@ -915,7 +922,7 @@
                   </widget>
                   <packing>
                     <property name="Position">2</property>
-                    <property name="AutoSize">True</property>
+                    <property name="AutoSize">False</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>

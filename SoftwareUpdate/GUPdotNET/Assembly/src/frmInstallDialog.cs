@@ -198,25 +198,25 @@ namespace GUPdotNET
 		#region Windows Install
 		
 		private void PrepInstallWin32()
-		{
-			bool blnProgramOpen = FindWindow(_ProgramName);
-			while(blnProgramOpen == true && _Cancel == false)
+		{			
+			// ask the user to save changes and close calling application
+			string strRequest = "The update is ready to install " + _ProgramTitle + " please save any changes you have and click ok to continue the update.";
+			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
+			if(((Gtk.ResponseType)md.Run()) == ResponseType.Ok)
 			{
-				// ask the user to save changes and close calling application
-				string strRequest = "To continue the install please save open files and close " + _ProgramTitle + " before we continue";
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
-				if(((Gtk.ResponseType)md.Run()) == ResponseType.Ok)
-				{
-					blnProgramOpen = FindWindow(_ProgramName);
-				}
-				else
-				{
-					_Cancel = true;
-					this.Respond(Gtk.ResponseType.Cancel);
-					this.Hide();
-				}
-				md.Destroy();
+				System.Diagnostics.Process.Start(_TempInstallerPath);
+				Common.LogUpdate("Update install");
+				Common.Option.LastUpdate = DateTime.Now;
+				Common.SaveOptions();
+				Application.Quit();
 			}
+			else
+			{
+				_Cancel = true;
+				this.Respond(Gtk.ResponseType.Cancel);
+				this.Hide();
+			}
+			md.Destroy();
 			
 			if(_Cancel == false)
 			{
@@ -256,21 +256,6 @@ namespace GUPdotNET
 				Console.WriteLine(s.Message);
 			}
 			return blnHasAccess;
-		}
-		
-		private bool FindWindow(string strProcessName)
-		{
-			bool blnReturn = false;
-			Process[] processes = Process.GetProcessesByName(strProcessName);
-			foreach (Process p in processes)
-			{
-				//IntPtr pFoundWindow = p.MainWindowHandle;
-				// Do something with the handle...
-				
-				// if we get here the process is still running
-				blnReturn = true;
-			}
-			return blnReturn;
 		}
 		
 		#endregion Windows Install

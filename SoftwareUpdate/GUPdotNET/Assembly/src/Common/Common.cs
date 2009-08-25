@@ -21,6 +21,7 @@
  */
 
 using System;
+using System.Configuration;
 using System.IO;
 using Gtk;
 
@@ -80,7 +81,7 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -95,7 +96,7 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -110,11 +111,54 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}		
 		
 		#endregion Loading and Saving
+		
+		
+		#region Logs
+		
+		public static void LogUpdate(string ResultMess)
+		{
+			try
+			{
+				if(ConfigurationManager.AppSettings["SaveUpdateLog"].ToLower() == "true")
+				{
+					StreamWriter sw = new StreamWriter(_EnvData.SavePath + "update.log", true);
+					sw.Write(sw.NewLine + "####################################");
+					sw.Write(sw.NewLine + " " + DateTime.Now.ToString() + " ");
+					sw.Write(sw.NewLine + ResultMess + sw.NewLine + sw.NewLine);
+					sw.Close();
+				}
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+				md.Run();
+				md.Destroy();
+			}
+		}
+		
+		public static void HandleError(Exception ex)
+		{
+			if(ConfigurationManager.AppSettings["SaveErrorLog"].ToLower() == "true")
+			{
+				StreamWriter sw = new StreamWriter(_EnvData.SavePath + "error.log", true);
+				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
+				sw.Write(sw.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
+				sw.Write(sw.NewLine + ex.ToString());
+				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
+				sw.Close();
+			}
+				
+			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			md.Run();
+			md.Destroy();			
+		}
+		
+		#endregion Logs
 		
 	}
 }

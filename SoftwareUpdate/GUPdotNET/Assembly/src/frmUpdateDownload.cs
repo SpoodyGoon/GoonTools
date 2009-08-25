@@ -43,6 +43,8 @@ namespace GUPdotNET
 		public frmUpdateDownload(string programtitle, string programname, string updatefileurl)
 		{
 			this.Build();
+			// this.ModifyBg(Gtk.StateType.Normal, new Gdk.Color(10, 65,10));
+		
 			try
 			{
 				

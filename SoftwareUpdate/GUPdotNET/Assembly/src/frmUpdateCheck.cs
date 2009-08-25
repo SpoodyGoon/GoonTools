@@ -250,10 +250,10 @@ namespace GUPdotNET
 			this.ShowAll();
 		}
 		
-		public frmUpdateCheck(bool showoptions)
+		public frmUpdateCheck(bool ShowOptions)
 		{
 			this.Build();
-			_ShowOptions = showoptions;
+			_ShowOptions = ShowOptions;
 			LoadAppSetting();
 			Common.LoadAll();
 			LoadControls();
@@ -286,7 +286,7 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -365,10 +365,15 @@ namespace GUPdotNET
 		
 		#region Update Process
 		
-		public void RunUpdateCheck()
+		public void RunUpdateCheck(bool IsAuto)
 		{
 			try
 			{
+				if(IsAuto == true)
+					Common.LogUpdate("Checking for update automatically");
+				else
+					Common.LogUpdate("Checking for update manually");
+					
 				// load the update info from the web
 				UpdateInfoGet();
 				// check if we need an update via the major and minor version
@@ -390,8 +395,7 @@ namespace GUPdotNET
 							// if the download was sucessful then procede with the install
 							frmInstallDialog Inst = new frmInstallDialog(_ProgramName, _ProgramTitle, _OS, _InstallType, _TempInstallerPath);
 							Inst.Run();
-							Inst.Destroy();
-							
+							Inst.Destroy();							
 						}
 						dlgDownload.Destroy();
 					}
@@ -436,6 +440,7 @@ namespace GUPdotNET
 		{
 			try
 			{
+				Common.Option.LastUpdateCheck = DateTime.Now;
 				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(_UpdateInfoURL + "?InstallType=" + _InstallType.ToString() + "&OS=" + _OS.ToString());
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();

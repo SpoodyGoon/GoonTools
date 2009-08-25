@@ -80,44 +80,5 @@ namespace GUPdotNET.Helper
 		}
 		
 		#endregion Public Properties
-		
-		public void LogUpdate(string ResultMess)
-		{
-			try
-			{
-				if(Common.Option.SaveUpdateLog == true)
-				{
-					StreamWriter sw = new StreamWriter(_SavePath + "update.log", true);
-					sw.Write(sw.NewLine + "####################################");
-					sw.Write(sw.NewLine + " " + DateTime.Now.ToString() + " ");
-					sw.Write(sw.NewLine + ResultMess + sw.NewLine + sw.NewLine);
-					sw.Close();
-				}
-			}
-			catch(Exception ex)
-			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
-				md.Run();
-				md.Destroy();
-			}
-		}
-		
-		public void HandleError(Exception ex)
-		{
-			if(Common.Option.SaveErrorLog == true)
-			{
-				StreamWriter sw = new StreamWriter(_SavePath + "error.log", true);
-				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
-				sw.Write(sw.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
-				sw.Write(sw.NewLine + ex.ToString());
-				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
-				sw.Close();
-			}
-				
-			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
-			md.Run();
-			md.Destroy();
-			
-		}
 	}
 }
