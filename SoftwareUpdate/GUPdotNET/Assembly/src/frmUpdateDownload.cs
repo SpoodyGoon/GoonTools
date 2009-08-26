@@ -88,11 +88,11 @@ namespace GUPdotNET
 			string tmpFileName = System.IO.Path.GetFileNameWithoutExtension(updatefileurl);
 			string tmpExtention = System.IO.Path.GetExtension(updatefileurl);
 			// loop through until it's a unique name
-			while(File.Exists(System.IO.Path.Combine(tmpDir, tmpFileName + FileCount.ToString() + "." + tmpExtention)))
+			while(File.Exists(System.IO.Path.Combine(tmpDir, tmpFileName + FileCount.ToString() + tmpExtention)))
 			{
 				FileCount++;
 			}
-			return System.IO.Path.Combine(tmpDir, tmpFileName + FileCount.ToString() + "." + tmpExtention);
+			return System.IO.Path.Combine(tmpDir, tmpFileName + FileCount.ToString() + tmpExtention);
 		}
 		
 		private void StartDownload()
@@ -161,34 +161,27 @@ namespace GUPdotNET
 				}
 				else
 				{
+					this.Respond(Gtk.ResponseType.Ok);
 					this.Present();
 					this.GrabFocus();
 					this.Visible = false;
 					this.ShowAll();
-					this.Respond(Gtk.ResponseType.Ok);
 					this.Hide();
 					
 				}
 			}
 			catch(WebException e)
 			{
+				Common.HandleError(new Exception("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message));
 				this.Respond(Gtk.ResponseType.Cancel);
-				// if we get a web exception exit the update
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Unable to connect to the update web site - " + System.Environment.NewLine + e.Message ,"GUPdotNET Web Site Connection Error");
-				md.Run();
-				md.Destroy();
 				this.Hide();
 			}
 			catch(Exception ex)
 			{
+				Common.HandleError(new Exception("Non Web Response error downloading update " + System.Environment.NewLine + ex.Message));
 				this.Respond(Gtk.ResponseType.Cancel);
-				// if we get a web exception exit the update
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Non Web Response error downloading update " + System.Environment.NewLine + ex.Message ,"GUPdotNET Web Site Connection Error");
-				md.Run();
-				md.Destroy();
 				this.Hide();
 			}
-			
 		}
 		
 		private void UpdateProgressFraction(float f)

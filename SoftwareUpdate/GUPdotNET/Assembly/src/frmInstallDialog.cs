@@ -200,44 +200,23 @@ namespace GUPdotNET
 		private void PrepInstallWin32()
 		{			
 			// ask the user to save changes and close calling application
-			string strRequest = "The update is ready to install " + _ProgramTitle + " please save any changes you have and click ok to continue the update.";
-			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, strRequest);
+			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, "The update is ready to install " + _ProgramTitle + " please save any changes you have and click ok to continue the update.", "Save & Close");
 			if(((Gtk.ResponseType)md.Run()) == ResponseType.Ok)
 			{
-				System.Diagnostics.Process.Start(_TempInstallerPath);
 				Common.LogUpdate("Update install");
 				Common.Option.LastUpdate = DateTime.Now;
 				Common.SaveOptions();
-				Application.Quit();
+				System.Diagnostics.Process.Start(_TempInstallerPath);
+				Gtk.Application.Quit();
+				this.Respond(Gtk.ResponseType.Cancel);
+				this.Hide();
 			}
 			else
 			{
-				_Cancel = true;
 				this.Respond(Gtk.ResponseType.Cancel);
 				this.Hide();
 			}
 			md.Destroy();
-			
-			if(_Cancel == false)
-			{
-				bool blnHasAccess = HasAccess(_TempInstallerPath);
-				while(blnHasAccess == false && _Cancel == false)
-				{
-					frmSuPass fm = new frmSuPass();
-					Gtk.ResponseType rsp = (Gtk.ResponseType)fm.Run();
-					if(rsp == ResponseType.Ok)
-					{
-						blnHasAccess = HasAccess(_TempInstallerPath);
-					}
-					else
-					{
-						_Cancel= true;
-						this.Respond(Gtk.ResponseType.Cancel);
-						this.Hide();
-					}
-					fm.Destroy();
-				}
-			}			
 		}
 		
 		private bool HasAccess(string _TempInstallerPath)
