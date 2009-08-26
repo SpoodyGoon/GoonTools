@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectGuid>{4C89213F-F2F0-417D-AB7F-850D2BC47DC7}</ProjectGuid>
@@ -54,12 +54,10 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="web_files\GetUpdateInfo.asp" />
     <None Include="web_files\GetUpdateInfo.aspx" />
     <None Include="web_files\GetUpdateInfo.php" />
     <None Include="web_files\XMLTemplate.xml" />
-    <None Include="work_files\FlowChart.dia" />
     <Compile Include="frmInstallDialog.cs" />
     <Compile Include="frmSuPass.cs" />
     <Compile Include="frmUpdateConfirm.cs" />

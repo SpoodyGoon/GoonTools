@@ -36,7 +36,7 @@ namespace GUPdotNET
 				this.Title = programtitle;
 				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + programname + " Update</b></span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "<span size=\"medium\">There is an update available for " + programtitle + ".\r\nWould you like to upgrate to version: " + newversion + " now?</span>";
+				this.lblUpdateMessage.Text = "<span size=\"medium\">There is an update available for " + programtitle + ".\r\nWould you like to upgrade to " + programtitle + " " + newversion + " now?</span>";
 				this.lblUpdateMessage.UseMarkup = true;
 				this.lblUpdateMessage.Wrap = true;
 			}
@@ -50,13 +50,18 @@ namespace GUPdotNET
 		
 		protected virtual void OnBtnNoClicked (object sender, System.EventArgs e)
 		{
-			this.Respond(Gtk.ResponseType.No);
+			this.Visible = false;
+			this.ShowAll();
 			this.Hide();
+			this.Respond(Gtk.ResponseType.No);
 		}
 			
 		protected virtual void OnBtnYesClicked (object sender, System.EventArgs e)
 		{
+			
 			this.Respond(Gtk.ResponseType.Yes);
+			this.Visible = false;
+			this.ShowAll();
 			this.Hide();
 		}
 	}

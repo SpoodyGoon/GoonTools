@@ -48,7 +48,7 @@ namespace GUPdotNET.Helper
 			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
 			
 			// set the directory character string
-			if(ConfigurationManager.AppSettings["OS"].ToString() == "Windows")
+			if(System.Environment.OSVersion.Platform == PlatformID.Win32NT)
 			{
 				_DirChar = @"\";
 			}

@@ -91,7 +91,7 @@ namespace GUPdotNET
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-				_Option = (GUPdotNET.Helper.Options) formatter.Deserialize(stream);
+				_Option = new GUPdotNET.Helper.Options((System.Collections.Hashtable)formatter.Deserialize(stream));
 				stream.Close();
 			}
 			catch(Exception ex)
@@ -106,7 +106,7 @@ namespace GUPdotNET
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Create, FileAccess.Write, FileShare.None);
-				formatter.Serialize(stream, _Option);
+				formatter.Serialize(stream, (System.Collections.Hashtable)_Option.GetHashtable());
 				stream.Close();
 			}
 			catch(Exception ex)
@@ -127,9 +127,7 @@ namespace GUPdotNET
 				if(ConfigurationManager.AppSettings["SaveUpdateLog"].ToLower() == "true")
 				{
 					StreamWriter sw = new StreamWriter(_EnvData.SavePath + "update.log", true);
-					sw.Write(sw.NewLine + "####################################");
-					sw.Write(sw.NewLine + " " + DateTime.Now.ToString() + " ");
-					sw.Write(sw.NewLine + ResultMess + sw.NewLine + sw.NewLine);
+					sw.Write(sw.NewLine + ResultMess);
 					sw.Close();
 				}
 			}

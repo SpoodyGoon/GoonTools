@@ -43,8 +43,8 @@ namespace GUPdotNET
 		public frmUpdateDownload(string programtitle, string programname, string updatefileurl)
 		{
 			this.Build();
-			// this.ModifyBg(Gtk.StateType.Normal, new Gdk.Color(10, 65,10));
-		
+			this.ModifyBg(Gtk.StateType.Normal, new Gdk.Color(10, 65,10));
+			this.Move(350, 10);
 			try
 			{
 				
@@ -53,6 +53,7 @@ namespace GUPdotNET
 				this.ShowNow();
 				// get a unique name for the temporary installer file name
 				_TempFileLocation = GetUniqueFileName(updatefileurl);
+				this.KeepAbove = true;
 				StartDownload();
 			}
 			catch(Exception ex)
@@ -160,6 +161,10 @@ namespace GUPdotNET
 				}
 				else
 				{
+					this.Present();
+					this.GrabFocus();
+					this.Visible = false;
+					this.ShowAll();
 					this.Respond(Gtk.ResponseType.Ok);
 					this.Hide();
 					
