@@ -5,7 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="../bin/Debug/GUPdotNET.dll" internal="true" />
+    <widget-library name="..\bin\Debug\GUPdotNET.dll" internal="true" />
   </import>
   <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateConfirm" design-size="428 152">
     <property name="MemberName" />
@@ -13,7 +13,6 @@
     <property name="Icon">resource:update_medium.png</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
-    <property name="Modal">True</property>
     <property name="BorderWidth">3</property>
     <property name="AllowShrink">True</property>
     <property name="Buttons">2</property>
@@ -134,7 +133,6 @@
     <property name="Title" translatable="yes">Downloading Update Files</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
-    <property name="Modal">True</property>
     <property name="BorderWidth">2</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
