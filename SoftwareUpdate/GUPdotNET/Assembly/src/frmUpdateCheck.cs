@@ -242,7 +242,7 @@ namespace GUPdotNET
 		private bool _ShowOptions = false;
 		public frmUpdateCheck()
 		{
-			this.Build();					
+			this.Build();
 			LoadAppSetting();
 			Common.LoadAll();
 			this.Visible = false;
@@ -266,21 +266,28 @@ namespace GUPdotNET
 		
 		public void LoadAppSetting()
 		{
-			System.Reflection.Assembly asm = System.Reflection.Assembly.GetCallingAssembly();
-			_OS = ConfigurationManager.AppSettings["OS"].ToString();
-			_InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
-			_UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
-			_ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
-			_ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
-			_CurrentMajorVersion = asm.GetName().Version.Major;
-			_CurrentMinorVersion = asm.GetName().Version.Minor;
-			_ProgramFullPath = asm.GetName().CodeBase;
+			try
+			{
+				System.Reflection.Assembly asm = System.Reflection.Assembly.GetCallingAssembly();
+				_OS = ConfigurationManager.AppSettings["OS"].ToString();
+				_InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
+				_UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
+				_ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
+				_ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
+				_CurrentMajorVersion = asm.GetName().Version.Major;
+				_CurrentMinorVersion = asm.GetName().Version.Minor;
+				_ProgramFullPath = asm.GetName().CodeBase;
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
+			}
 		}
 		
 		private void LoadControls()
 		{
 			try
-			{				
+			{
 				cboUpdateTimeType.Model.Foreach(new TreeModelForeachFunc(cboUpdateTimeType_ForeEach));
 				cbxAutoUpdate.Active = Common.Option.AutoUpdate;
 				spnUpdateTimeAmount.Value = Common.Option.UpdateTimeAmount;
@@ -302,7 +309,7 @@ namespace GUPdotNET
 		}
 		
 		#endregion Data and Widget Loading
-	
+		
 		#region Button Events
 		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
@@ -315,28 +322,35 @@ namespace GUPdotNET
 		protected virtual void OnBtnAboutClicked (object sender, System.EventArgs e)
 		{
 			btnAbout.Relief = ReliefStyle.None;
-			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
-			Gtk.AboutDialog ad = new Gtk.AboutDialog();
-			ad.Title = "About GUPdotNET";
-			ad.ProgramName = "GUPdotNET";
-			ad.Comments ="General Purpose Update program for Mono/Gtk#.";
-			ad.License = GUPdotNET.Const.License;
-			ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
-			ad.Version = " " + asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
-			ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
-			ad.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
-			ad.AllowShrink = true;
-			ad.AllowGrow = true;
-			ad.Copyright = "GoonTools 2009";
-			ad.HasSeparator = true;
-			ad.Modal = true;
-			ad.BorderWidth = 8;
-			ad.WidthRequest = 350;
-//			ad.HeightRequest = 300;
-			ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
-			ad.WebsiteLabel = "GUPdotNET Web Site";
-			ad.Run();
-			ad.Destroy();
+			try
+			{
+				System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+				Gtk.AboutDialog ad = new Gtk.AboutDialog();
+				ad.Title = "About GUPdotNET";
+				ad.ProgramName = "GUPdotNET";
+				ad.Comments ="General Purpose Update program for Mono/Gtk#.";
+				ad.License = GUPdotNET.Const.License;
+				ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
+				ad.Version = " " + asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
+				ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
+				ad.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
+				ad.AllowShrink = true;
+				ad.AllowGrow = true;
+				ad.Copyright = "GoonTools 2009";
+				ad.HasSeparator = true;
+				ad.Modal = true;
+				ad.BorderWidth = 8;
+				ad.WidthRequest = 350;
+//				ad.HeightRequest = 300;
+				ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
+				ad.WebsiteLabel = "GUPdotNET Web Site";
+				ad.Run();
+				ad.Destroy();
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
+			}
 		}
 		
 		protected virtual void OnBtnAboutPressed (object sender, System.EventArgs e)
@@ -370,7 +384,7 @@ namespace GUPdotNET
 					Common.LogUpdate("Checking for update automatically");
 				else
 					Common.LogUpdate("Checking for update manually");
-					
+				
 				// load the update info from the web
 				UpdateInfoGet();
 				// check if we need an update via the major and minor version
@@ -387,16 +401,16 @@ namespace GUPdotNET
 						this.ShowAll();
 						// update confirmed get installer file
 						frmUpdateDownload dlgDownload = new frmUpdateDownload(_ProgramTitle, _ProgramName, _UpdateFileURL);
-						Common.LogUpdate("Getting new files");					
+						Common.LogUpdate("Getting new files");
 						if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
 						{
 							_TempInstallerPath = dlgDownload.TempFilePath;
 							
-							Common.LogUpdate("Running Installer");					
+							Common.LogUpdate("Running Installer");
 							// if the download was sucessful then procede with the install
 							frmInstallDialog Inst = new frmInstallDialog(_ProgramName, _ProgramTitle, _OS, _InstallType, _TempInstallerPath);
 							Inst.Run();
-							Inst.Destroy();							
+							Inst.Destroy();
 						}
 						dlgDownload.Destroy();
 					}
@@ -406,7 +420,7 @@ namespace GUPdotNET
 					this.GrabFocus();
 					this.Present();
 					this.ShowAll();
-						
+					
 				}
 				else
 				{
@@ -422,12 +436,7 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString() ,"GUPdotNET Update Error");
-				md.Run();
-				md.Destroy();
-				// if we have an exception we want to exit the application
-				// so it doens't keep on running in the background
-				Gtk.Application.Quit();
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -448,11 +457,11 @@ namespace GUPdotNET
 			catch(WebException e)
 			{
 				// if we get a web exception exit the update
-				throw new Exception("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message);
+				Common.HandleError(new Exception("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message));
 			}
 			catch(Exception ex)
 			{
-				throw new Exception(ex.ToString());
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -481,7 +490,7 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				throw new Exception(ex.ToString());
+				Common.HandleError(ex);
 			}
 			
 		}
@@ -489,23 +498,25 @@ namespace GUPdotNET
 		
 		#endregion Update Info Web
 		
-
+		#region Option Control Events
+		
 		protected virtual void OnCbxAutoUpdateToggled (object sender, System.EventArgs e)
 		{
 			Common.Option.AutoUpdate = (bool)cbxAutoUpdate.Active;
 		}
-	
+		
 		protected virtual void OnCboUpdateTimeTypeChanged (object sender, System.EventArgs e)
 		{
-			TreeIter iter;	
+			TreeIter iter;
 			if (cboUpdateTimeType.GetActiveIter (out iter))
 				Common.Option.UpdateTimeType = cboUpdateTimeType.Model.GetValue(iter, 0).ToString();
 		}
-			
+		
 		protected virtual void OnSpnUpdateTimeAmountValueChanged (object sender, System.EventArgs e)
-		{
-			
-			 Common.Option.UpdateTimeAmount =spnUpdateTimeAmount.ValueAsInt;	
+		{			
+			Common.Option.UpdateTimeAmount =spnUpdateTimeAmount.ValueAsInt;
 		}
+		
+		#endregion Option Control Events
 	}
 }

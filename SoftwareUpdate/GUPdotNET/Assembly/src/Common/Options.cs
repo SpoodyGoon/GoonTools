@@ -24,7 +24,6 @@ using System;
 
 namespace GUPdotNET.Helper
 {
-	[Serializable]
 	public class Options
 	{
 		private int _UpdateTimeAmount = 1;
