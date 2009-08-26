@@ -242,12 +242,12 @@ namespace GUPdotNET
 		private bool _ShowOptions = false;
 		public frmUpdateCheck()
 		{
-			this.Build();
+			this.Build();					
 			LoadAppSetting();
 			Common.LoadAll();
 			this.Visible = false;
-			LoadControls();
 			this.ShowAll();
+			RunUpdateCheck(true);
 		}
 		
 		public frmUpdateCheck(bool ShowOptions)
@@ -256,7 +256,8 @@ namespace GUPdotNET
 			_ShowOptions = ShowOptions;
 			LoadAppSetting();
 			Common.LoadAll();
-			LoadControls();
+			if(ShowOptions == true)
+				LoadControls();
 		}
 		
 		#endregion Constructors
@@ -306,14 +307,7 @@ namespace GUPdotNET
 		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
-			Console.WriteLine("got here");
 			Common.SaveOptions();
-			this.Hide();
-		}
-		
-		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
-		{
-			System.Diagnostics.Debug.WriteLine("got here");
 			this.Hide();
 		}
 		
@@ -358,7 +352,7 @@ namespace GUPdotNET
 		
 		protected virtual void OnBtnCheckNowClicked (object sender, System.EventArgs e)
 		{
-			RunUpdateCheck();
+			RunUpdateCheck(false);
 		}
 		
 		#endregion Button Events
@@ -369,6 +363,9 @@ namespace GUPdotNET
 		{
 			try
 			{
+				// Start the update log
+				Common.LogUpdate("####################################");
+				Common.LogUpdate("### " + DateTime.Now.ToString() + " ###");
 				if(IsAuto == true)
 					Common.LogUpdate("Checking for update automatically");
 				else
@@ -379,19 +376,23 @@ namespace GUPdotNET
 				// check if we need an update via the major and minor version
 				if(_UpdateMajorVersion > _CurrentMajorVersion || (_UpdateMajorVersion == _CurrentMajorVersion && _UpdateMinorVersion > _CurrentMinorVersion))
 				{
+					Common.LogUpdate("Update Available " + _LatestVersion);
 					// tell the user there is an update availalbe
 					// and ask if they would like to update
 					frmUpdateConfirm dlgConfirm = new frmUpdateConfirm(_ProgramTitle, _ProgramName, _LatestVersion);
 					if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
 					{
 						this.Visible = false;
+						this.Hide();
 						this.ShowAll();
 						// update confirmed get installer file
 						frmUpdateDownload dlgDownload = new frmUpdateDownload(_ProgramTitle, _ProgramName, _UpdateFileURL);
+						Common.LogUpdate("Getting new files");					
 						if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
 						{
 							_TempInstallerPath = dlgDownload.TempFilePath;
 							
+							Common.LogUpdate("Running Installer");					
 							// if the download was sucessful then procede with the install
 							frmInstallDialog Inst = new frmInstallDialog(_ProgramName, _ProgramTitle, _OS, _InstallType, _TempInstallerPath);
 							Inst.Run();
@@ -399,13 +400,11 @@ namespace GUPdotNET
 						}
 						dlgDownload.Destroy();
 					}
-					else
-					{
-						Application.Quit();
-					}
 					dlgConfirm.Destroy();
 					
 					this.Visible = true;
+					this.GrabFocus();
+					this.Present();
 					this.ShowAll();
 						
 				}

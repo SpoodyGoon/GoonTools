@@ -47,7 +47,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		try
 		{
-			frmUpdateCheck fm = new frmUpdateCheck(false);
+			frmUpdateCheck fm = new frmUpdateCheck();
 			fm.Run();
 			fm.Destroy();
 		}

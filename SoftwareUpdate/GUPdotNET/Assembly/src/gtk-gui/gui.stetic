@@ -5,7 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="..\bin\Debug\GUPdotNET.dll" internal="true" />
+    <widget-library name="../bin/Debug/GUPdotNET.dll" internal="true" />
   </import>
   <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateConfirm" design-size="428 152">
     <property name="MemberName" />
@@ -131,15 +131,15 @@
   </widget>
   <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateDownload" design-size="373 120">
     <property name="MemberName" />
+    <property name="Title" translatable="yes">Downloading Update Files</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
+    <property name="BorderWidth">2</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
     <property name="Decorated">False</property>
     <property name="DestroyWithParent">True</property>
-    <property name="SkipPagerHint">True</property>
-    <property name="SkipTaskbarHint">True</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -150,67 +150,58 @@
           <widget class="Gtk.Frame" id="frame1">
             <property name="MemberName" />
             <property name="ShadowType">In</property>
-            <property name="BorderWidth">3</property>
             <child>
               <widget class="Gtk.Alignment" id="GtkAlignment">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
                 <property name="Yalign">0</property>
-                <property name="LeftPadding">12</property>
                 <child>
-                  <widget class="Gtk.VBox" id="vbox2">
+                  <widget class="Gtk.HBox" id="hbox1">
                     <property name="MemberName" />
-                    <property name="Spacing">6</property>
+                    <property name="Spacing">9</property>
+                    <property name="BorderWidth">3</property>
                     <child>
-                      <widget class="Gtk.HBox" id="hbox1">
+                      <widget class="Gtk.Alignment" id="alignment1">
                         <property name="MemberName" />
-                        <property name="Spacing">6</property>
+                        <property name="LeftPadding">10</property>
+                        <property name="TopPadding">6</property>
+                        <property name="RightPadding">10</property>
+                        <property name="BottomPadding">6</property>
                         <child>
-                          <widget class="Gtk.Alignment" id="alignment1">
+                          <widget class="Gtk.ProgressBar" id="progressbar1">
                             <property name="MemberName" />
-                            <property name="LeftPadding">10</property>
-                            <property name="RightPadding">10</property>
-                            <child>
-                              <widget class="Gtk.ProgressBar" id="progressbar1">
-                                <property name="MemberName" />
-                                <property name="WidthRequest">120</property>
-                                <property name="Text" translatable="yes">Starting Download</property>
-                                <property name="Ellipsize">Start</property>
-                              </widget>
-                            </child>
+                            <property name="WidthRequest">120</property>
+                            <property name="Text" translatable="yes">Starting Download</property>
+                            <property name="Ellipsize">Start</property>
                           </widget>
-                          <packing>
-                            <property name="Position">0</property>
-                            <property name="AutoSize">True</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="Gtk.Alignment" id="alignment3">
-                            <property name="MemberName" />
-                            <property name="LeftPadding">4</property>
-                            <property name="RightPadding">4</property>
-                            <child>
-                              <widget class="Gtk.Button" id="btnCancel1">
-                                <property name="MemberName" />
-                                <property name="CanFocus">True</property>
-                                <property name="UseStock">True</property>
-                                <property name="Type">StockItem</property>
-                                <property name="StockId">gtk-cancel</property>
-                                <signal name="Clicked" handler="OnButtonCancelClicked" />
-                                <property name="label">gtk-cancel</property>
-                              </widget>
-                            </child>
-                          </widget>
-                          <packing>
-                            <property name="Position">1</property>
-                            <property name="AutoSize">True</property>
-                            <property name="Expand">False</property>
-                            <property name="Fill">False</property>
-                          </packing>
                         </child>
                       </widget>
                       <packing>
                         <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Alignment" id="alignment3">
+                        <property name="MemberName" />
+                        <property name="LeftPadding">4</property>
+                        <property name="TopPadding">4</property>
+                        <property name="RightPadding">4</property>
+                        <property name="BottomPadding">4</property>
+                        <child>
+                          <widget class="Gtk.Button" id="btnCancel1">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="UseStock">True</property>
+                            <property name="Type">StockItem</property>
+                            <property name="StockId">gtk-cancel</property>
+                            <signal name="Clicked" handler="OnButtonCancelClicked" />
+                            <property name="label">gtk-cancel</property>
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
@@ -462,8 +453,13 @@
   </widget>
   <widget class="Gtk.Dialog" id="GUPdotNET.frmInstallDialog" design-size="467 172">
     <property name="MemberName" />
+    <property name="Visible">False</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
     <property name="AllowShrink">True</property>
+    <property name="DestroyWithParent">True</property>
+    <property name="SkipPagerHint">True</property>
+    <property name="SkipTaskbarHint">True</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -738,10 +734,8 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateCheck" design-size="475 175">
+  <widget class="Gtk.Dialog" id="GUPdotNET.frmUpdateCheck" design-size="475 198">
     <property name="MemberName" />
-    <property name="WidthRequest">475</property>
-    <property name="HeightRequest">175</property>
     <property name="Visible">False</property>
     <property name="Title" translatable="yes">GUPdotNET Update Options</property>
     <property name="Icon">resource:update_medium.png</property>
@@ -751,9 +745,9 @@
     <property name="BorderWidth">2</property>
     <property name="AllowShrink">True</property>
     <property name="DefaultWidth">475</property>
-    <property name="DefaultHeight">175</property>
+    <property name="DefaultHeight">200</property>
     <property name="DestroyWithParent">True</property>
-    <property name="Buttons">2</property>
+    <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
       <widget class="Gtk.VBox" id="dialog1_VBox">
@@ -1055,25 +1049,8 @@ Never</property>
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <property name="BorderWidth">5</property>
-        <property name="Size">2</property>
+        <property name="Size">1</property>
         <property name="LayoutStyle">Spread</property>
-        <child>
-          <widget class="Gtk.Button" id="buttonCancel">
-            <property name="MemberName" />
-            <property name="CanDefault">True</property>
-            <property name="CanFocus">True</property>
-            <property name="UseStock">True</property>
-            <property name="Type">StockItem</property>
-            <property name="StockId">gtk-cancel</property>
-            <property name="ResponseId">-6</property>
-            <signal name="Clicked" handler="OnButtonCancelClicked" />
-            <property name="label">gtk-cancel</property>
-          </widget>
-          <packing>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
         <child>
           <widget class="Gtk.Button" id="buttonOk">
             <property name="MemberName" />
@@ -1081,13 +1058,12 @@ Never</property>
             <property name="CanFocus">True</property>
             <property name="UseStock">True</property>
             <property name="Type">StockItem</property>
-            <property name="StockId">gtk-ok</property>
-            <property name="ResponseId">-5</property>
+            <property name="StockId">gtk-close</property>
+            <property name="ResponseId">-7</property>
             <signal name="Clicked" handler="OnButtonOkClicked" />
-            <property name="label">gtk-ok</property>
+            <property name="label">gtk-close</property>
           </widget>
           <packing>
-            <property name="Position">1</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
