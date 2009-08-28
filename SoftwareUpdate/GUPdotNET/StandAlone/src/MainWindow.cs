@@ -20,6 +20,7 @@ namespace GUPdotNET
 	{
 		private bool _SilentCheck = false;
 		private bool _Loading = false;
+		UpdateInfo _UpdateInfo = new UpdateInfo();
 		public MainWindow(bool blnSilentCheck) :  base(Gtk.WindowType.Toplevel)
 		{
 			// TODO: pad the close button a little bit
@@ -28,16 +29,26 @@ namespace GUPdotNET
 			this.Build();
 			if(_SilentCheck)
 			{
+				this.SkipPagerHint = true;
+				this.SkipTaskbarHint = true;
 				this.Visible = false;
+				_UpdateInfo.LoadInfo(UpdateInfoType.All);
+				_UpdateInfo.SilentCheck = true;
+				if(_UpdateInfo.UpdateAvailable)
+					RunUpdate();
 			}
 			else
 			{
+				this.SkipPagerHint = false;
+				this.SkipTaskbarHint = false;
 				this.Visible = true;
 				LoadControls();
 			}
 			_Loading = false;
 			this.ShowAll();
 		}
+		
+		#region Option Widget Loading
 		
 		private void LoadControls()
 		{
@@ -63,8 +74,22 @@ namespace GUPdotNET
 			return false;
 		}
 		
+		#endregion Option Widget Loading
+		
+		#region Widget Events
+		
 		protected virtual void OnBtnCheckNowClicked (object sender, System.EventArgs e)
 		{
+			if(_UpdateInfo.UpdateAvailable)
+			{
+					RunUpdate();
+			}
+			else
+			{
+				MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No Update Available", "No Update Available");
+				md.Run();
+				md.Destroy();
+			}
 		}
 		
 		
@@ -101,7 +126,6 @@ namespace GUPdotNET
 				Common.HandleError(ex);
 			}
 		}
-		
 		
 		protected virtual void OnBtnAboutClicked (object sender, System.EventArgs e)
 		{
@@ -183,5 +207,12 @@ namespace GUPdotNET
 			Gtk.Application.Quit();
 		}
 
+		#endregion Widget Events
+	
+		private void RunUpdate()
+		{
+			
+		}
+	
 	}
 }
