@@ -239,7 +239,7 @@ namespace GUPdotNET
 		{
 			switch(ut)
 			{
-				case UpdateInfoType.Both:
+				case UpdateInfoType.All:
 					LoadLocalInfo();
 					LoadRemoteInfo();
 					break;
@@ -252,7 +252,12 @@ namespace GUPdotNET
 			}
 		}
 		
-		public bool UpdateAvailable()
+		public bool UpdateAvailable
+		{
+			get{return CheckUpdate();}
+		}
+		
+		private bool CheckUpdate()
 		{
 			if(!IsLocalInfoLoaded)
 				LoadLocalInfo();
@@ -263,7 +268,6 @@ namespace GUPdotNET
 				return true;
 			else
 				return false;
-			
 		}
 		
 		private void LoadLocalInfo()
@@ -330,9 +334,9 @@ namespace GUPdotNET
 	
 	public enum UpdateInfoType
 	{
-		Both,
 		Local,
 		Remote,
+		All,
 		None
 	}
 }

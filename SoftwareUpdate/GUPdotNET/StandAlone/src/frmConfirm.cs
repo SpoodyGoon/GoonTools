@@ -9,31 +9,41 @@
 //------------------------------------------------------------------------------
 
 using System;
+using Gtk;
 
 
 namespace GUPdotNET
 {
-	
-	
 	public partial class frmConfirm : Gtk.Dialog
-	{
-
-		
-					
-					protected virtual void OnBtnNoClicked (object sender, System.EventArgs e)
-					{
-					}
-		
-		public frmConfirm()
+	{	
+		public frmConfirm(UpdateInfo updateinfo)
 		{
 			this.Build();
-		}
-		
-			
-			protected virtual void OnBtnYesClicked (object sender, System.EventArgs e)
-			{
+			try
+			{				
+				this.Title = updateinfo.ProgramTitle;
+				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + updateinfo.ProgramName + " Update</b></span>";
+				this.lblProgramTitle.UseMarkup = true;
+				this.lblUpdateMessage.Text = "<span size=\"medium\">There is an update available for " + updateinfo.ProgramTitle + ".\r\nWould you like to upgrade to " + updateinfo.ProgramTitle + " " + updateinfo.LatestVersion + " now?</span>";
+				this.lblUpdateMessage.UseMarkup = true;
+				this.lblUpdateMessage.Wrap = true;
 			}
-
-
+			catch(Exception doh)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
+				md.Run();
+				md.Destroy();
+			}
+		}
+							
+		protected virtual void OnBtnNoClicked (object sender, System.EventArgs e)
+		{
+			this.Hide();
+		}
+			
+		protected virtual void OnBtnYesClicked (object sender, System.EventArgs e)
+		{
+			this.Hide();
+		}
 	}
 }
