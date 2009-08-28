@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 using System;
+using Gtk;
 
 
 namespace GUPdotNET
@@ -18,16 +19,48 @@ namespace GUPdotNET
 	public partial class MainWindow : Gtk.Window
 	{
 		private bool _SilentCheck = false;
+		private bool _Loading = false;
 		public MainWindow(bool blnSilentCheck) :  base(Gtk.WindowType.Toplevel)
 		{
+			// TODO: pad the close button a little bit
+			_Loading = true;
 			_SilentCheck = blnSilentCheck;
 			this.Build();
 			if(_SilentCheck)
+			{
 				this.Visible = false;
+			}
 			else
+			{
 				this.Visible = true;
-			
+				LoadControls();
+			}
+			_Loading = false;
 			this.ShowAll();
+		}
+		
+		private void LoadControls()
+		{
+			try
+			{
+				System.Diagnostics.Debug.WriteLine("auto " + Common.Option.AutoUpdate.ToString() + " Type " + Common.Option.UpdateTime);
+				cboUpdateTimeType.Model.Foreach(new TreeModelForeachFunc(cboUpdateTimeType_ForeEach));
+				cbxAutoUpdate.Active = Common.Option.AutoUpdate;
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
+			}
+		}
+		
+		private bool cboUpdateTimeType_ForeEach(TreeModel model, TreePath path, TreeIter iter)
+		{
+			if((string) model.GetValue (iter, 0) == Common.Option.UpdateTime)
+			{
+				cboUpdateTimeType.SetActiveIter(iter);
+				return true;
+			}
+			return false;
 		}
 		
 		protected virtual void OnBtnCheckNowClicked (object sender, System.EventArgs e)
@@ -37,19 +70,36 @@ namespace GUPdotNET
 		
 		protected virtual void OnbtnCloseClicked (object sender, System.EventArgs e)
 		{
+			Common.SaveOptions();
 			Gtk.Application.Quit();
 		}
 		
 		
 		protected virtual void OnCbxAutoUpdateToggled (object sender, System.EventArgs e)
 		{
-			Common.Option.AutoUpdate = cbxAutoUpdate.Active;
+			try
+			{
+				if(!_Loading)
+					Common.Option.AutoUpdate = (bool)cbxAutoUpdate.Active;
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
+			}
 		}
 		
 		
 		protected virtual void OnCboUpdateTimeTypeChanged (object sender, System.EventArgs e)
 		{
-			Common.Option.UpdateTime = cboUpdateTimeType.ActiveText;
+			try
+			{
+				if(!_Loading)
+					Common.Option.UpdateTime = (string)cboUpdateTimeType.ActiveText;
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
+			}
 		}
 		
 		
@@ -76,7 +126,7 @@ namespace GUPdotNET
 				ad.HasSeparator = true;
 				ad.Modal = true;
 				ad.BorderWidth = 8;
-				ad.WidthRequest = 350;
+				ad.WidthRequest = 400;
 //				ad.HeightRequest = 300;
 				ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
 				ad.WebsiteLabel = "GUPdotNET Web Site";

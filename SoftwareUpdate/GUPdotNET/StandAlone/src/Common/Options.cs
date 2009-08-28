@@ -26,7 +26,7 @@ namespace GUPdotNET.Helper
 {
 	public class Options
 	{
-		private string _UpdateTime;
+		private string _UpdateTime = "Day";
 		private bool _AutoUpdate = true;
 		private DateTime _LastUpdate = DateTime.Now;
 		private DateTime _LastUpdateCheck = DateTime.Now;
@@ -41,7 +41,7 @@ namespace GUPdotNET.Helper
 		{
 			if(hsh.Contains("FileVersion"))
 				_FileVersion = Convert.ToInt16(hsh["FileVersion"]);
-			if(hsh.Contains("UpdateTimeType"))
+			if(hsh.Contains("UpdateTime"))
 				_UpdateTime = hsh["UpdateTime"].ToString();
 			if(hsh.Contains("AutoUpdate"))
 				_AutoUpdate = Convert.ToBoolean(hsh["AutoUpdate"]);

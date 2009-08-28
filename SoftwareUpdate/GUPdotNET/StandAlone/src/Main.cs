@@ -7,8 +7,10 @@ namespace GUPdotNET
 	{
 		public static void Main (string[] args)
 		{
-			bool blnSilentCheck = true;
+			bool blnSilentCheck = false;
 			Application.Init ();
+			
+			Common.LoadAll();
 			if(args.Length > 0 && args[0].ToLower() == "silent")
 				blnSilentCheck = true;
 			
