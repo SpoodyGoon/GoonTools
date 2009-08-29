@@ -27,6 +27,7 @@ namespace GUPdotNET.Helper
 	public class Options
 	{
 		private string _UpdateTime = "Day";
+		private int _UpdateHours = 24;
 		private bool _AutoUpdate = true;
 		private DateTime _LastUpdate = DateTime.Now;
 		private DateTime _LastUpdateCheck = DateTime.Now;
@@ -60,6 +61,12 @@ namespace GUPdotNET.Helper
 			hsh.Add("LastUpdate", _LastUpdate);
 			hsh.Add("LastUpdateCheck", _LastUpdateCheck);
 			return hsh;
+		}
+		
+		public int UpdateHours
+		{
+			set{ _UpdateHours = value;}
+			get{ return _UpdateHours;}
 		}
 		
 		public string UpdateTime
