@@ -94,6 +94,9 @@
     <EmbeddedResource Include="images\update_needed.png">
       <LogicalName>update_needed.png</LogicalName>
     </EmbeddedResource>
+    <Content Include="TimeValues.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="web_files\GetUpdateInfo.asp" />
     <None Include="web_files\GetUpdateInfo.aspx" />
     <None Include="web_files\GetUpdateInfo.php" />
