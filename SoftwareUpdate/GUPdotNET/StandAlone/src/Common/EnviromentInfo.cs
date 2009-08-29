@@ -40,6 +40,7 @@ namespace GUPdotNET.Helper
 		private string _DirChar = string.Empty;
 		private string _SavePath = string.Empty;
 		private string _BasePath = string.Empty;
+		private string _AppPath = string.Empty;
 		
 		#endregion Private Properties
 		
@@ -51,12 +52,17 @@ namespace GUPdotNET.Helper
 			if(System.Environment.OSVersion.Platform == PlatformID.Win32NT)
 			{
 				_DirChar = @"\";
+				// set the app path
+				_AppPath = asm.CodeBase.Substring(0, asm.CodeBase.LastIndexOf(_DirChar) + 1).Replace("file://","");
+			
 			}
 			else
 			{
 				_DirChar = @"/";
+				// set the app path
+				_AppPath = asm.CodeBase.Substring(0, asm.CodeBase.LastIndexOf(_DirChar) + 1).Replace("file://","");
 			}
-			
+
 			_BasePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + _DirChar + asm.GetName().Name + _DirChar;
 			_SavePath = _BasePath +  ConfigurationManager.AppSettings["ProgramName"].ToString() + _DirChar;
 						
@@ -67,6 +73,11 @@ namespace GUPdotNET.Helper
 		public string DirChar
 		{
 			get{return _DirChar;}
+		}
+		
+		public string AppPath
+		{
+			get{return _AppPath;}
 		}
 		
 		public string BasePath

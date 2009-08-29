@@ -18,14 +18,13 @@ namespace GUPdotNET
 	
 	public partial class MainWindow : Gtk.Window
 	{
-		private string _Search = string.Empty;
 		private bool _SilentCheck = false;
 		private bool _Loading = false;
 		UpdateInfo _UpdateInfo = new UpdateInfo();
 		public MainWindow(bool blnSilentCheck) :  base(Gtk.WindowType.Toplevel)
 		{
 			// TODO: pad the close button a little bit
-			_Loading = true;
+			_Loading = true; 
 			_SilentCheck = blnSilentCheck;
 			this.Build();
 			if(_SilentCheck)
@@ -54,19 +53,19 @@ namespace GUPdotNET
 		
 		private bool TimeForCheck()
 		{
-			bool blnReturn;
-			switch(Common.Option.UpdateTime)
-			{
-				case "":
-					break;
-				case "":
-					break;
-				case "":
-					break;
-				case "":
-					break;
-					
-			}
+			bool blnReturn = false;
+//			switch(Common.Option.UpdateTime)
+//			{
+//				case "":
+//					break;
+//				case "":
+//					break;
+//				case "":
+//					break;
+//				case "":
+//					break;
+//					
+//			}
 			
 			return blnReturn;			
 		}
@@ -77,35 +76,21 @@ namespace GUPdotNET
 		{
 			try
 			{
-				SetActiveText(Common.Option.UpdateTime);
+				cboUpdateTimeType.SetHours(Common.Option.UpdateHours);
 				cbxAutoUpdate.Active = Common.Option.AutoUpdate;
 				if(cbxAutoUpdate.Active == false)
 					frame1.Sensitive = false;
 				else
 					frame1.Sensitive = true;
+				
+				cboUpdateTimeType.Changed += new EventHandler(OnCboUpdateTimeTypeChanged);
+				lblLastCheck.Text = Common.Option.LastUpdateCheck.ToShortDateString();
+				lblLastUpdate.Text = Common.Option.LastUpdate.ToShortDateString();
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(ex);
 			}
-		}
-		
-		private void SetActiveText(string SearchValue)
-		{
-			_Search = SearchValue;
-			cboUpdateTimeType.Model.Foreach(new TreeModelForeachFunc(cboUpdateTimeType_ForeEach));
-		}
-		
-		private bool cboUpdateTimeType_ForeEach(TreeModel model, TreePath path, TreeIter iter)
-		{
-			if((string) model.GetValue (iter, 0) == _Search)
-			{
-				cboUpdateTimeType.SetActiveIter(iter);
-				Common.Option.UpdateTime = _Search;
-				_Search = string.Empty;
-				return true;
-			}
-			return false;
 		}
 		
 		#endregion Option Widget Loading
@@ -144,15 +129,15 @@ namespace GUPdotNET
 					if((bool)cbxAutoUpdate.Active == false)
 					{
 						_Loading = true;
-						SetActiveText("Never");
+						cboUpdateTimeType.SetTimeDisplay("Never");
 						frame1.Sensitive = false;
 						_Loading = false;
 					}
 					else
 					{
 						_Loading = true;
-						if(cboUpdateTimeType.ActiveText == "Never")
-							SetActiveText("Day");
+						if(cboUpdateTimeType.TimeDisplay == "Never")
+							cboUpdateTimeType.SetTimeDisplay("Day");
 						frame1.Sensitive = true;
 						_Loading = false;
 					}
@@ -171,7 +156,7 @@ namespace GUPdotNET
 			{
 				if(!_Loading)
 				{
-					if((string)cboUpdateTimeType.ActiveText == "Never")
+					if((string)cboUpdateTimeType.TimeDisplay == "Never")
 					{
 						_Loading = true;
 						cbxAutoUpdate.Active = false;
