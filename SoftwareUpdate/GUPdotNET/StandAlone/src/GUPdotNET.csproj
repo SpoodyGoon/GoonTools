@@ -8,7 +8,7 @@
     <ProjectGuid>{2552A720-E6E3-4403-8096-A68B7D454EDA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AssemblyName>GUPdotNET</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <SourceAnalysisOverrideSettingsFile>C:\Users\Andy\AppData\Roaming\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <RootNamespace>GUPdotNET</RootNamespace>
     <StartupObject>GUPdotNET.MainClass</StartupObject>

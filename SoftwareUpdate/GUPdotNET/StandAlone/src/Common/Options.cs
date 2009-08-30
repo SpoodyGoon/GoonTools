@@ -44,6 +44,8 @@ namespace GUPdotNET.Helper
 				_FileVersion = Convert.ToInt16(hsh["FileVersion"]);
 			if(hsh.Contains("UpdateTime"))
 				_UpdateTime = hsh["UpdateTime"].ToString();
+			if(hsh.Contains("UpdateHours"))
+				_UpdateHours = Convert.ToInt32(hsh["UpdateHours"]);
 			if(hsh.Contains("AutoUpdate"))
 				_AutoUpdate = Convert.ToBoolean(hsh["AutoUpdate"]);
 			if(hsh.Contains("LastUpdate"))
@@ -57,6 +59,7 @@ namespace GUPdotNET.Helper
 			System.Collections.Hashtable hsh = new System.Collections.Hashtable();
 			hsh.Add("FileVersion", _FileVersion);
 			hsh.Add("UpdateTime", _UpdateTime);
+			hsh.Add("UpdateHours", _UpdateHours);
 			hsh.Add("AutoUpdate", _AutoUpdate);
 			hsh.Add("LastUpdate", _LastUpdate);
 			hsh.Add("LastUpdateCheck", _LastUpdateCheck);
