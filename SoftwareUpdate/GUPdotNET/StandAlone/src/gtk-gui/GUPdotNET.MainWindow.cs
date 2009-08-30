@@ -97,13 +97,15 @@ namespace GUPdotNET {
             this.Name = "GUPdotNET.MainWindow";
             this.Title = Mono.Unix.Catalog.GetString("Update Options");
             this.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
-            this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.WindowPosition = ((Gtk.WindowPosition)(1));
             this.BorderWidth = ((uint)(2));
             this.AllowShrink = true;
+            this.SkipPagerHint = true;
+            this.SkipTaskbarHint = true;
             // Container child GUPdotNET.MainWindow.Gtk.Container+ContainerChild
             this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment1.Name = "alignment1";
-            this.alignment1.BottomPadding = ((uint)(6));
+            this.alignment1.BottomPadding = ((uint)(8));
             // Container child alignment1.Gtk.Container+ContainerChild
             this.vbox2 = new Gtk.VBox();
             this.vbox2.Name = "vbox2";
@@ -386,7 +388,7 @@ namespace GUPdotNET {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 445;
-            this.DefaultHeight = 252;
+            this.DefaultHeight = 254;
             this.Show();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
             this.btnAbout.Clicked += new System.EventHandler(this.OnBtnAboutClicked);

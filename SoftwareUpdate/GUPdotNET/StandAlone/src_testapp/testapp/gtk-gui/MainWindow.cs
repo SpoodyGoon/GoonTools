@@ -190,7 +190,6 @@ public partial class MainWindow {
         w17.Fill = false;
         // Container child vbox1.Gtk.Box+BoxChild
         this.hbuttonbox1 = new Gtk.HButtonBox();
-        this.hbuttonbox1.Name = "hbuttonbox1";
         this.vbox1.Add(this.hbuttonbox1);
         Gtk.Box.BoxChild w18 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox1]));
         w18.Position = 7;
