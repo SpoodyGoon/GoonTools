@@ -46,19 +46,11 @@ public partial class MainWindow: Gtk.Window
 	{
 		try
 		{
-//			System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly();
-//			UpdateCheck up = new UpdateCheck();
-//			up.InstallType = cboInstallType.ActiveText;
-//			up.ProgramTitle =  txtProgramTitle.Text;
-//			up.ProgramName =  txtProgramName.Text;
-//			// this is the full path to the program i.e. C:/MyDocuments/MyProgramFolder/
-//			up.ProgramFullPath = assm.GetName().CodeBase;
-//			// this is the actual name of the program i.e. MyProgram.exe
-//			up.UpdateInfoURL =  ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
-//			up.CurrentMajorVersion = spnMajor.ValueAsInt;
-//			up.CurrentMinorVersion = spnMinorVersion.ValueAsInt;;
-//			up.SilentCheck = (bool)cbxSilent.Active;
-//			up.RunUpdateCheck();
+			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
+			si.FileName = GUPdotNETFile.Filename;
+			si.Arguments = "auto";
+			System.Diagnostics.Process.Start(si);
+
 		}
 		catch(Exception ex)
 		{
@@ -66,5 +58,12 @@ public partial class MainWindow: Gtk.Window
 			md.Run();
 			md.Destroy();
 		}
+	}	
+	
+	protected virtual void OnBtnOptionsClicked (object sender, System.EventArgs e)
+	{		
+		System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
+		si.FileName = GUPdotNETFile.Filename;
+		System.Diagnostics.Process.Start(si);
 	}
 }
