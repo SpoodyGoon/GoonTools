@@ -18,7 +18,7 @@ namespace GUPdotNET
 	public partial class frmInstall : Gtk.Dialog
 	{
 		
-		public frmInstall()
+		public frmInstall(UpdateInfo updateinfo)
 		{
 			this.Build();
 		}

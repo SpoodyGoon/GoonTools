@@ -34,10 +34,13 @@ namespace GUPdotNET
 				this.SkipPagerHint = true;
 				this.SkipTaskbarHint = true;
 				this.Visible = false;
-				_UpdateInfo.LoadInfo(UpdateInfoType.All);
-				_UpdateInfo.SilentCheck = true;
-				if(_UpdateInfo.UpdateAvailable)
-					RunUpdate();
+				if(TimeForCheck())
+				{
+					_UpdateInfo.LoadInfo(UpdateInfoType.All);
+					_UpdateInfo.SilentCheck = true;
+					if(_UpdateInfo.UpdateAvailable)
+						RunUpdate();
+				}
 			}
 			else
 			{
@@ -53,21 +56,10 @@ namespace GUPdotNET
 		
 		private bool TimeForCheck()
 		{
-			bool blnReturn = false;
-//			switch(Common.Option.UpdateTime)
-//			{
-//				case "":
-//					break;
-//				case "":
-//					break;
-//				case "":
-//					break;
-//				case "":
-//					break;
-//					
-//			}
-			
-			return blnReturn;			
+			if(DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)) > 1)
+				return true;
+			else
+				return false;
 		}
 		
 		#region Option Widget Loading
@@ -263,7 +255,28 @@ namespace GUPdotNET
 	
 		private void RunUpdate()
 		{
-			
+			// tell the user there is an update availalbe
+			// and ask if they would like to update
+			frmConfirm dlgConfirm = new frmConfirm(_UpdateInfo);
+			if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
+			{
+				// update confirmed get installer file
+				frmDownload dlgDownload = new frmDownload(_UpdateInfo);
+				if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
+				{
+					// if the download was sucessful then procede with the install
+					frmInstall Inst = new frmInstall(_UpdateInfo);
+					Inst.Run();
+					Inst.Destroy();
+					
+				}
+				dlgDownload.Destroy();
+			}
+			else
+			{
+				Application.Quit();
+			}
+			dlgConfirm.Destroy();
 		}
 	
 	}
