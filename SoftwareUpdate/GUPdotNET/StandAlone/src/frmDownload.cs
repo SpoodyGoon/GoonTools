@@ -55,9 +55,7 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Non Web Response error downloading update. " + System.Environment.NewLine + ex.Message ,"GUPdotNET Update Download Error");
-				md.Run();
-				md.Destroy();
+				Common.HandleError(this, ex);
 				this.Respond(Gtk.ResponseType.Cancel);
 				this.Hide();
 			}
@@ -160,13 +158,13 @@ namespace GUPdotNET
 			}
 			catch(WebException e)
 			{
-				Common.HandleError(new Exception("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message));
+				Common.HandleError(this, new Exception("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message));
 				this.Respond(Gtk.ResponseType.Cancel);
 				this.Hide();
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(new Exception("Non Web Response error downloading update " + System.Environment.NewLine + ex.Message));
+				Common.HandleError(this, new Exception("Non Web Response error downloading update " + System.Environment.NewLine + ex.Message));
 				this.Respond(Gtk.ResponseType.Cancel);
 				this.Hide();
 			}

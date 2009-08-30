@@ -67,7 +67,6 @@
     <Compile Include="frmDownload.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmDownload.cs" />
     <Compile Include="frmInstall.cs" />
-    <Compile Include="gtk-gui\GUPdotNET.frmInstall.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\Const.cs" />
     <Compile Include="Common\EnviromentInfo.cs" />
@@ -99,6 +98,7 @@
     <None Include="web_files\GetUpdateInfo.php" />
     <None Include="web_files\XMLTemplate.xml" />
     <Compile Include="UpdateTimeCombo.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.frmInstall.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -28,11 +28,9 @@ namespace GUPdotNET
 				this.lblUpdateMessage.UseMarkup = true;
 				this.lblUpdateMessage.Wrap = true;
 			}
-			catch(Exception doh)
+			catch(Exception ex)
 			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, doh.ToString());
-				md.Run();
-				md.Destroy();
+				Common.HandleError(this, ex);
 			}
 		}
 							

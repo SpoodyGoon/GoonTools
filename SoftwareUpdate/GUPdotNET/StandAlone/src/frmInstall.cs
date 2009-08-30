@@ -12,15 +12,89 @@ using System;
 
 
 namespace GUPdotNET
-{
-	
+{	
 	
 	public partial class frmInstall : Gtk.Dialog
 	{
-		
+		private SecureString _AdminPass = null;
+		// this is the global flag signaling if we want to cancel the update
+		private bool _Cancel = false;
+		private bool _IsSystemInstall = true;
+		private UpdateInfo _UpdateInfo;
 		public frmInstall(UpdateInfo updateinfo)
 		{
 			this.Build();
+			_UpdateInfo = updateinfo;
+			
+			this.Title = _UpdateInfo.ProgramTitle;
+			this.lblTitle.Text = "<span size=\"large\"><b>Installing " +  _UpdateInfo.ProgramName + "</b></span>";
+			this.lblTitle.UseMarkup = true;
+			this.lblMessage.Text = "Starting Install";
+			this.lblMessage.UseMarkup = true;
+			this.ShowNow();
+			
+			switch(_UpdateInfo.OS)
+			{
+				case "Windows":
+					PrepInstallWin32();
+					break;
+				case "Linux":
+					PrepInstallLinux();
+					InstallLinuxRPM();
+					break;
+				case "Mac":
+					PrepInstallLinux();
+				InstallLinuxSource();
+					break;
+				default:
+					throw new Exception("Invalid Install Type");
+			}
 		}
+		
+		
+		
+		#region Windows Install
+		
+		private void PrepInstallWin32()
+		{			
+			// ask the user to save changes and close calling application
+			Gtk.MessageDialog md = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, "The update is ready to install " + _ProgramTitle + " please save any changes you have and click ok to continue the update.", "Save & Close");
+			if(((Gtk.ResponseType)md.Run()) == ResponseType.Ok)
+			{
+				Common.LogUpdate("Update install");
+				Common.Option.LastUpdate = DateTime.Now;
+				Common.SaveOptions();
+				System.Diagnostics.Process.Start(_UpdateInfo.TempInstallerPath);
+				Gtk.Application.Quit();
+				this.Respond(Gtk.ResponseType.Cancel);
+				this.Hide();
+			}
+			else
+			{
+				this.Respond(Gtk.ResponseType.Cancel);
+				this.Hide();
+			}
+			md.Destroy();
+		}
+		
+		private bool HasAccess(string _TempInstallerPath)
+		{
+			// assume the user has access
+			bool blnHasAccess = true;
+			
+			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, _TempInstallerPath);
+			try
+			{
+				f2.Demand();
+			}
+			catch (System.Security.SecurityException s)
+			{
+				blnHasAccess = false;
+				Console.WriteLine(s.Message);
+			}
+			return blnHasAccess;
+		}
+		
+		#endregion Windows Install
 	}
 }
