@@ -1,6 +1,10 @@
 <?xml version="1.0" standalone="yes"?>
 <dsUpdateTimes>
   <dtUpdateTimes>
+    <TimeDisplay>Testing -36</TimeDisplay>
+    <Hours>-36</Hours>
+  </dtUpdateTimes>
+  <dtUpdateTimes>
     <TimeDisplay>Day</TimeDisplay>
     <Hours>24</Hours>
   </dtUpdateTimes>

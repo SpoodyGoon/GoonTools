@@ -139,9 +139,9 @@ namespace GUPdotNET
 			}
 		}
 		
-		private static void HandleError(Exception ex)
+		public static void HandleError(Exception ex)
 		{
-			HandleError(null, ex);	
+			HandleError(null, ex);
 		}
 		
 		public static void HandleError(Gtk.Window parent_window, Exception ex)
