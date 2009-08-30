@@ -139,7 +139,12 @@ namespace GUPdotNET
 			}
 		}
 		
-		public static void HandleError(Exception ex)
+		private static void HandleError(Exception ex)
+		{
+			HandleError(null, ex);	
+		}
+		
+		public static void HandleError(Gtk.Window parent_window, Exception ex)
 		{
 			if(ConfigurationManager.AppSettings["SaveErrorLog"].ToLower() == "true")
 			{
@@ -151,7 +156,7 @@ namespace GUPdotNET
 				sw.Close();
 			}
 				
-			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			Gtk.MessageDialog md = new Gtk.MessageDialog(parent_window, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
 			md.Run();
 			md.Destroy();			
 		}

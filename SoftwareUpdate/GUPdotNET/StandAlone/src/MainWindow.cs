@@ -23,7 +23,6 @@ namespace GUPdotNET
 		UpdateInfo _UpdateInfo = new UpdateInfo();
 		public MainWindow(bool blnSilentCheck) :  base(Gtk.WindowType.Toplevel)
 		{
-			// TODO: pad the close button a little bit
 			_Loading = true; 
 			_SilentCheck = blnSilentCheck;
 			this.Build();
@@ -81,7 +80,7 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(ex);
+				Common.HandleError(this, ex);
 			}
 		}
 		
@@ -93,7 +92,7 @@ namespace GUPdotNET
 		{
 			if(_UpdateInfo.UpdateAvailable)
 			{
-					RunUpdate();
+				RunUpdate();
 			}
 			else
 			{
@@ -137,7 +136,7 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(ex);
+				Common.HandleError(this, ex);
 			}
 		}
 		
@@ -167,7 +166,7 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(ex);
+				Common.HandleError(this, ex);
 			}
 		}
 		
@@ -198,6 +197,7 @@ namespace GUPdotNET
 //				ad.HeightRequest = 300;
 				ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
 				ad.WebsiteLabel = "GUPdotNET Web Site";
+				ad.Parent = this;
 				ad.Run();
 				
 				btnAbout.Relief = Gtk.ReliefStyle.None;
@@ -207,13 +207,14 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(ex);
+				Common.HandleError(this, ex);
 			}
 		}
 		
 		
 		protected virtual void OnBtnAboutEntered (object sender, System.EventArgs e)
 		{
+			btnAbout.Relief = Gtk.ReliefStyle.None;
 			btnAbout.State = Gtk.StateType.Normal;
 			btnAbout.ShowNow();
 		}
