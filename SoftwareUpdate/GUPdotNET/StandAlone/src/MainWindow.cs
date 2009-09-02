@@ -170,7 +170,8 @@ namespace GUPdotNET
 						frame1.Sensitive = true;
 						_Loading = false;
 					}
-					Common.Option.UpdateTime = (string)cboUpdateTimeType.ActiveText;
+					Common.Option.UpdateTime = (string)cboUpdateTimeType.TimeDisplay;
+					Common.Option.UpdateHours = (int)cboUpdateTimeType.Hours;
 				}
 			}
 			catch(Exception ex)
