@@ -32,8 +32,11 @@ namespace GUPdotNET
 			Application.Init ();
 			
 			Common.LoadAll();
-			if(args.Length > 0 && args[0].ToLower() == "silent")
+			if(args.Length > 0 && args[0].ToLower() == "auto")
 				blnSilentCheck = true;
+			
+			if(System.Configuration.ConfigurationManager.AppSettings["Debug"].ToString()== "true")
+				Console.WriteLine("Debug - Silent Check: " + blnSilentCheck.ToString());
 			
 			MainWindow mw = new MainWindow(blnSilentCheck);
 			mw.Show();
