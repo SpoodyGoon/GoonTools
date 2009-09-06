@@ -35,8 +35,12 @@ namespace GUPdotNET
 			_Loading = true; 
 			_SilentCheck = blnSilentCheck;
 			this.Build();
+			if(System.Configuration.ConfigurationManager.AppSettings["Debug"].ToString()== "true")
+				Console.WriteLine("Debug - Silent Check: " + _SilentCheck.ToString());
+			
 			if(_SilentCheck)
 			{
+				
 				// This is for checking for updates in the background
 				// notifying the user only if an update is avalaiable
 				this.SkipPagerHint = true;
@@ -44,6 +48,7 @@ namespace GUPdotNET
 				this.Visible = false;
 				if(TimeForCheck())
 				{
+					
 					_UpdateInfo.LoadInfo(UpdateInfoType.All);
 					_UpdateInfo.SilentCheck = true;
 					if(_UpdateInfo.UpdateAvailable)
@@ -64,7 +69,9 @@ namespace GUPdotNET
 		
 		private bool TimeForCheck()
 		{
-			if(DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)) > 1)
+			if(System.Configuration.ConfigurationManager.AppSettings["Debug"].ToString()== "true")
+						Console.WriteLine("Debug - Time for Check: " + DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)).ToString());
+			if(DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)) > 0)
 				return true;
 			else
 				return false;
@@ -203,7 +210,7 @@ namespace GUPdotNET
 				ad.HasSeparator = true;
 				ad.Modal = true;
 				ad.BorderWidth = 8;
-				ad.WidthRequest = 400;
+				ad.WidthRequest = 450;
 //				ad.HeightRequest = 300;
 				ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
 				ad.WebsiteLabel = "GUPdotNET Web Site";

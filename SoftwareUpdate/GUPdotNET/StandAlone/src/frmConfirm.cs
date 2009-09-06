@@ -31,13 +31,16 @@ namespace GUPdotNET
 		{
 			this.Build();
 			try
-			{				
+			{	
 				this.Title = updateinfo.ProgramTitle;
-				this.lblProgramTitle.Text = "<span size=\"large\"><b>" + updateinfo.ProgramName + " Update</b></span>";
+				this.lblProgramTitle.Text = "<span  font_desc=\"Tahoma italic 14\" weight=\"bold\">" + updateinfo.ProgramName + " Update</span>";
 				this.lblProgramTitle.UseMarkup = true;
-				this.lblUpdateMessage.Text = "<span size=\"medium\">There is an update available for " + updateinfo.ProgramTitle + ".\r\nWould you like to upgrade to " + updateinfo.ProgramTitle + " " + updateinfo.LatestVersion + " now?</span>";
+				this.lblUpdateMessage.Text = "<span font_desc=\"Tahoma normal 10\">There is an update available for " + updateinfo.ProgramTitle + "." + System.Environment.NewLine + "Would you like to upgrade to " + updateinfo.ProgramTitle + " " + updateinfo.LatestVersion + " now?</span>";
 				this.lblUpdateMessage.UseMarkup = true;
+				lblUpdateMessage.LineWrap = true;
+				lblUpdateMessage.LineWrapMode = Pango.WrapMode.Word;
 				this.lblUpdateMessage.Wrap = true;
+				this.ShowAll();
 			}
 			catch(Exception ex)
 			{
