@@ -22,9 +22,10 @@
 
 using System;
 using CMYControls;
+using CMYControls.ColumnSelector;
 using Gtk;
 
-namespace CMYControls.ColumnSelector
+namespace CMYControls
 {
 	
 	
