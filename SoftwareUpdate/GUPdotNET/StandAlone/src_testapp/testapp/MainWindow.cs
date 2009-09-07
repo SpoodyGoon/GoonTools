@@ -23,7 +23,6 @@ using System;
 using System.Reflection;
 using System.Configuration;
 using Gtk;
-
 public partial class MainWindow: Gtk.Window
 {
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
@@ -58,10 +57,11 @@ public partial class MainWindow: Gtk.Window
 			md.Run();
 			md.Destroy();
 		}
-	}	
+	}
+	
 	
 	protected virtual void OnBtnOptionsClicked (object sender, System.EventArgs e)
-	{		
+	{
 		System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
 		si.FileName = GUPdotNETFile.Filename;
 		System.Diagnostics.Process.Start(si);
