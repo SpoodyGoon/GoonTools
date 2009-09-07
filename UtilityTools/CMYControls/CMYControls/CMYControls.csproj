@@ -8,7 +8,7 @@
     <ProjectGuid>{8104C857-F52A-4154-BE6D-DD67E1759FE1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>CMYControls</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <Description>A collection of custom Mono/Gtk# widgets.</Description>
     <RootNamespace>CMYControls</RootNamespace>
   </PropertyGroup>
@@ -30,6 +30,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System" />
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -42,9 +46,13 @@
   <ItemGroup>
     <Folder Include="ColumnSelector\" />
     <Folder Include="Common\" />
+    <Folder Include="QuickTime\" />
+    <Folder Include="QuickDate\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ColumnSelector\columnpicker.png" />
+    <None Include="QuickDate\ClearDate.png" />
+    <None Include="QuickDate\QuickDate.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnSelector\ColumnSelectorTreeView.cs" />
@@ -53,5 +61,21 @@
     <Compile Include="ColumnSelector\TreeColumnSelector.cs" />
     <Compile Include="Common\GrabUtil.cs" />
     <Compile Include="Common\Common.cs" />
+    <Compile Include="QuickDate\QuickDate.cs" />
+    <Compile Include="QuickTime\QuickTimeMenu.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="QuickTime\QuickTime.cs" />
+    <Compile Include="gtk-gui\CMYControls.QuickTime.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="QuickTime\ClearTime.png">
+      <LogicalName>ClearTime.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickTime\QuickTime.png">
+      <LogicalName>QuickTime.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
