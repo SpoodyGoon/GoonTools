@@ -192,6 +192,7 @@ namespace MonoBPMonitor {
             this.rbnPM = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("p.m."));
             this.rbnPM.CanFocus = true;
             this.rbnPM.Name = "rbnPM";
+            this.rbnPM.Active = true;
             this.rbnPM.DrawIndicator = true;
             this.rbnPM.UseUnderline = true;
             this.rbnPM.Group = new GLib.SList(System.IntPtr.Zero);
