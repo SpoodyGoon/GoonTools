@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-# SharpDevelop 3.1.0.4545
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoBPMonitor", "MonoBPMonitor\MonoBPMonitor.csproj", "{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}"
 EndProject
 Global
@@ -17,6 +16,6 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		version = 0.1
-		StartupItem = MonoBPMonitor.csproj
+		StartupItem = MonoBPMonitor\MonoBPMonitor.csproj
 	EndGlobalSection
 EndGlobal

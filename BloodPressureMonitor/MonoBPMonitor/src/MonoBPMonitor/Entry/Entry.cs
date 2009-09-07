@@ -10,9 +10,8 @@ namespace MonoBPMonitor
 	
 	public class Entry
 	{
-		// TODO: Entry also needs to have a time
 		private int _EntryID = -1;
-		private DateTime _EntryDate = DateTime.Now.Date;
+		private DateTime _EntryDateTime = DateTime.Now;
 		private int _Systolic = 120;
 		private int _Diastolic= 80;
 		private int _HeartRate = 55;
@@ -32,9 +31,9 @@ namespace MonoBPMonitor
 			{
 				_EntryID = entryid;
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				System.Collections.Hashtable htEntry = dp.ExecuteHashTable("SELECT EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
+				System.Collections.Hashtable htEntry = dp.ExecuteHashTable("SELECT EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
 				dp.Dispose();
-				_EntryDate = Convert.ToDateTime(htEntry["EntryDate"]);
+				_EntryDateTime = Convert.ToDateTime(htEntry["EntryDateTime"]);
 				_Systolic = Convert.ToInt32(htEntry["Systolic"]);
 				_Diastolic =  Convert.ToInt32(htEntry["Diastolic"]);			
 				_HeartRate =  Convert.ToInt32(htEntry["HeartRate"]);
@@ -43,10 +42,10 @@ namespace MonoBPMonitor
 			}
 		}
 		
-		public Entry(int entryid, DateTime entrydate, int systolic, int diastolic, int heartrate, string notes, int userid)
+		public Entry(int entryid, DateTime entrydatetime, int systolic, int diastolic, int heartrate, string notes, int userid)
 		{
 			_EntryID=entryid;
-			_EntryDate=entrydate;
+			_EntryDateTime=entrydatetime;
 			_Systolic=systolic;
 			_Diastolic=diastolic;
 			_HeartRate=heartrate;
@@ -54,9 +53,9 @@ namespace MonoBPMonitor
 			_UserID=userid;
 		}
 		
-		public Entry(DateTime entrydate, int systolic, int diastolic, int heartrate, string notes, int userid)
+		public Entry(DateTime entrydatetime, int systolic, int diastolic, int heartrate, string notes, int userid)
 		{
-			_EntryDate=entrydate;
+			_EntryDateTime=entrydatetime;
 			_Systolic=systolic;
 			_Diastolic=diastolic;
 			_HeartRate=heartrate;
@@ -81,10 +80,10 @@ namespace MonoBPMonitor
 			get{return _EntryID;}	
 		}
 		
-		public DateTime EntryDate
+		public DateTime EntryDateTime
 		{
-			set{_EntryDate=value;}
-			get{return _EntryDate;}	
+			set{_EntryDateTime=value;}
+			get{return _EntryDateTime;}	
 		}
 		
 		public int Systolic
@@ -128,7 +127,7 @@ namespace MonoBPMonitor
 				if(_EntryID < 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					_EntryID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Entry(EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID)VALUES('" + _EntryDate.ToShortDateString() + "'," + _Systolic.ToString() + "," + _Diastolic.ToString() + "," + _HeartRate.ToString() + ",'" +_Notes + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
+					_EntryID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Entry(EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID)VALUES('" + _EntryDateTime.ToString("YYYY-MM-DD HH:MM") + "'," + _Systolic.ToString() + "," + _Diastolic.ToString() + "," + _HeartRate.ToString() + ",'" +_Notes + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
 					dp.Dispose();
 				}
 				else
@@ -149,7 +148,7 @@ namespace MonoBPMonitor
 				if(_EntryID > 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					dp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDate = '" + _EntryDate.ToShortDateString() + "', Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
+					dp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDateTime = '" + _EntryDateTime.ToString("YYYY-MM-DD HH:MM") + "', Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
 					dp.Dispose();
 				}
 				else
