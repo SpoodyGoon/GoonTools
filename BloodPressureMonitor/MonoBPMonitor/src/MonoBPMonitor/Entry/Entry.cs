@@ -137,7 +137,7 @@ namespace MonoBPMonitor
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -158,7 +158,7 @@ namespace MonoBPMonitor
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -172,7 +172,7 @@ namespace MonoBPMonitor
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		

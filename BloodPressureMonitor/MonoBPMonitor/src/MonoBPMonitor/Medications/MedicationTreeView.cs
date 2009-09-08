@@ -53,7 +53,7 @@ namespace MonoBPMonitor.Medications
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -83,7 +83,7 @@ namespace MonoBPMonitor.Medications
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -101,7 +101,7 @@ namespace MonoBPMonitor.Medications
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 
@@ -120,7 +120,7 @@ namespace MonoBPMonitor.Medications
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 
@@ -139,7 +139,7 @@ namespace MonoBPMonitor.Medications
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 
@@ -159,7 +159,7 @@ namespace MonoBPMonitor.Medications
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 
@@ -179,7 +179,7 @@ namespace MonoBPMonitor.Medications
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		

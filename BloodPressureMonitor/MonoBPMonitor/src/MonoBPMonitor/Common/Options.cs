@@ -22,7 +22,7 @@
 
 using System;
 
-namespace GoonTools.Global
+namespace GoonTools.Helper
 {
 	[Serializable]
 	public class Options
@@ -31,10 +31,38 @@ namespace GoonTools.Global
 		// are very likely to be the perminant locations
 		private string _ConnString = "URI=file:" +  GoonTools.Common.EnvData.SavePath + "BPMonitor.s3db,version=3, busy_timeout=3000";
 		private string _DBLocation = GoonTools.Common.EnvData.SavePath + "BPMonitor.s3db";
-		private bool _CheckForUpdates = true;
 		private bool _SaveErrorLog = true; // this is just a flag to save the error to the save directory
 		private int _HistoryDefaultShow = 30; // this is the amount of history we want to show
 		private int _FileVersion = 1; // the file version does not nessicarily match the application version
+		
+		public Options()
+		{
+		}
+		
+		public Options(System.Collections.Hashtable hsh)
+		{
+			if(hsh.Contains("FileVersion"))
+				_FileVersion = Convert.ToInt16(hsh["FileVersion"]);
+			if(hsh.Contains("ConnString"))
+				_ConnString = hsh["ConnString"].ToString();
+			if(hsh.Contains("DBLocation"))
+				_DBLocation = hsh["DBLocation"].ToString();
+			if(hsh.Contains("SaveErrorLog"))
+				_SaveErrorLog = Convert.ToBoolean(hsh["SaveErrorLog"]);
+			if(hsh.Contains("HistoryDefaultShow"))
+				_HistoryDefaultShow = Convert.ToInt32(hsh["HistoryDefaultShow"]);
+		}
+		
+		public System.Collections.Hashtable GetOptionsTable()
+		{
+			System.Collections.Hashtable hsh = new System.Collections.Hashtable();
+			hsh.Add("FileVersion", _FileVersion);
+			hsh.Add("ConnString", _ConnString);
+			hsh.Add("DBLocation", _DBLocation);
+			hsh.Add("SaveErrorLog", _SaveErrorLog);
+			hsh.Add("HistoryDefaultShow", _HistoryDefaultShow);
+			return hsh;
+		}
 		
 		public string ConnString
 		{
@@ -46,12 +74,6 @@ namespace GoonTools.Global
 		{
 			set{ _DBLocation = value;}
 			get{ return _DBLocation;}
-		}
-		
-		public bool CheckForUpdates
-		{
-			set{ _CheckForUpdates = value;}
-			get{ return _CheckForUpdates;}
 		}
 		
 		public bool SaveErrorLog

@@ -132,7 +132,7 @@
     <Compile Include="Common\BufferTags.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\Const.cs" />
-    <Compile Include="Common\Globals.cs" />
+    <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="Common\Options.cs" />
     <Compile Include="Common\SQLiteDataProvider.cs" />
     <Compile Include="SetUp\frmSetUp.cs" />

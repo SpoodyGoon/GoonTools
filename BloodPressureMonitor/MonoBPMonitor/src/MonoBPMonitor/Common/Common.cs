@@ -33,17 +33,18 @@ namespace GoonTools
 	/// </summary>
 	public static class Common
 	{
-		private static GoonTools.Global.Options _Option;
-		private static GoonTools.Global.EnviromentData _EnvData = new GoonTools.Global.EnviromentData();
+		private static GoonTools.Helper.Options _Option;
+		private static GoonTools.Helper.EnviromentData _EnvData = new GoonTools.Helper.EnviromentData();
+		private static string _OptionsFileName = "Options.dat"; 		
 		
 		#region Public Properties
 		
-		public static GoonTools.Global.Options Option
+		public static GoonTools.Helper.Options Option
 		{
 			get{return _Option;}
 		}
 		
-		public static GoonTools.Global.EnviromentData EnvData
+		public static GoonTools.Helper.EnviromentData EnvData
 		{
 			get{return _EnvData;}
 		}
@@ -62,13 +63,13 @@ namespace GoonTools
 				   
 				// search for the options file if it exists load it
 				// if it has not been saved load the defaults
-				if(File.Exists(EnvData.SavePath + "Options.dat"))
+				if(File.Exists(EnvData.SavePath + _OptionsFileName))
 				{
 					LoadOptions();
 				}
 				else
 				{
-					_Option = new GoonTools.Global.Options();
+					_Option = new Helper.Options();
 					SaveOptions();
 				}
 				
@@ -80,7 +81,7 @@ namespace GoonTools
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -89,13 +90,13 @@ namespace GoonTools
 			try
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				Stream stream = new FileStream(EnvData.SavePath + "Options.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
-				_Option = (GoonTools.Global.Options) formatter.Deserialize(stream);
+				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+				_Option = new Helper.Options((System.Collections.Hashtable)formatter.Deserialize(stream));
 				stream.Close();
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -104,17 +105,58 @@ namespace GoonTools
 			try
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				Stream stream = new FileStream(EnvData.SavePath + "Options.dat", FileMode.Create, FileAccess.Write, FileShare.None);
-				formatter.Serialize(stream, _Option);
+				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+				formatter.Serialize(stream, (System.Collections.Hashtable)_Option.GetOptionsTable());
 				stream.Close();
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}		
 		
 		#endregion Loading and Saving
+		
+		#region Logs
+		
+		public static void HandleError(Exception ex)
+		{
+			HandleError(null, ex);
+		}
+		
+		public static void HandleError(Gtk.Window parent_window, Exception ex)
+		{
+			if(_Option.SaveErrorLog == true)
+			{
+				StreamWriter sw = new StreamWriter(_EnvData.SavePath + "error.log", true);
+				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
+				sw.Write(sw.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
+				sw.Write(sw.NewLine + ex.ToString());
+				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
+				sw.Close();
+			}
+				
+			Gtk.MessageDialog md = new Gtk.MessageDialog(parent_window, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			md.Run();
+			md.Destroy();			
+		}
+		
+		public static void CleanErrorLog()
+		{
+			try
+			{
+				StreamWriter sw = new StreamWriter(_EnvData.SavePath + "error.log", false);
+				sw.Write("");
+				sw.Close();
+			}
+			catch(Exception ex)
+			{
+				HandleError(ex);
+					
+			}
+		}
+		
+		#endregion Logs
 		
 	}
 }

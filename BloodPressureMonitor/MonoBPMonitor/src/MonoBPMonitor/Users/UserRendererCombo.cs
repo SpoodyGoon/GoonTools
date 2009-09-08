@@ -107,7 +107,7 @@ namespace MonoBPMonitor.Users
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		

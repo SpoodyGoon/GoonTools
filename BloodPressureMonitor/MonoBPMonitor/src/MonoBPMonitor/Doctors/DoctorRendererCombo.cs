@@ -106,7 +106,7 @@ namespace MonoBPMonitor.Doctors
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		

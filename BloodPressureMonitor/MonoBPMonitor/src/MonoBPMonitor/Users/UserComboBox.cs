@@ -72,7 +72,7 @@ namespace MonoBPMonitor.Users
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -121,7 +121,7 @@ namespace MonoBPMonitor.Users
 			}
 			catch(Exception ex)
 			{
-				GoonTools.Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 
