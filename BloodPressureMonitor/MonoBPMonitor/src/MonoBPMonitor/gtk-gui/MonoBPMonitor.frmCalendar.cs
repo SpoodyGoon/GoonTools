@@ -63,7 +63,13 @@ namespace MonoBPMonitor {
             Stetic.Gui.Initialize(this);
             // Widget MonoBPMonitor.frmCalendar
             this.Name = "MonoBPMonitor.frmCalendar";
+            this.Icon = Gdk.Pixbuf.LoadFromResource("date.png");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.Modal = true;
+            this.BorderWidth = ((uint)(2));
+            this.Resizable = false;
+            this.AllowGrow = false;
+            this.DestroyWithParent = true;
             this.HasSeparator = false;
             // Internal child MonoBPMonitor.frmCalendar.VBox
             Gtk.VBox w1 = this.VBox;
@@ -175,7 +181,7 @@ namespace MonoBPMonitor {
             this.spnMinute.CanFocus = true;
             this.spnMinute.Name = "spnMinute";
             this.spnMinute.Adjustment.PageIncrement = 10;
-            this.spnMinute.ClimbRate = 1;
+            this.spnMinute.ClimbRate = 5;
             this.spnMinute.Numeric = true;
             this.spnMinute.SnapToTicks = true;
             this.spnMinute.Value = 30;
@@ -236,7 +242,7 @@ namespace MonoBPMonitor {
             w23.Name = "dialog1_ActionArea";
             w23.Spacing = 6;
             w23.BorderWidth = ((uint)(5));
-            w23.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            w23.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -266,7 +272,7 @@ namespace MonoBPMonitor {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 360;
-            this.DefaultHeight = 316;
+            this.DefaultHeight = 274;
             this.Show();
             this.calendar2.DaySelectedDoubleClick += new System.EventHandler(this.OnCalendar2DaySelectedDoubleClick);
             this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);

@@ -26,7 +26,7 @@ using System.Reflection;
 using Gtk;
 using Mono.Unix;
 
-namespace GoonTools.Global
+namespace GoonTools.Helper
 {
 	/// <summary>
 	///  This class contains data that is related to the
@@ -95,41 +95,5 @@ namespace GoonTools.Global
 		}
 		
 		#endregion Public Properties
-		
-		#region Error Handling
-		
-		public void HandleError(Exception ex)
-		{
-			if(Common.Option.SaveErrorLog == true)
-			{
-				StreamWriter sw = new StreamWriter(_SavePath + "error.log", true);
-				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
-				sw.Write(sw.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
-				sw.Write(sw.NewLine + ex.ToString());
-				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
-				sw.Close();
-			}
-				
-			Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
-			md.Run();
-			md.Destroy();
-			
-		}
-		
-		public void CleanErrorLog()
-		{
-			try
-			{
-				StreamWriter sw = new StreamWriter(_SavePath + "error.log", false);
-				sw.Write("");
-				sw.Close();
-			}
-			catch(Exception ex)
-			{
-				HandleError(ex);
-			}
-		}
-		
-		#endregion Error Handling
 	}
 }

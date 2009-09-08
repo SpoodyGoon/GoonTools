@@ -12,7 +12,6 @@ namespace MonoBPMonitor
 		{
 			// TODO: add checkbox to not have any sort at all.
 			this.Build();
-			cbxUpdates.Active= GoonTools.Common.Option.CheckForUpdates;
 			spnDefaultHistory.Value = (double)GoonTools.Common.Option.HistoryDefaultShow;
 			cbxLogErrors.Active = GoonTools.Common.Option.SaveErrorLog;
 				
@@ -38,7 +37,6 @@ namespace MonoBPMonitor
 		{
 			// no matter what happens just save the changes 
 			// when we close
-			GoonTools.Common.Option.CheckForUpdates= cbxUpdates.Active;
 			GoonTools.Common.Option.HistoryDefaultShow=Convert.ToInt32(spnDefaultHistory.Value);
 			GoonTools.Common.Option.SaveErrorLog= cbxLogErrors.Active;
 			GoonTools.Common.SaveOptions();

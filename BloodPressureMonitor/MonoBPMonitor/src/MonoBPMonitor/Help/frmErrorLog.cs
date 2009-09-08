@@ -66,7 +66,7 @@ namespace MonoBPMonitor
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -77,7 +77,7 @@ namespace MonoBPMonitor
 		
 		protected virtual void OnBtnClearLogClicked (object sender, System.EventArgs e)
 		{
-			Common.EnvData.CleanErrorLog();
+			Common.CleanErrorLog();
 			LoadErrorLog();
 		}
 	}

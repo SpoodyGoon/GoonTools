@@ -70,7 +70,7 @@ namespace MonoBPMonitor.Doctors
 			}
 			catch(Exception ex)
 			{
-				Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -118,7 +118,7 @@ namespace MonoBPMonitor.Doctors
 			}
 			catch(Exception ex)
 			{
-				GoonTools.Common.EnvData.HandleError(ex);
+				Common.HandleError(ex);
 			}
 			base.OnChanged ();
 		}

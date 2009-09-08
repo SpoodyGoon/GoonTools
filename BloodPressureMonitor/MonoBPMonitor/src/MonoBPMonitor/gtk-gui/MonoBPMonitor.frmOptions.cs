@@ -23,10 +23,6 @@ namespace MonoBPMonitor {
         
         private Gtk.Label label4;
         
-        private Gtk.Alignment alignment8;
-        
-        private Gtk.CheckButton cbxUpdates;
-        
         private Gtk.Alignment alignment13;
         
         private Gtk.CheckButton cbxLogErrors;
@@ -59,6 +55,8 @@ namespace MonoBPMonitor {
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.Modal = true;
             this.BorderWidth = ((uint)(2));
+            this.Resizable = false;
+            this.AllowGrow = false;
             this.HasSeparator = false;
             // Internal child MonoBPMonitor.frmOptions.VBox
             Gtk.VBox w1 = this.VBox;
@@ -92,24 +90,6 @@ namespace MonoBPMonitor {
             w3.Expand = false;
             w3.Fill = false;
             // Container child vbox3.Gtk.Box+BoxChild
-            this.alignment8 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment8.Name = "alignment8";
-            this.alignment8.LeftPadding = ((uint)(30));
-            // Container child alignment8.Gtk.Container+ContainerChild
-            this.cbxUpdates = new Gtk.CheckButton();
-            this.cbxUpdates.CanFocus = true;
-            this.cbxUpdates.Name = "cbxUpdates";
-            this.cbxUpdates.Label = Mono.Unix.Catalog.GetString("Automatically check for updates.");
-            this.cbxUpdates.Active = true;
-            this.cbxUpdates.DrawIndicator = true;
-            this.cbxUpdates.UseUnderline = true;
-            this.alignment8.Add(this.cbxUpdates);
-            this.vbox3.Add(this.alignment8);
-            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox3[this.alignment8]));
-            w5.Position = 1;
-            w5.Expand = false;
-            w5.Fill = false;
-            // Container child vbox3.Gtk.Box+BoxChild
             this.alignment13 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment13.Name = "alignment13";
             this.alignment13.LeftPadding = ((uint)(30));
@@ -122,10 +102,10 @@ namespace MonoBPMonitor {
             this.cbxLogErrors.UseUnderline = true;
             this.alignment13.Add(this.cbxLogErrors);
             this.vbox3.Add(this.alignment13);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox3[this.alignment13]));
-            w7.Position = 2;
-            w7.Expand = false;
-            w7.Fill = false;
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox3[this.alignment13]));
+            w5.Position = 1;
+            w5.Expand = false;
+            w5.Fill = false;
             // Container child vbox3.Gtk.Box+BoxChild
             this.alignment10 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment10.Name = "alignment10";
@@ -143,10 +123,10 @@ namespace MonoBPMonitor {
             this.label6.LabelProp = Mono.Unix.Catalog.GetString("Default history shown at start up.");
             this.alignment11.Add(this.label6);
             this.hbox1.Add(this.alignment11);
-            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment11]));
-            w9.Position = 0;
-            w9.Expand = false;
-            w9.Fill = false;
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment11]));
+            w7.Position = 0;
+            w7.Expand = false;
+            w7.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
             this.alignment12 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment12.Name = "alignment12";
@@ -160,22 +140,22 @@ namespace MonoBPMonitor {
             this.spnDefaultHistory.Value = 30;
             this.alignment12.Add(this.spnDefaultHistory);
             this.hbox1.Add(this.alignment12);
-            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment12]));
-            w11.Position = 1;
-            w11.Expand = false;
-            w11.Fill = false;
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment12]));
+            w9.Position = 1;
+            w9.Expand = false;
+            w9.Fill = false;
             this.alignment10.Add(this.hbox1);
             this.vbox3.Add(this.alignment10);
-            Gtk.Box.BoxChild w13 = ((Gtk.Box.BoxChild)(this.vbox3[this.alignment10]));
-            w13.Position = 3;
-            w13.Expand = false;
-            w13.Fill = false;
+            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.vbox3[this.alignment10]));
+            w11.Position = 2;
+            w11.Expand = false;
+            w11.Fill = false;
             this.GtkAlignment2.Add(this.vbox3);
             this.vbox2.Add(this.GtkAlignment2);
-            Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(this.vbox2[this.GtkAlignment2]));
-            w15.Position = 0;
-            w15.Expand = false;
-            w15.Fill = false;
+            Gtk.Box.BoxChild w13 = ((Gtk.Box.BoxChild)(this.vbox2[this.GtkAlignment2]));
+            w13.Position = 0;
+            w13.Expand = false;
+            w13.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.alignment14 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment14.Name = "alignment14";
@@ -186,21 +166,21 @@ namespace MonoBPMonitor {
             this.hseparator1.Name = "hseparator1";
             this.alignment14.Add(this.hseparator1);
             this.vbox2.Add(this.alignment14);
-            Gtk.Box.BoxChild w17 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment14]));
-            w17.Position = 1;
-            w17.Expand = false;
-            w17.Fill = false;
+            Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment14]));
+            w15.Position = 1;
+            w15.Expand = false;
+            w15.Fill = false;
             w1.Add(this.vbox2);
-            Gtk.Box.BoxChild w18 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
-            w18.Position = 0;
-            w18.Expand = false;
-            w18.Fill = false;
+            Gtk.Box.BoxChild w16 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
+            w16.Position = 0;
+            w16.Expand = false;
+            w16.Fill = false;
             // Internal child MonoBPMonitor.frmOptions.ActionArea
-            Gtk.HButtonBox w19 = this.ActionArea;
-            w19.Name = "dialog1_ActionArea";
-            w19.Spacing = 6;
-            w19.BorderWidth = ((uint)(5));
-            w19.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+            Gtk.HButtonBox w17 = this.ActionArea;
+            w17.Name = "dialog1_ActionArea";
+            w17.Spacing = 6;
+            w17.BorderWidth = ((uint)(5));
+            w17.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.btnClose = new Gtk.Button();
             this.btnClose.CanDefault = true;
@@ -209,15 +189,15 @@ namespace MonoBPMonitor {
             this.btnClose.UseStock = true;
             this.btnClose.UseUnderline = true;
             this.btnClose.Label = "gtk-close";
-            w19.Add(this.btnClose);
-            Gtk.ButtonBox.ButtonBoxChild w20 = ((Gtk.ButtonBox.ButtonBoxChild)(w19[this.btnClose]));
-            w20.Expand = false;
-            w20.Fill = false;
+            w17.Add(this.btnClose);
+            Gtk.ButtonBox.ButtonBoxChild w18 = ((Gtk.ButtonBox.ButtonBoxChild)(w17[this.btnClose]));
+            w18.Expand = false;
+            w18.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 400;
-            this.DefaultHeight = 214;
+            this.DefaultHeight = 149;
             this.label4.Hide();
             this.Show();
             this.Close += new System.EventHandler(this.OnClose);
