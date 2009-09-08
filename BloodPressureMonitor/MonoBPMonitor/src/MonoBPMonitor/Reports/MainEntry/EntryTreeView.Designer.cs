@@ -54,7 +54,7 @@ namespace MonoBPMonitor.Reports
 			
 			Gtk.TreeViewColumn colEntryDate = new Gtk.TreeViewColumn ();
 			colEntryDate.Visible = true;
-			colEntryDate.MinWidth = 100;
+			colEntryDate.MinWidth = 150;
 			colEntryDate.Alignment = 0.15f;
 			colEntryDate.Title = "Date";
 			Gtk.CellRendererText cellEntryDate = new Gtk.CellRendererText ();

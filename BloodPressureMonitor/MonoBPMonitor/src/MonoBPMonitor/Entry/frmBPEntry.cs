@@ -14,25 +14,31 @@ namespace MonoBPMonitor
 		public frmBPEntry()
 		{
 			this.Build();
+			// TODO: put width in xml
+			txtNotes.WidthRequest = 375;
 			// Start a new Entry
 			_CurrentEntry = new Entry();
-			txtReadingDate.Text = DateTime.Now.ToShortDateString();
+			txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToString("g");
+			this.ShowAll();
 		}
 		
 		public frmBPEntry(int entryid)
 		{
 			this.Build();
+			// TODO: put width in xml
+			txtNotes.WidthRequest = 375;
 			try
 			{
 				_CurrentEntryID = entryid;
 				// open an existing Entry
 				_CurrentEntry = new Entry(_CurrentEntryID, true);
 				cboUser.SetUser(_CurrentEntry.UserID);
-				txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToShortDateString();
+				txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToString("g");
 				spnSystolic.Value = _CurrentEntry.Systolic;
 				spnDiastolic.Value = _CurrentEntry.Diastolic;
 				spnHeartRate.Value = _CurrentEntry.HeartRate;
 				txtNotes.Buffer.Text = _CurrentEntry.Notes;
+				this.ShowAll();
 			}
 			catch(Exception ex)
 			{
@@ -47,9 +53,12 @@ namespace MonoBPMonitor
 		
 		protected virtual void OnBtnDateClicked (object sender, System.EventArgs e)
 		{
-			frmCalendar fm = new frmCalendar();
+			frmCalendar fm = new frmCalendar(_CurrentEntry.EntryDateTime);
 			if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
-				this.txtReadingDate.Text = fm.SelectedDate;
+			{
+				_CurrentEntry.EntryDateTime = fm.SelectedDate;
+				this.txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToString("g");
+			}
 			
 			fm.Destroy();
 		}
