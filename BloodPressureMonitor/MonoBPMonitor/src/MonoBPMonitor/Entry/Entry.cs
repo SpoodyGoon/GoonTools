@@ -148,7 +148,7 @@ namespace MonoBPMonitor
 				if(_EntryID > 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					dp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDateTime = '" + _EntryDateTime.ToString("YYYY-MM-DD HH:MM") + "', Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
+					dp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDateTime = DATETIME('" + _EntryDateTime.ToString("yyyy-MM-dd hh:mm") + "','localtime'), Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
 					dp.Dispose();
 				}
 				else

@@ -24,13 +24,13 @@ namespace MonoBPMonitor
 		protected virtual void OnBtnDateClicked (object sender, System.EventArgs e)
 		{
 			Gtk.Button btn = (Gtk.Button)sender;
-			frmCalendar fm = new frmCalendar();
+			frmCalendar fm = new frmCalendar(DateTime.Now, false);
 			if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
 			{
 				if(btn.Name=="btnStartDate")
-					txtStartDate.Text = fm.SelectedDate;
+					txtStartDate.Text = fm.SelectedDate.ToShortDateString();
 				else
-					txtEndDate.Text = fm.SelectedDate;
+					txtEndDate.Text = fm.SelectedDate.ToShortDateString();
 			}
 			
 			fm.Destroy();
