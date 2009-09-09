@@ -2253,7 +2253,7 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Alignment" id="alignment1">
+              <widget class="Gtk.Alignment" id="algTime">
                 <property name="MemberName" />
                 <child>
                   <widget class="Gtk.Frame" id="frame2">

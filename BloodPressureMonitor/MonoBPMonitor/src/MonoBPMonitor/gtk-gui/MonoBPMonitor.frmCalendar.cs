@@ -23,7 +23,7 @@ namespace MonoBPMonitor {
         
         private Gtk.Calendar calendar2;
         
-        private Gtk.Alignment alignment1;
+        private Gtk.Alignment algTime;
         
         private Gtk.Frame frame2;
         
@@ -113,9 +113,9 @@ namespace MonoBPMonitor {
             w5.Expand = false;
             w5.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
-            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment1.Name = "alignment1";
-            // Container child alignment1.Gtk.Container+ContainerChild
+            this.algTime = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.algTime.Name = "algTime";
+            // Container child algTime.Gtk.Container+ContainerChild
             this.frame2 = new Gtk.Frame();
             this.frame2.Name = "frame2";
             // Container child frame2.Gtk.Container+ContainerChild
@@ -198,7 +198,6 @@ namespace MonoBPMonitor {
             this.rbnPM = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("p.m."));
             this.rbnPM.CanFocus = true;
             this.rbnPM.Name = "rbnPM";
-            this.rbnPM.Active = true;
             this.rbnPM.DrawIndicator = true;
             this.rbnPM.UseUnderline = true;
             this.rbnPM.Group = new GLib.SList(System.IntPtr.Zero);
@@ -226,9 +225,9 @@ namespace MonoBPMonitor {
             w17.Fill = false;
             this.alignment2.Add(this.hbox1);
             this.frame2.Add(this.alignment2);
-            this.alignment1.Add(this.frame2);
-            this.vbox2.Add(this.alignment1);
-            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
+            this.algTime.Add(this.frame2);
+            this.vbox2.Add(this.algTime);
+            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.vbox2[this.algTime]));
             w21.Position = 1;
             w21.Expand = false;
             w21.Fill = false;

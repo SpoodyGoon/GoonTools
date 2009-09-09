@@ -35,10 +35,15 @@ namespace MonoBPMonitor
 			_SelectedDate = selecteddate;
 			calendar2.Date = selecteddate.Date;
 			if(_ShowTime)
+			{
 				SetUpTime();
+			}
 			else
-				frame2.Visible = false;
+			{				
+            	algTime.Destroy();
+			}
 			
+			algTime.ShowNow();
 			ShowAll();
 		}
 		
@@ -104,10 +109,13 @@ namespace MonoBPMonitor
 
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
-			if(rbnPM.Active == true)
+			if(rbnAM.Active == true && spnHour.ValueAsInt == 12)
+				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, 0, spnMinute.ValueAsInt, 0) ;
+			if(rbnAM.Active == true)
 				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt, spnMinute.ValueAsInt, 0) ;
 			else
-				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt, spnMinute.ValueAsInt, 0) ;
+				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt + 12, spnMinute.ValueAsInt, 0) ;
+			this.Respond(Gtk.ResponseType.Ok);
 			this.Hide();
 		}
 	}
