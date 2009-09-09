@@ -164,6 +164,26 @@ namespace MonoBPMonitor
 			fm.Run();
 			fm.Destroy();
 		}
+		
+						
+						protected virtual void OnBackupActionActivated (object sender, System.EventArgs e)
+						{
+						}
+						
+							
+							protected virtual void OnRestoreActionActivated (object sender, System.EventArgs e)
+							{
+							}
+
+
+
+
+
+
+
+
+
+
 	}
 
 }

@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/MonoBPMonitor.exe" internal="true" />
+    <widget-library name="..\bin\Debug\MonoBPMonitor.exe" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="edit_user.png">
@@ -158,6 +158,23 @@
         <property name="StockId">gtk-dialog-error</property>
         <signal name="Activated" handler="OnErrorLogActionActivated" />
       </action>
+      <action id="ToolsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Tools</property>
+        <property name="ShortLabel" translatable="yes">Tools</property>
+      </action>
+      <action id="BackupAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Backup</property>
+        <property name="ShortLabel" translatable="yes">Backup</property>
+        <signal name="Activated" handler="OnBackupActionActivated" />
+      </action>
+      <action id="RestoreAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Restore</property>
+        <property name="ShortLabel" translatable="yes">Restore</property>
+        <signal name="Activated" handler="OnRestoreActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="WidthRequest">750</property>
@@ -184,6 +201,10 @@
                 <node type="Menuitem" action="DoctorsAction" />
                 <node type="Menuitem" action="UsersAction" />
                 <node type="Menuitem" action="QuitAction" />
+              </node>
+              <node type="Menu" action="ToolsAction">
+                <node type="Menuitem" action="BackupAction" />
+                <node type="Menuitem" action="RestoreAction" />
               </node>
               <node type="Menu" action="HelpAction">
                 <node type="Menuitem" action="ErrorLogAction" />
@@ -2188,8 +2209,9 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmCalendar" design-size="360 274">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmCalendar" design-size="350 274">
     <property name="MemberName" />
+    <property name="WidthRequest">350</property>
     <property name="Icon">resource:date.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
@@ -2199,7 +2221,6 @@
     <property name="DestroyWithParent">True</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
-    <property name="HasSeparator">False</property>
     <child internal-child="VBox">
       <widget class="Gtk.VBox" id="dialog1_VBox">
         <property name="MemberName" />
