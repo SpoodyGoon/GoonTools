@@ -715,14 +715,11 @@ Public License instead of this License.  But first, please read
 			@"
 			BEGIN TRANSACTION;
 			
-				CREATE TABLE [tb_BPEntry] (
-				[BPEntryID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
-				[EntryDate] DATE  NOT NULL,
-				[Systolic] INTEGER  NOT NULL,
-				[Diastolic] INTEGER  NOT NULL,
-				[HeartRate] INTEGER  NOT NULL,
-				[Notes] TEXT  NULL,
-				[PersonID] INTEGER  NOT NULL
+				CREATE TABLE [tb_User] (
+				[UserID] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+				[UserName] VARCHAR(50)  NOT NULL,
+				[DateAdded] DATE DEFAULT CURRENT_DATE NOT NULL,
+				[IsActive] BOOLEAN DEFAULT 'True' NOT NULL
 				);
 				
 				CREATE TABLE [tb_Doctor] (
@@ -730,7 +727,7 @@ Public License instead of this License.  But first, please read
 				[DoctorName] VARCHAR(75)  NOT NULL,
 				[Location] VARCHAR(255)  NULL,
 				[PhoneNum] VARCHAR(50)  NULL,
-				[PersonID] INTEGER  NOT NULL
+				[UserID] INTEGER  NOT NULL
 				);
 				
 				CREATE TABLE [tb_Medicine] (
@@ -739,29 +736,24 @@ Public License instead of this License.  But first, please read
 				[Dosage] VARCHAR(255)  NULL,
 				[StartDate] DATE  NULL,
 				[EndDate] DATE  NULL,
-				[DoctorID] INTEGER  NULL
+				[DoctorID] INTEGER  NULL,
+				[UserID] INTEGER  NULL
 				);
 				
-				CREATE TABLE [tb_Person] (
-				[PersonID] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
-				[PersonName] VARCHAR(50)  NOT NULL
+				CREATE TABLE [tb_Entry] (
+				[EntryID] INTEGER PRIMARY KEY  NOT NULL ,
+				[EntryDateTime] DATETIME NOT NULL ,
+				[Systolic] INTEGER NOT NULL ,
+				[Diastolic] INTEGER NOT NULL ,
+				[HeartRate] INTEGER NOT NULL ,
+				[Notes] TEXT,[UserID] INTEGER NOT NULL 
 				);
+
+				CREATE UNIQUE INDEX [IX_tb_Entry_UserID_DateTime] on tb_entry (EntryID ASC, EntryDateTime ASC, UserID ASC);
+				CREATE UNIQUE INDEX [IX_tb_User_UserID_IsActive] on tb_user (UserID ASC, IsActive ASC);
+				CREATE UNIQUE INDEX [IX_tb_Medicine_DoctorID_UserID] on tb_medicine (MedicineID ASC, DoctorID ASC, UserID ASC);
+				CREATE UNIQUE INDEX [IDX_tb_Doctor_UserID_DoctorID] ON [tb_Doctor]([DoctorID]  DESC,[UserID]  DESC);
 				
-				CREATE UNIQUE INDEX [IX_tb_BPEntry_BPEntryID_EntryDate] ON [tb_BPEntry](
-				[BPEntryID]  DESC,
-				[EntryDate]  DESC
-				);
-				
-				CREATE UNIQUE INDEX [IX_tb_BPEntry_PBEntryID_PersonID] ON [tb_BPEntry](
-				[PersonID]  DESC,
-				[BPEntryID]  DESC
-				);
-				
-				CREATE UNIQUE INDEX [IDX_tb_Doctor_PersonID_DoctorID] ON [tb_Doctor](
-				[PersonID]  DESC,
-				[DoctorID]  DESC
-				);
-			
 				PRAGMA user_version = 8;
 				PRAGMA short_column_names = 1;
 				PRAGMA temp_store = MEMORY;

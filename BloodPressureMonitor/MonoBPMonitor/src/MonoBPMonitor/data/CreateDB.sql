@@ -1,5 +1,10 @@
-BEGIN TRANSACTION;
-
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE TABLE [tb_User] (
+[UserID] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+[UserName] VARCHAR(50)  NOT NULL,
+[DateAdded] DATE DEFAULT CURRENT_DATE NOT NULL,
+[IsActive] BOOLEAN DEFAULT '''True''' NOT NULL
+);
 CREATE TABLE [tb_Doctor] (
 [DoctorID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
 [DoctorName] VARCHAR(75)  NOT NULL,
@@ -7,8 +12,6 @@ CREATE TABLE [tb_Doctor] (
 [PhoneNum] VARCHAR(50)  NULL,
 [UserID] INTEGER  NOT NULL
 );
-INSERT INTO "tb_Doctor" VALUES(1,'Default',NULL,NULL,1);
-
 CREATE TABLE [tb_Medicine] (
 [MedicineID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
 [MedicineName] VARCHAR(75)  NOT NULL,
@@ -18,44 +21,12 @@ CREATE TABLE [tb_Medicine] (
 [DoctorID] INTEGER  NULL,
 [UserID] INTEGER  NULL
 );
-CREATE TABLE [tb_Entry] (
-[EntryID] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
-[EntryDate] DATE  NOT NULL,
-[Systolic] INTEGER  NOT NULL,
-[Diastolic] INTEGER  NOT NULL,
-[HeartRate] INTEGER  NOT NULL,
-[Notes] TEXT  NULL,
-[UserID] INTEGER  NOT NULL
-);
-
-CREATE TABLE [tb_User] (
-[UserID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
-[UserName] VARCHAR(50)  NOT NULL,
-[DateAdded] DATE DEFAULT CURRENT_DATE NOT NULL,
-[IsActive] BOOLEAN DEFAULT 'True' NOT NULL
-);
-INSERT INTO "tb_User" VALUES(1,'Default', DATETIME('now','localtime') ,'True');
-
 CREATE UNIQUE INDEX [IDX_tb_Doctor_UserID_DoctorID] ON [tb_Doctor](
 [DoctorID]  DESC,
 [UserID]  DESC
 );
-
-CREATE UNIQUE INDEX [IX_tb_Entry_EntryID_EntryDate] ON [tb_Entry](
-[EntryID]  DESC,
-[EntryDate]  DESC
-);
-
-CREATE UNIQUE INDEX [IX_tb_Entry_EntryID_UserID] ON [tb_Entry](
-[EntryID]  DESC,
-[UserID]  DESC
-);
-
-PRAGMA read_uncommitted = true;
-PRAGMA case_sensitive_like = false;
-PRAGMA full_column_names = false;
-PRAGMA user_version = 3;
-PRAGMA short_column_names = true;
-PRAGMA temp_store = MEMORY;
-
-COMMIT;
+CREATE TABLE sqlite_stat1(tbl,idx,stat);
+CREATE TABLE "tb_Entry" ("EntryID" INTEGER PRIMARY KEY  NOT NULL ,"EntryDateTime" DATETIME NOT NULL ,"Systolic" INTEGER NOT NULL ,"Diastolic" INTEGER NOT NULL ,"HeartRate" INTEGER NOT NULL ,"Notes" TEXT,"UserID" INTEGER NOT NULL );
+CREATE UNIQUE INDEX "IX_tb_Entry_UserID_DateTime" on tb_entry (EntryID ASC, EntryDateTime ASC, UserID ASC);
+CREATE UNIQUE INDEX "IX_tb_Medicine_DoctorID_UserID" on tb_medicine (MedicineID ASC, DoctorID ASC, UserID ASC);
+CREATE UNIQUE INDEX "IX_tb_User_UserID_IsActive" on tb_user (UserID ASC, IsActive ASC);
