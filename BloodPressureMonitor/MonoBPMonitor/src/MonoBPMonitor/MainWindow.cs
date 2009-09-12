@@ -166,24 +166,14 @@ namespace MonoBPMonitor
 		}
 		
 						
-						protected virtual void OnBackupActionActivated (object sender, System.EventArgs e)
-						{
-						}
-						
-							
-							protected virtual void OnRestoreActionActivated (object sender, System.EventArgs e)
-							{
-							}
-
-
-
-
-
-
-
-
-
-
+		protected virtual void OnBackupActionActivated (object sender, System.EventArgs e)
+		{
+		}
+		
+			
+			protected virtual void OnRestoreActionActivated (object sender, System.EventArgs e)
+			{
+			}
 	}
 
 }
