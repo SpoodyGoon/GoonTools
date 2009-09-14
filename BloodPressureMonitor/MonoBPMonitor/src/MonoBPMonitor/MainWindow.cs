@@ -21,6 +21,7 @@
  */
 
 using System;
+using System.Data;
 using Gtk;
 using GoonTools;
 
@@ -165,15 +166,17 @@ namespace MonoBPMonitor
 			fm.Destroy();
 		}
 		
-						
+		
 		protected virtual void OnBackupActionActivated (object sender, System.EventArgs e)
 		{
+			SQLiteDataProvider.DataProvider dp = new SQLiteDataProvider.DataProvider();
+			DataTable dt = dp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'table' and tbl_name NOT LIKE 'sqlite_%'");
 		}
 		
-			
-			protected virtual void OnRestoreActionActivated (object sender, System.EventArgs e)
-			{
-			}
+		
+		protected virtual void OnRestoreActionActivated (object sender, System.EventArgs e)
+		{
+		}
 	}
 
 }
