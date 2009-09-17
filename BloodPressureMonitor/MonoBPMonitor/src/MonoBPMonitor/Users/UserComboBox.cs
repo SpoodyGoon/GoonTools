@@ -40,7 +40,9 @@ namespace MonoBPMonitor.Users
 		private bool _IsLoading = false;
 		public UserComboBox()
 		{
-			
+			DataProvider dp = new DataProvider(Common.Option.ConnString);
+			_UserID = Convert.ToInt32(dp.ExecuteArrayListRow("SELECT UserID FROM tb_Entry ORDER BY DATETIME(EntryDateTime, 'localtime') ASC LIMIT 1;")[0]);
+			dp.Dispose();
 		}
 		
 		private void Build()
