@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,8 +45,9 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data" />
-    <Reference Include="Mono.Data.SqliteClient" />
+    <Reference Include="Mono.Data.SqliteClient">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -111,11 +112,11 @@
     <EmbeddedResource Include="images\date.png">
       <LogicalName>date.png</LogicalName>
     </EmbeddedResource>
-    <Compile Include="data\BackupRestore.cs" />
-    <Compile Include="data\dsBPMonitor.Designer.cs">
+    <Compile Include="Data\BackupRestore.cs" />
+    <Compile Include="Data\dsBPMonitor.Designer.cs">
       <DependentUpon>dsBPMonitor.xsd</DependentUpon>
     </Compile>
-    <Compile Include="data\UsageStorage.cs" />
+    <Compile Include="Data\UsageStorage.cs" />
     <Compile Include="Doctors\DoctorTreeView.cs" />
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
@@ -161,14 +162,14 @@
       <LogicalName>rx.png</LogicalName>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="data\dsBPMonitor.xsc">
+    <None Include="Data\dsBPMonitor.xsc">
       <DependentUpon>dsBPMonitor.xsd</DependentUpon>
     </None>
-    <None Include="data\dsBPMonitor.xsd">
+    <None Include="Data\dsBPMonitor.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
     </None>
-    <None Include="data\dsBPMonitor.xss">
+    <None Include="Data\dsBPMonitor.xss">
       <DependentUpon>dsBPMonitor.xsd</DependentUpon>
     </None>
     <None Include="Reports\MainEntry\Description.txt" />
@@ -184,7 +185,7 @@
     <EmbeddedResource Include="images\icon_large.png">
       <LogicalName>icon_large.png</LogicalName>
     </EmbeddedResource>
-    <Compile Include="data\frmBackupRestore.cs" />
+    <Compile Include="Data\frmBackupRestore.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmBackupRestore.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -195,10 +196,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\CreateDB.sql">
+    <Content Include="Data\CreateDB.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\BPMonitor.s3db">
+    <Content Include="Data\BPMonitor.s3db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

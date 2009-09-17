@@ -64,7 +64,7 @@ namespace GoonTools.Helper
 			
 			// get the defaults path - this is where we keep the things we copy over
 			// when setting up a new user
-			_DefaultsPath = _AppPath + "data" + _DirChar;
+			_DefaultsPath = _AppPath + "Data" + _DirChar;
 		}
 		
 		#region Public Properties

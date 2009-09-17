@@ -52,7 +52,7 @@ namespace MonoBPMonitor.Reports
 				int RowCount = 1;
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
 				// TODO: sort by date not working correctly sorting like a number
-				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDateTime, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = " + _CurrentUser.ToString() + " ORDER BY EntryDateTime LIMIT " + Common.Option.HistoryDefaultShow.ToString() + " ;");
+				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, DATETIME(EntryDateTime, 'localtime') AS EntryDateTime, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = " + _CurrentUser.ToString() + " ORDER BY EntryDateTime LIMIT " + Common.Option.HistoryDefaultShow.ToString() + " ;");
 				foreach(DataRow dr in dt.Rows)
 				{
 					SumSystolic += Convert.ToInt32(dr["Systolic"]);

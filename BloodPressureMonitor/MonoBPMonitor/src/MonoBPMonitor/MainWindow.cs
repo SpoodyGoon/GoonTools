@@ -35,9 +35,16 @@ namespace MonoBPMonitor
 		public MainWindow () : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
-			tvEntityRpt = new Reports.EntryRptTreeView (cboUser.UserID);
-			swEntityRpt.Add (tvEntityRpt);
-			cboUser.Changed += new EventHandler(cboUser_Changed);
+			try
+			{
+				tvEntityRpt = new Reports.EntryRptTreeView (cboUser.UserID);
+				swEntityRpt.Add (tvEntityRpt);
+				cboUser.Changed += new EventHandler(cboUser_Changed);
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 			this.ShowAll ();
 		}
 
@@ -169,7 +176,9 @@ namespace MonoBPMonitor
 		
 		protected virtual void OnBackupActionActivated (object sender, System.EventArgs e)
 		{
-			Backup.RunBackup();
+			frmBackupRestore fm = new frmBackupRestore();
+			fm.Run();
+			fm.Destroy();
 		}
 		
 		
