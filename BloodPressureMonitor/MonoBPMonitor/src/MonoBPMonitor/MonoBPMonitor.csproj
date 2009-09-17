@@ -45,12 +45,8 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Data" />
+    <Reference Include="Mono.Data.SqliteClient" />
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -60,10 +56,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data">
       <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="System.Data.SQLite, Version=1.0.61.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_32\System.Data.SQLite\1.0.61.0__db937bc2d44ff139\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml">
@@ -128,9 +120,6 @@
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
     <Compile Include="Medications\MedicationTreeView.Designer.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Users\UserRendererCombo.cs" />
     <Compile Include="Users\UserTreeView.cs" />
     <Compile Include="Users\UserTreeView.Designer.cs" />
@@ -182,10 +171,6 @@
     <None Include="data\dsBPMonitor.xss">
       <DependentUpon>dsBPMonitor.xsd</DependentUpon>
     </None>
-    <None Include="Properties\app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-    </None>
     <None Include="Reports\MainEntry\Description.txt" />
     <Compile Include="Doctors\DoctorRendererCombo.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.cs" />
@@ -200,6 +185,7 @@
       <LogicalName>icon_large.png</LogicalName>
     </EmbeddedResource>
     <Compile Include="data\frmBackupRestore.cs" />
+    <Compile Include="gtk-gui\MonoBPMonitor.frmBackupRestore.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
