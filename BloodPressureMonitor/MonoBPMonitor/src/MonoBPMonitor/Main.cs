@@ -31,6 +31,8 @@ namespace MonoBPMonitor
 		{
 			Application.Init ();
 			GoonTools.Common.LoadAll();
+			Gtk.Rc.Parse( @"C:\Users\Andy\Documents\SharpDevelop Projects\MonoBPMonitor\src\MonoBPMonitor\bin\Debug\Nocturn\gtk-2.0\gtkrc");
+			Gtk.Rc.ReparseAll(); 
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();

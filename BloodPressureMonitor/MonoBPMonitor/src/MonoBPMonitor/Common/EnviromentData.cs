@@ -38,6 +38,7 @@ namespace GoonTools.Helper
 		private string _DirChar = string.Empty;
 		private string _AppPath = string.Empty;
 		private string _SavePath = string.Empty;
+		private string _LogFile = string.Empty;
 		private string _DefaultsPath = string.Empty;
 		public EnviromentData()
 		{
@@ -65,6 +66,7 @@ namespace GoonTools.Helper
 			// get the defaults path - this is where we keep the things we copy over
 			// when setting up a new user
 			_DefaultsPath = _AppPath + "Data" + _DirChar;
+			_LogFile = _SavePath + "error.log";
 		}
 		
 		#region Public Properties
