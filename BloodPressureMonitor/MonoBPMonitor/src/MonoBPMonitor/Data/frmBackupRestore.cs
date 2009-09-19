@@ -21,115 +21,170 @@ namespace MonoBPMonitor {
 	
 	public partial class frmBackupRestore : Gtk.Dialog
 	{
-		private static string tmpSchema = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "BPMonitor.sql");
-		private static string tmpOptions = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "BPMonitor.dat");
+		private static string tmpSchema = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Schema.sql");
+		private static string tmpData = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Data.sql");
+		private static string tmpOptions = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Options.dat");
+		private static string tmpMetaInfo = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MetaInfo.txt");
+		private static ArrayList tmpLogFiles = new ArrayList();
 		private static string strNewLine = System.Environment.NewLine;
 		public frmBackupRestore()
 		{
 			this.Build();
 		}
 		
-		private void DoBackUp()
+		private bool BackupSchema()
 		{
+			bool blnReturn = true;
 			try
 			{
-				DataProvider dp = new DataProvider();
 				if(System.IO.File.Exists(tmpSchema))
 					System.IO.File.Delete(tmpSchema);
 				System.IO.StreamWriter sw = new System.IO.StreamWriter(tmpSchema);
-				
-				// lets start by getting our file name
-				FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
-				FileFilter filter = new FileFilter();
-				filter.Name = "Backup Files (7z)";
-				filter.AddMimeType("application/x-7z-compressed");
-				filter.AddPattern("*.7z");
-				fc.AddFilter(filter);
-				fc.SelectMultiple = false;
-				fc.CurrentName= "BPMonitor.bak.7z";
-				fc.SetCurrentFolder(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
-				if (fc.Run() == (int)ResponseType.Ok)
+				// write the database tables
+				DataProvider dp = new DataProvider(Common.Option.ConnString);
+				DataTable dt = dp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'table' and tbl_name NOT LIKE 'sqlite_%'", "Tables");
+				for(int i = 0; i < dt.Rows.Count; i++)
 				{
-					sw.WriteLine("BEGIN TRANSACTION;" + strNewLine);
-					// write the database tables
-					DataTable dt = dp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'table' and tbl_name NOT LIKE 'sqlite_%'", "Tables");
-					for(int i = 0; i < dt.Rows.Count; i++)
-					{
-						sw.WriteLine(dt.Rows[i]["sql"].ToString() + ";");
-					}
-					dt.Clear();
-					// write the database indexes
-					dt = dp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'index' and tbl_name NOT LIKE 'sqlite_%'", "Tables");
-					for(int i = 0; i < dt.Rows.Count; i++)
-					{
-						sw.WriteLine(dt.Rows[i]["sql"].ToString() + ";");
-					}
-					dt.Clear();
-					
-					// begin writing the data to the file
-					// backup the doctor table
-					dt = dp.ExecuteDataTable("SELECT DoctorID, DoctorName, Location, PhoneNum, UserID FROM tb_Doctor");
-					for(int i = 0; i < dt.Rows.Count; i++)
-					{
-						sw.WriteLine("INSERT INTO tb_Doctor (DoctorID, DoctorName, Location, PhoneNum, UserID) VALUES(" + dt.Rows[i]["DoctorID"].ToString() + ", '" + dt.Rows[i]["DoctorName"].ToString() + "', '" + dt.Rows[i]["Location"].ToString() + "', '" + dt.Rows[i]["PhoneNum"].ToString() + "', " + dt.Rows[i]["UserID"].ToString() + ");");
-					}
-					dt.Clear();
-					// backup the doctor table
-					dt = dp.ExecuteDataTable("SELECT EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
-					for(int i = 0; i < dt.Rows.Count; i++)
-					{
-						sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + Convert.ToDateTime(dt.Rows[i]["EntryDateTime"]).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '" + dt.Rows[i]["Notes"].ToString() + "', " + dt.Rows[i]["UserID"].ToString() + ");");
-					}
-					dt.Clear();
-					// backup the doctor table
-					dt = dp.ExecuteDataTable("SELECT MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID FROM tb_Medicine");
-					for(int i = 0; i < dt.Rows.Count; i++)
-					{
-						sw.WriteLine("INSERT INTO tb_Medicine (MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID) VALUES(" + dt.Rows[i]["MedicineID"].ToString() + ", '" + dt.Rows[i]["MedicineName"].ToString() + "', '" + dt.Rows[i]["Dosage"].ToString() + "', '" + Convert.ToDateTime(dt.Rows[i]["StartDate"]).ToString("yyyy-MM-dd hh:mm:ss") + "', '" + Convert.ToDateTime(dt.Rows[i]["EndDate"]).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["DoctorID"].ToString() + ", " + dt.Rows[i]["UserID"].ToString() + ");");
-					}
-					dt.Clear();
-					// backup the doctor table
-					dt = dp.ExecuteDataTable("SELECT UserID, UserName, DateAdded, IsActive FROM tb_User");
-					for(int i = 0; i < dt.Rows.Count; i++)
-					{
-						sw.WriteLine("INSERT INTO tb_User (UserID, UserName, DateAdded, IsActive) VALUES(" + dt.Rows[i]["UserID"].ToString() + ", '" + dt.Rows[i]["UserName"].ToString() + "', '" + Convert.ToDateTime(dt.Rows[i]["DateAdded"]).ToString("yyyy-MM-dd hh:mm:ss") + "', '" + dt.Rows[i]["IsActive"].ToString() + "');");
-					}
-					dt.Clear();
-					sw.WriteLine("COMMIT TRANSACTION;");
-					sw.Close();
-					
-					// remove old files
-					if(System.IO.File.Exists(fc.Filename + ".sql"))
-						System.IO.File.Delete(fc.Filename + ".sql");
-					// write the new file
-					System.IO.File.Move(tmpSchema, fc.Filename + ".sql");
-					// end of database backup
-					
-					// backup the options
-					if(System.IO.File.Exists(tmpOptions))
-						System.IO.File.Delete(tmpOptions);
-					System.IO.StreamWriter swo = new System.IO.StreamWriter(tmpOptions);
-					
-					swo.WriteLine("## Begin Mono BPMonitor options backup");
-					foreach( DictionaryEntry de in Common.Option.GetOptionsTable())
-					{
-						swo.WriteLine(de.Key.ToString() + "=" + de.Value.ToString());
-					}
-					swo.WriteLine("## End Mono BPMonitor options backup");
-					swo.Close();
-					
-					if(System.IO.File.Exists(fc.Filename + ".dat"))
-						System.IO.File.Delete(fc.Filename + ".dat");
-					
-					System.IO.File.Move(tmpOptions, fc.Filename + ".dat");
-					
+					sw.WriteLine(dt.Rows[i]["sql"].ToString() + ";");
 				}
-				fc.Destroy();
+				dt.Clear();
+				// write the database indexes
+				dt = dp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'index' and tbl_name NOT LIKE 'sqlite_%'", "Tables");
+				for(int i = 0; i < dt.Rows.Count; i++)
+				{
+					sw.WriteLine(dt.Rows[i]["sql"].ToString() + ";");
+				}
+				dt.Clear();
+				sw.Close();
 			}
 			catch(Exception ex)
 			{
+				blnReturn = false;
 				Common.HandleError(this, ex);
 			}
+			return blnReturn;
+		}
+		
+		private bool BackupData()
+		{
+			bool blnReturn = true;
+			try
+			{
+				if(System.IO.File.Exists(tmpData))
+					System.IO.File.Delete(tmpData);
+				System.IO.StreamWriter sw = new System.IO.StreamWriter(tmpData);
+				// write the database tables
+				DataProvider dp = new DataProvider(Common.Option.ConnString);
+				// begin writing the data to the file
+				// backup the doctor table
+				DataTable dt = dp.ExecuteDataTable("SELECT DoctorID, DoctorName, Location, PhoneNum, UserID FROM tb_Doctor");
+				for(int i = 0; i < dt.Rows.Count; i++)
+				{
+					sw.WriteLine("INSERT INTO tb_Doctor (DoctorID, DoctorName, Location, PhoneNum, UserID) VALUES(" + dt.Rows[i]["DoctorID"].ToString() + ", '" + dt.Rows[i]["DoctorName"].ToString() + "', '" + dt.Rows[i]["Location"].ToString() + "', '" + dt.Rows[i]["PhoneNum"].ToString() + "', " + dt.Rows[i]["UserID"].ToString() + ");");
+				}
+				dt.Clear();
+				// backup the doctor table
+				dt = dp.ExecuteDataTable("SELECT EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
+				for(int i = 0; i < dt.Rows.Count; i++)
+				{
+					sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + Convert.ToDateTime(dt.Rows[i]["EntryDateTime"]).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '" + dt.Rows[i]["Notes"].ToString() + "', " + dt.Rows[i]["UserID"].ToString() + ");");
+				}
+				dt.Clear();
+				// backup the doctor table
+				dt = dp.ExecuteDataTable("SELECT MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID FROM tb_Medicine");
+				for(int i = 0; i < dt.Rows.Count; i++)
+				{
+					sw.WriteLine("INSERT INTO tb_Medicine (MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID) VALUES(" + dt.Rows[i]["MedicineID"].ToString() + ", '" + dt.Rows[i]["MedicineName"].ToString() + "', '" + dt.Rows[i]["Dosage"].ToString() + "', '" + Convert.ToDateTime(dt.Rows[i]["StartDate"]).ToString("yyyy-MM-dd hh:mm:ss") + "', '" + Convert.ToDateTime(dt.Rows[i]["EndDate"]).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["DoctorID"].ToString() + ", " + dt.Rows[i]["UserID"].ToString() + ");");
+				}
+				dt.Clear();
+				// backup the doctor table
+				dt = dp.ExecuteDataTable("SELECT UserID, UserName, DateAdded, IsActive FROM tb_User");
+				for(int i = 0; i < dt.Rows.Count; i++)
+				{
+					sw.WriteLine("INSERT INTO tb_User (UserID, UserName, DateAdded, IsActive) VALUES(" + dt.Rows[i]["UserID"].ToString() + ", '" + dt.Rows[i]["UserName"].ToString() + "', '" + Convert.ToDateTime(dt.Rows[i]["DateAdded"]).ToString("yyyy-MM-dd hh:mm:ss") + "', '" + dt.Rows[i]["IsActive"].ToString() + "');");
+				}
+				dt.Clear();
+				sw.Close();
+			}
+			catch(Exception ex)
+			{
+				blnReturn = false;
+				Common.HandleError(this, ex);
+			}
+			return blnReturn;
+		}
+		
+		private bool BackupOptions()
+		{
+			bool blnReturn = true;
+			try
+			{
+				if(System.IO.File.Exists(tmpData))
+					System.IO.File.Delete(tmpData);
+				System.IO.StreamWriter sw = new System.IO.StreamWriter(tmpData);
+				// write the database tables
+				sw.WriteLine("## Begin Mono BPMonitor options backup");
+				foreach( DictionaryEntry de in Common.Option.GetOptionsTable())
+				{
+					sw.WriteLine(de.Key.ToString() + "=" + de.Value.ToString());
+				}
+				sw.WriteLine("## End Mono BPMonitor options backup");
+				sw.Close();
+				sw.Close();
+			}
+			catch(Exception ex)
+			{
+				blnReturn = false;
+				Common.HandleError(this, ex);
+			}
+			return blnReturn;
+		}
+		
+		private bool BackupLogs()
+		{
+			bool blnReturn = true;
+			try
+			{
+				// for the logs we just add their location to the arraylist
+				if(Common.Option.SaveErrorLog)
+					tmpLogFiles.Add(Common.EnvData.SavePath);
+			}
+			catch(Exception ex)
+			{
+				blnReturn = false;
+				Common.HandleError(this, ex);
+			}
+			return blnReturn;
+			
+		}
+		
+		private bool BackupMetaInfo()
+		{
+			bool blnReturn = true;
+			try
+			{
+				if(System.IO.File.Exists(tmpMetaInfo))
+					System.IO.File.Delete(tmpMetaInfo);
+				System.IO.StreamWriter sw = new System.IO.StreamWriter(tmpData);
+				// write the database tables
+				sw.WriteLine("## Begin Mono BPMonitor MetaInfo backup");
+				sw.WriteLine("Application: MonoBPMonitor");
+				sw.WriteLine("Date: " + DateTime.Now.ToString());
+				sw.WriteLine("Backup Database Schema =" + (cbxDatabaseSchema.Active ? "Yes": "No"));
+				sw.WriteLine("Backup Database Data   =" + (cbxDatabaseData.Active ? "Yes": "No"));
+				sw.WriteLine("Backup Program Options =" + (cbxOptions.Active ? "Yes": "No"));
+				sw.WriteLine("Backup Program Logs    =" + (cbxLogs.Active ? "Yes": "No"));
+				sw.WriteLine("Description: Backup files for Mono BPMonitor");
+				sw.WriteLine("## End Mono BPMonitor MetaInfo backup");
+				sw.Close();
+				sw.Close();
+			}
+			catch(Exception ex)
+			{
+				blnReturn = false;
+				Common.HandleError(this, ex);
+			}
+			return blnReturn;
 		}
 		
 		protected virtual void OnBtnClearLogClicked(object sender, System.EventArgs e) {
@@ -154,6 +209,51 @@ namespace MonoBPMonitor {
 		
 		protected virtual void OnBtnBackupClicked (object sender, System.EventArgs e)
 		{
+			bool BackupSucess = true;
+			if(!cbxLogs.Active && !cbxDatabaseData.Active && !cbxDatabaseSchema.Active && !cbxOptions.Active)
+			{
+				Gtk.MessageDialog msg = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No backup options selected", "Select a backup option.");
+				msg.Run();
+				msg.Destroy();
+			}
+			else
+			{
+				BackupSucess = BackupMetaInfo();
+				if(cbxDatabaseSchema.Active == true)
+					BackupSucess = BackupSchema();
+				if(cbxDatabaseData.Active == true)
+					BackupSucess = BackupData();
+				if(cbxOptions.Active == true)
+					BackupSucess = BackupOptions();
+				if(cbxLogs.Active == true)
+					BackupSucess = BackupLogs();
+				
+				if(BackupSucess)
+				{
+					// lets start by getting our file name
+					FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
+					FileFilter filter = new FileFilter();
+					filter.Name = "Backup Files (7z)";
+					filter.AddMimeType("application/x-7z-compressed");
+					filter.AddPattern("*.7z");
+					fc.AddFilter(filter);
+					fc.SelectMultiple = false;
+					fc.CurrentName= "BPMonitor.bak.7z";
+					fc.SetCurrentFolder(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
+					if (fc.Run() == (int)ResponseType.Ok)
+					{
+						// put backup code here
+						
+					}
+					fc.Destroy();
+				}
+				else
+				{
+					Gtk.MessageDialog msg2 = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Sorry the backup process failed.", "Backup Failed.");
+					msg2.Run();
+					msg2.Destroy();
+				}
+			}
 		}
 	}
 }

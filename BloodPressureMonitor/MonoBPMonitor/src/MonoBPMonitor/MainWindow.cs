@@ -60,6 +60,7 @@ namespace MonoBPMonitor
 
 		protected virtual void OnNewEntryActionActivated (object sender, System.EventArgs e)
 		{
+			
 			frmBPEntry fm = new frmBPEntry ();
 			fm.UserID = cboUser.UserID;
 			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
