@@ -27,7 +27,6 @@ namespace MonoBPMonitor {
 		{
 			tmpFolderName = Common.EnvData.GetNewTempFolder("BPMonitor", false);
 			this.Build();
-			this.btnRun.Clicked += OnBtnBackupClicked;
 		}
 		
 		private void BackupSchema()
@@ -129,7 +128,7 @@ namespace MonoBPMonitor {
 			{
 				// for the logs we just add their location to the arraylist
 				if(Common.Option.SaveErrorLog)
-					so.File.Copy(Common.EnvData.SavePath + "error.log", so.Path.Combine(tmpFolderName, "error.log"));
+					so.File.Copy(Common.EnvData.ErrorLog, so.Path.Combine(tmpFolderName, "error.log"));
 			}
 			catch(Exception ex)
 			{
