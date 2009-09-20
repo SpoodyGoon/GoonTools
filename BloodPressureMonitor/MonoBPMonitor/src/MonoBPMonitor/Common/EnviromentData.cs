@@ -21,7 +21,6 @@
  */
 
 using System;
-using System.IO;
 using System.Reflection;
 using Gtk;
 using Mono.Unix;
@@ -33,7 +32,7 @@ namespace GoonTools.Helper
 	///  enviroment around the probram
 	/// </summary>
 	public class EnviromentData
-	{		
+	{
 		private string _OS = string.Empty;
 		private string _DirChar = string.Empty;
 		private string _AppPath = string.Empty;
@@ -97,5 +96,75 @@ namespace GoonTools.Helper
 		}
 		
 		#endregion Public Properties
+		
+		#region Public Methods
+		
+		public string GetNewTempFolder(string Name)
+		{
+			return GetNewTempFolder(Name, true);
+		}
+		
+		public string GetNewTempFolder(string Name, bool Overwrite)
+		{
+			string tmpName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Name);
+			if(Overwrite)
+			{
+				if(System.IO.Directory.Exists(tmpName))
+					System.IO.Directory.Delete(tmpName);
+				
+				System.IO.Directory.CreateDirectory(tmpName);
+			}
+			else
+			{
+				string tmp = tmpName;
+				int i = 0;
+				while(System.IO.Directory.Exists(tmp))
+				{
+					tmp = tmpName + i.ToString();
+					i++;
+				}
+				System.IO.Directory.CreateDirectory(tmp);
+				tmpName = tmp;
+			}
+			return tmpName;
+		}
+		
+		public string GetNewTempFile(string Name)
+		{
+			return GetNewTempFile(System.IO.Path.GetFileNameWithoutExtension(Name), System.IO.Path.GetExtension(Name), true);
+		}
+		
+		public string GetNewTempFile(string Name, string Extension)
+		{
+			return GetNewTempFile(Name, Extension, true);
+		}
+		
+		public string GetNewTempFile(string Name, string Extension, bool Overwrite)
+		{
+			string tmpName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Name + "." + Extension);
+			if(Overwrite)
+			{
+				if(System.IO.File.Exists(tmpName))
+					System.IO.File.Delete(tmpName);
+				
+				 System.IO.File.Create(tmpName);
+			}
+			else
+			{
+				string tmp = tmpName;
+				int i = 0;
+				while(System.IO.File.Exists(tmp))
+				{
+					tmp = tmpName + i.ToString();
+					i++;
+				}
+				System.IO.File.Create(tmp);
+				tmpName = tmp;
+			}
+			return tmpName;
+		}
+		
+		#endregion Public Methods
 	}
+
 }

@@ -21,10 +21,10 @@ namespace MonoBPMonitor {
 	
 	public partial class frmBackupRestore : Gtk.Dialog
 	{
-		private static string tmpSchema = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Schema.sql");
-		private static string tmpData = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Data.sql");
-		private static string tmpOptions = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Options.dat");
-		private static string tmpMetaInfo = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MetaInfo.txt");
+		private static string tmpSchema = Common.EnvData.GetNewTempFile("Schema.sql");
+		private static string tmpData = Common.EnvData.GetNewTempFile("Data.sql");
+		private static string tmpOptions = Common.EnvData.GetNewTempFile("Options.dat");
+		private static string tmpMetaInfo = Common.EnvData.GetNewTempFile("MetaInfo.txt");
 		private static ArrayList tmpLogFiles = new ArrayList();
 		private static string strNewLine = System.Environment.NewLine;
 		public frmBackupRestore()
@@ -37,8 +37,6 @@ namespace MonoBPMonitor {
 			bool blnReturn = true;
 			try
 			{
-				if(System.IO.File.Exists(tmpSchema))
-					System.IO.File.Delete(tmpSchema);
 				System.IO.StreamWriter sw = new System.IO.StreamWriter(tmpSchema);
 				// write the database tables
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
@@ -70,8 +68,6 @@ namespace MonoBPMonitor {
 			bool blnReturn = true;
 			try
 			{
-				if(System.IO.File.Exists(tmpData))
-					System.IO.File.Delete(tmpData);
 				System.IO.StreamWriter sw = new System.IO.StreamWriter(tmpData);
 				// write the database tables
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
@@ -119,8 +115,6 @@ namespace MonoBPMonitor {
 			bool blnReturn = true;
 			try
 			{
-				if(System.IO.File.Exists(tmpData))
-					System.IO.File.Delete(tmpData);
 				System.IO.StreamWriter sw = new System.IO.StreamWriter(tmpData);
 				// write the database tables
 				sw.WriteLine("## Begin Mono BPMonitor options backup");
@@ -146,8 +140,7 @@ namespace MonoBPMonitor {
 			try
 			{
 				// for the logs we just add their location to the arraylist
-				if(Common.Option.SaveErrorLog)
-					tmpLogFiles.Add(Common.EnvData.SavePath);
+				
 			}
 			catch(Exception ex)
 			{
@@ -163,8 +156,6 @@ namespace MonoBPMonitor {
 			bool blnReturn = true;
 			try
 			{
-				if(System.IO.File.Exists(tmpMetaInfo))
-					System.IO.File.Delete(tmpMetaInfo);
 				System.IO.StreamWriter sw = new System.IO.StreamWriter(tmpData);
 				// write the database tables
 				sw.WriteLine("## Begin Mono BPMonitor MetaInfo backup");
@@ -218,41 +209,46 @@ namespace MonoBPMonitor {
 			}
 			else
 			{
-				BackupSucess = BackupMetaInfo();
-				if(cbxDatabaseSchema.Active == true)
-					BackupSucess = BackupSchema();
-				if(cbxDatabaseData.Active == true)
-					BackupSucess = BackupData();
-				if(cbxOptions.Active == true)
-					BackupSucess = BackupOptions();
-				if(cbxLogs.Active == true)
-					BackupSucess = BackupLogs();
 				
-				if(BackupSucess)
+				// lets start by getting our file name
+				FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
+				FileFilter filter = new FileFilter();
+				filter.Name = "Backup Files (7z)";
+				filter.AddMimeType("application/x-7z-compressed");
+				filter.AddPattern("*.7z");
+				fc.AddFilter(filter);
+				fc.SelectMultiple = false;
+				fc.CurrentName= "BPMonitor.bak.7z";
+				fc.SetCurrentFolder(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
+				if (fc.Run() == (int)ResponseType.Ok)
 				{
-					// lets start by getting our file name
-					FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
-					FileFilter filter = new FileFilter();
-					filter.Name = "Backup Files (7z)";
-					filter.AddMimeType("application/x-7z-compressed");
-					filter.AddPattern("*.7z");
-					fc.AddFilter(filter);
-					fc.SelectMultiple = false;
-					fc.CurrentName= "BPMonitor.bak.7z";
-					fc.SetCurrentFolder(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
-					if (fc.Run() == (int)ResponseType.Ok)
+					// put backup code here
+					string DirName = Common.EnvData.GetNewTempFolder("BPMonitor");
+					BackupSucess = BackupMetaInfo();
+					if(cbxDatabaseSchema.Active == true)
 					{
-						// put backup code here
-						
+						if(BackupSchema())
+							System.IO.File.Copy(tmpSchema, DirName);
 					}
-					fc.Destroy();
+					if(cbxDatabaseData.Active == true)
+					{
+						if(BackupData())
+							System.IO.File.Copy(tmpData, DirName);
+					}
+					if(cbxOptions.Active == true)
+					{
+						if(BackupOptions())
+							System.IO.File.Copy(tmpData, DirName);
+					}
+					if(cbxLogs.Active == true)
+					{
+						if(Common.Option.SaveErrorLog)
+							System.IO.File.Copy(_EnvData.SavePath + "error.log", DirName);
+					}
+					
+					
 				}
-				else
-				{
-					Gtk.MessageDialog msg2 = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, "Sorry the backup process failed.", "Backup Failed.");
-					msg2.Run();
-					msg2.Destroy();
-				}
+				fc.Destroy();
 			}
 		}
 	}
