@@ -1,5 +1,0 @@
-I use the 7 zip sdk for my open source projects and I intend to using it only when I can do it with out violating the license.
-
-However I have to be honest I'm not very smart about licenses so if you see I'm not correctly using the 7 Zip sdk please email me and let me know so I can correct the problem.
-
-SpoodyGoon <goontools@brdstudio.net>
