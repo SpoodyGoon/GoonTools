@@ -115,7 +115,6 @@
     <EmbeddedResource Include="images\date.png">
       <LogicalName>date.png</LogicalName>
     </EmbeddedResource>
-    <Compile Include="Data\BackupRestore.cs" />
     <Compile Include="Data\dsBPMonitor.Designer.cs">
       <DependentUpon>dsBPMonitor.xsd</DependentUpon>
     </Compile>
@@ -192,12 +191,6 @@
     <Compile Include="gtk-gui\MonoBPMonitor.frmBackupRestore.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\7zip\SevenZipSDK.csproj">
-      <Project>{F9C33862-71F4-4076-A756-2ED70B247955}</Project>
-      <Name>SevenZipSDK</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Content Include="Data\CreateDB.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

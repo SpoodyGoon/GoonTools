@@ -107,24 +107,31 @@ namespace GoonTools.Helper
 		public string GetNewTempFolder(string Name, bool Overwrite)
 		{
 			string tmpName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Name);
-			if(Overwrite)
+			try
 			{
-				if(System.IO.Directory.Exists(tmpName))
-					System.IO.Directory.Delete(tmpName);
-				
-				System.IO.Directory.CreateDirectory(tmpName);
-			}
-			else
-			{
-				string tmp = tmpName;
-				int i = 0;
-				while(System.IO.Directory.Exists(tmp))
+				if(Overwrite)
 				{
-					tmp = tmpName + i.ToString();
-					i++;
+					if(System.IO.Directory.Exists(tmpName))
+						System.IO.Directory.Delete(tmpName);
+					
+					System.IO.Directory.CreateDirectory(tmpName);
 				}
-				System.IO.Directory.CreateDirectory(tmp);
-				tmpName = tmp;
+				else
+				{
+					string tmp = tmpName;
+					int i = 0;
+					while(System.IO.Directory.Exists(tmp))
+					{
+						tmp = tmpName + i.ToString();
+						i++;
+					}
+					System.IO.Directory.CreateDirectory(tmp);
+					tmpName = tmp;
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
 			}
 			return tmpName;
 		}
@@ -147,7 +154,7 @@ namespace GoonTools.Helper
 				if(System.IO.File.Exists(tmpName))
 					System.IO.File.Delete(tmpName);
 				
-				 System.IO.File.Create(tmpName);
+				System.IO.File.Create(tmpName);
 			}
 			else
 			{
