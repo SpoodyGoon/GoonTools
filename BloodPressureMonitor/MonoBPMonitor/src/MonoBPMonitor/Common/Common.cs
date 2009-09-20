@@ -128,7 +128,7 @@ namespace GoonTools
 		{
 			if(_Option.SaveErrorLog == true)
 			{
-				StreamWriter sw = new StreamWriter(_EnvData.SavePath + "error.log", true);
+				StreamWriter sw = new StreamWriter(EnvData.ErrorLog, true);
 				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
 				sw.Write(sw.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
 				sw.Write(sw.NewLine + ex.ToString());
