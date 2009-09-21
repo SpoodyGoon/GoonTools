@@ -37,6 +37,8 @@ namespace GoonTools.Helper
 		private string _DirChar = string.Empty;
 		private string _AppPath = string.Empty;
 		private string _SavePath = string.Empty;
+		private string _ThemeFolder = string.Empty;
+		private string _AltThemeFolder = string.Empty;
 		private string _ErrorLog = string.Empty;
 		private string _DefaultsPath = string.Empty;
 		public EnviromentData()
@@ -66,6 +68,8 @@ namespace GoonTools.Helper
 			// when setting up a new user
 			_DefaultsPath = _AppPath + "Data" + _DirChar;
 			_ErrorLog = _SavePath + "error.log";
+			_ThemeFolder = _AppPath + "Themes" + _DirChar;
+			_AltThemeFolder = _SavePath + "Themes" + _DirChar;
 		}
 		
 		#region Public Properties
@@ -93,6 +97,16 @@ namespace GoonTools.Helper
 		public string DefaultsPath
 		{
 			get{return _DefaultsPath;}
+		}
+		
+		public string ThemeFolder
+		{
+			get{return _ThemeFolder;}
+		}
+		
+		public string AltThemeFolder
+		{
+			get{return _AltThemeFolder;}
 		}
 		
 		public string ErrorLog

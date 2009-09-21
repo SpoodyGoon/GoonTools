@@ -145,7 +145,7 @@ namespace GoonTools
 		{
 			try
 			{
-				StreamWriter sw = new StreamWriter(_EnvData.SavePath + "error.log", false);
+				StreamWriter sw = new StreamWriter(EnvData.ErrorLog, false);
 				sw.Write("");
 				sw.Close();
 			}

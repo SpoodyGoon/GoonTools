@@ -31,8 +31,14 @@ namespace MonoBPMonitor
 		{
 			Application.Init ();
 			GoonTools.Common.LoadAll();
-			Gtk.Rc.Parse( @"C:\Users\Andy\Documents\SharpDevelop Projects\MonoBPMonitor\src\MonoBPMonitor\bin\Debug\Nocturn\gtk-2.0\gtkrc");
-			Gtk.Rc.ReparseAll(); 
+			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
+			{
+				if(System.IO.File.Exists(GoonTools.Common.Option.CustomTheme) && GoonTools.Common.Option.CustomTheme != "System")
+				{
+					Gtk.Rc.Parse(GoonTools.Common.Option.CustomTheme);
+					Gtk.Rc.ReparseAll();
+				}
+			}
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();
