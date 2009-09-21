@@ -27,6 +27,110 @@ namespace MonoBPMonitor {
 		{
 			tmpFolderName = Common.EnvData.GetNewTempFolder("BPMonitor", false);
 			this.Build();
+			cbxDatabaseSchema.Active = Common.Option.BackupSchema;
+			cbxDatabaseData.Active = Common.Option.BackupData;
+			cbxOptions.Active = Common.Option.BackupOptions;
+			cbxLogs.Active = Common.Option.BackupLogs;
+			CheckAll();
+			this.WidthRequest = 500;
+			this.ShowAll();
+		}
+		
+		private void CheckAll()
+		{
+			if(cbxOptions.Active && cbxLogs.Active && cbxDatabaseSchema.Active && cbxDatabaseData.Active)
+			{
+				cbxAll.Inconsistent = false;
+				cbxAll.Active = true;
+			}
+			else if(!cbxOptions.Active && !cbxLogs.Active && !cbxDatabaseSchema.Active && !cbxDatabaseData.Active)
+			{
+				cbxAll.Inconsistent = false;
+				cbxAll.Active = false;
+			}
+			else
+			{
+				cbxAll.Inconsistent=true;
+			}
+		}
+		
+		#region Backup Area
+		
+		protected virtual void OnBtnBackupClicked (object sender, System.EventArgs e)
+		{
+			
+			FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
+			FileFilter filter = new FileFilter();
+			try
+			{
+				if(!cbxLogs.Active && !cbxDatabaseData.Active && !cbxDatabaseSchema.Active && !cbxOptions.Active)
+				{
+					Gtk.MessageDialog msg = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No backup options selected", "Select a backup option.");
+					msg.Run();
+					msg.Destroy();
+				}
+				else
+				{
+					
+					// lets start by getting our file name
+					filter.Name = "Backup Files (bz2)";
+					filter.AddMimeType("application/bzip2");
+					filter.AddPattern("*.bz2");
+					fc.AddFilter(filter);
+					fc.SelectMultiple = false;
+					fc.CurrentName= "BPMonitor.bak.bz2";
+					fc.SetCurrentFolder(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
+					if (fc.Run() == (int)ResponseType.Ok)
+					{
+						// put backup code here
+						BackupMetaInfo();
+						if(cbxDatabaseSchema.Active == true)
+							BackupSchema();
+						
+						if(cbxDatabaseData.Active == true)
+							BackupData();
+						
+						if(cbxOptions.Active == true)
+							BackupOptions();
+						
+						if(cbxLogs.Active == true)
+							BackupLogs();
+						
+						string[] filenames = so.Directory.GetFiles(so.Path.GetFullPath(tmpFolderName));
+						using (ZipOutputStream s = new ZipOutputStream(so.File.Create(fc.Filename)))
+						{
+							s.SetLevel(9); // 0 - store only to 9 - means best compression
+							byte[] buffer = new byte[4096];
+							foreach (string file in filenames)
+							{
+								ZipEntry entry = new ZipEntry(so.Path.GetFileName(file));
+								entry.DateTime = DateTime.Now;
+								s.PutNextEntry(entry);
+								using ( so.FileStream fs = so.File.OpenRead(file) )
+								{
+									int sourceBytes;
+									do
+									{
+										sourceBytes = fs.Read(buffer, 0, buffer.Length);
+										s.Write(buffer, 0, sourceBytes);
+									} while ( sourceBytes > 0 );
+								}
+							}
+							s.Finish();
+							s.Close();
+						}
+					}
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
+			finally
+			{
+				fc.Destroy();
+				filter.Destroy();
+			}
 		}
 		
 		private void BackupSchema()
@@ -161,19 +265,15 @@ namespace MonoBPMonitor {
 			}
 		}
 		
-		protected virtual void OnBtnClearLogClicked(object sender, System.EventArgs e) {
-		}
-
+		#endregion Backup Area
+		
 		protected virtual void OnCbxAllToggled (object sender, System.EventArgs e)
 		{
+			cbxAll.Inconsistent = false;
 			cbxDatabaseData.Active = cbxAll.Active;
 			cbxDatabaseSchema.Active = cbxAll.Active;
 			cbxLogs.Active = cbxAll.Active;
 			cbxOptions.Active = cbxAll.Active;
-		}
-
-		protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
-		{
 		}
 
 		protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
@@ -181,81 +281,34 @@ namespace MonoBPMonitor {
 			this.Hide();
 		}
 		
-		protected virtual void OnBtnBackupClicked (object sender, System.EventArgs e)
+		
+		protected virtual void OnBtnRestoreClicked (object sender, System.EventArgs e)
 		{
-			
-			FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
-			FileFilter filter = new FileFilter();
-			try
-			{
-				if(!cbxLogs.Active && !cbxDatabaseData.Active && !cbxDatabaseSchema.Active && !cbxOptions.Active)
-				{
-					Gtk.MessageDialog msg = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No backup options selected", "Select a backup option.");
-					msg.Run();
-					msg.Destroy();
-				}
-				else
-				{
-					
-					// lets start by getting our file name
-					filter.Name = "Backup Files (bz2)";
-					filter.AddMimeType("application/bzip2");
-					filter.AddPattern("*.bz2");
-					fc.AddFilter(filter);
-					fc.SelectMultiple = false;
-					fc.CurrentName= "BPMonitor.bak.bz2";
-					fc.SetCurrentFolder(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
-					if (fc.Run() == (int)ResponseType.Ok)
-					{
-						// put backup code here
-						BackupMetaInfo();
-						if(cbxDatabaseSchema.Active == true)
-							BackupSchema();
-						
-						if(cbxDatabaseData.Active == true)
-							BackupData();
-						
-						if(cbxOptions.Active == true)
-							BackupOptions();
-						
-						if(cbxLogs.Active == true)
-							BackupLogs();
-						
-						string[] filenames = so.Directory.GetFiles(so.Path.GetFullPath(tmpFolderName));
-						using (ZipOutputStream s = new ZipOutputStream(so.File.Create(fc.Filename)))
-						{
-							s.SetLevel(9); // 0 - store only to 9 - means best compression
-							byte[] buffer = new byte[4096];
-							foreach (string file in filenames)
-							{
-								ZipEntry entry = new ZipEntry(so.Path.GetFileName(file));
-								entry.DateTime = DateTime.Now;
-								s.PutNextEntry(entry);
-								using ( so.FileStream fs = so.File.OpenRead(file) )
-								{
-									int sourceBytes;
-									do
-									{
-										sourceBytes = fs.Read(buffer, 0, buffer.Length);
-										s.Write(buffer, 0, sourceBytes);
-									} while ( sourceBytes > 0 );
-								}
-							}							
-							s.Finish();
-							s.Close();
-						}
-					}
-				}
-			}
-			catch(Exception ex)
-			{
-				Common.HandleError(this, ex);
-			}
-			finally
-			{
-				fc.Destroy();
-				filter.Destroy();
-			}
+			Gtk.MessageDialog msg = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "Restore Not Set Up", "Restore Not Set Up");
+			msg.Run();
+			msg.Destroy();
 		}
-	}	
+
+		protected void OnBackupCheck_Clicked(object sender, System.EventArgs e)
+		{
+			Gtk.CheckButton cbx = (Gtk.CheckButton)sender;
+			switch(cbx.Label)
+			{
+				case "Database Schema":
+					Common.Option.BackupSchema = (bool)cbxDatabaseSchema.Active;
+					break;
+				case "Database Data":
+					Common.Option.BackupData = (bool)cbxDatabaseData.Active;
+					break;
+				case "Program Options":
+					Common.Option.BackupOptions = (bool)cbxOptions.Active;
+					break;
+				case"Program Logs":
+					Common.Option.BackupLogs = (bool)cbxLogs.Active;
+					break;
+			}
+			CheckAll();
+		}
+
+	}
 }

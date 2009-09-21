@@ -33,8 +33,12 @@ namespace GoonTools.Helper
 		private string _DBLocation = GoonTools.Common.EnvData.SavePath + "BPMonitor.s3db";
 		private bool _SaveErrorLog = true; // this is just a flag to save the error to the save directory
 		private int _HistoryDefaultShow = 30; // this is the amount of history we want to show
+		private bool _BackupSchema = true;
+		private bool _BackupData = true;
+		private bool _BackupOptions = true;
+		private bool _BackupLogs = true;
+		private string _CustomTheme = "System";
 		private int _FileVersion = 1; // the file version does not nessicarily match the application version
-		
 		public Options()
 		{
 		}
@@ -51,6 +55,16 @@ namespace GoonTools.Helper
 				_SaveErrorLog = Convert.ToBoolean(hsh["SaveErrorLog"]);
 			if(hsh.Contains("HistoryDefaultShow"))
 				_HistoryDefaultShow = Convert.ToInt32(hsh["HistoryDefaultShow"]);
+			if(hsh.Contains("BackupSchema"))
+				_BackupSchema = Convert.ToBoolean(hsh["BackupSchema"]);
+			if(hsh.Contains("BackupData"))
+				_BackupData = Convert.ToBoolean(hsh["BackupData"]);
+			if(hsh.Contains("BackupOptions"))
+				_BackupOptions = Convert.ToBoolean(hsh["BackupOptions"]);
+			if(hsh.Contains("BackupLogs"))
+				_BackupLogs = Convert.ToBoolean(hsh["BackupLogs"]);
+			if(hsh.Contains("CustomTheme"))
+				_CustomTheme = hsh["CustomTheme"].ToString();
 		}
 		
 		public System.Collections.Hashtable GetOptionsTable()
@@ -61,6 +75,11 @@ namespace GoonTools.Helper
 			hsh.Add("DBLocation", _DBLocation);
 			hsh.Add("SaveErrorLog", _SaveErrorLog);
 			hsh.Add("HistoryDefaultShow", _HistoryDefaultShow);
+			hsh.Add("BackupSchema", _BackupSchema);
+			hsh.Add("BackupData", _BackupData);
+			hsh.Add("BackupOptions", _BackupOptions);
+			hsh.Add("BackupLogs", _BackupLogs);
+			hsh.Add("CustomTheme", _CustomTheme);
 			return hsh;
 		}
 		
@@ -92,6 +111,36 @@ namespace GoonTools.Helper
 		{
 			set{ _FileVersion = value;}
 			get{ return _FileVersion;}
+		}
+		
+		public bool BackupSchema
+		{
+			set{ _BackupSchema = value;}
+			get{ return _BackupSchema;}
+		}
+		
+		public bool BackupData
+		{
+			set{ _BackupData = value;}
+			get{ return _BackupData;}
+		}
+		
+		public bool BackupOptions
+		{
+			set{ _BackupOptions = value;}
+			get{ return _BackupOptions;}
+		}
+		
+		public bool BackupLogs
+		{
+			set{ _BackupLogs = value;}
+			get{ return _BackupLogs;}
+		}
+		
+		public string CustomTheme
+		{
+			set{ _CustomTheme = value;}
+			get{ return _CustomTheme;}
 		}
 	}
 	

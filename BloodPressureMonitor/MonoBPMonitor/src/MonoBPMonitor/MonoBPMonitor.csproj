@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.4.2\lib\mono\gac\ICSharpCode.SharpZipLib\2.84.0.0__1b03e6acf1164f73\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\ICSharpCode.SharpZipLib\2.84.0.0__1b03e6acf1164f73\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.4.2\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
@@ -175,6 +175,15 @@
       <DependentUpon>dsBPMonitor.xsd</DependentUpon>
     </None>
     <None Include="Reports\MainEntry\Description.txt" />
+    <Content Include="Themes\DarkTurrican\gtk-2.0\gtkrc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Night Impression\gtk-2.0\gtkrc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Night Impression\gtk-2.0\panel-bg-dark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Doctors\DoctorRendererCombo.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.Designer.cs" />
@@ -189,6 +198,13 @@
     </EmbeddedResource>
     <Compile Include="Data\frmBackupRestore.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmBackupRestore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Themes" />
+    <Folder Include="Themes\DarkTurrican" />
+    <Folder Include="Themes\DarkTurrican\gtk-2.0" />
+    <Folder Include="Themes\Night Impression" />
+    <Folder Include="Themes\Night Impression\gtk-2.0" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
