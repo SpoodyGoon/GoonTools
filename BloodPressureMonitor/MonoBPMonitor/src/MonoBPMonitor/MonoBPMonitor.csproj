@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\ICSharpCode.SharpZipLib\2.84.0.0__1b03e6acf1164f73\ICSharpCode.SharpZipLib.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
@@ -57,11 +57,12 @@
     <Reference Include="System">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Data">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System.Xml">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -83,6 +84,7 @@
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -163,7 +165,9 @@
     <EmbeddedResource Include="images\rx.png">
       <LogicalName>rx.png</LogicalName>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <Content Include="app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Data\dsBPMonitor.xsc">
       <DependentUpon>dsBPMonitor.xsd</DependentUpon>
     </None>
@@ -198,16 +202,6 @@
     </EmbeddedResource>
     <Compile Include="Data\frmBackupRestore.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmBackupRestore.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Themes" />
-    <Folder Include="Themes\DarkTurrican" />
-    <Folder Include="Themes\DarkTurrican\gtk-2.0" />
-    <Folder Include="Themes\Night Impression" />
-    <Folder Include="Themes\Night Impression\gtk-2.0" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
     <Content Include="Data\CreateDB.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -215,4 +209,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Themes\" />
+    <Folder Include="Themes\DarkTurrican\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Themes\Night Impression\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

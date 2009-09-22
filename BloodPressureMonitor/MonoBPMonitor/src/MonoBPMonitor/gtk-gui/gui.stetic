@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="..\bin\Debug\MonoBPMonitor.exe" internal="true" />
+    <widget-library name="../bin/Debug/MonoBPMonitor.exe" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="edit_user.png">
@@ -165,9 +165,9 @@
       </action>
       <action id="BackupRestoreAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Backup/Restore</property>
+        <property name="Label" translatable="yes">Backup/Restore...</property>
         <property name="ShortLabel" translatable="yes">Backup</property>
-        <signal name="Activated" handler="OnBackupActionActivated" />
+        <signal name="Activated" handler="OnBackupRestore_Clicked" />
       </action>
       <action id="RestoreAction">
         <property name="Type">Action</property>
@@ -177,6 +177,7 @@
       </action>
       <action id="ThemesAction">
         <property name="Type">Action</property>
+        <property name="HideIfEmpty">False</property>
         <property name="Label" translatable="yes">Themes</property>
         <property name="ShortLabel" translatable="yes">Themes</property>
       </action>
@@ -198,6 +199,19 @@
         <property name="DrawAsRadio">False</property>
         <property name="Active">False</property>
         <signal name="Activated" handler="OnSystemActionActivated" />
+      </action>
+      <action id="UpdatesAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Updates...</property>
+        <property name="ShortLabel" translatable="yes">Updates</property>
+        <signal name="Activated" handler="OnUpdatesActionActivated" />
+      </action>
+      <action id="OptionsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Options...</property>
+        <property name="ShortLabel" translatable="yes">Options...</property>
+        <property name="StockId">gtk-preferences</property>
+        <signal name="Activated" handler="OnPreferencesActionActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -229,10 +243,9 @@
               </node>
               <node type="Menu" action="ToolsAction">
                 <node type="Menuitem" action="BackupRestoreAction" />
-                <node type="Menu" action="ThemesAction">
-                  <node type="Menuitem" action="SystemAction" />
-                </node>
-                <node type="Menu" action="UpdatesAction" />
+                <node type="Menu" action="ThemesAction" />
+                <node type="Menuitem" action="UpdatesAction1" />
+                <node type="Menuitem" action="OptionsAction" />
               </node>
               <node type="Menu" action="HelpAction">
                 <node type="Menuitem" action="ErrorLogAction" />
@@ -2931,7 +2944,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmOptions" design-size="400 149">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmOptions" design-size="400 187">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Options</property>
     <property name="Icon">stock:gtk-preferences Dialog</property>
@@ -2959,6 +2972,9 @@
                 <property name="Xalign">0</property>
                 <property name="Yalign">0</property>
                 <property name="LeftPadding">12</property>
+                <property name="TopPadding">6</property>
+                <property name="RightPadding">6</property>
+                <property name="BottomPadding">10</property>
                 <child>
                   <widget class="Gtk.VBox" id="vbox3">
                     <property name="MemberName" />
@@ -2966,11 +2982,11 @@
                     <child>
                       <widget class="Gtk.Alignment" id="alignment9">
                         <property name="MemberName" />
-                        <property name="TopPadding">8</property>
+                        <property name="TopPadding">6</property>
+                        <property name="BottomPadding">4</property>
                         <child>
                           <widget class="Gtk.Label" id="label4">
                             <property name="MemberName" />
-                            <property name="Visible">False</property>
                             <property name="LabelProp" translatable="yes">&lt;big&gt;&lt;b&gt;Options&lt;/b&gt;&lt;/big&gt;</property>
                             <property name="UseMarkup">True</property>
                           </widget>
@@ -2984,9 +3000,26 @@
                       </packing>
                     </child>
                     <child>
+                      <widget class="Gtk.Alignment" id="alignment1">
+                        <property name="MemberName" />
+                        <child>
+                          <widget class="Gtk.HSeparator" id="hseparator1">
+                            <property name="MemberName" />
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
                       <widget class="Gtk.Alignment" id="alignment13">
                         <property name="MemberName" />
-                        <property name="LeftPadding">30</property>
+                        <property name="LeftPadding">20</property>
+                        <property name="TopPadding">5</property>
                         <child>
                           <widget class="Gtk.CheckButton" id="cbxLogErrors">
                             <property name="MemberName" />
@@ -2999,7 +3032,7 @@
                         </child>
                       </widget>
                       <packing>
-                        <property name="Position">1</property>
+                        <property name="Position">2</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
@@ -3057,7 +3090,7 @@
                         </child>
                       </widget>
                       <packing>
-                        <property name="Position">2</property>
+                        <property name="Position">3</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
@@ -3068,25 +3101,7 @@
               </widget>
               <packing>
                 <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Alignment" id="alignment14">
-                <property name="MemberName" />
-                <property name="TopPadding">8</property>
-                <property name="BottomPadding">3</property>
-                <child>
-                  <widget class="Gtk.HSeparator" id="hseparator1">
-                    <property name="MemberName" />
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">1</property>
-                <property name="AutoSize">True</property>
+                <property name="AutoSize">False</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
               </packing>
@@ -3094,7 +3109,7 @@
           </widget>
           <packing>
             <property name="Position">0</property>
-            <property name="AutoSize">True</property>
+            <property name="AutoSize">False</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
@@ -3650,10 +3665,8 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmBackupRestore" design-size="550 272">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmBackupRestore" design-size="550 265">
     <property name="MemberName" />
-    <property name="WidthRequest">0</property>
-    <property name="HeightRequest">0</property>
     <property name="Title" translatable="yes">Backup/Restore</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -3661,8 +3674,6 @@
     <property name="BorderWidth">3</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
-    <property name="DefaultWidth">0</property>
-    <property name="DefaultHeight">0</property>
     <property name="DestroyWithParent">True</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
@@ -3717,7 +3728,7 @@
                     <child>
                       <widget class="Gtk.Frame" id="frame1">
                         <property name="MemberName" />
-                        <property name="BorderWidth">2</property>
+                        <property name="BorderWidth">4</property>
                         <child>
                           <widget class="Gtk.Alignment" id="alignment5">
                             <property name="MemberName" />
@@ -3763,6 +3774,7 @@
                                       <widget class="Gtk.HSeparator" id="hseparator4">
                                         <property name="MemberName" />
                                         <property name="Visible">False</property>
+                                        <property name="Sensitive">False</property>
                                       </widget>
                                     </child>
                                   </widget>
@@ -3929,6 +3941,8 @@
                   <widget class="Gtk.Alignment" id="alignment4">
                     <property name="MemberName" />
                     <property name="LeftPadding">18</property>
+                    <property name="TopPadding">4</property>
+                    <property name="BottomPadding">9</property>
                     <child>
                       <widget class="Gtk.HButtonBox" id="hbuttonbox2">
                         <property name="MemberName" />
@@ -3969,44 +3983,7 @@
                   </widget>
                   <packing>
                     <property name="Position">3</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Alignment" id="alignment8">
-                    <property name="MemberName" />
-                    <child>
-                      <widget class="Gtk.HSeparator" id="hseparator2">
-                        <property name="MemberName" />
-                      </widget>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="Position">4</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Alignment" id="alignment6">
-                    <property name="MemberName" />
-                    <child>
-                      <widget class="Gtk.Label" id="lblFeedBack">
-                        <property name="MemberName" />
-                        <property name="Ypad">2</property>
-                        <property name="Xalign">0.05</property>
-                        <property name="LabelProp" translatable="yes">&lt;b&gt;N/A&lt;/b&gt;</property>
-                        <property name="UseMarkup">True</property>
-                        <property name="SingleLineMode">True</property>
-                      </widget>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="Position">5</property>
-                    <property name="AutoSize">True</property>
+                    <property name="AutoSize">False</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>

@@ -75,7 +75,11 @@ namespace MonoBPMonitor
 				// check if update are allowed
 				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "true")
 				{
-					//TODO: show options
+					UpdatesAction1.Visible = true;
+				}
+				else
+				{
+					UpdatesAction1.Visible = false;
 				}
 				
 			}
@@ -213,38 +217,28 @@ namespace MonoBPMonitor
 		}
 		
 		
-		protected virtual void OnBackupActionActivated (object sender, System.EventArgs e)
+		protected virtual void OnBackupRestore_Clicked (object sender, System.EventArgs e)
 		{
 			frmBackupRestore fm = new frmBackupRestore();
 			fm.Run();
 			fm.Destroy();
-		}
+		}	
 		
 		
 		protected virtual void OnRestoreActionActivated (object sender, System.EventArgs e)
 		{
-		}
-		
-		
-		protected virtual void OnSystemActionToggled (object sender, System.EventArgs e)
-		{
-		}
-		
-		
-		protected virtual void OnUpdatesActionActivated (object sender, System.EventArgs e)
-		{
-		}
+			
+		}	
 		
 		
 		protected virtual void OnSystemActionActivated (object sender, System.EventArgs e)
 		{
+			
+		}		
+		
+		protected virtual void OnUpdatesActionActivated (object sender, System.EventArgs e)
+		{
 		}
-
-
-
-
-
-
 	}
 
 }
