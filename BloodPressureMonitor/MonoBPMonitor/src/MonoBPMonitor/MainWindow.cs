@@ -34,7 +34,7 @@ namespace MonoBPMonitor
 	{
 		Reports.EntryRptTreeView tvEntityRpt;
 		public MainWindow () : base(Gtk.WindowType.Toplevel)
-		{			
+		{
 			this.Build ();
 			try
 			{
@@ -42,35 +42,7 @@ namespace MonoBPMonitor
 				swEntityRpt.Add (tvEntityRpt);
 				cboUser.Changed += new EventHandler(cboUser_Changed);
 				
-				// if themes are allow load them
-				if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
-				{
-					Gtk.Menu mnuTheme = new Gtk.Menu();
-					Gtk.MenuItem mnuThemeSystem = new Gtk.MenuItem("System");
-					
-					if(Common.Option.CustomTheme != "System" && so.File.Exists(Common.Option.CustomTheme))
-					{
-						Gtk.Rc.Parse( Common.Option.CustomTheme);
-						Gtk.Rc.ReparseAll();
-						// load the custom themes from the locations
-						if(so.Directory.Exists(Common.EnvData.ThemeFolder))
-						{
-							string[] strThemes = so.Directory.GetDirectories(Common.EnvData.ThemeFolder);
-							for(int i = 0; i< strThemes.Length; i++)
-							{
-								
-							}
-						}
-						if(so.Directory.Exists(Common.EnvData.AltThemeFolder))
-						{
-							string[] strAltThemes = so.Directory.GetDirectories(Common.EnvData.ThemeFolder);
-							for(int i = 0; i< strAltThemes.Length; i++)
-							{
-								
-							}
-						}
-					}
-				}
+				
 				
 				// check if update are allowed
 				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "true")
@@ -222,19 +194,19 @@ namespace MonoBPMonitor
 			frmBackupRestore fm = new frmBackupRestore();
 			fm.Run();
 			fm.Destroy();
-		}	
+		}
 		
 		
 		protected virtual void OnRestoreActionActivated (object sender, System.EventArgs e)
 		{
 			
-		}	
+		}
 		
 		
 		protected virtual void OnSystemActionActivated (object sender, System.EventArgs e)
 		{
 			
-		}		
+		}
 		
 		protected virtual void OnUpdatesActionActivated (object sender, System.EventArgs e)
 		{

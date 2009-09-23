@@ -33,9 +33,9 @@ namespace MonoBPMonitor
 			GoonTools.Common.LoadAll();
 			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
 			{
-				if(System.IO.File.Exists(GoonTools.Common.Option.CustomTheme) && GoonTools.Common.Option.CustomTheme != "System")
+				if(System.IO.File.Exists(GoonTools.Common.Option.CustomTheme) && GoonTools.Common.Option.CustomThemeLocation != "System")
 				{
-					Gtk.Rc.Parse(GoonTools.Common.Option.CustomTheme);
+					Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeLocation);
 					Gtk.Rc.ReparseAll();
 				}
 			}

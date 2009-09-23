@@ -38,6 +38,7 @@ namespace GoonTools.Helper
 		private bool _BackupOptions = true;
 		private bool _BackupLogs = true;
 		private string _CustomTheme = "System";
+		private string _CustomThemeLocation = "System";
 		private int _FileVersion = 1; // the file version does not nessicarily match the application version
 		public Options()
 		{
@@ -65,6 +66,8 @@ namespace GoonTools.Helper
 				_BackupLogs = Convert.ToBoolean(hsh["BackupLogs"]);
 			if(hsh.Contains("CustomTheme"))
 				_CustomTheme = hsh["CustomTheme"].ToString();
+			if(hsh.Contains("CustomThemeLocation"))
+				_CustomThemeLocation = hsh["CustomThemeLocation"].ToString();
 		}
 		
 		public System.Collections.Hashtable GetOptionsTable()
@@ -80,6 +83,7 @@ namespace GoonTools.Helper
 			hsh.Add("BackupOptions", _BackupOptions);
 			hsh.Add("BackupLogs", _BackupLogs);
 			hsh.Add("CustomTheme", _CustomTheme);
+			hsh.Add("CustomThemeLocation", _CustomThemeLocation);
 			return hsh;
 		}
 		
@@ -141,6 +145,12 @@ namespace GoonTools.Helper
 		{
 			set{ _CustomTheme = value;}
 			get{ return _CustomTheme;}
+		}
+		
+		public string CustomThemeLocation
+		{
+			set{ _CustomThemeLocation = value;}
+			get{ return _CustomThemeLocation;}
 		}
 	}
 	
