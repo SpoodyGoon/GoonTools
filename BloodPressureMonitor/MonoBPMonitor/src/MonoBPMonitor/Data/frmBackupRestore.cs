@@ -200,10 +200,10 @@ namespace MonoBPMonitor {
 				}
 				dt.Clear();
 				// backup the doctor table
-				dt = dp.ExecuteDataTable("SELECT EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
+				dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
 				for(int i = 0; i < dt.Rows.Count; i++)
 				{
-					sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + Convert.ToDateTime(dt.Rows[i]["EntryDateTime"]).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '" + dt.Rows[i]["Notes"].ToString() + "', " + dt.Rows[i]["UserID"].ToString() + ");");
+					sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + Convert.ToDateTime(dt.Rows[i]["EntryDate"] + ":" + dt.Rows[i]["Notes"].ToString().Replace("pm", "")).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '" + dt.Rows[i]["Notes"].ToString() + "', " + dt.Rows[i]["UserID"].ToString() + ");");
 				}
 				dt.Clear();
 				// backup the doctor table
@@ -394,7 +394,7 @@ namespace MonoBPMonitor {
 								}
 							}
 							
-							DataSet ds;
+							DataSet ds = new DataSet();
 							ds.ReadXml(so.Path.Combine(tmpFolderName, "Backup.xml"));
 							
 							RestoreMetaInfo((DataTable)ds.Tables["MetaInfo"]);
@@ -408,6 +408,19 @@ namespace MonoBPMonitor {
 								RestoreLogs();
 						}
 						msg2.Destroy();
+						
+						// clean up the temp folders
+						so.FileInfo[] fi2;
+						so.DirectoryInfo di2 = new so.DirectoryInfo(tmpFolderName);
+						if(so.Directory.Exists(di2.FullName))
+						{
+							fi2 = di2.GetFiles();
+							for(int i= 0; i< fi2.Length; i++)
+							{
+								fi2[i].Delete();
+							}
+						}
+						di2.Delete();
 						
 					}
 				}
