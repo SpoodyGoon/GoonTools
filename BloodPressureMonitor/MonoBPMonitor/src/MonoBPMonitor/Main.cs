@@ -33,10 +33,10 @@ namespace MonoBPMonitor
 			GoonTools.Common.LoadAll();
 			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
 			{
-				if(System.IO.File.Exists(GoonTools.Common.Option.CustomTheme) && GoonTools.Common.Option.CustomThemeLocation != "System")
+				if(System.IO.File.Exists(GoonTools.Common.Option.CustomThemeLocation) && GoonTools.Common.Option.CustomTheme != "System")
 				{
-					Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeLocation);
-					Gtk.Rc.ReparseAll();
+					Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeLocation);						
+					Gtk.Rc.ResetStyles( Gtk.Settings.GetForScreen(Gdk.Screen.Default) );
 				}
 			}
 			MainWindow win = new MainWindow ();

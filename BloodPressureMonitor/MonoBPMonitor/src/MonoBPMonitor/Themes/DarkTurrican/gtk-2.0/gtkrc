@@ -121,8 +121,8 @@ style "notebook_bg" {
 }
 
 style "button" {
-	xthickness = 3
-	ythickness = 3
+	xthickness = 2
+	ythickness = 2
 
 	bg[NORMAL]        = shade (1.04, @bg_color)
 	bg[PRELIGHT]      = shade (1.05, @bg_color)
