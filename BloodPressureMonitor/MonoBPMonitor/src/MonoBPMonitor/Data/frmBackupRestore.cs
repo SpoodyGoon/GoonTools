@@ -23,9 +23,12 @@ namespace MonoBPMonitor {
 	{
 		private string tmpFolderName = "";
 		private string strNewLine = System.Environment.NewLine;
+		private bool _RestoreOptions = true;
+		private bool _RestoreSchema = true;
+		private bool _RestoreData = true;
+		private bool _RestoreLogs = true;
 		public frmBackupRestore()
 		{
-			tmpFolderName = Common.EnvData.GetNewTempFolder("BPMonitor", false);
 			this.Build();
 			cbxDatabaseSchema.Active = Common.Option.BackupSchema;
 			cbxDatabaseData.Active = Common.Option.BackupData;
@@ -58,9 +61,9 @@ namespace MonoBPMonitor {
 		
 		protected virtual void OnBtnBackupClicked (object sender, System.EventArgs e)
 		{
-			
 			FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
 			FileFilter filter = new FileFilter();
+			DataSet ds = new DataSet("BPMonitorBackup");
 			try
 			{
 				if(!cbxLogs.Active && !cbxDatabaseData.Active && !cbxDatabaseSchema.Active && !cbxOptions.Active)
@@ -71,7 +74,7 @@ namespace MonoBPMonitor {
 				}
 				else
 				{
-					
+					tmpFolderName = Common.EnvData.GetNewTempFolder("BPMonitor_" + DateTime.Now.Ticks.ToString(), false);
 					// lets start by getting our file name
 					filter.Name = "Backup Files (bz2)";
 					filter.AddMimeType("application/bzip2");
@@ -83,7 +86,7 @@ namespace MonoBPMonitor {
 					if (fc.Run() == (int)ResponseType.Ok)
 					{
 						// put backup code here
-						BackupMetaInfo();
+						ds.Tables.Add(BackupMetaInfo());
 						if(cbxDatabaseSchema.Active == true)
 							BackupSchema();
 						
@@ -91,10 +94,15 @@ namespace MonoBPMonitor {
 							BackupData();
 						
 						if(cbxOptions.Active == true)
-							BackupOptions();
+							ds.Tables.Add(BackupOptions());
 						
 						if(cbxLogs.Active == true)
 							BackupLogs();
+						
+						
+						if(ds.Tables.Count > 0)
+							ds.WriteXml(so.Path.Combine(tmpFolderName, "Backup.xml"));
+						
 						
 						string[] filenames = so.Directory.GetFiles(so.Path.GetFullPath(tmpFolderName));
 						using (ZipOutputStream s = new ZipOutputStream(so.File.Create(fc.Filename)))
@@ -121,6 +129,19 @@ namespace MonoBPMonitor {
 						}
 					}
 				}
+				
+				// clean up the temp folders
+				so.FileInfo[] fi;
+				so.DirectoryInfo di = new so.DirectoryInfo(tmpFolderName);
+				if(so.Directory.Exists(di.FullName))
+				{
+					fi = di.GetFiles();
+					for(int i= 0; i< fi.Length; i++)
+					{
+						fi[i].Delete();
+					}
+				}
+				di.Delete();
 			}
 			catch(Exception ex)
 			{
@@ -130,6 +151,8 @@ namespace MonoBPMonitor {
 			{
 				fc.Destroy();
 				filter.Destroy();
+				ds.Clear();
+				ds.Dispose();
 			}
 		}
 		
@@ -157,7 +180,7 @@ namespace MonoBPMonitor {
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(this, ex);
+				throw ex;
 			}
 		}
 		
@@ -201,29 +224,29 @@ namespace MonoBPMonitor {
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(this, ex);
+				throw ex;
 			}
 		}
 		
-		private void BackupOptions()
+		private DataTable BackupOptions()
 		{
+			DataTable dt = SimpleDataTable("Options");
 			try
 			{
-				so.StreamWriter sw = new so.StreamWriter(so.Path.Combine(tmpFolderName, "Options.dat"));
-				// write the database tables
-				sw.WriteLine("## Begin Mono BPMonitor options backup");
+				DataRow dr;
 				foreach( DictionaryEntry de in Common.Option.GetOptionsTable())
 				{
-					sw.WriteLine(de.Key.ToString() + "=" + de.Value.ToString());
+					dr = dt.NewRow();
+					dr["Key"] = de.Key.ToString();
+					dr["Value"] = de.Value.ToString();
+					dt.Rows.Add(dr);
 				}
-				sw.WriteLine("## End Mono BPMonitor options backup");
-				sw.Close();
-				sw.Close();
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(this, ex);
+				throw ex;
 			}
+			return dt;
 		}
 		
 		private void BackupLogs()
@@ -236,36 +259,232 @@ namespace MonoBPMonitor {
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(this, ex);
+				throw ex;
 			}
 			
 		}
 		
-		private void BackupMetaInfo()
+		private DataTable BackupMetaInfo()
 		{
+			DataTable dt = SimpleDataTable("MetaInfo");
 			try
 			{
-				so.StreamWriter sw = new so.StreamWriter(so.Path.Combine(tmpFolderName, "MetaInfo.txt"));
-				// write the database tables
-				sw.WriteLine("## Begin Mono BPMonitor MetaInfo backup");
-				sw.WriteLine("Application: MonoBPMonitor");
-				sw.WriteLine("Date: " + DateTime.Now.ToString());
-				sw.WriteLine("Backup Database Schema =" + (cbxDatabaseSchema.Active ? "Yes": "No"));
-				sw.WriteLine("Backup Database Data   =" + (cbxDatabaseData.Active ? "Yes": "No"));
-				sw.WriteLine("Backup Program Options =" + (cbxOptions.Active ? "Yes": "No"));
-				sw.WriteLine("Backup Program Logs    =" + (cbxLogs.Active ? "Yes": "No"));
-				sw.WriteLine("Description: Backup files for Mono BPMonitor");
-				sw.WriteLine("## End Mono BPMonitor MetaInfo backup");
-				sw.Close();
-				sw.Close();
+				System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
+				DataRow dr = dt.NewRow();
+				dr["Key"] = "Application";
+				dr["Value"] = "MonoBPMonitor";
+				dt.Rows.Add(dr);
+				dr = dt.NewRow();
+				dr["Key"] = "Description";
+				dr["Value"] = "Mono BPMonitor - Backup Meta Info";
+				dt.Rows.Add(dr);
+				dr = dt.NewRow();
+				dr["Key"] = "MajorVersion";
+				dr["Value"] = asm.GetName().Version.Major.ToString();
+				dt.Rows.Add(dr);
+				dr = dt.NewRow();
+				dr["Key"] = "MinorVersion";
+				dr["Value"] = asm.GetName().Version.Minor.ToString();
+				dt.Rows.Add(dr);
+				dr = dt.NewRow();
+				dr["Key"] = "Contact Info";
+				dr["Value"] = "Andy York <goontools@brdstudio.net>";
+				dt.Rows.Add(dr);
+				dr = dt.NewRow();
+				dr["Key"] = "Backup Database Schema";
+				dr["Value"] = cbxDatabaseSchema.Active ? "Yes":"No";
+				dt.Rows.Add(dr);
+				dr = dt.NewRow();
+				dr["Key"] = "Backup Database Data";
+				dr["Value"] = cbxDatabaseData.Active ? "Yes":"No";
+				dt.Rows.Add(dr);
+				dr = dt.NewRow();
+				dr["Key"] = "Backup Options";
+				dr["Value"] = cbxOptions.Active ? "Yes":"No";
+				dt.Rows.Add(dr);
+				dr = dt.NewRow();
+				dr["Key"] = "Backup Logs";
+				dr["Value"] = cbxLogs.Active ? "Yes":"No";
+				dt.Rows.Add(dr);
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+			return dt;
+		}
+		
+		#endregion Backup Area
+		
+		#region Restore Area
+		
+		protected virtual void OnBtnRestoreClicked (object sender, System.EventArgs e)
+		{
+			FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Open, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
+			FileFilter filter = new FileFilter();
+			try
+			{
+				if(!cbxLogs.Active && !cbxDatabaseData.Active && !cbxDatabaseSchema.Active && !cbxOptions.Active)
+				{
+					Gtk.MessageDialog msg = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No backup options selected", "Select a backup option.");
+					msg.Run();
+					msg.Destroy();
+				}
+				else
+				{
+					// lets start by getting our file name
+					filter.Name = "Backup Files (bz2)";
+					filter.AddMimeType("application/bzip2");
+					filter.AddPattern("*.bz2");
+					fc.AddFilter(filter);
+					fc.SelectMultiple = false;
+					fc.CurrentName= "BPMonitor.bak.bz2";
+					fc.SetCurrentFolder(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
+					if (fc.Run() == (int)ResponseType.Ok)
+					{
+						Gtk.MessageDialog msg2 = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Warning, Gtk.ButtonsType.YesNo, false, "Confirm", "This will over write existing files for each restore you asked for."+ Environment.NewLine + "Are you sure you want to overwrite your current files?");
+						if (msg2.Run() == (int)ResponseType.Yes)
+						{
+							tmpFolderName = Common.EnvData.GetNewTempFolder("BPMonitor_" + DateTime.Now.Ticks.ToString(), false);
+							using (ZipInputStream s = new ZipInputStream(so.File.OpenRead(fc.Filename)))
+							{
+								ZipEntry theEntry;
+								while ((theEntry = s.GetNextEntry()) != null)
+								{
+									Console.WriteLine(theEntry.Name);
+									string directoryName = so.Path.GetDirectoryName(theEntry.Name);
+									string fileName      = so.Path.GetFileName(theEntry.Name);
+									// create directory
+									if ( directoryName.Length > 0 )
+									{
+										so.Directory.CreateDirectory(so.Path.Combine(tmpFolderName,directoryName));
+									}
+									if (fileName != String.Empty)
+									{
+										using (so.FileStream streamWriter = so.File.Create(so.Path.Combine(tmpFolderName, theEntry.Name)))
+										{
+											int size = 2048;
+											byte[] data = new byte[2048];
+											while (true)
+											{
+												size = s.Read(data, 0, data.Length);
+												if (size > 0)
+												{
+													streamWriter.Write(data, 0, size);
+												}
+												else
+												{
+													break;
+												}
+											}
+										}
+									}
+								}
+							}
+							
+							// clean up the temp folders
+							so.FileInfo[] fi;
+							so.DirectoryInfo di = new so.DirectoryInfo(tmpFolderName);
+							if(so.Directory.Exists(di.FullName))
+							{
+								fi = di.GetFiles();
+								for(int i= 0; i< fi.Length; i++)
+								{
+									fi[i].Delete();
+								}
+							}
+							
+							DataSet ds;
+							ds.ReadXml(so.Path.Combine(tmpFolderName, "Backup.xml"));
+							
+							RestoreMetaInfo((DataTable)ds.Tables["MetaInfo"]);
+							if(cbxDatabaseSchema.Active && _RestoreSchema == true)
+								RestoreSchema(so.Path.Combine(tmpFolderName, "Schema.sql"));
+							if(cbxDatabaseData.Active && _RestoreData == true)
+								RestoreData(so.Path.Combine(tmpFolderName, "Data.sql"));
+							if(cbxOptions.Active && _RestoreOptions == true)
+								RestoreOptions((DataTable)ds.Tables["Options"]);
+							if(cbxLogs.Active && _RestoreLogs == true)
+								RestoreLogs();
+						}
+						msg2.Destroy();
+						
+					}
+				}
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(this, ex);
 			}
+			finally
+			{
+				fc.Destroy();
+				filter.Destroy();
+			}
 		}
 		
-		#endregion Backup Area
+		private void RestoreSchema(string SqlFileLocation)
+		{
+			if(so.File.Exists(Common.Option.DBLocation))
+				so.File.Delete(Common.Option.DBLocation);
+			
+			System.Text.RegularExpressions.Regex rx = new System.Text.RegularExpressions.Regex(";");
+			System.IO.StreamReader sr = new System.IO.StreamReader(SqlFileLocation);
+			string[] strSQL = rx.Split(sr.ReadToEnd());
+			sr.Close();
+			DataProvider dp = new DataProvider(Common.Option.DBLocation);
+			for(int i = 0; i < strSQL.Length; i++)
+			{
+				dp.ExecuteNonQuery(strSQL[i]);
+			}
+			dp.Dispose();
+		}
+		
+		private void RestoreData(string SqlFileLocation)
+		{
+			System.Text.RegularExpressions.Regex rx = new System.Text.RegularExpressions.Regex(";");
+			System.IO.StreamReader sr = new System.IO.StreamReader(SqlFileLocation);
+			string[] strSQL = rx.Split(sr.ReadToEnd());
+			sr.Close();
+			DataProvider dp = new DataProvider(Common.Option.DBLocation);
+			for(int i = 0; i < strSQL.Length; i++)
+			{
+				dp.ExecuteNonQuery(strSQL[i]);
+			}
+			dp.Dispose();
+		}
+		
+		private void RestoreOptions(DataTable dt)
+		{
+			Hashtable hsh = new Hashtable();
+			for(int i = 0; i < dt.Rows.Count; i++)
+			{
+				hsh.Add(dt.Rows[i]["Key"], dt.Rows[i]["Value"]);
+			}
+			Common.Option.RefreshAll(hsh);
+			Common.SaveOptions();
+		}
+		
+		private void RestoreLogs()
+		{
+			if(so.File.Exists(Common.EnvData.ErrorLog))
+				so.File.Delete(Common.EnvData.ErrorLog);
+			so.File.Copy(so.Path.Combine(tmpFolderName, "error.log"), Common.EnvData.ErrorLog ,true);
+		}
+		
+		private void RestoreMetaInfo(DataTable dt)
+		{
+			if(((DataRow)dt.Rows.Find("Backup Database Schema"))["Value"].ToString() == "Yes")
+				_RestoreSchema = true;
+			if(((DataRow)dt.Rows.Find("Backup Database Data")).ToString() == "Yes")
+				_RestoreData = true;
+			if(((DataRow)dt.Rows.Find("Backup Options")).ToString() == "Yes")
+				_RestoreOptions = true;
+			if(((DataRow)dt.Rows.Find("Backup Logs")).ToString() == "Yes")
+				_RestoreLogs = true;
+		}
+
+		#endregion Restore Area
 		
 		protected virtual void OnCbxAllToggled (object sender, System.EventArgs e)
 		{
@@ -282,13 +501,6 @@ namespace MonoBPMonitor {
 		}
 		
 		
-		protected virtual void OnBtnRestoreClicked (object sender, System.EventArgs e)
-		{
-			Gtk.MessageDialog msg = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "Restore Not Set Up", "Restore Not Set Up");
-			msg.Run();
-			msg.Destroy();
-		}
-
 		protected void OnBackupCheck_Clicked(object sender, System.EventArgs e)
 		{
 			Gtk.CheckButton cbx = (Gtk.CheckButton)sender;
@@ -310,5 +522,12 @@ namespace MonoBPMonitor {
 			CheckAll();
 		}
 
+		private DataTable SimpleDataTable(string TableName)
+		{
+			DataTable dt = new DataTable(TableName);
+			dt.Columns.AddRange(new DataColumn[]{new DataColumn("Key", typeof(string)),new DataColumn("Value", typeof(string))});
+			dt.PrimaryKey = new DataColumn[]{dt.Columns[0]};
+			return dt;
+		}
 	}
 }

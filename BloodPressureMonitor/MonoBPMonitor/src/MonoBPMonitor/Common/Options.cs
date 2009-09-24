@@ -87,6 +87,32 @@ namespace GoonTools.Helper
 			return hsh;
 		}
 		
+		public void RefreshAll(System.Collections.Hashtable hsh)
+		{
+			if(hsh.Contains("FileVersion"))
+				_FileVersion = Convert.ToInt16(hsh["FileVersion"]);
+			if(hsh.Contains("ConnString"))
+				_ConnString = hsh["ConnString"].ToString();
+			if(hsh.Contains("DBLocation"))
+				_DBLocation = hsh["DBLocation"].ToString();
+			if(hsh.Contains("SaveErrorLog"))
+				_SaveErrorLog = Convert.ToBoolean(hsh["SaveErrorLog"]);
+			if(hsh.Contains("HistoryDefaultShow"))
+				_HistoryDefaultShow = Convert.ToInt32(hsh["HistoryDefaultShow"]);
+			if(hsh.Contains("BackupSchema"))
+				_BackupSchema = Convert.ToBoolean(hsh["BackupSchema"]);
+			if(hsh.Contains("BackupData"))
+				_BackupData = Convert.ToBoolean(hsh["BackupData"]);
+			if(hsh.Contains("BackupOptions"))
+				_BackupOptions = Convert.ToBoolean(hsh["BackupOptions"]);
+			if(hsh.Contains("BackupLogs"))
+				_BackupLogs = Convert.ToBoolean(hsh["BackupLogs"]);
+			if(hsh.Contains("CustomTheme"))
+				_CustomTheme = hsh["CustomTheme"].ToString();
+			if(hsh.Contains("CustomThemeLocation"))
+				_CustomThemeLocation = hsh["CustomThemeLocation"].ToString();
+		}
+		
 		public string ConnString
 		{
 			set{ _ConnString = value;}
