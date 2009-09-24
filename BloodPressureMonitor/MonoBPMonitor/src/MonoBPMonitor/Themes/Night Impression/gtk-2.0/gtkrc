@@ -142,112 +142,8 @@ style "murrine-GtkWidget"
   text[SELECTED] = @selected_fg_color             # Default menu text
   text[ACTIVE] = @selected_fg_color               # active but not selected
   text[INSENSITIVE] = shade(1.20, @text_color)    #
-
-  # M U R R I N E   O P T I O N S   ####################################
-  # ####################################################################
-  engine "murrine"
-  {
-    animation = TRUE                              # Enable animations on progressbars, radio and checkbuttons
-    # Data type: Boolean; default = TRUE (enabled)
-
-    colorize_scrollbar = TRUE                     # Use colorized scrollbars with scrolls and lists
-    # Data type: Boolean; default = TRUE (enabled)
-
-    contrast = 1.0                                # <!> Use carefully
-    # Data type: Real; default = 1.0, Range 0-2, precision 0.1
-
-    glazestyle = 0
-    # Data type: Enumeration; default = 0, Range 0-4
-    #   0 = flat highlight, 1 = curved highlight, 2 = concave style, 3 = top curved highlight, 4 = beryl highlight
-
-    glow_shade = 1.2                              # Enable and set the Glow Shade
-    # Data type: Real; default = 1.0, Range 0-2, precision 0.1
-
-    glowstyle = 4                                 # How to apply glow shade
-    # Data type: Enumeration; default = 0, Range 0-4
-    # 0 = Top glow, 1 = Bottom glow, 2 = Top and Bottom glow, 3 = Horizontal glow, 4 = Centered glow
-
-    gradients = TRUE                              # Enable/Disable gradients
-    # Data type: Boolean; default = TRUE (enabled)
-
-    gradient_shades = {1.1,1.0,1.0,0.87}          # Gradient stops
-    # (4 stops) Data type: Real; Range 0-2, precision 0.2, default 1.0
-    # <!> Uses the current bg[COLOR]
-
-    highlight_shade = 1.00                        # Prelight ratio (includes panels)   ( very sensitive default @ 0.98 )
-    # Data type: Real; default = 1.1, Range 0-2, precision 0.01
-
-    lightborder_shade = 1.0                       # Prelight border ratio
-    # Data type: Real; default = 1.1, Range 0-2, precision 0.01
-
-    lightborderstyle = 1                          # Prelight border style
-    # Data type: Enumeration; default = 0, Range 0-1
-    # 0 = lightborder on top side, 1 = lightborder on all sides
-
-    listviewheaderstyle = 1                       # Listview header style
-    # Data type: Enumeration; default = 0, Range 0-2
-    # 0 = flat, 1 = glassy, 2 = raised
-
-    listviewstyle = 0                             # Listview separator style
-    # Data type: Enumeration; default = 0, Range 0-1
-    # 0 = nothing, 1 = dotted
-
-    menubarstyle = 2                              # Menubar style
-    # Data type: Enumeration; default = 0, Range 0-3
-    # 0 = flat, 1 = glassy, 2 = gradient, 3 = striped
-
-    menubaritemstyle = 0                          # Menubar item style
-    # Data type: Enumeration; default = 0, Range 0-1
-    # 0 = menuitem look, 1 = button look
-
-    menustyle = 0                                 # Vertical bars in menus
-    # Data type: Enumeration; default = 1, Range 0-1
-    # 0 = no vertical menu stripe, 1 = display vertical menu stripe
-
-    menuitemstyle = 1                             # Menu item style
-    # Data type: Enumeration; default = 0, Range 0-2
-    # 0 = flat, 1 = glass, 2 = striped
-
-    profile = MURRINE
-    # Data type: Enumeration; default = MURRINE
-    # engine style options: CANDIDO, CLEARLOOKS, MIST, MURRINE, NODOKA
-
-    progressbarstyle = 0                          # Progressbar style
-    # Data type: Enumeration; default = 0, Range 0-2
-    # 0 = Don't draw any special effect, 1 = Draw stripes, 2 = Draw cells
-
-    reliefstyle = 2                               # Relief style of widget
-    # Data type: Enumeration; default = 1, Range 0-2
-    # 0 = flat, 1 = inset, 2 = shadow
-
-    rgba = TRUE                                   # Enable/Disable RGBA support
-    # Data type: Boolean; default = FALSE (disabled)
-
-    roundness = 2                                 # Roundness of widget (typically button)
-    # Data type: Real; default = 1, Range 0-8
-    # 0 = square, > 0 = round
-
-    #scrollbar_color     = "#999999" # Override the color of scrollbars
-    # Data type: Gtk Color; default = "#999999"
-
-    scrollbarstyle = 0                            # Additional scrollbar features
-    # Data type: Enumeration; default = 0, Range 0-6
-    # 0 = nothing, 1 = circles, 2 = handles, 3 = diagonal stripes, 4 = diagonal stripes and handles, 5 = horizontal stripes, 6 = horizontal stripes and handles
-
-    sliderstyle = 0                               # Slider style
-    # Data type: Enumeration; default = 0, Range 0-1
-    # 0 = nothing added, 1 = handles
-
-    stepperstyle = 1                              # Stepper style
-    # Data type: Enumeration; default = 0, Range 0-1
-    # 0 = standard, 1 = integrated stepper handles
-
-    toolbarstyle = 1                              # Toolbar Style
-    # Data type: Enumeration; default = 0, Range 0-1
-    # 0 = flat, 1 = glassy, 2 = gradient
-  }
 }
-
+ 
 # Text Styles             ##############################################
 # ######################################################################
 #
@@ -309,20 +205,7 @@ style "murrine-GtkButton" = "murrine-DarkText"
 
   xthickness = 3
   ythickness = 3
-
-  engine "murrine"
-  {
-    contrast = 1.8
-    glazestyle = 0
-    gradients = TRUE
-    gradient_shades = { 1.00, 0.95, 0.95, 0.88 }
-    highlight_shade = 1.0
-    lightborder_shade = 1.4
-    lightborderstyle = 1
-    reliefstyle = 2
-    roundness = 3
-    profile = MURRINE
-  }
+  
 }
 
 style "murrine-GtkOptionMenu" = "murrine-GtkButton"
@@ -332,11 +215,7 @@ style "murrine-GtkOptionMenu" = "murrine-GtkButton"
   fg[ACTIVE] = @theme_color_07                    # active text
   fg[SELECTED] = @theme_color_09                  # selected text
   fg[INSENSITIVE] = shade(2.00, @theme_color_10)  # dimmed text
-  engine "murrine"
-  {
-    roundness = 0
-    profile = MURRINE
-  }
+ 
 }
 
 #
@@ -351,17 +230,6 @@ style "murrine-GtkToolbar" = "murrine-GtkWidget"
   bg[NORMAL] = @theme_color_04
 
   ythickness = 5
-
-  engine "murrine"
-  {
-    contrast = 1.0
-    glow_shade = 1.0
-    glazestyle = 3
-    gradients = TRUE
-    gradient_shades = { 1.08, 0.98, 0.98, 0.85 }
-    profile = MURRINE
-    toolbarstyle = 1
-  }
 }
 
 style "murrine-GtkToolbarButton" = "murrine-DarkText"
@@ -376,21 +244,6 @@ style "murrine-GtkToolbarButton" = "murrine-DarkText"
 
   xthickness = 6
   ythickness = 4
-
-  engine "murrine"
-  {
-    contrast = 0.60                               # Data type: Real; default = 1.0, Range 0-2, precision 0.1
-    glazestyle = 0                                # 0 = flat highlight, 1 = curved highlight, 2 = concave style, 3 = top curved highlight, 4 = beryl highlight
-    glow_shade = 0.9                              # Data type: Real; default = 1.0, Range 0-2, precision 0.1
-    glowstyle = 4                                 # 0 = Top glow, 1 = Bottom glow, 2 = Top and Bottom glow, 3 = Horizontal glow, 4 = Centered glow
-    gradients = TRUE                              # TRUE/FALSE
-    gradient_shades = { 1.06, 1.04, 1.04, 1.17 }  # (4 stops) Data type: Real; Range 0-2, precision 0.2, default 1.0
-    lightborder_shade = 1.40                      # Data type: Real; default = 1.1, Range 0-2, precision 0.01
-    lightborderstyle = 0                          # 0 = lightborder on top side, 1 = lightborder on all sides
-    reliefstyle = 0                               # 0 = flat, 1 = inset, 2 = shadow
-    roundness = 3
-    profile = MURRINE
-  }
 }
 
 style "murrine-GtkToolbar-sep" = "murrine-GtkToolbar"
@@ -424,18 +277,6 @@ style "murrine-GtkNotebook"
   text[INSENSITIVE] = @err_color                  #  *** waiting to see this ***
 
   xthickness = 4
-
-  engine "murrine"
-  {
-    contrast = 0.40
-    gradients = TRUE
-    # force tabs to a lighter shade
-    gradient_shades = { 2.00, 2.00, 2.00, 2.00 }
-    lightborder_shade = 1.0
-    lightborderstyle = 0
-    roundness = 3
-    profile = MURRINE
-  }
 }
 
 style "murrine-GtkNotebookTitleText"
@@ -508,11 +349,6 @@ style "murrine-GtkMenu"
   xthickness = 0                                  # pads left/right menu drop down
   ythickness = 0                                  # pads top/bottom menu drop down
 
-  engine "murrine"
-  {
-    contrast = 1.0
-    profile = MURRINE
-  }
 }
 
 style "murrine-GtkMenuItem"
@@ -538,17 +374,6 @@ style "murrine-GtkMenuItem"
   xthickness = 0
   ythickness = 5
 
-  engine "murrine"
-  {
-    contrast = 0.50
-    glazestyle = 1
-    glowstyle = 4
-    glow_shade = 1.10
-    gradients = TRUE
-    menustyle = 0
-    profile = MURRINE
-    roundness = 0
-  }
 }
 
 style "murrine-GtkMenubar"
@@ -557,17 +382,6 @@ style "murrine-GtkMenubar"
 
   fg[NORMAL] = @selected_fg_color                 # Menubar text
 
-  engine "murrine"
-  {
-    # menubar tabs
-    contrast = 0.75
-    glazestyle = 3                                # 0 = flat highlight, 1 = curved highlight, 2 = concave style, 3 = top curved highlight, 4 = beryl highlight
-    glow_shade = 1.5                              # Data type: Real; default = 1.0, Range 0-2, precision 0.1
-    glowstyle = 0                                 # 0 = Top glow, 1 = Bottom glow, 2 = Top and Bottom glow, 3 = Horizontal glow, 4 = Centered glow
-    gradients = FALSE
-    profile = MURRINE
-    roundness = 2
-  }
 }
 
 style "murrine-GtkMenuItemSeparator"
@@ -591,18 +405,6 @@ style "murrine-PanelGtkMenubar"
   fg[PRELIGHT] = @base_color                      # text after dropdown menu
 
   font_name = "Bold"
-
-  engine "murrine"
-  {
-    # Panel Menubar Tab
-    contrast = 0.75
-    glazestyle = 3                                # 0 = flat highlight, 1 = curved highlight, 2 = concave style, 3 = top curved highlight, 4 = beryl highlight
-    glow_shade = 1.5                              # Data type: Real; default = 1.0, Range 0-2, precision 0.1
-    glowstyle = 0                                 # 0 = Top glow, 1 = Bottom glow, 2 = Top and Bottom glow, 3 = Horizontal glow, 4 = Centered glow
-    gradients = FALSE
-    profile = MURRINE
-    roundness = 2
-  }
 }
 
 #
@@ -634,17 +436,6 @@ style "murrine-GtkTreeView-DarkHeader"
   xthickness = 2
   ythickness = 2
 
-  engine "murrine"
-  {
-    contrast = 0.75
-    glazestyle = 3                                # 0 = flat highlight, 1 = curved highlight, 2 = concave style, 3 = top curved highlight, 4 = beryl highlight
-    glow_shade = 1.5                              # Data type: Real; default = 1.0, Range 0-2, precision 0.1
-    glowstyle = 0                                 # 0 = Top glow, 1 = Bottom glow, 2 = Top and Bottom glow, 3 = Horizontal glow, 4 = Centered glow
-    gradients = TRUE
-    listviewheaderstyle = 1                       # 0 = flat, 1 = glassy, 2 = raised
-    profile = MURRINE
-    roundness = 0                                 # 0 = square
-  }
 }
 
 style "murrine-GtkTreeView-LiteHeader"
@@ -659,17 +450,6 @@ style "murrine-GtkTreeView-LiteHeader"
   xthickness = 2
   ythickness = 1
 
-  engine "murrine"
-  {
-    contrast = 0.75
-    glazestyle = 3                                # 0 = flat highlight, 1 = curved highlight, 2 = concave style, 3 = top curved highlight, 4 = beryl highlight
-    glow_shade = 1.5                              # Data type: Real; default = 1.0, Range 0-2, precision 0.1
-    glowstyle = 0                                 # 0 = Top glow, 1 = Bottom glow, 2 = Top and Bottom glow, 3 = Horizontal glow, 4 = Centered glow
-    gradients = TRUE
-    listviewheaderstyle = 1                       # 0 = flat, 1 = glassy, 2 = raised
-    profile = MURRINE
-    roundness = 0                                 # 0 = square
-  }
 }
 
 #
@@ -695,13 +475,6 @@ style "murrine-GtkToggleButton"
   text[PRELIGHT] = @selected_bg_color             # prelight check symbol
   text[INSENSITIVE] = @selected_fg_color          # check symbol (orange)
 
-  engine "murrine"
-  {
-    contrast = 0.75
-    glazestyle = 1
-    gradients = TRUE
-    profile = MURRINE
-  }
 }
 
 style "murrine-GtkCheckButton" = "murrine-GtkToggleButton"
@@ -710,14 +483,6 @@ style "murrine-GtkCheckButton" = "murrine-GtkToggleButton"
   fg[PRELIGHT] = @theme_color_08                  # Prelight
   fg[INSENSITIVE] = @theme_color_10               # dimmed text
 
-  engine "murrine"
-  {
-    contrast = 1.75
-    glazestyle = 1
-    gradients = TRUE
-    profile = MURRINE
-    roundness = 2
-  }
 }
 
 #
@@ -732,12 +497,6 @@ style "murrine-GtkTooltips"
   xthickness = 8
   ythickness = 4
 
-  engine "murrine"
-  {
-    gradients = TRUE
-    contrast = 1.0
-    profile = MURRINE
-  }
 }
 
 # GtkProgressBar          ##############################################
@@ -756,21 +515,6 @@ style "murrine-GtkProgressBar"
   # this changes the font of the status message
   #font_name = "Bold"
 
-  engine "murrine"
-  {
-    # contrast determines how much of the candy bar is visible
-    animation = TRUE
-    #contrast = 0.80
-    contrast = 1.20
-    glazestyle = 0                                # 0 = flat, 1 = curved, 2 = concave, 3 = top curved, 4 = beryl highlight, 5 = new
-    glowstyle = 0                                 # 0 = Top glow, 1 = Bottom glow, 2 = Top and Bottom glow, 3 = Horizontal glow, 4 = Centered glow
-    glow_shade = 1.10                             # Enable and set the Glow Shade
-    gradients = TRUE
-    gradient_shades = {0.84,0.86,0.88,1.00}
-    progressbarstyle = 1                          # 0 = Don't draw any special effect, 1 = Draw stripes, 2 = Draw cells
-    profile = MURRINE
-    roundness = 4                                 # match scrollbar
-  }
 }
 
 # rhythmbox-GtkProgressBar style
@@ -779,14 +523,6 @@ style "rhythmbox-GtkProgressBar" = "murrine-GtkProgressBar"
 {
   xthickness = 0
   ythickness = 6
-
-  engine "murrine"
-  {
-    animation = FALSE
-    progressbarstyle = 0
-    profile = MURRINE
-    roundness = 3
-  }
 }
 
 # mozilla-GtkProgressBar style
@@ -795,14 +531,6 @@ style "mozilla-GtkProgressBar" = "murrine-GtkProgressBar"
 {
   xthickness = 0
   ythickness = 0
-
-  engine "murrine"
-  {
-    animation = FALSE
-    progressbarstyle = 0
-    profile = MURRINE
-    roundness = 3
-  }
 }
 
 #
@@ -819,12 +547,6 @@ style "murrine-GtkStatusbar"
 
   ythickness  = 6
   xthickness  = 4
-
-  engine "murrine"
-  {
-    contrast = 1.00
-    profile = MURRINE
-  }
 }
 #
 # GtkStatusbar (desktop)  ##############################################
@@ -860,19 +582,6 @@ style "murrine-GtkEntry"
   xthickness = 3
   ythickness = 3
 
-  engine "murrine"
-  {
-    contrast = 0.00
-    glazestyle = 0
-    gradients = TRUE
-    gradient_shades = { 1.05, 0.95, 0.95, 0.88 }
-    highlight_shade = 1.0
-    lightborder_shade = 0.00
-    lightborderstyle = 0
-    reliefstyle = 2
-    roundness = 0
-    profile = MURRINE
-  }
 }
 
 style "murrine-GtkCombo"
@@ -885,20 +594,6 @@ style "murrine-GtkCombo"
   bg[INSENSITIVE] = shade (0.93, @theme_color_23) # Dimmed
 
   fg[NORMAL] = @text_color
-
-  engine "murrine"
-  {
-    contrast = 0.00
-    glazestyle = 0
-    gradients = TRUE
-    gradient_shades = { 1.05, 0.95, 0.95, 0.88 }
-    highlight_shade = 1.0
-    lightborder_shade = 0.00
-    lightborderstyle = 0
-    reliefstyle = 2
-    roundness = 0
-    profile = MURRINE
-  }
 }
 
 style "murrine-GtkComboBox" = "murrine-GtkEntry"
@@ -930,16 +625,6 @@ style "murrine-GtkScale"
   GtkScale::slider-width = 14
   GtkScale::trough-side-details = 1
 
-  engine "murrine"
-  {
-    contrast = 1.25
-    lightborder_shade = 1.25
-    lightborderstyle = 0
-    glowstyle = 4
-    gradients = TRUE
-    roundness = 2
-    profile = MURRINE                             # CANDIDO, CLEARLOOKS, MIST, MURRINE, NODOKA
-  }
 }
 
 style "murrine-GtkHScale" = "murrine-GtkScale"
@@ -975,26 +660,6 @@ style "murrine-GtkScrollbar"
   #GtkScrollbar::has-secondary-forward-stepper = 1
   GtkScrollbar::min-slider-length = 30
   GtkScrollbar::trough-under-steppers = 1
-
-  engine "murrine"
-  {
-    colorize_scrollbar = TRUE
-    #colorize_scrollbar = FALSE
-    contrast = 0.70                               # controls appearance/color of trough
-    contrast = 1.10                               # controls appearance/color of trough
-    glazestyle = 0
-    glowstyle = 4
-    glow_shade = 1.0
-    gradients = TRUE
-    gradient_shades = {1.00, 1.04, 1.04, 0.90}
-    highlight_shade = 1.0
-    lightborderstyle = 1
-    lightborder_shade = 1.2
-    scrollbarstyle = 2                            # 0 = nothing, 1 = circles, 2 = handles, 3 = diagonal stripes, 4 = diagonal stripes and handles, 5 = horizontal stripes, 6 = horizontal stripes and handles
-    stepperstyle = 1                              # 0 = standard, 1 = integrated stepper handles
-    profile = MURRINE                             # CANDIDO, CLEARLOOKS, MIST, MURRINE, NODOKA
-    roundness = 3
-  }
 
 }
 
@@ -1172,16 +837,6 @@ style "evolution-GtkTreeHeader"
   xthickness = 2
   ythickness = 0
 
-  engine "murrine"
-  {
-    contrast = 0.75
-    glazestyle = 0                                # 0 = flat highlight, 1 = curved highlight, 2 = concave style, 3 = top curved highlight, 4 = beryl highlight
-    gradients = TRUE
-    gradient_shades = { 2.00, 1.90, 1.80, 1.50 }
-    listviewheaderstyle = 1
-    profile = MURRINE
-    roundness = 0
-  }
 }
 
 style "evolution-GtkECalendar"
@@ -1260,19 +915,6 @@ style "murrine-rhythmbox-header"
   xthickness = 3
   ythickness = 3
 
-  engine "murrine"
-  {
-    contrast = 0.80
-    glazestyle = 0
-    gradients = TRUE
-    gradient_shades = { 1.1, 1.0, 1.0, 0.9 }
-    highlight_shade = 1.0
-    lightborderstyle = 1
-    lightborder_shade = 1.2
-    scrollbarstyle = 0
-    roundness = 2
-    profile = MURRINE
-  }
 }
 
 style "murrine-rhythmbox-List"
@@ -1303,16 +945,6 @@ style "mozilla-GtkToolbar" = "murrine-DarkText"
 {
   bg[NORMAL] = @theme_color_04                    # Just a tad darker than toolbar
 
-  engine "murrine"
-  {
-    contrast = 1.0
-    glow_shade = 1.0
-    glazestyle = 3
-    gradients = TRUE
-    gradient_shades = {0.76,0.86,0.89,1.00}       # Gradient stops
-    profile = MURRINE
-    toolbarstyle = 1
-  }
 }
 
 style "mozilla-GtkNotebook"
@@ -1322,16 +954,6 @@ style "mozilla-GtkNotebook"
 
   ythickness = 4
 
-  engine "murrine"
-  {
-    contrast = 1.20
-    gradients = TRUE
-    gradient_shades = {1.50,1.55,1.50,1.00}       # Gradient stops
-    lightborder_shade = 1.0
-    lightborderstyle = 0
-    roundness = 6
-    profile = MURRINE
-  }
 }
 
 widget "MozillaGtkWidget.*Toolbar*" style:highest "mozilla-GtkToolbar"

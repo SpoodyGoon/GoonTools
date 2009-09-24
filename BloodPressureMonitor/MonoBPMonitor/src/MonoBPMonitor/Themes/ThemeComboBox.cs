@@ -53,7 +53,7 @@ namespace MonoBPMonitor.Themes
 			// if themes are allow load them
 			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
 			{
-				lsTheme.AppendValues("System", "System");				
+				///lsTheme.AppendValues("System", "System");				
 				// load the custom themes from the locations
 				if(so.Directory.Exists(Common.EnvData.ThemeFolder))
 				{
