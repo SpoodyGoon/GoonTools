@@ -1,5 +1,6 @@
 
 using System;
+using Gtk;
 using GoonTools;
 
 namespace MonoBPMonitor
@@ -17,7 +18,9 @@ namespace MonoBPMonitor
 			this.Build();
 			
 			spnDefaultHistory.Value = (double)GoonTools.Common.Option.HistoryDefaultShow;
+			cbxLimitRecords.Active = GoonTools.Common.Option.LimitHistory;
 			cbxLogErrors.Active = GoonTools.Common.Option.SaveErrorLog;
+			spnDefaultHistory.Sensitive = GoonTools.Common.Option.LimitHistory;
 			themecombobox1.SetThemeName(Common.Option.CustomTheme);
 			btnApply.Clicked += new EventHandler(btnApply_Clicked);
 			btnOk.Clicked += new EventHandler(btnOk_Clicked);
@@ -56,29 +59,43 @@ namespace MonoBPMonitor
 		{
 			// no matter what happens just save the changes
 			// when we close
+			GoonTools.Common.Option.LimitHistory = cbxLimitRecords.Active;
 			GoonTools.Common.Option.HistoryDefaultShow=Convert.ToInt32(spnDefaultHistory.Value);
 			GoonTools.Common.Option.SaveErrorLog= cbxLogErrors.Active;
 			GoonTools.Common.Option.CustomTheme = themecombobox1.ThemeName;
 			GoonTools.Common.Option.CustomThemeLocation = themecombobox1.ThemeLoc;
 			GoonTools.Common.SaveOptions();
-			Console.WriteLine("theme " + Common.Option.CustomThemeLocation + " = " + Common.Option.CustomTheme);
-			System.Diagnostics.Debug.WriteLine("theme " + Common.Option.CustomThemeLocation + " = " + Common.Option.CustomTheme);
-			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
+			
+			if(StartingTheme != themecombobox1.ThemeName)
 			{
-				if(StartingTheme != themecombobox1.ThemeName)
-				{
-					if(System.IO.File.Exists(GoonTools.Common.Option.CustomThemeLocation) && GoonTools.Common.Option.CustomTheme != "System")
-					{
-						Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeLocation);						
-						Gtk.Rc.ResetStyles( Gtk.Settings.GetForScreen(Gdk.Screen.Default) );
-					}
-					else
-					{
-						Gtk.Rc.ResetStyles(Gtk.Settings.Default);
-					}
-				}
+				Gtk.MessageDialog msg = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "The theme will be changed the next time you restart the program.", "Theme Change.");
+					msg.Run();
+					msg.Destroy();
 			}
 			
+//			Console.WriteLine("theme " + Common.Option.CustomThemeLocation + " = " + Common.Option.CustomTheme);
+//			System.Diagnostics.Debug.WriteLine("theme " + Common.Option.CustomThemeLocation + " = " + Common.Option.CustomTheme);
+//			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
+//			{
+//				if(StartingTheme != themecombobox1.ThemeName)
+//				{
+//					if(System.IO.File.Exists(GoonTools.Common.Option.CustomThemeLocation) && GoonTools.Common.Option.CustomTheme != "System")
+//					{
+//						Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeLocation);						
+//						Gtk.Rc.ResetStyles( Gtk.Settings.GetForScreen(Gdk.Screen.Default) );
+//					}
+//					else
+//					{
+//						Gtk.Rc.ResetStyles(Gtk.Settings.Default);
+//					}
+//				}
+//			}
+			
+		}		
+		
+		protected virtual void OnCbxLimitRecordsToggled (object sender, System.EventArgs e)
+		{
+			spnDefaultHistory.Sensitive = cbxLimitRecords.Active;
 		}
 	}
 }

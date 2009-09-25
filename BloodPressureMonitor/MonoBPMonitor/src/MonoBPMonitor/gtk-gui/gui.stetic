@@ -2919,7 +2919,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmOptions" design-size="400 194">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmOptions" design-size="403 250">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Options</property>
     <property name="Icon">stock:gtk-preferences Dialog</property>
@@ -2989,10 +2989,16 @@
                 <child>
                   <widget class="Gtk.Table" id="table3">
                     <property name="MemberName" />
-                    <property name="NRows">3</property>
+                    <property name="NRows">5</property>
                     <property name="NColumns">2</property>
                     <property name="RowSpacing">6</property>
                     <property name="ColumnSpacing">6</property>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
                     <child>
                       <widget class="Gtk.Alignment" id="algThemeControl">
                         <property name="MemberName" />
@@ -3004,8 +3010,8 @@
                         </child>
                       </widget>
                       <packing>
-                        <property name="TopAttach">2</property>
-                        <property name="BottomAttach">3</property>
+                        <property name="TopAttach">4</property>
+                        <property name="BottomAttach">5</property>
                         <property name="LeftAttach">1</property>
                         <property name="RightAttach">2</property>
                         <property name="AutoSize">True</property>
@@ -3032,8 +3038,8 @@
                         </child>
                       </widget>
                       <packing>
-                        <property name="TopAttach">2</property>
-                        <property name="BottomAttach">3</property>
+                        <property name="TopAttach">4</property>
+                        <property name="BottomAttach">5</property>
                         <property name="AutoSize">True</property>
                         <property name="XOptions">Fill</property>
                         <property name="YOptions">Fill</property>
@@ -3059,8 +3065,8 @@
                         </child>
                       </widget>
                       <packing>
-                        <property name="TopAttach">1</property>
-                        <property name="BottomAttach">2</property>
+                        <property name="TopAttach">3</property>
+                        <property name="BottomAttach">4</property>
                         <property name="AutoSize">True</property>
                         <property name="XOptions">Fill</property>
                         <property name="YOptions">Fill</property>
@@ -3091,8 +3097,8 @@
                         </child>
                       </widget>
                       <packing>
-                        <property name="TopAttach">1</property>
-                        <property name="BottomAttach">2</property>
+                        <property name="TopAttach">3</property>
+                        <property name="BottomAttach">4</property>
                         <property name="LeftAttach">1</property>
                         <property name="RightAttach">2</property>
                         <property name="AutoSize">True</property>
@@ -3120,6 +3126,61 @@
                         </child>
                       </widget>
                       <packing>
+                        <property name="TopAttach">1</property>
+                        <property name="BottomAttach">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="XOptions">Fill</property>
+                        <property name="YOptions">Fill</property>
+                        <property name="XExpand">False</property>
+                        <property name="XFill">True</property>
+                        <property name="XShrink">False</property>
+                        <property name="YExpand">False</property>
+                        <property name="YFill">True</property>
+                        <property name="YShrink">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Alignment" id="alignment6">
+                        <property name="MemberName" />
+                        <property name="Xscale">0.98</property>
+                        <property name="Xalign">0.01</property>
+                        <child>
+                          <widget class="Gtk.Label" id="label3">
+                            <property name="MemberName" />
+                            <property name="Xalign">0.98</property>
+                            <property name="LabelProp" translatable="yes">Limit amount of readings displayed:</property>
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="TopAttach">2</property>
+                        <property name="BottomAttach">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="XOptions">Fill</property>
+                        <property name="YOptions">Fill</property>
+                        <property name="XExpand">False</property>
+                        <property name="XFill">True</property>
+                        <property name="XShrink">False</property>
+                        <property name="YExpand">False</property>
+                        <property name="YFill">True</property>
+                        <property name="YShrink">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.CheckButton" id="cbxLimitRecords">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Label" translatable="yes" />
+                        <property name="Active">True</property>
+                        <property name="DrawIndicator">True</property>
+                        <property name="HasLabel">True</property>
+                        <signal name="Toggled" handler="OnCbxLimitRecordsToggled" />
+                      </widget>
+                      <packing>
+                        <property name="TopAttach">2</property>
+                        <property name="BottomAttach">3</property>
+                        <property name="LeftAttach">1</property>
+                        <property name="RightAttach">2</property>
                         <property name="AutoSize">True</property>
                         <property name="XOptions">Fill</property>
                         <property name="YOptions">Fill</property>
@@ -3136,11 +3197,13 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes" />
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
-                        <property name="UseUnderline">True</property>
                       </widget>
                       <packing>
+                        <property name="TopAttach">1</property>
+                        <property name="BottomAttach">2</property>
                         <property name="LeftAttach">1</property>
                         <property name="RightAttach">2</property>
                         <property name="AutoSize">True</property>
@@ -3158,8 +3221,6 @@
                   <packing>
                     <property name="Position">2</property>
                     <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
                   </packing>
                 </child>
               </widget>
@@ -3168,8 +3229,6 @@
           <packing>
             <property name="Position">0</property>
             <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>
@@ -3177,8 +3236,8 @@
     <child internal-child="ActionArea">
       <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
         <property name="MemberName" />
-        <property name="Spacing">2</property>
-        <property name="BorderWidth">2</property>
+        <property name="Spacing">6</property>
+        <property name="BorderWidth">5</property>
         <property name="Size">3</property>
         <property name="LayoutStyle">Spread</property>
         <child>
