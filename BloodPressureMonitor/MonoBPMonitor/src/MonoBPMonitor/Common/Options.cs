@@ -32,6 +32,7 @@ namespace GoonTools.Helper
 		private string _ConnString = "URI=file:" +  GoonTools.Common.EnvData.SavePath + "BPMonitor.s3db,version=3, busy_timeout=3000";
 		private string _DBLocation = GoonTools.Common.EnvData.SavePath + "BPMonitor.s3db";
 		private bool _SaveErrorLog = true; // this is just a flag to save the error to the save directory
+		private bool _LimitHistory = true; 
 		private int _HistoryDefaultShow = 30; // this is the amount of history we want to show
 		private bool _BackupSchema = true;
 		private bool _BackupData = true;
@@ -54,6 +55,8 @@ namespace GoonTools.Helper
 				_DBLocation = hsh["DBLocation"].ToString();
 			if(hsh.Contains("SaveErrorLog"))
 				_SaveErrorLog = Convert.ToBoolean(hsh["SaveErrorLog"]);
+			if(hsh.Contains("LimitHistory"))
+				_LimitHistory = Convert.ToBoolean(hsh["LimitHistory"]);
 			if(hsh.Contains("HistoryDefaultShow"))
 				_HistoryDefaultShow = Convert.ToInt32(hsh["HistoryDefaultShow"]);
 			if(hsh.Contains("BackupSchema"))
@@ -77,6 +80,7 @@ namespace GoonTools.Helper
 			hsh.Add("ConnString", _ConnString);
 			hsh.Add("DBLocation", _DBLocation);
 			hsh.Add("SaveErrorLog", _SaveErrorLog);
+			hsh.Add("LimitHistory", _LimitHistory);
 			hsh.Add("HistoryDefaultShow", _HistoryDefaultShow);
 			hsh.Add("BackupSchema", _BackupSchema);
 			hsh.Add("BackupData", _BackupData);
@@ -97,6 +101,8 @@ namespace GoonTools.Helper
 				_DBLocation = hsh["DBLocation"].ToString();
 			if(hsh.Contains("SaveErrorLog"))
 				_SaveErrorLog = Convert.ToBoolean(hsh["SaveErrorLog"]);
+			if(hsh.Contains("LimitHistory"))
+				_LimitHistory = Convert.ToBoolean(hsh["LimitHistory"]);
 			if(hsh.Contains("HistoryDefaultShow"))
 				_HistoryDefaultShow = Convert.ToInt32(hsh["HistoryDefaultShow"]);
 			if(hsh.Contains("BackupSchema"))
@@ -129,6 +135,12 @@ namespace GoonTools.Helper
 		{
 			set{ _SaveErrorLog = value;}
 			get{ return _SaveErrorLog;}
+		}
+		
+		public bool LimitHistory
+		{
+			set{ _LimitHistory = value;}
+			get{ return _LimitHistory;}
 		}
 		
 		public int HistoryDefaultShow

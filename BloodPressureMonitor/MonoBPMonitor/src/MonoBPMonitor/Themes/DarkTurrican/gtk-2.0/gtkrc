@@ -180,9 +180,6 @@ style "frame_title" {
 }
 
 style "treeview" {
-	engine "murrine" {
-		roundness = 0
-	}
 }
 
 # The almost useless progress bar style
@@ -192,18 +189,8 @@ style "progressbar" {
 	
 	bg[PRELIGHT]      = shade (1.03, @selected_bg_color)
 	fg[PRELIGHT]      = @selected_fg_color
-	
-	engine "murrine" {
-		lightborder_shade   = 1.25
-		lightborderstyle    = 1
-	}
 }
 
-style "progressbar_menu_item" = "progressbar" {
-	engine "murrine" {
-		roundness = 0
-	}
-}
 
 # This style is based on the default style, so that the colors from the button
 # style are overriden again.
@@ -227,21 +214,10 @@ style "nautilus_location" {
 	bg[NORMAL]        = mix (0.60, shade (1.05, @bg_color), @selected_bg_color)
 }
 
-style "calendar" {
-	engine "murrine" {
-		roundness = 0
-	}
-}
 
 style "radiocheck" {
 	text[NORMAL]      = @selected_fg_color
 	text[PRELIGHT]    = @selected_fg_color
-}
-
-style "firefox" {
-	engine "murrine" {
-		toolbarstyle	    = 0
-	}
 }
 
 # Wrokaroudn style for places where the text color is used instead of the fg color.
@@ -298,7 +274,6 @@ class "GtkHScale" style "hscale"
 class "GtkScrollbar" style "scrollbar"
 class "GtkHScrollbar" style "hscrollbar"
 class "GtkVScrollbar" style "vscrollbar"
-class "GtkCalendar" style "calendar"
 class "GtkRadio*" style "radiocheck"
 class "GtkCheck*" style "radiocheck"
 
@@ -328,7 +303,7 @@ widget_class "*.<GtkFrame>.<GtkLabel>" style "frame_title"
 widget_class "*.<GtkTreeView>*" style "treeview"
 
 widget_class "*<GtkProgress>" style "progressbar"
-widget_class "*.<GtkMenuItem>.*.<GtkProgressBar>" style "progressbar_menu_item"
+#widget_class "*.<GtkMenuItem>.*.<GtkProgressBar>" style "progressbar_menu_item"
 
 # Treeview headers (and similar stock GTK+ widgets)
 widget_class "*.<GtkTreeView>.<GtkButton>" style "treeview_header"
@@ -336,7 +311,7 @@ widget_class "*.<GtkCTree>.<GtkButton>" style "treeview_header"
 widget_class "*.<GtkList>.<GtkButton>" style "treeview_header"
 widget_class "*.<GtkCList>.<GtkButton>" style "treeview_header"
 
-widget_class "*Firefox*" style "firefox"
+#widget_class "*Firefox*" style "firefox"
 
 # The window of the tooltip is called "gtk-tooltip"
 ##################################################################
