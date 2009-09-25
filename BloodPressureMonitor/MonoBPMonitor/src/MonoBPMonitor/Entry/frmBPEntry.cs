@@ -74,7 +74,7 @@ namespace MonoBPMonitor
 				_CurrentEntry.Notes = txtNotes.Buffer.Text;
 				_CurrentEntry.UserID = cboUser.UserID;
 				_CurrentEntry.AddUpdate();
-				
+				this.Respond(Gtk.ResponseType.Ok);
 				this.Hide();
 			}
 			catch(Exception ex)

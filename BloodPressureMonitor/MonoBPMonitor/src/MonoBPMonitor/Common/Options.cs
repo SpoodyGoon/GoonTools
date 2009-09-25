@@ -67,10 +67,10 @@ namespace GoonTools.Helper
 				_BackupOptions = Convert.ToBoolean(hsh["BackupOptions"]);
 			if(hsh.Contains("BackupLogs"))
 				_BackupLogs = Convert.ToBoolean(hsh["BackupLogs"]);
-			if(hsh.Contains("CustomTheme"))
-				_CustomTheme = hsh["CustomTheme"].ToString();
-			if(hsh.Contains("CustomThemeLocation"))
-				_CustomThemeLocation = hsh["CustomThemeLocation"].ToString();
+//			if(hsh.Contains("CustomTheme"))
+//				_CustomTheme = hsh["CustomTheme"].ToString();
+//			if(hsh.Contains("CustomThemeLocation"))
+//				_CustomThemeLocation = hsh["CustomThemeLocation"].ToString();
 		}
 		
 		public System.Collections.Hashtable GetOptionsTable()

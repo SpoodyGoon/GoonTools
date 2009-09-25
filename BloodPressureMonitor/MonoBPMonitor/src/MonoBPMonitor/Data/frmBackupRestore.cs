@@ -142,6 +142,10 @@ namespace MonoBPMonitor {
 					}
 				}
 				di.Delete();
+				Gtk.MessageDialog msg3 = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "Backup is complete.", "Backup is complete.");
+				msg3.Run();
+				msg3.Destroy();
+				
 			}
 			catch(Exception ex)
 			{
@@ -186,6 +190,15 @@ namespace MonoBPMonitor {
 		
 		private void BackupData()
 		{
+			int tmpYear = 2009;
+			int tmpMonth = 1;
+			int tmpDay = 1;
+			int tmpHour = 8;
+			int tmpMinute = 15;
+			int tmpSecond = 0;
+			string[] tmptest;
+			DateTime tmpFirstDate = DateTime.Now;
+			DateTime tmpDateTime = DateTime.Now;
 			try
 			{
 				so.StreamWriter sw = new so.StreamWriter(so.Path.Combine(tmpFolderName, "Data.sql"));
@@ -203,7 +216,24 @@ namespace MonoBPMonitor {
 				dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
 				for(int i = 0; i < dt.Rows.Count; i++)
 				{
-					sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + Convert.ToDateTime(dt.Rows[i]["EntryDate"] + ":" + dt.Rows[i]["Notes"].ToString().Replace("pm", "")).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '" + dt.Rows[i]["Notes"].ToString() + "', " + dt.Rows[i]["UserID"].ToString() + ");");
+					if(dt.Rows[i]["Notes"].ToString().Trim() != "")
+					{
+						
+						tmptest = dt.Rows[i]["Notes"].ToString().Replace("pm", "").Replace("am", "").Split(new string[]{":"}, StringSplitOptions.RemoveEmptyEntries);
+						tmpFirstDate = Convert.ToDateTime(dt.Rows[i]["EntryDate"]);
+						System.Diagnostics.Debug.WriteLine("notes " + tmptest[0] + " - " + tmptest[1] + " - " + tmpFirstDate.ToString());
+						tmpDateTime = new DateTime(tmpFirstDate.Year, tmpFirstDate.Month, tmpFirstDate.Day, Convert.ToInt32(tmptest[0]) + 12, Convert.ToInt32(tmptest[1]),0);
+						if( dt.Rows[i]["Notes"].ToString().Contains("pm"))
+						{
+							tmpDateTime.AddHours((double)12);
+						}
+						sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + tmpDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '', " + dt.Rows[i]["UserID"].ToString() + ");");
+					}
+					else
+					{
+						sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + Convert.ToDateTime(dt.Rows[i]["EntryDate"]).ToString("yyyy-MM-dd HH:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '', " + dt.Rows[i]["UserID"].ToString() + ");");
+					}
+					
 				}
 				dt.Clear();
 				// backup the doctor table
@@ -320,7 +350,7 @@ namespace MonoBPMonitor {
 		
 		protected virtual void OnBtnRestoreClicked (object sender, System.EventArgs e)
 		{
-			FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Open, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
+			FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Open, "Cancel",ResponseType.Cancel,"Open",ResponseType.Ok);
 			FileFilter filter = new FileFilter();
 			try
 			{
@@ -342,7 +372,7 @@ namespace MonoBPMonitor {
 					fc.SetCurrentFolder(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
 					if (fc.Run() == (int)ResponseType.Ok)
 					{
-						Gtk.MessageDialog msg2 = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Warning, Gtk.ButtonsType.YesNo, false, "Confirm", "This will over write existing files for each restore you asked for."+ Environment.NewLine + "Are you sure you want to overwrite your current files?");
+						Gtk.MessageDialog msg2 = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Warning, Gtk.ButtonsType.YesNo, false, "This will over write existing files for each restore you asked for."+ Environment.NewLine + "Are you sure you want to overwrite your current files?", "Confirm");
 						if (msg2.Run() == (int)ResponseType.Yes)
 						{
 							tmpFolderName = Common.EnvData.GetNewTempFolder("BPMonitor_" + DateTime.Now.Ticks.ToString(), false);
@@ -382,18 +412,6 @@ namespace MonoBPMonitor {
 								}
 							}
 							
-							// clean up the temp folders
-							so.FileInfo[] fi;
-							so.DirectoryInfo di = new so.DirectoryInfo(tmpFolderName);
-							if(so.Directory.Exists(di.FullName))
-							{
-								fi = di.GetFiles();
-								for(int i= 0; i< fi.Length; i++)
-								{
-									fi[i].Delete();
-								}
-							}
-							
 							DataSet ds = new DataSet();
 							ds.ReadXml(so.Path.Combine(tmpFolderName, "Backup.xml"));
 							
@@ -409,18 +427,23 @@ namespace MonoBPMonitor {
 						}
 						msg2.Destroy();
 						
+						
 						// clean up the temp folders
-						so.FileInfo[] fi2;
-						so.DirectoryInfo di2 = new so.DirectoryInfo(tmpFolderName);
-						if(so.Directory.Exists(di2.FullName))
+						so.FileInfo[] fi;
+						so.DirectoryInfo di = new so.DirectoryInfo(tmpFolderName);
+						if(so.Directory.Exists(di.FullName))
 						{
-							fi2 = di2.GetFiles();
-							for(int i= 0; i< fi2.Length; i++)
+							fi = di.GetFiles();
+							for(int i= 0; i< fi.Length; i++)
 							{
-								fi2[i].Delete();
+								fi[i].Delete();
 							}
 						}
-						di2.Delete();
+						di.Delete();
+						
+						Gtk.MessageDialog msg3 = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "Restore is complete.", "Restore is complete.");
+						msg3.Run();
+						msg3.Destroy();
 						
 					}
 				}
@@ -438,19 +461,34 @@ namespace MonoBPMonitor {
 		
 		private void RestoreSchema(string SqlFileLocation)
 		{
-			if(so.File.Exists(Common.Option.DBLocation))
-				so.File.Delete(Common.Option.DBLocation);
-			
-			System.Text.RegularExpressions.Regex rx = new System.Text.RegularExpressions.Regex(";");
-			System.IO.StreamReader sr = new System.IO.StreamReader(SqlFileLocation);
-			string[] strSQL = rx.Split(sr.ReadToEnd());
-			sr.Close();
-			DataProvider dp = new DataProvider(Common.Option.DBLocation);
-			for(int i = 0; i < strSQL.Length; i++)
+			try
 			{
-				dp.ExecuteNonQuery(strSQL[i]);
+				//byte[] buffer = new byte[4096];
+				if(so.File.Exists(Common.Option.DBLocation))
+					so.File.Delete(Common.Option.DBLocation);
+				
+				// create the db file
+				so.FileStream fs  = so.File.Create(Common.Option.DBLocation, 4096, so.FileOptions.None);
+				fs.Close();
+				fs.Dispose();
+				
+				System.Text.RegularExpressions.Regex rx = new System.Text.RegularExpressions.Regex(";");
+				System.IO.StreamReader sr = new System.IO.StreamReader(SqlFileLocation);
+				string[] strSQL = rx.Split(sr.ReadToEnd());
+				sr.Close();
+				DataProvider dp = new DataProvider(Common.Option.ConnString);
+				for(int i = 0; i < strSQL.Length; i++)
+				{
+					System.Diagnostics.Debug.WriteLine(strSQL[i].Trim() + ";");
+					if(strSQL[i].Trim().Length > 5)
+						dp.ExecuteNonQuery(strSQL[i].Trim() + ";");
+				}
+				dp.Dispose();
 			}
-			dp.Dispose();
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 		}
 		
 		private void RestoreData(string SqlFileLocation)
@@ -459,10 +497,12 @@ namespace MonoBPMonitor {
 			System.IO.StreamReader sr = new System.IO.StreamReader(SqlFileLocation);
 			string[] strSQL = rx.Split(sr.ReadToEnd());
 			sr.Close();
-			DataProvider dp = new DataProvider(Common.Option.DBLocation);
+			DataProvider dp = new DataProvider(Common.Option.ConnString);
 			for(int i = 0; i < strSQL.Length; i++)
 			{
-				dp.ExecuteNonQuery(strSQL[i]);
+				System.Diagnostics.Debug.WriteLine(strSQL[i].Trim() + ";");
+				if(strSQL[i].Trim().Length > 5)
+						dp.ExecuteNonQuery(strSQL[i].Trim() + ";");
 			}
 			dp.Dispose();
 		}
@@ -487,6 +527,7 @@ namespace MonoBPMonitor {
 		
 		private void RestoreMetaInfo(DataTable dt)
 		{
+			dt.PrimaryKey = new DataColumn[]{(DataColumn)dt.Columns[0]};
 			if(((DataRow)dt.Rows.Find("Backup Database Schema"))["Value"].ToString() == "Yes")
 				_RestoreSchema = true;
 			if(((DataRow)dt.Rows.Find("Backup Database Data")).ToString() == "Yes")

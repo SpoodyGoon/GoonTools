@@ -127,7 +127,7 @@ namespace MonoBPMonitor
 				if(_EntryID < 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					_EntryID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Entry(EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID)VALUES('" + _EntryDateTime.ToString("yyyy-MM-dd hh:mm:ss") + "'," + _Systolic.ToString() + "," + _Diastolic.ToString() + "," + _HeartRate.ToString() + ",'" +_Notes + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
+					_EntryID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Entry(EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID)VALUES('" + _EntryDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "'," + _Systolic.ToString() + "," + _Diastolic.ToString() + "," + _HeartRate.ToString() + ",'" +_Notes + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
 					dp.Dispose();
 				}
 				else
@@ -148,7 +148,7 @@ namespace MonoBPMonitor
 				if(_EntryID > 0)
 				{
 					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					dp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDateTime = DATETIME('" + _EntryDateTime.ToString("yyyy-MM-dd hh:mm:ss") + "','localtime'), Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
+					dp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDateTime = DATETIME('" + _EntryDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "','localtime'), Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
 					dp.Dispose();
 				}
 				else

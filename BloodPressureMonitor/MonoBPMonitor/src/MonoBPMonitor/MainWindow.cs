@@ -53,6 +53,8 @@ namespace MonoBPMonitor
 				{
 					UpdatesAction1.Visible = false;
 				}
+				//this.FocusActivated += new EventHandler(MainWindow_FocusActivated);
+				
 				
 			}
 			catch(Exception ex)
@@ -61,6 +63,11 @@ namespace MonoBPMonitor
 			}
 			this.ShowAll ();
 		}
+
+//		void MainWindow_FocusActivated(object sender, EventArgs e)
+//		{
+//			throw new NotImplementedException();
+//		}
 
 		private void cboUser_Changed(object sender, EventArgs e)
 		{
