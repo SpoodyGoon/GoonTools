@@ -29,16 +29,20 @@ namespace GUPdotNET
 		public static void Main (string[] args)
 		{
 			bool blnSilentCheck = false;
+			string UserSaveLoc = null;
 			Application.Init ();
 			
 			Common.LoadAll();
-			if(args.Length > 0 && args[0].ToLower() == "auto")
-				blnSilentCheck = true;
-			
-			if(System.Configuration.ConfigurationManager.AppSettings["Debug"].ToString()== "true")
-				Console.WriteLine("Debug - Silent Check: " + blnSilentCheck.ToString());
-			
+			if(args.Length > 0)
+			{
+				if(args[0].ToLower() == "auto")
+				{
+					blnSilentCheck = true;
+				}
+			}	
 			MainWindow mw = new MainWindow(blnSilentCheck);
+			if(args.Length >= 1)
+				UserSaveLoc = args[1].Trim();
 			mw.Show();
 			Application.Run ();
 			

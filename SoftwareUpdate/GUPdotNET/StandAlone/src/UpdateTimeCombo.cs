@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using so = System.IO;
 using System.Data;
 using Gtk;
 
@@ -60,12 +61,13 @@ namespace GUPdotNET
 		{
 			try
 			{
+				string strXML = so.Path.Combine(Common.AppPath , "TimeValues.xml");
 				_IsLoading = true;
 				lsTimeDisplay.Clear();
-				if(System.IO.File.Exists(Common.EnvData.AppPath + "TimeValues.xml"))
+				if(System.IO.File.Exists(strXML))
 				{
 					DataSet ds = new DataSet();
-					ds.ReadXml(Common.EnvData.AppPath + "TimeValues.xml");
+					ds.ReadXml(strXML);
 					for(int i = 0; i < ds.Tables[0].Rows.Count; i++)
 					{
 						lsTimeDisplay.AppendValues(Convert.ToInt32(ds.Tables[0].Rows[i]["Hours"]), ds.Tables[0].Rows[i]["TimeDisplay"].ToString());	

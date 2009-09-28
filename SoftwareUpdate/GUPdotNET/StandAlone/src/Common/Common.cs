@@ -22,7 +22,7 @@
 
 using System;
 using System.Configuration;
-using System.IO;
+using so = System.IO;
 using Gtk;
 
 namespace GUPdotNET
@@ -37,9 +37,14 @@ namespace GUPdotNET
 		#region Private Properties
 		
 		private static GUPdotNET.Helper.Options _Option;
-		private static GUPdotNET.Helper.EnviromentInfo _EnvData = new GUPdotNET.Helper.EnviromentInfo();
-		private static string _OptionsFileName = "GUPdotNET.dat"; 		
-		
+		private static string _AppPath = null;
+		// this is where the calling application holds user info
+		private static string _UserSaveLoc = null;
+		private static string _SavePath = null;
+		private static string _DirChar = so.Path.DirectorySeparatorChar.ToString();
+		private static string _OptionsFile = null;
+		private static string _UpdateFile = null;
+		private static string _ErrorFile = null;
 		#endregion Private Properties
 		
 		#region Public Properties
@@ -49,26 +54,42 @@ namespace GUPdotNET
 			get{return _Option;}
 		}
 		
-		public static GUPdotNET.Helper.EnviromentInfo EnvData
+		public static string UserSaveLoc
 		{
-			get{return _EnvData;}
+			get{return _SavePath;}
+		}
+		
+		public static string AppPath
+		{
+			get{return _AppPath;}
 		}
 		
 		#endregion Public Properties
 		
 		#region Loading and Saving
 		
+		public static void LoadAll(string usersaveloc)
+		{
+			_UserSaveLoc = so.Path.GetFullPath(usersaveloc);
+			_SavePath = so.Path.GetFullPath(usersaveloc + "GUPdotNET" + _DirChar);
+			_OptionsFile = so.Path.Combine(_SavePath, "Options.dat");
+			_UpdateFile = so.Path.Combine(_SavePath, "Update.log");
+			_ErrorFile = so.Path.Combine(_SavePath, "Error.log");
+		}
+		
 		public static void LoadAll()
 		{
 			try
 			{
-				if(!Directory.Exists(EnvData.BasePath))
-				   Directory.CreateDirectory(EnvData.BasePath);
-				if(!Directory.Exists(EnvData.SavePath))
-				   Directory.CreateDirectory(EnvData.SavePath);
+				_AppPath = so.Path.GetFullPath(new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly ().CodeBase).Directory.FullName);
+				
+				if(!so.Directory.Exists(_UserSaveLoc))
+					so.Directory.CreateDirectory(_UserSaveLoc);
+				if(!so.Directory.Exists(_SavePath))
+					so.Directory.CreateDirectory(_SavePath);
 				// search for the options file if it exists load it
 				// if it has not been saved load the defaults
-				if(File.Exists(EnvData.SavePath + _OptionsFileName))
+				if(so.File.Exists(_OptionsFile))
 				{
 					LoadOptions();
 				}
@@ -90,7 +111,7 @@ namespace GUPdotNET
 			try
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+				so.Stream stream = new so.FileStream(_OptionsFile, so.FileMode.Open, so.FileAccess.Read, so.FileShare.Read);
 				_Option = new GUPdotNET.Helper.Options((System.Collections.Hashtable)formatter.Deserialize(stream));
 				stream.Close();
 			}
@@ -105,7 +126,7 @@ namespace GUPdotNET
 			try
 			{
 				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+				so.Stream stream = new so.FileStream(_OptionsFile, so.FileMode.Create, so.FileAccess.Write, so.FileShare.None);
 				formatter.Serialize(stream, (System.Collections.Hashtable)_Option.GetOptionsTable());
 				stream.Close();
 			}
@@ -113,7 +134,7 @@ namespace GUPdotNET
 			{
 				Common.HandleError(ex);
 			}
-		}		
+		}
 		
 		#endregion Loading and Saving
 		
@@ -126,7 +147,7 @@ namespace GUPdotNET
 			{
 				if(ConfigurationManager.AppSettings["SaveUpdateLog"].ToLower() == "true")
 				{
-					StreamWriter sw = new StreamWriter(_EnvData.SavePath + "update.log", true);
+					so.StreamWriter sw = new so.StreamWriter(_UpdateFile, true);
 					sw.Write(sw.NewLine + ResultMess);
 					sw.Close();
 				}
@@ -148,17 +169,17 @@ namespace GUPdotNET
 		{
 			if(ConfigurationManager.AppSettings["SaveErrorLog"].ToLower() == "true")
 			{
-				StreamWriter sw = new StreamWriter(_EnvData.SavePath + "error.log", true);
+				so.StreamWriter sw = new so.StreamWriter(_ErrorFile, true);
 				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
 				sw.Write(sw.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
 				sw.Write(sw.NewLine + ex.ToString());
 				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
 				sw.Close();
 			}
-				
+			
 			Gtk.MessageDialog md = new Gtk.MessageDialog(parent_window, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
 			md.Run();
-			md.Destroy();			
+			md.Destroy();
 		}
 		
 		#endregion Logs
