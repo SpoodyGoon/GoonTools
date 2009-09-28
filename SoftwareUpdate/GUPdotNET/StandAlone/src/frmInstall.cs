@@ -67,8 +67,6 @@ namespace GUPdotNET
 			}
 		}
 		
-		
-		
 		#region Windows Install
 		
 		private void PrepInstallWin32()
@@ -111,6 +109,25 @@ namespace GUPdotNET
 			return blnHasAccess;
 		}
 		
+		private void InstallWindows()
+		{
+			
+		}
+		
 		#endregion Windows Install
+		
+		#region RPM Install
+		
+		private void InstallRPM()
+		{
+			if(Environment.UserName != "root")
+			{
+				Gtk.InputDialog imp = new InputDialog();
+				imp.Title = "Admin Password";
+				imp.Type = WindowType.Popup;
+			}
+		}
+		
+		#endregion RPM Install
 	}
 }

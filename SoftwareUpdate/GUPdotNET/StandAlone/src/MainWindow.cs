@@ -30,14 +30,13 @@ namespace GUPdotNET
 		private bool _SilentCheck = false;
 		private bool _Loading = false;
 		private UpdateInfo _UpdateInfo = new UpdateInfo();
+		private string _UserSaveLoc = null;
 		private Gdk.Cursor ctLink = new Gdk.Cursor(Gdk.CursorType.Hand1);
 		public MainWindow(bool blnSilentCheck) :  base(Gtk.WindowType.Toplevel)
 		{
 			_Loading = true;
 			_SilentCheck = blnSilentCheck;
 			this.Build();
-			if(System.Configuration.ConfigurationManager.AppSettings["Debug"].ToString()== "true")
-				Console.WriteLine("Debug - Silent Check: " + _SilentCheck.ToString());
 			
 			if(_SilentCheck)
 			{
@@ -76,6 +75,12 @@ namespace GUPdotNET
 				return true;
 			else
 				return false;
+		}
+		
+		public string UserSaveLoc
+		{
+			set{_UserSaveLoc = value;}
+			get{return _UserSaveLoc;}
 		}
 		
 		#region Option Widget Loading
