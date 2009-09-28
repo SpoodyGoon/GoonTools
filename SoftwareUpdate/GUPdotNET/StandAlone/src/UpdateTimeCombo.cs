@@ -65,8 +65,6 @@ namespace GUPdotNET
 				if(System.IO.File.Exists(Common.EnvData.AppPath + "TimeValues.xml"))
 				{
 					DataSet ds = new DataSet();
-					Console.WriteLine("Console Write " + Common.EnvData.AppPath);
-					System.Diagnostics.Debug.WriteLine("Debug " + Common.EnvData.AppPath);
 					ds.ReadXml(Common.EnvData.AppPath + "TimeValues.xml");
 					for(int i = 0; i < ds.Tables[0].Rows.Count; i++)
 					{
@@ -88,6 +86,7 @@ namespace GUPdotNET
 		{
 			Build();
 			this.WidthRequest = 185;
+			this.HeightRequest = 24;
 			base.OnRealized ();
 		}
 
