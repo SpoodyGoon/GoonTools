@@ -124,7 +124,7 @@ namespace GUPdotNET
 			{
 				Gtk.InputDialog imp = new InputDialog();
 				imp.Title = "Admin Password";
-				imp.Type = WindowType.Popup;
+				
 			}
 		}
 		

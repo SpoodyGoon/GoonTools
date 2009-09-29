@@ -70,18 +70,15 @@ namespace GUPdotNET
 		
 		public static void LoadAll(string usersaveloc)
 		{
-			_UserSaveLoc = so.Path.GetFullPath(usersaveloc);
-			_SavePath = so.Path.GetFullPath(usersaveloc + "GUPdotNET" + _DirChar);
-			_OptionsFile = so.Path.Combine(_SavePath, "Options.dat");
-			_UpdateFile = so.Path.Combine(_SavePath, "Update.log");
-			_ErrorFile = so.Path.Combine(_SavePath, "Error.log");
-		}
-		
-		public static void LoadAll()
-		{
 			try
 			{
-				_AppPath = so.Path.GetFullPath(new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly ().CodeBase).Directory.FullName);
+				_UserSaveLoc = so.Path.GetFullPath(usersaveloc);
+				_SavePath = so.Path.GetFullPath(so.Path.Combine(usersaveloc, "GUPdotNET"));
+				_OptionsFile = so.Path.Combine(_SavePath, "Options.dat");
+				_UpdateFile = so.Path.Combine(_SavePath, "Update.log");
+				_ErrorFile = so.Path.Combine(_SavePath, "Error.log");
+				
+				_AppPath = so.Path.GetFullPath(new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly ().Location).Directory.FullName);
 				
 				if(!so.Directory.Exists(_UserSaveLoc))
 					so.Directory.CreateDirectory(_UserSaveLoc);
@@ -102,9 +99,38 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				Common.HandleError(ex);
+				HandleError(ex);
 			}
 		}
+		
+//		public static void LoadAll()
+//		{
+//			try
+//			{
+//				_AppPath = so.Path.GetFullPath(new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly ().Location).Directory.FullName);
+//				
+//				if(!so.Directory.Exists(_UserSaveLoc))
+//					so.Directory.CreateDirectory(_UserSaveLoc);
+//				if(!so.Directory.Exists(_SavePath))
+//					so.Directory.CreateDirectory(_SavePath);
+//				// search for the options file if it exists load it
+//				// if it has not been saved load the defaults
+//				if(so.File.Exists(_OptionsFile))
+//				{
+//					LoadOptions();
+//				}
+//				else
+//				{
+//					_Option = new GUPdotNET.Helper.Options();
+//					SaveOptions();
+//				}
+//				
+//			}
+//			catch(Exception ex)
+//			{
+//				Common.HandleError(ex);
+//			}
+//		}
 		
 		public static void LoadOptions()
 		{

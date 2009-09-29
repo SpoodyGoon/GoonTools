@@ -45,9 +45,14 @@ public partial class MainWindow: Gtk.Window
 	{
 		try
 		{
+			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
+			System.IO.FileInfo fi = new System.IO.FileInfo(asm.Location);
+			
 			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
+			si.UseShellExecute = true;
 			si.FileName = GUPdotNETFile.Filename;
-			si.Arguments = "auto";
+			si.Arguments = "\"" + System.IO.Path.GetFullPath(fi.Directory.FullName) + "\" ";
+			si.Arguments += "\"updatecheck\"";
 			System.Diagnostics.Process.Start(si);
 
 		}
@@ -62,8 +67,12 @@ public partial class MainWindow: Gtk.Window
 	
 	protected virtual void OnBtnOptionsClicked (object sender, System.EventArgs e)
 	{
+		System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
+		System.IO.FileInfo fi = new System.IO.FileInfo(asm.Location);
 		System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
 		si.FileName = GUPdotNETFile.Filename;
+		si.Arguments = "\"" + System.IO.Path.GetFullPath(fi.Directory.FullName) + "\" ";
+		si.Arguments += "\"options\"";
 		System.Diagnostics.Process.Start(si);
 	}
 }
