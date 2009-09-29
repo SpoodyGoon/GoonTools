@@ -585,7 +585,6 @@
                     <signal name="ButtonPressEvent" handler="OnEbxAboutButtonPressEvent" />
                     <signal name="EnterNotifyEvent" handler="OnEbxAboutEnterNotifyEvent" />
                     <signal name="LeaveNotifyEvent" handler="OnEbxAboutLeaveNotifyEvent" />
-                    <signal name="ButtonReleaseEvent" handler="OnEbxAboutButtonReleaseEvent" />
                     <child>
                       <widget class="Gtk.Label" id="lblAbout">
                         <property name="MemberName" />
@@ -618,7 +617,6 @@
                     <property name="DrawIndicator">True</property>
                     <property name="HasLabel">True</property>
                     <property name="UseUnderline">True</property>
-                    <signal name="Clicked" handler="OnCbxAutoUpdateClicked" />
                     <signal name="Toggled" handler="OnCbxAutoUpdateToggled" />
                   </widget>
                   <packing>
@@ -635,8 +633,8 @@
                     <signal name="Clicked" handler="OnBtnCheckNowClicked" />
                   </widget>
                   <packing>
-                    <property name="X">231</property>
-                    <property name="Y">49</property>
+                    <property name="X">256</property>
+                    <property name="Y">48</property>
                   </packing>
                 </child>
               </widget>

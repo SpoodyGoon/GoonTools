@@ -27,20 +27,19 @@ namespace GUPdotNET
 {
 	public partial class MainWindow : Gtk.Window
 	{
-		private bool _SilentCheck = false;
+		private bool _UpdateCheck = false;
 		private bool _Loading = false;
 		private UpdateInfo _UpdateInfo = new UpdateInfo();
 		private string _UserSaveLoc = null;
 		private Gdk.Cursor ctLink = new Gdk.Cursor(Gdk.CursorType.Hand1);
-		public MainWindow(bool blnSilentCheck) :  base(Gtk.WindowType.Toplevel)
+		public MainWindow(bool updatecheck) :  base(Gtk.WindowType.Toplevel)
 		{
 			_Loading = true;
-			_SilentCheck = blnSilentCheck;
+			_UpdateCheck = updatecheck;
 			this.Build();
 			
-			if(_SilentCheck)
-			{
-				
+			if(_UpdateCheck)
+			{				
 				// This is for checking for updates in the background
 				// notifying the user only if an update is avalaiable
 				this.SkipPagerHint = true;
@@ -194,7 +193,7 @@ namespace GUPdotNET
 		
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-			if(!_SilentCheck)
+			if(!_UpdateCheck)
 				Common.SaveOptions();
 			
 			Gtk.Application.Quit();
@@ -273,16 +272,6 @@ namespace GUPdotNET
 			lblAbout.Text = "<span size=\"7500\" color=\"#00006B\"><b><u><tt>About GUPdotNET</tt></u></b></span>";
 			lblAbout.UseMarkup = true;
 			lblAbout.ShowNow();
-		}
-		
-		
-		protected virtual void OnEbxAboutButtonReleaseEvent (object o, Gtk.ButtonReleaseEventArgs args)
-		{
-		}
-		
-		
-		protected virtual void OnCbxAutoUpdateClicked (object sender, System.EventArgs e)
-		{
 		}
 		
 		

@@ -217,8 +217,8 @@ namespace GUPdotNET {
             this.btnCheckNow.Label = Mono.Unix.Catalog.GetString("Check Now...");
             this.fixed1.Add(this.btnCheckNow);
             Gtk.Fixed.FixedChild w17 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.btnCheckNow]));
-            w17.X = 231;
-            w17.Y = 49;
+            w17.X = 256;
+            w17.Y = 48;
             this.alignment3.Add(this.fixed1);
             this.vbox2.Add(this.alignment3);
             Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment3]));
@@ -272,8 +272,6 @@ namespace GUPdotNET {
             this.ebxAbout.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.OnEbxAboutButtonPressEvent);
             this.ebxAbout.EnterNotifyEvent += new Gtk.EnterNotifyEventHandler(this.OnEbxAboutEnterNotifyEvent);
             this.ebxAbout.LeaveNotifyEvent += new Gtk.LeaveNotifyEventHandler(this.OnEbxAboutLeaveNotifyEvent);
-            this.ebxAbout.ButtonReleaseEvent += new Gtk.ButtonReleaseEventHandler(this.OnEbxAboutButtonReleaseEvent);
-            this.cbxAutoUpdate.Clicked += new System.EventHandler(this.OnCbxAutoUpdateClicked);
             this.cbxAutoUpdate.Toggled += new System.EventHandler(this.OnCbxAutoUpdateToggled);
             this.btnCheckNow.Clicked += new System.EventHandler(this.OnBtnCheckNowClicked);
             this.btnClose.Clicked += new System.EventHandler(this.OnBtnCloseClicked);

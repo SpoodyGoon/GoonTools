@@ -28,21 +28,17 @@ namespace GUPdotNET
 	{
 		public static void Main (string[] args)
 		{
-			bool blnSilentCheck = false;
-			string UserSaveLoc = null;
+			bool _UpdateCheck = false;
 			Application.Init ();
+			Common.LoadAll(args[0].Trim());
 			
-			Common.LoadAll();
-			if(args.Length > 0)
-			{
-				if(args[0].ToLower() == "auto")
-				{
-					blnSilentCheck = true;
-				}
-			}	
-			MainWindow mw = new MainWindow(blnSilentCheck);
 			if(args.Length >= 1)
-				UserSaveLoc = args[1].Trim();
+			{
+				if(args[1].ToLower() == "updatecheck")
+					_UpdateCheck = true;
+			}
+			
+			MainWindow mw = new MainWindow(_UpdateCheck);
 			mw.Show();
 			Application.Run ();
 			

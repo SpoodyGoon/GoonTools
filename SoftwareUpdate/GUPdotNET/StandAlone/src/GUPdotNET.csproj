@@ -17,6 +17,7 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <ApplicationIcon>images\update_large.ico</ApplicationIcon>
     <Description>General Purpose Update program for Mono/Gtk#.</Description>
+    <StartArguments>"C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\GUPdotNET_EXE\src_testapp\testapp\bin\Debug" "updatecheck"</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +38,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <StartAction>Project</StartAction>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <RegisterForComInterop>False</RegisterForComInterop>
