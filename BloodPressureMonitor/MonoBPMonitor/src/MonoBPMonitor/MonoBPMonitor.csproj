@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,6 +45,9 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.SqliteClient">
+      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.4.2\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -79,7 +82,6 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="Mono.Data.SqliteClient" />
     <Reference Include="ICSharpCode.SharpZipLib" />
   </ItemGroup>
   <ItemGroup>
@@ -121,7 +123,6 @@
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
     <Compile Include="Medications\MedicationTreeView.Designer.cs" />
-    <Compile Include="Themes\ThemeComboBox.cs" />
     <Compile Include="Users\UserRendererCombo.cs" />
     <Compile Include="Users\UserTreeView.cs" />
     <Compile Include="Users\UserTreeView.Designer.cs" />
@@ -176,15 +177,6 @@
       <DependentUpon>dsBPMonitor.xsd</DependentUpon>
     </None>
     <None Include="Reports\MainEntry\Description.txt" />
-    <Content Include="Themes\DarkTurrican\gtk-2.0\gtkrc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Night Impression\gtk-2.0\gtkrc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Night Impression\gtk-2.0\panel-bg-dark.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Compile Include="Doctors\DoctorRendererCombo.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.Designer.cs" />
@@ -205,20 +197,7 @@
     <Content Include="Data\BPMonitor.s3db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Raleigh\gtk-2.0\gtkrc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\System\gtk-2.0\gtkrc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Compile Include="Data\UserPreferences.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Themes\" />
-    <Folder Include="Themes\DarkTurrican\" />
-    <Folder Include="Themes\" />
-    <Folder Include="Themes\Night Impression\" />
-    <Folder Include="Themes\System\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
