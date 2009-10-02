@@ -40,6 +40,7 @@ namespace GUPdotNET
 				lblUpdateMessage.LineWrap = true;
 				lblUpdateMessage.LineWrapMode = Pango.WrapMode.Word;
 				this.lblUpdateMessage.Wrap = true;
+				this.HasSeparator = false;
 				this.ShowAll();
 			}
 			catch(Exception ex)
@@ -50,11 +51,13 @@ namespace GUPdotNET
 							
 		protected virtual void OnBtnNoClicked (object sender, System.EventArgs e)
 		{
+			this.Respond(Gtk.ResponseType.No);
 			this.Hide();
 		}
 			
 		protected virtual void OnBtnYesClicked (object sender, System.EventArgs e)
 		{
+			this.Respond(Gtk.ResponseType.Yes);
 			this.Hide();
 		}
 	}

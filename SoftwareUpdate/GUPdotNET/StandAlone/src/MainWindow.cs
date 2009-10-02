@@ -27,59 +27,16 @@ namespace GUPdotNET
 {
 	public partial class MainWindow : Gtk.Window
 	{
-		private bool _UpdateCheck = false;
 		private bool _Loading = false;
-		private UpdateInfo _UpdateInfo = new UpdateInfo();
-		private string _UserSaveLoc = null;
 		private Gdk.Cursor ctLink = new Gdk.Cursor(Gdk.CursorType.Hand1);
-		public MainWindow(bool updatecheck) :  base(Gtk.WindowType.Toplevel)
+		public MainWindow() :  base(Gtk.WindowType.Toplevel)
 		{
 			_Loading = true;
-			_UpdateCheck = updatecheck;
-			this.Build();
-			
-			if(_UpdateCheck)
-			{				
-				// This is for checking for updates in the background
-				// notifying the user only if an update is avalaiable
-				this.SkipPagerHint = true;
-				this.SkipTaskbarHint = true;
-				this.Visible = false;
-				if(TimeForCheck())
-				{
-					
-					_UpdateInfo.LoadInfo(UpdateInfoType.All);
-					_UpdateInfo.SilentCheck = true;
-					if(_UpdateInfo.UpdateAvailable)
-						RunUpdate();
-				}
-			}
-			else
-			{
-				// this is for showing the options and optionally running an update check manually
-				this.SkipPagerHint = false;
-				this.SkipTaskbarHint = false;
-				this.Visible = true;
-				LoadControls();
-			}
-			_Loading = false;
+			this.Build();			
+			LoadControls();
+			this.Visible = true;
 			this.ShowAll();
-		}
-		
-		private bool TimeForCheck()
-		{
-			if(System.Configuration.ConfigurationManager.AppSettings["Debug"].ToString()== "true")
-				Console.WriteLine("Debug - Time for Check: " + DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)).ToString());
-			if(DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)) > 0)
-				return true;
-			else
-				return false;
-		}
-		
-		public string UserSaveLoc
-		{
-			set{_UserSaveLoc = value;}
-			get{return _UserSaveLoc;}
+			_Loading = false;
 		}
 		
 		#region Option Widget Loading
@@ -111,9 +68,11 @@ namespace GUPdotNET
 		
 		protected virtual void OnBtnCheckNowClicked (object sender, System.EventArgs e)
 		{
+			UpdateInfo _UpdateInfo = new UpdateInfo();
+			_UpdateInfo.LoadInfo(UpdateInfoType.All);
 			if(_UpdateInfo.UpdateAvailable)
 			{
-				RunUpdate();
+				RunUpdate(_UpdateInfo);
 			}
 			else
 			{
@@ -158,7 +117,7 @@ namespace GUPdotNET
 			{
 				Common.HandleError(this, ex);
 			}
-		}		
+		}
 		
 		protected virtual void OnCboUpdateTimeTypeChanged (object sender, System.EventArgs e)
 		{
@@ -193,15 +152,13 @@ namespace GUPdotNET
 		
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-			if(!_UpdateCheck)
-				Common.SaveOptions();
-			
+			Common.SaveOptions();
 			Gtk.Application.Quit();
 		}
 
 		#endregion Widget Events
 		
-		private void RunUpdate()
+		private void RunUpdate(UpdateInfo _UpdateInfo)
 		{
 			// tell the user there is an update availalbe
 			// and ask if they would like to update
@@ -231,29 +188,29 @@ namespace GUPdotNET
 		protected virtual void OnEbxAboutButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
 		{
 			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
-				Gtk.AboutDialog ad = new Gtk.AboutDialog();
-				ad.Title = "About GUPdotNET";
-				ad.ProgramName = "GUPdotNET";
-				ad.Comments ="General Purpose Update program for Mono/Gtk#.";
-				ad.License = GUPdotNET.Const.License;
-				ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
-				ad.Version = " " + asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
-				ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
-				ad.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
-				ad.AllowShrink = true;
-				ad.AllowGrow = true;
-				ad.Copyright = "GoonTools 2009";
-				ad.HasSeparator = true;
-				ad.Modal = true;
-				ad.BorderWidth = 8;
-				ad.WidthRequest = 450;
+			Gtk.AboutDialog ad = new Gtk.AboutDialog();
+			ad.Title = "About GUPdotNET";
+			ad.ProgramName = "GUPdotNET";
+			ad.Comments ="General Purpose Update program for Mono/Gtk#.";
+			ad.License = GUPdotNET.Const.License;
+			ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
+			ad.Version = " " + asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
+			ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
+			ad.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
+			ad.AllowShrink = true;
+			ad.AllowGrow = true;
+			ad.Copyright = "GoonTools 2009";
+			ad.HasSeparator = true;
+			ad.Modal = true;
+			ad.BorderWidth = 8;
+			ad.WidthRequest = 450;
 //				ad.HeightRequest = 300;
-				ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
-				ad.WebsiteLabel = "GUPdotNET Web Site";
-				ad.Parent = this;
-				ad.Run();
-				
-				ad.Destroy();
+			ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
+			ad.WebsiteLabel = "GUPdotNET Web Site";
+			ad.Parent = this;
+			ad.Run();
+			
+			ad.Destroy();
 		}
 		
 		
@@ -277,20 +234,9 @@ namespace GUPdotNET
 		
 		protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
 		{
-			Application.Quit();
+			Common.SaveOptions();
+			Gtk.Application.Quit();
 		}
-
-
-
-
-
-
-
-
-
-
-
-
 		
 	}
 }
