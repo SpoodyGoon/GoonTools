@@ -11,7 +11,7 @@
 namespace MonoBPMonitor {
     
     
-    public partial class frmBPEntry {
+    public partial class frmEntry {
         
         private Gtk.VBox vbox2;
         
@@ -99,8 +99,8 @@ namespace MonoBPMonitor {
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
-            // Widget MonoBPMonitor.frmBPEntry
-            this.Name = "MonoBPMonitor.frmBPEntry";
+            // Widget MonoBPMonitor.frmEntry
+            this.Name = "MonoBPMonitor.frmEntry";
             this.Icon = Gdk.Pixbuf.LoadFromResource("icon_small.png");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.Modal = true;
@@ -108,7 +108,7 @@ namespace MonoBPMonitor {
             this.Resizable = false;
             this.AllowGrow = false;
             this.DestroyWithParent = true;
-            // Internal child MonoBPMonitor.frmBPEntry.VBox
+            // Internal child MonoBPMonitor.frmEntry.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
             w1.BorderWidth = ((uint)(2));
@@ -414,7 +414,7 @@ namespace MonoBPMonitor {
             w1.Add(this.vbox2);
             Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
             w41.Position = 0;
-            // Internal child MonoBPMonitor.frmBPEntry.ActionArea
+            // Internal child MonoBPMonitor.frmEntry.ActionArea
             Gtk.HButtonBox w42 = this.ActionArea;
             w42.Name = "dialog1_ActionArea";
             w42.Spacing = 6;

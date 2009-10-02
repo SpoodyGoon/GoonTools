@@ -22,11 +22,6 @@ namespace MonoBPMonitor {
 	public partial class frmBackupRestore : Gtk.Dialog
 	{
 		private string tmpFolderName = "";
-		private string strNewLine = System.Environment.NewLine;
-		private bool _RestoreOptions = true;
-		private bool _RestoreSchema = true;
-		private bool _RestoreData = true;
-		private bool _RestoreLogs = true;
 		public frmBackupRestore()
 		{
 			this.Build();
@@ -190,15 +185,6 @@ namespace MonoBPMonitor {
 		
 		private void BackupData()
 		{
-			int tmpYear = 2009;
-			int tmpMonth = 1;
-			int tmpDay = 1;
-			int tmpHour = 8;
-			int tmpMinute = 15;
-			int tmpSecond = 0;
-			string[] tmptest;
-			DateTime tmpFirstDate = DateTime.Now;
-			DateTime tmpDateTime = DateTime.Now;
 			try
 			{
 				so.StreamWriter sw = new so.StreamWriter(so.Path.Combine(tmpFolderName, "Data.sql"));
@@ -213,27 +199,10 @@ namespace MonoBPMonitor {
 				}
 				dt.Clear();
 				// backup the doctor table
-				dt = dp.ExecuteDataTable("SELECT EntryID, EntryDate, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
+				dt = dp.ExecuteDataTable("SELECT EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
 				for(int i = 0; i < dt.Rows.Count; i++)
-				{
-					if(dt.Rows[i]["Notes"].ToString().Trim() != "")
-					{
-						
-						tmptest = dt.Rows[i]["Notes"].ToString().Replace("pm", "").Replace("am", "").Split(new string[]{":"}, StringSplitOptions.RemoveEmptyEntries);
-						tmpFirstDate = Convert.ToDateTime(dt.Rows[i]["EntryDate"]);
-						System.Diagnostics.Debug.WriteLine("notes " + tmptest[0] + " - " + tmptest[1] + " - " + tmpFirstDate.ToString());
-						tmpDateTime = new DateTime(tmpFirstDate.Year, tmpFirstDate.Month, tmpFirstDate.Day, Convert.ToInt32(tmptest[0]) + 12, Convert.ToInt32(tmptest[1]),0);
-						if( dt.Rows[i]["Notes"].ToString().Contains("pm"))
-						{
-							tmpDateTime.AddHours((double)12);
-						}
-						sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + tmpDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '', " + dt.Rows[i]["UserID"].ToString() + ");");
-					}
-					else
-					{
-						sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + Convert.ToDateTime(dt.Rows[i]["EntryDate"]).ToString("yyyy-MM-dd HH:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '', " + dt.Rows[i]["UserID"].ToString() + ");");
-					}
-					
+				{						
+					sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + Convert.ToDateTime(dt.Rows[i]["EntryDateTime"]).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '', " + dt.Rows[i]["UserID"].ToString() + ");");
 				}
 				dt.Clear();
 				// backup the doctor table
@@ -416,13 +385,13 @@ namespace MonoBPMonitor {
 							ds.ReadXml(so.Path.Combine(tmpFolderName, "Backup.xml"));
 							
 							RestoreMetaInfo((DataTable)ds.Tables["MetaInfo"]);
-							if(cbxDatabaseSchema.Active && _RestoreSchema == true)
+							if(cbxDatabaseSchema.Active && cbxDatabaseSchema.Active == true)
 								RestoreSchema(so.Path.Combine(tmpFolderName, "Schema.sql"));
-							if(cbxDatabaseData.Active && _RestoreData == true)
+							if(cbxDatabaseData.Active && cbxDatabaseData.Active == true)
 								RestoreData(so.Path.Combine(tmpFolderName, "Data.sql"));
-							if(cbxOptions.Active && _RestoreOptions == true)
+							if(cbxOptions.Active && cbxOptions.Active == true)
 								RestoreOptions((DataTable)ds.Tables["Options"]);
-							if(cbxLogs.Active && _RestoreLogs == true)
+							if(cbxLogs.Active && cbxLogs.Active == true)
 								RestoreLogs();
 						}
 						msg2.Destroy();
@@ -529,13 +498,28 @@ namespace MonoBPMonitor {
 		{
 			dt.PrimaryKey = new DataColumn[]{(DataColumn)dt.Columns[0]};
 			if(((DataRow)dt.Rows.Find("Backup Database Schema"))["Value"].ToString() == "Yes")
-				_RestoreSchema = true;
+				cbxDatabaseSchema.Active = true;
+			else
+				cbxDatabaseSchema.Active = false;
+			
 			if(((DataRow)dt.Rows.Find("Backup Database Data")).ToString() == "Yes")
-				_RestoreData = true;
+				cbxDatabaseData.Active = true;
+			else
+				cbxDatabaseData.Active = false;
+			
+			
 			if(((DataRow)dt.Rows.Find("Backup Options")).ToString() == "Yes")
-				_RestoreOptions = true;
+				cbxOptions.Active = true;
+			else
+				cbxOptions.Active = false;
+			
 			if(((DataRow)dt.Rows.Find("Backup Logs")).ToString() == "Yes")
-				_RestoreLogs = true;
+				cbxLogs.Active = true;
+			else
+				cbxLogs.Active = false;
+			
+			CheckAll();
+			
 		}
 
 		#endregion Restore Area

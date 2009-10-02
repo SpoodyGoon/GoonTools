@@ -7,11 +7,11 @@ using SQLiteDataProvider;
 
 namespace MonoBPMonitor
 {
-	public partial class frmBPEntry : Gtk.Dialog
+	public partial class frmEntry : Gtk.Dialog
 	{
 		private Entry _CurrentEntry = null;
 		private int _CurrentEntryID = -1;
-		public frmBPEntry()
+		public frmEntry()
 		{
 			this.Build();
 			// TODO: put width in xml
@@ -22,7 +22,7 @@ namespace MonoBPMonitor
 			this.ShowAll();
 		}
 		
-		public frmBPEntry(int entryid)
+		public frmEntry(int entryid)
 		{
 			this.Build();
 			// TODO: put width in xml
