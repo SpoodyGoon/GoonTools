@@ -127,7 +127,7 @@
     <Compile Include="gtk-gui\MonoBPMonitor.frmUsers.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmDoctors.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmMedication.cs" />
-    <Compile Include="gtk-gui\MonoBPMonitor.frmBPEntry.cs" />
+    <Compile Include="gtk-gui\MonoBPMonitor.frmEntry.cs" />
     <Compile Include="frmCalendar.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmCalendar.cs" />
     <Compile Include="Common\BufferTags.cs" />
