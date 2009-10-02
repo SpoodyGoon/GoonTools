@@ -29,6 +29,7 @@ namespace GUPdotNET_Testing
 		public static void Main (string[] args)
 		{
 			Application.Init ();
+			Gtk.Rc.ReparseAll();
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();
