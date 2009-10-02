@@ -74,8 +74,6 @@ namespace GUPdotNET {
             this.Resizable = false;
             this.AllowGrow = false;
             this.DestroyWithParent = true;
-            this.SkipPagerHint = true;
-            this.SkipTaskbarHint = true;
             // Container child GUPdotNET.MainWindow.Gtk.Container+ContainerChild
             this.vbox2 = new Gtk.VBox();
             this.vbox2.Name = "vbox2";
@@ -214,11 +212,12 @@ namespace GUPdotNET {
             this.btnCheckNow = new Gtk.Button();
             this.btnCheckNow.CanFocus = true;
             this.btnCheckNow.Name = "btnCheckNow";
+            this.btnCheckNow.BorderWidth = ((uint)(4));
             this.btnCheckNow.Label = Mono.Unix.Catalog.GetString("Check Now...");
             this.fixed1.Add(this.btnCheckNow);
             Gtk.Fixed.FixedChild w17 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.btnCheckNow]));
-            w17.X = 256;
-            w17.Y = 48;
+            w17.X = 244;
+            w17.Y = 44;
             this.alignment3.Add(this.fixed1);
             this.vbox2.Add(this.alignment3);
             Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment3]));
@@ -267,7 +266,7 @@ namespace GUPdotNET {
             }
             this.DefaultWidth = 464;
             this.DefaultHeight = 228;
-            this.Show();
+            this.Hide();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
             this.ebxAbout.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.OnEbxAboutButtonPressEvent);
             this.ebxAbout.EnterNotifyEvent += new Gtk.EnterNotifyEventHandler(this.OnEbxAboutEnterNotifyEvent);

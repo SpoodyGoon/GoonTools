@@ -442,6 +442,7 @@
   </widget>
   <widget class="Gtk.Window" id="GUPdotNET.MainWindow" design-size="464 228">
     <property name="MemberName" />
+    <property name="Visible">False</property>
     <property name="Title" translatable="yes">Update Options</property>
     <property name="Icon">resource:update_small.png</property>
     <property name="WindowPosition">CenterAlways</property>
@@ -449,8 +450,6 @@
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
     <property name="DestroyWithParent">True</property>
-    <property name="SkipPagerHint">True</property>
-    <property name="SkipTaskbarHint">True</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox2">
@@ -630,11 +629,12 @@
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Check Now...</property>
+                    <property name="BorderWidth">4</property>
                     <signal name="Clicked" handler="OnBtnCheckNowClicked" />
                   </widget>
                   <packing>
-                    <property name="X">256</property>
-                    <property name="Y">48</property>
+                    <property name="X">244</property>
+                    <property name="Y">44</property>
                   </packing>
                 </child>
               </widget>

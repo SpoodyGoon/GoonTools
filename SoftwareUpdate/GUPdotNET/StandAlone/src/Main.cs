@@ -26,22 +26,52 @@ namespace GUPdotNET
 {
 	class MainClass
 	{
-		public static void Main (string[] args)
+		public static int Main (string[] args)
 		{
-			bool _UpdateCheck = false;
 			Application.Init ();
-			Common.LoadAll(args[0].Trim());
-			
-			if(args.Length >= 1)
+			if(args.Length < 2)
 			{
-				if(args[1].ToLower() == "updatecheck")
-					_UpdateCheck = true;
+				throw new Exception("Invalid number of arguments.");
 			}
-			
-			MainWindow mw = new MainWindow(_UpdateCheck);
-			mw.Show();
+			else
+			{
+				Common.LoadAll(args[0].Trim());
+				Gtk.Rc.ReparseAll();
+				if(args[1].ToLower() == "updatecheck")
+				{
+					if(DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)) > 0)
+					{
+						UpdateInfo ui = new UpdateInfo();
+						ui.LoadInfo(UpdateInfoType.All);
+						// tell the user there is an update availalbe
+						// and ask if they would like to update
+						frmConfirm dlgConfirm = new frmConfirm(ui);
+						if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
+						{
+							// update confirmed get installer file
+							frmDownload dlgDownload = new frmDownload(ui);
+							if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
+							{
+								// if the download was sucessful then procede with the install
+								frmInstall Inst = new frmInstall(ui);
+								Inst.Run();
+								Inst.Destroy();
+								
+							}
+							dlgDownload.Destroy();
+						}
+						dlgConfirm.Destroy();
+						return 0;
+					}
+					else
+					{
+						MainWindow mw = new MainWindow();
+						mw.Show();
+					}
+				}
+			}
 			Application.Run ();
-			
+			return 0;
 		}
 	}
 }
