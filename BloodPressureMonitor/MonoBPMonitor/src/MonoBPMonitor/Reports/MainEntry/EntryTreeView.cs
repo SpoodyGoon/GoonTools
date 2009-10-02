@@ -83,7 +83,7 @@ namespace MonoBPMonitor.Reports
 				Gtk.TreeIter iter;
 				if(this.Selection.GetSelected(out iter))
 				{
-					frmBPEntry fm  = new frmBPEntry((int)_EntryRptListsStore.GetValue(iter, 0));
+					frmEntry fm  = new frmEntry((int)_EntryRptListsStore.GetValue(iter, 0));
 					if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
 					{
 						LoadData();	

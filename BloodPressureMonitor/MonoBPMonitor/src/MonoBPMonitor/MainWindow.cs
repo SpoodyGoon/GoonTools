@@ -82,7 +82,7 @@ namespace MonoBPMonitor
 		protected virtual void OnNewEntryActionActivated (object sender, System.EventArgs e)
 		{
 			
-			frmBPEntry fm = new frmBPEntry ();
+			frmEntry fm = new frmEntry ();
 			fm.UserID = cboUser.UserID;
 			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
 				tvEntityRpt.Refresh();
@@ -139,7 +139,7 @@ namespace MonoBPMonitor
 
 		protected virtual void OnEditaddPngActionActivated (object sender, System.EventArgs e)
 		{
-			frmBPEntry fm = new frmBPEntry ();
+			frmEntry fm = new frmEntry ();
 			fm.UserID = cboUser.UserID;
 			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
 				tvEntityRpt.Refresh();

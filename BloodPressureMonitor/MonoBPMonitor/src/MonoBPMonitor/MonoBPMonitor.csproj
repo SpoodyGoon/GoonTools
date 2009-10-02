@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,9 +45,7 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.4.2\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Data.SqliteClient" />
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -115,10 +113,6 @@
     <EmbeddedResource Include="images\date.png">
       <LogicalName>date.png</LogicalName>
     </EmbeddedResource>
-    <Compile Include="Data\dsBPMonitor.Designer.cs">
-      <DependentUpon>dsBPMonitor.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Data\MetaInfo.cs" />
     <Compile Include="Doctors\DoctorTreeView.cs" />
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
@@ -156,7 +150,7 @@
     <Compile Include="Entry\Entry.cs" />
     <Compile Include="Users\UserComboBox.cs" />
     <Compile Include="Doctors\DoctorComboBox.cs" />
-    <Compile Include="Entry\frmBPEntry.cs" />
+    <Compile Include="Entry\frmEntry.cs" />
     <EmbeddedResource Include="images\doctor.png">
       <LogicalName>doctor.png</LogicalName>
     </EmbeddedResource>
@@ -166,16 +160,6 @@
     <Content Include="app.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Data\dsBPMonitor.xsc">
-      <DependentUpon>dsBPMonitor.xsd</DependentUpon>
-    </None>
-    <None Include="Data\dsBPMonitor.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-    </None>
-    <None Include="Data\dsBPMonitor.xss">
-      <DependentUpon>dsBPMonitor.xsd</DependentUpon>
-    </None>
     <None Include="Reports\MainEntry\Description.txt" />
     <Compile Include="Doctors\DoctorRendererCombo.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.cs" />
