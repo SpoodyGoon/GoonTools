@@ -28,7 +28,6 @@ namespace GUPdotNET
 	{
 		public static int Main (string[] args)
 		{
-			Application.Init ();
 			if(args.Length < 2)
 			{
 				throw new Exception("Invalid number of arguments.");
@@ -65,12 +64,15 @@ namespace GUPdotNET
 					}
 					else
 					{
-						MainWindow mw = new MainWindow();
-						mw.Show();
+						frmOptions fm = new frmOptions();
+						if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Yes)
+						{
+							Common.SaveOptions();
+						}
+						fm.Destroy();
 					}
 				}
 			}
-			Application.Run ();
 			return 0;
 		}
 	}

@@ -11,11 +11,7 @@
 namespace GUPdotNET {
     
     
-    public partial class MainWindow {
-        
-        private Gtk.VBox vbox2;
-        
-        private Gtk.Alignment alignment3;
+    public partial class frmOptions {
         
         private Gtk.Fixed fixed1;
         
@@ -53,35 +49,26 @@ namespace GUPdotNET {
         
         private Gtk.Button btnCheckNow;
         
-        private Gtk.Alignment alignment1;
+        private Gtk.Button btnCancel;
         
-        private Gtk.HSeparator hseparator1;
-        
-        private Gtk.Alignment alignment2;
-        
-        private Gtk.HButtonBox hbuttonbox2;
-        
-        private Gtk.Button btnClose;
+        private Gtk.Button btnOk;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
-            // Widget GUPdotNET.MainWindow
-            this.Name = "GUPdotNET.MainWindow";
+            // Widget GUPdotNET.frmOptions
+            this.Name = "GUPdotNET.frmOptions";
             this.Title = Mono.Unix.Catalog.GetString("Update Options");
             this.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
-            this.WindowPosition = ((Gtk.WindowPosition)(3));
-            this.BorderWidth = ((uint)(2));
+            this.WindowPosition = ((Gtk.WindowPosition)(1));
+            this.Modal = true;
+            this.BorderWidth = ((uint)(4));
             this.Resizable = false;
             this.AllowGrow = false;
-            this.DestroyWithParent = true;
-            // Container child GUPdotNET.MainWindow.Gtk.Container+ContainerChild
-            this.vbox2 = new Gtk.VBox();
-            this.vbox2.Name = "vbox2";
-            this.vbox2.Spacing = 6;
-            // Container child vbox2.Gtk.Box+BoxChild
-            this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment3.Name = "alignment3";
-            // Container child alignment3.Gtk.Container+ContainerChild
+            // Internal child GUPdotNET.frmOptions.VBox
+            Gtk.VBox w1 = this.VBox;
+            w1.Name = "dialog1_VBox";
+            w1.BorderWidth = ((uint)(2));
+            // Container child dialog1_VBox.Gtk.Box+BoxChild
             this.fixed1 = new Gtk.Fixed();
             this.fixed1.WidthRequest = 460;
             this.fixed1.HeightRequest = 168;
@@ -109,10 +96,10 @@ namespace GUPdotNET {
             this.label3.LabelProp = Mono.Unix.Catalog.GetString("Check for updates every:");
             this.alignment4.Add(this.label3);
             this.hbox1.Add(this.alignment4);
-            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment4]));
-            w2.Position = 0;
-            w2.Expand = false;
-            w2.Fill = false;
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment4]));
+            w3.Position = 0;
+            w3.Expand = false;
+            w3.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
             this.alignment5 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment5.Name = "alignment5";
@@ -122,57 +109,57 @@ namespace GUPdotNET {
             this.cboUpdateTime.Name = "cboUpdateTime";
             this.alignment5.Add(this.cboUpdateTime);
             this.hbox1.Add(this.alignment5);
-            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment5]));
-            w4.Position = 1;
-            w4.Expand = false;
-            w4.Fill = false;
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment5]));
+            w5.Position = 1;
+            w5.Expand = false;
+            w5.Fill = false;
             this.GtkAlignment1.Add(this.hbox1);
             this.fraCheckLimits.Add(this.GtkAlignment1);
             this.fixed1.Add(this.fraCheckLimits);
-            Gtk.Fixed.FixedChild w7 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.fraCheckLimits]));
-            w7.X = 17;
-            w7.Y = 85;
+            Gtk.Fixed.FixedChild w8 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.fraCheckLimits]));
+            w8.X = 17;
+            w8.Y = 88;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.label4 = new Gtk.Label();
             this.label4.Name = "label4";
             this.label4.LabelProp = Mono.Unix.Catalog.GetString("Last Update Check:");
             this.fixed1.Add(this.label4);
-            Gtk.Fixed.FixedChild w8 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.label4]));
-            w8.X = 71;
-            w8.Y = 129;
+            Gtk.Fixed.FixedChild w9 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.label4]));
+            w9.X = 71;
+            w9.Y = 140;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.lblLastCheck = new Gtk.Label();
             this.lblLastCheck.Name = "lblLastCheck";
             this.lblLastCheck.LabelProp = Mono.Unix.Catalog.GetString("None");
             this.fixed1.Add(this.lblLastCheck);
-            Gtk.Fixed.FixedChild w9 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.lblLastCheck]));
-            w9.X = 175;
-            w9.Y = 129;
+            Gtk.Fixed.FixedChild w10 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.lblLastCheck]));
+            w10.X = 190;
+            w10.Y = 140;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.label5 = new Gtk.Label();
             this.label5.Name = "label5";
             this.label5.LabelProp = Mono.Unix.Catalog.GetString("Last Update:");
             this.fixed1.Add(this.label5);
-            Gtk.Fixed.FixedChild w10 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.label5]));
-            w10.X = 104;
-            w10.Y = 150;
+            Gtk.Fixed.FixedChild w11 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.label5]));
+            w11.X = 104;
+            w11.Y = 164;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.lblLastUpdate = new Gtk.Label();
             this.lblLastUpdate.Name = "lblLastUpdate";
             this.lblLastUpdate.LabelProp = Mono.Unix.Catalog.GetString("None");
             this.fixed1.Add(this.lblLastUpdate);
-            Gtk.Fixed.FixedChild w11 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.lblLastUpdate]));
-            w11.X = 175;
-            w11.Y = 150;
+            Gtk.Fixed.FixedChild w12 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.lblLastUpdate]));
+            w12.X = 190;
+            w12.Y = 164;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
             this.label2.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"x-large\"><b>Update Options</b></span>");
             this.label2.UseMarkup = true;
             this.fixed1.Add(this.label2);
-            Gtk.Fixed.FixedChild w12 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.label2]));
-            w12.X = 170;
-            w12.Y = 9;
+            Gtk.Fixed.FixedChild w13 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.label2]));
+            w13.X = 166;
+            w13.Y = 6;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.ebxAbout = new Gtk.EventBox();
             this.ebxAbout.Name = "ebxAbout";
@@ -185,17 +172,16 @@ namespace GUPdotNET {
             this.lblAbout.UseMarkup = true;
             this.ebxAbout.Add(this.lblAbout);
             this.fixed1.Add(this.ebxAbout);
-            Gtk.Fixed.FixedChild w14 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.ebxAbout]));
-            w14.X = 344;
-            w14.Y = 2;
+            Gtk.Fixed.FixedChild w15 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.ebxAbout]));
+            w15.X = 350;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.hseparator2 = new Gtk.HSeparator();
             this.hseparator2.WidthRequest = 432;
             this.hseparator2.Name = "hseparator2";
             this.fixed1.Add(this.hseparator2);
-            Gtk.Fixed.FixedChild w15 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.hseparator2]));
-            w15.X = 7;
-            w15.Y = 36;
+            Gtk.Fixed.FixedChild w16 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.hseparator2]));
+            w16.X = 7;
+            w16.Y = 36;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.cbxAutoUpdate = new Gtk.CheckButton();
             this.cbxAutoUpdate.CanFocus = true;
@@ -205,75 +191,70 @@ namespace GUPdotNET {
             this.cbxAutoUpdate.DrawIndicator = true;
             this.cbxAutoUpdate.UseUnderline = true;
             this.fixed1.Add(this.cbxAutoUpdate);
-            Gtk.Fixed.FixedChild w16 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.cbxAutoUpdate]));
-            w16.X = 43;
-            w16.Y = 50;
+            Gtk.Fixed.FixedChild w17 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.cbxAutoUpdate]));
+            w17.X = 43;
+            w17.Y = 50;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.btnCheckNow = new Gtk.Button();
+            this.btnCheckNow.WidthRequest = 112;
+            this.btnCheckNow.HeightRequest = 40;
             this.btnCheckNow.CanFocus = true;
             this.btnCheckNow.Name = "btnCheckNow";
             this.btnCheckNow.BorderWidth = ((uint)(4));
             this.btnCheckNow.Label = Mono.Unix.Catalog.GetString("Check Now...");
             this.fixed1.Add(this.btnCheckNow);
-            Gtk.Fixed.FixedChild w17 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.btnCheckNow]));
-            w17.X = 244;
-            w17.Y = 44;
-            this.alignment3.Add(this.fixed1);
-            this.vbox2.Add(this.alignment3);
-            Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment3]));
+            Gtk.Fixed.FixedChild w18 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.btnCheckNow]));
+            w18.X = 278;
+            w18.Y = 39;
+            w1.Add(this.fixed1);
+            Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(w1[this.fixed1]));
             w19.Position = 0;
             w19.Expand = false;
             w19.Fill = false;
-            // Container child vbox2.Gtk.Box+BoxChild
-            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment1.Name = "alignment1";
-            // Container child alignment1.Gtk.Container+ContainerChild
-            this.hseparator1 = new Gtk.HSeparator();
-            this.hseparator1.Name = "hseparator1";
-            this.alignment1.Add(this.hseparator1);
-            this.vbox2.Add(this.alignment1);
-            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
-            w21.Position = 1;
+            // Internal child GUPdotNET.frmOptions.ActionArea
+            Gtk.HButtonBox w20 = this.ActionArea;
+            w20.Name = "dialog1_ActionArea";
+            w20.Spacing = 6;
+            w20.BorderWidth = ((uint)(5));
+            w20.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
+            this.btnCancel = new Gtk.Button();
+            this.btnCancel.CanDefault = true;
+            this.btnCancel.CanFocus = true;
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.UseStock = true;
+            this.btnCancel.UseUnderline = true;
+            this.btnCancel.Label = "gtk-cancel";
+            this.AddActionWidget(this.btnCancel, -6);
+            Gtk.ButtonBox.ButtonBoxChild w21 = ((Gtk.ButtonBox.ButtonBoxChild)(w20[this.btnCancel]));
             w21.Expand = false;
             w21.Fill = false;
-            // Container child vbox2.Gtk.Box+BoxChild
-            this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment2.Name = "alignment2";
-            // Container child alignment2.Gtk.Container+ContainerChild
-            this.hbuttonbox2 = new Gtk.HButtonBox();
-            this.hbuttonbox2.Name = "hbuttonbox2";
-            this.hbuttonbox2.BorderWidth = ((uint)(3));
-            // Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
-            this.btnClose = new Gtk.Button();
-            this.btnClose.CanFocus = true;
-            this.btnClose.Name = "btnClose";
-            this.btnClose.UseStock = true;
-            this.btnClose.UseUnderline = true;
-            this.btnClose.Label = "gtk-close";
-            this.hbuttonbox2.Add(this.btnClose);
-            Gtk.ButtonBox.ButtonBoxChild w22 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.btnClose]));
+            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
+            this.btnOk = new Gtk.Button();
+            this.btnOk.CanDefault = true;
+            this.btnOk.CanFocus = true;
+            this.btnOk.Name = "btnOk";
+            this.btnOk.UseStock = true;
+            this.btnOk.UseUnderline = true;
+            this.btnOk.Label = "gtk-ok";
+            this.AddActionWidget(this.btnOk, -5);
+            Gtk.ButtonBox.ButtonBoxChild w22 = ((Gtk.ButtonBox.ButtonBoxChild)(w20[this.btnOk]));
+            w22.Position = 1;
             w22.Expand = false;
             w22.Fill = false;
-            this.alignment2.Add(this.hbuttonbox2);
-            this.vbox2.Add(this.alignment2);
-            Gtk.Box.BoxChild w24 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment2]));
-            w24.Position = 2;
-            w24.Expand = false;
-            w24.Fill = false;
-            this.Add(this.vbox2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 464;
-            this.DefaultHeight = 228;
-            this.Hide();
-            this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
+            this.DefaultWidth = 472;
+            this.DefaultHeight = 253;
+            this.Show();
             this.ebxAbout.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.OnEbxAboutButtonPressEvent);
             this.ebxAbout.EnterNotifyEvent += new Gtk.EnterNotifyEventHandler(this.OnEbxAboutEnterNotifyEvent);
             this.ebxAbout.LeaveNotifyEvent += new Gtk.LeaveNotifyEventHandler(this.OnEbxAboutLeaveNotifyEvent);
             this.cbxAutoUpdate.Toggled += new System.EventHandler(this.OnCbxAutoUpdateToggled);
             this.btnCheckNow.Clicked += new System.EventHandler(this.OnBtnCheckNowClicked);
-            this.btnClose.Clicked += new System.EventHandler(this.OnBtnCloseClicked);
+            this.btnCancel.Clicked += new System.EventHandler(this.OnBtnCancelClicked);
+            this.btnOk.Clicked += new System.EventHandler(this.OnBtnOkClicked);
         }
     }
 }
