@@ -62,15 +62,15 @@ namespace GUPdotNET
 						dlgConfirm.Destroy();
 						return 0;
 					}
-					else
+				}
+				else
+				{
+					frmOptions fm = new frmOptions();
+					if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Yes)
 					{
-						frmOptions fm = new frmOptions();
-						if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Yes)
-						{
-							Common.SaveOptions();
-						}
-						fm.Destroy();
+						Common.SaveOptions();
 					}
+					fm.Destroy();
 				}
 			}
 			return 0;
