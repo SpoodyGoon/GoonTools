@@ -26,53 +26,69 @@ namespace GUPdotNET
 {
 	class MainClass
 	{
+		private static RunType _RunType = RunType.None;
 		public static int Main (string[] args)
 		{
-			if(args.Length < 2)
+			Application.Init();
+			if(args.Length < 1)
 			{
-				throw new Exception("Invalid number of arguments.");
+				_RunType = RunType.Options;	
+			}
+			else if(args[0].ToLower() == "updatecheck")
+			{
+				_RunType = RunType.UpdateCheck;
 			}
 			else
 			{
-				Common.LoadAll(args[0].Trim());
-				Gtk.Rc.ReparseAll();
-				if(args[1].ToLower() == "updatecheck")
+				_RunType = RunType.Options;	
+			}
+				
+			Common.LoadAll();
+//			string[] str = Gtk.Rc.DefaultFiles;
+//			for(int i = 0; i< str.Length; i++)
+//			{
+//				Console.WriteLine("Gtk Rc File # " + i.ToString() + " " + str[i]);	
+//			}
+//			Gtk.Rc.ReparseAll();
+			
+			
+			if(_RunType == RunType.UpdateCheck)
+			{
+				if(DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)) > 0)
 				{
-					if(DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)) > 0)
+					UpdateInfo ui = new UpdateInfo();
+					ui.LoadInfo(UpdateInfoType.All);
+					// tell the user there is an update availalbe
+					// and ask if they would like to update
+					frmConfirm dlgConfirm = new frmConfirm(ui);
+					if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
 					{
-						UpdateInfo ui = new UpdateInfo();
-						ui.LoadInfo(UpdateInfoType.All);
-						// tell the user there is an update availalbe
-						// and ask if they would like to update
-						frmConfirm dlgConfirm = new frmConfirm(ui);
-						if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
+						// update confirmed get installer file
+						frmDownload dlgDownload = new frmDownload(ui);
+						if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
 						{
-							// update confirmed get installer file
-							frmDownload dlgDownload = new frmDownload(ui);
-							if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
-							{
-								// if the download was sucessful then procede with the install
-								frmInstall Inst = new frmInstall(ui);
-								Inst.Run();
-								Inst.Destroy();
-								
-							}
-							dlgDownload.Destroy();
+							// if the download was sucessful then procede with the install
+							frmInstall Inst = new frmInstall(ui);
+							Inst.Run();
+							Inst.Destroy();
+							
 						}
-						dlgConfirm.Destroy();
-						return 0;
+						dlgDownload.Destroy();
 					}
-				}
-				else
-				{
-					frmOptions fm = new frmOptions();
-					if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Yes)
-					{
-						Common.SaveOptions();
-					}
-					fm.Destroy();
+					dlgConfirm.Destroy();
+					return 0;
 				}
 			}
+			else
+			{
+				frmOptions fm = new frmOptions();
+				if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Yes)
+				{
+					Common.SaveOptions();
+				}
+				fm.Destroy();
+			}
+			
 			return 0;
 		}
 	}

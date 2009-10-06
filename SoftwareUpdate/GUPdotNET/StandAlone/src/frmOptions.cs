@@ -168,6 +168,7 @@ namespace GUPdotNET
 			}
 		}
 
+		
 		protected virtual void OnCbxAutoUpdateToggled (object sender, System.EventArgs e)
 		{
 			try
@@ -198,7 +199,7 @@ namespace GUPdotNET
 			}
 		}	
 		
-		
+		 
 		protected virtual void OnCboUpdateTimeTypeChanged (object sender, System.EventArgs e)
 		{
 			try

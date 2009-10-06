@@ -56,6 +56,7 @@ namespace GUPdotNET {
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget GUPdotNET.frmOptions
+            this.HeightRequest = 275;
             this.Name = "GUPdotNET.frmOptions";
             this.Title = Mono.Unix.Catalog.GetString("Update Options");
             this.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
@@ -105,7 +106,7 @@ namespace GUPdotNET {
             this.alignment5.Name = "alignment5";
             // Container child alignment5.Gtk.Container+ContainerChild
             this.cboUpdateTime = new GUPdotNET.UpdateTimeCombo();
-            this.cboUpdateTime.WidthRequest = 160;
+            this.cboUpdateTime.WidthRequest = 150;
             this.cboUpdateTime.Name = "cboUpdateTime";
             this.alignment5.Add(this.cboUpdateTime);
             this.hbox1.Add(this.alignment5);
@@ -246,8 +247,8 @@ namespace GUPdotNET {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 472;
-            this.DefaultHeight = 253;
-            this.Show();
+            this.DefaultHeight = 275;
+            this.Hide();
             this.ebxAbout.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.OnEbxAboutButtonPressEvent);
             this.ebxAbout.EnterNotifyEvent += new Gtk.EnterNotifyEventHandler(this.OnEbxAboutEnterNotifyEvent);
             this.ebxAbout.LeaveNotifyEvent += new Gtk.LeaveNotifyEventHandler(this.OnEbxAboutLeaveNotifyEvent);

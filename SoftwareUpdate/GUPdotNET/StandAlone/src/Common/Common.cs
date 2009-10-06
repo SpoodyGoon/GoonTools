@@ -39,7 +39,7 @@ namespace GUPdotNET
 		private static GUPdotNET.Helper.Options _Option;
 		private static string _AppPath = null;
 		// this is where the calling application holds user info
-		private static string _UserSaveLoc = null;
+		private static string _BasePath = null;
 		private static string _SavePath = null;
 		private static string _DirChar = so.Path.DirectorySeparatorChar.ToString();
 		private static string _OptionsFile = null;
@@ -64,26 +64,33 @@ namespace GUPdotNET
 			get{return _AppPath;}
 		}
 		
+		public static string DirChar
+		{
+			get{return _DirChar;}	
+		}
+		
 		#endregion Public Properties
 		
 		#region Loading and Saving
 		
-		public static void LoadAll(string usersaveloc)
+		public static void LoadAll()
 		{
 			try
 			{
-				_UserSaveLoc = so.Path.GetFullPath(usersaveloc);
-				_SavePath = so.Path.GetFullPath(so.Path.Combine(usersaveloc, "GUPdotNET"));
+				so.FileInfo fi = new so.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+				_AppPath = fi.Directory.FullName;
+				
+				_BasePath = so.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), System.Reflection.Assembly.GetCallingAssembly().GetName().Name);
+				if(!so.Directory.Exists(_BasePath))
+					so.Directory.CreateDirectory(_BasePath);
+					
+				_SavePath = so.Path.Combine(_BasePath, "GUPdotNET");				
+				if(!so.Directory.Exists(_SavePath))
+					so.Directory.CreateDirectory(_SavePath);
+				
 				_OptionsFile = so.Path.Combine(_SavePath, "Options.dat");
 				_UpdateFile = so.Path.Combine(_SavePath, "Update.log");
 				_ErrorFile = so.Path.Combine(_SavePath, "Error.log");
-				
-				_AppPath = so.Path.GetFullPath(new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly ().Location).Directory.FullName);
-				
-				if(!so.Directory.Exists(_UserSaveLoc))
-					so.Directory.CreateDirectory(_UserSaveLoc);
-				if(!so.Directory.Exists(_SavePath))
-					so.Directory.CreateDirectory(_SavePath);
 				// search for the options file if it exists load it
 				// if it has not been saved load the defaults
 				if(so.File.Exists(_OptionsFile))
@@ -99,38 +106,9 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				HandleError(ex);
+				Common.HandleError(ex);
 			}
 		}
-		
-//		public static void LoadAll()
-//		{
-//			try
-//			{
-//				_AppPath = so.Path.GetFullPath(new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly ().Location).Directory.FullName);
-//				
-//				if(!so.Directory.Exists(_UserSaveLoc))
-//					so.Directory.CreateDirectory(_UserSaveLoc);
-//				if(!so.Directory.Exists(_SavePath))
-//					so.Directory.CreateDirectory(_SavePath);
-//				// search for the options file if it exists load it
-//				// if it has not been saved load the defaults
-//				if(so.File.Exists(_OptionsFile))
-//				{
-//					LoadOptions();
-//				}
-//				else
-//				{
-//					_Option = new GUPdotNET.Helper.Options();
-//					SaveOptions();
-//				}
-//				
-//			}
-//			catch(Exception ex)
-//			{
-//				Common.HandleError(ex);
-//			}
-//		}
 		
 		public static void LoadOptions()
 		{
@@ -210,5 +188,12 @@ namespace GUPdotNET
 		
 		#endregion Logs
 		
+	}
+	
+	public enum RunType
+	{
+		UpdateCheck,
+		Options,
+		None
 	}
 }
