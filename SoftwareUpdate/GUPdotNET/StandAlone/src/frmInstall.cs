@@ -32,10 +32,10 @@ namespace GUPdotNET
 	
 	public partial class frmInstall : Gtk.Dialog
 	{
-		private SecureString _AdminPass = null;
-		// this is the global flag signaling if we want to cancel the update
-		private bool _Cancel = false;
-		private bool _IsSystemInstall = true;
+//		private SecureString _AdminPass = null;
+//		// this is the global flag signaling if we want to cancel the update
+//		private bool _Cancel = false;
+//		private bool _IsSystemInstall = true;
 		private UpdateInfo _UpdateInfo;
 		public frmInstall(UpdateInfo updateinfo)
 		{
@@ -91,42 +91,42 @@ namespace GUPdotNET
 			md.Destroy();
 		}
 		
-		private bool HasAccess(string _TempInstallerPath)
-		{
-			// assume the user has access
-			bool blnHasAccess = true;
-			
-			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, _TempInstallerPath);
-			try
-			{
-				f2.Demand();
-			}
-			catch (System.Security.SecurityException s)
-			{
-				blnHasAccess = false;
-				Console.WriteLine(s.Message);
-			}
-			return blnHasAccess;
-		}
+//		private bool HasAccess(string _TempInstallerPath)
+//		{
+//			// assume the user has access
+//			bool blnHasAccess = true;
+//			
+//			FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, _TempInstallerPath);
+//			try
+//			{
+//				f2.Demand();
+//			}
+//			catch (System.Security.SecurityException s)
+//			{
+//				blnHasAccess = false;
+//				Console.WriteLine(s.Message);
+//			}
+//			return blnHasAccess;
+//		}
 		
-		private void InstallWindows()
-		{
-			
-		}
+//		private void InstallWindows()
+//		{
+//			
+//		}
 		
 		#endregion Windows Install
 		
 		#region RPM Install
 		
-		private void InstallRPM()
-		{
-			if(Environment.UserName != "root")
-			{
-				Gtk.InputDialog imp = new InputDialog();
-				imp.Title = "Admin Password";
-				
-			}
-		}
+//		private void InstallRPM()
+//		{
+//			if(Environment.UserName != "root")
+//			{
+//				Gtk.InputDialog imp = new InputDialog();
+//				imp.Title = "Admin Password";
+//				
+//			}
+//		}
 		
 		#endregion RPM Install
 	}

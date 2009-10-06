@@ -88,7 +88,7 @@ namespace GUPdotNET
 		{
 			Build();
 			this.WidthRequest = 185;
-			this.HeightRequest = 24;
+			this.HeightRequest = 30;
 			base.OnRealized ();
 		}
 
