@@ -148,6 +148,7 @@ namespace GUPdotNET
 
 		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
 		{
+			Common.SaveOptions();
 			this.Hide();
 		}
 		
