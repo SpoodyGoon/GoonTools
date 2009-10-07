@@ -58,14 +58,8 @@ namespace MonoBPMonitor.Reports
 					SumSystolic += Convert.ToInt32(dr["Systolic"]);
 					SumDiastolic += Convert.ToInt32(dr["Diastolic"]);
 					SumHeartRate += Convert.ToInt32(dr["HeartRate"]);
-					_EntryRptListsStore.AppendValues(
-					                                 Convert.ToInt32(dr["EntryID"]), 
-					                                 Convert.ToDateTime(dr["EntryDateTime"].ToString()).ToString("g"),
-					                                 dr["Systolic"].ToString() + "/" + dr["Diastolic"].ToString(), 
-					                                 dr["HeartRate"].ToString(), 
-					                                 (Math.Round((double)SumSystolic/RowCount, 0)).ToString() + "/" + (Math.Round((double)SumDiastolic/RowCount, 0)).ToString(), 
-					                                 (Math.Round((double)SumHeartRate/RowCount, 0)).ToString()
-					                                 );
+					MainBPReport MnR = new MainBPReport(Convert.ToInt32(dr["EntryID"]),Convert.ToDateTime(dr["EntryDateTime"]), Convert.ToInt32(dr["Systolic"]), Convert.ToInt32(dr["Diastolic"]),Convert.ToInt32(dr["HeartRate"]),  SumSystolic, SumDiastolic, SumHeartRate, RowCount);
+					_EntryRptListsStore.AppendValues(MnR);
 					RowCount++;
 				}
 				this.ShowAll();
@@ -83,7 +77,8 @@ namespace MonoBPMonitor.Reports
 				Gtk.TreeIter iter;
 				if(this.Selection.GetSelected(out iter))
 				{
-					frmEntry fm  = new frmEntry((int)_EntryRptListsStore.GetValue(iter, 0));
+					MainBPReport mb = (MainBPReport)_EntryRptListsStore.GetValue(iter, 0);
+					frmEntry fm  = new frmEntry(mb.EntryID);
 					if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
 					{
 						LoadData();	
@@ -113,5 +108,45 @@ namespace MonoBPMonitor.Reports
 			if(_CurrentHistoryLimit != Common.Option.HistoryDefaultShow)
 				LoadData();
 		}
+		
+		#region Cell Render Functions
+		
+		private void RenderEntryID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			MainBPReport m = (MainBPReport)model.GetValue(iter, 0);
+			(cell as Gtk.CellRendererText).Text = m.EntryID.ToString();
+		}
+		
+		private void RenderEntryDate (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			MainBPReport m = (MainBPReport)model.GetValue(iter, 0);
+			(cell as Gtk.CellRendererText).Text = m.EntryDateTime.ToShortDateString();
+		}
+		
+		private void RenderBPReading (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			MainBPReport m = (MainBPReport)model.GetValue(iter, 0);
+			(cell as Gtk.CellRendererText).Text = m.Systolic.ToString() + "/" + m.Diastolic.ToString();
+		}
+		
+		private void RenderHeartRate (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			MainBPReport m = (MainBPReport)model.GetValue(iter, 0);
+			(cell as Gtk.CellRendererText).Text = m.HeartRate.ToString();
+		}
+		
+		private void RenderAvgBPReading (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			MainBPReport m = (MainBPReport)model.GetValue(iter, 0);
+			(cell as Gtk.CellRendererText).Text = m.SystolicAvg.ToString() + "/" + m.DiastolicAvg.ToString();
+		}
+		
+		private void RenderAvgHeartRate (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			MainBPReport m = (MainBPReport)model.GetValue(iter, 0);
+			(cell as Gtk.CellRendererText).Text = m.HeartRateAvg.ToString();
+		}
+		
+		#endregion Cell Render Functions
 	}
 }

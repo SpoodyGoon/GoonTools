@@ -33,7 +33,7 @@ namespace MonoBPMonitor.Reports
 	/// </summary>
 	public partial class EntryRptTreeView : Gtk.TreeView
 	{
-		private Gtk.ListStore _EntryRptListsStore = new ListStore(typeof(int), typeof(string),typeof(string),typeof(string),typeof(string),typeof(string));
+		private Gtk.ListStore _EntryRptListsStore = new ListStore(typeof(MainBPReport));
 		private int _CurrentUser = 1; // this is the default user
 		private int _CurrentHistoryLimit = 30;// this is the assumed default
 		private void Build()
@@ -44,6 +44,7 @@ namespace MonoBPMonitor.Reports
 				this.RulesHint = true;
 				this.EnableSearch = false;
 				this.EnableGridLines = Gtk.TreeViewGridLines.Both;
+				
 				
 				Gtk.TreeViewColumn colEntryID = new Gtk.TreeViewColumn ();
 				colEntryID.MinWidth=25;
@@ -121,6 +122,13 @@ namespace MonoBPMonitor.Reports
 				colAvgBPReading.AddAttribute(cellAvgBPReading, "text", 4);
 				colAvgHeartRate.AddAttribute(cellAvgHeartRate, "text", 5);
 				//this.AppendColumn(new GoonTools.ColumnSelector.TreeColumnSelector(this.Columns));
+				
+				colEntryID.SetCellDataFunc(cellEntryID, new Gtk.TreeCellDataFunc(RenderEntryID));
+				colEntryDate.SetCellDataFunc(cellEntryDate, new Gtk.TreeCellDataFunc(RenderEntryDate));
+				colBPReading.SetCellDataFunc(cellBPReading, new Gtk.TreeCellDataFunc(RenderBPReading));
+				colHeartRate.SetCellDataFunc(cellHeartRate, new Gtk.TreeCellDataFunc(RenderHeartRate));
+				colAvgBPReading.SetCellDataFunc(cellAvgBPReading, new Gtk.TreeCellDataFunc(RenderAvgBPReading));
+				colAvgHeartRate.SetCellDataFunc(cellAvgHeartRate, new Gtk.TreeCellDataFunc(RenderAvgHeartRate));
 				
 				this.RowActivated += EntryRptTreeView_RowActivated;
 				this.Model =_EntryRptListsStore;
