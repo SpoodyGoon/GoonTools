@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -58,6 +58,7 @@
     <Reference Include="System.Drawing">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -117,6 +118,8 @@
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
     <Compile Include="Medications\MedicationTreeView.Designer.cs" />
+    <Compile Include="Reports\MainEntry\CellRenderLinkButton.cs" />
+    <Compile Include="Reports\MainEntry\MainBPReport.cs" />
     <Compile Include="Users\UserRendererCombo.cs" />
     <Compile Include="Users\UserTreeView.cs" />
     <Compile Include="Users\UserTreeView.Designer.cs" />
