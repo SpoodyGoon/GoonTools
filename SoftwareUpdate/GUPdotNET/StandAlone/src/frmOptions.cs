@@ -79,7 +79,7 @@ namespace GUPdotNET
 			if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
 			{
 				// update confirmed get installer file
-				frmDownload dlgDownload = new frmDownload(_UpdateInfo);
+				frmDownloadApp dlgDownload = new frmDownloadApp(_UpdateInfo);
 				if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
 				{
 					// if the download was sucessful then procede with the install
