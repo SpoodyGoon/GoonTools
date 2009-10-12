@@ -79,7 +79,7 @@ namespace GUPdotNET
 			if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
 			{
 				// update confirmed get installer file
-				frmDownloadApp dlgDownload = new frmDownloadApp(_UpdateInfo);
+				frmDownload dlgDownload = new frmDownload(_UpdateInfo);
 				if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
 				{
 					// if the download was sucessful then procede with the install
@@ -127,6 +127,7 @@ namespace GUPdotNET
 
 		protected virtual void OnEbxAboutEnterNotifyEvent (object o, Gtk.EnterNotifyEventArgs args)
 		{
+			
 			this.GdkWindow.Cursor = ctLink;
 			lblAbout.Text = "<span size=\"7500\" color=\"#920000\"><b><u><tt>About GUPdotNET</tt></u></b></span>";
 			lblAbout.UseMarkup = true;
@@ -135,7 +136,6 @@ namespace GUPdotNET
 
 		protected virtual void OnEbxAboutLeaveNotifyEvent (object o, Gtk.LeaveNotifyEventArgs args)
 		{
-			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.LastCursor);
 			lblAbout.Text = "<span size=\"7500\" color=\"#00006B\"><b><u><tt>About GUPdotNET</tt></u></b></span>";
 			lblAbout.UseMarkup = true;
 			lblAbout.ShowNow();

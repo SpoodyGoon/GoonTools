@@ -49,10 +49,9 @@ public partial class MainWindow: Gtk.Window
 			System.IO.FileInfo fi = new System.IO.FileInfo(asm.Location);
 			
 			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
-			si.UseShellExecute = true;
+			si.UseShellExecute = false;
 			si.FileName = GUPdotNETFile.Filename;
-			si.Arguments = "\"" + System.IO.Path.GetFullPath(fi.Directory.FullName) + "\" ";
-			si.Arguments += "\"updatecheck\"";
+			si.Arguments += "updatecheck";
 			System.Diagnostics.Process.Start(si);
 
 		}
@@ -71,8 +70,7 @@ public partial class MainWindow: Gtk.Window
 		System.IO.FileInfo fi = new System.IO.FileInfo(asm.Location);
 		System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
 		si.FileName = GUPdotNETFile.Filename;
-		si.Arguments = "\"" + System.IO.Path.GetFullPath(fi.Directory.FullName) + "\" \"options\"";
-		si.UseShellExecute = true;
+		si.UseShellExecute = false;
 		System.Diagnostics.Process.Start(si);
 	}
 }
