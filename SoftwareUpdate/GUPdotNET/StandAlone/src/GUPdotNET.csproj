@@ -103,7 +103,6 @@
     <Compile Include="gtk-gui\GUPdotNET.frmInstall.cs" />
     <Compile Include="frmOptions.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmOptions.cs" />
-    <Compile Include="frmDownloadApp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

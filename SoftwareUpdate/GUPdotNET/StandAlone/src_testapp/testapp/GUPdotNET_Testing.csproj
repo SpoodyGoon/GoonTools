@@ -4,7 +4,7 @@
     <ProjectGuid>{954A4986-D34B-408D-9F9E-A179B219BD9E}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <MonoTargetFrameworkVersion>v2.0</MonoTargetFrameworkVersion>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\ayork\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <StartupObject>GUPdotNET_Testing.MainClass</StartupObject>

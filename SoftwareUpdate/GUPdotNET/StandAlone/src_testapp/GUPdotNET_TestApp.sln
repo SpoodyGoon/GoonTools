@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-# SharpDevelop 3.1.0.4374
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUPdotNET", "..\src\GUPdotNET.csproj", "{2552A720-E6E3-4403-8096-A68B7D454EDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUPdotNET_Testing", "testapp\GUPdotNET_Testing.csproj", "{954A4986-D34B-408D-9F9E-A179B219BD9E}"
@@ -17,11 +16,13 @@ Global
 		{2552A720-E6E3-4403-8096-A68B7D454EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2552A720-E6E3-4403-8096-A68B7D454EDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{954A4986-D34B-408D-9F9E-A179B219BD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{954A4986-D34B-408D-9F9E-A179B219BD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{954A4986-D34B-408D-9F9E-A179B219BD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{954A4986-D34B-408D-9F9E-A179B219BD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{954A4986-D34B-408D-9F9E-A179B219BD9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
+		version = 0.1
+		outputpath = GUPdotNET_Testing\bin\Debug
 		StartupItem = ..\src\GUPdotNET.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
@@ -29,7 +30,5 @@ Global
 		$1.ResourceNamePolicy = FileFormatDefault
 		$0.StandardHeader = $2
 		$2.inheritsSet = MITX11License
-		version = 0.1
-		outputpath = GUPdotNET_Testing\bin\Debug
 	EndGlobalSection
 EndGlobal

@@ -42,16 +42,19 @@ namespace GUPdotNET
 		{
 			this.Build();
 			_UpdateInfo = updateinfo;
-			this.ModifyBg(Gtk.StateType.Normal, new Gdk.Color(10, 65,10));
+			this.ModifyBg(Gtk.StateType.Normal, new Gdk.Color(110, 110,110));
 			this.Move(350, 10);
 			try
 			{
-				this.ActionArea.Visible = false;
+				//this.ActionArea.Visible = false;
+				this.Remove(this.ActionArea);
 				this.progressbar1.DoubleBuffered= true;
 				this.ShowNow();
 				// get a unique name for the temporary installer file name
 				_UpdateInfo.TempInstallerPath = GetUniqueFileName(_UpdateInfo.UpdateFileURL);
 				this.KeepAbove = true;
+				this.HeightRequest=70;
+				this.HasSeparator = false;
 				StartDownload();
 			}
 			catch(Exception ex)

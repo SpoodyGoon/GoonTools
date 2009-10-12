@@ -34,9 +34,11 @@ namespace GUPdotNET {
             // Widget GUPdotNET.frmDownload
             this.Name = "GUPdotNET.frmDownload";
             this.Title = Mono.Unix.Catalog.GetString("Downloading Update");
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
-            this.BorderWidth = ((uint)(3));
-            this.AllowShrink = true;
+            this.BorderWidth = ((uint)(4));
+            this.Resizable = false;
+            this.AllowGrow = false;
             this.Decorated = false;
             this.DestroyWithParent = true;
             this.SkipPagerHint = true;
@@ -122,7 +124,7 @@ namespace GUPdotNET {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 371;
-            this.DefaultHeight = 111;
+            this.DefaultHeight = 132;
             w9.Hide();
             this.Show();
         }
