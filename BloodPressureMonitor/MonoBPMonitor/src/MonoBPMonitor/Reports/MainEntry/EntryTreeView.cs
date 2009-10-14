@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
- 
+
 using System;
 using System.Data;
 using Gtk;
@@ -81,10 +81,10 @@ namespace MonoBPMonitor.Reports
 					frmEntry fm  = new frmEntry(mb.EntryID);
 					if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
 					{
-						LoadData();	
+						LoadData();
 					}
 					fm.Destroy();
-				}                         
+				}
 			}
 			catch(Exception ex)
 			{
@@ -108,6 +108,48 @@ namespace MonoBPMonitor.Reports
 			if(_CurrentHistoryLimit != Common.Option.HistoryDefaultShow)
 				LoadData();
 		}
+		
+		[GLib.DefaultSignalHandlerAttribute()]
+		protected override bool OnMotionNotifyEvent(Gdk.EventMotion evnt)
+		{
+			Gtk.TreeIter iter;
+			Gtk.TreePath path;
+			Gtk.TreeViewColumn column;
+			Gtk.CellRendererText ct;
+			int cell_x = 0;
+			int cell_y = 0;
+			try
+			{
+				// set the cursor to the row under the mouse
+				if(this.GetPathAtPos((int)Math.Round(evnt.X, 0), (int)Math.Round(evnt.Y, 0), out path,out column, out cell_x, out cell_y))
+				{
+					if(_CurrentColumn != null)
+					{
+						ct = (Gtk.CellRendererText)_CurrentColumn.Cells[0];
+						ct.ForegroundGdk = new Gdk.Color (255, 0, 0);
+						ct.Weight = 2;
+						_OpenActive = false;
+						this.ShowNow();
+					}
+					if(column.Title == "Open")
+					{
+						_CurrentColumn = column;
+						ct = (Gtk.CellRendererText)column.Cells[0];
+						ct.ForegroundGdk = new Gdk.Color (0, 0, 255);
+						ct.Weight = 2;
+						_OpenActive = true;
+						this.ShowNow();
+					}
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
+			}
+			
+			return base.OnMotionNotifyEvent(evnt);
+		}
+		
 		
 		#region Cell Render Functions
 		
@@ -145,6 +187,12 @@ namespace MonoBPMonitor.Reports
 		{
 			MainBPReport m = (MainBPReport)model.GetValue(iter, 0);
 			(cell as Gtk.CellRendererText).Text = m.HeartRateAvg.ToString();
+		}
+		
+		private void RenderOpenEntry (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			Gtk.CellRendererText cl = (cell as Gtk.CellRendererText);
+			cl.Text = "Open";
 		}
 		
 		#endregion Cell Render Functions
