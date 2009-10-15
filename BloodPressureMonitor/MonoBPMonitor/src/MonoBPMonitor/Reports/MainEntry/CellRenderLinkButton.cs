@@ -29,7 +29,13 @@ namespace MonoBPMonitor.Reports
 			lblText.ButtonReleaseEvent += new ButtonReleaseEventHandler(lblText_ButtonReleaseEvent);
 			this.Mode = CellRendererMode.Activatable;
 			
+			
+			
+			
 		}
+		
+		
+
 
 		protected void lblText_ButtonReleaseEvent(object o, ButtonReleaseEventArgs args)
 		{
