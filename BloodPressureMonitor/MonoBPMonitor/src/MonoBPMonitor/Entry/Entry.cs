@@ -29,7 +29,7 @@ namespace MonoBPMonitor
 		{
 			if(open)
 			{
-				_EntryID = entryid;
+				_EntryID = entryid;				
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
 				System.Collections.Hashtable htEntry = dp.ExecuteHashTable("SELECT EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
 				dp.Dispose();
@@ -166,9 +166,14 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				dp.ExecuteNonQuery("DELETE FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
-				dp.Dispose();
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Warning, Gtk.ButtonsType.YesNo, false, "Are you sure you want to delete this Blood Pressure Reading?", "Delete?.");
+				if(md.Run() == (int)ResponseType.Yes)
+				{
+					DataProvider dp = new DataProvider(Common.Option.ConnString);
+					dp.ExecuteNonQuery("DELETE FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
+					dp.Dispose();
+				}
+				md.Destroy();
 			}
 			catch(Exception ex)
 			{

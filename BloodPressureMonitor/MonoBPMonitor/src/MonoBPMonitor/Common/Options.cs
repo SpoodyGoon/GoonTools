@@ -73,6 +73,17 @@ namespace GoonTools.Helper
 //				_CustomThemeLocation = hsh["CustomThemeLocation"].ToString();
 		}
 		
+		
+//		public Options(System.Data.DataTable dt)
+//		{
+//			// reset the primary key just to be sure
+//			dt.PrimaryKey = new DataColumn[]{dt.Columns["Key"]};
+//			
+//			
+//			
+//			
+//		}
+		
 		public System.Collections.Hashtable GetOptionsTable()
 		{
 			System.Collections.Hashtable hsh = new System.Collections.Hashtable();

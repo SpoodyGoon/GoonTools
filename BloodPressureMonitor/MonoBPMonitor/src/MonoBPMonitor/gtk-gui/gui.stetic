@@ -1689,6 +1689,7 @@
   </widget>
   <widget class="Gtk.Dialog" id="MonoBPMonitor.frmEntry" design-size="517 616">
     <property name="MemberName" />
+    <property name="Title" translatable="yes">Blood Presure Entry</property>
     <property name="Icon">resource:icon_small.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
@@ -1766,7 +1767,7 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Alignment" id="alignment2">
+              <widget class="Gtk.Alignment" id="alignment3">
                 <property name="MemberName" />
                 <property name="BorderWidth">5</property>
                 <child>
@@ -2101,6 +2102,73 @@
               </packing>
             </child>
             <child>
+              <widget class="Gtk.Alignment" id="algDelete">
+                <property name="MemberName" />
+                <property name="Visible">False</property>
+                <property name="Xscale">0.01</property>
+                <property name="Yscale">0.01</property>
+                <child>
+                  <widget class="Gtk.Frame" id="fraDelete">
+                    <property name="MemberName" />
+                    <property name="BorderWidth">2</property>
+                    <child>
+                      <widget class="Gtk.Alignment" id="GtkAlignment2">
+                        <property name="MemberName" />
+                        <property name="Xalign">0</property>
+                        <property name="Yalign">0</property>
+                        <property name="LeftPadding">15</property>
+                        <property name="TopPadding">5</property>
+                        <property name="RightPadding">15</property>
+                        <property name="BottomPadding">5</property>
+                        <child>
+                          <widget class="Gtk.HBox" id="hbox3">
+                            <property name="MemberName" />
+                            <property name="Spacing">6</property>
+                            <child>
+                              <widget class="Gtk.Label" id="label3">
+                                <property name="MemberName" />
+                                <property name="LabelProp" translatable="yes">&lt;span color="red"&gt;To delete the current reading use this button:&lt;/span&gt;</property>
+                                <property name="UseMarkup">True</property>
+                              </widget>
+                              <packing>
+                                <property name="Position">0</property>
+                                <property name="AutoSize">True</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="Gtk.Button" id="btnDeleteReading">
+                                <property name="MemberName" />
+                                <property name="CanFocus">True</property>
+                                <property name="UseStock">True</property>
+                                <property name="Type">StockItem</property>
+                                <property name="StockId">gtk-delete</property>
+                                <signal name="Clicked" handler="OnBtnDeleteReadingClicked" />
+                                <property name="label">gtk-delete</property>
+                              </widget>
+                              <packing>
+                                <property name="Position">1</property>
+                                <property name="AutoSize">True</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">False</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.Alignment" id="alignment13">
                 <property name="MemberName" />
                 <property name="Xscale">0.01</property>
@@ -2114,7 +2182,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">2</property>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -2133,6 +2201,7 @@
                     <child>
                       <widget class="Gtk.TextView" id="txtNotes">
                         <property name="MemberName" />
+                        <property name="WidthRequest">350</property>
                         <property name="HeightRequest">200</property>
                         <property name="CanFocus">True</property>
                         <property name="ShowScrollbars">True</property>
@@ -2150,7 +2219,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
               </packing>
             </child>
@@ -2164,7 +2233,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">5</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>

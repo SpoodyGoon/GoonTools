@@ -14,7 +14,6 @@ namespace MonoBPMonitor
 		public frmEntry()
 		{
 			this.Build();
-			// TODO: put width in xml
 			txtNotes.WidthRequest = 375;
 			// Start a new Entry
 			_CurrentEntry = new Entry();
@@ -25,12 +24,13 @@ namespace MonoBPMonitor
 		public frmEntry(int entryid)
 		{
 			this.Build();
-			// TODO: put width in xml
-			txtNotes.WidthRequest = 375;
 			try
 			{
 				_CurrentEntryID = entryid;
 				// open an existing Entry
+				algDelete.Visible = true;
+				this.QueueDraw();
+				this.QueueResize();
 				_CurrentEntry = new Entry(_CurrentEntryID, true);
 				cboUser.SetUser(_CurrentEntry.UserID);
 				txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToString("g");
@@ -85,6 +85,13 @@ namespace MonoBPMonitor
 
 		protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
 		{
+			this.Hide();
+		}		
+		
+		protected virtual void OnBtnDeleteReadingClicked (object sender, System.EventArgs e)
+		{
+			_CurrentEntry.Remove();
+			this.Respond(ResponseType.Ok);
 			this.Hide();
 		}
 	}

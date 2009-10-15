@@ -1,0 +1,10 @@
+
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=BPMonitor
+Exec=monobpmonitor
+Terminal=false
+GenericName=Blood Pressure Monitor
+Comment=Blood Pressure Monitor
+Categories=Utility;TextTools;
