@@ -34,7 +34,6 @@ namespace GUPdotNET
 
 		private bool _Loading = false;
 		private Gdk.Cursor ctLink = new Gdk.Cursor(Gdk.CursorType.Hand1);
-		private string _MouseOutCursor;
 		public frmOptions()
 		{
 			_Loading = true;
