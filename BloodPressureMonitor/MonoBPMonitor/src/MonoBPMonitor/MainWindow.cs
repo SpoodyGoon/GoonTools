@@ -42,18 +42,12 @@ namespace MonoBPMonitor
 				swEntityRpt.Add (tvEntityRpt);
 				cboUser.Changed += new EventHandler(cboUser_Changed);
 				
-				
-				
 				// check if update are allowed
 				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "true")
-				{
 					UpdatesAction1.Visible = true;
-				}
 				else
-				{
 					UpdatesAction1.Visible = false;
-				}
-				//this.FocusActivated += new EventHandler(MainWindow_FocusActivated);
+				
 				
 				
 			}
@@ -63,11 +57,6 @@ namespace MonoBPMonitor
 			}
 			this.ShowAll ();
 		}
-
-//		void MainWindow_FocusActivated(object sender, EventArgs e)
-//		{
-//			throw new NotImplementedException();
-//		}
 
 		private void cboUser_Changed(object sender, EventArgs e)
 		{
@@ -80,10 +69,10 @@ namespace MonoBPMonitor
 		}
 
 		protected virtual void OnNewEntryActionActivated (object sender, System.EventArgs e)
-		{
-			
+		{				
 			frmEntry fm = new frmEntry ();
-			fm.UserID = cboUser.UserID;
+			if(cboUser.UserID > -1)
+				fm.UserID = cboUser.UserID;
 			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
 				tvEntityRpt.Refresh();
 			fm.Destroy ();

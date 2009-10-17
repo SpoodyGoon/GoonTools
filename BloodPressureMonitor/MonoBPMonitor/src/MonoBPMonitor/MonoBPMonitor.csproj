@@ -16,11 +16,11 @@
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>Full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
@@ -38,14 +38,16 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
-    <RegisterForComInterop>False</RegisterForComInterop>
+    <RegisterForComInterop>True</RegisterForComInterop>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <BaseAddress>4194304</BaseAddress>
     <PlatformTarget>x86</PlatformTarget>
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data.SqliteClient" />
+    <Reference Include="Mono.Data.SqliteClient">
+      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.4.2\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
