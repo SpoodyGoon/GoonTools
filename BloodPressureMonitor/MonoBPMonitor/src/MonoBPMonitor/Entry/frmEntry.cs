@@ -15,6 +15,9 @@ namespace MonoBPMonitor
 		{
 			this.Build();
 			txtNotes.WidthRequest = 375;
+			// this starts a new entry there is nothing to delete
+			// so we don't want the delete button.
+			algDelete.Destroy();
 			// Start a new Entry
 			_CurrentEntry = new Entry();
 			txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToString("g");
@@ -28,9 +31,6 @@ namespace MonoBPMonitor
 			{
 				_CurrentEntryID = entryid;
 				// open an existing Entry
-				algDelete.Visible = true;
-				this.QueueDraw();
-				this.QueueResize();
 				_CurrentEntry = new Entry(_CurrentEntryID, true);
 				cboUser.SetUser(_CurrentEntry.UserID);
 				txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToString("g");
@@ -63,10 +63,10 @@ namespace MonoBPMonitor
 			fm.Destroy();
 		}
 		
- 		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
+		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
 		{
 			try
-			{				
+			{
 				//_CurrentEntry.EntryDateTime = GetDateTime();
 				_CurrentEntry.Systolic = spnSystolic.ValueAsInt;
 				_CurrentEntry.Diastolic = spnDiastolic.ValueAsInt;
@@ -86,7 +86,8 @@ namespace MonoBPMonitor
 		protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
-		}		
+		}
+		
 		
 		protected virtual void OnBtnDeleteReadingClicked (object sender, System.EventArgs e)
 		{

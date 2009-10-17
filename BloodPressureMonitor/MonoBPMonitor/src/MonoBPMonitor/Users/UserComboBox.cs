@@ -40,58 +40,36 @@ namespace MonoBPMonitor.Users
 		private bool _IsLoading = false;
 		public UserComboBox()
 		{
-			
+			Build();
+			SetUser(LastUserGet());
+		}
+		
+		public UserComboBox(int userid)
+		{
+			Build();
+			SetUser(userid);
+		}
+		
+		public UserComboBox(bool LoadLastUser)
+		{
+			Build();
+			SetUser(LastUserGet());
 		}
 		
 		private void Build()
 		{
 			try
 			{
-				int tmpUserID = -1;
 				Gtk.CellRendererText ct = new Gtk.CellRendererText();
 				this.PackStart(ct, true);
 				this.AddAttribute(ct, "text", 1);
 				this.Model = lsUser;
 				
-				// use the person how last had an entry if there is an entry
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				System.Collections.ArrayList ar = dp.ExecuteArrayListRow("SELECT UserID FROM tb_Entry ORDER BY DATETIME(EntryDateTime, 'localtime') ASC LIMIT 1;");
-				if(ar.Count > 0)
-				{
-					tmpUserID = Convert.ToInt32(ar[0]);
-				}
-				else
-				{
-					// use the last person who was added as a user
-					System.Collections.ArrayList ar2 = dp.ExecuteArrayListRow("SELECT UserID FROM tb_User WHERE UserName NOT LIKE 'Default' ORDER BY DateAdded ASC LIMIT 1; ");
-					if(ar2.Count > 0)
-					{					
-						tmpUserID = Convert.ToInt32(ar2[0]);
-					}
-					else
-					{
-						// no non-default users ask for a name
-						QuickUser qu = new QuickUser();
-						if(qu.Run() == (int)Gtk.ResponseType.Ok)
-						{
-							SetUser(qu.UserID);
-						}
-						qu.Destroy();
-					}
-					
-				}
-				dp.Dispose();
 				LoadUsers();
-				if(tmpUserID > 0)
-				{
-					SetUser(tmpUserID);
-				}
-				else
-				{					
-					Gtk.TreeIter iter;
-					if(lsUser.GetIterFirst(out iter))
-						this.SetActiveIter(iter);
-				}
+				
+				Gtk.TreeIter iter;
+				if(lsUser.GetIterFirst(out iter))
+					this.SetActiveIter(iter);
 				
 			}
 			catch(Exception ex)
@@ -113,7 +91,7 @@ namespace MonoBPMonitor.Users
 					lsUser.AppendValues(Convert.ToInt32(dr["UserID"]), dr["UserName"].ToString());
 				}
 				lsUser.AppendValues(-1, "New User...");
-				_IsLoading = false;				
+				_IsLoading = false;
 			}
 			catch(Exception ex)
 			{
@@ -121,13 +99,56 @@ namespace MonoBPMonitor.Users
 			}
 		}
 		
-		[GLib.ConnectBeforeAttribute()]
-		protected override void OnRealized ()
+		private int LastUserGet()
 		{
-			Build();
-			this.WidthRequest = 185;
-			base.OnRealized ();
+			int intReturn = -1;
+			try
+			{
+				// use the person how last had an entry if there is an entry
+				DataProvider dp = new DataProvider(Common.Option.ConnString);
+				System.Collections.ArrayList ar = dp.ExecuteArrayListRow("SELECT UserID FROM tb_Entry ORDER BY DATETIME(EntryDateTime, 'localtime') DESC LIMIT 1;");
+				if(ar.Count > 0)
+				{
+					intReturn = Convert.ToInt32(ar[0]);
+				}
+				else
+				{
+					// use the last person who was added as a user
+					System.Collections.ArrayList ar2 = dp.ExecuteArrayListRow("SELECT UserID FROM tb_User WHERE UserName NOT LIKE 'Default' ORDER BY DateAdded DESC LIMIT 1; ");
+					if(ar2.Count > 0)
+					{
+						intReturn = Convert.ToInt32(ar2[0]);
+					}
+					else
+					{
+						// no non-default users ask for a name
+						QuickUser qu = new QuickUser();
+						if(qu.Run() == (int)Gtk.ResponseType.Ok)
+						{
+							intReturn = qu.UserID;
+						}
+						qu.Destroy();
+					}
+					
+				}
+				dp.Dispose();
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
+			}
+			return intReturn;
 		}
+		
+		
+//		[GLib.ConnectBeforeAttribute()]
+//		protected override void OnRealized ()
+//		{
+//			Build();
+//			int i = this.WidthRequest;
+//			this.WidthRequest = 185;
+//			base.OnRealized ();
+//		}
 
 		
 		[GLib.ConnectBeforeAttribute()]

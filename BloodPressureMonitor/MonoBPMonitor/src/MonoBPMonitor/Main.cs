@@ -31,7 +31,6 @@ namespace MonoBPMonitor
 		{
 			Application.Init ();
 			GoonTools.Common.LoadAll();
-			Gtk.Rc.ReparseAll();
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();

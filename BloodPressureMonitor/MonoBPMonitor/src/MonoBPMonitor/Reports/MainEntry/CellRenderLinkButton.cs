@@ -14,7 +14,7 @@ namespace MonoBPMonitor.Reports
 	/// <summary>
 	/// Description of CellRenderLinkButton.
 	/// </summary>
-	public class CellRenderLinkButton : Gtk.CellRenderer
+	public class CellRenderLinkButton : Gtk.CellView 
 	{
 		private Gdk.Cursor ctLink = new Gdk.Cursor(Gdk.CursorType.Hand1);
 		private Gtk.Label lblText = new Gtk.Label();
@@ -27,14 +27,15 @@ namespace MonoBPMonitor.Reports
 			lblText.LeaveNotifyEvent += new LeaveNotifyEventHandler(lblText_LeaveNotifyEvent);
 			lblText.EnterNotifyEvent += new EnterNotifyEventHandler(lblText_EnterNotifyEvent);
 			lblText.ButtonReleaseEvent += new ButtonReleaseEventHandler(lblText_ButtonReleaseEvent);
-			this.Mode = CellRendererMode.Activatable;
 			
-			
-			
-			
+
 		}
 		
+		public CellRenderLinkButton()
+		{
+		}
 		
+
 
 
 		protected void lblText_ButtonReleaseEvent(object o, ButtonReleaseEventArgs args)
@@ -59,7 +60,6 @@ namespace MonoBPMonitor.Reports
 //			lblText.UseMarkup = true;
 //			lblText.ShowNow();
 		}
-		
 		 
 		#region Public Proporties
 		
@@ -88,5 +88,7 @@ namespace MonoBPMonitor.Reports
 		 
 		 
 		 #endregion Public Events
+		 
+		 
 	}
 }

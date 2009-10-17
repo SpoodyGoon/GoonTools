@@ -65,7 +65,7 @@ namespace MonoBPMonitor.Reports
 				Gtk.CellRendererText cellEntryDate = new Gtk.CellRendererText ();
 				cellEntryDate.Width=100;
 				cellEntryDate.Xalign=0.5f;
-				colEntryDate.PackStart (cellEntryDate, true);
+				colEntryDate.PackStart(cellEntryDate, true);
 				
 				Gtk.TreeViewColumn colBPReading = new Gtk.TreeViewColumn ();
 				colBPReading.Visible = true;

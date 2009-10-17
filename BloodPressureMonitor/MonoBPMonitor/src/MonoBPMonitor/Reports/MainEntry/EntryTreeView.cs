@@ -112,7 +112,7 @@ namespace MonoBPMonitor.Reports
 		[GLib.DefaultSignalHandlerAttribute()]
 		protected override bool OnMotionNotifyEvent(Gdk.EventMotion evnt)
 		{
-			Gtk.TreeIter iter;
+			//Gtk.TreeIter iter;
 			Gtk.TreePath path;
 			Gtk.TreeViewColumn column;
 			Gtk.CellRendererText ct;
