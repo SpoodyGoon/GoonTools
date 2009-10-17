@@ -158,7 +158,7 @@
   <widget class="Gtk.Dialog" id="GUPdotNET.frmDownload" design-size="371 132">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Downloading Update</property>
-    <property name="TypeHint">Dialog</property>
+    <property name="TypeHint">Splashscreen</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="BorderWidth">4</property>
     <property name="Resizable">False</property>
