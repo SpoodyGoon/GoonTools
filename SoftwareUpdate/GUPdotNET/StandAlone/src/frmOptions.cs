@@ -34,6 +34,7 @@ namespace GUPdotNET
 
 		private bool _Loading = false;
 		private Gdk.Cursor ctLink = new Gdk.Cursor(Gdk.CursorType.Hand1);
+		private string _MouseOutCursor;
 		public frmOptions()
 		{
 			_Loading = true;
@@ -124,10 +125,11 @@ namespace GUPdotNET
 			
 			ad.Destroy();
 		}
+		
+		
 
 		protected virtual void OnEbxAboutEnterNotifyEvent (object o, Gtk.EnterNotifyEventArgs args)
 		{
-			
 			this.GdkWindow.Cursor = ctLink;
 			lblAbout.Text = "<span size=\"7500\" color=\"#920000\"><b><u><tt>About GUPdotNET</tt></u></b></span>";
 			lblAbout.UseMarkup = true;
@@ -136,6 +138,7 @@ namespace GUPdotNET
 
 		protected virtual void OnEbxAboutLeaveNotifyEvent (object o, Gtk.LeaveNotifyEventArgs args)
 		{
+			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Arrow);
 			lblAbout.Text = "<span size=\"7500\" color=\"#00006B\"><b><u><tt>About GUPdotNET</tt></u></b></span>";
 			lblAbout.UseMarkup = true;
 			lblAbout.ShowNow();
