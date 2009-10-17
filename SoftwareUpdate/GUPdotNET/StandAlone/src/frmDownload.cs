@@ -47,7 +47,7 @@ namespace GUPdotNET
 			try
 			{
 				//this.ActionArea.Visible = false;
-				this.Remove(this.ActionArea);
+				this.ActionArea.Destroy();
 				this.progressbar1.DoubleBuffered= true;
 				this.ShowNow();
 				// get a unique name for the temporary installer file name

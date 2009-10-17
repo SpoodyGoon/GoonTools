@@ -49,6 +49,7 @@ public partial class MainWindow: Gtk.Window
 			System.IO.FileInfo fi = new System.IO.FileInfo(asm.Location);
 			
 			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
+		si.ErrorDialog = true;
 			si.UseShellExecute = false;
 			si.FileName = GUPdotNETFile.Filename;
 			si.Arguments += "updatecheck";
@@ -69,6 +70,7 @@ public partial class MainWindow: Gtk.Window
 		System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
 		System.IO.FileInfo fi = new System.IO.FileInfo(asm.Location);
 		System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
+		si.ErrorDialog = true;
 		si.FileName = GUPdotNETFile.Filename;
 		si.UseShellExecute = false;
 		System.Diagnostics.Process.Start(si);

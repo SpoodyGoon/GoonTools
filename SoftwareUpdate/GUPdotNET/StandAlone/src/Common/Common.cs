@@ -77,13 +77,24 @@ namespace GUPdotNET
 		{
 			try
 			{
+				
 				so.FileInfo fi = new so.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
 				_AppPath = fi.Directory.FullName;
 				
-				_BasePath = so.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), System.Reflection.Assembly.GetCallingAssembly().GetName().Name);
-				if(!so.Directory.Exists(_BasePath))
-					so.Directory.CreateDirectory(_BasePath);
-					
+				if(ConfigurationManager.AppSettings["Debug"].ToLower() == "false")
+				{
+					_BasePath = so.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), System.Reflection.Assembly.GetCallingAssembly().GetName().Name);
+					if(!so.Directory.Exists(_BasePath))
+						so.Directory.CreateDirectory(_BasePath);
+				}
+				else
+				{
+					// for debug purposeds just create a save folder in the excuting assembles directory
+					_BasePath = so.Path.Combine(_AppPath, "DebugOptions");
+					if(!so.Directory.Exists(_BasePath))
+						so.Directory.CreateDirectory(_BasePath);
+				}
+				
 				_SavePath = so.Path.Combine(_BasePath, "GUPdotNET");				
 				if(!so.Directory.Exists(_SavePath))
 					so.Directory.CreateDirectory(_SavePath);
