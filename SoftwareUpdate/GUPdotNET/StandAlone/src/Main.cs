@@ -27,69 +27,41 @@ namespace GUPdotNET
 	class MainClass
 	{
 		private static RunType _RunType = RunType.None;
+		private static int _Return = 0;
 		public static int Main (string[] args)
 		{
 			Application.Init();
+			
+			// see if we are running options or if it is a
+			// standard time based update check
 			if(args.Length < 1)
-			{
-				_RunType = RunType.Options;	
-			}
+				_RunType = RunType.Options;
 			else if(args[0].ToLower() == "updatecheck")
-			{
 				_RunType = RunType.UpdateCheck;
-			}
 			else
-			{
 				_RunType = RunType.Options;	
-			}
 				
-			Common.LoadAll();
-//			string[] str = Gtk.Rc.DefaultFiles;
-//			for(int i = 0; i< str.Length; i++)
-//			{
-//				Console.WriteLine("Gtk Rc File # " + i.ToString() + " " + str[i]);	
-//			}
-//			Gtk.Rc.ReparseAll();
+			// this loads the enviroment, options and 
+			// commonly used static functions
+			Common.LoadAll();			
 			
-			
+			// run an update check to see if we need and update
+			// if so ask the user
 			if(_RunType == RunType.UpdateCheck)
-			{
-				if(DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)) > 0)
-				{
-					UpdateInfo ui = new UpdateInfo();
-					ui.LoadInfo(UpdateInfoType.All);
-					// tell the user there is an update availalbe
-					// and ask if they would like to update
-					frmConfirm dlgConfirm = new frmConfirm(ui);
-					if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
-					{
-						// update confirmed get installer file
-//						frmDownload dlgDownload = new frmDownload(ui);
-//						if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
-//						{
-//							// if the download was sucessful then procede with the install
-//							frmInstall Inst = new frmInstall(ui);
-//							Inst.Run();
-//							Inst.Destroy();
-//							
-//						}
-//						dlgDownload.Destroy();
-					}
-					dlgConfirm.Destroy();
-					return 0;
-				}
+			{				
+				UpdateCheck uc = new UpdateCheck();
+				_Return = uc.RunUpdate(false) ? 0:1;
 			}
 			else
 			{
+				// display the option dialog for the user
 				frmOptions fm = new frmOptions();
-				if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Yes)
-				{
-					Common.SaveOptions();
-				}
+				fm.Run();
+				_Return = fm.Result;
 				fm.Destroy();
 			}
 			
-			return 0;
+			return _Return;
 		}
 	}
 }

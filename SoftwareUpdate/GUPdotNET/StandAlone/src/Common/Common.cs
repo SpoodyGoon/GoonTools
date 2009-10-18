@@ -203,8 +203,17 @@ namespace GUPdotNET
 	
 	public enum RunType
 	{
+		None,
 		UpdateCheck,
-		Options,
-		None
+		Options
+	}
+	
+	public enum DownloadStatus
+	{
+		Prep,
+		InProcess,
+		Success,
+		Canceled,
+		Error
 	}
 }
