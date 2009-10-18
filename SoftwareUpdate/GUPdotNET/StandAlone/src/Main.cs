@@ -64,16 +64,16 @@ namespace GUPdotNET
 					if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
 					{
 						// update confirmed get installer file
-						frmDownload dlgDownload = new frmDownload(ui);
-						if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
-						{
-							// if the download was sucessful then procede with the install
-							frmInstall Inst = new frmInstall(ui);
-							Inst.Run();
-							Inst.Destroy();
-							
-						}
-						dlgDownload.Destroy();
+//						frmDownload dlgDownload = new frmDownload(ui);
+//						if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
+//						{
+//							// if the download was sucessful then procede with the install
+//							frmInstall Inst = new frmInstall(ui);
+//							Inst.Run();
+//							Inst.Destroy();
+//							
+//						}
+//						dlgDownload.Destroy();
 					}
 					dlgConfirm.Destroy();
 					return 0;
