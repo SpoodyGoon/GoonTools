@@ -40,7 +40,7 @@ namespace GUPdotNET
 		private bool _ThreadActive = true;
 		private Thread firstRunner;
 		private UpdateInfo _UpdateInfo;
-		private bool _Finished = false;
+		private DownloadStatus _CurrentStatus = DownloadStatus.Prep;
 		public frmDownload(UpdateInfo updateinfo) : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
@@ -62,7 +62,10 @@ namespace GUPdotNET
 			}
 		}
 		
-		
+		public DownloadStatus CurrentStatus
+		{
+			get{return _CurrentStatus;}
+		}
 		
 		private string GetUniqueFileName(string updatefileurl)
 		{

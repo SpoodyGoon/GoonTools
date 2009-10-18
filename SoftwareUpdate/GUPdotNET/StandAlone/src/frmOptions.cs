@@ -1,6 +1,6 @@
 // 
 // frmOptions.cs
-//  
+//
 // Author:
 //       Andy York <goontools@brdstudio.net>
 // 
@@ -31,21 +31,38 @@ namespace GUPdotNET
 {
 	public partial class frmOptions : Gtk.Dialog
 	{
-
+		// this variable is used to not fire a combobox change event
+		// during loading the controls
 		private bool _Loading = false;
-		private Gdk.Cursor ctLink = new Gdk.Cursor(Gdk.CursorType.Hand1);
+		private int _Result = 0;
 		public frmOptions()
 		{
-			_Loading = true;
-			this.Build();			
-			LoadControls();
-			this.Visible = true;
+			try
+			{
+				this.Build();
+				Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link) {
+				                           	System.Diagnostics.Process.Start(link);
+				                           });
+				_Loading = true;
+				// load the controls for display;
+				LoadControls();
+				_Loading = false;
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 			this.ShowAll();
-			_Loading = false;
+		}
+		
+		public int Result
+		{
+			get{return _Result;}
 		}
 		
 		#region Option Widget Loading
 		
+		// load the controls from the options.dat
 		private void LoadControls ()
 		{
 			try
@@ -69,72 +86,58 @@ namespace GUPdotNET
 		
 		#endregion Option Widget Loading
 		
+		#region About Dialog Related
 		
 		
-		private void RunUpdate(UpdateInfo _UpdateInfo)
-		{
-			// tell the user there is an update availalbe
-			// and ask if they would like to update
-			frmConfirm dlgConfirm = new frmConfirm(_UpdateInfo);
-			if((Gtk.ResponseType)dlgConfirm.Run() == Gtk.ResponseType.Yes)
-			{
-				// update confirmed get installer file
-//				frmDownload dlgDownload = new frmDownload(_UpdateInfo);
-//				if((Gtk.ResponseType)dlgDownload.Run() == Gtk.ResponseType.Ok)
-//				{
-//					// if the download was sucessful then procede with the install
-//					frmInstall Inst = new frmInstall(_UpdateInfo);
-//					Inst.Run();
-//					Inst.Destroy();
-//					
-//				}
-//				dlgDownload.Destroy();
-			}
-			else
-			{
-				Application.Quit();
-			}
-			dlgConfirm.Destroy();
-		}
-
 		protected virtual void OnEbxAboutButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
 		{
-			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
-			Gtk.AboutDialog ad = new Gtk.AboutDialog();
-			ad.Title = "About GUPdotNET";
-			ad.ProgramName = "GUPdotNET";
-			ad.Comments ="General Purpose Update program for Mono/Gtk#.";
-			ad.License = GUPdotNET.Const.License;
-			ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
-			ad.Version = " " + asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
-			ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
-			ad.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
-			ad.AllowShrink = true;
-			ad.AllowGrow = true;
-			ad.Copyright = "GoonTools 2009";
-			ad.HasSeparator = true;
-			ad.Modal = true;
-			ad.BorderWidth = 8;
-			ad.WidthRequest = 450;
+			try
+			{
+				System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+				Gtk.AboutDialog ad = new Gtk.AboutDialog();
+				ad.Title = "About GUPdotNET";
+				ad.ProgramName = "GUPdotNET";
+				ad.Comments ="General Purpose Update program for Mono/Gtk#.";
+				ad.License = GUPdotNET.Const.License;
+				ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
+				ad.Version = " " + asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
+				ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
+				ad.Icon = Gdk.Pixbuf.LoadFromResource("update_small.png");
+				ad.AllowShrink = false;
+				ad.AllowGrow = false;
+				ad.DestroyWithParent = true;
+				ad.Copyright = "GoonTools 2009";
+				ad.HasSeparator = true;
+				ad.Modal = true;
+				ad.BorderWidth = 8;
+				ad.WidthRequest = 450;
 //				ad.HeightRequest = 300;
-			ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
-			ad.WebsiteLabel = "GUPdotNET Web Site";
-			ad.Parent = this;
-			ad.Run();
-			
-			ad.Destroy();
+				ad.Website = "http://code.google.com/p/goontools/wiki/GUPdotNet";
+				ad.WebsiteLabel = "GUPdotNET Web Site";
+				
+				ad.Parent = this;
+				ad.Run();
+				
+				ad.Destroy();
+			}catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 		}
 		
-		
 
+		// when the mouse if over the label
+		// change it to behave like a link button
 		protected virtual void OnEbxAboutEnterNotifyEvent (object o, Gtk.EnterNotifyEventArgs args)
 		{
-			this.GdkWindow.Cursor = ctLink;
+			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Hand1);
 			lblAbout.Text = "<span size=\"7500\" color=\"#920000\"><b><u><tt>About GUPdotNET</tt></u></b></span>";
 			lblAbout.UseMarkup = true;
 			lblAbout.ShowNow();
 		}
 
+		// when the mouse gose away from the label return it to its previous state
+		// so it behaves like a link button
 		protected virtual void OnEbxAboutLeaveNotifyEvent (object o, Gtk.LeaveNotifyEventArgs args)
 		{
 			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Arrow);
@@ -142,47 +145,46 @@ namespace GUPdotNET
 			lblAbout.UseMarkup = true;
 			lblAbout.ShowNow();
 		}
+		
+		#endregion About Dialog Related
+		
+		#region Dialog Command Buttons
 
 		protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
 		{
+			this.Respond(Gtk.ResponseType.Cancel);
 			this.Hide();
 		}
 
 		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
 		{
 			Common.SaveOptions();
+			this.Respond(Gtk.ResponseType.Ok);
 			this.Hide();
 		}
 		
+		#endregion Dialog Command Buttons
+		
+		#region Option Widget Events
 		
 		protected virtual void OnBtnCheckNowClicked (object sender, System.EventArgs e)
 		{
-			UpdateInfo _UpdateInfo = new UpdateInfo();
-			_UpdateInfo.LoadInfo(UpdateInfoType.All);
-			if(_UpdateInfo.UpdateAvailable)
-			{
-				RunUpdate(_UpdateInfo);
-			}
-			else
-			{
-				MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No Update Available", "No Update Available");
-				md.Run();
-				md.Destroy();
-			}
+			UpdateCheck uc = new UpdateCheck();
+			uc.RunUpdate(true);
 		}
 
-		
+		// event for the update check box
 		protected virtual void OnCbxAutoUpdateToggled (object sender, System.EventArgs e)
 		{
 			try
 			{
 				if (!_Loading)
 				{
-					Common.Option.AutoUpdate = (bool)cbxAutoUpdate.Active;
 					if ((bool)cbxAutoUpdate.Active == false)
 					{
 						_Loading = true;
 						cboUpdateTime.SetTimeDisplay ("Never");
+						// if we are not having a update check update disable the combobox
 						fraCheckLimits.Sensitive = false;
 						_Loading = false;
 					}
@@ -191,24 +193,28 @@ namespace GUPdotNET
 						_Loading = true;
 						if(cboUpdateTime.TimeDisplay == "Never")
 							cboUpdateTime.SetTimeDisplay("Day");
+						// if we are allowing an update enable the combobox
 						fraCheckLimits.Sensitive = true;
 						_Loading = false;
 					}
+					// update the options.dat file
+					Common.Option.AutoUpdate = (bool)cbxAutoUpdate.Active;
 				}
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(this, ex);
 			}
-		}	
+		}
 		
-		 
+		// event for the amount of time between update checks
 		protected virtual void OnCboUpdateTimeTypeChanged (object sender, System.EventArgs e)
 		{
 			try
 			{
 				if (!_Loading)
 				{
+					// if these is no updated needed update the checkbox also
 					if ((string)cboUpdateTime.TimeDisplay == "Never")
 					{
 						_Loading = true;
@@ -224,6 +230,7 @@ namespace GUPdotNET
 						fraCheckLimits.Sensitive = true;
 						_Loading = false;
 					}
+					// update the options.dat file
 					Common.Option.UpdateTime = (string)cboUpdateTime.TimeDisplay;
 					Common.Option.UpdateHours = (int)cboUpdateTime.Hours;
 				}
@@ -233,6 +240,8 @@ namespace GUPdotNET
 				Common.HandleError(this, ex);
 			}
 		}
+		
+		#endregion Option Widget Events
 
 	}
 }
