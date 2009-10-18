@@ -31,39 +31,38 @@ using Gtk;
 namespace GUPdotNET
 {
 	
-	public partial class frmDownload : Gtk.Dialog
-	{			
+	
+	public partial class frmDownload : Gtk.Window
+	{
+		
 		private long _FileSize = 0;
 		private long _Downloaded = 0;
 		private bool _ThreadActive = true;
 		private Thread firstRunner;
 		private UpdateInfo _UpdateInfo;
-		public frmDownload(UpdateInfo updateinfo)
+		private bool _Finished = false;
+		public frmDownload(UpdateInfo updateinfo) : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
 			_UpdateInfo = updateinfo;
-			this.ModifyBg(Gtk.StateType.Normal, new Gdk.Color(110, 110,110));
-			this.Move(350, 10);
+//			this.ModifyBg(Gtk.StateType.Normal, new Gdk.Color(110, 110,110));
+//			this.Move(350, 10);
 			try
 			{
-				//this.ActionArea.Visible = false;
-				this.ActionArea.Destroy();
-				this.progressbar1.DoubleBuffered= true;
-				this.ShowNow();
 				// get a unique name for the temporary installer file name
 				_UpdateInfo.TempInstallerPath = GetUniqueFileName(_UpdateInfo.UpdateFileURL);
 				this.KeepAbove = true;
-				this.HeightRequest=70;
-				this.HasSeparator = false;
+				this.Deletable = false;
 				StartDownload();
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(this, ex);
-				this.Respond(Gtk.ResponseType.Cancel);
 				this.Hide();
 			}
 		}
+		
+		
 		
 		private string GetUniqueFileName(string updatefileurl)
 		{
@@ -146,12 +145,12 @@ namespace GUPdotNET
 				// has asked for a cancel close this dialog and return cancel
 				if(_ThreadActive == false)
 				{
-					this.Respond(Gtk.ResponseType.Cancel);
+					//this.Respond(Gtk.ResponseType.Cancel);
 					this.Hide();
 				}
 				else
 				{
-					this.Respond(Gtk.ResponseType.Ok);
+					//this.Respond(Gtk.ResponseType.Ok);
 					this.Present();
 					this.GrabFocus();
 					this.Visible = false;
@@ -163,13 +162,13 @@ namespace GUPdotNET
 			catch(WebException e)
 			{
 				Common.HandleError(this, new Exception("Unable to connect to the update web site - " + System.Environment.NewLine + e.Message));
-				this.Respond(Gtk.ResponseType.Cancel);
+				//this.Respond(Gtk.ResponseType.Cancel);
 				this.Hide();
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(this, new Exception("Non Web Response error downloading update " + System.Environment.NewLine + ex.Message));
-				this.Respond(Gtk.ResponseType.Cancel);
+				//this.Respond(Gtk.ResponseType.Cancel);
 				this.Hide();
 			}
 		}
@@ -177,8 +176,8 @@ namespace GUPdotNET
 		private void UpdateProgressFraction(float f)
 		{
 			Application.Invoke(delegate {
-			                   	progressbar1.Text = f.ToString("p");
-			                   	progressbar1.Fraction = f;
+			                   	pgbDownload.Text = f.ToString("p");
+			                   	pgbDownload.Fraction = f;
 			                   	
 			                   });
 		}
@@ -190,8 +189,8 @@ namespace GUPdotNET
 		
 		protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
 		{
-			this.progressbar1.Text = "Canceling Download";
-			this.progressbar1.ShowNow();
+			this.pgbDownload.Text = "Canceling Download";
+			this.pgbDownload.ShowNow();
 			_ThreadActive = false;
 		}
 	}
