@@ -21,6 +21,8 @@
  */
 
 using System;
+using System.Data;
+using System.Collections;
 
 namespace GUPdotNET.Helper
 {
@@ -33,11 +35,13 @@ namespace GUPdotNET.Helper
 		private DateTime _LastUpdateCheck = DateTime.Now;
 		private int _FileVersion = 1; // the file version does not nessicarily match the application version
 		public readonly string[] _UpdateTimes = new string[]{"Day", "Week", "Month", "Quarter", "Year", "Never"};
+		// empty contruct
 		public Options()
 		{
 			
 		}
 		
+		// loading options from a Hashtable
 		public Options(System.Collections.Hashtable hsh)
 		{
 			if(hsh.Contains("FileVersion"))
@@ -54,7 +58,37 @@ namespace GUPdotNET.Helper
 				_LastUpdateCheck = Convert.ToDateTime(hsh["LastUpdateCheck"]);
 		}
 		
-		public System.Collections.Hashtable GetOptionsTable()
+		public Options(DataTable dt)
+		{
+			if(dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
+				throw new Exception("Invalid Table Passed to load Options");
+			
+			dt.PrimaryKey = new DataColumn[]{(DataColumn)dt.Columns["Key"]};
+			DataRow dr;
+			
+			dr = (DataRow)dt.Rows.Find("FileVersion");
+			if(dr != null)
+				_FileVersion = Convert.ToInt16(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("UpdateTime");
+			if(dr != null)
+				_UpdateTime = dr["Value"].ToString();			
+			dr = (DataRow)dt.Rows.Find("UpdateHours");
+			if(dr != null)
+				_UpdateHours = Convert.ToInt32(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("AutoUpdate");
+			if(dr != null)
+				_AutoUpdate = Convert.ToBoolean(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("LastUpdate");
+			if(dr != null)
+				_LastUpdate = Convert.ToDateTime(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("LastUpdateCheck");
+			if(dr != null)
+				_LastUpdateCheck = Convert.ToDateTime(dr["Value"]);
+		}
+		
+		
+		// Getting options into a hashtable
+		public Hashtable GetOptionsTable()
 		{
 			System.Collections.Hashtable hsh = new System.Collections.Hashtable();
 			hsh.Add("FileVersion", _FileVersion);
@@ -64,6 +98,51 @@ namespace GUPdotNET.Helper
 			hsh.Add("LastUpdate", _LastUpdate);
 			hsh.Add("LastUpdateCheck", _LastUpdateCheck);
 			return hsh;
+		}
+		
+		// Getting the optinos in a datatable
+		public Hashtable ToHashtable()
+		{
+			System.Collections.Hashtable hsh = new System.Collections.Hashtable();
+			hsh.Add("FileVersion", _FileVersion);
+			hsh.Add("UpdateTime", _UpdateTime);
+			hsh.Add("UpdateHours", _UpdateHours);
+			hsh.Add("AutoUpdate", _AutoUpdate);
+			hsh.Add("LastUpdate", _LastUpdate);
+			hsh.Add("LastUpdateCheck", _LastUpdateCheck);
+			return hsh;
+		}
+		
+		public DataTable ToDataTable()
+		{
+			DataTable dt = new DataTable("Options");
+			dt.Columns.AddRange(new DataColumn[] { new DataColumn("Key", typeof(string)), new DataColumn("Value", typeof(object))});
+			dt.PrimaryKey = new DataColumn[]{dt.Columns["Key"]};
+			System.Data.DataRow dr = dt.NewRow();
+			dr["Key"] = "FileVersion";
+			dr["Value"] = _FileVersion;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "UpdateTime";
+			dr["Value"] = _UpdateTime;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "UpdateHours";
+			dr["Value"] = _UpdateHours;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "AutoUpdate";
+			dr["Value"] = _AutoUpdate;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "LastUpdate";
+			dr["Value"] = _LastUpdate;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "LastUpdateCheck";
+			dr["Value"] = _LastUpdateCheck;
+			dt.Rows.Add(dr);
+			return dt;
 		}
 		
 		public int UpdateHours
