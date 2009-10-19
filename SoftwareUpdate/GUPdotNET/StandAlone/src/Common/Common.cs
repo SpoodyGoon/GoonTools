@@ -45,6 +45,7 @@ namespace GUPdotNET
 		private static string _OptionsFile = null;
 		private static string _UpdateFile = null;
 		private static string _ErrorFile = null;
+		private static string _ProgramName = "GUPdotNET";
 		#endregion Private Properties
 		
 		#region Public Properties
@@ -140,10 +141,9 @@ namespace GUPdotNET
 		{
 			try
 			{
-				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				so.Stream stream = new so.FileStream(_OptionsFile, so.FileMode.Create, so.FileAccess.Write, so.FileShare.None);
-				formatter.Serialize(stream, (System.Collections.Hashtable)_Option.GetOptionsTable());
-				stream.Close();
+				System.Data.DataSet ds = new System.Data.DataSet("GUPdotNET");
+				ds.Tables.Add((System.Data.DataTable)_Option.ToDataTable());
+				ds.WriteXml(so.Path.Combine(_SavePath, "Options.xml"), System.Data.XmlWriteMode.WriteSchema);
 			}
 			catch(Exception ex)
 			{
