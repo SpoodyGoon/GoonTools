@@ -23,6 +23,7 @@
 using System;
 using System.Configuration;
 using so = System.IO;
+using System.Data;
 using Gtk;
 
 namespace GUPdotNET
@@ -67,7 +68,7 @@ namespace GUPdotNET
 		
 		public static string DirChar
 		{
-			get{return _DirChar;}	
+			get{return _DirChar;}
 		}
 		
 		#endregion Public Properties
@@ -96,11 +97,11 @@ namespace GUPdotNET
 						so.Directory.CreateDirectory(_BasePath);
 				}
 				
-				_SavePath = so.Path.Combine(_BasePath, "GUPdotNET");				
+				_SavePath = so.Path.Combine(_BasePath, "GUPdotNET");
 				if(!so.Directory.Exists(_SavePath))
 					so.Directory.CreateDirectory(_SavePath);
 				
-				_OptionsFile = so.Path.Combine(_SavePath, "Options.dat");
+				_OptionsFile = so.Path.Combine(_SavePath, "Options.xml");
 				_UpdateFile = so.Path.Combine(_SavePath, "Update.log");
 				_ErrorFile = so.Path.Combine(_SavePath, "Error.log");
 				// search for the options file if it exists load it
@@ -124,30 +125,39 @@ namespace GUPdotNET
 		
 		public static void LoadOptions()
 		{
+			DataSet ds = new DataSet("GUPdotNET");
 			try
 			{
-				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				so.Stream stream = new so.FileStream(_OptionsFile, so.FileMode.Open, so.FileAccess.Read, so.FileShare.Read);
-				_Option = new GUPdotNET.Helper.Options((System.Collections.Hashtable)formatter.Deserialize(stream));
-				stream.Close();
+				ds.ReadXml(_OptionsFile, XmlReadMode.ReadSchema);
+				_Option = new GUPdotNET.Helper.Options((DataTable)ds.Tables["Options"]);
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(ex);
+			}
+			finally
+			{
+				ds.Clear();
+				ds.Dispose();
 			}
 		}
 		
 		public static void SaveOptions()
 		{
+			DataSet ds = new DataSet("GUPdotNET");
 			try
 			{
-				System.Data.DataSet ds = new System.Data.DataSet("GUPdotNET");
 				ds.Tables.Add((System.Data.DataTable)_Option.ToDataTable());
-				ds.WriteXml(so.Path.Combine(_SavePath, "Options.xml"), System.Data.XmlWriteMode.WriteSchema);
+				ds.WriteXml(_OptionsFile, System.Data.XmlWriteMode.WriteSchema);
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(ex);
+			}
+			finally
+			{
+				ds.Clear();
+				ds.Dispose();
 			}
 		}
 		

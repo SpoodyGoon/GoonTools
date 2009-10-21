@@ -40,9 +40,6 @@ namespace GUPdotNET
 			try
 			{
 				this.Build();
-				Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link) {
-				                           	System.Diagnostics.Process.Start(link);
-				                           });
 				_Loading = true;
 				// load the controls for display;
 				LoadControls();
@@ -93,6 +90,9 @@ namespace GUPdotNET
 		{
 			try
 			{
+				Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link) {
+				                           	System.Diagnostics.Process.Start(link);
+				                           });
 				System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
 				Gtk.AboutDialog ad = new Gtk.AboutDialog();
 				ad.Title = "About GUPdotNET";
