@@ -29,7 +29,9 @@ using Gtk;
 namespace GUPdotNET.Helper
 {
 	/// <summary>
-	/// Description of MetaInfo.
+	/// This will be used to compair versons during loading of the programa
+	/// if the version don't match then we will be albe to take care of any  
+	/// file or applciation version migration that needs to occure at the user level
 	/// </summary>
 	public class MetaInfo
 	{
