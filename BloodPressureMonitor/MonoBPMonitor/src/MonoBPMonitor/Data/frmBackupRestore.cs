@@ -233,7 +233,7 @@ namespace MonoBPMonitor {
 			try
 			{
 				DataRow dr;
-				foreach( DictionaryEntry de in Common.Option.GetOptionsTable())
+				foreach( DictionaryEntry de in Common.Option.ToHashtable())
 				{
 					dr = dt.NewRow();
 					dr["Key"] = de.Key.ToString();

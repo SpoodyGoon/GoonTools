@@ -22,6 +22,7 @@
 
 using System;
 using System.IO;
+using System.Data;
 using Gtk;
 
 namespace GoonTools
@@ -35,8 +36,8 @@ namespace GoonTools
 	{
 		private static GoonTools.Helper.Options _Option;
 		private static GoonTools.Helper.EnviromentData _EnvData = new GoonTools.Helper.EnviromentData();
-		private static string _OptionsFileName = "Options.dat"; 		
-		
+		private static string _UserFile = string.Empty;
+		private static string _UserFileFormat = string.Empty;
 		#region Public Properties
 		
 		public static GoonTools.Helper.Options Option
@@ -57,13 +58,17 @@ namespace GoonTools
 		{
 			try
 			{
+				_UserFileFormat = System.Configuration.ConfigurationManager.AppSettings["UserFileFormat"].ToLower();
+				
 				// make sure the directory exists
 				if(!Directory.Exists(EnvData.SavePath))
-				   Directory.CreateDirectory(EnvData.SavePath);
-				   
+					Directory.CreateDirectory(EnvData.SavePath);			
+				
+				_UserFile = Path.Combine(EnvData.SavePath, "MonoBPMonitor." + _UserFileFormat);
+				
 				// search for the options file if it exists load it
 				// if it has not been saved load the defaults
-				if(File.Exists(EnvData.SavePath + _OptionsFileName))
+				if(File.Exists(_UserFile))
 				{
 					LoadOptions();
 				}
@@ -87,33 +92,72 @@ namespace GoonTools
 		
 		public static void LoadOptions()
 		{
+			DataSet ds = new DataSet("MonoBPMonitor");
 			try
 			{
-				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-				_Option = new Helper.Options((System.Collections.Hashtable)formatter.Deserialize(stream));
-				stream.Close();
+				switch(_UserFileFormat)
+				{
+					case "dat":
+						System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+						Stream stream = new FileStream(_UserFile, FileMode.Open, FileAccess.Read, FileShare.Read);
+						_Option = new Helper.Options((System.Collections.Hashtable)formatter.Deserialize(stream));
+						stream.Close();
+						break;
+					case "xml":
+						ds.ReadXml(_UserFile, XmlReadMode.ReadSchema);
+						_Option = new GoonTools.Helper.Options((DataTable)ds.Tables["Options"]);
+						break;
+					default:
+						// should not get here
+						// TODO: finish this.
+						break;
+				}
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(ex);
+			}
+			finally
+			{
+				ds.Clear();
+				ds.Dispose();
 			}
 		}
 		
 		public static void SaveOptions()
 		{
+			DataSet ds = new DataSet("MonoBPMonitor");
 			try
 			{
-				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				Stream stream = new FileStream(EnvData.SavePath + _OptionsFileName, FileMode.Create, FileAccess.Write, FileShare.None);
-				formatter.Serialize(stream, (System.Collections.Hashtable)_Option.GetOptionsTable());
-				stream.Close();
+				
+				switch(System.Configuration.ConfigurationManager.AppSettings["UserFileFormat"].ToLower())
+				{
+					case "dat":
+						System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+						Stream stream = new FileStream(_UserFile, FileMode.Create, FileAccess.Write, FileShare.None);
+						formatter.Serialize(stream, (System.Collections.Hashtable)_Option.ToHashtable());
+						stream.Close();
+						break;
+					case "xml":
+						ds.Tables.Add((System.Data.DataTable)_Option.ToDataTable());
+						ds.WriteXml(_UserFile, System.Data.XmlWriteMode.WriteSchema);
+						break;
+					default:
+						// should not get here
+						// TODO: finish this.
+						break;
+				}
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(ex);
 			}
-		}		
+			finally
+			{
+				ds.Clear();
+				ds.Dispose();
+			}
+		}
 		
 		#endregion Loading and Saving
 		
@@ -135,10 +179,10 @@ namespace GoonTools
 				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
 				sw.Close();
 			}
-				
+			
 			Gtk.MessageDialog md = new Gtk.MessageDialog(parent_window, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
 			md.Run();
-			md.Destroy();			
+			md.Destroy();
 		}
 		
 		public static void CleanErrorLog()
@@ -152,7 +196,7 @@ namespace GoonTools
 			catch(Exception ex)
 			{
 				HandleError(ex);
-					
+				
 			}
 		}
 		

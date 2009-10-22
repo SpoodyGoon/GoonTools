@@ -21,6 +21,8 @@
  */
 
 using System;
+using System.Collections;
+using System.Data;
 
 namespace GoonTools.Helper
 {
@@ -67,24 +69,48 @@ namespace GoonTools.Helper
 				_BackupOptions = Convert.ToBoolean(hsh["BackupOptions"]);
 			if(hsh.Contains("BackupLogs"))
 				_BackupLogs = Convert.ToBoolean(hsh["BackupLogs"]);
-//			if(hsh.Contains("CustomTheme"))
-//				_CustomTheme = hsh["CustomTheme"].ToString();
-//			if(hsh.Contains("CustomThemeLocation"))
-//				_CustomThemeLocation = hsh["CustomThemeLocation"].ToString();
 		}
 		
+		public Options(DataTable dt)
+		{
+			if(dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
+				throw new Exception("Invalid Table Passed to load Options");			
+			dt.PrimaryKey = new DataColumn[]{(DataColumn)dt.Columns["Key"]};
+			DataRow dr;
+			
+			dr = (DataRow)dt.Rows.Find("FileVersion");
+			if(dr != null)
+				_FileVersion = Convert.ToInt16(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("ConnString");
+			if(dr != null)
+				_ConnString = dr["Value"].ToString();			
+			dr = (DataRow)dt.Rows.Find("DBLocation");
+			if(dr != null)
+				_DBLocation = dr["Value"].ToString();			
+			dr = (DataRow)dt.Rows.Find("SaveErrorLog");
+			if(dr != null)
+				_SaveErrorLog = Convert.ToBoolean(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("LimitHistory");
+			if(dr != null)
+				_LimitHistory = Convert.ToBoolean(dr["Value"]);				
+			dr = (DataRow)dt.Rows.Find("HistoryDefaultShow");
+			if(dr != null)
+				_HistoryDefaultShow = Convert.ToInt32(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("BackupSchema");
+			if(dr != null)
+				_BackupSchema = Convert.ToBoolean(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("BackupData");
+			if(dr != null)
+				_BackupData = Convert.ToBoolean(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("BackupOptions");
+			if(dr != null)
+				_BackupOptions = Convert.ToBoolean(dr["Value"]);			
+			dr = (DataRow)dt.Rows.Find("BackupLogs");
+			if(dr != null)
+				_BackupLogs = Convert.ToBoolean(dr["Value"]);
+		}
 		
-//		public Options(System.Data.DataTable dt)
-//		{
-//			// reset the primary key just to be sure
-//			dt.PrimaryKey = new DataColumn[]{dt.Columns["Key"]};
-//			
-//			
-//			
-//			
-//		}
-		
-		public System.Collections.Hashtable GetOptionsTable()
+		public System.Collections.Hashtable ToHashtable()
 		{
 			System.Collections.Hashtable hsh = new System.Collections.Hashtable();
 			hsh.Add("FileVersion", _FileVersion);
@@ -100,6 +126,54 @@ namespace GoonTools.Helper
 			hsh.Add("CustomTheme", _CustomTheme);
 			hsh.Add("CustomThemeLocation", _CustomThemeLocation);
 			return hsh;
+		}
+		
+		public DataTable ToDataTable()
+		{
+			DataTable dt = new DataTable("Options");
+			dt.Columns.AddRange(new DataColumn[] { new DataColumn("Key", typeof(string)), new DataColumn("Value", typeof(object))});
+			dt.PrimaryKey = new DataColumn[]{dt.Columns["Key"]};
+			System.Data.DataRow dr = dt.NewRow();
+			dr["Key"] = "FileVersion";
+			dr["Value"] = _FileVersion;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "ConnString";
+			dr["Value"] = _ConnString;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "DBLocation";
+			dr["Value"] = _DBLocation;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "SaveErrorLog";
+			dr["Value"] = _SaveErrorLog;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "LimitHistory";
+			dr["Value"] = _LimitHistory;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "HistoryDefaultShow";
+			dr["Value"] = _HistoryDefaultShow;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "BackupSchema";
+			dr["Value"] = _BackupSchema;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "BackupData";
+			dr["Value"] = _BackupData;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "BackupOptions";
+			dr["Value"] = _BackupOptions;
+			dt.Rows.Add(dr);
+			dr = dt.NewRow();
+			dr["Key"] = "BackupLogs";
+			dr["Value"] = _BackupLogs;
+			dt.Rows.Add(dr);
+			return dt;
 		}
 		
 		public void RefreshAll(System.Collections.Hashtable hsh)
