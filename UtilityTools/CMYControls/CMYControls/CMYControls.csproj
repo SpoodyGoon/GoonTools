@@ -34,6 +34,7 @@
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -63,9 +64,8 @@
     <Compile Include="Common\Common.cs" />
     <Compile Include="QuickDate\QuickDate.cs" />
     <Compile Include="QuickTime\QuickTimeMenu.cs" />
-    <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="QuickTime\QuickTime.cs" />
-    <Compile Include="gtk-gui\CMYControls.QuickTime.cs" />
+    <Compile Include="LinkButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="QuickTime\ClearTime.png">
@@ -73,9 +73,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuickTime\QuickTime.png">
       <LogicalName>QuickTime.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gtk-gui\gui.stetic">
-      <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
