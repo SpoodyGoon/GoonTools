@@ -69,7 +69,7 @@ namespace MonoBPMonitor
 		}
 
 		protected virtual void OnNewEntryActionActivated (object sender, System.EventArgs e)
-		{				
+		{
 			frmEntry fm = new frmEntry ();
 			if(cboUser.UserID > -1)
 				fm.UserID = cboUser.UserID;
@@ -103,27 +103,39 @@ namespace MonoBPMonitor
 
 		protected virtual void OnAboutActionActivated (object sender, System.EventArgs e)
 		{
-			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
-			Gtk.AboutDialog ad = new Gtk.AboutDialog();
-			ad.Title = "About Mono Blood Pressure Monitor";
-			ad.ProgramName = "Mono Blood Pressure Monitor";
-			ad.Comments = "Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.\n\nIt include methods to track medication as well as doctors but it's main focus is the simple tracking and reporting of blood pressure readings.";
-			ad.License = GoonTools.Const.License;
-			ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
-			ad.Version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
-			ad.Logo = Gdk.Pixbuf.LoadFromResource("icon_large.png");
-			ad.Icon = Gdk.Pixbuf.LoadFromResource("icon_small.png");
-			ad.AllowShrink = true;
-			ad.AllowGrow = true;
-			ad.Copyright = "GoonTools 2009";
-			ad.HasSeparator = true;
-			ad.Modal = true;
-			ad.WidthRequest = 550;
-			ad.HeightRequest = 300;
-			ad.Website = "http://brdstudio.net/mbpmonitor/";
-			ad.WebsiteLabel = "http://brdstudio.net/mbpmonitor/";
-			ad.Run();
-			ad.Destroy();
+			Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link) {
+			                           	System.Diagnostics.Process.Start(link);
+			                           });
+			try
+			{
+				System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+				Gtk.AboutDialog ad = new Gtk.AboutDialog();
+				ad.Title = "About Mono Blood Pressure Monitor";
+				ad.ProgramName = "Mono Blood Pressure Monitor";
+				ad.Comments = "Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.\n\nIt include methods to track medication as well as doctors but it's main focus is the simple tracking and reporting of blood pressure readings.";
+				ad.License = GoonTools.Const.License;
+				ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
+				ad.Version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
+				ad.Logo = Gdk.Pixbuf.LoadFromResource("icon_large.png");
+				ad.Icon = Gdk.Pixbuf.LoadFromResource("icon_small.png");
+				ad.AllowShrink = false;
+				ad.AllowGrow = false;
+				ad.DestroyWithParent = true;
+				ad.Parent = this;
+				ad.Copyright = "GoonTools 2009";
+				ad.HasSeparator = true;
+				ad.Modal = true;
+				ad.WidthRequest = 550;
+				ad.HeightRequest = 300;
+				ad.WebsiteLabel = "MonoBPMonitor Project Site";
+				ad.Website = "http://code.google.com/p/goontools/wiki/MonoBPMonitor";
+				ad.Run();
+				ad.Destroy();
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 		}
 
 		protected virtual void OnEditaddPngActionActivated (object sender, System.EventArgs e)

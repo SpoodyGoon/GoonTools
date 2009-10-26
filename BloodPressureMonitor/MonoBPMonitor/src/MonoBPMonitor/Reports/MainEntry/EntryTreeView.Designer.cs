@@ -157,6 +157,7 @@ namespace MonoBPMonitor.Reports
 			}
 		}
 	}
+	
 	enum EntryColumns
 	{
 		EntryID,

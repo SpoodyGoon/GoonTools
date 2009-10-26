@@ -24,6 +24,7 @@ using System;
 using System.IO;
 using System.Data;
 using Gtk;
+using GoonTools.Helper;
 
 namespace GoonTools
 {
@@ -36,8 +37,6 @@ namespace GoonTools
 	{
 		private static GoonTools.Helper.Options _Option;
 		private static GoonTools.Helper.EnviromentData _EnvData = new GoonTools.Helper.EnviromentData();
-		private static string _UserFile = string.Empty;
-		private static string _UserFileFormat = string.Empty;
 		#region Public Properties
 		
 		public static GoonTools.Helper.Options Option
@@ -58,17 +57,13 @@ namespace GoonTools
 		{
 			try
 			{
-				_UserFileFormat = System.Configuration.ConfigurationManager.AppSettings["UserFileFormat"].ToLower();
-				
 				// make sure the directory exists
 				if(!Directory.Exists(EnvData.SavePath))
-					Directory.CreateDirectory(EnvData.SavePath);			
-				
-				_UserFile = Path.Combine(EnvData.SavePath, "MonoBPMonitor." + _UserFileFormat);
+					Directory.CreateDirectory(EnvData.SavePath);
 				
 				// search for the options file if it exists load it
 				// if it has not been saved load the defaults
-				if(File.Exists(_UserFile))
+				if(File.Exists(EnvData.UserOptionFile))
 				{
 					LoadOptions();
 				}
@@ -80,8 +75,7 @@ namespace GoonTools
 				
 				// copy over a new database if it's not already there
 				if(!File.Exists(Option.DBLocation))
-					File.Copy(EnvData.DefaultsPath + "BPMonitor.s3db", Option.DBLocation);
-				
+					File.Copy(Path.Combine(EnvData.DefaultsPath , "BPMonitor.s3db"), Option.DBLocation);
 				
 			}
 			catch(Exception ex)
@@ -92,20 +86,22 @@ namespace GoonTools
 		
 		public static void LoadOptions()
 		{
-			DataSet ds = new DataSet("MonoBPMonitor");
 			try
 			{
-				switch(_UserFileFormat)
+				switch(EnvData.CurrentUserFileType)
 				{
-					case "dat":
+					case UserFileType.dat:
 						System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-						Stream stream = new FileStream(_UserFile, FileMode.Open, FileAccess.Read, FileShare.Read);
+						Stream stream = new FileStream(EnvData.UserOptionFile, FileMode.Open, FileAccess.Read, FileShare.Read);
 						_Option = new Helper.Options((System.Collections.Hashtable)formatter.Deserialize(stream));
 						stream.Close();
 						break;
-					case "xml":
-						ds.ReadXml(_UserFile, XmlReadMode.ReadSchema);
+					case UserFileType.xml:
+						DataSet ds = new DataSet("MonoBPMonitor");
+						ds.ReadXml(EnvData.UserOptionFile, XmlReadMode.ReadSchema);
 						_Option = new GoonTools.Helper.Options((DataTable)ds.Tables["Options"]);
+						ds.Clear();
+						ds.Dispose();
 						break;
 					default:
 						// should not get here
@@ -116,31 +112,27 @@ namespace GoonTools
 			catch(Exception ex)
 			{
 				Common.HandleError(ex);
-			}
-			finally
-			{
-				ds.Clear();
-				ds.Dispose();
 			}
 		}
 		
 		public static void SaveOptions()
 		{
-			DataSet ds = new DataSet("MonoBPMonitor");
 			try
 			{
-				
-				switch(System.Configuration.ConfigurationManager.AppSettings["UserFileFormat"].ToLower())
+				switch(EnvData.CurrentUserFileType)
 				{
-					case "dat":
+					case UserFileType.dat:
 						System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-						Stream stream = new FileStream(_UserFile, FileMode.Create, FileAccess.Write, FileShare.None);
+						Stream stream = new FileStream(EnvData.UserOptionFile, FileMode.Create, FileAccess.Write, FileShare.None);
 						formatter.Serialize(stream, (System.Collections.Hashtable)_Option.ToHashtable());
 						stream.Close();
 						break;
-					case "xml":
+					case UserFileType.xml:
+						DataSet ds = new DataSet("MonoBPMonitor");
 						ds.Tables.Add((System.Data.DataTable)_Option.ToDataTable());
-						ds.WriteXml(_UserFile, System.Data.XmlWriteMode.WriteSchema);
+						ds.WriteXml(EnvData.UserOptionFile, System.Data.XmlWriteMode.WriteSchema);
+						ds.Clear();
+						ds.Dispose();
 						break;
 					default:
 						// should not get here
@@ -151,11 +143,6 @@ namespace GoonTools
 			catch(Exception ex)
 			{
 				Common.HandleError(ex);
-			}
-			finally
-			{
-				ds.Clear();
-				ds.Dispose();
 			}
 		}
 		

@@ -23,7 +23,7 @@
 using System;
 using Gtk;
 
-namespace GoonTools
+namespace GoonTools.Helper
 {
 	
 	
