@@ -21,7 +21,10 @@
  */
 
 using System;
-using System.Reflection;
+using so = System.IO;
+using se = System.Environment;
+using sr = System.Reflection;
+using sc = System.Configuration;
 using Gtk;
 using Mono.Unix;
 
@@ -36,20 +39,22 @@ namespace GoonTools.Helper
 		private string _OS = string.Empty;
 		private string _DirChar = string.Empty;
 		private string _AppPath = string.Empty;
+		private string _ProgramName = string.Empty;
 		private string _SavePath = string.Empty;
-		private string _ThemeFolder = string.Empty;
-		private string _AltThemeFolder = string.Empty;
-		private string _ErrorLog = string.Empty;
+		private string _UserOptionFile = string.Empty;
+		private UserFileType _CurrentUserFileType = UserFileType.xml;
+		private string _ErrorLogFile = string.Empty;
+		private string _ThemePath = string.Empty;
 		private string _DefaultsPath = string.Empty;
 		public EnviromentData()
 		{
-			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
+			sr.Assembly asm = sr.Assembly.GetExecutingAssembly ();
 			
 			// set the operating system
-			_OS=System.Environment.OSVersion.Platform.ToString();
+			_OS=se.OSVersion.Platform.ToString();
 			
 			// set the directory character string
-			if(System.Environment.OSVersion.Platform == PlatformID.Win32NT)
+			if(se.OSVersion.Platform == PlatformID.Win32NT)
 			{
 				_DirChar = @"\";
 			}
@@ -59,17 +64,47 @@ namespace GoonTools.Helper
 			}
 			
 			// set the app path
-			_AppPath = asm.CodeBase.Substring(0, asm.CodeBase.LastIndexOf(_DirChar) + 1).Replace("file://","");
+			so.FileInfo fi = new so.FileInfo(asm.Location);
+			_AppPath = fi.Directory.FullName;
+			_ProgramName = asm.GetName().Name;
+			if(sc.ConfigurationManager.AppSettings["Debug"].ToLower() == "false")
+			{
+				// set the location of the save data for the user
+				_SavePath = so.Path.Combine(se.GetFolderPath(se.SpecialFolder.ApplicationData), _ProgramName);
+				
+			}
+			else
+			{
+				_SavePath = so.Path.Combine(_AppPath, "DebugFiles");
+			}
 			
-			// set the location of the save data for the user
-			_SavePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + _DirChar + asm.GetName().Name + _DirChar;
+			if(!so.Directory.Exists(_SavePath))
+				so.Directory.CreateDirectory(_SavePath);
+			
+			_CurrentUserFileType = GetUserFileType();
 			
 			// get the defaults path - this is where we keep the things we copy over
 			// when setting up a new user
-			_DefaultsPath = _AppPath + "Data" + _DirChar;
-			_ErrorLog = _SavePath + "error.log";
-			_ThemeFolder = _AppPath + "Themes" + _DirChar;
-			_AltThemeFolder = _SavePath + "Themes" + _DirChar;
+			_DefaultsPath = so.Path.Combine(_AppPath , "Data");
+			_ThemePath = so.Path.Combine(_AppPath , "Themes");
+			_ErrorLogFile = so.Path.Combine(_SavePath , "error.txt");
+			_UserOptionFile = so.Path.Combine(_SavePath, _ProgramName + "." + _CurrentUserFileType.ToString());
+		}
+		
+		private UserFileType GetUserFileType()
+		{
+			switch(System.Configuration.ConfigurationManager.AppSettings["UserFileFormat"].ToLower())
+			{
+				case "xml":
+					return UserFileType.xml;
+				case "dat":
+					return UserFileType.dat;
+				default:
+					//TODO should not get here
+					break;
+			}
+			
+			return UserFileType.xml;
 		}
 		
 		#region Public Properties
@@ -89,9 +124,23 @@ namespace GoonTools.Helper
 			get{ return _AppPath;}
 		}
 		
+		public string ProgramName
+		{
+			get{return _ProgramName;}
+		}
+		
 		public string SavePath
 		{
 			get{return _SavePath;}
+		}
+		public string UserOptionFile
+		{
+			get{return _UserOptionFile;}
+		}
+		
+		public UserFileType CurrentUserFileType
+		{
+			get{return _CurrentUserFileType;}
 		}
 		
 		public string DefaultsPath
@@ -101,17 +150,12 @@ namespace GoonTools.Helper
 		
 		public string ThemeFolder
 		{
-			get{return _ThemeFolder;}
-		}
-		
-		public string AltThemeFolder
-		{
-			get{return _AltThemeFolder;}
+			get{return _ThemePath;}
 		}
 		
 		public string ErrorLog
 		{
-			get{return _ErrorLog;}
+			get{return _ErrorLogFile;}
 		}
 		
 		#endregion Public Properties
@@ -125,26 +169,26 @@ namespace GoonTools.Helper
 		
 		public string GetNewTempFolder(string Name, bool Overwrite)
 		{
-			string tmpName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Name);
+			string tmpName = so.Path.Combine(so.Path.GetTempPath(), Name);
 			try
 			{
 				if(Overwrite)
 				{
-					if(System.IO.Directory.Exists(tmpName))
-						System.IO.Directory.Delete(tmpName);
+					if(so.Directory.Exists(tmpName))
+						so.Directory.Delete(tmpName);
 					
-					System.IO.Directory.CreateDirectory(tmpName);
+					so.Directory.CreateDirectory(tmpName);
 				}
 				else
 				{
 					string tmp = tmpName;
 					int i = 0;
-					while(System.IO.Directory.Exists(tmp))
+					while(so.Directory.Exists(tmp))
 					{
 						tmp = tmpName + i.ToString();
 						i++;
 					}
-					System.IO.Directory.CreateDirectory(tmp);
+					so.Directory.CreateDirectory(tmp);
 					tmpName = tmp;
 				}
 			}
@@ -157,7 +201,7 @@ namespace GoonTools.Helper
 		
 		public string GetNewTempFile(string Name)
 		{
-			return GetNewTempFile(System.IO.Path.GetFileNameWithoutExtension(Name), System.IO.Path.GetExtension(Name), true);
+			return GetNewTempFile(so.Path.GetFileNameWithoutExtension(Name), so.Path.GetExtension(Name), true);
 		}
 		
 		public string GetNewTempFile(string Name, string Extension)
@@ -167,24 +211,24 @@ namespace GoonTools.Helper
 		
 		public string GetNewTempFile(string Name, string Extension, bool Overwrite)
 		{
-			string tmpName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Name + "." + Extension);
+			string tmpName = so.Path.Combine(System.IO.Path.GetTempPath(), Name + "." + Extension);
 			if(Overwrite)
 			{
-				if(System.IO.File.Exists(tmpName))
-					System.IO.File.Delete(tmpName);
+				if(so.File.Exists(tmpName))
+					so.File.Delete(tmpName);
 				
-				System.IO.File.Create(tmpName);
+				so.File.Create(tmpName);
 			}
 			else
 			{
 				string tmp = tmpName;
 				int i = 0;
-				while(System.IO.File.Exists(tmp))
+				while(so.File.Exists(tmp))
 				{
 					tmp = tmpName + i.ToString();
 					i++;
 				}
-				System.IO.File.Create(tmp);
+				so.File.Create(tmp);
 				tmpName = tmp;
 			}
 			return tmpName;
@@ -193,4 +237,11 @@ namespace GoonTools.Helper
 		#endregion Public Methods
 	}
 
+	// this is the file formats for user preference
+	// either xml or a binary dat file
+	public enum UserFileType
+	{
+		dat,
+		xml
+	}
 }

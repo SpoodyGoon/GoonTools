@@ -59,11 +59,13 @@ namespace MonoBPMonitor
 		{
 			spnDefaultHistory.Sensitive = cbxLimitRecords.Active;
 		}
-				protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
+		
+		protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
 		}
-		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
+
+		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
 		{			
 			SaveChanges();
 			this.Hide();

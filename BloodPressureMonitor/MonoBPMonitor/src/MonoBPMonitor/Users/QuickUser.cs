@@ -12,6 +12,8 @@ namespace MonoBPMonitor
 		public QuickUser()
 		{
 			this.Build();
+			this.HasSeparator = false;
+			this.ShowAll();
 			
 		}
 		

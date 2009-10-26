@@ -31,8 +31,8 @@ namespace GoonTools.Helper
 	{
 		// for the dblocationand connection string the default locations
 		// are very likely to be the perminant locations
-		private string _ConnString = "URI=file:" +  GoonTools.Common.EnvData.SavePath + "BPMonitor.s3db,version=3, busy_timeout=3000";
-		private string _DBLocation = GoonTools.Common.EnvData.SavePath + "BPMonitor.s3db";
+		private string _ConnString = "URI=file:" +  System.IO.Path.Combine(GoonTools.Common.EnvData.SavePath , "BPMonitor.s3db" ) + ",version=3, busy_timeout=3000";
+		private string _DBLocation = System.IO.Path.Combine(GoonTools.Common.EnvData.SavePath, "BPMonitor.s3db");
 		private bool _SaveErrorLog = true; // this is just a flag to save the error to the save directory
 		private bool _LimitHistory = true; 
 		private int _HistoryDefaultShow = 30; // this is the amount of history we want to show

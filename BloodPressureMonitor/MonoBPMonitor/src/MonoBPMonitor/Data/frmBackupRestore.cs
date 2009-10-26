@@ -30,7 +30,7 @@ namespace MonoBPMonitor {
 			cbxOptions.Active = Common.Option.BackupOptions;
 			cbxLogs.Active = Common.Option.BackupLogs;
 			CheckAll();
-			this.WidthRequest = 500;
+			this.WidthRequest = 500; 
 			this.ShowAll();
 		}
 		
@@ -228,24 +228,8 @@ namespace MonoBPMonitor {
 		}
 		
 		private DataTable BackupOptions()
-		{
-			DataTable dt = SimpleDataTable("Options");
-			try
-			{
-				DataRow dr;
-				foreach( DictionaryEntry de in Common.Option.ToHashtable())
-				{
-					dr = dt.NewRow();
-					dr["Key"] = de.Key.ToString();
-					dr["Value"] = de.Value.ToString();
-					dt.Rows.Add(dr);
-				}
-			}
-			catch(Exception ex)
-			{
-				throw ex;
-			}
-			return dt;
+		{			
+			return Common.Option.ToDataTable();
 		}
 		
 		private void BackupLogs()

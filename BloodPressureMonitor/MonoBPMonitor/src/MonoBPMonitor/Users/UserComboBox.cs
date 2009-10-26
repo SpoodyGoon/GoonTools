@@ -126,6 +126,7 @@ namespace MonoBPMonitor.Users
 						if(qu.Run() == (int)Gtk.ResponseType.Ok)
 						{
 							intReturn = qu.UserID;
+							LoadUsers();
 						}
 						qu.Destroy();
 					}
