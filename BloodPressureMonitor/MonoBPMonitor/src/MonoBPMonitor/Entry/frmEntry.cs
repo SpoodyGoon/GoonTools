@@ -21,6 +21,7 @@ namespace MonoBPMonitor
 			// Start a new Entry
 			_CurrentEntry = new Entry();
 			txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToString("g");
+			this.HasSeparator = false;
 			this.ShowAll();
 		}
 		
