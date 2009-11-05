@@ -189,12 +189,6 @@ namespace MonoBPMonitor.Reports
 			(cell as Gtk.CellRendererText).Text = m.HeartRateAvg.ToString();
 		}
 		
-		private void RenderOpenEntry (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
-		{
-			Gtk.CellRendererText cl = (cell as Gtk.CellRendererText);
-			cl.Text = "Open";
-		}
-		
 		#endregion Cell Render Functions
 	}
 }
