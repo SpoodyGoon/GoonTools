@@ -45,8 +45,11 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\ICSharpCode.SharpZipLib\2.84.0.0__1b03e6acf1164f73\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.4.2\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.4.2.3\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
@@ -83,7 +86,6 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="ICSharpCode.SharpZipLib" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -120,7 +122,6 @@
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
     <Compile Include="Medications\MedicationTreeView.Designer.cs" />
-    <Compile Include="Reports\MainEntry\CellRenderLinkButton.cs" />
     <Compile Include="Reports\MainEntry\MainBPReport.cs" />
     <Compile Include="Users\UserRendererCombo.cs" />
     <Compile Include="Users\UserTreeView.cs" />
@@ -190,6 +191,10 @@
     <Content Include="BPMonitor.desktop">
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin" />
+    <Folder Include="bin\Debug" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
