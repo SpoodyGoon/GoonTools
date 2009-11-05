@@ -105,8 +105,7 @@ namespace GoonTools
 						break;
 					default:
 						// should not get here
-						// TODO: finish this.
-						break;
+						throw new Exception("Invalid User File Type: Should not get here loading options.");
 				}
 			}
 			catch(Exception ex)
@@ -136,8 +135,7 @@ namespace GoonTools
 						break;
 					default:
 						// should not get here
-						// TODO: finish this.
-						break;
+						throw new Exception("Invalid User File Type: Should not get here saving options.");
 				}
 			}
 			catch(Exception ex)

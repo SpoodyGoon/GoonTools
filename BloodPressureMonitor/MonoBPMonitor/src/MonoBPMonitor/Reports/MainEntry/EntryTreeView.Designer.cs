@@ -34,10 +34,8 @@ namespace MonoBPMonitor.Reports
 	public partial class EntryRptTreeView : Gtk.TreeView
 	{
 		private Gtk.ListStore _EntryRptListsStore = new ListStore(typeof(MainBPReport));
-		private Gtk.TreeViewColumn _CurrentColumn;
 		private int _CurrentUser = 1; // this is the default user
 		private int _CurrentHistoryLimit = 30;// this is the assumed default
-		private bool _OpenActive = false;
 		private void Build()
 		{
 			try

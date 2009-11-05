@@ -99,9 +99,6 @@ namespace GoonTools.Helper
 					return UserFileType.xml;
 				case "dat":
 					return UserFileType.dat;
-				default:
-					//TODO should not get here
-					break;
 			}
 			
 			return UserFileType.xml;
