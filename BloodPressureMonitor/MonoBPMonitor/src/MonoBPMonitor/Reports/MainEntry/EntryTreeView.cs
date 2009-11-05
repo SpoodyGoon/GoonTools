@@ -51,7 +51,6 @@ namespace MonoBPMonitor.Reports
 				int SumHeartRate = 0;
 				int RowCount = 1;
 				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				// TODO: sort by date not working correctly sorting like a number
 				DataTable dt = dp.ExecuteDataTable("SELECT EntryID, EntryDateTime, Systolic, Diastolic, HeartRate FROM tb_Entry WHERE UserID = " + _CurrentUser.ToString() + " ORDER BY EntryDateTime LIMIT " + Common.Option.HistoryDefaultShow.ToString() + " ;");
 				foreach(DataRow dr in dt.Rows)
 				{
@@ -109,48 +108,6 @@ namespace MonoBPMonitor.Reports
 				LoadData();
 		}
 		
-		[GLib.DefaultSignalHandlerAttribute()]
-		protected override bool OnMotionNotifyEvent(Gdk.EventMotion evnt)
-		{
-			//Gtk.TreeIter iter;
-			Gtk.TreePath path;
-			Gtk.TreeViewColumn column;
-			Gtk.CellRendererText ct;
-			int cell_x = 0;
-			int cell_y = 0;
-			try
-			{
-				// set the cursor to the row under the mouse
-				if(this.GetPathAtPos((int)Math.Round(evnt.X, 0), (int)Math.Round(evnt.Y, 0), out path,out column, out cell_x, out cell_y))
-				{
-					if(_CurrentColumn != null)
-					{
-						ct = (Gtk.CellRendererText)_CurrentColumn.Cells[0];
-						ct.ForegroundGdk = new Gdk.Color (255, 0, 0);
-						ct.Weight = 2;
-						_OpenActive = false;
-						this.ShowNow();
-					}
-					if(column.Title == "Open")
-					{
-						_CurrentColumn = column;
-						ct = (Gtk.CellRendererText)column.Cells[0];
-						ct.ForegroundGdk = new Gdk.Color (0, 0, 255);
-						ct.Weight = 2;
-						_OpenActive = true;
-						this.ShowNow();
-					}
-				}
-			}
-			catch(Exception ex)
-			{
-				Common.HandleError(ex);
-			}
-			
-			return base.OnMotionNotifyEvent(evnt);
-		}
-		
-		
 		#region Cell Render Functions
 		
 		private void RenderEntryID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
@@ -162,7 +119,7 @@ namespace MonoBPMonitor.Reports
 		private void RenderEntryDate (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			MainBPReport m = (MainBPReport)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = m.EntryDateTime.ToShortDateString();
+			(cell as Gtk.CellRendererText).Text = m.EntryDateTime.ToString();
 		}
 		
 		private void RenderBPReading (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)

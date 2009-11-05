@@ -60,10 +60,9 @@ namespace MonoBPMonitor
 				Gtk.MessageDialog md = new MessageDialog(this,DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "A user name is required.", "Missing User Name");
 				md.Run();
 				md.Destroy();
-				// TODO: how to focus on an entry
-				txtName.SelectRegion(0, txtName.Text.Length);
 			}
-		}		
+		}
+		
 		
 		
 		protected virtual void OnTxtNameKeyPressEvent (object o, Gtk.KeyPressEventArgs args)
