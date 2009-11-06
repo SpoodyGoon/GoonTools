@@ -35,7 +35,7 @@ namespace GUPdotNET.Helper
 	/// </summary>
 	public class MetaInfo
 	{
-		public MetaInfo(DataTable dt)
+		public MetaInfo()
 		{
 			
 			
@@ -43,61 +43,61 @@ namespace GUPdotNET.Helper
 		
 		public MetaInfo(DataTable dt)
 		{
-			if(dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
-				throw new Exception("Invalid Table Passed to load Options");
-			
-			dt.PrimaryKey = new DataColumn[]{(DataColumn)dt.Columns["Key"]};
-			DataRow dr;
-			
-			dr = (DataRow)dt.Rows.Find("FileVersion");
-			if(dr != null)
-				_FileVersion = Convert.ToInt16(dr["Value"]);			
-			dr = (DataRow)dt.Rows.Find("UpdateTime");
-			if(dr != null)
-				_UpdateTime = dr["Value"].ToString();			
-			dr = (DataRow)dt.Rows.Find("UpdateHours");
-			if(dr != null)
-				_UpdateHours = Convert.ToInt32(dr["Value"]);			
-			dr = (DataRow)dt.Rows.Find("AutoUpdate");
-			if(dr != null)
-				_AutoUpdate = Convert.ToBoolean(dr["Value"]);			
-			dr = (DataRow)dt.Rows.Find("LastUpdate");
-			if(dr != null)
-				_LastUpdate = Convert.ToDateTime(dr["Value"]);			
-			dr = (DataRow)dt.Rows.Find("LastUpdateCheck");
-			if(dr != null)
-				_LastUpdateCheck = Convert.ToDateTime(dr["Value"]);
+//			if(dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
+//				throw new Exception("Invalid Table Passed to load Options");
+//			
+//			dt.PrimaryKey = new DataColumn[]{(DataColumn)dt.Columns["Key"]};
+//			DataRow dr;
+//			
+//			dr = (DataRow)dt.Rows.Find("FileVersion");
+//			if(dr != null)
+//				_FileVersion = Convert.ToInt16(dr["Value"]);			
+//			dr = (DataRow)dt.Rows.Find("UpdateTime");
+//			if(dr != null)
+//				_UpdateTime = dr["Value"].ToString();			
+//			dr = (DataRow)dt.Rows.Find("UpdateHours");
+//			if(dr != null)
+//				_UpdateHours = Convert.ToInt32(dr["Value"]);			
+//			dr = (DataRow)dt.Rows.Find("AutoUpdate");
+//			if(dr != null)
+//				_AutoUpdate = Convert.ToBoolean(dr["Value"]);			
+//			dr = (DataRow)dt.Rows.Find("LastUpdate");
+//			if(dr != null)
+//				_LastUpdate = Convert.ToDateTime(dr["Value"]);			
+//			dr = (DataRow)dt.Rows.Find("LastUpdateCheck");
+//			if(dr != null)
+//				_LastUpdateCheck = Convert.ToDateTime(dr["Value"]);
 		}
 		
 		public DataTable ToDataTable()
 		{
-			DataTable dt = new DataTable("Options");
-			dt.Columns.AddRange(new DataColumn[] { new DataColumn("Key", typeof(string)), new DataColumn("Value", typeof(object))});
-			dt.PrimaryKey = new DataColumn[]{dt.Columns["Key"]};
-			System.Data.DataRow dr = dt.NewRow();
-			dr["Key"] = "FileVersion";
-			dr["Value"] = _FileVersion;
-			dt.Rows.Add(dr);
-			dr = dt.NewRow();
-			dr["Key"] = "UpdateTime";
-			dr["Value"] = _UpdateTime;
-			dt.Rows.Add(dr);
-			dr = dt.NewRow();
-			dr["Key"] = "UpdateHours";
-			dr["Value"] = _UpdateHours;
-			dt.Rows.Add(dr);
-			dr = dt.NewRow();
-			dr["Key"] = "AutoUpdate";
-			dr["Value"] = _AutoUpdate;
-			dt.Rows.Add(dr);
-			dr = dt.NewRow();
-			dr["Key"] = "LastUpdate";
-			dr["Value"] = _LastUpdate;
-			dt.Rows.Add(dr);
-			dr = dt.NewRow();
-			dr["Key"] = "LastUpdateCheck";
-			dr["Value"] = _LastUpdateCheck;
-			dt.Rows.Add(dr);
+			DataTable dt = new DataTable("MetaInfo");
+//			dt.Columns.AddRange(new DataColumn[] { new DataColumn("Key", typeof(string)), new DataColumn("Value", typeof(object))});
+//			dt.PrimaryKey = new DataColumn[]{dt.Columns["Key"]};
+//			System.Data.DataRow dr = dt.NewRow();
+//			dr["Key"] = "FileVersion";
+//			dr["Value"] = _FileVersion;
+//			dt.Rows.Add(dr);
+//			dr = dt.NewRow();
+//			dr["Key"] = "UpdateTime";
+//			dr["Value"] = _UpdateTime;
+//			dt.Rows.Add(dr);
+//			dr = dt.NewRow();
+//			dr["Key"] = "UpdateHours";
+//			dr["Value"] = _UpdateHours;
+//			dt.Rows.Add(dr);
+//			dr = dt.NewRow();
+//			dr["Key"] = "AutoUpdate";
+//			dr["Value"] = _AutoUpdate;
+//			dt.Rows.Add(dr);
+//			dr = dt.NewRow();
+//			dr["Key"] = "LastUpdate";
+//			dr["Value"] = _LastUpdate;
+//			dt.Rows.Add(dr);
+//			dr = dt.NewRow();
+//			dr["Key"] = "LastUpdateCheck";
+//			dr["Value"] = _LastUpdateCheck;
+//			dt.Rows.Add(dr);
 			return dt;
 		}
 	}
