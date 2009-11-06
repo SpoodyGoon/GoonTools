@@ -107,8 +107,12 @@
     </Content>
     <Compile Include="frmDownload.cs" />
     <Compile Include="gtk-gui\GUPdotNET.frmDownload.cs" />
-    <EmbeddedResource Include="images\cancel.png" />
-    <EmbeddedResource Include="images\hide.png" />
+    <EmbeddedResource Include="images\cancel.png">
+      <LogicalName>cancel.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\hide.png">
+      <LogicalName>hide.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
