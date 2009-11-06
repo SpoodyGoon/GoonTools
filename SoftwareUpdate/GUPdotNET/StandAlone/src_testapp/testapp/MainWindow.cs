@@ -20,14 +20,45 @@
  */
 
 using System;
+using so = System.IO;
 using System.Reflection;
 using System.Configuration;
 using Gtk;
 public partial class MainWindow: Gtk.Window
 {
+	private string _TempSaveFile = string.Empty;
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		
+		System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
+		System.IO.FileInfo fi = new System.IO.FileInfo(asm.Location);
+		_TempSaveFile = so.Path.Combine(fi.Directory.FullName, "ExecFile.txt");
+		
+		if(so.File.Exists(_TempSaveFile))
+		{
+			so.StreamReader sr = new so.StreamReader(_TempSaveFile);
+			GUPdotNETFile.SetFilename(sr.ReadToEnd());
+			sr.Close();
+		}
+		
+		GUPdotNETFile.FileSet += new EventHandler(GUPdotNETFile_FileSet);
+	}
+
+	private void GUPdotNETFile_FileSet(object sender, EventArgs e)
+	{
+		try
+		{
+			so.StreamWriter sw = new so.StreamWriter(_TempSaveFile, false);
+			sw.Write(GUPdotNETFile.Filename);
+			sw.Close();
+		}
+		catch(Exception ex)
+		{
+			Gtk.MessageDialog md = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			md.Run();
+			md.Destroy();
+		}
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -45,15 +76,15 @@ public partial class MainWindow: Gtk.Window
 	{
 		try
 		{
-			System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
-			System.IO.FileInfo fi = new System.IO.FileInfo(asm.Location);
-			
-			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
-		si.ErrorDialog = true;
-			si.UseShellExecute = false;
-			si.FileName = GUPdotNETFile.Filename;
-			si.Arguments += "updatecheck";
-			System.Diagnostics.Process.Start(si);
+			if(so.File.Exists(GUPdotNETFile.Filename))
+			{
+				System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
+				si.ErrorDialog = true;
+				si.UseShellExecute = false;
+				si.FileName = GUPdotNETFile.Filename;
+				si.Arguments += "updatecheck";
+				System.Diagnostics.Process.Start(si);
+			}
 
 		}
 		catch(Exception ex)
@@ -67,12 +98,19 @@ public partial class MainWindow: Gtk.Window
 	
 	protected virtual void OnBtnOptionsClicked (object sender, System.EventArgs e)
 	{
-		System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
-		System.IO.FileInfo fi = new System.IO.FileInfo(asm.Location);
-		System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
-		si.ErrorDialog = true;
-		si.FileName = GUPdotNETFile.Filename;
-		si.UseShellExecute = false;
-		System.Diagnostics.Process.Start(si);
+		try
+		{
+			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
+			si.ErrorDialog = true;
+			si.FileName = GUPdotNETFile.Filename;
+			si.UseShellExecute = false;
+			System.Diagnostics.Process.Start(si);
+		}
+		catch(Exception ex)
+		{
+			Gtk.MessageDialog md = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			md.Run();
+			md.Destroy();
+		}
 	}
 }
