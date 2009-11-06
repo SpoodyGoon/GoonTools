@@ -46,7 +46,6 @@ namespace GUPdotNET
 		private static string _OptionsFile = null;
 		private static string _UpdateFile = null;
 		private static string _ErrorFile = null;
-		private static string _ProgramName = "GUPdotNET";
 		#endregion Private Properties
 		
 		#region Public Properties
