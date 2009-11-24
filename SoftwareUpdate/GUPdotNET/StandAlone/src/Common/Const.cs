@@ -25,9 +25,7 @@ using System;
 namespace  GUPdotNET
 {
 	public static class Const
-	{
-		
-		
+	{		
 		#region "License Text"
 		
 		public const string License =

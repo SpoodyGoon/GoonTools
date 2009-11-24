@@ -28,20 +28,23 @@ namespace GUPdotNET.Helper
 {
 	public class Options
 	{
-		private string _UpdateTime = "Day";
-		private int _UpdateHours = 24;
-		private bool _AutoUpdate = true;
-		private DateTime _LastUpdate = DateTime.Now;
-		private DateTime _LastUpdateCheck = DateTime.Now;
-		private int _FileVersion = 1; // the file version does not nessicarily match the application version
+		// a simple list of the possible update vaiables in string form
 		public readonly string[] _UpdateTimes = new string[]{"Day", "Week", "Month", "Quarter", "Year", "Never"};
-		// empty contruct
+		
+		#region Constructors
+		
+		/// <summary>
+		///  Empty basic constructor serves normally just for the first time use
+		/// </summary>
 		public Options()
 		{
 			
 		}
 		
-		// loading options from a Hashtable
+		/// <summary>
+		/// Constructor for loading options from a hashtable
+		/// </summary>
+		/// <param name="hsh"></param>
 		public Options(System.Collections.Hashtable hsh)
 		{
 			if(hsh.Contains("FileVersion"))
@@ -58,6 +61,10 @@ namespace GUPdotNET.Helper
 				_LastUpdateCheck = Convert.ToDateTime(hsh["LastUpdateCheck"]);
 		}
 		
+		/// <summary>
+		///  Constructor for loading the options from a datatable
+		/// </summary>
+		/// <param name="dt"></param>
 		public Options(DataTable dt)
 		{
 			if(dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
@@ -86,21 +93,14 @@ namespace GUPdotNET.Helper
 				_LastUpdateCheck = Convert.ToDateTime(dr["Value"]);
 		}
 		
+		#endregion Constructors
 		
-		// Getting options into a hashtable
-		public Hashtable GetOptionsTable()
-		{
-			System.Collections.Hashtable hsh = new System.Collections.Hashtable();
-			hsh.Add("FileVersion", _FileVersion);
-			hsh.Add("UpdateTime", _UpdateTime);
-			hsh.Add("UpdateHours", _UpdateHours);
-			hsh.Add("AutoUpdate", _AutoUpdate);
-			hsh.Add("LastUpdate", _LastUpdate);
-			hsh.Add("LastUpdateCheck", _LastUpdateCheck);
-			return hsh;
-		}
+		#region Loading for Serialization
 		
-		// Getting the optinos in a datatable
+		/// <summary>
+		///  Puts all the options into a hashtable for serialization
+		/// </summary>
+		/// <returns>System.Collections.Hashtable</returns>
 		public Hashtable ToHashtable()
 		{
 			System.Collections.Hashtable hsh = new System.Collections.Hashtable();
@@ -113,6 +113,10 @@ namespace GUPdotNET.Helper
 			return hsh;
 		}
 		
+		/// <summary>
+		///  Puts all the options into a datatable for serialization
+		/// </summary>
+		/// <returns>System.Data.DataTable</returns>
 		public DataTable ToDataTable()
 		{
 			DataTable dt = new DataTable("Options");
@@ -145,40 +149,52 @@ namespace GUPdotNET.Helper
 			return dt;
 		}
 		
+		#endregion Loading for Serialization
+		
+		#region Public Properties
+		
+		private int _UpdateHours = 24;
 		public int UpdateHours
 		{
 			set{ _UpdateHours = value;}
 			get{ return _UpdateHours;}
 		}
 		
+		private string _UpdateTime = "Day";
 		public string UpdateTime
 		{
 			set{ _UpdateTime = value;}
 			get{ return _UpdateTime;}
 		}
 		
+		private bool _AutoUpdate = true;
 		public bool AutoUpdate
 		{
 			set{ _AutoUpdate = value;}
 			get{ return _AutoUpdate;}
 		}
 		
+		private DateTime _LastUpdate = DateTime.Now;
 		public DateTime LastUpdate
 		{
 			set{_LastUpdate=value;}
 			get{return _LastUpdate;}
 		}
 		
+		private DateTime _LastUpdateCheck = DateTime.Now;
 		public DateTime LastUpdateCheck
 		{
 			set{_LastUpdateCheck=value;}
 			get{return _LastUpdateCheck;}
 		}
 		
-		public int FileVersion
+		private float _FileVersion = 1.0f; // the file version does not nessicarily match the application version
+		public float FileVersion
 		{
 			set{ _FileVersion = value;}
 			get{ return _FileVersion;}
 		}
+		
+		#endregion Public Properties
 	}
 }
