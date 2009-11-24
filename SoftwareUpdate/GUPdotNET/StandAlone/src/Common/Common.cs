@@ -162,7 +162,6 @@ namespace GUPdotNET
 		
 		#endregion Loading and Saving
 		
-		
 		#region Logs
 		
 		public static void LogUpdate(string ResultMess)
