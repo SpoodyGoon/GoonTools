@@ -49,6 +49,12 @@ namespace GUPdotNET
 //			this.Move(350, 10);
 			try
 			{
+				// HACK: could try this method for downloading
+//				WebClient wc = new WebClient();
+//				string src = "http://www.example.com/foobar.zip";
+//				string filename = "foobar.zip";
+//				wc.DownloadFile(src, filename);
+				
 				// get a unique name for the temporary installer file name
 				_UpdateInfo.TempInstallerPath = GetUniqueFileName(_UpdateInfo.UpdateFileURL);
 				this.KeepAbove = true;
