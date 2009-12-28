@@ -1,7 +1,7 @@
 ﻿/*************************************************************************
- *                      Global.cs
+ *                      EnviromentData.cs
  *
- *	 	Copyright (C) 2009
+ *	 	Copyright (C) 2010
  *		Andrew York <goontools@brdstudio.net>
  *
  *************************************************************************/
@@ -26,7 +26,6 @@ using se = System.Environment;
 using sr = System.Reflection;
 using sc = System.Configuration;
 using Gtk;
-using Mono.Unix;
 
 namespace GoonTools.Helper
 {
@@ -36,16 +35,16 @@ namespace GoonTools.Helper
 	/// </summary>
 	public class EnviromentData
 	{
-		private string _OS = string.Empty;
-		private string _DirChar = string.Empty;
-		private string _AppPath = string.Empty;
-		private string _ProgramName = string.Empty;
-		private string _SavePath = string.Empty;
-		private string _UserOptionFile = string.Empty;
+		private string _OS = null;
+		private string _DirChar = null;
+		private string _AppPath = null;
+		private string _ProgramName = null;
+		private string _SavePath = null;
+		private string _UserOptionFile = null;
 		private UserFileType _CurrentUserFileType = UserFileType.xml;
-		private string _ErrorLogFile = string.Empty;
-		private string _ThemePath = string.Empty;
-		private string _DefaultsPath = string.Empty;
+		private string _ErrorLogFile = null;
+		private string _ThemePath = null;
+		private string _DataPath = null;
 		public EnviromentData()
 		{
 			sr.Assembly asm = sr.Assembly.GetExecutingAssembly ();
@@ -53,15 +52,8 @@ namespace GoonTools.Helper
 			// set the operating system
 			_OS=se.OSVersion.Platform.ToString();
 			
-			// set the directory character string
-			if(se.OSVersion.Platform == PlatformID.Win32NT)
-			{
-				_DirChar = @"\";
-			}
-			else
-			{
-				_DirChar = @"/";
-			}
+			// the character that seperates paths in the local directorys
+			_DirChar = so.Path.DirectorySeparatorChar.ToString();
 			
 			// set the app path
 			so.FileInfo fi = new so.FileInfo(asm.Location);
@@ -85,23 +77,29 @@ namespace GoonTools.Helper
 			
 			// get the defaults path - this is where we keep the things we copy over
 			// when setting up a new user
-			_DefaultsPath = so.Path.Combine(_AppPath , "Data");
+			_DataPath = so.Path.Combine(_AppPath , "Data");
 			_ThemePath = so.Path.Combine(_AppPath , "Themes");
 			_ErrorLogFile = so.Path.Combine(_SavePath , "error.txt");
 			_UserOptionFile = so.Path.Combine(_SavePath, _ProgramName + "." + _CurrentUserFileType.ToString());
 		}
 		
+		/// <summary>
+		///  funtion to determine what the user file type is saved and opened as
+		/// </summary>
+		/// <returns></returns>
 		private UserFileType GetUserFileType()
 		{
 			switch(System.Configuration.ConfigurationManager.AppSettings["UserFileFormat"].ToLower())
 			{
+				case "text":
+					return UserFileType.text;
 				case "xml":
 					return UserFileType.xml;
 				case "dat":
 					return UserFileType.dat;
+				default:
+					return UserFileType.none;
 			}
-			
-			return UserFileType.xml;
 		}
 		
 		#region Public Properties
@@ -140,9 +138,9 @@ namespace GoonTools.Helper
 			get{return _CurrentUserFileType;}
 		}
 		
-		public string DefaultsPath
+		public string DataPath
 		{
-			get{return _DefaultsPath;}
+			get{return _DataPath;}
 		}
 		
 		public string ThemeFolder
@@ -238,7 +236,9 @@ namespace GoonTools.Helper
 	// either xml or a binary dat file
 	public enum UserFileType
 	{
+		text,
 		dat,
-		xml
+		xml,
+		none
 	}
 }

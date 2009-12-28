@@ -75,7 +75,7 @@ namespace GoonTools
 				
 				// copy over a new database if it's not already there
 				if(!File.Exists(Option.DBLocation))
-					File.Copy(Path.Combine(EnvData.DefaultsPath , "BPMonitor.s3db"), Option.DBLocation);
+					File.Copy(Path.Combine(EnvData.DataPath , "BPMonitor.s3db"), Option.DBLocation);
 				
 			}
 			catch(Exception ex)
@@ -97,7 +97,7 @@ namespace GoonTools
 						stream.Close();
 						break;
 					case UserFileType.xml:
-						DataSet ds = new DataSet("MonoBPMonitor");
+						DataSet ds = new DataSet(_EnvData.ProgramName);
 						ds.ReadXml(EnvData.UserOptionFile, XmlReadMode.ReadSchema);
 						_Option = new GoonTools.Helper.Options((DataTable)ds.Tables["Options"]);
 						ds.Clear();
@@ -127,7 +127,7 @@ namespace GoonTools
 						stream.Close();
 						break;
 					case UserFileType.xml:
-						DataSet ds = new DataSet("MonoBPMonitor");
+						DataSet ds = new DataSet(_EnvData.ProgramName);
 						ds.Tables.Add((System.Data.DataTable)_Option.ToDataTable());
 						ds.WriteXml(EnvData.UserOptionFile, System.Data.XmlWriteMode.WriteSchema);
 						ds.Clear();

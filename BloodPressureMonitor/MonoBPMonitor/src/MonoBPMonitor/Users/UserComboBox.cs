@@ -122,7 +122,7 @@ namespace MonoBPMonitor.Users
 					else
 					{
 						// no non-default users ask for a name
-						QuickUser qu = new QuickUser();
+						QuickUser qu = new QuickUser("First Run - Add New User");
 						if(qu.Run() == (int)Gtk.ResponseType.Ok)
 						{
 							intReturn = qu.UserID;

@@ -17,6 +17,16 @@ namespace MonoBPMonitor
 			
 		}
 		
+		// constructor to set the title
+		public QuickUser(string title)
+		{
+			this.Build();
+			this.Title = title;
+			this.HasSeparator = false;
+			this.ShowAll();
+			
+		}
+		
 		public int UserID
 		{
 			get{return _CurrentUserID;}
