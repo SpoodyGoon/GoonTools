@@ -105,9 +105,7 @@ namespace GUPdotNET {
             this.alignment5 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment5.Name = "alignment5";
             // Container child alignment5.Gtk.Container+ContainerChild
-            this.cboUpdateTime = new GUPdotNET.UpdateTimeCombo();
-            this.cboUpdateTime.WidthRequest = 150;
-            this.cboUpdateTime.Name = "cboUpdateTime";
+            this.cboUpdateTime = null;
             this.alignment5.Add(this.cboUpdateTime);
             this.hbox1.Add(this.alignment5);
             Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment5]));
