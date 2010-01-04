@@ -1,6 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
+# SharpDevelop 3.1.1.5327
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUPdotNET", "..\src\GUPdotNET.csproj", "{2552A720-E6E3-4403-8096-A68B7D454EDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUPdotNET_Testing", "testapp\GUPdotNET_Testing.csproj", "{954A4986-D34B-408D-9F9E-A179B219BD9E}"

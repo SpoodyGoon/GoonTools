@@ -31,6 +31,7 @@ public partial class MainWindow : Gtk.Window
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		this.Icon = Gdk.Pixbuf.LoadFromResource("Logo.png");
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -40,6 +41,11 @@ public partial class MainWindow : Gtk.Window
 	}
 	protected virtual void OnBtnGenerateClicked (object sender, System.EventArgs e)
 	{
+		if(fcSelectedFile.Filename != "")
+		{
+			GoonTools.CheckSum c = new GoonTools.CheckSum(fcSelectedFile.Filename);
+			txtMD5.Text = c.GetCheckSum();
+		}
 	}
 	
 	protected virtual void OnBtnQuitClicked (object sender, System.EventArgs e)
