@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/GUPdotNET.exe" internal="true" />
+    <widget-library name="..\bin\Debug\GUPdotNET.exe" internal="true" />
   </import>
   <widget class="Gtk.Dialog" id="GUPdotNET.frmConfirm" design-size="400 129">
     <property name="MemberName" />
@@ -364,6 +364,7 @@
                       <widget class="Gtk.HBox" id="hbox1">
                         <property name="MemberName" />
                         <property name="Spacing">6</property>
+                        <property name="BorderWidth">3</property>
                         <child>
                           <widget class="Gtk.Alignment" id="alignment4">
                             <property name="MemberName" />
@@ -387,7 +388,8 @@
                             <child>
                               <widget class="GUPdotNET.UpdateTimeCombo" id="cboUpdateTime">
                                 <property name="MemberName" />
-                                <property name="WidthRequest">150</property>
+                                <property name="WidthRequest">135</property>
+                                <property name="HeightRequest">25</property>
                               </widget>
                             </child>
                           </widget>
@@ -470,7 +472,7 @@
                 <child>
                   <widget class="Gtk.Label" id="lblAbout">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;span size="7500" color="#00006B"&gt;&lt;b&gt;&lt;u&gt;&lt;tt&gt;About GUPdotNET&lt;/tt&gt;&lt;/u&gt;&lt;/b&gt;&lt;/span&gt;</property>
+                    <property name="LabelProp" translatable="yes">&lt;span font-family="Arial" size="8250" color="#00006B"&gt;&lt;b&gt;&lt;u&gt;About GUPdotNET&lt;/u&gt;&lt;/b&gt;&lt;/span&gt;</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                 </child>

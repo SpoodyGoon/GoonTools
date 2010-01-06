@@ -43,11 +43,15 @@ namespace GUPdotNET
 		private bool _IsLoading = false;
 		public UpdateTimeCombo()
 		{
+			Build();
+			this.ShowAll();
 		}
 		
-		private void Build()
+		public void Build()
 		{
 			LoadUpdateTime();
+			this.WidthRequest = 185;
+			this.HeightRequest = 30;
 			Gtk.CellRendererText ct = new Gtk.CellRendererText();
 			this.PackStart(ct, true);
 			this.AddAttribute(ct, "text", 1);
@@ -83,15 +87,14 @@ namespace GUPdotNET
 			}
 		}
 		
-		[GLib.ConnectBeforeAttribute()]
-		protected override void OnRealized ()
-		{
-			Build();
-			this.WidthRequest = 185;
-			this.HeightRequest = 30;
-			base.OnRealized ();
-		}
-
+//		[GLib.ConnectBeforeAttribute()]
+//		protected override void OnRealized ()
+//		{
+//			Build();
+//			this.WidthRequest = 185;
+//			this.HeightRequest = 30;
+//			base.OnRealized ();
+//		}
 		
 		[GLib.ConnectBeforeAttribute()]
 		protected override void OnChanged ()
