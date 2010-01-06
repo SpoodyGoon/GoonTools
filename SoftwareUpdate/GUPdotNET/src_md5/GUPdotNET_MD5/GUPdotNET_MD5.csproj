@@ -63,7 +63,6 @@
       <LogicalName>Logo.ico</LogicalName>
     </EmbeddedResource>
     <Compile Include="CheckSum.cs" />
-    <Compile Include="CheckSumComboBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
