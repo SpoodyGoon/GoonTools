@@ -1,6 +1,6 @@
 // 
 // MainWindow.cs
-//  
+//
 // Author:
 //       spoodygoon <${AuthorEmail}>
 // 
@@ -24,6 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.IO;
 using Gtk;
 
 public partial class MainWindow : Gtk.Window
@@ -31,7 +32,8 @@ public partial class MainWindow : Gtk.Window
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
 		Build ();
-		this.Icon = Gdk.Pixbuf.LoadFromResource("Logo.png");
+		this.btnGenerate.Label = "Get CheckSum";
+		this.ShowAll();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -41,25 +43,72 @@ public partial class MainWindow : Gtk.Window
 	}
 	protected virtual void OnBtnGenerateClicked (object sender, System.EventArgs e)
 	{
-		if(fcSelectedFile.Filename != "")
+		try
 		{
-			GoonTools.CheckSum c = new GoonTools.CheckSum(fcSelectedFile.Filename);
-			txtMD5.Text = c.GetCheckSum();
+			if(fcSelectedFile.Filename != "")
+			{
+				GoonTools.CheckSum c = new GoonTools.CheckSum(fcSelectedFile.Filename);
+				txtMD5.Text = c.GetCheckSum().Replace("-", "");
+			}
 		}
-	}
-	
-	protected virtual void OnBtnQuitClicked (object sender, System.EventArgs e)
-	{
-		Application.Quit ();
+		catch(Exception ex)
+		{
+			Gtk.MessageDialog md = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			md.Run();
+			md.Destroy();
+		}
 	}
 	
 	protected virtual void OnBtnClearClicked (object sender, System.EventArgs e)
 	{
+		try
+		{
+			fcSelectedFile.SetFilename(null);
+			txtMD5.Text = "";
+		}
+		catch(Exception ex)
+		{
+			Gtk.MessageDialog md = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			md.Run();
+			md.Destroy();
+		}
 	}
 	
-	protected virtual void OnBtnSaveClicked (object sender, System.EventArgs e)
+	protected virtual void OnQuitAction1Activated (object sender, System.EventArgs e)
 	{
+		Application.Quit ();
 	}
+	
+	protected virtual void OnSaveAction1Activated (object sender, System.EventArgs e)
+	{
+		try
+		{
+			FileChooserDialog fc = new FileChooserDialog("Save CheckSum", this, FileChooserAction.Save, "Cancel",ResponseType.Cancel, "Save",ResponseType.Ok);
+			fc.Title = "Save MD5";
+			fc.DestroyWithParent = true;
+			fc.WindowPosition = WindowPosition.Center;
+			FileFilter ff = new FileFilter();
+			ff.AddMimeType("text/plain");
+			ff.Name = "CheckSum.txt";
+			fc.Filter = ff;
+			fc.SetFilename("CheckSum.txt");
+			if((Gtk.ResponseType)fc.Run() == Gtk.ResponseType.Ok)
+			{
+				StreamWriter sw = new StreamWriter(fc.Filename);
+				sw.WriteLine(txtMD5.Text);
+				sw.Close();
+			}
+			fc.Destroy();
+		}
+		catch(Exception ex)
+		{
+			Gtk.MessageDialog md = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			md.Run();
+			md.Destroy();
+		}
+	}
+	
+	
 	
 	
 	
