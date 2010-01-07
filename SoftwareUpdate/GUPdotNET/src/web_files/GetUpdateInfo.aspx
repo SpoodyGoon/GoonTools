@@ -35,7 +35,9 @@
     	private string OS = string.Empty;
     	// the type of install for the update
     	// expected values (Installer,RPM, DEB, BIN, TGZ, SRC)  
-    	private string InstallType = string.Empty;
+    	private string InstallType = string.Empty;		
+		// the file version that the calling GUPdotNET is using
+		private float XMLFileVersion = 1.0f;
     	
     	#endregion Input Variables
     	
@@ -55,10 +57,20 @@
         private string UpdateDetailsURL = string.Empty;
         // for any UpdateError that may happen
         private string UpdateError = string.Empty;
+		// the type of CheckSum that is used 
+		// expected values (MD5, SHA1, SHA256, SHA384, SHA512)
+		private string CheckSumType = "MD5";
+		// the CheckSum
+		private string CheckSum = string.Empty;
 
         #endregion  Feedback Variables
     
 		#region Get Input
+        	
+		if(Request.QueryString["XMLFileVersion"] != null)
+			XMLFileVersion = float.Parse(Request.QueryString["XMLFileVersion"].ToString());
+		else
+			XMLFileVersion = 1.0f;
         	
 		if(Request.QueryString["InstallType"] != null)
 			InstallType = Request.QueryString["InstallType"].ToString();
@@ -77,21 +89,29 @@
 			case "Windows":
 				UpdateFileURL = "http://www.brdstudio.net/yahtzeesharp/yathzeesharp.exe";
 				UpdateDetailsURL = "http://www.brdstudio.net/yahtzeesharp/yathzeesharp.exe";
+				CheckSumType = "MD5"
+				CheckSum = "69C559942301ACB9CE87C2A39DAFCCE0"
 				break;
 			case "Linux":
 				UpdateFileURL = "";
 				UpdateDetailsURL = "";
 				UpdateError += "Sorry Linux is not currently supported";
+				CheckSumType = "MD5"
+				CheckSum = "69C559942301ACB9CE87C2A39DAFCCE0"
 				break;
 			case "Mac":
 				UpdateFileURL = "";
 				UpdateDetailsURL = "";
 				UpdateError += "Sorry Mac is not currently supported";
+				CheckSumType = "MD5"
+				CheckSum = "69C559942301ACB9CE87C2A39DAFCCE0"
 				break;
 			case "BSD":
 				UpdateFileURL = "";
 				UpdateDetailsURL = "";
 				UpdateError += "Sorry BSD is not currently supported";
+				CheckSumType = "MD5"
+				CheckSum = "69C559942301ACB9CE87C2A39DAFCCE0"
 				break;
 			default:
 				UpdateError += "Should not get here";
@@ -100,11 +120,14 @@
 		
         Response.Write("<?xml version=\"1.0\"?>");
         Response.Write("<GUPdotNET>");
-		Response.Write("<UpdateMajorVersion>" + UpdateMajorVersion.ToString() + "</UpdateMajorVersion>";
+		Response.Write("<XMLFileVersion>" + XMLFileVersion.ToString() + "</XMLFileVersion>";
+        Response.Write("<UpdateMajorVersion>" + UpdateMajorVersion.ToString() + "</UpdateMajorVersion>";
 		Response.Write("<UpdateMinorVersion>" + UpdateMinorVersion.ToString() + "</UpdateMinorVersion>";
 		Response.Write("<LatestVersion>" + LatestVersion + "</LatestVersion>";
 		Response.Write("<UpdateFileURL>" + UpdateFileURL + "</UpdateFileURL>";
 		Response.Write("<UpdateDetailsURL>" + UpdateDetailsURL + "</UpdateDetailsURL>";
+        Response.Write("<CheckSumType>" + CheckSumType + "</CheckSumType>";
+        Response.Write("<CheckSum>" + CheckSum + "</CheckSum>";
         Response.Write("<UpdateError>" + UpdateError + "</UpdateError>");
         Response.Write("</GUPdotNET>");
 

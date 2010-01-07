@@ -23,6 +23,7 @@ using System.Net;
 using System.Xml;
 using System.Configuration;
 using System.Reflection;
+using GoonTools;
 using Gtk;
 
 namespace GUPdotNET
@@ -52,6 +53,17 @@ namespace GUPdotNET
 		{
 			set{_ProgramName = value;}
 			get{return _ProgramName;}
+		}
+		
+		/// <summary>
+		///  This is the GUPdotNET Version
+		///  Different versions of GUPdotNET may have different file formats
+		/// </summary>
+		private float _XMLFileVersion = 1.0f;
+		internal float XMLFileVersion
+		{
+			set{_XMLFileVersion=value;}
+			get{return _XMLFileVersion;}
 		}
 		
 		/// <summary>
@@ -201,6 +213,26 @@ namespace GUPdotNET
 		}
 		
 		/// <summary>
+		///  The CheckSum Type
+		/// </summary>
+		private CheckSum.CheckSumType _UseCheckSumType = CheckSum.CheckSumType.MD5;
+		internal CheckSum.CheckSumType UseCheckSumType
+		{
+			set{_UseCheckSumType=value;}
+			get{return _UseCheckSumType;}
+		}
+		
+		/// <summary>
+		///  The CheckSum of the installer or compressed file
+		/// </summary>
+		private string _UseCheckSum = string.Empty;
+		internal string UseCheckSum
+		{
+			set{_UseCheckSum=value;}
+			get{return _UseCheckSum;}
+		}
+		
+		/// <summary>
 		///  this contains any error that is returned from the
 		///  web site portion of the app
 		/// </summary>
@@ -296,7 +328,7 @@ namespace GUPdotNET
 			try
 			{
 				Common.Option.LastUpdateCheck = DateTime.Now;
-				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(_UpdateInfoURL + "?InstallType=" + _InstallType.ToString() + "&OS=" + _OS.ToString());
+				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(_UpdateInfoURL + "?XMLFileVersion=" + _XMLFileVersion.ToString() + "&InstallType=" + _InstallType.ToString() + "&OS=" + _OS.ToString());
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				
@@ -312,6 +344,8 @@ namespace GUPdotNET
 					_LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText.Trim();
 					_UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText.Trim();
 					_UpdateDetailsURL = nl[i].SelectSingleNode("UpdateDetailsURL").InnerText.Trim();
+					_UseCheckSumType = GetCheckSumType( nl[i].SelectSingleNode("CheckSumType").InnerText.Trim());
+					_UseCheckSum = nl[i].SelectSingleNode("CheckSum").InnerText.Trim();
 					_Error = nl[i].SelectSingleNode("UpdateError").InnerText.Trim();
 				}
 				// check for an error from the server
@@ -329,6 +363,24 @@ namespace GUPdotNET
 			{
 				Common.HandleError(ex);
 			}
+		}
+		
+		private GoonTools.CheckSum.CheckSumType GetCheckSumType(string strCheckSum)
+		{
+			switch(strCheckSum)
+			{
+				case "MD5":
+					return CheckSum.CheckSumType.MD5;
+				case "SHA1":
+					return CheckSum.CheckSumType.SHA1;
+				case "SHA256":
+					return CheckSum.CheckSumType.SHA256;
+				case "SHA384":
+					return CheckSum.CheckSumType.SHA384;
+				case "SHA512":
+					return CheckSum.CheckSumType.SHA512;
+			}
+			return CheckSum.CheckSumType.MD5;
 		}
 	}
 	
