@@ -24,7 +24,10 @@
 /************************* Global Variables ********************************/
 
 #region Input Variables
-    	
+
+// the file version that the calling GUPdotNET is using
+$XMLFileVersion = 1.0
+   	
 // the operating system for the update 
 // expected values (Windows, Linux, Mac)
 $OS = '';
@@ -50,6 +53,11 @@ $UpdateFileURL = '';
 $UpdateDetailsURL = '';
 // for any error that may happen
 $UpdateError = '';
+// the type of CheckSum that is used 
+// expected values (MD5, SHA1, SHA256, SHA384, SHA512)
+$CheckSumType = ''
+// the CheckSum
+$CheckSum = ''
 
 #endregion Feedback Variables
 
@@ -72,21 +80,29 @@ $UpdateError = '';
       case 'Windows':
 	    $UpdateFileURL = 'http://www.brdstudio.net/gupdotnet/gupdotnet.7z';
 	    $UpdateDetailsURL = 'http://www.brdstudio.net/gupdotnet/testchangelog.txt';
+		$CheckSumType = 'MD5';
+		$CheckSum = '69C559942301ACB9CE87C2A39DAFCCE0';
 	  break;
       case 'Linux':
 	    $UpdateFileURL = '';
 	    $UpdateDetailsURL = '';
 	    $UpdateError .= "Sorry Linux is not currently supported\n";
+		$CheckSumType = 'MD5';
+		$CheckSum = '69C559942301ACB9CE87C2A39DAFCCE0';
 	  break;
       case 'Mac':
 	    $UpdateFileURL = '';
 	    $UpdateDetailsURL = '';
 	    $UpdateError .= "Sorry Mac is not currently supported\n";
+		$CheckSumType = 'MD5';
+		$CheckSum = '69C559942301ACB9CE87C2A39DAFCCE0';
 	  break;
       case 'BSD':
 	    $UpdateFileURL = '';
 	    $UpdateDetailsURL = '';
 	    $UpdateError .= "Sorry BSD is not currently supported\n";
+		$CheckSumType = 'MD5';
+		$CheckSum = '69C559942301ACB9CE87C2A39DAFCCE0';
 	  break;
       default:
 	  $UpdateError .= "Should not get here\n";
@@ -97,10 +113,13 @@ $UpdateError = '';
 
 print "<?xml version=\"1.0\"?>";
 print "<GUPdotNET>";
+print "<XMLFileVersion>$XMLFileVersion</XMLFileVersion>")
 print "<UpdateMajorVersion>$UpdateMajorVersion</UpdateMajorVersion>";
 print "<UpdateMinorVersion>$UpdateMinorVersion</UpdateMinorVersion>";
 print "<LatestVersion>$LatestVersion</LatestVersion>";
 print "<UpdateFileURL>$UpdateFileURL</UpdateFileURL>";
+print "<CheckSumType>$CheckSumType</CheckSumType>";
+print "<CheckSum>$CheckSum</CheckSum>";
 print "<UpdateDetailsURL>$UpdateDetailsURL</UpdateDetailsURL>";
 print "<Error>$UpdateError</Error>";
 print "</GUPdotNET>";

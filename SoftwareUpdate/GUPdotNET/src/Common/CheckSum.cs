@@ -46,7 +46,7 @@ namespace GoonTools
 		// a string representing the checksum to validate the input file
 		private string _ValidatingCheckSum = null;
 		// what type of cryptology are we checking
-		private CryptType _UseCryptType = CryptType.MD5;
+		private CheckSumType _UseCryptType = CheckSumType.MD5;
 		
 		#endregion Variable Declaration
 		
@@ -68,7 +68,7 @@ namespace GoonTools
 			_FilePath = filepath;
 		}
 		
-		public CheckSum(string validatingchecksum, string filepath, CryptType usecrypttype)
+		public CheckSum(string validatingchecksum, string filepath, CheckSumType usecrypttype)
 		{
 			_ValidatingCheckSum = validatingchecksum;
 			_FilePath = filepath;
@@ -91,7 +91,7 @@ namespace GoonTools
 			get{return _ValidatingCheckSum;}
 		}
 		
-		public CryptType UseCryptType
+		public CheckSumType UseCryptType
 		{
 			set{_UseCryptType=value;}
 			get{return _UseCryptType;}
@@ -103,19 +103,19 @@ namespace GoonTools
 		{
 			switch(_UseCryptType)
 			{
-				case CryptType.MD5:
+				case CheckSumType.MD5:
 					MD5CryptoServiceProvider cryMD5 = new MD5CryptoServiceProvider();
 					return System.BitConverter.ToString(cryMD5.ComputeHash(GetFileStream(_FilePath)));
-				case CryptType.SHA1:					
+				case CheckSumType.SHA1:					
 					SHA1CryptoServiceProvider crySHA1 = new SHA1CryptoServiceProvider();
 					return System.BitConverter.ToString(crySHA1.ComputeHash(GetFileStream(_FilePath)));
-				case CryptType.SHA256:
+				case CheckSumType.SHA256:
 					SHA256 crySHA256 = SHA256.Create();
 					return System.BitConverter.ToString(crySHA256.ComputeHash(GetFileStream(_FilePath)));
-				case CryptType.SHA384:
+				case CheckSumType.SHA384:
 					SHA384 crySHA384 = SHA384.Create();
 					return System.BitConverter.ToString(crySHA384.ComputeHash(GetFileStream(_FilePath)));
-				case CryptType.SHA512:
+				case CheckSumType.SHA512:
 					SHA512 crySHA512 = SHA512.Create();
 					return System.BitConverter.ToString(crySHA512.ComputeHash(GetFileStream(_FilePath)));
 			}
@@ -126,19 +126,19 @@ namespace GoonTools
 		{			
 			switch(_UseCryptType)
 			{
-				case CryptType.MD5:
+				case CheckSumType.MD5:
 					MD5CryptoServiceProvider cryMD5 = new MD5CryptoServiceProvider();
 					return CompareCheckSum(Encoding.UTF8.GetBytes(_ValidatingCheckSum), cryMD5.ComputeHash(GetFileStream(_FilePath)));
-				case CryptType.SHA1:					
+				case CheckSumType.SHA1:					
 					SHA1CryptoServiceProvider crySHA1 = new SHA1CryptoServiceProvider();
 					return CompareCheckSum(Encoding.UTF8.GetBytes(_ValidatingCheckSum), crySHA1.ComputeHash(GetFileStream(_FilePath)));
-				case CryptType.SHA256:
+				case CheckSumType.SHA256:
 					SHA256 crySHA256 = SHA256.Create();
 					return CompareCheckSum(Encoding.UTF8.GetBytes(_ValidatingCheckSum), crySHA256.ComputeHash(GetFileStream(_FilePath)));
-				case CryptType.SHA384:
+				case CheckSumType.SHA384:
 					SHA384 crySHA384 = SHA384.Create();
 					return CompareCheckSum(Encoding.UTF8.GetBytes(_ValidatingCheckSum), crySHA384.ComputeHash(GetFileStream(_FilePath)));
-				case CryptType.SHA512:
+				case CheckSumType.SHA512:
 					SHA512 crySHA512 = SHA512.Create();
 					return CompareCheckSum(Encoding.UTF8.GetBytes(_ValidatingCheckSum), crySHA512.ComputeHash(GetFileStream(_FilePath)));
 			}
@@ -166,7 +166,7 @@ namespace GoonTools
 			return(new System.IO.FileStream(file, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite));
 		}
 		
-		public enum CryptType
+		public enum CheckSumType
 		{
 			MD5,
 			SHA1,

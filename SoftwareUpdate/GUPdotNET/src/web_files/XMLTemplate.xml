@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <GUPdotNET>
+	<XMLFileVersion>
+	</XMLFileVersion>
 	<UpdateMajorVersion>
 	</UpdateMajorVersion>
 	<UpdateMinorVersion>
@@ -8,6 +10,10 @@
 	</LatestVersion>
 	<UpdateFileURL>
 	</UpdateFileURL>
+	<CheckSumType>
+	</CheckSumType>
+	<CheckSum>
+	</CheckSum>
 	<UpdateDetailsURL>
 	</UpdateDetailsURL>
 	<Error>
