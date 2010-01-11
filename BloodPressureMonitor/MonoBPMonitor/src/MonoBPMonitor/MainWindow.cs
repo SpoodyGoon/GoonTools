@@ -219,6 +219,21 @@ namespace MonoBPMonitor
 		protected virtual void OnUpdatesActionActivated (object sender, System.EventArgs e)
 		{
 		}
+		protected virtual void OnButton1Clicked (object sender, System.EventArgs e)
+		{
+		}
+		
+		protected virtual void OnButton2Clicked (object sender, System.EventArgs e)
+		{
+		}
+		
+		protected virtual void OnButton3Clicked (object sender, System.EventArgs e)
+		{
+		}
+		
+		
+		
+		
 	}
 
 }

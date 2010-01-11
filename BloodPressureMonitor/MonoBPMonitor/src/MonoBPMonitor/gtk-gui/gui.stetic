@@ -292,19 +292,65 @@
                     <property name="Xscale">0.01</property>
                     <property name="Xalign">0.05</property>
                     <child>
-                      <widget class="Gtk.Label" id="label1">
+                      <widget class="Gtk.HButtonBox" id="hbuttonbox1">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes">&lt;b&gt;Double Click on an reading to change it.&lt;/b&gt;</property>
-                        <property name="UseMarkup">True</property>
-                        <property name="SingleLineMode">True</property>
+                        <property name="Spacing">24</property>
+                        <property name="Size">3</property>
+                        <child>
+                          <widget class="Gtk.Button" id="button1">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="Type">TextAndIcon</property>
+                            <property name="Icon">resource:edit_add.png</property>
+                            <property name="Label" translatable="yes">_Add</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="OnButton1Clicked" />
+                          </widget>
+                          <packing>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Button" id="button2">
+                            <property name="MemberName" />
+                            <property name="Sensitive">False</property>
+                            <property name="CanFocus">True</property>
+                            <property name="Type">TextAndIcon</property>
+                            <property name="Icon">resource:edit_remove.png</property>
+                            <property name="Label" translatable="yes">_Remove</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="OnButton2Clicked" />
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Button" id="button3">
+                            <property name="MemberName" />
+                            <property name="Sensitive">False</property>
+                            <property name="CanFocus">True</property>
+                            <property name="Type">TextAndIcon</property>
+                            <property name="Icon">stock:gtk-edit Menu</property>
+                            <property name="Label" translatable="yes">_Edit</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="OnButton3Clicked" />
+                          </widget>
+                          <packing>
+                            <property name="Position">2</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
                       </widget>
                     </child>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
                     <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
                   </packing>
                 </child>
                 <child>
