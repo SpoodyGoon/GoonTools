@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stetic-interface>
+  <configuration>
+    <images-root-path>..</images-root-path>
+    <target-gtk-version>2.12</target-gtk-version>
+  </configuration>
+  <import>
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="..\bin\Debug\MonoPad.exe" internal="true" />
+  </import>
+  <icon-factory>
+    <icon-set id="filenew.png">
+      <source>
+        <property name="Image">resource:filenew.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="filesave.png">
+      <source>
+        <property name="Image">resource:filesave.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="fileopen.png">
+      <source>
+        <property name="Image">resource:fileopen.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="filesaveas.png">
+      <source>
+        <property name="Image">resource:filesaveas.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="exit.png">
+      <source>
+        <property name="Image">resource:exit.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="format-text-bold.png">
+      <source>
+        <property name="Image">resource:format-text-bold.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="format-text-italic.png">
+      <source>
+        <property name="Image">resource:format-text-italic.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="format-text-underline.png">
+      <source>
+        <property name="Image">resource:format-text-underline.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="format-text-strikethrough.png">
+      <source>
+        <property name="Image">resource:format-text-strikethrough.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="text_block.png">
+      <source>
+        <property name="Image">resource:text_block.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="text_left.png">
+      <source>
+        <property name="Image">resource:text_left.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="text_center.png">
+      <source>
+        <property name="Image">resource:text_center.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="text_right.png">
+      <source>
+        <property name="Image">resource:text_right.png</property>
+      </source>
+    </icon-set>
+  </icon-factory>
+  <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">MainWindow</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
+    <child>
+      <widget class="MonoPad.MonoPad" id="monopad1">
+        <property name="MemberName" />
+        <property name="Events">ButtonPressMask</property>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="MonoPad.MonoPad" design-size="576 415">
+    <action-group name="Default">
+      <action id="FileAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">File</property>
+        <property name="ShortLabel" translatable="yes">File</property>
+      </action>
+      <action id="NewAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_New</property>
+        <property name="ShortLabel" translatable="yes">_New</property>
+        <property name="StockId">filenew.png</property>
+      </action>
+      <action id="SaveAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Save</property>
+        <property name="ShortLabel" translatable="yes">_Save</property>
+        <property name="StockId">filesave.png</property>
+      </action>
+      <action id="OpenAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Open</property>
+        <property name="ShortLabel" translatable="yes">_Open</property>
+        <property name="StockId">fileopen.png</property>
+      </action>
+      <action id="SaveAsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Save  _As</property>
+        <property name="ShortLabel" translatable="yes">Save  _As</property>
+        <property name="StockId">filesaveas.png</property>
+      </action>
+      <action id="QuitAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Quit</property>
+        <property name="ShortLabel" translatable="yes">_Quit</property>
+        <property name="StockId">exit.png</property>
+      </action>
+      <action id="HelpAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Help</property>
+        <property name="ShortLabel" translatable="yes">_Help</property>
+      </action>
+      <action id="aboutAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_About</property>
+        <property name="ShortLabel" translatable="yes">_About</property>
+        <property name="StockId">gtk-about</property>
+      </action>
+      <action id="EditAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Edit</property>
+        <property name="ShortLabel" translatable="yes">_Edit</property>
+      </action>
+      <action id="copyAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Copy</property>
+        <property name="ShortLabel" translatable="yes">_Copy</property>
+        <property name="StockId">gtk-copy</property>
+      </action>
+      <action id="cutAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Cu_t</property>
+        <property name="ShortLabel" translatable="yes">Cu_t</property>
+        <property name="StockId">gtk-cut</property>
+      </action>
+      <action id="pasteAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Paste</property>
+        <property name="ShortLabel" translatable="yes">_Paste</property>
+        <property name="StockId">gtk-paste</property>
+      </action>
+      <action id="clearAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Clear</property>
+        <property name="ShortLabel" translatable="yes">_Clear</property>
+        <property name="StockId">gtk-clear</property>
+      </action>
+      <action id="FormatAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Format</property>
+        <property name="ShortLabel" translatable="yes">Format</property>
+      </action>
+      <action id="BoldAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Bold</property>
+        <property name="ShortLabel" translatable="yes">_Bold</property>
+        <property name="StockId">format-text-bold.png</property>
+      </action>
+      <action id="ItalicAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Italic</property>
+        <property name="ShortLabel" translatable="yes">_Italic</property>
+        <property name="StockId">format-text-italic.png</property>
+      </action>
+      <action id="UnderlineAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Underline</property>
+        <property name="ShortLabel" translatable="yes">_Underline</property>
+        <property name="StockId">format-text-underline.png</property>
+      </action>
+      <action id="StrikeThroughAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Strike Through</property>
+        <property name="ShortLabel" translatable="yes">Strike Through</property>
+        <property name="StockId">format-text-strikethrough.png</property>
+      </action>
+      <action id="BlockAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Block</property>
+        <property name="ShortLabel" translatable="yes">Block</property>
+        <property name="StockId">text_block.png</property>
+      </action>
+      <action id="AlignLeftAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Align Left</property>
+        <property name="ShortLabel" translatable="yes">Align Left</property>
+        <property name="StockId">text_left.png</property>
+      </action>
+      <action id="selectAllAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-select-all</property>
+      </action>
+      <action id="ViewAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">View</property>
+        <property name="ShortLabel" translatable="yes">View</property>
+      </action>
+      <action id="ToolbarAction">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Toolbar</property>
+        <property name="ShortLabel" translatable="yes">Toolbar</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">True</property>
+      </action>
+      <action id="FormatBarAction">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Format Bar</property>
+        <property name="ShortLabel" translatable="yes">Format Bar</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">True</property>
+      </action>
+      <action id="MiscAction">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Misc</property>
+        <property name="ShortLabel" translatable="yes">Misc</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">True</property>
+      </action>
+    </action-group>
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.VBox" id="vbox1">
+        <property name="MemberName" />
+        <property name="Spacing">1</property>
+        <child>
+          <widget class="Gtk.Alignment" id="alignment1">
+            <property name="MemberName" />
+            <child>
+              <widget class="Gtk.MenuBar" id="menubar1">
+                <property name="MemberName" />
+                <node name="__gtksharp_93_Stetic_Editor_ActionMenuBar" type="Menubar">
+                  <node type="Menu" action="FileAction">
+                    <node type="Menuitem" action="NewAction" />
+                    <node type="Menuitem" action="OpenAction" />
+                    <node type="Menuitem" action="SaveAction" />
+                    <node type="Menuitem" action="SaveAsAction" />
+                    <node type="Separator" />
+                    <node type="Menuitem" action="QuitAction" />
+                  </node>
+                  <node type="Menu" action="EditAction">
+                    <node type="Menuitem" action="copyAction" />
+                    <node type="Menuitem" action="cutAction" />
+                    <node type="Menuitem" action="pasteAction" />
+                    <node type="Separator" />
+                    <node type="Menuitem" action="clearAction" />
+                    <node type="Menuitem" action="selectAllAction" />
+                  </node>
+                  <node type="Menu" action="ViewAction">
+                    <node type="Menuitem" action="ToolbarAction" />
+                    <node type="Menuitem" action="FormatBarAction" />
+                    <node type="Menuitem" action="MiscAction" />
+                  </node>
+                  <node type="Menu" action="FormatAction">
+                    <node type="Menuitem" action="BoldAction" />
+                    <node type="Menuitem" action="ItalicAction" />
+                    <node type="Menuitem" action="UnderlineAction" />
+                    <node type="Menuitem" action="StrikeThroughAction" />
+                    <node type="Separator" />
+                    <node type="Menuitem" action="BlockAction" />
+                    <node type="Menuitem" />
+                  </node>
+                  <node type="Menu" action="HelpAction">
+                    <node type="Menuitem" action="aboutAction" />
+                  </node>
+                </node>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Alignment" id="alignment2">
+            <property name="MemberName" />
+            <child>
+              <widget class="Gtk.VBox" id="vbox2">
+                <property name="MemberName" />
+                <property name="Spacing">1</property>
+                <property name="BorderWidth">2</property>
+                <child>
+                  <widget class="Gtk.Alignment" id="alignment3">
+                    <property name="MemberName" />
+                    <child>
+                      <widget class="Gtk.Toolbar" id="tbrToolbar">
+                        <property name="MemberName" />
+                        <property name="ShowArrow">False</property>
+                        <property name="ButtonStyle">Both</property>
+                        <property name="IconSize">SmallToolbar</property>
+                        <node name="tbrToolbar" type="Toolbar">
+                          <node type="Toolitem" action="NewAction" />
+                          <node type="Toolitem" action="OpenAction" />
+                          <node type="Toolitem" action="SaveAction" />
+                          <node type="Toolitem" action="SaveAsAction" />
+                          <node type="Separator" />
+                          <node type="Toolitem" action="QuitAction" />
+                        </node>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Alignment" id="alignment4">
+                    <property name="MemberName" />
+                    <child>
+                      <widget class="Gtk.Toolbar" id="tbrFormatBar">
+                        <property name="MemberName" />
+                        <property name="ShowArrow">False</property>
+                        <property name="ButtonStyle">Both</property>
+                        <property name="IconSize">SmallToolbar</property>
+                        <node name="tbrFormatBar" type="Toolbar">
+                          <node type="Toolitem" action="BoldAction" />
+                          <node type="Toolitem" action="ItalicAction" />
+                          <node type="Toolitem" action="UnderlineAction" />
+                          <node type="Toolitem" action="StrikeThroughAction" />
+                          <node type="Separator" />
+                          <node type="Toolitem" action="BlockAction" />
+                          <node type="Toolitem" action="AlignLeftAction" />
+                        </node>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+            <property name="MemberName" />
+            <property name="ShadowType">EtchedIn</property>
+            <property name="BorderWidth">4</property>
+            <child>
+              <widget class="Gtk.TextView" id="textview1">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShowScrollbars">True</property>
+                <property name="Text" translatable="yes" />
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+</stetic-interface>
