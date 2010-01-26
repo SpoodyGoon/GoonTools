@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="90.000000"
+   inkscape:export-xdpi="90.000000"
+   inkscape:export-filename="/home/jimmac/Desktop/wi-fi.png"
+   width="48px"
+   height="48px"
+   id="svg11300"
+   sodipodi:version="0.32"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="MonoPad_Logo.png"
+   version="1.1">
+  <defs
+     id="defs3">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective85" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5060"
+       id="radialGradient6719"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-2.774389,0,0,1.969706,112.7623,-872.8854)"
+       cx="605.71429"
+       cy="486.64789"
+       fx="605.71429"
+       fy="486.64789"
+       r="117.14286" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5060">
+      <stop
+         style="stop-color:black;stop-opacity:1;"
+         offset="0"
+         id="stop5062" />
+      <stop
+         style="stop-color:black;stop-opacity:0;"
+         offset="1"
+         id="stop5064" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5060"
+       id="radialGradient6717"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.774389,0,0,1.969706,-1891.633,-872.8854)"
+       cx="605.71429"
+       cy="486.64789"
+       fx="605.71429"
+       fy="486.64789"
+       r="117.14286" />
+    <linearGradient
+       id="linearGradient5048">
+      <stop
+         style="stop-color:black;stop-opacity:0;"
+         offset="0"
+         id="stop5050" />
+      <stop
+         id="stop5056"
+         offset="0.5"
+         style="stop-color:black;stop-opacity:1;" />
+      <stop
+         style="stop-color:black;stop-opacity:0;"
+         offset="1"
+         id="stop5052" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5048"
+       id="linearGradient6715"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.774389,0,0,1.969706,-1892.179,-872.8854)"
+       x1="302.85715"
+       y1="366.64789"
+       x2="302.85715"
+       y2="609.50507" />
+    <linearGradient
+       id="linearGradient2994">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop2996" />
+      <stop
+         style="stop-color:#c9c9c9;stop-opacity:1;"
+         offset="1"
+         id="stop2998" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2984">
+      <stop
+         style="stop-color:#e7e2b8;stop-opacity:1;"
+         offset="0"
+         id="stop2986" />
+      <stop
+         style="stop-color:#e7e2b8;stop-opacity:0;"
+         offset="1"
+         id="stop2988" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2974">
+      <stop
+         style="stop-color:#c1c1c1;stop-opacity:1;"
+         offset="0"
+         id="stop2976" />
+      <stop
+         style="stop-color:#acacac;stop-opacity:1;"
+         offset="1"
+         id="stop2978" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2966">
+      <stop
+         style="stop-color:#ffd1d1;stop-opacity:1;"
+         offset="0"
+         id="stop2968" />
+      <stop
+         id="stop3006"
+         offset="0.5"
+         style="stop-color:#ff1d1d;stop-opacity:1;" />
+      <stop
+         style="stop-color:#6f0000;stop-opacity:1;"
+         offset="1"
+         id="stop2970" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2919">
+      <stop
+         style="stop-color:#a3a4a0;stop-opacity:1;"
+         offset="0"
+         id="stop2921" />
+      <stop
+         style="stop-color:#888a85;stop-opacity:1;"
+         offset="1"
+         id="stop2923" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2873">
+      <stop
+         style="stop-color:#939393;stop-opacity:1;"
+         offset="0"
+         id="stop2875" />
+      <stop
+         style="stop-color:#424242;stop-opacity:1;"
+         offset="1"
+         id="stop2877" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2865">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop2867" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop2869" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2855">
+      <stop
+         style="stop-color:#dfdfdf;stop-opacity:1;"
+         offset="0"
+         id="stop2857" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop2859" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2855"
+       id="linearGradient2861"
+       x1="21.043484"
+       y1="42.83337"
+       x2="14.283642"
+       y2="6.8333683"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.3757211,0,0,2.087865,-4.5563783,-51.119957)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2865"
+       id="radialGradient2871"
+       cx="23.5625"
+       cy="40.4375"
+       fx="23.5625"
+       fy="40.4375"
+       r="19.5625"
+       gradientTransform="matrix(1.000000,0.000000,0.000000,0.348243,0.000000,26.35543)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2873"
+       id="linearGradient2879"
+       x1="26.612417"
+       y1="28.083368"
+       x2="26.228401"
+       y2="42.83337"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.087865,0,0,2.087865,0.99918922,-51.119957)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2919"
+       id="linearGradient2925"
+       x1="6"
+       y1="7.5624999"
+       x2="40.984375"
+       y2="7.5624999"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.0878653,0,0,2.0878653,0.99918913,-51.119951)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2966"
+       id="linearGradient2972"
+       x1="48.90625"
+       y1="17.376184"
+       x2="50.988335"
+       y2="22.250591"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.0878653,0,0,2.0878653,-10.83753,-51.119951)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2974"
+       id="linearGradient2980"
+       x1="46"
+       y1="19.8125"
+       x2="47.6875"
+       y2="22.625"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.0878653,0,0,2.0878653,-10.83753,-51.119951)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2984"
+       id="radialGradient2990"
+       cx="29.053354"
+       cy="27.640751"
+       fx="29.053354"
+       fy="27.640751"
+       r="3.2408544"
+       gradientTransform="matrix(6.1040104,0,0,4.2377759,-127.52004,-109.33834)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2994"
+       id="linearGradient3000"
+       x1="25.71875"
+       y1="31.046875"
+       x2="25.514589"
+       y2="30.703125"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.0878653,0,0,2.0878653,-11.163758,-50.858969)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2865"
+       id="radialGradient3010"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.348243,0,26.35543)"
+       cx="23.5625"
+       cy="40.4375"
+       fx="23.5625"
+       fy="40.4375"
+       r="19.5625" />
+    <inkscape:perspective
+       id="perspective2899"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     stroke="#c4a000"
+     fill="#edd400"
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="0.25490196"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.88"
+     inkscape:cx="14.928934"
+     inkscape:cy="7.6822472"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="872"
+     inkscape:window-height="659"
+     inkscape:window-x="195"
+     inkscape:window-y="221"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Jakub Steiner</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:source>http://jimmac.musichall.cz</dc:source>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+        <dc:title></dc:title>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Attribution" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       transform="matrix(0.05047542,0,0,0.04356866,95.219644,32.715359)"
+       id="g6707"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         style="opacity:0.40206185;color:#000000;fill:url(#linearGradient6715);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+         id="rect6709"
+         width="1339.6335"
+         height="478.35718"
+         x="-1559.2523"
+         y="-150.69685" />
+      <path
+         style="opacity:0.40206185;color:#000000;fill:url(#radialGradient6717);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+         d="m -219.61876,-150.68038 c 0,0 0,478.33079 0,478.33079 142.874166,0.90045 345.40022,-107.16966 345.40014,-239.196175 0,-132.026537 -159.436816,-239.134595 -345.40014,-239.134615 z"
+         id="path6711"
+         sodipodi:nodetypes="cccc" />
+      <path
+         sodipodi:nodetypes="cccc"
+         id="path6713"
+         d="m -1559.2523,-150.68038 c 0,0 0,478.33079 0,478.33079 -142.8742,0.90045 -345.4002,-107.16966 -345.4002,-239.196175 0,-132.026537 159.4368,-239.134595 345.4002,-239.134615 z"
+         style="opacity:0.40206185;color:#000000;fill:url(#radialGradient6719);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible" />
+    </g>
+    <path
+       style="color:#000000;fill:url(#linearGradient2861);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient2879);stroke-width:2.08786559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="m 15.956385,-41.711254 68.167239,0 c 1.592158,0 2.873934,1.111689 2.873934,2.492571 0,0 5.01365,71.339649 5.01365,71.339649 0,0 0.02598,4.901504 0.02598,4.901504 0,1.380887 -1.281771,2.49258 -2.87393,2.49258 l -78.246572,0 c -1.592157,0 -2.8739301,-1.111693 -2.8739301,-2.49258 l -0.023349,-4.524223 5.0629911,-71.71693 c 0,-1.380882 1.281771,-2.492571 2.873927,-2.492571 z"
+       id="rect1975"
+       sodipodi:nodetypes="ccccccccccc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(1.287405,0,0,0.91942703,23.160315,-22.009551)"
+       d="m 43.125,40.4375 a 19.5625,6.8125 0 1 1 -39.125,0 19.5625,6.8125 0 1 1 39.125,0 z"
+       sodipodi:ry="6.8125"
+       sodipodi:rx="19.5625"
+       sodipodi:cy="40.4375"
+       sodipodi:cx="23.5625"
+       id="path3008"
+       style="opacity:0.31578944;color:#000000;fill:url(#radialGradient3010);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       sodipodi:type="arc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="color:#000000;fill:#a4a4a4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       id="rect2851"
+       width="81.527122"
+       height="6.4128666"
+       x="9.3027086"
+       y="32.119621"
+       rx="1.418451"
+       ry="1.418451"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="m 9.1977162,33.319162 c 0,0 0.3149784,-1.107267 1.4699028,-1.199539 l 78.429834,0 c 1.574888,0 1.679888,1.568617 1.679888,1.568617 0,0 0.04935,-3.38143 -2.680556,-3.38143 l -76.023108,0 c -2.0998605,0.184528 -2.8759608,1.628272 -2.8759608,3.012352 z"
+       id="path2853"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:url(#linearGradient2925);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="m 14.048346,-39.147345 -0.521968,9.167031 c 0,0 0.652457,-2.348851 2.087869,-2.348851 l 69.160536,0 c 1.468024,-0.03262 1.533275,0.652457 1.794268,1.729017 0,0 -0.521982,-8.090481 -0.521982,-8.090481 -0.06522,-1.1418 -0.456708,-1.989995 -1.631131,-1.989995 l -68.671201,0 c -0.946062,0 -1.598518,0.717701 -1.696391,1.533279 z"
+       id="path2915"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:nodetypes="ccccccccccc"
+       id="path2917"
+       d="m 17.310946,-39.552237 65.000118,0 c 1.507523,0 2.721158,-0.317574 2.721158,0.989901 0,0 4.747122,68.917322 4.747122,68.917322 0,0 0.209168,5.655928 0.209168,5.655928 0,1.307471 -0.290916,1.345069 -1.79844,1.345069 l -77.039589,0 c -0.861617,0 -0.875719,-0.22214 -0.875719,-1.068258 l -0.02209,-5.575516 4.793838,-69.209298 c 0,-1.307476 0.756912,-1.055148 2.26443,-1.055148 z"
+       style="opacity:0.43859648;color:#000000;fill:none;stroke:#ffffff;stroke-width:2.08786464;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g2950"
+       transform="matrix(2.0878653,0,0,2.0878653,0.99918913,-51.119951)"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         ry="1"
+         rx="1"
+         y="2.5"
+         x="8.5"
+         height="5"
+         width="2"
+         id="rect2899"
+         style="color:#000000;fill:#fce94f;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible" />
+      <rect
+         style="color:#000000;fill:#fce94f;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible"
+         id="rect2901"
+         width="2"
+         height="5"
+         x="12.5"
+         y="2.5"
+         rx="1"
+         ry="1" />
+      <rect
+         ry="1"
+         rx="1"
+         y="2.5"
+         x="16.5"
+         height="5"
+         width="2"
+         id="rect2903"
+         style="color:#000000;fill:#fce94f;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible" />
+      <rect
+         style="color:#000000;fill:#fce94f;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible"
+         id="rect2905"
+         width="2"
+         height="5"
+         x="20.5"
+         y="2.5"
+         rx="1"
+         ry="1" />
+      <rect
+         ry="1"
+         rx="1"
+         y="2.5"
+         x="24.5"
+         height="5"
+         width="2"
+         id="rect2907"
+         style="color:#000000;fill:#fce94f;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible" />
+      <rect
+         style="color:#000000;fill:#fce94f;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible"
+         id="rect2909"
+         width="2"
+         height="5"
+         x="28.5"
+         y="2.5"
+         rx="1"
+         ry="1" />
+      <rect
+         ry="1"
+         rx="1"
+         y="2.5"
+         x="32.5"
+         height="5"
+         width="2"
+         id="rect2911"
+         style="color:#000000;fill:#fce94f;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible" />
+      <rect
+         style="color:#000000;fill:#fce94f;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible"
+         id="rect2913"
+         width="2"
+         height="5"
+         x="36.5"
+         y="2.5"
+         rx="1"
+         ry="1" />
+    </g>
+    <g
+       id="g2941"
+       transform="matrix(2.0878653,0,0,2.0878653,0.99918913,-51.119951)"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="12"
+         x="9"
+         height="1"
+         width="29"
+         id="rect2927"
+         style="opacity:0.28070176;color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible" />
+      <rect
+         style="opacity:0.28070176;color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+         id="rect2929"
+         width="29"
+         height="1"
+         x="9"
+         y="14.981792" />
+      <rect
+         y="18.003939"
+         x="9"
+         height="1"
+         width="13"
+         id="rect2931"
+         style="opacity:0.28070176;color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible" />
+      <rect
+         style="opacity:0.28070176;color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+         id="rect2933"
+         width="29"
+         height="1"
+         x="9"
+         y="22.985731" />
+      <rect
+         y="26.007877"
+         x="9"
+         height="1"
+         width="29"
+         id="rect2935"
+         style="opacity:0.28070176;color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible" />
+      <rect
+         style="opacity:0.28070176;color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+         id="rect2937"
+         width="29"
+         height="1"
+         x="9"
+         y="29.030024" />
+      <rect
+         y="32.05217"
+         x="9"
+         height="1"
+         width="8"
+         id="rect2939"
+         style="opacity:0.28070176;color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible" />
+    </g>
+    <path
+       style="color:#000000;fill:#cb9022;fill-opacity:1;fill-rule:evenodd;stroke:#5c410c;stroke-width:2.08786559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="M 37.205195,16.735673 48.949439,4.9914319 90.902475,-15.365256 c 6.785566,-2.609836 10.830815,7.0465416 4.828195,10.4393261 L 53.908117,14.64781 37.205195,16.735673 z"
+       id="path2960"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:nodetypes="czcczcc"
+       id="path2964"
+       d="m 81.028545,-9.3626509 c 0,0 3.001298,0.1956793 4.17573,2.8055723 1.209911,2.6886685 0,5.5458978 0,5.5458978 l 10.504569,-5.1544259 c 0,0 3.031651,-1.840178 1.370167,-5.9373643 -1.638794,-4.041217 -5.611133,-2.414097 -5.611133,-2.414097 l -10.439333,5.1544171 z"
+       style="color:#000000;fill:url(#linearGradient2972);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:url(#linearGradient2980);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="m 81.028545,-9.3626509 c 0,0 3.001298,0.1956793 4.17573,2.8055723 1.209911,2.6886685 0,5.5458978 0,5.5458978 l 4.175735,-2.0878766 c 0,0 1.726722,-2.7536031 0.456721,-5.6111338 -1.304926,-2.9360548 -4.632456,-2.7403208 -4.632456,-2.7403208 l -4.17573,2.0878611 z"
+       id="path2962"
+       sodipodi:nodetypes="czcczcc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:url(#radialGradient2990);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="M 40.184682,15.235026 49.58007,5.8396329 c 3.13181,1.6963796 4.76294,4.5019461 3.91475,7.7642431 l -13.310138,1.63115 z"
+       id="path2982"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:url(#linearGradient3000);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="m 42.990248,12.298959 -3.392773,3.32754 4.893428,-0.652464 c 0.456718,-1.500654 -0.391475,-2.218359 -1.500655,-2.675076 z"
+       id="path2992"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:#ffffff;fill-opacity:0.36363639;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="m 49.58007,5.77438 3.26229,2.6098289 32.1267,-15.2804021 C 84.041137,-8.683497 82.37642,-9.1606725 80.995061,-9.3228314 L 49.58007,5.77438 z"
+       id="path3002"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:#000000;fill-opacity:0.36363639;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="m 53.49482,13.734364 0.391475,-1.565902 31.800468,-14.8856366 c 0,0 -0.230002,1.2811678 -0.450731,1.564537 L 53.49482,13.734364 z"
+       id="path3004"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <image
+       y="-50.68182"
+       x="10.681818"
+       id="image2901"
+       height="57.090908"
+       width="57.090908"
+       xlink:href="file:///C:/Documents%20and%20Settings/ayork/My%20Documents/temp/none.png"
+       inkscape:export-filename="C:\Documents and Settings\ayork\My Documents\temp\MonoPad_Logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>
