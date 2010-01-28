@@ -38,6 +38,15 @@
     <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="Mono.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -87,6 +96,25 @@
     </EmbeddedResource>
     <EmbeddedResource Include="images\configure.png">
       <LogicalName>configure.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\font_select.png">
+      <LogicalName>font_select.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\MonoPad_Logo.png">
+      <LogicalName>MonoPad_Logo.png</LogicalName>
+    </EmbeddedResource>
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\Const.cs" />
+    <Compile Include="Common\EnviromentData.cs" />
+    <Compile Include="Common\Options.cs" />
+    <Compile Include="Editor\BufferTags.cs" />
+    <Compile Include="Editor\MonoPadEditor.cs" />
+    <None Include="app.config" />
+    <EmbeddedResource Include="images\rich_text.png">
+      <LogicalName>rich_text.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\simple_text.png">
+      <LogicalName>simple_text.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

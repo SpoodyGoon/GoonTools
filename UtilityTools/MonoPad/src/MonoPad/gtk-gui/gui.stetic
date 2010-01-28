@@ -74,6 +74,26 @@
         <property name="Image">resource:text_right.png</property>
       </source>
     </icon-set>
+    <icon-set id="font_select.png">
+      <source>
+        <property name="Image">resource:font_select.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="configure.png">
+      <source>
+        <property name="Image">resource:configure.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="rich_text.png">
+      <source>
+        <property name="Image">resource:rich_text.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="simple_text.png">
+      <source>
+        <property name="Image">resource:simple_text.png</property>
+      </source>
+    </icon-set>
   </icon-factory>
   <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
     <property name="MemberName" />
@@ -87,7 +107,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="MonoPad.MonoPad" design-size="576 415">
+  <widget class="Gtk.Bin" id="MonoPad.MonoPad" design-size="964 543">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
@@ -99,30 +119,35 @@
         <property name="Label" translatable="yes">_New</property>
         <property name="ShortLabel" translatable="yes">_New</property>
         <property name="StockId">filenew.png</property>
+        <signal name="Activated" handler="OnNewActionActivated" />
       </action>
       <action id="SaveAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Save</property>
         <property name="ShortLabel" translatable="yes">_Save</property>
         <property name="StockId">filesave.png</property>
+        <signal name="Activated" handler="OnSaveActionActivated" />
       </action>
       <action id="OpenAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Open</property>
         <property name="ShortLabel" translatable="yes">_Open</property>
         <property name="StockId">fileopen.png</property>
+        <signal name="Activated" handler="OnOpenActionActivated" />
       </action>
       <action id="SaveAsAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Save  _As</property>
         <property name="ShortLabel" translatable="yes">Save  _As</property>
         <property name="StockId">filesaveas.png</property>
+        <signal name="Activated" handler="OnSaveAsActionActivated" />
       </action>
       <action id="QuitAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Quit</property>
         <property name="ShortLabel" translatable="yes">_Quit</property>
         <property name="StockId">exit.png</property>
+        <signal name="Activated" handler="OnQuitActionActivated" />
       </action>
       <action id="HelpAction">
         <property name="Type">Action</property>
@@ -134,6 +159,7 @@
         <property name="Label" translatable="yes">_About</property>
         <property name="ShortLabel" translatable="yes">_About</property>
         <property name="StockId">gtk-about</property>
+        <signal name="Activated" handler="OnAboutActionActivated" />
       </action>
       <action id="EditAction">
         <property name="Type">Action</property>
@@ -145,24 +171,28 @@
         <property name="Label" translatable="yes">_Copy</property>
         <property name="ShortLabel" translatable="yes">_Copy</property>
         <property name="StockId">gtk-copy</property>
+        <signal name="Activated" handler="OnCopyActionActivated" />
       </action>
       <action id="cutAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Cu_t</property>
         <property name="ShortLabel" translatable="yes">Cu_t</property>
         <property name="StockId">gtk-cut</property>
+        <signal name="Activated" handler="OnCutActionActivated" />
       </action>
       <action id="pasteAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Paste</property>
         <property name="ShortLabel" translatable="yes">_Paste</property>
         <property name="StockId">gtk-paste</property>
+        <signal name="Activated" handler="OnPasteActionActivated" />
       </action>
       <action id="clearAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Clear</property>
         <property name="ShortLabel" translatable="yes">_Clear</property>
         <property name="StockId">gtk-clear</property>
+        <signal name="Activated" handler="OnClearActionActivated" />
       </action>
       <action id="FormatAction">
         <property name="Type">Action</property>
@@ -174,30 +204,35 @@
         <property name="Label" translatable="yes">_Bold</property>
         <property name="ShortLabel" translatable="yes">_Bold</property>
         <property name="StockId">format-text-bold.png</property>
+        <signal name="Activated" handler="OnBoldActionActivated" />
       </action>
       <action id="ItalicAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Italic</property>
         <property name="ShortLabel" translatable="yes">_Italic</property>
         <property name="StockId">format-text-italic.png</property>
+        <signal name="Activated" handler="OnItalicActionActivated" />
       </action>
       <action id="UnderlineAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Underline</property>
         <property name="ShortLabel" translatable="yes">_Underline</property>
         <property name="StockId">format-text-underline.png</property>
+        <signal name="Activated" handler="OnUnderlineActionActivated" />
       </action>
       <action id="StrikeThroughAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Strike Through</property>
         <property name="ShortLabel" translatable="yes">Strike Through</property>
         <property name="StockId">format-text-strikethrough.png</property>
+        <signal name="Activated" handler="OnStrikeThroughActionActivated" />
       </action>
       <action id="BlockAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Block</property>
         <property name="ShortLabel" translatable="yes">Block</property>
         <property name="StockId">text_block.png</property>
+        <signal name="Activated" handler="OnBlockActionActivated" />
       </action>
       <action id="AlignLeftAction">
         <property name="Type">Action</property>
@@ -209,6 +244,7 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-select-all</property>
+        <signal name="Activated" handler="OnSelectAllActionActivated" />
       </action>
       <action id="ViewAction">
         <property name="Type">Action</property>
@@ -221,6 +257,7 @@
         <property name="ShortLabel" translatable="yes">Toolbar</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">True</property>
+        <signal name="Toggled" handler="OnToolbarActionToggled" />
       </action>
       <action id="FormatBarAction">
         <property name="Type">Toggle</property>
@@ -228,6 +265,7 @@
         <property name="ShortLabel" translatable="yes">Format Bar</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">True</property>
+        <signal name="Toggled" handler="OnFormatBarActionToggled" />
       </action>
       <action id="MiscAction">
         <property name="Type">Toggle</property>
@@ -235,6 +273,77 @@
         <property name="ShortLabel" translatable="yes">Misc</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">True</property>
+        <signal name="Toggled" handler="OnMiscActionToggled" />
+      </action>
+      <action id="AlignLeftAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Align Left</property>
+        <property name="ShortLabel" translatable="yes">Align Left</property>
+        <property name="StockId">text_left.png</property>
+        <signal name="Activated" handler="OnAlignLeftAction1Activated" />
+      </action>
+      <action id="AlignCenterAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Align Center</property>
+        <property name="ShortLabel" translatable="yes">Align Center</property>
+        <property name="StockId">text_center.png</property>
+        <signal name="Activated" handler="OnAlignCenterActionActivated" />
+      </action>
+      <action id="AlignRightAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Align Right</property>
+        <property name="ShortLabel" translatable="yes">Align Right</property>
+        <property name="StockId">text_right.png</property>
+        <signal name="Activated" handler="OnAlignRightActionActivated" />
+      </action>
+      <action id="FontSelectionAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Font Selection</property>
+        <property name="ShortLabel" translatable="yes">Font Selection</property>
+        <property name="StockId">font_select.png</property>
+        <signal name="Activated" handler="OnFontSelectionActionActivated" />
+      </action>
+      <action id="ToolsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Tools</property>
+        <property name="ShortLabel" translatable="yes">Tools</property>
+      </action>
+      <action id="OptionsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Options</property>
+        <property name="ShortLabel" translatable="yes">Options</property>
+        <property name="StockId">configure.png</property>
+        <signal name="Activated" handler="OnOptionsActionActivated" />
+      </action>
+      <action id="ToolbarsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Toolbars</property>
+        <property name="ShortLabel" translatable="yes">Toolbars</property>
+      </action>
+      <action id="EditorLayoutAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Editor Layout</property>
+        <property name="ShortLabel" translatable="yes">Editor Layout</property>
+      </action>
+      <action id="RichTextAction">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes">Rich Text</property>
+        <property name="ShortLabel" translatable="yes">Rich Text</property>
+        <property name="StockId">rich_text.png</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">True</property>
+        <property name="Value">1</property>
+        <property name="Group">EditorLayout</property>
+      </action>
+      <action id="SimpleTextAction">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes">Simple Text</property>
+        <property name="ShortLabel" translatable="yes">Simple Text</property>
+        <property name="StockId">simple_text.png</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <property name="Value">0</property>
+        <property name="Group">EditorLayout</property>
       </action>
     </action-group>
     <property name="MemberName" />
@@ -249,6 +358,7 @@
             <child>
               <widget class="Gtk.MenuBar" id="menubar1">
                 <property name="MemberName" />
+                <property name="CanFocus">True</property>
                 <node name="__gtksharp_93_Stetic_Editor_ActionMenuBar" type="Menubar">
                   <node type="Menu" action="FileAction">
                     <node type="Menuitem" action="NewAction" />
@@ -267,9 +377,15 @@
                     <node type="Menuitem" action="selectAllAction" />
                   </node>
                   <node type="Menu" action="ViewAction">
-                    <node type="Menuitem" action="ToolbarAction" />
-                    <node type="Menuitem" action="FormatBarAction" />
-                    <node type="Menuitem" action="MiscAction" />
+                    <node type="Menu" action="ToolbarsAction">
+                      <node type="Menuitem" action="FormatBarAction" />
+                      <node type="Menuitem" action="ToolbarAction" />
+                      <node type="Menuitem" action="MiscAction" />
+                    </node>
+                    <node type="Menu" action="EditorLayoutAction">
+                      <node type="Menuitem" action="RichTextAction" />
+                      <node type="Menuitem" action="SimpleTextAction" />
+                    </node>
                   </node>
                   <node type="Menu" action="FormatAction">
                     <node type="Menuitem" action="BoldAction" />
@@ -278,7 +394,14 @@
                     <node type="Menuitem" action="StrikeThroughAction" />
                     <node type="Separator" />
                     <node type="Menuitem" action="BlockAction" />
-                    <node type="Menuitem" />
+                    <node type="Menuitem" action="AlignLeftAction1" />
+                    <node type="Menuitem" action="AlignCenterAction" />
+                    <node type="Menuitem" action="AlignRightAction" />
+                    <node type="Separator" />
+                    <node type="Menuitem" action="FontSelectionAction" />
+                  </node>
+                  <node type="Menu" action="ToolsAction">
+                    <node type="Menuitem" action="OptionsAction" />
                   </node>
                   <node type="Menu" action="HelpAction">
                     <node type="Menuitem" action="aboutAction" />
@@ -317,6 +440,8 @@
                           <node type="Toolitem" action="SaveAction" />
                           <node type="Toolitem" action="SaveAsAction" />
                           <node type="Separator" />
+                          <node type="Toolitem" action="OptionsAction" />
+                          <node type="Toolitem" action="aboutAction" />
                           <node type="Toolitem" action="QuitAction" />
                         </node>
                       </widget>
@@ -346,12 +471,41 @@
                           <node type="Separator" />
                           <node type="Toolitem" action="BlockAction" />
                           <node type="Toolitem" action="AlignLeftAction" />
+                          <node type="Toolitem" action="AlignCenterAction" />
+                          <node type="Toolitem" action="AlignRightAction" />
                         </node>
                       </widget>
                     </child>
                   </widget>
                   <packing>
                     <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Alignment" id="alignment6">
+                    <property name="MemberName" />
+                    <child>
+                      <widget class="Gtk.Toolbar" id="tbrMisc">
+                        <property name="MemberName" />
+                        <property name="ShowArrow">False</property>
+                        <property name="ButtonStyle">Both</property>
+                        <property name="IconSize">SmallToolbar</property>
+                        <node name="tbrMisc" type="Toolbar">
+                          <node type="Toolitem" action="FontSelectionAction" />
+                          <node type="Separator" />
+                          <node type="Toolitem" action="RichTextAction" />
+                          <node type="Toolitem" action="SimpleTextAction" />
+                          <node type="Separator" />
+                        </node>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">2</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -368,16 +522,28 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+          <widget class="Gtk.Alignment" id="alignment5">
             <property name="MemberName" />
-            <property name="ShadowType">EtchedIn</property>
-            <property name="BorderWidth">4</property>
             <child>
-              <widget class="Gtk.TextView" id="textview1">
+              <widget class="Gtk.ScrolledWindow" id="swEditor">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="ShowScrollbars">True</property>
-                <property name="Text" translatable="yes" />
+                <property name="ShadowType">EtchedIn</property>
+                <property name="BorderWidth">4</property>
+                <child>
+                  <widget class="Gtk.Viewport" id="GtkViewport">
+                    <property name="MemberName" />
+                    <property name="ShadowType">None</property>
+                    <child>
+                      <widget class="Gtk.Alignment" id="algEditor">
+                        <property name="MemberName" />
+                        <child>
+                          <placeholder />
+                        </child>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
               </widget>
             </child>
           </widget>

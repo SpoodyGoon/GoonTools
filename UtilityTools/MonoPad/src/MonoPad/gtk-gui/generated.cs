@@ -45,6 +45,14 @@ namespace Stetic {
                 w1.Add("text_center.png", w13);
                 Gtk.IconSet w14 = new Gtk.IconSet(Gdk.Pixbuf.LoadFromResource("text_right.png"));
                 w1.Add("text_right.png", w14);
+                Gtk.IconSet w15 = new Gtk.IconSet(Gdk.Pixbuf.LoadFromResource("font_select.png"));
+                w1.Add("font_select.png", w15);
+                Gtk.IconSet w16 = new Gtk.IconSet(Gdk.Pixbuf.LoadFromResource("configure.png"));
+                w1.Add("configure.png", w16);
+                Gtk.IconSet w17 = new Gtk.IconSet(Gdk.Pixbuf.LoadFromResource("rich_text.png"));
+                w1.Add("rich_text.png", w17);
+                Gtk.IconSet w18 = new Gtk.IconSet(Gdk.Pixbuf.LoadFromResource("simple_text.png"));
+                w1.Add("simple_text.png", w18);
                 w1.AddDefault();
             }
         }
