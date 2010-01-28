@@ -65,6 +65,26 @@ namespace MonoPad {
         
         private Gtk.ToggleAction MiscAction;
         
+        private Gtk.Action AlignLeftAction1;
+        
+        private Gtk.Action AlignCenterAction;
+        
+        private Gtk.Action AlignRightAction;
+        
+        private Gtk.Action FontSelectionAction;
+        
+        private Gtk.Action ToolsAction;
+        
+        private Gtk.Action OptionsAction;
+        
+        private Gtk.Action ToolbarsAction;
+        
+        private Gtk.Action EditorLayoutAction;
+        
+        private Gtk.RadioAction RichTextAction;
+        
+        private Gtk.RadioAction SimpleTextAction;
+        
         private Gtk.VBox vbox1;
         
         private Gtk.Alignment alignment1;
@@ -83,9 +103,15 @@ namespace MonoPad {
         
         private Gtk.Toolbar tbrFormatBar;
         
-        private Gtk.ScrolledWindow GtkScrolledWindow;
+        private Gtk.Alignment alignment6;
         
-        private Gtk.TextView textview1;
+        private Gtk.Toolbar tbrMisc;
+        
+        private Gtk.Alignment alignment5;
+        
+        private Gtk.ScrolledWindow swEditor;
+        
+        private Gtk.Alignment algEditor;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -170,6 +196,38 @@ namespace MonoPad {
             this.MiscAction.Active = true;
             this.MiscAction.ShortLabel = Mono.Unix.Catalog.GetString("Misc");
             w2.Add(this.MiscAction, null);
+            this.AlignLeftAction1 = new Gtk.Action("AlignLeftAction1", Mono.Unix.Catalog.GetString("Align Left"), null, "text_left.png");
+            this.AlignLeftAction1.ShortLabel = Mono.Unix.Catalog.GetString("Align Left");
+            w2.Add(this.AlignLeftAction1, null);
+            this.AlignCenterAction = new Gtk.Action("AlignCenterAction", Mono.Unix.Catalog.GetString("Align Center"), null, "text_center.png");
+            this.AlignCenterAction.ShortLabel = Mono.Unix.Catalog.GetString("Align Center");
+            w2.Add(this.AlignCenterAction, null);
+            this.AlignRightAction = new Gtk.Action("AlignRightAction", Mono.Unix.Catalog.GetString("Align Right"), null, "text_right.png");
+            this.AlignRightAction.ShortLabel = Mono.Unix.Catalog.GetString("Align Right");
+            w2.Add(this.AlignRightAction, null);
+            this.FontSelectionAction = new Gtk.Action("FontSelectionAction", Mono.Unix.Catalog.GetString("Font Selection"), null, "font_select.png");
+            this.FontSelectionAction.ShortLabel = Mono.Unix.Catalog.GetString("Font Selection");
+            w2.Add(this.FontSelectionAction, null);
+            this.ToolsAction = new Gtk.Action("ToolsAction", Mono.Unix.Catalog.GetString("Tools"), null, null);
+            this.ToolsAction.ShortLabel = Mono.Unix.Catalog.GetString("Tools");
+            w2.Add(this.ToolsAction, null);
+            this.OptionsAction = new Gtk.Action("OptionsAction", Mono.Unix.Catalog.GetString("Options"), null, "configure.png");
+            this.OptionsAction.ShortLabel = Mono.Unix.Catalog.GetString("Options");
+            w2.Add(this.OptionsAction, null);
+            this.ToolbarsAction = new Gtk.Action("ToolbarsAction", Mono.Unix.Catalog.GetString("Toolbars"), null, null);
+            this.ToolbarsAction.ShortLabel = Mono.Unix.Catalog.GetString("Toolbars");
+            w2.Add(this.ToolbarsAction, null);
+            this.EditorLayoutAction = new Gtk.Action("EditorLayoutAction", Mono.Unix.Catalog.GetString("Editor Layout"), null, null);
+            this.EditorLayoutAction.ShortLabel = Mono.Unix.Catalog.GetString("Editor Layout");
+            w2.Add(this.EditorLayoutAction, null);
+            this.RichTextAction = new Gtk.RadioAction("RichTextAction", Mono.Unix.Catalog.GetString("Rich Text"), null, "rich_text.png", 1);
+            this.RichTextAction.Group = new GLib.SList(System.IntPtr.Zero);
+            this.RichTextAction.ShortLabel = Mono.Unix.Catalog.GetString("Rich Text");
+            w2.Add(this.RichTextAction, null);
+            this.SimpleTextAction = new Gtk.RadioAction("SimpleTextAction", Mono.Unix.Catalog.GetString("Simple Text"), null, "simple_text.png", 0);
+            this.SimpleTextAction.Group = this.RichTextAction.Group;
+            this.SimpleTextAction.ShortLabel = Mono.Unix.Catalog.GetString("Simple Text");
+            w2.Add(this.SimpleTextAction, null);
             this.UIManager.InsertActionGroup(w2, 0);
             this.Name = "MonoPad.MonoPad";
             // Container child MonoPad.MonoPad.Gtk.Container+ContainerChild
@@ -180,8 +238,33 @@ namespace MonoPad {
             this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment1.Name = "alignment1";
             // Container child alignment1.Gtk.Container+ContainerChild
-            this.UIManager.AddUiFromString(@"<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewAction' action='NewAction'/><menuitem name='OpenAction' action='OpenAction'/><menuitem name='SaveAction' action='SaveAction'/><menuitem name='SaveAsAction' action='SaveAsAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='copyAction' action='copyAction'/><menuitem name='cutAction' action='cutAction'/><menuitem name='pasteAction' action='pasteAction'/><separator/><menuitem name='clearAction' action='clearAction'/><menuitem name='selectAllAction' action='selectAllAction'/></menu><menu name='ViewAction' action='ViewAction'><menuitem name='ToolbarAction' action='ToolbarAction'/><menuitem name='FormatBarAction' action='FormatBarAction'/><menuitem name='MiscAction' action='MiscAction'/></menu><menu name='FormatAction' action='FormatAction'><menuitem name='BoldAction' action='BoldAction'/><menuitem name='ItalicAction' action='ItalicAction'/><menuitem name='UnderlineAction' action='UnderlineAction'/><menuitem name='StrikeThroughAction' action='StrikeThroughAction'/><separator/><menuitem name='BlockAction' action='BlockAction'/><menuitem/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
+            this.UIManager.AddUiFromString("<ui><menubar name=\'menubar1\'><menu name=\'FileAction\' action=\'FileAction\'><menuite" +
+                    "m name=\'NewAction\' action=\'NewAction\'/><menuitem name=\'OpenAction\' action=\'OpenA" +
+                    "ction\'/><menuitem name=\'SaveAction\' action=\'SaveAction\'/><menuitem name=\'SaveAsA" +
+                    "ction\' action=\'SaveAsAction\'/><separator/><menuitem name=\'QuitAction\' action=\'Qu" +
+                    "itAction\'/></menu><menu name=\'EditAction\' action=\'EditAction\'><menuitem name=\'co" +
+                    "pyAction\' action=\'copyAction\'/><menuitem name=\'cutAction\' action=\'cutAction\'/><m" +
+                    "enuitem name=\'pasteAction\' action=\'pasteAction\'/><separator/><menuitem name=\'cle" +
+                    "arAction\' action=\'clearAction\'/><menuitem name=\'selectAllAction\' action=\'selectA" +
+                    "llAction\'/></menu><menu name=\'ViewAction\' action=\'ViewAction\'><menu name=\'Toolba" +
+                    "rsAction\' action=\'ToolbarsAction\'><menuitem name=\'FormatBarAction\' action=\'Forma" +
+                    "tBarAction\'/><menuitem name=\'ToolbarAction\' action=\'ToolbarAction\'/><menuitem na" +
+                    "me=\'MiscAction\' action=\'MiscAction\'/></menu><menu name=\'EditorLayoutAction\' acti" +
+                    "on=\'EditorLayoutAction\'><menuitem name=\'RichTextAction\' action=\'RichTextAction\'/" +
+                    "><menuitem name=\'SimpleTextAction\' action=\'SimpleTextAction\'/></menu></menu><men" +
+                    "u name=\'FormatAction\' action=\'FormatAction\'><menuitem name=\'BoldAction\' action=\'" +
+                    "BoldAction\'/><menuitem name=\'ItalicAction\' action=\'ItalicAction\'/><menuitem name" +
+                    "=\'UnderlineAction\' action=\'UnderlineAction\'/><menuitem name=\'StrikeThroughAction" +
+                    "\' action=\'StrikeThroughAction\'/><separator/><menuitem name=\'BlockAction\' action=" +
+                    "\'BlockAction\'/><menuitem name=\'AlignLeftAction1\' action=\'AlignLeftAction1\'/><men" +
+                    "uitem name=\'AlignCenterAction\' action=\'AlignCenterAction\'/><menuitem name=\'Align" +
+                    "RightAction\' action=\'AlignRightAction\'/><separator/><menuitem name=\'FontSelectio" +
+                    "nAction\' action=\'FontSelectionAction\'/></menu><menu name=\'ToolsAction\' action=\'T" +
+                    "oolsAction\'><menuitem name=\'OptionsAction\' action=\'OptionsAction\'/></menu><menu " +
+                    "name=\'HelpAction\' action=\'HelpAction\'><menuitem name=\'aboutAction\' action=\'about" +
+                    "Action\'/></menu></menubar></ui>");
             this.menubar1 = ((Gtk.MenuBar)(this.UIManager.GetWidget("/menubar1")));
+            this.menubar1.CanFocus = true;
             this.menubar1.Name = "menubar1";
             this.alignment1.Add(this.menubar1);
             this.vbox1.Add(this.alignment1);
@@ -201,7 +284,7 @@ namespace MonoPad {
             this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment3.Name = "alignment3";
             // Container child alignment3.Gtk.Container+ContainerChild
-            this.UIManager.AddUiFromString(@"<ui><toolbar name='tbrToolbar'><toolitem name='NewAction' action='NewAction'/><toolitem name='OpenAction' action='OpenAction'/><toolitem name='SaveAction' action='SaveAction'/><toolitem name='SaveAsAction' action='SaveAsAction'/><separator/><toolitem name='QuitAction' action='QuitAction'/></toolbar></ui>");
+            this.UIManager.AddUiFromString(@"<ui><toolbar name='tbrToolbar'><toolitem name='NewAction' action='NewAction'/><toolitem name='OpenAction' action='OpenAction'/><toolitem name='SaveAction' action='SaveAction'/><toolitem name='SaveAsAction' action='SaveAsAction'/><separator/><toolitem name='OptionsAction' action='OptionsAction'/><toolitem name='aboutAction' action='aboutAction'/><toolitem name='QuitAction' action='QuitAction'/></toolbar></ui>");
             this.tbrToolbar = ((Gtk.Toolbar)(this.UIManager.GetWidget("/tbrToolbar")));
             this.tbrToolbar.Name = "tbrToolbar";
             this.tbrToolbar.ShowArrow = false;
@@ -217,7 +300,7 @@ namespace MonoPad {
             this.alignment4 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment4.Name = "alignment4";
             // Container child alignment4.Gtk.Container+ContainerChild
-            this.UIManager.AddUiFromString(@"<ui><toolbar name='tbrFormatBar'><toolitem name='BoldAction' action='BoldAction'/><toolitem name='ItalicAction' action='ItalicAction'/><toolitem name='UnderlineAction' action='UnderlineAction'/><toolitem name='StrikeThroughAction' action='StrikeThroughAction'/><separator/><toolitem name='BlockAction' action='BlockAction'/><toolitem name='AlignLeftAction' action='AlignLeftAction'/></toolbar></ui>");
+            this.UIManager.AddUiFromString(@"<ui><toolbar name='tbrFormatBar'><toolitem name='BoldAction' action='BoldAction'/><toolitem name='ItalicAction' action='ItalicAction'/><toolitem name='UnderlineAction' action='UnderlineAction'/><toolitem name='StrikeThroughAction' action='StrikeThroughAction'/><separator/><toolitem name='BlockAction' action='BlockAction'/><toolitem name='AlignLeftAction' action='AlignLeftAction'/><toolitem name='AlignCenterAction' action='AlignCenterAction'/><toolitem name='AlignRightAction' action='AlignRightAction'/></toolbar></ui>");
             this.tbrFormatBar = ((Gtk.Toolbar)(this.UIManager.GetWidget("/tbrFormatBar")));
             this.tbrFormatBar.Name = "tbrFormatBar";
             this.tbrFormatBar.ShowArrow = false;
@@ -229,31 +312,83 @@ namespace MonoPad {
             w8.Position = 1;
             w8.Expand = false;
             w8.Fill = false;
-            this.alignment2.Add(this.vbox2);
-            this.vbox1.Add(this.alignment2);
-            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment2]));
-            w10.Position = 1;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment6 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment6.Name = "alignment6";
+            // Container child alignment6.Gtk.Container+ContainerChild
+            this.UIManager.AddUiFromString("<ui><toolbar name=\'tbrMisc\'><toolitem name=\'FontSelectionAction\' action=\'FontSele" +
+                    "ctionAction\'/><separator/><toolitem name=\'RichTextAction\' action=\'RichTextAction" +
+                    "\'/><toolitem name=\'SimpleTextAction\' action=\'SimpleTextAction\'/><separator/></to" +
+                    "olbar></ui>");
+            this.tbrMisc = ((Gtk.Toolbar)(this.UIManager.GetWidget("/tbrMisc")));
+            this.tbrMisc.Name = "tbrMisc";
+            this.tbrMisc.ShowArrow = false;
+            this.tbrMisc.ToolbarStyle = ((Gtk.ToolbarStyle)(2));
+            this.tbrMisc.IconSize = ((Gtk.IconSize)(2));
+            this.alignment6.Add(this.tbrMisc);
+            this.vbox2.Add(this.alignment6);
+            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment6]));
+            w10.PackType = ((Gtk.PackType)(1));
+            w10.Position = 2;
             w10.Expand = false;
             w10.Fill = false;
+            this.alignment2.Add(this.vbox2);
+            this.vbox1.Add(this.alignment2);
+            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment2]));
+            w12.Position = 1;
+            w12.Expand = false;
+            w12.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
-            this.GtkScrolledWindow = new Gtk.ScrolledWindow();
-            this.GtkScrolledWindow.Name = "GtkScrolledWindow";
-            this.GtkScrolledWindow.ShadowType = ((Gtk.ShadowType)(3));
-            this.GtkScrolledWindow.BorderWidth = ((uint)(4));
-            // Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-            this.textview1 = new Gtk.TextView();
-            this.textview1.CanFocus = true;
-            this.textview1.Name = "textview1";
-            this.GtkScrolledWindow.Add(this.textview1);
-            this.vbox1.Add(this.GtkScrolledWindow);
-            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
-            w12.Position = 2;
+            this.alignment5 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment5.Name = "alignment5";
+            // Container child alignment5.Gtk.Container+ContainerChild
+            this.swEditor = new Gtk.ScrolledWindow();
+            this.swEditor.CanFocus = true;
+            this.swEditor.Name = "swEditor";
+            this.swEditor.ShadowType = ((Gtk.ShadowType)(3));
+            this.swEditor.BorderWidth = ((uint)(4));
+            // Container child swEditor.Gtk.Container+ContainerChild
+            Gtk.Viewport w13 = new Gtk.Viewport();
+            w13.ShadowType = ((Gtk.ShadowType)(0));
+            // Container child GtkViewport.Gtk.Container+ContainerChild
+            this.algEditor = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.algEditor.Name = "algEditor";
+            w13.Add(this.algEditor);
+            this.swEditor.Add(w13);
+            this.alignment5.Add(this.swEditor);
+            this.vbox1.Add(this.alignment5);
+            Gtk.Box.BoxChild w17 = ((Gtk.Box.BoxChild)(this.vbox1[this.alignment5]));
+            w17.Position = 2;
             this.Add(this.vbox1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             w1.SetUiManager(UIManager);
             this.Hide();
+            this.NewAction.Activated += new System.EventHandler(this.OnNewActionActivated);
+            this.SaveAction.Activated += new System.EventHandler(this.OnSaveActionActivated);
+            this.OpenAction.Activated += new System.EventHandler(this.OnOpenActionActivated);
+            this.SaveAsAction.Activated += new System.EventHandler(this.OnSaveAsActionActivated);
+            this.QuitAction.Activated += new System.EventHandler(this.OnQuitActionActivated);
+            this.aboutAction.Activated += new System.EventHandler(this.OnAboutActionActivated);
+            this.copyAction.Activated += new System.EventHandler(this.OnCopyActionActivated);
+            this.cutAction.Activated += new System.EventHandler(this.OnCutActionActivated);
+            this.pasteAction.Activated += new System.EventHandler(this.OnPasteActionActivated);
+            this.clearAction.Activated += new System.EventHandler(this.OnClearActionActivated);
+            this.BoldAction.Activated += new System.EventHandler(this.OnBoldActionActivated);
+            this.ItalicAction.Activated += new System.EventHandler(this.OnItalicActionActivated);
+            this.UnderlineAction.Activated += new System.EventHandler(this.OnUnderlineActionActivated);
+            this.StrikeThroughAction.Activated += new System.EventHandler(this.OnStrikeThroughActionActivated);
+            this.BlockAction.Activated += new System.EventHandler(this.OnBlockActionActivated);
+            this.selectAllAction.Activated += new System.EventHandler(this.OnSelectAllActionActivated);
+            this.ToolbarAction.Toggled += new System.EventHandler(this.OnToolbarActionToggled);
+            this.FormatBarAction.Toggled += new System.EventHandler(this.OnFormatBarActionToggled);
+            this.MiscAction.Toggled += new System.EventHandler(this.OnMiscActionToggled);
+            this.AlignLeftAction1.Activated += new System.EventHandler(this.OnAlignLeftAction1Activated);
+            this.AlignCenterAction.Activated += new System.EventHandler(this.OnAlignCenterActionActivated);
+            this.AlignRightAction.Activated += new System.EventHandler(this.OnAlignRightActionActivated);
+            this.FontSelectionAction.Activated += new System.EventHandler(this.OnFontSelectionActionActivated);
+            this.OptionsAction.Activated += new System.EventHandler(this.OnOptionsActionActivated);
         }
     }
 }
