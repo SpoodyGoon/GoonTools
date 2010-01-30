@@ -48,7 +48,7 @@ namespace MonoPad.Editor
 				{
 					LineIter = this.Buffer.GetIterAtLine(this.Buffer.CursorPosition);
 					
-					if(this..ForwardDisplayLine(ref StartIter) && this.ForwardDisplayLineEnd(ref EndIter))
+					if(this.ForwardDisplayLine(ref StartIter) && this.ForwardDisplayLineEnd(ref EndIter))
 					{
 						this.Buffer.ApplyTag(tag.ToString(), StartIter, EndIter);
 					}
