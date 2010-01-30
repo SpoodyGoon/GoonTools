@@ -39,7 +39,7 @@ namespace MonoPad {
         
         private Gtk.Action pasteAction;
         
-        private Gtk.Action clearAction;
+        private Gtk.Action ClearAction;
         
         private Gtk.Action FormatAction;
         
@@ -155,9 +155,9 @@ namespace MonoPad {
             this.pasteAction = new Gtk.Action("pasteAction", Mono.Unix.Catalog.GetString("_Paste"), null, "gtk-paste");
             this.pasteAction.ShortLabel = Mono.Unix.Catalog.GetString("_Paste");
             w2.Add(this.pasteAction, null);
-            this.clearAction = new Gtk.Action("clearAction", Mono.Unix.Catalog.GetString("_Clear"), null, "gtk-clear");
-            this.clearAction.ShortLabel = Mono.Unix.Catalog.GetString("_Clear");
-            w2.Add(this.clearAction, null);
+            this.ClearAction = new Gtk.Action("ClearAction", Mono.Unix.Catalog.GetString("_Clear"), null, "edit-clear.png");
+            this.ClearAction.ShortLabel = Mono.Unix.Catalog.GetString("_Clear");
+            w2.Add(this.ClearAction, null);
             this.FormatAction = new Gtk.Action("FormatAction", Mono.Unix.Catalog.GetString("Format"), null, null);
             this.FormatAction.ShortLabel = Mono.Unix.Catalog.GetString("Format");
             w2.Add(this.FormatAction, null);
@@ -244,9 +244,9 @@ namespace MonoPad {
                     "ction\' action=\'SaveAsAction\'/><separator/><menuitem name=\'QuitAction\' action=\'Qu" +
                     "itAction\'/></menu><menu name=\'EditAction\' action=\'EditAction\'><menuitem name=\'co" +
                     "pyAction\' action=\'copyAction\'/><menuitem name=\'cutAction\' action=\'cutAction\'/><m" +
-                    "enuitem name=\'pasteAction\' action=\'pasteAction\'/><separator/><menuitem name=\'cle" +
-                    "arAction\' action=\'clearAction\'/><menuitem name=\'selectAllAction\' action=\'selectA" +
-                    "llAction\'/></menu><menu name=\'ViewAction\' action=\'ViewAction\'><menu name=\'Toolba" +
+                    "enuitem name=\'pasteAction\' action=\'pasteAction\'/><separator/><menuitem name=\'sel" +
+                    "ectAllAction\' action=\'selectAllAction\'/><menuitem name=\'ClearAction\' action=\'Cle" +
+                    "arAction\'/></menu><menu name=\'ViewAction\' action=\'ViewAction\'><menu name=\'Toolba" +
                     "rsAction\' action=\'ToolbarsAction\'><menuitem name=\'FormatBarAction\' action=\'Forma" +
                     "tBarAction\'/><menuitem name=\'ToolbarAction\' action=\'ToolbarAction\'/><menuitem na" +
                     "me=\'MiscAction\' action=\'MiscAction\'/></menu><menu name=\'EditorLayoutAction\' acti" +
@@ -300,7 +300,7 @@ namespace MonoPad {
             this.alignment4 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment4.Name = "alignment4";
             // Container child alignment4.Gtk.Container+ContainerChild
-            this.UIManager.AddUiFromString(@"<ui><toolbar name='tbrFormatBar'><toolitem name='BoldAction' action='BoldAction'/><toolitem name='ItalicAction' action='ItalicAction'/><toolitem name='UnderlineAction' action='UnderlineAction'/><toolitem name='StrikeThroughAction' action='StrikeThroughAction'/><separator/><toolitem name='BlockAction' action='BlockAction'/><toolitem name='AlignLeftAction' action='AlignLeftAction'/><toolitem name='AlignCenterAction' action='AlignCenterAction'/><toolitem name='AlignRightAction' action='AlignRightAction'/></toolbar></ui>");
+            this.UIManager.AddUiFromString(@"<ui><toolbar name='tbrFormatBar'><toolitem name='BoldAction' action='BoldAction'/><toolitem name='ItalicAction' action='ItalicAction'/><toolitem name='UnderlineAction' action='UnderlineAction'/><toolitem name='StrikeThroughAction' action='StrikeThroughAction'/><separator/><toolitem name='BlockAction' action='BlockAction'/><toolitem name='AlignLeftAction' action='AlignLeftAction'/><toolitem name='AlignCenterAction' action='AlignCenterAction'/><toolitem name='AlignRightAction' action='AlignRightAction'/><separator/><toolitem name='selectAllAction' action='selectAllAction'/><toolitem name='ClearAction' action='ClearAction'/></toolbar></ui>");
             this.tbrFormatBar = ((Gtk.Toolbar)(this.UIManager.GetWidget("/tbrFormatBar")));
             this.tbrFormatBar.Name = "tbrFormatBar";
             this.tbrFormatBar.ShowArrow = false;
@@ -374,7 +374,7 @@ namespace MonoPad {
             this.copyAction.Activated += new System.EventHandler(this.OnCopyActionActivated);
             this.cutAction.Activated += new System.EventHandler(this.OnCutActionActivated);
             this.pasteAction.Activated += new System.EventHandler(this.OnPasteActionActivated);
-            this.clearAction.Activated += new System.EventHandler(this.OnClearActionActivated);
+            this.ClearAction.Activated += new System.EventHandler(this.OnClearActionActivated);
             this.BoldAction.Activated += new System.EventHandler(this.OnBoldActionActivated);
             this.ItalicAction.Activated += new System.EventHandler(this.OnItalicActionActivated);
             this.UnderlineAction.Activated += new System.EventHandler(this.OnUnderlineActionActivated);
@@ -384,7 +384,7 @@ namespace MonoPad {
             this.ToolbarAction.Toggled += new System.EventHandler(this.OnToolbarActionToggled);
             this.FormatBarAction.Toggled += new System.EventHandler(this.OnFormatBarActionToggled);
             this.MiscAction.Toggled += new System.EventHandler(this.OnMiscActionToggled);
-            this.AlignLeftAction1.Activated += new System.EventHandler(this.OnAlignLeftAction1Activated);
+            this.AlignLeftAction1.Activated += new System.EventHandler(this.OnAlignLeftActionActivated);
             this.AlignCenterAction.Activated += new System.EventHandler(this.OnAlignCenterActionActivated);
             this.AlignRightAction.Activated += new System.EventHandler(this.OnAlignRightActionActivated);
             this.FontSelectionAction.Activated += new System.EventHandler(this.OnFontSelectionActionActivated);
