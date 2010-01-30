@@ -50,7 +50,7 @@ namespace MonoPad
 		protected virtual void OnStrikeThroughActionActivated (object sender, System.EventArgs e)
 		{
 			_Editor.SetBaseFormat(FormatTag.StrikeThrough, true);
-		}		
+		}
 		
 		protected virtual void OnFontSelectionActionActivated (object sender, System.EventArgs e)
 		{
@@ -244,6 +244,39 @@ namespace MonoPad
 		
 		protected virtual void OnAboutActionActivated (object sender, System.EventArgs e)
 		{
+			Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link) {
+			                           	System.Diagnostics.Process.Start(link);
+			                           });
+			try
+			{
+				System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+				Gtk.AboutDialog ad = new Gtk.AboutDialog();
+				ad.Title = "Simple notepad text editor.";
+				ad.ProgramName = asm.GetName().Name;
+				ad.Comments = "Simple notepad text editor.";
+				ad.License = GoonTools.Helper.Const.License;
+				ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
+				ad.Version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
+				ad.Logo = Gdk.Pixbuf.LoadFromResource("icon_large.png");
+				ad.Icon = Gdk.Pixbuf.LoadFromResource("icon_small.png");
+				ad.AllowShrink = false;
+				ad.AllowGrow = false;
+				ad.DestroyWithParent = true;
+				ad.Parent = this;
+				ad.Copyright = "GoonTools 2009";
+				ad.HasSeparator = true;
+				ad.Modal = true;
+				ad.WidthRequest = 550;
+				ad.HeightRequest = 300;
+				ad.WebsiteLabel = "MonoPad Project Site";
+				ad.Website = "http://code.google.com/p/goontools/wiki/MonoPad";
+				ad.Run();
+				ad.Destroy();
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
+			}
 		}
 		
 		protected virtual void OnOptionsActionActivated (object sender, System.EventArgs e)

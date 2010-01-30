@@ -108,17 +108,22 @@
     <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="Common\Options.cs" />
     <Compile Include="Editor\BufferTags.cs" />
-    <Compile Include="Editor\EditorTagTable.cs" />
     <Compile Include="Editor\MonoPadEditor.cs" />
     <None Include="app.config" />
+    <EmbeddedResource Include="images\edit-clear.png">
+      <LogicalName>edit-clear.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\icon_large.png">
+      <LogicalName>icon_large.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\icon_small.png">
+      <LogicalName>icon_small.png</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="images\rich_text.png">
       <LogicalName>rich_text.png</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="images\simple_text.png">
       <LogicalName>simple_text.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\edit-clear.png">
-      <LogicalName>edit-clear.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
