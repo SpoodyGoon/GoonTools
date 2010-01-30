@@ -19,6 +19,7 @@ namespace MonoPad.Editor
 		BufferTags _BufferTags;
 		public MonoPadEditor()
 		{
+			this.WrapMode = Gtk.WrapMode.Word;
 			_BufferTags = new BufferTags(this.Buffer);
 		}
 		
@@ -27,23 +28,36 @@ namespace MonoPad.Editor
 			return SetBaseFormat(tag, true);
 		}
 		
-		public bool SetBaseFormat(FormatTag tag, bool UseSelected)
+		public bool SetBaseFormat(FormatTag tag, bool useselected)
 		{
 			bool blnReturn = true;
 			try
 			{
-				Gtk.TextIter StartIter;
-				Gtk.TextIter EndIter;
-				if(this.Buffer.GetSelectionBounds(out StartIter, out EndIter))
+				Gtk.TextIter LineIter = Gtk.TextIter.Zero;
+				Gtk.TextIter StartIter = Gtk.TextIter.Zero;
+				Gtk.TextIter EndIter = Gtk.TextIter.Zero;
+				// if we are to use the highlighted text
+				if(this.Buffer.HasSelection)
 				{
-					this.Buffer.ApplyTag(tag.ToString(), StartIter, EndIter);
-				}	
+					if(this.Buffer.GetSelectionBounds(out StartIter, out EndIter))
+					{
+						this.Buffer.ApplyTag(tag.ToString(), StartIter, EndIter);
+					}
+				}
+				else
+				{
+					LineIter = this.Buffer.GetIterAtLine(this.Buffer.CursorPosition);
+					
+					if(this..ForwardDisplayLine(ref StartIter) && this.ForwardDisplayLineEnd(ref EndIter))
+					{
+						this.Buffer.ApplyTag(tag.ToString(), StartIter, EndIter);
+					}
+				}
 			}
 			catch(Exception ex)
 			{
-				 blnReturn = false;
+				blnReturn = false;
 				Common.HandleError(ex);
-				
 			}
 			return blnReturn;
 		}
@@ -58,15 +72,15 @@ namespace MonoPad.Editor
 				if(this.Buffer.GetSelectionBounds(out StartIter, out EndIter))
 				{
 					this.Buffer.ApplyTag(_BufferTags.SetFont(fontname), StartIter, EndIter);
-				}	
+				}
 			}
 			catch(Exception ex)
 			{
-				 blnReturn = false;
+				blnReturn = false;
 				Common.HandleError(ex);
 				
 			}
-			return blnReturn;			
+			return blnReturn;
 		}
 	}
 }

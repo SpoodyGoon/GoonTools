@@ -53,6 +53,8 @@ namespace Stetic {
                 w1.Add("rich_text.png", w17);
                 Gtk.IconSet w18 = new Gtk.IconSet(Gdk.Pixbuf.LoadFromResource("simple_text.png"));
                 w1.Add("simple_text.png", w18);
+                Gtk.IconSet w19 = new Gtk.IconSet(Gdk.Pixbuf.LoadFromResource("edit-clear.png"));
+                w1.Add("edit-clear.png", w19);
                 w1.AddDefault();
             }
         }

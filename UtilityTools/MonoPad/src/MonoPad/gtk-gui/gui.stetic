@@ -94,6 +94,11 @@
         <property name="Image">resource:simple_text.png</property>
       </source>
     </icon-set>
+    <icon-set id="edit-clear.png">
+      <source>
+        <property name="Image">resource:edit-clear.png</property>
+      </source>
+    </icon-set>
   </icon-factory>
   <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
     <property name="MemberName" />
@@ -187,11 +192,11 @@
         <property name="StockId">gtk-paste</property>
         <signal name="Activated" handler="OnPasteActionActivated" />
       </action>
-      <action id="clearAction">
+      <action id="ClearAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Clear</property>
         <property name="ShortLabel" translatable="yes">_Clear</property>
-        <property name="StockId">gtk-clear</property>
+        <property name="StockId">edit-clear.png</property>
         <signal name="Activated" handler="OnClearActionActivated" />
       </action>
       <action id="FormatAction">
@@ -280,7 +285,7 @@
         <property name="Label" translatable="yes">Align Left</property>
         <property name="ShortLabel" translatable="yes">Align Left</property>
         <property name="StockId">text_left.png</property>
-        <signal name="Activated" handler="OnAlignLeftAction1Activated" />
+        <signal name="Activated" handler="OnAlignLeftActionActivated" />
       </action>
       <action id="AlignCenterAction">
         <property name="Type">Action</property>
@@ -373,8 +378,8 @@
                     <node type="Menuitem" action="cutAction" />
                     <node type="Menuitem" action="pasteAction" />
                     <node type="Separator" />
-                    <node type="Menuitem" action="clearAction" />
                     <node type="Menuitem" action="selectAllAction" />
+                    <node type="Menuitem" action="ClearAction" />
                   </node>
                   <node type="Menu" action="ViewAction">
                     <node type="Menu" action="ToolbarsAction">
@@ -473,6 +478,9 @@
                           <node type="Toolitem" action="AlignLeftAction" />
                           <node type="Toolitem" action="AlignCenterAction" />
                           <node type="Toolitem" action="AlignRightAction" />
+                          <node type="Separator" />
+                          <node type="Toolitem" action="selectAllAction" />
+                          <node type="Toolitem" action="ClearAction" />
                         </node>
                       </widget>
                     </child>

@@ -30,6 +30,8 @@ namespace MonoPad
 			this.ShowAll();
 		}
 		
+		#region Formatting Functions
+		
 		protected virtual void OnBoldActionActivated (object sender, System.EventArgs e)
 		{
 			_Editor.SetBaseFormat(FormatTag.Bold, true);
@@ -48,7 +50,39 @@ namespace MonoPad
 		protected virtual void OnStrikeThroughActionActivated (object sender, System.EventArgs e)
 		{
 			_Editor.SetBaseFormat(FormatTag.StrikeThrough, true);
+		}		
+		
+		protected virtual void OnFontSelectionActionActivated (object sender, System.EventArgs e)
+		{
+			Gtk.FontSelectionDialog fsd = new Gtk.FontSelectionDialog("Select Font");
+			if((Gtk.ResponseType)fsd.Run() == Gtk.ResponseType.Ok)
+			{
+				_Editor.SetFont(fsd.FontName);
+			}
+			fsd.Destroy();
 		}
+		
+		protected virtual void OnAlignRightActionActivated (object sender, System.EventArgs e)
+		{
+			_Editor.SetBaseFormat(FormatTag.AlignRight, true);
+		}
+		
+		protected virtual void OnAlignCenterActionActivated (object sender, System.EventArgs e)
+		{
+			_Editor.SetBaseFormat(FormatTag.AlignCenter, true);
+		}
+		
+		protected virtual void OnAlignLeftActionActivated (object sender, System.EventArgs e)
+		{
+			_Editor.SetBaseFormat(FormatTag.AlignLeft, true);
+		}
+		
+		protected virtual void OnBlockActionActivated (object sender, System.EventArgs e)
+		{
+			_Editor.SetBaseFormat(FormatTag.AlignFill, true);
+		}
+		
+		#endregion Formatting Functions
 		
 		protected virtual void OnNewActionActivated (object sender, System.EventArgs e)
 		{
@@ -62,6 +96,8 @@ namespace MonoPad
 				System.Diagnostics.Debug.WriteLine("Atom #" + i.ToString() + ":" + a[i].Name);
 			}
 		}
+		
+		#region Save Functions
 		
 		protected virtual void OnSaveActionActivated (object sender, System.EventArgs e)
 		{
@@ -125,7 +161,6 @@ namespace MonoPad
 		
 		private void SaveFile(byte[] filetext, string fileloc)
 		{
-			_CurrentSaveType = SaveType.RichText;
 			System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 			Stream stream = new FileStream(fileloc, FileMode.Create, FileAccess.Write, FileShare.None);
 			formatter.Serialize(stream, filetext);
@@ -134,7 +169,6 @@ namespace MonoPad
 		
 		private void SaveFile(string filetext, string fileloc)
 		{
-			_CurrentSaveType = SaveType.Text;
 			StreamWriter sw = new StreamWriter(fileloc);
 			sw.Write(filetext);
 			sw.Close();
@@ -201,6 +235,8 @@ namespace MonoPad
 			}
 		}
 		
+		#endregion Save Functions
+		
 		protected virtual void OnQuitActionActivated (object sender, System.EventArgs e)
 		{
 			Gtk.Application.Quit();
@@ -246,34 +282,5 @@ namespace MonoPad
 		{
 		}
 		
-		protected virtual void OnFontSelectionActionActivated (object sender, System.EventArgs e)
-		{
-			Gtk.FontSelectionDialog fsd = new Gtk.FontSelectionDialog("Select Font");
-			if((Gtk.ResponseType)fsd.Run() == Gtk.ResponseType.Ok)
-			{
-				_Editor.SetFont(fsd.FontName);
-			}
-			fsd.Destroy();
-		}
-		
-		protected virtual void OnAlignRightActionActivated (object sender, System.EventArgs e)
-		{
-			_Editor.SetBaseFormat(FormatTag.AlignRight, true);
-		}
-		
-		protected virtual void OnAlignCenterActionActivated (object sender, System.EventArgs e)
-		{
-			_Editor.SetBaseFormat(FormatTag.AlignCenter, true);
-		}
-		
-		protected virtual void OnAlignLeftAction1Activated (object sender, System.EventArgs e)
-		{
-			_Editor.SetBaseFormat(FormatTag.AlignLeft, true);
-		}
-		
-		protected virtual void OnBlockActionActivated (object sender, System.EventArgs e)
-		{
-			_Editor.SetBaseFormat(FormatTag.AlignFill, true);
-		}
 	}
 }
