@@ -9,10 +9,9 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.IO;
-using Gtk;
-using GoonTools;
+using so = System.IO;
 using MonoPad.Editor;
+using GoonTools;
 
 
 namespace MonoPad
@@ -103,30 +102,30 @@ namespace MonoPad
 		{
 			try
 			{
-				FileInfo fi;
+				so.FileInfo fi;
 				if(_CurrentSaveName != null)
 				{
-					if(RichTextAction.Active == true)
-					{
-						fi = new FileInfo(_CurrentSaveName + ".txt");
-					}
-					else
-					{
-						fi = new FileInfo(_CurrentSaveName + ".grt");
-					}
-					// we are all good to go save the file
-					SaveFile(_Editor.Buffer.Text, fi.FullName);
+//					if(RichTextAction.Active == true)
+//					{
+//						fi = new so.FileInfo(_CurrentSaveName + ".txt");
+//					}
+//					else
+//					{
+//						fi = new so.FileInfo(_CurrentSaveName + ".grt");
+//					}
+//					// we are all good to go save the file
+//					SaveFile(_Editor.Buffer.Text, fi.FullName);
 				}
 				else
 				{
-					FileChooserDialog fc = new FileChooserDialog("Save File", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
-					FileFilter filter = new FileFilter();
+					Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog("Save File", null, Gtk.FileChooserAction.Save, "Cancel",Gtk.ResponseType.Cancel,"Save",Gtk.ResponseType.Ok);
+					Gtk.FileFilter filter = new Gtk.FileFilter();
 					fc.AddFilter(GetCurrentFilter());
 					fc.SelectMultiple = false;
-					DirectoryInfo di;
+					so.DirectoryInfo di;
 					if(_CurrentSavePath != null)
 					{
-						di = new DirectoryInfo(_CurrentSavePath);
+						di = new so.DirectoryInfo(_CurrentSavePath);
 						if(!di.Exists)
 							di.Create();
 						
@@ -134,21 +133,21 @@ namespace MonoPad
 					}
 					else
 					{
-						di = new DirectoryInfo(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
+						di = new so.DirectoryInfo(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
 						_CurrentSavePath = di.FullName;
 					}
 					
 					fc.SetCurrentFolder(_CurrentSavePath);
 					if((Gtk.ResponseType)fc.Run() == Gtk.ResponseType.Ok)
 					{
-						fi = new FileInfo(fc.Filename);
-						_CurrentSaveName = fi.Name;
-						_CurrentSavePath = ((DirectoryInfo)fi.Directory).FullName;
-						TextBuffer tbb = new TextBuffer(new TextTagTable());
-						if(RichTextAction.Active == true)
-							SaveFile((byte[])tbb.Serialize(_Editor.Buffer, Gdk.Atom.Intern("application/x-gtk-text-buffer-rich-text",true), _Editor.Buffer.StartIter, _Editor.Buffer.EndIter), _CurrentSaveName);
-						else
-							SaveFile(_Editor.Buffer.Text, _CurrentSavePath);
+//						fi = new so.FileInfo(fc.Filename);
+//						_CurrentSaveName = fi.Name;
+//						_CurrentSavePath = ((so.DirectoryInfo)fi.Directory).FullName;
+//						Gtk.TextBuffer tbb = new Gtk.TextBuffer(new Gtk.TextTagTable());
+//						if(RichTextAction.Active == true)
+//							SaveFile((byte[])tbb.Serialize(_Editor.Buffer, Gdk.Atom.Intern("application/x-gtk-text-buffer-rich-text",true), _Editor.Buffer.StartIter, _Editor.Buffer.EndIter), _CurrentSaveName);
+//						else
+//							SaveFile(_Editor.Buffer.Text, _CurrentSavePath);
 					}
 					fc.Destroy();
 				}
@@ -162,21 +161,21 @@ namespace MonoPad
 		private void SaveFile(byte[] filetext, string fileloc)
 		{
 			System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-			Stream stream = new FileStream(fileloc, FileMode.Create, FileAccess.Write, FileShare.None);
+			so.Stream stream = new so.FileStream(fileloc, so.FileMode.Create, so.FileAccess.Write, so.FileShare.None);
 			formatter.Serialize(stream, filetext);
 			stream.Close();
 		}
 		
 		private void SaveFile(string filetext, string fileloc)
 		{
-			StreamWriter sw = new StreamWriter(fileloc);
+			so.StreamWriter sw = new so.StreamWriter(fileloc);
 			sw.Write(filetext);
 			sw.Close();
 		}
 		
 		private Gtk.FileFilter GetCurrentFilter()
 		{
-			Gtk.FileFilter filter = new FileFilter();
+			Gtk.FileFilter filter = new Gtk.FileFilter();
 			if(RichTextAction.Active == true)
 			{
 				filter.Name = "Gtk Rich Text (grt)";
@@ -196,14 +195,14 @@ namespace MonoPad
 		{
 			try
 			{
-				FileInfo fi;
-				FileChooserDialog fc = new FileChooserDialog("Save File", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
+				so.FileInfo fi;
+				Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog("Save File", null, Gtk.FileChooserAction.Save, "Cancel",Gtk.ResponseType.Cancel,"Save",Gtk.ResponseType.Ok);
 				fc.AddFilter(GetCurrentFilter());
 				fc.SelectMultiple = false;
-				DirectoryInfo di;
+				so.DirectoryInfo di;
 				if(_CurrentSavePath != null)
 				{
-					di = new DirectoryInfo(_CurrentSavePath);
+					di = new so.DirectoryInfo(_CurrentSavePath);
 					if(!di.Exists)
 						di.Create();
 					
@@ -211,17 +210,17 @@ namespace MonoPad
 				}
 				else
 				{
-					di = new DirectoryInfo(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
+					di = new so.DirectoryInfo(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
 					_CurrentSavePath = di.FullName;
 				}
 				
 				fc.SetCurrentFolder(_CurrentSavePath);
 				if((Gtk.ResponseType)fc.Run() == Gtk.ResponseType.Ok)
 				{
-					fi = new FileInfo(fc.Filename);
+					fi = new so.FileInfo(fc.Filename);
 					_CurrentSaveName = fi.FullName;
-					_CurrentSavePath = ((DirectoryInfo)fi.Directory).FullName;
-					TextBuffer tbb = new TextBuffer(new TextTagTable());
+					_CurrentSavePath = ((so.DirectoryInfo)fi.Directory).FullName;
+					Gtk.TextBuffer tbb = new Gtk.TextBuffer(new Gtk.TextTagTable());
 					if(RichTextAction.Active == true)
 						SaveFile((byte[])tbb.Serialize(_Editor.Buffer, Gdk.Atom.Intern("application/x-gtk-text-buffer-rich-text",true), _Editor.Buffer.StartIter, _Editor.Buffer.EndIter), _CurrentSaveName);
 					else
@@ -314,6 +313,16 @@ namespace MonoPad
 		protected virtual void OnSelectAllActionActivated (object sender, System.EventArgs e)
 		{
 		}
+		
+		protected virtual void OnRichTextAction1Activated (object sender, System.EventArgs e)
+		{
+		}
+		
+		protected virtual void OnSimpleTextAction1Activated (object sender, System.EventArgs e)
+		{
+		}
+		
+		
 		
 	}
 }

@@ -4,8 +4,8 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("Simple notepad text editor.")]
-[assembly: AssemblyDescription("Simple notepad text editor, written in Mono/Gtk#.")]
+[assembly: AssemblyTitle("A simple wordpad like text editor.")]
+[assembly: AssemblyDescription("Simple wordpad text editor, written in Mono/Gtk#.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
