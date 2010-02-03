@@ -38,7 +38,51 @@ namespace MonoBPMonitor.Reports
 			_CurrentUser = userid;
 			Build();
 			LoadData();
+			
 		}
+		
+		#region public properties
+		
+		public MonoBPMonitor.Entry SelectedEntry
+		{
+			get
+			{
+				Gtk.TreeModel model;
+				Gtk.TreeIter iter;
+				if(this.Selection.GetSelected(out model, out iter))
+				{
+					MainBPReport tmp = (MainBPReport)model.GetValue(iter, 0);
+					MonoBPMonitor.Entry tmpEntry = new MonoBPMonitor.Entry(tmp.EntryID);
+					return tmpEntry;
+				}
+				else
+				{
+					return null;
+				}
+			}
+		}
+		
+		public int SelectedEntryID
+		{
+			get
+			{
+				Gtk.TreeModel model;
+				Gtk.TreeIter iter;
+				if(this.Selection.GetSelected(out model, out iter))
+				{
+					MainBPReport tmp = (MainBPReport)model.GetValue(iter, 0);
+					return tmp.EntryID;
+				}
+				else
+				{
+					return -1;
+				}
+			}
+		}
+		
+		#endregion public properties
+		
+		#region private methods
 		
 		private void LoadData()
 		{
@@ -91,6 +135,10 @@ namespace MonoBPMonitor.Reports
 			}
 		}
 		
+		#endregion private methods
+		
+		#region public methods
+		
 		public void Refresh()
 		{
 			LoadData();
@@ -107,6 +155,8 @@ namespace MonoBPMonitor.Reports
 			if(_CurrentHistoryLimit != Common.Option.HistoryDefaultShow)
 				LoadData();
 		}
+		
+		#endregion public methods
 		
 		#region Cell Render Functions
 		

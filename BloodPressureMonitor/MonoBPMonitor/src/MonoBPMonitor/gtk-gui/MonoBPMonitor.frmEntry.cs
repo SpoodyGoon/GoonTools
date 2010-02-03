@@ -91,6 +91,10 @@ namespace MonoBPMonitor {
         
         private Gtk.Button btnDeleteReading;
         
+        private Gtk.Alignment alignment2;
+        
+        private Gtk.HSeparator hseparator1;
+        
         private Gtk.Alignment alignment13;
         
         private Gtk.Label label1;
@@ -101,10 +105,6 @@ namespace MonoBPMonitor {
         
         private Gtk.TextView txtNotes;
         
-        private Gtk.Alignment alignment15;
-        
-        private Gtk.HSeparator hseparator2;
-        
         private Gtk.Button btnCancel;
         
         private Gtk.Button btnOk;
@@ -112,10 +112,12 @@ namespace MonoBPMonitor {
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget MonoBPMonitor.frmEntry
+            this.WidthRequest = 525;
             this.Name = "MonoBPMonitor.frmEntry";
             this.Title = Mono.Unix.Catalog.GetString("Blood Presure Entry");
             this.Icon = Gdk.Pixbuf.LoadFromResource("icon_small.png");
-            this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
+            this.WindowPosition = ((Gtk.WindowPosition)(2));
             this.Modal = true;
             this.BorderWidth = ((uint)(3));
             this.Resizable = false;
@@ -133,7 +135,7 @@ namespace MonoBPMonitor {
             this.alignment10 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment10.Name = "alignment10";
             // Container child alignment10.Gtk.Container+ContainerChild
-            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 0.5F, 1F);
             this.alignment1.Name = "alignment1";
             this.alignment1.LeftPadding = ((uint)(46));
             // Container child alignment1.Gtk.Container+ContainerChild
@@ -176,7 +178,7 @@ namespace MonoBPMonitor {
             w8.Expand = false;
             w8.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
-            this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 0.5F, 1F);
             this.alignment3.Name = "alignment3";
             this.alignment3.BorderWidth = ((uint)(5));
             // Container child alignment3.Gtk.Container+ContainerChild
@@ -421,18 +423,31 @@ namespace MonoBPMonitor {
             w39.Expand = false;
             w39.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment2.Name = "alignment2";
+            // Container child alignment2.Gtk.Container+ContainerChild
+            this.hseparator1 = new Gtk.HSeparator();
+            this.hseparator1.Name = "hseparator1";
+            this.alignment2.Add(this.hseparator1);
+            this.vbox2.Add(this.alignment2);
+            Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment2]));
+            w41.Position = 3;
+            w41.Expand = false;
+            w41.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
             this.alignment13 = new Gtk.Alignment(0.02F, 0.5F, 0.01F, 0.01F);
             this.alignment13.Name = "alignment13";
             // Container child alignment13.Gtk.Container+ContainerChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Notes:");
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("<b>Notes:</b>");
+            this.label1.UseMarkup = true;
             this.alignment13.Add(this.label1);
             this.vbox2.Add(this.alignment13);
-            Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment13]));
-            w41.Position = 3;
-            w41.Expand = false;
-            w41.Fill = false;
+            Gtk.Box.BoxChild w43 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment13]));
+            w43.Position = 4;
+            w43.Expand = false;
+            w43.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.alignment14 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment14.Name = "alignment14";
@@ -442,7 +457,7 @@ namespace MonoBPMonitor {
             // Container child alignment14.Gtk.Container+ContainerChild
             this.GtkScrolledWindow = new Gtk.ScrolledWindow();
             this.GtkScrolledWindow.Name = "GtkScrolledWindow";
-            this.GtkScrolledWindow.ShadowType = ((Gtk.ShadowType)(1));
+            this.GtkScrolledWindow.ShadowType = ((Gtk.ShadowType)(3));
             // Container child GtkScrolledWindow.Gtk.Container+ContainerChild
             this.txtNotes = new Gtk.TextView();
             this.txtNotes.WidthRequest = 350;
@@ -459,20 +474,8 @@ namespace MonoBPMonitor {
             this.GtkScrolledWindow.Add(this.txtNotes);
             this.alignment14.Add(this.GtkScrolledWindow);
             this.vbox2.Add(this.alignment14);
-            Gtk.Box.BoxChild w44 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment14]));
-            w44.Position = 4;
-            // Container child vbox2.Gtk.Box+BoxChild
-            this.alignment15 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment15.Name = "alignment15";
-            // Container child alignment15.Gtk.Container+ContainerChild
-            this.hseparator2 = new Gtk.HSeparator();
-            this.hseparator2.Name = "hseparator2";
-            this.alignment15.Add(this.hseparator2);
-            this.vbox2.Add(this.alignment15);
-            Gtk.Box.BoxChild w46 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment15]));
+            Gtk.Box.BoxChild w46 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment14]));
             w46.Position = 5;
-            w46.Expand = false;
-            w46.Fill = false;
             w1.Add(this.vbox2);
             Gtk.Box.BoxChild w47 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
             w47.Position = 0;
@@ -509,7 +512,7 @@ namespace MonoBPMonitor {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 517;
+            this.DefaultWidth = 525;
             this.DefaultHeight = 616;
             this.algDelete.Hide();
             this.Show();
