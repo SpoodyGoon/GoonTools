@@ -257,6 +257,7 @@ namespace MonoBPMonitor {
             this.alignment4.BottomPadding = ((uint)(9));
             // Container child alignment4.Gtk.Container+ContainerChild
             this.hbuttonbox2 = new Gtk.HButtonBox();
+            this.hbuttonbox2.Name = "hbuttonbox2";
             this.hbuttonbox2.Spacing = 10;
             this.hbuttonbox2.LayoutStyle = ((Gtk.ButtonBoxStyle)(3));
             // Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild

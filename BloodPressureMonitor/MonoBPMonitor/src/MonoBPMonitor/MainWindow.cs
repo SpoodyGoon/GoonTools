@@ -41,14 +41,12 @@ namespace MonoBPMonitor
 				tvEntityRpt = new Reports.EntryRptTreeView (cboUser.UserID);
 				swEntityRpt.Add (tvEntityRpt);
 				cboUser.Changed += new EventHandler(cboUser_Changed);
-				
+				tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e) { btnRemoveEntry.Sensitive = true; btnEditEntry.Sensitive = true; };
 				// check if update are allowed
 				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "true")
 					UpdatesAction1.Visible = true;
 				else
 					UpdatesAction1.Visible = false;
-				
-				
 				
 			}
 			catch(Exception ex)
@@ -73,6 +71,7 @@ namespace MonoBPMonitor
 			frmEntry fm = new frmEntry ();
 			if(cboUser.UserID > -1)
 				fm.UserID = cboUser.UserID;
+			fm.WindowPosition = WindowPosition.Mouse;
 			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
 				tvEntityRpt.Refresh();
 			fm.Destroy ();
@@ -82,6 +81,8 @@ namespace MonoBPMonitor
 		{
 			frmMedication fm = new frmMedication ();
 			fm.UserID = cboUser.UserID;
+			fm.ParentWindow = this.GdkWindow;
+			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -90,6 +91,7 @@ namespace MonoBPMonitor
 		{
 			frmDoctors fm = new frmDoctors ();
 			fm.UserID = cboUser.UserID;
+			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -97,6 +99,7 @@ namespace MonoBPMonitor
 		protected virtual void OnUsersActionActivated (object sender, System.EventArgs e)
 		{
 			frmUsers fm = new frmUsers ();
+			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -129,6 +132,7 @@ namespace MonoBPMonitor
 				ad.HeightRequest = 300;
 				ad.WebsiteLabel = "MonoBPMonitor Project Site";
 				ad.Website = "http://code.google.com/p/goontools/wiki/MonoBPMonitor";
+				ad.WindowPosition = WindowPosition.Mouse;
 				ad.Run();
 				ad.Destroy();
 			}
@@ -142,6 +146,7 @@ namespace MonoBPMonitor
 		{
 			frmEntry fm = new frmEntry ();
 			fm.UserID = cboUser.UserID;
+			fm.WindowPosition = WindowPosition.Mouse;
 			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
 				tvEntityRpt.Refresh();
 			
@@ -151,6 +156,7 @@ namespace MonoBPMonitor
 		protected virtual void OnEdituserPngActionActivated (object sender, System.EventArgs e)
 		{
 			frmUsers fm = new frmUsers ();
+			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -168,6 +174,7 @@ namespace MonoBPMonitor
 		protected virtual void OnPreferencesActionActivated (object sender, System.EventArgs e)
 		{
 			frmOptions fm = new frmOptions ();
+			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 			tvEntityRpt.Refresh (true);
@@ -185,6 +192,7 @@ namespace MonoBPMonitor
 		{
 			frmDoctors fm = new frmDoctors ();
 			fm.UserID = cboUser.UserID;
+			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -192,6 +200,7 @@ namespace MonoBPMonitor
 		protected virtual void OnErrorLogActionActivated (object sender, System.EventArgs e)
 		{
 			frmErrorLog fm = new frmErrorLog ();
+			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run();
 			fm.Destroy();
 		}
@@ -200,6 +209,7 @@ namespace MonoBPMonitor
 		protected virtual void OnBackupRestore_Clicked (object sender, System.EventArgs e)
 		{
 			frmBackupRestore fm = new frmBackupRestore();
+			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run();
 			fm.Destroy();
 		}
@@ -219,17 +229,59 @@ namespace MonoBPMonitor
 		protected virtual void OnUpdatesActionActivated (object sender, System.EventArgs e)
 		{
 		}
-		protected virtual void OnButton1Clicked (object sender, System.EventArgs e)
+		
+		protected virtual void OnBtnAddEntryClicked (object sender, System.EventArgs e)
 		{
+			try
+			{
+				frmEntry fm = new frmEntry ();
+				fm.UserID = cboUser.UserID;
+				fm.WindowPosition = WindowPosition.Mouse;
+				if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
+					tvEntityRpt.Refresh();
+				
+				fm.Destroy ();
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 		}
 		
-		protected virtual void OnButton2Clicked (object sender, System.EventArgs e)
+		protected virtual void OnBtnRemoveEntryClicked (object sender, System.EventArgs e)
 		{
+			try
+			{
+				tvEntityRpt.SelectedEntry.Remove();
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 		}
 		
-		protected virtual void OnButton3Clicked (object sender, System.EventArgs e)
+		protected virtual void OnBtnEditEntryClicked (object sender, System.EventArgs e)
 		{
+			try
+			{
+				if(tvEntityRpt.SelectedEntryID > -1)
+				{
+					frmEntry fm = new frmEntry(tvEntityRpt.SelectedEntryID);
+					fm.UserID = cboUser.UserID;
+					if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
+						tvEntityRpt.Refresh();
+					
+					fm.Destroy ();
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 		}
+		
+		
+		
 		
 		
 		

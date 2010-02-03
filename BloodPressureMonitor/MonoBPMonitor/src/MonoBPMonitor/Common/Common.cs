@@ -166,6 +166,7 @@ namespace GoonTools
 			}
 			
 			Gtk.MessageDialog md = new Gtk.MessageDialog(parent_window, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			md.WindowPosition = WindowPosition.Mouse;
 			md.Run();
 			md.Destroy();
 		}

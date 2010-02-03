@@ -47,6 +47,27 @@ namespace MonoBPMonitor
 			}
 		}
 		
+		public frmEntry(MonoBPMonitor.Entry entry)
+		{
+			this.Build();
+			try
+			{
+				_CurrentEntry = entry;
+				_CurrentEntryID = _CurrentEntry.EntryID;
+				cboUser.SetUser(_CurrentEntry.UserID);
+				txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToString("g");
+				spnSystolic.Value = _CurrentEntry.Systolic;
+				spnDiastolic.Value = _CurrentEntry.Diastolic;
+				spnHeartRate.Value = _CurrentEntry.HeartRate;
+				txtNotes.Buffer.Text = _CurrentEntry.Notes;
+				this.ShowAll();
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
+			}
+		}
+		
 		public int UserID
 		{
 			set{cboUser.SetUser(value);}

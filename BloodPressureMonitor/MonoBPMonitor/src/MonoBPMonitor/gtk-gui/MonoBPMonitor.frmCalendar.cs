@@ -65,7 +65,7 @@ namespace MonoBPMonitor {
             this.WidthRequest = 350;
             this.Name = "MonoBPMonitor.frmCalendar";
             this.Icon = Gdk.Pixbuf.LoadFromResource("date.png");
-            this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.WindowPosition = ((Gtk.WindowPosition)(2));
             this.Modal = true;
             this.BorderWidth = ((uint)(2));
             this.Resizable = false;

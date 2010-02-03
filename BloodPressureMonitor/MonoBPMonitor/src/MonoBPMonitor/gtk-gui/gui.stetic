@@ -281,6 +281,7 @@
         <child>
           <widget class="Gtk.Alignment" id="alignment2">
             <property name="MemberName" />
+            <property name="LeftPadding">20</property>
             <child>
               <widget class="Gtk.HBox" id="hbox1">
                 <property name="MemberName" />
@@ -297,14 +298,14 @@
                         <property name="Spacing">24</property>
                         <property name="Size">3</property>
                         <child>
-                          <widget class="Gtk.Button" id="button1">
+                          <widget class="Gtk.Button" id="btnAddEntry">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
                             <property name="Icon">resource:edit_add.png</property>
                             <property name="Label" translatable="yes">_Add</property>
                             <property name="UseUnderline">True</property>
-                            <signal name="Clicked" handler="OnButton1Clicked" />
+                            <signal name="Clicked" handler="OnBtnAddEntryClicked" />
                           </widget>
                           <packing>
                             <property name="Expand">False</property>
@@ -312,7 +313,7 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Button" id="button2">
+                          <widget class="Gtk.Button" id="btnRemoveEntry">
                             <property name="MemberName" />
                             <property name="Sensitive">False</property>
                             <property name="CanFocus">True</property>
@@ -320,7 +321,7 @@
                             <property name="Icon">resource:edit_remove.png</property>
                             <property name="Label" translatable="yes">_Remove</property>
                             <property name="UseUnderline">True</property>
-                            <signal name="Clicked" handler="OnButton2Clicked" />
+                            <signal name="Clicked" handler="OnBtnRemoveEntryClicked" />
                           </widget>
                           <packing>
                             <property name="Position">1</property>
@@ -329,7 +330,7 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Button" id="button3">
+                          <widget class="Gtk.Button" id="btnEditEntry">
                             <property name="MemberName" />
                             <property name="Sensitive">False</property>
                             <property name="CanFocus">True</property>
@@ -337,7 +338,7 @@
                             <property name="Icon">stock:gtk-edit Menu</property>
                             <property name="Label" translatable="yes">_Edit</property>
                             <property name="UseUnderline">True</property>
-                            <signal name="Clicked" handler="OnButton3Clicked" />
+                            <signal name="Clicked" handler="OnBtnEditEntryClicked" />
                           </widget>
                           <packing>
                             <property name="Position">2</property>
@@ -435,7 +436,7 @@
     <property name="Title" translatable="yes">User Management</property>
     <property name="Icon">resource:edit_user.png</property>
     <property name="TypeHint">Dialog</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">Mouse</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">4</property>
     <property name="AllowShrink">True</property>
@@ -622,22 +623,6 @@
                 <property name="AutoSize">True</property>
               </packing>
             </child>
-            <child>
-              <widget class="Gtk.Alignment" id="alignment8">
-                <property name="MemberName" />
-                <child>
-                  <widget class="Gtk.HSeparator" id="hseparator3">
-                    <property name="MemberName" />
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">5</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -680,7 +665,7 @@
     <property name="Title" translatable="yes">Doctor Manager</property>
     <property name="Icon">resource:doctor.png</property>
     <property name="TypeHint">Dialog</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">Mouse</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">3</property>
     <property name="AllowShrink">True</property>
@@ -1050,22 +1035,6 @@
                 <property name="AutoSize">True</property>
               </packing>
             </child>
-            <child>
-              <widget class="Gtk.Alignment" id="alignment9">
-                <property name="MemberName" />
-                <child>
-                  <widget class="Gtk.HSeparator" id="hseparator3">
-                    <property name="MemberName" />
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">6</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -1104,7 +1073,8 @@
   <widget class="Gtk.Dialog" id="MonoBPMonitor.frmMedication" design-size="760 699">
     <property name="MemberName" />
     <property name="Icon">resource:rx.png</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="TypeHint">Dialog</property>
+    <property name="WindowPosition">Mouse</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -1627,6 +1597,7 @@
             <child>
               <widget class="Gtk.Alignment" id="alignment16">
                 <property name="MemberName" />
+                <property name="LeftPadding">25</property>
                 <child>
                   <widget class="Gtk.HButtonBox" id="hbuttonbox3">
                     <property name="MemberName" />
@@ -1660,6 +1631,7 @@
             <child>
               <widget class="Gtk.Alignment" id="alignment17">
                 <property name="MemberName" />
+                <property name="BottomPadding">6</property>
                 <child>
                   <widget class="Gtk.ScrolledWindow" id="swMedication">
                     <property name="MemberName" />
@@ -1680,22 +1652,6 @@
               <packing>
                 <property name="Position">5</property>
                 <property name="AutoSize">True</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Alignment" id="alignment20">
-                <property name="MemberName" />
-                <child>
-                  <widget class="Gtk.HSeparator" id="hseparator2">
-                    <property name="MemberName" />
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">6</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
               </packing>
             </child>
           </widget>
@@ -1733,11 +1689,13 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmEntry" design-size="517 616">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmEntry" design-size="525 616">
     <property name="MemberName" />
+    <property name="WidthRequest">525</property>
     <property name="Title" translatable="yes">Blood Presure Entry</property>
     <property name="Icon">resource:icon_small.png</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="TypeHint">Dialog</property>
+    <property name="WindowPosition">Mouse</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">3</property>
     <property name="Resizable">False</property>
@@ -1759,6 +1717,7 @@
                 <child>
                   <widget class="Gtk.Alignment" id="alignment1">
                     <property name="MemberName" />
+                    <property name="Xscale">0.5</property>
                     <property name="LeftPadding">46</property>
                     <child>
                       <widget class="Gtk.HBox" id="hbox1">
@@ -1815,6 +1774,7 @@
             <child>
               <widget class="Gtk.Alignment" id="alignment3">
                 <property name="MemberName" />
+                <property name="Xscale">0.5</property>
                 <property name="BorderWidth">5</property>
                 <child>
                   <widget class="Gtk.Table" id="table1">
@@ -2215,6 +2175,22 @@
               </packing>
             </child>
             <child>
+              <widget class="Gtk.Alignment" id="alignment2">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.HSeparator" id="hseparator1">
+                    <property name="MemberName" />
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.Alignment" id="alignment13">
                 <property name="MemberName" />
                 <property name="Xscale">0.01</property>
@@ -2223,12 +2199,13 @@
                 <child>
                   <widget class="Gtk.Label" id="label1">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Notes:</property>
+                    <property name="LabelProp" translatable="yes">&lt;b&gt;Notes:&lt;/b&gt;</property>
+                    <property name="UseMarkup">True</property>
                   </widget>
                 </child>
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -2243,7 +2220,7 @@
                 <child>
                   <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
                     <property name="MemberName" />
-                    <property name="ShadowType">In</property>
+                    <property name="ShadowType">EtchedIn</property>
                     <child>
                       <widget class="Gtk.TextView" id="txtNotes">
                         <property name="MemberName" />
@@ -2265,24 +2242,8 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
-                <property name="AutoSize">True</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Alignment" id="alignment15">
-                <property name="MemberName" />
-                <child>
-                  <widget class="Gtk.HSeparator" id="hseparator2">
-                    <property name="MemberName" />
-                  </widget>
-                </child>
-              </widget>
-              <packing>
                 <property name="Position">5</property>
                 <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
               </packing>
             </child>
           </widget>
@@ -2341,7 +2302,7 @@
     <property name="MemberName" />
     <property name="WidthRequest">350</property>
     <property name="Icon">resource:date.png</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">Mouse</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">2</property>
     <property name="Resizable">False</property>
@@ -3040,7 +3001,7 @@
     <property name="Title" translatable="yes">Options</property>
     <property name="Icon">stock:gtk-preferences Dialog</property>
     <property name="TypeHint">Dialog</property>
-    <property name="WindowPosition">Center</property>
+    <property name="WindowPosition">Mouse</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">4</property>
     <property name="Resizable">False</property>
@@ -3678,8 +3639,9 @@
     <property name="WidthRequest">550</property>
     <property name="HeightRequest">450</property>
     <property name="Title" translatable="yes">Error Log Dump</property>
+    <property name="Icon">stock:gtk-dialog-error Menu</property>
     <property name="TypeHint">Dialog</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">Mouse</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">3</property>
     <property name="DefaultWidth">550</property>
@@ -3785,6 +3747,7 @@
                 <child>
                   <widget class="Gtk.HButtonBox" id="hbuttonbox2">
                     <property name="MemberName" />
+                    <property name="BorderWidth">3</property>
                     <property name="Size">1</property>
                     <property name="LayoutStyle">Start</property>
                     <child>
@@ -3806,22 +3769,6 @@
               </widget>
               <packing>
                 <property name="Position">4</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Alignment" id="alignment6">
-                <property name="MemberName" />
-                <child>
-                  <widget class="Gtk.HSeparator" id="hseparator2">
-                    <property name="MemberName" />
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">5</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>

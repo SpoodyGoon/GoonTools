@@ -75,11 +75,11 @@ namespace MonoBPMonitor {
         
         private Gtk.HButtonBox hbuttonbox1;
         
-        private Gtk.Button button1;
+        private Gtk.Button btnAddEntry;
         
-        private Gtk.Button button2;
+        private Gtk.Button btnRemoveEntry;
         
-        private Gtk.Button button3;
+        private Gtk.Button btnEditEntry;
         
         private Gtk.Alignment alignment5;
         
@@ -213,6 +213,7 @@ namespace MonoBPMonitor {
             // Container child vbox1.Gtk.Box+BoxChild
             this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment2.Name = "alignment2";
+            this.alignment2.LeftPadding = ((uint)(20));
             // Container child alignment2.Gtk.Container+ContainerChild
             this.hbox1 = new Gtk.HBox();
             this.hbox1.Name = "hbox1";
@@ -223,14 +224,13 @@ namespace MonoBPMonitor {
             this.alignment4.Name = "alignment4";
             // Container child alignment4.Gtk.Container+ContainerChild
             this.hbuttonbox1 = new Gtk.HButtonBox();
-            this.hbuttonbox1.Name = "hbuttonbox1";
             this.hbuttonbox1.Spacing = 24;
             // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-            this.button1 = new Gtk.Button();
-            this.button1.CanFocus = true;
-            this.button1.Name = "button1";
-            this.button1.UseUnderline = true;
-            // Container child button1.Gtk.Container+ContainerChild
+            this.btnAddEntry = new Gtk.Button();
+            this.btnAddEntry.CanFocus = true;
+            this.btnAddEntry.Name = "btnAddEntry";
+            this.btnAddEntry.UseUnderline = true;
+            // Container child btnAddEntry.Gtk.Container+ContainerChild
             Gtk.Alignment w6 = new Gtk.Alignment(0.5F, 0.5F, 0F, 0F);
             // Container child GtkAlignment.Gtk.Container+ContainerChild
             Gtk.HBox w7 = new Gtk.HBox();
@@ -245,18 +245,18 @@ namespace MonoBPMonitor {
             w10.UseUnderline = true;
             w7.Add(w10);
             w6.Add(w7);
-            this.button1.Add(w6);
-            this.hbuttonbox1.Add(this.button1);
-            Gtk.ButtonBox.ButtonBoxChild w14 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.button1]));
+            this.btnAddEntry.Add(w6);
+            this.hbuttonbox1.Add(this.btnAddEntry);
+            Gtk.ButtonBox.ButtonBoxChild w14 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.btnAddEntry]));
             w14.Expand = false;
             w14.Fill = false;
             // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-            this.button2 = new Gtk.Button();
-            this.button2.Sensitive = false;
-            this.button2.CanFocus = true;
-            this.button2.Name = "button2";
-            this.button2.UseUnderline = true;
-            // Container child button2.Gtk.Container+ContainerChild
+            this.btnRemoveEntry = new Gtk.Button();
+            this.btnRemoveEntry.Sensitive = false;
+            this.btnRemoveEntry.CanFocus = true;
+            this.btnRemoveEntry.Name = "btnRemoveEntry";
+            this.btnRemoveEntry.UseUnderline = true;
+            // Container child btnRemoveEntry.Gtk.Container+ContainerChild
             Gtk.Alignment w15 = new Gtk.Alignment(0.5F, 0.5F, 0F, 0F);
             // Container child GtkAlignment.Gtk.Container+ContainerChild
             Gtk.HBox w16 = new Gtk.HBox();
@@ -271,19 +271,19 @@ namespace MonoBPMonitor {
             w19.UseUnderline = true;
             w16.Add(w19);
             w15.Add(w16);
-            this.button2.Add(w15);
-            this.hbuttonbox1.Add(this.button2);
-            Gtk.ButtonBox.ButtonBoxChild w23 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.button2]));
+            this.btnRemoveEntry.Add(w15);
+            this.hbuttonbox1.Add(this.btnRemoveEntry);
+            Gtk.ButtonBox.ButtonBoxChild w23 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.btnRemoveEntry]));
             w23.Position = 1;
             w23.Expand = false;
             w23.Fill = false;
             // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-            this.button3 = new Gtk.Button();
-            this.button3.Sensitive = false;
-            this.button3.CanFocus = true;
-            this.button3.Name = "button3";
-            this.button3.UseUnderline = true;
-            // Container child button3.Gtk.Container+ContainerChild
+            this.btnEditEntry = new Gtk.Button();
+            this.btnEditEntry.Sensitive = false;
+            this.btnEditEntry.CanFocus = true;
+            this.btnEditEntry.Name = "btnEditEntry";
+            this.btnEditEntry.UseUnderline = true;
+            // Container child btnEditEntry.Gtk.Container+ContainerChild
             Gtk.Alignment w24 = new Gtk.Alignment(0.5F, 0.5F, 0F, 0F);
             // Container child GtkAlignment.Gtk.Container+ContainerChild
             Gtk.HBox w25 = new Gtk.HBox();
@@ -298,9 +298,9 @@ namespace MonoBPMonitor {
             w28.UseUnderline = true;
             w25.Add(w28);
             w24.Add(w25);
-            this.button3.Add(w24);
-            this.hbuttonbox1.Add(this.button3);
-            Gtk.ButtonBox.ButtonBoxChild w32 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.button3]));
+            this.btnEditEntry.Add(w24);
+            this.hbuttonbox1.Add(this.btnEditEntry);
+            Gtk.ButtonBox.ButtonBoxChild w32 = ((Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.btnEditEntry]));
             w32.Position = 2;
             w32.Expand = false;
             w32.Fill = false;
@@ -371,9 +371,9 @@ namespace MonoBPMonitor {
             this.BackupRestoreAction.Activated += new System.EventHandler(this.OnBackupRestore_Clicked);
             this.UpdatesAction1.Activated += new System.EventHandler(this.OnUpdatesActionActivated);
             this.OptionsAction.Activated += new System.EventHandler(this.OnPreferencesActionActivated);
-            this.button1.Clicked += new System.EventHandler(this.OnButton1Clicked);
-            this.button2.Clicked += new System.EventHandler(this.OnButton2Clicked);
-            this.button3.Clicked += new System.EventHandler(this.OnButton3Clicked);
+            this.btnAddEntry.Clicked += new System.EventHandler(this.OnBtnAddEntryClicked);
+            this.btnRemoveEntry.Clicked += new System.EventHandler(this.OnBtnRemoveEntryClicked);
+            this.btnEditEntry.Clicked += new System.EventHandler(this.OnBtnEditEntryClicked);
         }
     }
 }

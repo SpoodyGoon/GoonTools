@@ -59,7 +59,7 @@ namespace MonoBPMonitor {
             this.Title = Mono.Unix.Catalog.GetString("Options");
             this.Icon = Stetic.IconLoader.LoadIcon(this, "gtk-preferences", Gtk.IconSize.Dialog, 48);
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
-            this.WindowPosition = ((Gtk.WindowPosition)(1));
+            this.WindowPosition = ((Gtk.WindowPosition)(2));
             this.Modal = true;
             this.BorderWidth = ((uint)(4));
             this.Resizable = false;
