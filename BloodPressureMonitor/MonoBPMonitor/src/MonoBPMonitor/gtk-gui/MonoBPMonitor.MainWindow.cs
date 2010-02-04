@@ -51,8 +51,6 @@ namespace MonoBPMonitor {
         
         private Gtk.Action ToolsAction;
         
-        private Gtk.Action BackupRestoreAction;
-        
         private Gtk.Action UpdatesAction1;
         
         private Gtk.Action OptionsAction;
@@ -150,9 +148,6 @@ namespace MonoBPMonitor {
             this.ToolsAction = new Gtk.Action("ToolsAction", Mono.Unix.Catalog.GetString("Tools"), null, null);
             this.ToolsAction.ShortLabel = Mono.Unix.Catalog.GetString("Tools");
             w1.Add(this.ToolsAction, null);
-            this.BackupRestoreAction = new Gtk.Action("BackupRestoreAction", Mono.Unix.Catalog.GetString("Backup/Restore..."), null, null);
-            this.BackupRestoreAction.ShortLabel = Mono.Unix.Catalog.GetString("Backup");
-            w1.Add(this.BackupRestoreAction, null);
             this.UpdatesAction1 = new Gtk.Action("UpdatesAction1", Mono.Unix.Catalog.GetString("Updates..."), null, null);
             this.UpdatesAction1.ShortLabel = Mono.Unix.Catalog.GetString("Updates");
             w1.Add(this.UpdatesAction1, null);
@@ -176,7 +171,7 @@ namespace MonoBPMonitor {
             this.vbox1.Name = "vbox1";
             this.vbox1.Spacing = 6;
             // Container child vbox1.Gtk.Box+BoxChild
-            this.UIManager.AddUiFromString(@"<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewEntryAction' action='NewEntryAction'/><menuitem name='MedicationAction' action='MedicationAction'/><menuitem name='DoctorsAction' action='DoctorsAction'/><menuitem name='UsersAction' action='UsersAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='BackupRestoreAction' action='BackupRestoreAction'/><menuitem name='UpdatesAction1' action='UpdatesAction1'/><menuitem name='OptionsAction' action='OptionsAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='ErrorLogAction' action='ErrorLogAction'/><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
+            this.UIManager.AddUiFromString(@"<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewEntryAction' action='NewEntryAction'/><menuitem name='MedicationAction' action='MedicationAction'/><menuitem name='DoctorsAction' action='DoctorsAction'/><menuitem name='UsersAction' action='UsersAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='UpdatesAction1' action='UpdatesAction1'/><menuitem name='OptionsAction' action='OptionsAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='ErrorLogAction' action='ErrorLogAction'/><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
             this.menubar1 = ((Gtk.MenuBar)(this.UIManager.GetWidget("/menubar1")));
             this.menubar1.Name = "menubar1";
             this.vbox1.Add(this.menubar1);
@@ -368,7 +363,6 @@ namespace MonoBPMonitor {
             this.DoctorsAction1.Activated += new System.EventHandler(this.OnDoctorPngActionActivated);
             this.MedicationAction1.Activated += new System.EventHandler(this.OnRxPngActionActivated);
             this.ErrorLogAction.Activated += new System.EventHandler(this.OnErrorLogActionActivated);
-            this.BackupRestoreAction.Activated += new System.EventHandler(this.OnBackupRestore_Clicked);
             this.UpdatesAction1.Activated += new System.EventHandler(this.OnUpdatesActionActivated);
             this.OptionsAction.Activated += new System.EventHandler(this.OnPreferencesActionActivated);
             this.btnAddEntry.Clicked += new System.EventHandler(this.OnBtnAddEntryClicked);

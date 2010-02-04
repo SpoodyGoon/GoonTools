@@ -55,15 +55,20 @@ namespace MonoBPMonitor
 			}
 			this.ShowAll ();
 		}
+		
+		#region Private Window Events
+		
+		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
+		{
+			Common.SaveUserData();
+			Application.Quit();
+		}
+		
+		#endregion Private Window Events
 
 		private void cboUser_Changed(object sender, EventArgs e)
 		{
 			tvEntityRpt.Refresh(cboUser.UserID);
-		}
-
-		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
-		{
-			Application.Quit();
 		}
 
 		protected virtual void OnNewEntryActionActivated (object sender, System.EventArgs e)
@@ -165,11 +170,13 @@ namespace MonoBPMonitor
 
 		protected virtual void OnExitPngActionActivated (object sender, System.EventArgs e)
 		{
+			Common.SaveUserData();
 			Gtk.Application.Quit ();
 		}
 
 		protected virtual void OnQuitActionActivated (object sender, System.EventArgs e)
 		{
+			Common.SaveUserData();
 			Gtk.Application.Quit ();
 		}
 
@@ -202,15 +209,6 @@ namespace MonoBPMonitor
 		protected virtual void OnErrorLogActionActivated (object sender, System.EventArgs e)
 		{
 			frmErrorLog fm = new frmErrorLog ();
-			fm.WindowPosition = WindowPosition.Mouse;
-			fm.Run();
-			fm.Destroy();
-		}
-		
-		
-		protected virtual void OnBackupRestore_Clicked (object sender, System.EventArgs e)
-		{
-			frmBackupRestore fm = new frmBackupRestore();
 			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run();
 			fm.Destroy();

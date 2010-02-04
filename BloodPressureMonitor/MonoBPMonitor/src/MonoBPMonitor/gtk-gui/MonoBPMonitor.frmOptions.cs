@@ -214,7 +214,7 @@ namespace MonoBPMonitor {
             this.notebook1 = new Gtk.Notebook();
             this.notebook1.CanFocus = true;
             this.notebook1.Name = "notebook1";
-            this.notebook1.CurrentPage = 2;
+            this.notebook1.CurrentPage = 1;
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.GtkAlignment2 = new Gtk.Alignment(0F, 0F, 1F, 1F);
             this.GtkAlignment2.Name = "GtkAlignment2";
@@ -899,9 +899,12 @@ namespace MonoBPMonitor {
             this.Close += new System.EventHandler(this.OnClose);
             this.cbxLimitRecords.Toggled += new System.EventHandler(this.OnCbxLimitRecordsToggled);
             this.cbxAll.Toggled += new System.EventHandler(this.OnCbxAllToggled);
+            this.cbxDatabaseData.Toggled += new System.EventHandler(this.OnBackupGeneral_Toggled);
+            this.cbxDatabaseSchema.Toggled += new System.EventHandler(this.OnBackupGeneral_Toggled);
+            this.cbxLogs.Toggled += new System.EventHandler(this.OnBackupGeneral_Toggled);
+            this.cbxOptions.Toggled += new System.EventHandler(this.OnBackupGeneral_Toggled);
             this.btnBackup.Clicked += new System.EventHandler(this.OnBtnBackupClicked);
             this.btnRestore.Clicked += new System.EventHandler(this.OnBtnRestoreClicked);
-            this.cbxUseCustomThemes.Toggled += new System.EventHandler(this.OnCbxUseCustomThemesToggled);
         }
     }
 }

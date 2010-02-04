@@ -610,9 +610,14 @@ namespace MonoBPMonitor
 		}
 		
 		#endregion Themes
-		protected virtual void OnCbxUseCustomThemesToggled (object sender, System.EventArgs e)
+		
+		protected virtual void OnBackupGeneral_Toggled (object sender, System.EventArgs e)
 		{
+			Gtk.CheckButton cbx = (Gtk.CheckButton)sender;
+			
+			CheckAll();
 		}
+		
 		
 		
 		

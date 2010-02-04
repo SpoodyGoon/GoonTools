@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created by SharpDevelop.
  * User: ayork
  * Date: 2/4/2010
@@ -29,23 +29,23 @@ namespace GoonTools.Helper
 		{			
 			try
 			{
-				if (dt.TableName != "MetaInfo" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
+				if (dt.TableName != "MetaInfo" || dt.Columns[0].ColumnName != "Entity" || dt.Columns[1].ColumnName != "MajorVersion" || dt.Columns[2].ColumnName != "MinorVersion")
 					throw new Exception ("Invalid Table Passed to load Options");
-				dt.PrimaryKey = new DataColumn[] { (DataColumn)dt.Columns["Key"] };
+				dt.PrimaryKey = new DataColumn[] { (DataColumn)dt.Columns["Entity"] };
 				DataRow dr;
 				
 				dr = (DataRow)dt.Rows.Find ("MonoBPMonitor");
 				if (dr != null)
-					_MonoBPMonitor = (Version)(dr["Value"]);
+					_MonoBPMonitor = new Version((int)dr["MajorVersion"], (int)dr["MinorVersion"]);
 				dr = (DataRow)dt.Rows.Find ("GUPdotNET");
 				if (dr != null)
-					_GUPdotNET = (Version)(dr["Value"]);
+					_GUPdotNET = new Version((int)dr["MajorVersion"], (int)dr["MinorVersion"]);
 				dr = (DataRow)dt.Rows.Find ("UserFile");
 				if (dr != null)
-					_UserFile = (Version)(dr["Value"]);
+					_UserFile = new Version((int)dr["MajorVersion"], (int)dr["MinorVersion"]);
 				dr = (DataRow)dt.Rows.Find ("Database");
 				if (dr != null)
-					_Database = (Version)(dr["Value"]);
+					_Database = new Version((int)dr["MajorVersion"], (int)dr["MinorVersion"]);
 			}
 			catch(Exception ex)
 			{
@@ -58,25 +58,30 @@ namespace GoonTools.Helper
 			DataTable dt = new DataTable ("MetaInfo");
 			try {
 				dt.Columns.AddRange (new DataColumn[] {
-					new DataColumn ("Key", typeof(string)),
-					new DataColumn ("Value", typeof(object))
+					new DataColumn ("Entity", typeof(string)),
+					new DataColumn ("MajorVersion", typeof(int)),
+					new DataColumn ("MinorVersion", typeof(int))
 				});
 				dt.PrimaryKey = new DataColumn[] { dt.Columns["Key"] };
 				System.Data.DataRow dr = dt.NewRow ();
-				dr["Key"] = "MonoBPMonitor";
-				dr["Value"] = _MonoBPMonitor;
+				dr["Entity"] = "MonoBPMonitor";
+				dr["MajorVersion"] = _MonoBPMonitor.Major;
+				dr["MinorVersion"] = _MonoBPMonitor.Minor;
 				dt.Rows.Add (dr);
 				dr = dt.NewRow ();
-				dr["Key"] = "GUPdotNET";
-				dr["Value"] = _GUPdotNET;
+				dr["Entity"] = "GUPdotNET";
+				dr["MajorVersion"] = _GUPdotNET.Major;
+				dr["MinorVersion"] = _GUPdotNET.Minor;
 				dt.Rows.Add (dr);
 				dr = dt.NewRow ();
-				dr["Key"] = "UserFile";
-				dr["Value"] = _UserFile;
+				dr["Entity"] = "UserFile";
+				dr["MajorVersion"] = _UserFile.Major;
+				dr["MinorVersion"] = _UserFile.Minor;
 				dt.Rows.Add (dr);
 				dr = dt.NewRow ();
-				dr["Key"] = "Database";
-				dr["Value"] = _Database;
+				dr["Entity"] = "Database";
+				dr["MajorVersion"] = _Database.Major;
+				dr["MinorVersion"] = _Database.Minor;
 				dt.Rows.Add (dr);
 			}
 			catch(Exception ex)
