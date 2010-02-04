@@ -15,17 +15,17 @@ namespace GoonTools.Helper
 	/// <summary>
 	/// Description of MetaInfo.
 	/// </summary>
-	public class MetaInfo
+	public class MetaInformation
 	{
 		private Version _MonoBPMonitor = new Version(0,1);
 		private Version _GUPdotNET = new Version(0,1);
 		private Version _UserFile = new Version(1,0);
 		private Version _Database = new Version(1,0);
-		public MetaInfo()
+		public MetaInformation()
 		{
 		}
 		
-		public MetaInfo(DataTable dt)
+		public MetaInformation(DataTable dt)
 		{			
 			try
 			{

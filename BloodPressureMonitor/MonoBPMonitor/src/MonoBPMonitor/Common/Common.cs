@@ -36,7 +36,7 @@ namespace GoonTools
 	public static class Common
 	{
 		private static GoonTools.Helper.Options _Option;
-		private static GoonTools.Helper.MetaInfo _MetaInfo;
+		private static GoonTools.Helper.MetaInformation _MetaInfo;
 		private static GoonTools.Helper.EnviromentData _EnvData = new GoonTools.Helper.EnviromentData();
 		#region Public Properties
 		
@@ -48,6 +48,11 @@ namespace GoonTools
 		public static GoonTools.Helper.EnviromentData EnvData
 		{
 			get{return _EnvData;}
+		}
+		
+		public static GoonTools.Helper.MetaInformation MetaInfo
+		{
+			get{return _MetaInfo;}
 		}
 		
 		#endregion Public Properties
@@ -71,7 +76,7 @@ namespace GoonTools
 				else
 				{
 					_Option = new Helper.Options();
-					_MetaInfo = new Helper.MetaInfo();
+					_MetaInfo = new Helper.MetaInformation();
 					SaveUserData();
 				}
 				
@@ -100,9 +105,9 @@ namespace GoonTools
 				
 				dtTMP = (DataTable)ds.Tables["MetaInfo"];
 				if(dtTMP != null)
-					_MetaInfo = new GoonTools.Helper.MetaInfo(dtTMP);
+					_MetaInfo = new GoonTools.Helper.MetaInformation(dtTMP);
 				else
-					_MetaInfo = new GoonTools.Helper.MetaInfo();
+					_MetaInfo = new GoonTools.Helper.MetaInformation();
 					
 				ds.Clear();
 				ds.Dispose();				
