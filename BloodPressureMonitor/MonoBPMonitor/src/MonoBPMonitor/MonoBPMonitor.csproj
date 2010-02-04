@@ -121,6 +121,8 @@
     <EmbeddedResource Include="images\date.png">
       <LogicalName>date.png</LogicalName>
     </EmbeddedResource>
+    <Compile Include="Common\MetaInfo.cs" />
+    <Compile Include="Data\ThemeComboBox.cs" />
     <Compile Include="Doctors\DoctorTreeView.cs" />
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
@@ -190,7 +192,6 @@
     <Content Include="Data\BPMonitor.s3db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="Data\UserPreferences.cs" />
     <Content Include="BPMonitor.desktop">
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
     </Content>
