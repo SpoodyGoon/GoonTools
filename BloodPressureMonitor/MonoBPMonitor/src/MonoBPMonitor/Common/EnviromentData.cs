@@ -41,12 +41,14 @@ namespace GoonTools.Helper
 		private string _ProgramName = null;
 		private string _SavePath = null;
 		private string _UserOptionFile = null;
-		private UserFileType _CurrentUserFileType = UserFileType.xml;
 		private string _ErrorLogFile = null;
 		private string _ThemePath = null;
+		private string _UserThemePath = null;
 		private string _DataPath = null;
 		public EnviromentData()
 		{
+			so.FileInfo fi;
+			so.DirectoryInfo di;
 			sr.Assembly asm = sr.Assembly.GetExecutingAssembly ();
 			
 			// set the operating system
@@ -56,50 +58,51 @@ namespace GoonTools.Helper
 			_DirChar = so.Path.DirectorySeparatorChar.ToString();
 			
 			// set the app path
-			so.FileInfo fi = new so.FileInfo(asm.Location);
+			 fi = new so.FileInfo(asm.Location);
 			_AppPath = fi.Directory.FullName;
 			_ProgramName = asm.GetName().Name;
 			if(sc.ConfigurationManager.AppSettings["Debug"].ToLower() == "false")
 			{
 				// set the location of the save data for the user
-				_SavePath = so.Path.Combine(se.GetFolderPath(se.SpecialFolder.ApplicationData), _ProgramName);
+				di = new so.DirectoryInfo(so.Path.Combine(se.GetFolderPath(se.SpecialFolder.ApplicationData), _ProgramName));
 				
 			}
 			else
 			{
-				_SavePath = so.Path.Combine(_AppPath, "DebugFiles");
+				di = new so.DirectoryInfo(so.Path.Combine(_AppPath, "DebugFiles"));
 			}
 			
-			if(!so.Directory.Exists(_SavePath))
-				so.Directory.CreateDirectory(_SavePath);
+			if(!di.Exists)
+				di.Create();
 			
-			_CurrentUserFileType = GetUserFileType();
+			_SavePath = di.FullName;			
 			
 			// get the defaults path - this is where we keep the things we copy over
 			// when setting up a new user
-			_DataPath = so.Path.Combine(_AppPath , "Data");
-			_ThemePath = so.Path.Combine(_AppPath , "Themes");
-			_ErrorLogFile = so.Path.Combine(_SavePath , "error.txt");
-			_UserOptionFile = so.Path.Combine(_SavePath, _ProgramName + "." + _CurrentUserFileType.ToString());
-		}
-		
-		/// <summary>
-		///  funtion to determine what the user file type is saved and opened as
-		/// </summary>
-		/// <returns></returns>
-		private UserFileType GetUserFileType()
-		{
-			switch(System.Configuration.ConfigurationManager.AppSettings["UserFileFormat"].ToLower())
-			{
-				case "text":
-					return UserFileType.text;
-				case "xml":
-					return UserFileType.xml;
-				case "dat":
-					return UserFileType.dat;
-				default:
-					return UserFileType.none;
-			}
+			di = new so.DirectoryInfo(so.Path.Combine(_AppPath , "Data"));
+			if(!di.Exists)
+				di.Create();
+			
+			_DataPath = di.FullName;
+			
+			// create the default theme directory
+			di = new so.DirectoryInfo(so.Path.Combine(_AppPath , "Themes"));
+			if(!di.Exists)
+				di.Create();
+			_ThemePath = di.FullName;
+			
+			// create the use theme directory
+			di = new so.DirectoryInfo(so.Path.Combine(_SavePath , "Themes"));
+			if(!di.Exists)
+				di.Create();			
+			_UserThemePath = di.FullName;
+			
+			// the error file
+			fi = new so.FileInfo(so.Path.Combine(_SavePath , "error.txt"));
+			_ErrorLogFile = fi.FullName;
+			// the options save file
+			fi = new so.FileInfo(so.Path.Combine(_SavePath, _ProgramName + ".xml"));
+			_UserOptionFile = fi.FullName;
 		}
 		
 		#region Public Properties
@@ -133,11 +136,6 @@ namespace GoonTools.Helper
 			get{return _UserOptionFile;}
 		}
 		
-		public UserFileType CurrentUserFileType
-		{
-			get{return _CurrentUserFileType;}
-		}
-		
 		public string DataPath
 		{
 			get{return _DataPath;}
@@ -146,6 +144,11 @@ namespace GoonTools.Helper
 		public string ThemeFolder
 		{
 			get{return _ThemePath;}
+		}
+		
+		public string UserThemeFolder
+		{
+			get{return _UserThemePath;}
 		}
 		
 		public string ErrorLog
@@ -232,13 +235,4 @@ namespace GoonTools.Helper
 		#endregion Public Methods
 	}
 
-	// this is the file formats for user preference
-	// either xml or a binary dat file
-	public enum UserFileType
-	{
-		text,
-		dat,
-		xml,
-		none
-	}
 }

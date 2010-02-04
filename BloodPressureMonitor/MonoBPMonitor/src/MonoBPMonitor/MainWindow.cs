@@ -98,6 +98,8 @@ namespace MonoBPMonitor
 
 		protected virtual void OnUsersActionActivated (object sender, System.EventArgs e)
 		{
+			// TODO: when returning from the users dialog we need to refresh the user
+			// combo box to reflect the changes
 			frmUsers fm = new frmUsers ();
 			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();

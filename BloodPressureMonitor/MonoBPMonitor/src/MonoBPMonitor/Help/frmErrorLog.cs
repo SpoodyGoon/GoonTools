@@ -40,7 +40,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				string strFile = System.IO.Path.GetFullPath(Common.EnvData.SavePath + "error.log");
+				string strFile = System.IO.Path.GetFullPath(Common.EnvData.ErrorLog);
 				if(System.IO.File.Exists(strFile))
 				{
 					System.IO.StreamReader sr = new System.IO.StreamReader(strFile);
@@ -73,7 +73,8 @@ namespace MonoBPMonitor
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
-		}		
+		}
+		
 		
 		protected virtual void OnBtnClearLogClicked (object sender, System.EventArgs e)
 		{

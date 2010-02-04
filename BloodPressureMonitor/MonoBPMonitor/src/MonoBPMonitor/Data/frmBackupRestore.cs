@@ -461,14 +461,9 @@ namespace MonoBPMonitor {
 		}
 		
 		private void RestoreOptions(DataTable dt)
-		{
-			Hashtable hsh = new Hashtable();
-			for(int i = 0; i < dt.Rows.Count; i++)
-			{
-				hsh.Add(dt.Rows[i]["Key"], dt.Rows[i]["Value"]);
-			}
-			Common.Option.RefreshAll(hsh);
-			Common.SaveOptions();
+		{	
+			Common.Option.RefreshAll(dt);
+			Common.SaveUserData();
 		}
 		
 		private void RestoreLogs()

@@ -36,6 +36,7 @@ namespace GoonTools
 	public static class Common
 	{
 		private static GoonTools.Helper.Options _Option;
+		private static GoonTools.Helper.MetaInfo _MetaInfo;
 		private static GoonTools.Helper.EnviromentData _EnvData = new GoonTools.Helper.EnviromentData();
 		#region Public Properties
 		
@@ -65,12 +66,13 @@ namespace GoonTools
 				// if it has not been saved load the defaults
 				if(File.Exists(EnvData.UserOptionFile))
 				{
-					LoadOptions();
+					LoadUserData();
 				}
 				else
 				{
 					_Option = new Helper.Options();
-					SaveOptions();
+					_MetaInfo = new Helper.MetaInfo();
+					SaveUserData();
 				}
 				
 				// copy over a new database if it's not already there
@@ -84,29 +86,26 @@ namespace GoonTools
 			}
 		}
 		
-		public static void LoadOptions()
+		public static void LoadUserData()
 		{
 			try
 			{
-				switch(EnvData.CurrentUserFileType)
-				{
-					case UserFileType.dat:
-						System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-						Stream stream = new FileStream(EnvData.UserOptionFile, FileMode.Open, FileAccess.Read, FileShare.Read);
-						_Option = new Helper.Options((System.Collections.Hashtable)formatter.Deserialize(stream));
-						stream.Close();
-						break;
-					case UserFileType.xml:
-						DataSet ds = new DataSet(_EnvData.ProgramName);
-						ds.ReadXml(EnvData.UserOptionFile, XmlReadMode.ReadSchema);
-						_Option = new GoonTools.Helper.Options((DataTable)ds.Tables["Options"]);
-						ds.Clear();
-						ds.Dispose();
-						break;
-					default:
-						// should not get here
-						throw new Exception("Invalid User File Type: Should not get here loading options.");
-				}
+				DataSet ds = new DataSet(_EnvData.ProgramName);
+				ds.ReadXml(EnvData.UserOptionFile, XmlReadMode.ReadSchema);
+				DataTable dtTMP = (DataTable)ds.Tables["Options"];
+				if(dtTMP != null)
+					_Option = new GoonTools.Helper.Options(dtTMP);
+				else
+					_Option = new GoonTools.Helper.Options();
+				
+				dtTMP = (DataTable)ds.Tables["MetaInfo"];
+				if(dtTMP != null)
+					_MetaInfo = new GoonTools.Helper.MetaInfo(dtTMP);
+				else
+					_MetaInfo = new GoonTools.Helper.MetaInfo();
+					
+				ds.Clear();
+				ds.Dispose();				
 			}
 			catch(Exception ex)
 			{
@@ -114,29 +113,16 @@ namespace GoonTools
 			}
 		}
 		
-		public static void SaveOptions()
+		public static void SaveUserData()
 		{
 			try
 			{
-				switch(EnvData.CurrentUserFileType)
-				{
-					case UserFileType.dat:
-						System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-						Stream stream = new FileStream(EnvData.UserOptionFile, FileMode.Create, FileAccess.Write, FileShare.None);
-						formatter.Serialize(stream, (System.Collections.Hashtable)_Option.ToHashtable());
-						stream.Close();
-						break;
-					case UserFileType.xml:
-						DataSet ds = new DataSet(_EnvData.ProgramName);
-						ds.Tables.Add((System.Data.DataTable)_Option.ToDataTable());
-						ds.WriteXml(EnvData.UserOptionFile, System.Data.XmlWriteMode.WriteSchema);
-						ds.Clear();
-						ds.Dispose();
-						break;
-					default:
-						// should not get here
-						throw new Exception("Invalid User File Type: Should not get here saving options.");
-				}
+				DataSet ds = new DataSet(_EnvData.ProgramName);
+				ds.Tables.Add((System.Data.DataTable)_Option.ToDataTable());
+				ds.Tables.Add((System.Data.DataTable)_MetaInfo.ToDataTable());
+				ds.WriteXml(EnvData.UserOptionFile, System.Data.XmlWriteMode.WriteSchema);
+				ds.Clear();
+				ds.Dispose();
 			}
 			catch(Exception ex)
 			{
