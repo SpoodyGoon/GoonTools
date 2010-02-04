@@ -28,6 +28,12 @@ namespace MonoBPMonitor
 				cbxDatabaseData.Active = Common.Option.BackupData;
 				cbxOptions.Active = Common.Option.BackupOptions;
 				cbxLogs.Active = Common.Option.BackupLogs;
+				lblDatabaseLocation.Text = Common.Option.DBLocation;
+				lblDatabaseVersion.Text = Common.MetaInfo.Database.ToString();
+				lblGUPdotNETVersion.Text = Common.MetaInfo.GUPdotNET.ToString();
+				lblMonoBPMonitorVersion.Text = Common.MetaInfo.MonoBPMonitor.ToString();
+				lblOptionsFileVersion.Text = Common.MetaInfo.UserFile.ToString();
+				
 				CheckAll();
 				this.ActionArea.Destroy();
 				this.HasSeparator = false;
@@ -614,7 +620,21 @@ namespace MonoBPMonitor
 		protected virtual void OnBackupGeneral_Toggled (object sender, System.EventArgs e)
 		{
 			Gtk.CheckButton cbx = (Gtk.CheckButton)sender;
-			
+			switch(cbx.Label)
+			{
+				case "Database Schema":
+					Common.Option.BackupSchema = cbx.Active;
+					break;
+				case "Database Data":
+					Common.Option.BackupData = cbx.Active;
+					break;
+				case "Program Options":
+					Common.Option.BackupOptions = cbx.Active;
+					break;
+				case "Program Logs":
+					Common.Option.BackupLogs = cbx.Active;
+					break;
+			}
 			CheckAll();
 		}
 		
