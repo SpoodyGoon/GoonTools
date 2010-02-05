@@ -457,7 +457,7 @@
                 <property name="UseMarkup">True</property>
               </widget>
               <packing>
-                <property name="X">166</property>
+                <property name="X">160</property>
                 <property name="Y">6</property>
               </packing>
             </child>
@@ -472,13 +472,13 @@
                 <child>
                   <widget class="Gtk.Label" id="lblAbout">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;span font-family="Arial" size="8250" color="#00006B"&gt;&lt;b&gt;&lt;u&gt;About GUPdotNET&lt;/u&gt;&lt;/b&gt;&lt;/span&gt;</property>
+                    <property name="LabelProp" translatable="yes">&lt;span size="8080"&gt;&lt;b&gt;&lt;u&gt;&lt;tt&gt;About GUPdotNET&lt;/tt&gt;&lt;/u&gt;&lt;/b&gt;&lt;/span&gt;</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                 </child>
               </widget>
               <packing>
-                <property name="X">350</property>
+                <property name="X">325</property>
               </packing>
             </child>
             <child>
