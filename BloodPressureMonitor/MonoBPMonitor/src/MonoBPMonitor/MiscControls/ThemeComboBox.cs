@@ -17,7 +17,7 @@ namespace MonoBPMonitor.Data
 	[System.ComponentModel.ToolboxItem(true)]
 	public class ThemeComboBox : Gtk.ComboBox
 	{
-		private Gtk.ListStore _ListStore = new Gtk.ListStore(typeof(int), typeof(string));
+		private Gtk.ListStore _ListStore = new Gtk.ListStore(typeof(string), typeof(string));
 		private string _ThemeLocation;
 		private string _ThemeName;
 		private string _SearchThemeName;
@@ -56,7 +56,7 @@ namespace MonoBPMonitor.Data
 				so.DirectoryInfo[] dis = di.GetDirectories();
 				for(int i = 0; i < dis.Length; i ++)
 				{
-					so.FileInfo fi = new so.FileInfo(so.Path.Combine(so.Path.Combine(di.FullName, "gtk-2.0"), "gtkrc"));
+					so.FileInfo fi = new so.FileInfo(so.Path.Combine(so.Path.Combine(dis[i].FullName, "gtk-2.0"), "gtkrc"));
 					if(fi.Exists)
 					{
 						_ListStore.AppendValues(fi.FullName, dis[i].Name);
@@ -66,7 +66,7 @@ namespace MonoBPMonitor.Data
 				dis = di.GetDirectories();
 				for(int i = 0; i < dis.Length; i ++)
 				{
-					so.FileInfo fi = new so.FileInfo(so.Path.Combine(so.Path.Combine(di.FullName, "gtk-2.0"), "gtkrc"));
+					so.FileInfo fi = new so.FileInfo(so.Path.Combine(so.Path.Combine(dis[i].FullName, "gtk-2.0"), "gtkrc"));
 					if(fi.Exists)
 					{
 						_ListStore.AppendValues(fi.FullName, dis[i].Name);

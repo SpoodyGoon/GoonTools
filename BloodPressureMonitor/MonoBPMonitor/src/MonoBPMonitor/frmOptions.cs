@@ -38,6 +38,15 @@ namespace MonoBPMonitor
 				this.ActionArea.Destroy();
 				this.HasSeparator = false;
 				notebook1.CurrentPage = 0;
+				if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "false")
+				{
+					notebook1.RemovePage(2);
+				}
+				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "false")
+				{
+					lblGUPdotNETVersion.Destroy();
+					lblGUPdotNETText.Destroy();
+				}
 				this.ShowAll();
 			}
 			catch(Exception ex)
