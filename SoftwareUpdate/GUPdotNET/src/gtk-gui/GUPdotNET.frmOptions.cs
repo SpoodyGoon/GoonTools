@@ -161,7 +161,7 @@ namespace GUPdotNET {
             this.label2.UseMarkup = true;
             this.fixed1.Add(this.label2);
             Gtk.Fixed.FixedChild w13 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.label2]));
-            w13.X = 166;
+            w13.X = 160;
             w13.Y = 6;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.ebxAbout = new Gtk.EventBox();
@@ -171,13 +171,12 @@ namespace GUPdotNET {
             // Container child ebxAbout.Gtk.Container+ContainerChild
             this.lblAbout = new Gtk.Label();
             this.lblAbout.Name = "lblAbout";
-            this.lblAbout.LabelProp = Mono.Unix.Catalog.GetString("<span font-family=\"Arial\" size=\"8250\" color=\"#00006B\"><b><u>About GUPdotNET</u></" +
-                    "b></span>");
+            this.lblAbout.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"8080\"><b><u><tt>About GUPdotNET</tt></u></b></span>");
             this.lblAbout.UseMarkup = true;
             this.ebxAbout.Add(this.lblAbout);
             this.fixed1.Add(this.ebxAbout);
             Gtk.Fixed.FixedChild w15 = ((Gtk.Fixed.FixedChild)(this.fixed1[this.ebxAbout]));
-            w15.X = 350;
+            w15.X = 325;
             // Container child fixed1.Gtk.Fixed+FixedChild
             this.hseparator2 = new Gtk.HSeparator();
             this.hseparator2.WidthRequest = 432;
