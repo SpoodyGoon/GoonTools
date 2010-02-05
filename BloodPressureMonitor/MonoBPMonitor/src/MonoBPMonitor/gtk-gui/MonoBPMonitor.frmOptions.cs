@@ -159,7 +159,7 @@ namespace MonoBPMonitor {
         
         private Gtk.Alignment alignment37;
         
-        private Gtk.Label label12;
+        private Gtk.Label lblGUPdotNETText;
         
         private Gtk.Alignment alignment38;
         
@@ -182,6 +182,10 @@ namespace MonoBPMonitor {
         private Gtk.Alignment alignment41;
         
         private Gtk.Label label14;
+        
+        private Gtk.Alignment alignment27;
+        
+        private Gtk.HBox hbox3;
         
         private Gtk.Label lblDatabaseLocation;
         
@@ -214,7 +218,7 @@ namespace MonoBPMonitor {
             this.notebook1 = new Gtk.Notebook();
             this.notebook1.CanFocus = true;
             this.notebook1.Name = "notebook1";
-            this.notebook1.CurrentPage = 1;
+            this.notebook1.CurrentPage = 0;
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.GtkAlignment2 = new Gtk.Alignment(0F, 0F, 1F, 1F);
             this.GtkAlignment2.Name = "GtkAlignment2";
@@ -746,11 +750,11 @@ namespace MonoBPMonitor {
             this.alignment37 = new Gtk.Alignment(0.98F, 0.5F, 0.01F, 1F);
             this.alignment37.Name = "alignment37";
             // Container child alignment37.Gtk.Container+ContainerChild
-            this.label12 = new Gtk.Label();
-            this.label12.Name = "label12";
-            this.label12.LabelProp = Mono.Unix.Catalog.GetString("GUPdotNET (<i>Updater</i>):");
-            this.label12.UseMarkup = true;
-            this.alignment37.Add(this.label12);
+            this.lblGUPdotNETText = new Gtk.Label();
+            this.lblGUPdotNETText.Name = "lblGUPdotNETText";
+            this.lblGUPdotNETText.LabelProp = Mono.Unix.Catalog.GetString("GUPdotNET (<i>Updater</i>):");
+            this.lblGUPdotNETText.UseMarkup = true;
+            this.alignment37.Add(this.lblGUPdotNETText);
             this.table2.Add(this.alignment37);
             Gtk.Table.TableChild w63 = ((Gtk.Table.TableChild)(this.table2[this.alignment37]));
             w63.TopAttach = ((uint)(3));
@@ -818,7 +822,7 @@ namespace MonoBPMonitor {
             w73.Expand = false;
             w73.Fill = false;
             // Container child vbox6.Gtk.Box+BoxChild
-            this.alignment25 = new Gtk.Alignment(0.5F, 0.5F, 0.01F, 1F);
+            this.alignment25 = new Gtk.Alignment(0.03F, 0.5F, 0.01F, 1F);
             this.alignment25.Name = "alignment25";
             // Container child alignment25.Gtk.Container+ContainerChild
             this.hbox2 = new Gtk.HBox();
@@ -838,25 +842,39 @@ namespace MonoBPMonitor {
             w75.Position = 0;
             w75.Expand = false;
             w75.Fill = false;
-            // Container child hbox2.Gtk.Box+BoxChild
+            this.alignment25.Add(this.hbox2);
+            this.vbox6.Add(this.alignment25);
+            Gtk.Box.BoxChild w77 = ((Gtk.Box.BoxChild)(this.vbox6[this.alignment25]));
+            w77.Position = 1;
+            w77.Expand = false;
+            w77.Fill = false;
+            // Container child vbox6.Gtk.Box+BoxChild
+            this.alignment27 = new Gtk.Alignment(0.02F, 0.5F, 0.01F, 1F);
+            this.alignment27.Name = "alignment27";
+            this.alignment27.LeftPadding = ((uint)(24));
+            // Container child alignment27.Gtk.Container+ContainerChild
+            this.hbox3 = new Gtk.HBox();
+            this.hbox3.Name = "hbox3";
+            this.hbox3.Spacing = 6;
+            // Container child hbox3.Gtk.Box+BoxChild
             this.lblDatabaseLocation = new Gtk.Label();
             this.lblDatabaseLocation.Name = "lblDatabaseLocation";
             this.lblDatabaseLocation.LabelProp = Mono.Unix.Catalog.GetString("None");
-            this.hbox2.Add(this.lblDatabaseLocation);
-            Gtk.Box.BoxChild w76 = ((Gtk.Box.BoxChild)(this.hbox2[this.lblDatabaseLocation]));
-            w76.Position = 1;
-            w76.Expand = false;
-            w76.Fill = false;
-            this.alignment25.Add(this.hbox2);
-            this.vbox6.Add(this.alignment25);
-            Gtk.Box.BoxChild w78 = ((Gtk.Box.BoxChild)(this.vbox6[this.alignment25]));
-            w78.Position = 1;
-            w78.Expand = false;
-            w78.Fill = false;
+            this.lblDatabaseLocation.Wrap = true;
+            this.lblDatabaseLocation.Ellipsize = ((Pango.EllipsizeMode)(3));
+            this.hbox3.Add(this.lblDatabaseLocation);
+            Gtk.Box.BoxChild w78 = ((Gtk.Box.BoxChild)(this.hbox3[this.lblDatabaseLocation]));
+            w78.Position = 0;
+            this.alignment27.Add(this.hbox3);
+            this.vbox6.Add(this.alignment27);
+            Gtk.Box.BoxChild w80 = ((Gtk.Box.BoxChild)(this.vbox6[this.alignment27]));
+            w80.Position = 2;
+            w80.Expand = false;
+            w80.Fill = false;
             this.alignment21.Add(this.vbox6);
             this.notebook1.Add(this.alignment21);
-            Gtk.Notebook.NotebookChild w80 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.alignment21]));
-            w80.Position = 3;
+            Gtk.Notebook.NotebookChild w82 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.alignment21]));
+            w82.Position = 3;
             // Notebook tab
             this.label8 = new Gtk.Label();
             this.label8.Name = "label8";
@@ -867,18 +885,18 @@ namespace MonoBPMonitor {
             this.label8.ShowAll();
             this.alignment1.Add(this.notebook1);
             w1.Add(this.alignment1);
-            Gtk.Box.BoxChild w82 = ((Gtk.Box.BoxChild)(w1[this.alignment1]));
-            w82.Position = 0;
-            w82.Expand = false;
-            w82.Fill = false;
-            w82.Padding = ((uint)(4));
+            Gtk.Box.BoxChild w84 = ((Gtk.Box.BoxChild)(w1[this.alignment1]));
+            w84.Position = 0;
+            w84.Expand = false;
+            w84.Fill = false;
+            w84.Padding = ((uint)(4));
             // Internal child MonoBPMonitor.frmOptions.ActionArea
-            Gtk.HButtonBox w83 = this.ActionArea;
-            w83.Sensitive = false;
-            w83.Name = "dialog1_ActionArea";
-            w83.Spacing = 6;
-            w83.BorderWidth = ((uint)(5));
-            w83.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+            Gtk.HButtonBox w85 = this.ActionArea;
+            w85.Sensitive = false;
+            w85.Name = "dialog1_ActionArea";
+            w85.Spacing = 6;
+            w85.BorderWidth = ((uint)(5));
+            w85.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.button10 = new Gtk.Button();
             this.button10.CanFocus = true;
@@ -886,14 +904,14 @@ namespace MonoBPMonitor {
             this.button10.UseUnderline = true;
             this.button10.Label = Mono.Unix.Catalog.GetString("GtkButton");
             this.AddActionWidget(this.button10, 0);
-            Gtk.ButtonBox.ButtonBoxChild w84 = ((Gtk.ButtonBox.ButtonBoxChild)(w83[this.button10]));
-            w84.Expand = false;
-            w84.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w86 = ((Gtk.ButtonBox.ButtonBoxChild)(w85[this.button10]));
+            w86.Expand = false;
+            w86.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultHeight = 370;
-            w83.Hide();
+            w85.Hide();
             this.Show();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
             this.Close += new System.EventHandler(this.OnClose);

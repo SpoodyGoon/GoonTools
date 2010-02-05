@@ -170,6 +170,24 @@
     <Content Include="app.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="GUPdotNET\GetUpdateInfo.asp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GUPdotNET\GUPdotNET.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GUPdotNET\GUPdotNET.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GUPdotNET\GUPdotNET.exe.mdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GUPdotNET\GUPdotNET.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GUPdotNET\TimeValues.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Reports\MainEntry\Description.txt" />
     <Compile Include="Doctors\DoctorRendererCombo.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.Designer.cs" />
@@ -194,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MiscControls" />
+    <Folder Include="GUPdotNET" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

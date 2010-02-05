@@ -43,11 +43,15 @@ namespace MonoBPMonitor
 				cboUser.Changed += new EventHandler(cboUser_Changed);
 				tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e) { btnRemoveEntry.Sensitive = true; btnEditEntry.Sensitive = true; };
 				// check if update are allowed
-				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "true")
-					UpdatesAction1.Visible = true;
+				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "false")
+				{
+					UpdatesAction.Visible = false;
+					menubar1.QueueDraw();
+				}
 				else
-					UpdatesAction1.Visible = false;
-				
+				{
+					RunUpdate(false);
+				}
 			}
 			catch(Exception ex)
 			{
@@ -214,22 +218,6 @@ namespace MonoBPMonitor
 			fm.Destroy();
 		}
 		
-		
-		protected virtual void OnRestoreActionActivated (object sender, System.EventArgs e)
-		{
-			
-		}
-		
-		
-		protected virtual void OnSystemActionActivated (object sender, System.EventArgs e)
-		{
-			
-		}
-		
-		protected virtual void OnUpdatesActionActivated (object sender, System.EventArgs e)
-		{
-		}
-		
 		protected virtual void OnBtnAddEntryClicked (object sender, System.EventArgs e)
 		{
 			try
@@ -280,7 +268,45 @@ namespace MonoBPMonitor
 			}
 		}
 		
+		#region Update Related
 		
+		protected virtual void OnUpdatesActionActivated (object sender, System.EventArgs e)
+		{
+			try
+			{
+				so.FileInfo fi = new so.FileInfo(so.Path.Combine(so.Path.Combine(Common.EnvData.AppPath, "GUPdotNET"),"GUPdotNET.exe"));
+				if(fi.Exists)
+				{
+					RunUpdate(true);
+				}
+				else
+				{
+					throw new Exception("Unable to find update program.");
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
+		}
+		
+		private void RunUpdate()
+		{
+			RunUpdate(false);
+		}
+		
+		private void RunUpdate(bool showoptions)
+		{			
+			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
+			si.ErrorDialog = true;
+			si.FileName = Common.EnvData.UpdatePath;
+			if(!showoptions)
+				si.Arguments += "updatecheck";
+			si.UseShellExecute = false;
+			System.Diagnostics.Process.Start(si);
+		}
+		
+		#endregion Update Related
 		
 		
 		
