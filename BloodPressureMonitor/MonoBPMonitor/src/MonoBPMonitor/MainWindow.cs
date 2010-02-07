@@ -301,7 +301,12 @@ namespace MonoBPMonitor
 			si.ErrorDialog = true;
 			si.FileName = Common.EnvData.UpdatePath;
 			if(!showoptions)
-				si.Arguments += "updatecheck";
+				si.Arguments += "ShowOptions=true";
+			else
+				si.Arguments += "ShowOptions=false";
+			
+			if(!string.IsNullOrEmpty(Common.Option.CustomThemeFile) && System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
+				si.Arguments += "ThemeFile=" + Common.Option.CustomThemeFile;
 			si.UseShellExecute = false;
 			System.Diagnostics.Process.Start(si);
 		}

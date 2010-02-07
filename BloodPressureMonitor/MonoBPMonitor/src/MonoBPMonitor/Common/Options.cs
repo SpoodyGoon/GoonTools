@@ -42,7 +42,7 @@ namespace GoonTools.Helper
 		private bool _BackupData = true;
 		private bool _BackupOptions = true;
 		private bool _BackupLogs = true;
-		private string _CustomThemeName = "Neutrino";
+		private string _CustomThemeName = "Elegance";
 		private string _CustomThemeFile = "";
 		private bool _UseCustomTheme = true;
 		private int _FileVersion = 1;
