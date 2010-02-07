@@ -28,27 +28,40 @@ namespace GUPdotNET
 	{
 		private static RunType _RunType = RunType.None;
 		private static int _Return = 0;
+		private static System.Collections.Hashtable _Arguments = new System.Collections.Hashtable();
 		public static int Main (string[] args)
 		{
 			Application.Init();
+			string[] strTMP;
+			for(int i = 0; i < args.Length; i++)
+			{
+				strTMP = args[i].Split('=');
+				_Arguments.Add(strTMP[0], strTMP[1]);
+			}
 			
-			// see if we are running options or if it is a
-			// standard time based update check
-			if(args.Length < 1)
-				_RunType = RunType.Options;
-			else if(args[0].ToLower() == "updatecheck")
-				_RunType = RunType.UpdateCheck;
-			else
-				_RunType = RunType.Options;	
-				
-			// this loads the enviroment, options and 
+			if(_Arguments.Contains("ShowOptions"))
+			{
+				if(_Arguments["ShowOptions"].ToString() == "true")
+					_RunType = RunType.Options;
+				else
+					_RunType = RunType.UpdateCheck;
+			}
+			
+			if(_Arguments.Contains("ThemeFile"))
+			{
+				System.IO.FileInfo fi = new System.IO.FileInfo(_Arguments["ThemeFile"].ToString());
+				if(fi.Exists)
+					Gtk.Rc.Parse(fi.FullName);
+			}
+			
+			// this loads the enviroment, options and
 			// commonly used static functions
-			Common.LoadAll();			
+			Common.LoadAll();
 			
 			// run an update check to see if we need and update
 			// if so ask the user
 			if(_RunType == RunType.UpdateCheck)
-			{				
+			{
 				UpdateCheck uc = new UpdateCheck();
 				_Return = uc.RunUpdate(false) ? 0:1;
 			}

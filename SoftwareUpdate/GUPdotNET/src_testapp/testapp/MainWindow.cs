@@ -82,7 +82,7 @@ public partial class MainWindow: Gtk.Window
 				si.ErrorDialog = true;
 				si.UseShellExecute = false;
 				si.FileName = GUPdotNETFile.Filename;
-				si.Arguments += "updatecheck";
+				si.Arguments += "ShowOptions=false";
 				System.Diagnostics.Process.Start(si);
 			}
 
@@ -103,6 +103,7 @@ public partial class MainWindow: Gtk.Window
 			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
 			si.ErrorDialog = true;
 			si.FileName = GUPdotNETFile.Filename;
+			si.Arguments += "ShowOptions=true";
 			si.UseShellExecute = false;
 			System.Diagnostics.Process.Start(si);
 		}
