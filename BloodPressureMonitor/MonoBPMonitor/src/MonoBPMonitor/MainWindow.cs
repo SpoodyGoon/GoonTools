@@ -299,11 +299,12 @@ namespace MonoBPMonitor
 		{			
 			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
 			si.ErrorDialog = true;
+			si.RedirectStandardError = true;
 			si.FileName = Common.EnvData.UpdatePath;
 			if(!showoptions)
-				si.Arguments += "ShowOptions=true";
-			else
 				si.Arguments += "ShowOptions=false";
+			else
+				si.Arguments += "ShowOptions=true";
 			
 			if(!string.IsNullOrEmpty(Common.Option.CustomThemeFile) && System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
 				si.Arguments += "ThemeFile=" + Common.Option.CustomThemeFile;
