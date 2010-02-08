@@ -302,12 +302,12 @@ namespace MonoBPMonitor
 			si.RedirectStandardError = true;
 			si.FileName = Common.EnvData.UpdatePath;
 			if(!showoptions)
-				si.Arguments += "ShowOptions=false";
+				si.Arguments += "\"ShowOptions=false\" ";
 			else
-				si.Arguments += "ShowOptions=true";
+				si.Arguments += "\"ShowOptions=true\" ";
 			
 			if(!string.IsNullOrEmpty(Common.Option.CustomThemeFile) && System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
-				si.Arguments += "ThemeFile=" + Common.Option.CustomThemeFile;
+				si.Arguments += "\"ThemeFile=" + Common.Option.CustomThemeFile + "\" ";
 			si.UseShellExecute = false;
 			System.Diagnostics.Process.Start(si);
 		}
