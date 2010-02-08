@@ -59,8 +59,8 @@ namespace GUPdotNET
 		///  This is the GUPdotNET Version
 		///  Different versions of GUPdotNET may have different file formats
 		/// </summary>
-		private float _XMLFileVersion = 1.0f;
-		internal float XMLFileVersion
+		private Version _XMLFileVersion = new Version(1,0);
+		internal Version XMLFileVersion
 		{
 			set{_XMLFileVersion=value;}
 			get{return _XMLFileVersion;}
@@ -307,14 +307,27 @@ namespace GUPdotNET
 			try
 			{
 				System.Reflection.Assembly asm = System.Reflection.Assembly.GetCallingAssembly();
+				// check to see if the versioning information is over ridden by the configuration file
+				if(!string.IsNullOrEmpty(ConfigurationManager.AppSettings["MajorVersion"].ToString()))
+					_CurrentMajorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["MajorVersion"].ToString());
+				else
+					_CurrentMajorVersion = asm.GetName().Version.Major;
+				if(!string.IsNullOrEmpty(ConfigurationManager.AppSettings["MinorVersion"].ToString()))
+					_CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["MinorVersion"].ToString());
+				else
+					_CurrentMinorVersion = asm.GetName().Version.Minor;
+				
+				// used for debugging in cases where we don't have the calling assembliy
+				if(!string.IsNullOrEmpty(ConfigurationManager.AppSettings["ProgramFullPath"].ToString()))
+					_ProgramFullPath = ConfigurationManager.AppSettings["ProgramFullPath"].ToString();
+				else
+					_ProgramFullPath = asm.GetName().CodeBase;
+				
 				_OS = ConfigurationManager.AppSettings["OS"].ToString();
 				_InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
 				_UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
 				_ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
-				_ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
-				_CurrentMajorVersion = asm.GetName().Version.Major;
-				_CurrentMinorVersion = asm.GetName().Version.Minor;
-				_ProgramFullPath = asm.GetName().CodeBase;
+				_ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();				
 				IsLocalInfoLoaded = true;
 			}
 			catch(Exception ex)
@@ -328,7 +341,7 @@ namespace GUPdotNET
 			try
 			{
 				Common.Option.LastUpdateCheck = DateTime.Now;
-				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(_UpdateInfoURL + "?XMLFileVersion=" + _XMLFileVersion.ToString() + "&InstallType=" + _InstallType.ToString() + "&OS=" + _OS.ToString());
+				HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(_UpdateInfoURL + "?XMLFileVersion=" + _XMLFileVersion.Major.ToString() + "." + _XMLFileVersion.Minor.ToString() + "&InstallType=" + _InstallType.ToString() + "&OS=" + _OS.ToString());
 				HttpWebResponse wsp = (HttpWebResponse)wr.GetResponse();
 				System.IO.Stream s = wsp.GetResponseStream();
 				
