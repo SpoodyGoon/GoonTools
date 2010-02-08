@@ -47,11 +47,21 @@ namespace GUPdotNET
 					_RunType = RunType.UpdateCheck;
 			}
 			
-			if(_Arguments.Contains("ThemeFile"))
+			// the theme is not important and is used on windows only programs
+			// if it fails let it fail and continue to move forward.
+			try
 			{
-				System.IO.FileInfo fi = new System.IO.FileInfo(_Arguments["ThemeFile"].ToString());
-				if(fi.Exists)
-					Gtk.Rc.Parse(fi.FullName);
+				if(_Arguments.Contains("ThemeFile"))
+				{
+					System.IO.FileInfo fi = new System.IO.FileInfo(_Arguments["ThemeFile"].ToString());
+					if(fi.Exists)
+						Gtk.Rc.Parse(fi.FullName);
+				}
+			}
+			catch(Exception ex)
+			{
+				// one of the only places you'll ever catch me doing an empty catch block
+				// this is not a mission critical items if it fails let it and move on
 			}
 			
 			// this loads the enviroment, options and
