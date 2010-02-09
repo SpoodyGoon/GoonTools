@@ -29,20 +29,15 @@ namespace GUPdotNET
 	/// </summary>
 	public class UpdateCheck
 	{
-		private UpdateInfo _UpdateInfo = new UpdateInfo();
-		public UpdateCheck()
+		public static bool RunUpdate()
 		{
-			
+			return RunUpdate(false);
 		}
 		
-		public UpdateInfo Info
-		{
-			get{return _UpdateInfo;}
-		}
-		
-		public bool RunUpdate(bool blnForceCheck)
+		public static bool RunUpdate(bool blnForceCheck)
 		{
 			bool blnSuccess = true;
+			UpdateInfo _UpdateInfo = new UpdateInfo(UpdateInfoType.All, blnForceCheck);
 			try
 			{
 				_UpdateInfo.LoadInfo(UpdateInfoType.All);
@@ -58,11 +53,9 @@ namespace GUPdotNET
 						frmDownload dlgDownload = new frmDownload(_UpdateInfo);
 						dlgDownload.Show();
 						DownloadStatus LoadStat = dlgDownload.CurrentStatus;
-						while(LoadStat == DownloadStatus.Prep || LoadStat == DownloadStatus.InProcess)
-						{
-							// TODO: add a thread sleep method there
-							
-							//GLib.Timeout.Add(1000, delegate{});
+						while(LoadStat == DownloadStatus.Prep || LoadStat == DownloadStatus.InProcess) 
+						{ 
+							GLib.Timeout.Add(1000, delegate{return false;});
 						}
 						dlgDownload.Destroy();
 						

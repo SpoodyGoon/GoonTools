@@ -169,8 +169,7 @@ namespace GUPdotNET
 		
 		protected virtual void OnBtnCheckNowClicked (object sender, System.EventArgs e)
 		{
-			UpdateCheck uc = new UpdateCheck();
-			uc.RunUpdate(true);
+			bool blnUpdateResult = UpdateCheck.RunUpdate(true);
 		}
 
 		// event for the update check box

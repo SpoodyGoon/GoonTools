@@ -31,6 +31,7 @@ namespace GUPdotNET
 	/// <summary>
 	/// Description of UpdateInfo.
 	/// </summary>
+	/// // TODO: something is failing in the initializatin of update info
 	public class UpdateInfo
 	{
 		#region Local File Info
@@ -113,22 +114,11 @@ namespace GUPdotNET
 		///  This is the major version of the application
 		///  we are looking to update
 		/// </summary>
-		private int _CurrentMajorVersion = -1;
-		internal int CurrentMajorVersion
+		private Version _CurrentVersion = new Version();
+		internal Version CurrentVersion
 		{
-			set{_CurrentMajorVersion=value;}
-			get{return _CurrentMajorVersion;}
-		}
-		
-		/// <summary>
-		///  This is the minor version or the application
-		///  we are looking to update
-		/// </summary>
-		private int _CurrentMinorVersion = -1;
-		internal int CurrentMinorVersion
-		{
-			set{_CurrentMinorVersion=value;}
-			get{return _CurrentMinorVersion;}
+			set{_CurrentVersion=value;}
+			get{return _CurrentVersion;}
 		}
 		
 		/// <summary>
@@ -155,7 +145,7 @@ namespace GUPdotNET
 		}
 		
 		#endregion Local File Info
-				
+		
 		#region Remote Update Info
 		
 		/// <summary>
@@ -173,23 +163,11 @@ namespace GUPdotNET
 		///  recieved from the web site
 		///  containing the update information
 		/// </summary>
-		private int _UpdateMajorVersion = -1;
-		internal int UpdateMajorVersion
+		private Version _UpdateVersion = new Version();
+		internal Version UpdateVersion
 		{
-			set{_UpdateMajorVersion= value;}
-			get{return _UpdateMajorVersion;}
-		}
-		
-		/// <summary>
-		///  This is the minor version
-		///  recieved from the web site
-		///  containing the update information
-		/// </summary>
-		private int _UpdateMinorVersion = -1;
-		internal int UpdateMinorVersion
-		{
-			set{_UpdateMinorVersion = value;}
-			get{return _UpdateMinorVersion;}
+			set{_UpdateVersion= value;}
+			get{return _UpdateVersion;}
 		}
 		
 		/// <summary>
@@ -269,18 +247,25 @@ namespace GUPdotNET
 		
 		public void LoadInfo(UpdateInfoType ut)
 		{
-			switch(ut)
+			try
 			{
-				case UpdateInfoType.All:
-					LoadLocalInfo();
-					LoadRemoteInfo();
-					break;
-				case UpdateInfoType.Local:
-					LoadLocalInfo();
-					break;
-				case UpdateInfoType.Remote:
-					LoadRemoteInfo();
-					break;
+				switch(ut)
+				{
+					case UpdateInfoType.All:
+						LoadLocalInfo();
+						LoadRemoteInfo();
+						break;
+					case UpdateInfoType.Local:
+						LoadLocalInfo();
+						break;
+					case UpdateInfoType.Remote:
+						LoadRemoteInfo();
+						break;
+				}
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(ex);
 			}
 		}
 		
@@ -296,7 +281,7 @@ namespace GUPdotNET
 			if(!IsRemoteInfoLoaded)
 				LoadRemoteInfo();
 			
-			if(_UpdateMajorVersion > _CurrentMajorVersion || (_UpdateMajorVersion == _CurrentMajorVersion && _UpdateMinorVersion > _CurrentMinorVersion))
+			if(_UpdateVersion.CompareTo(_CurrentVersion) > 1)
 				return true;
 			else
 				return false;
@@ -306,28 +291,33 @@ namespace GUPdotNET
 		{
 			try
 			{
+				System.IO.FileInfo fi;
 				System.Reflection.Assembly asm = System.Reflection.Assembly.GetCallingAssembly();
 				// check to see if the versioning information is over ridden by the configuration file
-				if(!string.IsNullOrEmpty(ConfigurationManager.AppSettings["MajorVersion"].ToString()))
-					_CurrentMajorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["MajorVersion"].ToString());
+				if(!string.IsNullOrEmpty(ConfigurationManager.AppSettings["MajorVersion"].ToString()) && !string.IsNullOrEmpty(ConfigurationManager.AppSettings["MinorVersion"].ToString()))
+					_CurrentVersion = new Version( Convert.ToInt32(ConfigurationManager.AppSettings["MajorVersion"].ToString()), Convert.ToInt32(ConfigurationManager.AppSettings["MinorVersion"].ToString()));
 				else
-					_CurrentMajorVersion = asm.GetName().Version.Major;
-				if(!string.IsNullOrEmpty(ConfigurationManager.AppSettings["MinorVersion"].ToString()))
-					_CurrentMinorVersion = Convert.ToInt32(ConfigurationManager.AppSettings["MinorVersion"].ToString());
-				else
-					_CurrentMinorVersion = asm.GetName().Version.Minor;
+					_CurrentVersion = asm.GetName().Version;
 				
 				// used for debugging in cases where we don't have the calling assembliy
 				if(!string.IsNullOrEmpty(ConfigurationManager.AppSettings["ProgramFullPath"].ToString()))
-					_ProgramFullPath = ConfigurationManager.AppSettings["ProgramFullPath"].ToString();
+				{
+					fi = new System.IO.FileInfo(ConfigurationManager.AppSettings["ProgramFullPath"].ToString());
+					if(fi.Exists)
+						_ProgramFullPath = fi.FullName;
+				}
 				else
-					_ProgramFullPath = asm.GetName().CodeBase;
+				{
+					fi = new System.IO.FileInfo(asm.GetName().CodeBase);
+					if(fi.Exists)
+						_ProgramFullPath = fi.FullName;
+				}
 				
 				_OS = ConfigurationManager.AppSettings["OS"].ToString();
 				_InstallType = ConfigurationManager.AppSettings["InstallType"].ToString();
 				_UpdateInfoURL = ConfigurationManager.AppSettings["UpdateInfoURL"].ToString();
 				_ProgramName = ConfigurationManager.AppSettings["ProgramName"].ToString();
-				_ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();				
+				_ProgramTitle = ConfigurationManager.AppSettings["ProgramTitle"].ToString();
 				IsLocalInfoLoaded = true;
 			}
 			catch(Exception ex)
@@ -347,13 +337,12 @@ namespace GUPdotNET
 				
 				// get the xml that defines the update
 				XmlDocument xmlDoc = new XmlDocument();
-				xmlDoc.Load(s);				
+				xmlDoc.Load(s);
 				XmlNodeList nl = xmlDoc.SelectNodes("GUPdotNET");
 				// parse out the GUPdotNET element children
 				for (int i = 0; i < nl.Count; i++)
 				{
-					_UpdateMajorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMajorVersion").InnerText.Trim());
-					_UpdateMinorVersion = int.Parse(nl[i].SelectSingleNode("UpdateMinorVersion").InnerText.Trim());
+					_UpdateVersion = new Version(Convert.ToInt32(nl[i].SelectSingleNode("UpdateMajorVersion").InnerText.Trim()),Convert.ToInt32(nl[i].SelectSingleNode("UpdateMinorVersion").InnerText.Trim()));
 					_LatestVersion = nl[i].SelectSingleNode("LatestVersion").InnerText.Trim();
 					_UpdateFileURL = nl[i].SelectSingleNode("UpdateFileURL").InnerText.Trim();
 					_UpdateDetailsURL = nl[i].SelectSingleNode("UpdateDetailsURL").InnerText.Trim();
