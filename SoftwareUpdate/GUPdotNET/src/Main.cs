@@ -72,8 +72,7 @@ namespace GUPdotNET
 			// if so ask the user
 			if(_RunType == RunType.UpdateCheck)
 			{
-				UpdateCheck uc = new UpdateCheck();
-				_Return = uc.RunUpdate(false) ? 0:1;
+				_Return = UpdateCheck.RunUpdate(false) ? 0:1;
 			}
 			else
 			{
