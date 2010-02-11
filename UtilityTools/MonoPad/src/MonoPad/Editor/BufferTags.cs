@@ -48,15 +48,15 @@ namespace MonoPad.Editor
 			{
 				// Text Decaration
 				TextTag tag  = new TextTag ("Bold");
-				tag.Weight = Pango.Weight.Bold;
+				//tag.Weight = Pango.Weight.Bold;
 				_TextBuffer.TagTable.Add (tag);
 				
 				tag  = new TextTag ("Italic");
-				tag.Style = Pango.Style.Italic;
+				//tag.Style = Pango.Style.Italic;
 				_TextBuffer.TagTable.Add (tag);
 				
 				tag  = new TextTag ("Underline");
-				tag.Underline = Pango.Underline.Single;
+				//tag.Underline = Pango.Underline.Single;
 				_TextBuffer.TagTable.Add (tag);
 				
 				tag  = new TextTag ("StrikeThrough");

@@ -176,18 +176,18 @@ namespace MonoPad
 		private Gtk.FileFilter GetCurrentFilter()
 		{
 			Gtk.FileFilter filter = new Gtk.FileFilter();
-			if(RichTextAction.Active == true)
-			{
-				filter.Name = "Gtk Rich Text (grt)";
-				filter.AddMimeType("application/x-gtk-text-buffer-rich-text");
-				filter.AddPattern("*.grt");
-			}
-			else
-			{
-				filter.Name = "Text File (txt)";
-				filter.AddMimeType("text/plain");
-				filter.AddPattern("*.txt");
-			}
+//			if(RichTextAction.Active == true)
+//			{
+//				filter.Name = "Gtk Rich Text (grt)";
+//				filter.AddMimeType("application/x-gtk-text-buffer-rich-text");
+//				filter.AddPattern("*.grt");
+//			}
+//			else
+//			{
+//				filter.Name = "Text File (txt)";
+//				filter.AddMimeType("text/plain");
+//				filter.AddPattern("*.txt");
+//			}
 			return filter;
 		}
 		
@@ -221,10 +221,10 @@ namespace MonoPad
 					_CurrentSaveName = fi.FullName;
 					_CurrentSavePath = ((so.DirectoryInfo)fi.Directory).FullName;
 					Gtk.TextBuffer tbb = new Gtk.TextBuffer(new Gtk.TextTagTable());
-					if(RichTextAction.Active == true)
-						SaveFile((byte[])tbb.Serialize(_Editor.Buffer, Gdk.Atom.Intern("application/x-gtk-text-buffer-rich-text",true), _Editor.Buffer.StartIter, _Editor.Buffer.EndIter), _CurrentSaveName);
-					else
-						SaveFile(_Editor.Buffer.Text, _CurrentSavePath);
+//					if(RichTextAction.Active == true)
+//						SaveFile((byte[])tbb.Serialize(_Editor.Buffer, Gdk.Atom.Intern("application/x-gtk-text-buffer-rich-text",true), _Editor.Buffer.StartIter, _Editor.Buffer.EndIter), _CurrentSaveName);
+//					else
+//						SaveFile(_Editor.Buffer.Text, _CurrentSavePath);
 				}
 				fc.Destroy();
 			}
