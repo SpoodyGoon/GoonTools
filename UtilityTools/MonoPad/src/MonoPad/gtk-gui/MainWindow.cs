@@ -21,9 +21,7 @@ public partial class MainWindow {
         this.Title = Mono.Unix.Catalog.GetString("MainWindow");
         this.WindowPosition = ((Gtk.WindowPosition)(4));
         // Container child MainWindow.Gtk.Container+ContainerChild
-        this.monopad1 = new MonoPad.MonoPad();
-        this.monopad1.Events = ((Gdk.EventMask)(256));
-        this.monopad1.Name = "monopad1";
+        this.monopad1 = null;
         this.Add(this.monopad1);
         if ((this.Child != null)) {
             this.Child.ShowAll();

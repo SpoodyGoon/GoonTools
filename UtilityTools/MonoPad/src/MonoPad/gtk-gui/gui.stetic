@@ -98,6 +98,11 @@
         <property name="Image">resource:edit-clear.png</property>
       </source>
     </icon-set>
+    <icon-set id="icon_small.png">
+      <source>
+        <property name="Image">resource:icon_small.png</property>
+      </source>
+    </icon-set>
   </icon-factory>
   <widget class="Gtk.Window" id="MainWindow" design-size="707 437">
     <property name="MemberName" />
@@ -197,11 +202,6 @@
         <property name="ShortLabel" translatable="yes">_Clear</property>
         <property name="StockId">edit-clear.png</property>
         <signal name="Activated" handler="OnClearActionActivated" />
-      </action>
-      <action id="FormatAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Format</property>
-        <property name="ShortLabel" translatable="yes">Format</property>
       </action>
       <action id="BoldAction">
         <property name="Type">Action</property>
@@ -336,19 +336,17 @@
         <property name="StockId">simple_text.png</property>
         <property name="DrawAsRadio">True</property>
         <property name="Active">False</property>
-        <property name="Value">0</property>
-        <property name="Group">group1</property>
+        <property name="Value">1</property>
+        <property name="Group">TextTypeGroup</property>
       </action>
-      <action id="RichTextAction1">
-        <property name="Type">Radio</property>
-        <property name="Label" translatable="yes">Rich Text</property>
-        <property name="ShortLabel" translatable="yes">Rich Text</property>
-        <property name="StockId">rich_text.png</property>
-        <property name="DrawAsRadio">True</property>
-        <property name="Active">True</property>
-        <property name="Value">0</property>
-        <property name="Group">group1</property>
-        <signal name="Activated" handler="OnRichTextAction1Activated" />
+      <action id="iconsmallPngAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">icon_small.png</property>
+      </action>
+      <action id="Action">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -388,19 +386,6 @@
                       <node type="Menuitem" action="MiscAction" />
                     </node>
                     <node type="Menu" action="EditorLayoutAction" />
-                  </node>
-                  <node type="Menu" action="FormatAction">
-                    <node type="Menuitem" action="BoldAction" />
-                    <node type="Menuitem" action="ItalicAction" />
-                    <node type="Menuitem" action="UnderlineAction" />
-                    <node type="Menuitem" action="StrikeThroughAction" />
-                    <node type="Separator" />
-                    <node type="Menuitem" action="BlockAction" />
-                    <node type="Menuitem" action="AlignLeftAction1" />
-                    <node type="Menuitem" action="AlignCenterAction" />
-                    <node type="Menuitem" action="AlignRightAction" />
-                    <node type="Separator" />
-                    <node type="Menuitem" action="FontSelectionAction" />
                   </node>
                   <node type="Menu" action="ToolsAction">
                     <node type="Menuitem" action="OptionsAction" />
@@ -501,6 +486,8 @@
                         <node name="tbrMisc" type="Toolbar">
                           <node type="Toolitem" action="FontSelectionAction" />
                           <node type="Separator" />
+                          <node type="Toolitem" action="iconsmallPngAction" />
+                          <node type="Toolitem" action="Action" />
                         </node>
                       </widget>
                     </child>

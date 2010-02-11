@@ -41,8 +41,6 @@ namespace MonoPad {
         
         private Gtk.Action ClearAction;
         
-        private Gtk.Action FormatAction;
-        
         private Gtk.Action BoldAction;
         
         private Gtk.Action ItalicAction;
@@ -83,7 +81,9 @@ namespace MonoPad {
         
         private Gtk.RadioAction SimpleTextAction;
         
-        private Gtk.RadioAction RichTextAction1;
+        private Gtk.Action iconsmallPngAction;
+        
+        private Gtk.Action Action;
         
         private Gtk.VBox vbox1;
         
@@ -158,9 +158,6 @@ namespace MonoPad {
             this.ClearAction = new Gtk.Action("ClearAction", Mono.Unix.Catalog.GetString("_Clear"), null, "edit-clear.png");
             this.ClearAction.ShortLabel = Mono.Unix.Catalog.GetString("_Clear");
             w2.Add(this.ClearAction, null);
-            this.FormatAction = new Gtk.Action("FormatAction", Mono.Unix.Catalog.GetString("Format"), null, null);
-            this.FormatAction.ShortLabel = Mono.Unix.Catalog.GetString("Format");
-            w2.Add(this.FormatAction, null);
             this.BoldAction = new Gtk.Action("BoldAction", Mono.Unix.Catalog.GetString("_Bold"), null, "format-text-bold.png");
             this.BoldAction.ShortLabel = Mono.Unix.Catalog.GetString("_Bold");
             w2.Add(this.BoldAction, null);
@@ -220,14 +217,14 @@ namespace MonoPad {
             this.EditorLayoutAction = new Gtk.Action("EditorLayoutAction", Mono.Unix.Catalog.GetString("Editor Layout"), null, null);
             this.EditorLayoutAction.ShortLabel = Mono.Unix.Catalog.GetString("Editor Layout");
             w2.Add(this.EditorLayoutAction, null);
-            this.SimpleTextAction = new Gtk.RadioAction("SimpleTextAction", Mono.Unix.Catalog.GetString("Simple Text"), null, "simple_text.png", 0);
+            this.SimpleTextAction = new Gtk.RadioAction("SimpleTextAction", Mono.Unix.Catalog.GetString("Simple Text"), null, "simple_text.png", 1);
             this.SimpleTextAction.Group = new GLib.SList(System.IntPtr.Zero);
             this.SimpleTextAction.ShortLabel = Mono.Unix.Catalog.GetString("Simple Text");
             w2.Add(this.SimpleTextAction, null);
-            this.RichTextAction1 = new Gtk.RadioAction("RichTextAction1", Mono.Unix.Catalog.GetString("Rich Text"), null, "rich_text.png", 0);
-            this.RichTextAction1.Group = this.SimpleTextAction.Group;
-            this.RichTextAction1.ShortLabel = Mono.Unix.Catalog.GetString("Rich Text");
-            w2.Add(this.RichTextAction1, null);
+            this.iconsmallPngAction = new Gtk.Action("iconsmallPngAction", null, null, "icon_small.png");
+            w2.Add(this.iconsmallPngAction, null);
+            this.Action = new Gtk.Action("Action", null, null, null);
+            w2.Add(this.Action, null);
             this.UIManager.InsertActionGroup(w2, 0);
             this.Name = "MonoPad.MonoPad";
             // Container child MonoPad.MonoPad.Gtk.Container+ContainerChild
@@ -238,7 +235,7 @@ namespace MonoPad {
             this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment1.Name = "alignment1";
             // Container child alignment1.Gtk.Container+ContainerChild
-            this.UIManager.AddUiFromString("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewAction' action='NewAction'/><menuitem name='OpenAction' action='OpenAction'/><menuitem name='SaveAction' action='SaveAction'/><menuitem name='SaveAsAction' action='SaveAsAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='copyAction' action='copyAction'/><menuitem name='cutAction' action='cutAction'/><menuitem name='pasteAction' action='pasteAction'/><separator/><menuitem name='selectAllAction' action='selectAllAction'/><menuitem name='ClearAction' action='ClearAction'/></menu><menu name='ViewAction' action='ViewAction'><menu name='ToolbarsAction' action='ToolbarsAction'><menuitem name='FormatBarAction' action='FormatBarAction'/><menuitem name='ToolbarAction' action='ToolbarAction'/><menuitem name='MiscAction' action='MiscAction'/></menu><menu name='EditorLayoutAction' action='EditorLayoutAction'/></menu><menu name='FormatAction' action='FormatAction'><menuitem name='BoldAction' action='BoldAction'/><menuitem name='ItalicAction' action='ItalicAction'/><menuitem name='UnderlineAction' action='UnderlineAction'/><menuitem name='StrikeThroughAction' action='StrikeThroughAction'/><separator/><menuitem name='BlockAction' action='BlockAction'/><menuitem name='AlignLeftAction1' action='AlignLeftAction1'/><menuitem name='AlignCenterAction' action='AlignCenterAction'/><menuitem name='AlignRightAction' action='AlignRightAction'/><separator/><menuitem name='FontSelectionAction' action='FontSelectionAction'/></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='OptionsAction' action='OptionsAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
+            this.UIManager.AddUiFromString("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewAction' action='NewAction'/><menuitem name='OpenAction' action='OpenAction'/><menuitem name='SaveAction' action='SaveAction'/><menuitem name='SaveAsAction' action='SaveAsAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='copyAction' action='copyAction'/><menuitem name='cutAction' action='cutAction'/><menuitem name='pasteAction' action='pasteAction'/><separator/><menuitem name='selectAllAction' action='selectAllAction'/><menuitem name='ClearAction' action='ClearAction'/></menu><menu name='ViewAction' action='ViewAction'><menu name='ToolbarsAction' action='ToolbarsAction'><menuitem name='FormatBarAction' action='FormatBarAction'/><menuitem name='ToolbarAction' action='ToolbarAction'/><menuitem name='MiscAction' action='MiscAction'/></menu><menu name='EditorLayoutAction' action='EditorLayoutAction'/></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='OptionsAction' action='OptionsAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
             this.menubar1 = ((Gtk.MenuBar)(this.UIManager.GetWidget("/menubar1")));
             this.menubar1.CanFocus = true;
             this.menubar1.Name = "menubar1";
@@ -292,7 +289,7 @@ namespace MonoPad {
             this.alignment6 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment6.Name = "alignment6";
             // Container child alignment6.Gtk.Container+ContainerChild
-            this.UIManager.AddUiFromString("<ui><toolbar name='tbrMisc'><toolitem name='FontSelectionAction' action='FontSelectionAction'/><separator/></toolbar></ui>");
+            this.UIManager.AddUiFromString("<ui><toolbar name='tbrMisc'><toolitem name='FontSelectionAction' action='FontSelectionAction'/><separator/><toolitem name='iconsmallPngAction' action='iconsmallPngAction'/><toolitem name='Action' action='Action'/></toolbar></ui>");
             this.tbrMisc = ((Gtk.Toolbar)(this.UIManager.GetWidget("/tbrMisc")));
             this.tbrMisc.Name = "tbrMisc";
             this.tbrMisc.ShowArrow = false;
@@ -362,7 +359,6 @@ namespace MonoPad {
             this.AlignRightAction.Activated += new System.EventHandler(this.OnAlignRightActionActivated);
             this.FontSelectionAction.Activated += new System.EventHandler(this.OnFontSelectionActionActivated);
             this.OptionsAction.Activated += new System.EventHandler(this.OnOptionsActionActivated);
-            this.RichTextAction1.Activated += new System.EventHandler(this.OnRichTextAction1Activated);
         }
     }
 }
