@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,18 +12,16 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <Description>A simple wordpad like text editor.</Description>
     <StartupObject>MonoPad.MainClass</StartupObject>
-    <ApplicationIcon>images\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -34,39 +32,20 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="atk-sharp">
+      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.1\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Posix">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="glib-sharp">
+      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.1\lib\mono\gac\glib-sharp\2.12.0.0__35e10195dab3c99f\glib-sharp.dll</HintPath>
     </Reference>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="System.Data">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="System.Xml">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="System.Configuration">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Mono.Data">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="art-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -128,6 +107,7 @@
     <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="Common\Options.cs" />
     <Compile Include="Editor\BufferTags.cs" />
+    <Compile Include="Editor\EditorTagTable.cs" />
     <Compile Include="Editor\MonoPadEditor.cs" />
     <None Include="app.config" />
     <EmbeddedResource Include="images\edit-clear.png">
@@ -145,7 +125,6 @@
     <EmbeddedResource Include="images\simple_text.png">
       <LogicalName>simple_text.png</LogicalName>
     </EmbeddedResource>
-    <Compile Include="Editor\EditorTagTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
