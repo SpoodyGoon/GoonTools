@@ -34,15 +34,15 @@ namespace GUPdotNET
 			return RunUpdate(false);
 		}
 		
-		public static bool RunUpdate(bool blnForceCheck)
+		public static bool RunUpdate(bool blnSilentUpdate)
 		{
 			bool blnSuccess = true;
-			UpdateInfo _UpdateInfo = new UpdateInfo(UpdateInfoType.All, blnForceCheck);
+			UpdateInfo _UpdateInfo = new UpdateInfo(UpdateInfoType.All, blnSilentUpdate);
 			try
 			{
 				_UpdateInfo.LoadInfo(UpdateInfoType.All);
 				
-				if((blnForceCheck) || (DateTime.Compare(DateTime.Now, Common.Option.LastUpdateCheck.AddHours(Common.Option.UpdateHours)) > 0))
+				if(DateTime.Compare(DateTime.Now, Common.Option.LastUpdate.AddHours(Common.Option.UpdateHours)) > 0)
 				{
 					// tell the user there is an update availalbe
 					// and ask if they would like to update
@@ -53,8 +53,8 @@ namespace GUPdotNET
 						frmDownload dlgDownload = new frmDownload(_UpdateInfo);
 						dlgDownload.Show();
 						DownloadStatus LoadStat = dlgDownload.CurrentStatus;
-						while(LoadStat == DownloadStatus.Prep || LoadStat == DownloadStatus.InProcess) 
-						{ 
+						while(LoadStat == DownloadStatus.Prep || LoadStat == DownloadStatus.InProcess)
+						{
 							GLib.Timeout.Add(1000, delegate{return false;});
 						}
 						dlgDownload.Destroy();
@@ -67,16 +67,16 @@ namespace GUPdotNET
 							Inst.Destroy();
 						}
 					}
-					else
-					{
-						if(blnForceCheck)
-						{							
-							MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No Update Available", "No Update Available");
-							md.Run();
-							md.Destroy();
-						}
-					}
 					dlgConfirm.Destroy();
+				}
+				else
+				{
+					if(!blnSilentUpdate)
+					{
+						MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No Update Available", "No Update Available");
+						md.Run();
+						md.Destroy();
+					}
 				}
 			}
 			catch(Exception ex)
