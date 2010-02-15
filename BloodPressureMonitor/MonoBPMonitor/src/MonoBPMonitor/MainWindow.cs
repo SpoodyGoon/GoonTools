@@ -23,6 +23,7 @@
 using System;
 using so = System.IO;
 using System.Data;
+using System.Diagnostics;
 using Gtk;
 using GoonTools;
 
@@ -50,7 +51,8 @@ namespace MonoBPMonitor
 				}
 				else
 				{
-					RunUpdate(false);
+					if(Common.Option.AutoUpdate == true)
+						RunUpdate(false);
 				}
 			}
 			catch(Exception ex)
@@ -296,21 +298,49 @@ namespace MonoBPMonitor
 		}
 		
 		private void RunUpdate(bool showoptions)
-		{			
-			System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
-			si.ErrorDialog = true;
-			si.RedirectStandardError = true;
-			si.FileName = Common.EnvData.UpdatePath;
-			if(!showoptions)
-				si.Arguments += "\"ShowOptions=false\" ";
-			else
-				si.Arguments += "\"ShowOptions=true\" ";
-			
-			if(!string.IsNullOrEmpty(Common.Option.CustomThemeFile) && System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
-				si.Arguments += "\"ThemeFile=" + Common.Option.CustomThemeFile + "\" ";
-			si.UseShellExecute = false;
-			System.Diagnostics.Process.Start(si);
+		{
+			try
+			{
+				System.Diagnostics.Process proc = new System.Diagnostics.Process();
+				proc.StartInfo.ErrorDialog = true;
+				proc.StartInfo.RedirectStandardError = true;
+				proc.StartInfo.FileName = Common.EnvData.UpdatePath;
+				if(!showoptions)
+					proc.StartInfo.Arguments += "\"ShowOptions=false\" ";
+				else
+					proc.StartInfo.Arguments += "\"ShowOptions=true\" ";
+				
+				if(!string.IsNullOrEmpty(Common.Option.CustomThemeFile) && System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
+					proc.StartInfo.Arguments += "\"ThemeFile=" + Common.Option.CustomThemeFile + "\" ";
+				proc.StartInfo.UseShellExecute = false;
+				
+				proc.StartInfo.RedirectStandardError = true;
+                proc.ErrorDataReceived += new DataReceivedEventHandler(UpdateErrorDataHandler);
+                proc.Start();
+				
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 		}
+
+        private void UpdateErrorDataHandler(object sendingProcess, DataReceivedEventArgs errLine)
+        {
+            if (!String.IsNullOrEmpty(errLine.Data))
+            {
+            	string str = "There has been an error starting the update process, would you like to diable the update program?";
+            	str += Environment.NewLine + "If you want to turn the update program on again you can do so in the options window.";
+            	Gtk.MessageDialog md = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.YesNo, false, "", "Error Starting Update Process.");
+				md.WindowPosition = WindowPosition.Mouse;
+				if((Gtk.ResponseType)md.Run() == Gtk.ResponseType.Yes)
+				{
+					Common.Option.AutoUpdate = false;
+				}
+				md.Destroy();
+            	Common.HandleError(this, new Exception(errLine.Data));
+            }
+        }
 		
 		#endregion Update Related
 		

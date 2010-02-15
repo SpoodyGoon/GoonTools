@@ -44,6 +44,7 @@ namespace GoonTools.Helper
 		private bool _BackupLogs = true;
 		private string _CustomThemeName = "Elegance";
 		private string _CustomThemeFile = "";
+		private bool _AutoUpdate = true;
 		private bool _UseCustomTheme = true;
 		private int _FileVersion = 1;
 		// the file version does not nessicarily match the application version
@@ -77,6 +78,9 @@ namespace GoonTools.Helper
 				dr = (DataRow)dt.Rows.Find ("CustomThemeFile");
 				if (dr != null)
 					_CustomThemeFile = dr["Value"].ToString ();
+				dr = (DataRow)dt.Rows.Find ("AutoUpdate");
+				if (dr != null)
+					_AutoUpdate = Convert.ToBoolean (dr["Value"]);
 				dr = (DataRow)dt.Rows.Find ("UseCustomTheme");
 				if (dr != null)
 					_UseCustomTheme = Convert.ToBoolean (dr["Value"]);
@@ -135,6 +139,10 @@ namespace GoonTools.Helper
 				dr = dt.NewRow ();
 				dr["Key"] = "CustomThemeFile";
 				dr["Value"] = _CustomThemeFile;
+				dt.Rows.Add (dr);
+				dr = dt.NewRow ();
+				dr["Key"] = "AutoUpdate";
+				dr["Value"] = _AutoUpdate;
 				dt.Rows.Add (dr);
 				dr = dt.NewRow ();
 				dr["Key"] = "UseCustomTheme";
@@ -196,6 +204,9 @@ namespace GoonTools.Helper
 				dr = (DataRow)dt.Rows.Find ("CustomThemeFile");
 				if (dr != null)
 					_CustomThemeFile = dr["Value"].ToString ();
+				dr = (DataRow)dt.Rows.Find ("AutoUpdate");
+				if (dr != null)
+					_AutoUpdate = Convert.ToBoolean (dr["Value"]);
 				dr = (DataRow)dt.Rows.Find ("UseCustomTheme");
 				if (dr != null)
 					_UseCustomTheme = Convert.ToBoolean (dr["Value"]);
@@ -280,6 +291,11 @@ namespace GoonTools.Helper
 		public string CustomThemeFile {
 			get { return _CustomThemeFile; }
 			set { _CustomThemeFile = value; }
+		}
+
+		public bool AutoUpdate {
+			get { return _AutoUpdate; }
+			set { _AutoUpdate = value; }
 		}
 
 		public bool UseCustomTheme {

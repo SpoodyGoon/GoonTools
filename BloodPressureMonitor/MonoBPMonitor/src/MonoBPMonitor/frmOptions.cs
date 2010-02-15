@@ -8,8 +8,7 @@ using Gtk;
 using GoonTools;
 
 namespace MonoBPMonitor
-{
-	
+{	
 	
 	public partial class frmOptions : Gtk.Dialog
 	{
@@ -21,8 +20,9 @@ namespace MonoBPMonitor
 			{
 				cbxAll.Activated += new EventHandler(OnCbxAllToggled);
 				spnDefaultHistory.Value = (double)GoonTools.Common.Option.HistoryDefaultShow;
-				cbxLimitRecords.Active = GoonTools.Common.Option.LimitHistory;
+				cbxAutoUpdate.Active = GoonTools.Common.Option.LimitHistory;
 				cbxLogErrors.Active = GoonTools.Common.Option.SaveErrorLog;
+				cbxAutoUpdate.Active = GoonTools.Common.Option.AutoUpdate;
 				spnDefaultHistory.Sensitive = GoonTools.Common.Option.LimitHistory;
 				cbxDatabaseSchema.Active = Common.Option.BackupSchema;
 				cbxDatabaseData.Active = Common.Option.BackupData;
@@ -46,6 +46,8 @@ namespace MonoBPMonitor
 				{
 					lblGUPdotNETVersion.Destroy();
 					lblGUPdotNETText.Destroy();
+					lblAutoUpdates.Destroy();
+					cbxAutoUpdate.Destroy();
 				}
 				this.ShowAll();
 			}
@@ -55,26 +57,30 @@ namespace MonoBPMonitor
 			}
 			this.ShowAll();
 		}
-
-		protected virtual void OnBtnCloseClicked (object sender, System.EventArgs e)
+		
+		protected override void OnClose()
 		{
 			SaveChanges();
-			this.Hide();
+			this.Respond(Gtk.ResponseType.Ok);
+			base.OnClose();
 		}
 
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-			this.Respond(Gtk.ResponseType.Ok);
-			SaveChanges();
 		}
 		
 		private void SaveChanges()
 		{
 			try
 			{
-				GoonTools.Common.Option.LimitHistory = cbxLimitRecords.Active;
+				GoonTools.Common.Option.LimitHistory = cbxAutoUpdate.Active;
 				GoonTools.Common.Option.HistoryDefaultShow=Convert.ToInt32(spnDefaultHistory.Value);
 				GoonTools.Common.Option.SaveErrorLog= cbxLogErrors.Active;
+				GoonTools.Common.Option.AutoUpdate = cbxAutoUpdate.Active;
+				Common.Option.BackupSchema = cbxDatabaseSchema.Active;
+				Common.Option.BackupData = cbxDatabaseData.Active;
+				Common.Option.BackupOptions = cbxOptions.Active;
+				Common.Option.BackupLogs = cbxLogs.Active;
 				GoonTools.Common.SaveUserData();
 			}
 			catch(Exception ex)
@@ -86,18 +92,7 @@ namespace MonoBPMonitor
 		
 		protected virtual void OnCbxLimitRecordsToggled (object sender, System.EventArgs e)
 		{
-			spnDefaultHistory.Sensitive = cbxLimitRecords.Active;
-		}
-		
-		protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
-		{
-			this.Hide();
-		}
-
-		protected virtual void OnBtnOkClicked (object sender, System.EventArgs e)
-		{
-			SaveChanges();
-			this.Hide();
+			spnDefaultHistory.Sensitive = cbxAutoUpdate.Active;
 		}
 
 		
@@ -615,6 +610,7 @@ namespace MonoBPMonitor
 		
 		protected virtual void OnClose (object sender, System.EventArgs e)
 		{
+			 SaveChanges();
 		}
 		
 		#region Themes
