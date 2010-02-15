@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,7 +21,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>Full</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
@@ -46,13 +46,6 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib" />
-    <Reference Include="Mono.Data">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.1\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -88,6 +81,18 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="Mono.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\2.0\Mono.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\2.0\Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\SharpDevelop\3.0\AddIns\AddIns\Misc\AddInManager\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -209,9 +214,5 @@
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUPdotNET" />
-    <Folder Include="MiscControls" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
