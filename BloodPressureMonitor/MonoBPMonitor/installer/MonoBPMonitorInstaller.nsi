@@ -14,6 +14,7 @@ SetCompressor lzma
 
 ; MUI 1.67 compatible ------
 !include "MUI.nsh"
+!include "gtksharp.nsi"
 
 ; MUI Settings
 !define MUI_ABORTWARNING
@@ -36,6 +37,8 @@ var ICONS_GROUP
 !define MUI_STARTMENUPAGE_REGISTRY_KEY "${PRODUCT_UNINST_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "${PRODUCT_STARTMENU_REGVAL}"
 !insertmacro MUI_PAGE_STARTMENU Application $ICONS_GROUP
+; Dependency check
+
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
@@ -89,6 +92,13 @@ Section -AdditionalIcons
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
+Section -Dependencies
+    Call IsGTKSharpInstalled
+    Pop $0
+    StrCmp $0 1 
+    messageBox MB_OK "Gtk Version Check: $0"
+SectionEnd
+
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
   WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\MonoBPMonitor.exe"
@@ -102,7 +112,7 @@ SectionEnd
 
 ; Section descriptions
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-  !insertmacro MUI_DESCRIPTION_TEXT ${SEC01} ""
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC01} ""
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 
