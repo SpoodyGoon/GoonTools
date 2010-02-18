@@ -93,7 +93,6 @@ namespace MonoBPMonitor
 		protected virtual void OnCbxLimitRecordsToggled (object sender, System.EventArgs e)
 		{
 			spnDefaultHistory.Sensitive = cbxAutoUpdate.Active;
-			Gtk.
 		}
 
 		
