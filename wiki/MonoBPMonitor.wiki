@@ -1,7 +1,7 @@
 = A Simple Blood Pressure Monitor for Windows and Linux=
 
 
-
+http://brdstudio.net/mbpmonitor/icon_large.png
 Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.
 
-It include methods to track medication as well as doctors but it's main focus is the simple tracking and reporting of blood pressure readings.
+It include methods to track medication as well as doctors but it's main focus is the simple tracking and reporting of blood pressure readings. The main goal of the project is to create the most simple and effective way to track blood pressure readings as possible. Hopefully it will be of use to someone and it will make it easier for them to be more healthy and informed.
