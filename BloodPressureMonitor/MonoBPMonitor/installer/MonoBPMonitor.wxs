@@ -30,6 +30,9 @@
                     <Component Id="sqlite3.dll" DiskId="1" Guid="0A38A95C-8C11-4D60-943D-EC7E44074ABD">
                         <File Id="sqlite3.dll" Name="sqlite3.dll" Source="..\src\MonoBPMonitor\bin\Debug\sqlite3.dll" />
                     </Component>
+                    <Component Id="gpl3.rtf" Guid="54E710D0-EB75-430D-BAAC-A06F42D05616">
+                        <File Id="gpl3.rtf" Name="gpl3.rtf" Source="gpl3.rtf" />
+                    </Component>
                     <Directory Id="Data" Name="Data">
                         <Component Id="BPMonitor.s3db" DiskId="1" Guid="7EAA3FC1-3061-4813-92BD-490918A096E9">
                             <File Id="BPMonitor.s3db" Name="BPMonitor.s3db" Source="..\src\MonoBPMonitor\bin\Debug\Data\BPMonitor.s3db" />
@@ -1003,7 +1006,9 @@
         <Condition Message="This application requires .NET Framework 2.0 or greater">Installed OR NETFRAMEWORK20</Condition>
         <Icon Id="DesktopIcon.exe" SourceFile="..\src\MonoBPMonitor\bin\Debug\MonoBPMonitor.exe" />
         <Icon Id="StartMenuIcon.exe" SourceFile="..\src\MonoBPMonitor\bin\Debug\MonoBPMonitor.exe" />
-        <Icon Id="icon.ico" SourceFile="C:\Users\Andy\Documents\SharpDevelop Projects\MonoBPMonitor\installer\icon.ico" />
+        <Icon Id="icon.ico" SourceFile="icon.ico" />
+        <Icon Id="Background.bmp" SourceFile="C:\Users\Andy\Documents\SharpDevelop Projects\MonoBPMonitor\installer\Background.bmp" />
+        <Icon Id="TopBanner.bmp" SourceFile="C:\Users\Andy\Documents\SharpDevelop Projects\MonoBPMonitor\installer\TopBanner.bmp" />
         <UI>
         </UI>
         <Feature Id="DefaultFeature" Level="1">
@@ -1311,7 +1316,11 @@
             <ComponentRef Id="trough.png" />
             <ComponentRef Id="StartMenuShortcuts" />
             <ComponentRef Id="GtkSharpRuntime" />
+            <ComponentRef Id="gpl3.rtf" />
         </Feature>
         <UIRef Id="WixUI_Mondo" />
+        <WixVariable Id="WixUIDialogBmp" Value="Background.bmp" />
+        <WixVariable Id="WixUILicenseRtf" Value="gpl3.rtf" />
+        <WixVariable Id="WixUIBannerBmp" Value="TopBanner.bmp" />
     </Product>
 </Wix>
