@@ -1,4 +1,4 @@
-﻿/*************************************************************************
+/*************************************************************************
  *                      EnviromentData.cs
  *
  *	 	Copyright (C) 2010
@@ -46,6 +46,7 @@ namespace GoonTools.Helper
 		private string _UserThemePath = null;
 		private string _DataPath = null;
 		private string _UpdatePath = null;
+		private string _UpdateFile = null;
 		public EnviromentData()
 		{
 			so.FileInfo fi;
@@ -107,9 +108,13 @@ namespace GoonTools.Helper
 			
 			if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "true")
 			{
-				fi=new so.FileInfo(so.Path.Combine(so.Path.Combine(_AppPath, "GUPdotNET"), "GUPdotNET.exe"));
+				di = new System.IO.DirectoryInfo(so.Path.Combine(_AppPath, "GUPdotNET"));
+				if(di.Exists)
+					_UpdatePath = di.FullName;
+				
+				fi=new so.FileInfo(so.Path.Combine(_UpdatePath, "GUPdotNET.exe"));
 				if(fi.Exists)
-					_UpdatePath = fi.FullName;
+					_UpdateFile = fi.FullName;
 			}
 		}
 		
@@ -167,6 +172,11 @@ namespace GoonTools.Helper
 		public string UpdatePath
 		{
 			get{return _UpdatePath;}
+		}
+		
+		public string UpdateFile
+		{
+			get{return _UpdateFile;}
 		}
 		
 		#endregion Public Properties

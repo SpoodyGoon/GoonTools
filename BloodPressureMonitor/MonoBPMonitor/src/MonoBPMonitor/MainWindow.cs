@@ -276,8 +276,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				so.FileInfo fi = new so.FileInfo(so.Path.Combine(so.Path.Combine(Common.EnvData.AppPath, "GUPdotNET"),"GUPdotNET.exe"));
-				if(fi.Exists)
+				if(so.File.Exists(Common.EnvData.UpdateFile))
 				{
 					RunUpdate(true);
 				}
@@ -304,7 +303,8 @@ namespace MonoBPMonitor
 				System.Diagnostics.Process proc = new System.Diagnostics.Process();
 				proc.StartInfo.ErrorDialog = true;
 				proc.StartInfo.RedirectStandardError = true;
-				proc.StartInfo.FileName = Common.EnvData.UpdatePath;
+				proc.StartInfo.WorkingDirectory = Common.EnvData.UpdatePath;
+				proc.StartInfo.FileName = Common.EnvData.UpdateFile;
 				if(!showoptions)
 					proc.StartInfo.Arguments += "\"ShowOptions=false\" ";
 				else

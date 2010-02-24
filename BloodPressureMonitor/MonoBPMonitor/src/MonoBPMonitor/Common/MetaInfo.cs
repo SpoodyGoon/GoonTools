@@ -62,7 +62,7 @@ namespace GoonTools.Helper
 					new DataColumn ("MajorVersion", typeof(int)),
 					new DataColumn ("MinorVersion", typeof(int))
 				});
-				dt.PrimaryKey = new DataColumn[] { dt.Columns["Key"] };
+				dt.PrimaryKey = new DataColumn[] { dt.Columns["Entity"] };
 				System.Data.DataRow dr = dt.NewRow ();
 				dr["Entity"] = "MonoBPMonitor";
 				dr["MajorVersion"] = _MonoBPMonitor.Major;

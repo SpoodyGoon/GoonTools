@@ -61,11 +61,8 @@ namespace MonoBPMonitor.Users
 			try
 			{
 				Gtk.CellRendererText ct = new Gtk.CellRendererText();
-				Gtk.CellRendererText ct2 = new Gtk.CellRendererText();
 				this.PackStart(ct, false);
-				this.PackStart(ct2,false);
-				this.AddAttribute(ct, "text", 0);
-				this.AddAttribute(ct2, "text", 1);
+				this.AddAttribute(ct, "text", 1);
 				this.Model = lsUser;
 				
 				LoadUsers();
