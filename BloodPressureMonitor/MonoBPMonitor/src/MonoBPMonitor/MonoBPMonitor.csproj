@@ -81,15 +81,15 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+    <Reference Include="ICSharpCode.SharpZipLib">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\SharpDevelop\3.0\AddIns\AddIns\Misc\AddInManager\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+    <Reference Include="Mono.Data">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Mono.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+    <Reference Include="Mono.Data.SqliteClient">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
@@ -217,6 +217,36 @@
     <Compile Include="gtk-gui\MonoBPMonitor.frmErrorMessage.cs" />
     <EmbeddedResource Include="images\webexport.png">
       <LogicalName>webexport.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\ManageConnections.png">
+      <LogicalName>ManageConnections.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\ProjectWebSite.png">
+      <LogicalName>ProjectWebSite.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\ErrorLog.png">
+      <LogicalName>ErrorLog.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\document-open-remote.png">
+      <LogicalName>OnlineDocs.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\easymoblog.png">
+      <LogicalName>easymoblog.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\homepage.png">
+      <LogicalName>homepage.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\Options.png">
+      <LogicalName>Options.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\Tools.png">
+      <LogicalName>Tools.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\contents.png">
+      <LogicalName>contents.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\configure.png">
+      <LogicalName>configure.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

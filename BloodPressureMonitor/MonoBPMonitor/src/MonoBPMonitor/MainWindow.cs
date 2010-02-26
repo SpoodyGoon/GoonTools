@@ -343,6 +343,24 @@ namespace MonoBPMonitor
         }
 		
 		#endregion Update Related
+        protected virtual void OnProjectWebSiteActionActivated (object sender, System.EventArgs e)
+		{
+			frmErrorMessage fm = new frmErrorMessage();
+			fm.Run();
+			fm.Destroy();
+		}
+		
+        protected virtual void OnOnlineDocumentationActionActivated (object sender, System.EventArgs e)
+		{
+		}
+		
+        protected virtual void OnIssuesFeatureRequestsActionActivated (object sender, System.EventArgs e)
+		{
+		}
+		
+		
+		
+		
 		
 		
 		

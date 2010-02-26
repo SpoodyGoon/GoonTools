@@ -17,15 +17,27 @@ namespace MonoBPMonitor
 
 	public partial class frmErrorMessage : Gtk.Dialog
 	{
-		protected virtual void OnBtnProjectSiteClicked (object sender, System.EventArgs e)
-		{
-		}
-		
-		
 
 		public frmErrorMessage ()
 		{
 			this.Build ();
 		}
+		
+		protected virtual void OnBtnCopyErrorClicked (object sender, System.EventArgs e)
+		{
+			
+		}
+		
+		protected virtual void OnBtnProjectSiteClicked (object sender, System.EventArgs e)
+		{
+			System.Diagnostics.Process.Start(System.Configuration.ConfigurationManager.AppSettings["ProjectIssuesURL"]);
+		}
+		
+		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
+		{
+			this.Hide();
+		}
+		
+		
 	}
 }
