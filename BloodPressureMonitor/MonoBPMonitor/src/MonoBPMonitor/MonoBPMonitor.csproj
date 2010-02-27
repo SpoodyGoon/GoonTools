@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,7 +21,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>Full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
@@ -46,6 +46,14 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data">
+      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.1\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Data.SqliteClient">
+      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -81,17 +89,9 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="ICSharpCode.SharpZipLib">
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\SharpDevelop\3.0\AddIns\AddIns\Misc\AddInManager\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Mono.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +126,8 @@
       <LogicalName>date.png</LogicalName>
     </EmbeddedResource>
     <Compile Include="Common\MetaInfo.cs" />
+    <Compile Include="gtk-gui\MonoBPMonitor.frmErrorMessage.cs" />
+    <Compile Include="Help\frmErrorMessage.cs" />
     <Compile Include="MiscControls\ThemeComboBox.cs" />
     <Compile Include="Doctors\DoctorTreeView.cs" />
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
@@ -213,41 +215,6 @@
     <Content Include="BPMonitor.desktop">
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
     </Content>
-    <Compile Include="Help\frmErrorMessage.cs" />
-    <Compile Include="gtk-gui\MonoBPMonitor.frmErrorMessage.cs" />
-    <EmbeddedResource Include="images\webexport.png">
-      <LogicalName>webexport.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\ManageConnections.png">
-      <LogicalName>ManageConnections.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\ProjectWebSite.png">
-      <LogicalName>ProjectWebSite.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\ErrorLog.png">
-      <LogicalName>ErrorLog.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\document-open-remote.png">
-      <LogicalName>OnlineDocs.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\easymoblog.png">
-      <LogicalName>easymoblog.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\homepage.png">
-      <LogicalName>homepage.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\Options.png">
-      <LogicalName>Options.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\Tools.png">
-      <LogicalName>Tools.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\contents.png">
-      <LogicalName>contents.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="images\configure.png">
-      <LogicalName>configure.png</LogicalName>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
