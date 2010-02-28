@@ -156,7 +156,7 @@ namespace GoonTools
 				sw.Close();
 			}
 			
-			Gtk.MessageDialog md = new Gtk.MessageDialog(parent_window, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			MonoBPMonitor.frmErrorMessage md = new MonoBPMonitor.frmErrorMessage();			
 			md.WindowPosition = WindowPosition.Mouse;
 			md.Run();
 			md.Destroy();

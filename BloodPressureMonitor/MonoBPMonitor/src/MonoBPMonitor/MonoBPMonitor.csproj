@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,7 +21,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>Full</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
@@ -89,7 +89,7 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+    <Reference Include="ICSharpCode.SharpZipLib">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\SharpDevelop\3.0\AddIns\AddIns\Misc\AddInManager\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -215,6 +215,47 @@
     <Content Include="BPMonitor.desktop">
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
     </Content>
+    <EmbeddedResource Include="images\configure.png">
+      <LogicalName>Configure.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\contents.png">
+      <LogicalName>Contents.png</LogicalName>
+    </EmbeddedResource>
+    <None Include="images\document-open-remote.png" />
+    <EmbeddedResource Include="images\easymoblog.png">
+      <LogicalName>Easymoblog.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\ErrorLog.png">
+      <LogicalName>ErrorLog.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\homepage.png">
+      <LogicalName>Homepage.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\ManageConnections.png">
+      <LogicalName>ManageConnections.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\Options.png">
+      <LogicalName>Options.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\ProjectWebSite.png">
+      <LogicalName>ProjectWebSite.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\Tools.png">
+      <LogicalName>Tools.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\webexport.png">
+      <LogicalName>Webexport.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <TextStylePolicy inheritsSet="Mono" inheritsScope="text/plain" scope="text/x-csharp" />
+          <CSharpFormattingPolicy AnonymousMethodBraceStyle="NextLine" PropertyBraceStyle="NextLine" EventBraceStyle="NextLine" EventAddBraceStyle="NextLine" EventRemoveBraceStyle="NextLine" StatementBraceStyle="NextLine" PlaceElseOnNewLine="True" PlaceElseIfOnNewLine="True" PlaceCatchOnNewLine="True" PlaceFinallyOnNewLine="True" PlaceWhileOnNewLine="True" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>
