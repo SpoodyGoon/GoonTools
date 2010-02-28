@@ -9,7 +9,9 @@
 //------------------------------------------------------------------------------
 
 using System;
-
+using System.IO;
+using Gtk;
+using GoonTools;
 
 namespace MonoBPMonitor
 {
@@ -22,20 +24,57 @@ namespace MonoBPMonitor
 		{
 			this.Build ();
 		}
-		
+
+		public frmErrorMessage (Exception ex)
+		{
+			this.Build ();
+			txtErrorDetails.Buffer.Text = ex.ToString ();
+		}
+
 		protected virtual void OnBtnCopyErrorClicked (object sender, System.EventArgs e)
 		{
+		}
+
+		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
+		{
+			this.Hide ();
+		}
+
+		protected virtual void OnBtnSaveErrorClicked (object sender, System.EventArgs e)
+		{
+			try
+			{
+				FileChooserDialog fc = new FileChooserDialog ("Save error to file.", null, FileChooserAction.Save, "Cancel", ResponseType.Cancel, "Save", ResponseType.Ok);
+				FileFilter filter = new FileFilter ();
+				filter.Name = "Simple Text File (txt)";
+				filter.AddMimeType ("text/plain");
+				filter.AddPattern ("*.txt");
+				fc.AddFilter (filter);
+				fc.SelectMultiple = false;
+				fc.CurrentName = "MonoBPM_Error.txt";
+				fc.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+				if (fc.Run () == (int)ResponseType.Ok)
+				{
+					
+					
+					StreamWriter sw = new StreamWriter (fc.Filename, true);
+					sw.Write (sw.NewLine + "------------------------------------------------------------------------------");
+					sw.Write (sw.NewLine + "--------------------------- " + DateTime.Now.ToString () + " --------------------------");
+					sw.Write (sw.NewLine + txtErrorDetails.Buffer.Text);
+					sw.Write (sw.NewLine + "------------------------------------------------------------------------------");
+					sw.Close ();
+				}
+			}
+			catch (Exception ex)
+			{
+				Common.HandleError (this, ex);
+			}
 			
 		}
 		
-		protected virtual void OnBtnProjectSiteClicked (object sender, System.EventArgs e)
+		protected virtual void OnBtnReportErrorClicked (object sender, System.EventArgs e)
 		{
-			System.Diagnostics.Process.Start(System.Configuration.ConfigurationManager.AppSettings["ProjectIssuesURL"]);
-		}
-		
-		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
-		{
-			this.Hide();
+			System.Diagnostics.Process.Start (System.Configuration.ConfigurationManager.AppSettings["ProjectIssuesURL"]);
 		}
 		
 		
