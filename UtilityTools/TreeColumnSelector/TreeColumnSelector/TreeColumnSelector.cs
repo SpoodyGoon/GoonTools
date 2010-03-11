@@ -25,28 +25,64 @@ using Gtk;
 
 namespace GoonTools.ColumnSelector
 {
-	
-	
 	public class TreeColumnSelector : Gtk.TreeViewColumn
 	{
-		private Gtk.TreeViewColumn[] _Columns;
+		private TreeViewColumnCollection _Columns = new TreeViewColumnCollection();
+		private Gdk.Pixbuf _WidgetImage = null;
+		private string _WidgetImageFile = null;
 		public TreeColumnSelector(Gtk.TreeViewColumn[] cols)
 		{
-			_Columns = cols;
-			this.FixedWidth = 25;
-			this.Clickable=true;
-			this.Resizable = false;
-			Gtk.Image img = new Gtk.Image(Gdk.Pixbuf.LoadFromResource("columnpicker.png"));
-			img.SetPadding(3,0);
-			Gtk.Fixed fx = new Gtk.Fixed();
-			fx.SizeAllocate(img.Allocation);
-			fx.Put(img, 0,0);
-			fx.ShowAll();
-			this.Widget = (Gtk.Widget)fx;			
-			this.Clicked += new EventHandler(TreeColumnSelector_Clicked);			
+			for(int i = 0; i < cols.Length; i++)
+			{
+				_Columns.Add(cols[i]);
+			}
+			this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
+		}
+		
+		public TreeColumnSelector(Gtk.TreeViewColumn[] cols, Gdk.Pixbuf pix)
+		{	
+			for(int i = 0; i < cols.Length; i++)
+			{
+				_Columns.Add(cols[i]);
+			}
+			_WidgetImage = pix;
+			this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
+		}
+		
+		public TreeColumnSelector(Gtk.TreeViewColumn[] cols, string imagefile)
+		{			
+			for(int i = 0; i < cols.Length; i++)
+			{
+				_Columns.Add(cols[i]);
+			}
+			_WidgetImageFile = imagefile;
+			this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
 		}
 
-		private void TreeColumnSelector_Clicked(object sender, EventArgs e)
+		private void TreeColumnSelector_Realized(object sender, EventArgs e)
+		{
+			try
+			{
+				this.FixedWidth = 25;
+				this.Clickable=true;
+				this.Resizable = false;
+				Gtk.Image img = GetWidgetImage();
+				img.SetPadding(3,0);
+				Gtk.Fixed fx = new Gtk.Fixed();
+				fx.SizeAllocate(img.Allocation);
+				fx.Put(img, 0,0);
+				fx.ShowAll();
+				this.Widget = (Gtk.Widget)fx;
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, true, "<b>GoonTools Column Selector</b>\n" + ex.ToString(), "GoonTools Column Selector Error");
+				md.Run();
+				md.Destroy();
+			}
+		}
+		
+		protected override void OnClicked()
 		{
 			try
 			{
@@ -57,10 +93,10 @@ namespace GoonTools.ColumnSelector
 				x = x + this.TreeView.Allocation.Right;
 				y += this.TreeView.Allocation.Top + this.Widget.Allocation.Bottom;
 				PopupWindow pop = new PopupWindow(_Columns, new Gdk.Rectangle(x, y, width, height));
-				for(int i = 0; i< _Columns.Length; i++)
+				for(int i = 0; i< _Columns.Count; i++)
 				{
-					if(_Columns[i].Title != "")
-						pop.AddColumn(i, _Columns[i].Visible, _Columns[i].Title);
+					if((Gtk.TreeViewColumn)_Columns[i].Title != "")
+						pop.AddColumn(i, ((Gtk.TreeViewColumn)_Columns[i]).Visible, ((Gtk.TreeViewColumn)_Columns[i]).Title);
 				}
 				pop.ShowPopUp();
 			}
@@ -70,7 +106,53 @@ namespace GoonTools.ColumnSelector
 				md.Run();
 				md.Destroy();
 			}
-			
 		}
+		
+		private Gtk.Image GetWidgetImage()
+		{
+			try
+			{
+				if(_WidgetImage != null)
+				{
+					return new Gtk.Image(_WidgetImage);
+				}
+				else if(_WidgetImageFile != null && _WidgetImageFile.Trim() != string.Empty)
+				{
+					System.IO.FileInfo fi = new System.IO.FileInfo(_WidgetImageFile);
+					if(fi.Exists)
+						return new Gtk.Image(fi.FullName);
+					else
+						return new Gtk.Image(Gdk.Pixbuf.LoadFromResource("columnpicker.png")); // default image resource
+				}
+				else
+				{
+					// default image resource
+					return new Gtk.Image(Gdk.Pixbuf.LoadFromResource("columnpicker.png"));
+				}
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, true, "<b>GoonTools Column Selector</b>\n" + ex.ToString(), "GoonTools Column Selector Error");
+				md.Run();
+				md.Destroy();
+			}
+			return null;
+		}
+		
+		#region Public Properties
+		
+		public Gdk.Pixbuf WidgetImage
+		{
+			set{_WidgetImage=value;}
+			get{return _WidgetImage;}
+		}
+		
+		public string WidgetImageFile
+		{
+			set{_WidgetImageFile=value;}
+			get{return _WidgetImageFile;}
+		}
+		
+		#endregion Public Properties
 	}
 }

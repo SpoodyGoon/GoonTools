@@ -73,7 +73,6 @@ namespace TaskList
 			this.AppendColumn (colListName);
 			this.AppendColumn (colDate);
 			this.AppendColumn (colIsActive);
-			this.AppendColumn(new GoonTools.ColumnSelector.TreeColumnSelector(this.Columns));
 			
 			// set up the columns
 			Gtk.CellRendererText cellListID = new Gtk.CellRendererText ();
@@ -103,6 +102,8 @@ namespace TaskList
 			colDate.AddAttribute (cellDate, "text", 2);
 			colIsActive.AddAttribute(cellIsActive, "active", 3);
 			this.Model = ls;
+			this.Realized += delegate { this.AppendColumn(new GoonTools.ColumnSelector.TreeColumnSelector(this.Columns)); };
+			
 			
 		}
 	}
