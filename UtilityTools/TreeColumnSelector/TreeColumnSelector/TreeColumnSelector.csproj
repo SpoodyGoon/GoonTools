@@ -67,6 +67,7 @@
     <Compile Include="TreeColumnSelector.cs" />
     <Compile Include="ColumnSelectorTreeView.cs" />
     <Compile Include="ColumnSelectorTreeView.designer.cs" />
+    <Compile Include="TreeViewColumnCollection.cs" />
     <EmbeddedResource Include="columnpicker.png">
       <LogicalName>columnpicker.png</LogicalName>
     </EmbeddedResource>

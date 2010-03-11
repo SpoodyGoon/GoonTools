@@ -31,7 +31,7 @@ public partial class MainWindow: Gtk.Window
 		Build ();
 		swLists.Add(new TaskList.ListsTreeView(this));
 		//frame1.Add(new h
-		this.ShowAll();
+		//this.ShowAll();
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)

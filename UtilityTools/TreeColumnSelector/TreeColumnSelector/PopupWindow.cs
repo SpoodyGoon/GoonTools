@@ -28,11 +28,11 @@ namespace GoonTools.ColumnSelector
 	
 	public class PopupWindow : Gtk.Window
 	{
-		private Gtk.TreeViewColumn[] _Columns;
+		private TreeViewColumnCollection _Columns;
 		private ColumnSelectorTreeView _ColumnSelectorTreeView;
 		// the padding is just used to help fine tune the format of the popup window
 		private int _Padding = 3;
-		public PopupWindow(Gtk.TreeViewColumn[] col, Gdk.Rectangle ColHeaderRec) : base(Gtk.WindowType.Popup)
+		public PopupWindow(TreeViewColumnCollection col, Gdk.Rectangle ColHeaderRec) : base(Gtk.WindowType.Popup)
 		{
 			Build();
 			_Columns = col;
@@ -77,7 +77,7 @@ namespace GoonTools.ColumnSelector
 		///  this property gives access to the columns
 		///  for the child treeview
 		/// </summary>
-		internal Gtk.TreeViewColumn[] Columns
+		internal TreeViewColumnCollection Columns
 		{
 			get{return _Columns;}
 		}
