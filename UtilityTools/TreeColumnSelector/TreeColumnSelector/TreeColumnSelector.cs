@@ -25,41 +25,62 @@ using Gtk;
 
 namespace GoonTools.ColumnSelector
 {
+	[System.ComponentModel.Category("widget")]
+	[System.ComponentModel.ToolboxItem(true)]
 	public class TreeColumnSelector : Gtk.TreeViewColumn
 	{
 		private TreeViewColumnCollection _Columns = new TreeViewColumnCollection();
 		private Gdk.Pixbuf _WidgetImage = null;
 		private string _WidgetImageFile = null;
-		public TreeColumnSelector(Gtk.TreeViewColumn[] cols)
+		private GoonTools.ColumnSelector.TreeColumnSelector _ColumnSelect = new GoonTools.ColumnSelector.TreeColumnSelector();
+		public TreeColumnSelector()
+		{			
+			
+		}
+
+		public TreeColumnSelector(Gtk.TreeViewColumn[] cols) 
+		{
+			for(int i = 0; i < cols.Length; i++)
+			{
+				_Columns.Add(cols[i]); 
+			} 
+			//this.TreeView.Shown += new EventHandler(TreeColumnSelector_Shown);
+		}
+
+		private void TreeColumnSelector_Shown(object sender, EventArgs e)
+		{
+			
+			Console.WriteLine("PreLoad");
+			Console.Read();
+		}
+		
+		private void TreeColumnSelector_PreLoad(object sender, IntPtr meth)
+		{
+			Console.WriteLine("PreLoad");
+			Console.Read();
+		}
+		
+		public TreeColumnSelector(Gtk.TreeViewColumn[] cols, Gdk.Pixbuf pix)
 		{
 			for(int i = 0; i < cols.Length; i++)
 			{
 				_Columns.Add(cols[i]);
 			}
-			this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
-		}
-		
-		public TreeColumnSelector(Gtk.TreeViewColumn[] cols, Gdk.Pixbuf pix)
-		{	
-			for(int i = 0; i < cols.Length; i++)
-			{
-				_Columns.Add(cols[i]);
-			}
 			_WidgetImage = pix;
-			this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
+			//this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
 		}
 		
 		public TreeColumnSelector(Gtk.TreeViewColumn[] cols, string imagefile)
-		{			
+		{
 			for(int i = 0; i < cols.Length; i++)
 			{
 				_Columns.Add(cols[i]);
 			}
 			_WidgetImageFile = imagefile;
-			this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
+			//this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
 		}
 
-		private void TreeColumnSelector_Realized(object sender, EventArgs e)
+		public void TreeColumnSelector_Realized(object sender, EventArgs e)
 		{
 			try
 			{
@@ -95,7 +116,7 @@ namespace GoonTools.ColumnSelector
 				PopupWindow pop = new PopupWindow(_Columns, new Gdk.Rectangle(x, y, width, height));
 				for(int i = 0; i< _Columns.Count; i++)
 				{
-					if((Gtk.TreeViewColumn)_Columns[i].Title != "")
+					if(((Gtk.TreeViewColumn)_Columns[i]).Title != "")
 						pop.AddColumn(i, ((Gtk.TreeViewColumn)_Columns[i]).Visible, ((Gtk.TreeViewColumn)_Columns[i]).Title);
 				}
 				pop.ShowPopUp();

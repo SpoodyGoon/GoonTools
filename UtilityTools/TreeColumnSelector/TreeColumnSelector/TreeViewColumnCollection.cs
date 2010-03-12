@@ -38,6 +38,11 @@ namespace GoonTools.ColumnSelector
 			get { return _TreeViewColumns.Count; }
 		}
 
+		public int IndexOf(TreeViewColumn tc)
+		{
+			return _TreeViewColumns.IndexOf (tc);
+		}
+
 		public bool IsReadOnly
 		{
 			get { return _TreeViewColumns.IsReadOnly; }
