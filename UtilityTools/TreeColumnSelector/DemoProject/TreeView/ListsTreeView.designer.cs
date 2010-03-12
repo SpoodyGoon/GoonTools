@@ -32,12 +32,13 @@ namespace TaskList
 	{
 		private Gtk.Window _Parent;
 		private Gtk.ListStore ls = new Gtk.ListStore(typeof(int), typeof(string), typeof(string), typeof(bool));
+		private GoonTools.ColumnSelector.TreeColumnSelector _ColSelect =  new GoonTools.ColumnSelector.TreeColumnSelector();
 		private void Build()
 		{
 			this.HeadersClickable = true;
 			this.HeadersVisible = true;
 			this.RulesHint = true;
-			this.EnableGridLines = Gtk.TreeViewGridLines.Both;
+			this.EnableGridLines = Gtk.TreeViewGridLines.Both;	
 			
 			// treeview set up
 			// Create a column for the List ID
@@ -73,7 +74,7 @@ namespace TaskList
 			this.AppendColumn (colListName);
 			this.AppendColumn (colDate);
 			this.AppendColumn (colIsActive);
-			
+			this.AppendColumn(_ColSelect);
 			// set up the columns
 			Gtk.CellRendererText cellListID = new Gtk.CellRendererText ();
 			cellListID.Width=25;
@@ -102,7 +103,6 @@ namespace TaskList
 			colDate.AddAttribute (cellDate, "text", 2);
 			colIsActive.AddAttribute(cellIsActive, "active", 3);
 			this.Model = ls;
-			this.Realized += delegate { this.AppendColumn(new GoonTools.ColumnSelector.TreeColumnSelector(this.Columns)); };
 			
 			
 		}
