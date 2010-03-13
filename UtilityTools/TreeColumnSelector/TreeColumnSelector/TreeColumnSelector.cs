@@ -1,3 +1,5 @@
+
+
 /*************************************************************************
  *                      TreeColumnSelector.cs
  *
@@ -29,71 +31,40 @@ namespace GoonTools.ColumnSelector
 	[System.ComponentModel.ToolboxItem(true)]
 	public class TreeColumnSelector : Gtk.TreeViewColumn
 	{
-		private TreeViewColumnCollection _Columns = new TreeViewColumnCollection();
-		private Gdk.Pixbuf _WidgetImage = null;
-		private string _WidgetImageFile = null;
-		private GoonTools.ColumnSelector.TreeColumnSelector _ColumnSelect = new GoonTools.ColumnSelector.TreeColumnSelector();
+		private Gtk.Image _HeaderImage = new Gtk.Image(Gdk.Pixbuf.LoadFromResource("columnpicker.png"));
 		public TreeColumnSelector()
-		{			
-			
-		}
-
-		public TreeColumnSelector(Gtk.TreeViewColumn[] cols) 
 		{
-			for(int i = 0; i < cols.Length; i++)
-			{
-				_Columns.Add(cols[i]); 
-			} 
-			//this.TreeView.Shown += new EventHandler(TreeColumnSelector_Shown);
-		}
-
-		private void TreeColumnSelector_Shown(object sender, EventArgs e)
-		{
-			
-			Console.WriteLine("PreLoad");
-			Console.Read();
+			BuildGui();
 		}
 		
-		private void TreeColumnSelector_PreLoad(object sender, IntPtr meth)
+		public TreeColumnSelector(Gdk.Pixbuf pix)
 		{
-			Console.WriteLine("PreLoad");
-			Console.Read();
+			_HeaderImage = new Gtk.Image(pix);
+			BuildGui();
 		}
 		
-		public TreeColumnSelector(Gtk.TreeViewColumn[] cols, Gdk.Pixbuf pix)
+		public TreeColumnSelector(string imagefile)
 		{
-			for(int i = 0; i < cols.Length; i++)
-			{
-				_Columns.Add(cols[i]);
-			}
-			_WidgetImage = pix;
-			//this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
-		}
-		
-		public TreeColumnSelector(Gtk.TreeViewColumn[] cols, string imagefile)
-		{
-			for(int i = 0; i < cols.Length; i++)
-			{
-				_Columns.Add(cols[i]);
-			}
-			_WidgetImageFile = imagefile;
-			//this.TreeView.Realized += new EventHandler(TreeColumnSelector_Realized);
+			System.IO.FileInfo fi = new System.IO.FileInfo(imagefile);
+			if(fi.Exists)
+				_HeaderImage = new Gtk.Image(fi.FullName);
+			BuildGui();
 		}
 
-		public void TreeColumnSelector_Realized(object sender, EventArgs e)
+		public void BuildGui()
 		{
 			try
 			{
 				this.FixedWidth = 25;
 				this.Clickable=true;
 				this.Resizable = false;
-				Gtk.Image img = GetWidgetImage();
-				img.SetPadding(3,0);
+				_HeaderImage.SetPadding(3,0);
 				Gtk.Fixed fx = new Gtk.Fixed();
-				fx.SizeAllocate(img.Allocation);
-				fx.Put(img, 0,0);
-				fx.ShowAll();
+				_HeaderImage.IconSize = (int)Gtk.IconSize.SmallToolbar;
+				fx.Put(_HeaderImage, 0,0);
+				fx.SizeAllocate(_HeaderImage.Allocation);
 				this.Widget = (Gtk.Widget)fx;
+				fx.ShowAll();
 			}
 			catch(Exception ex)
 			{
@@ -103,6 +74,7 @@ namespace GoonTools.ColumnSelector
 			}
 		}
 		
+		[GLib.ConnectBeforeAttribute()]
 		protected override void OnClicked()
 		{
 			try
@@ -113,12 +85,7 @@ namespace GoonTools.ColumnSelector
 				// now find the treeviews allocation
 				x = x + this.TreeView.Allocation.Right;
 				y += this.TreeView.Allocation.Top + this.Widget.Allocation.Bottom;
-				PopupWindow pop = new PopupWindow(_Columns, new Gdk.Rectangle(x, y, width, height));
-				for(int i = 0; i< _Columns.Count; i++)
-				{
-					if(((Gtk.TreeViewColumn)_Columns[i]).Title != "")
-						pop.AddColumn(i, ((Gtk.TreeViewColumn)_Columns[i]).Visible, ((Gtk.TreeViewColumn)_Columns[i]).Title);
-				}
+				PopupWindow pop = new PopupWindow(((Gtk.TreeView)this.TreeView).Columns, new Gdk.Rectangle(x, y, width, height));
 				pop.ShowPopUp();
 			}
 			catch(Exception ex)
@@ -129,49 +96,21 @@ namespace GoonTools.ColumnSelector
 			}
 		}
 		
-		private Gtk.Image GetWidgetImage()
-		{
-			try
-			{
-				if(_WidgetImage != null)
-				{
-					return new Gtk.Image(_WidgetImage);
-				}
-				else if(_WidgetImageFile != null && _WidgetImageFile.Trim() != string.Empty)
-				{
-					System.IO.FileInfo fi = new System.IO.FileInfo(_WidgetImageFile);
-					if(fi.Exists)
-						return new Gtk.Image(fi.FullName);
-					else
-						return new Gtk.Image(Gdk.Pixbuf.LoadFromResource("columnpicker.png")); // default image resource
-				}
-				else
-				{
-					// default image resource
-					return new Gtk.Image(Gdk.Pixbuf.LoadFromResource("columnpicker.png"));
-				}
-			}
-			catch(Exception ex)
-			{
-				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, true, "<b>GoonTools Column Selector</b>\n" + ex.ToString(), "GoonTools Column Selector Error");
-				md.Run();
-				md.Destroy();
-			}
-			return null;
-		}
-		
 		#region Public Properties
 		
 		public Gdk.Pixbuf WidgetImage
 		{
-			set{_WidgetImage=value;}
-			get{return _WidgetImage;}
+			set{_HeaderImage = new Gtk.Image(value);}
 		}
 		
 		public string WidgetImageFile
 		{
-			set{_WidgetImageFile=value;}
-			get{return _WidgetImageFile;}
+			set
+			{
+				System.IO.FileInfo fi = new System.IO.FileInfo(value);
+				if(fi.Exists)
+					_HeaderImage = new Gtk.Image(fi.FullName);
+			}
 		}
 		
 		#endregion Public Properties
