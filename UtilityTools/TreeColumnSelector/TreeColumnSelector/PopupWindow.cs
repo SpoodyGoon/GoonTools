@@ -19,23 +19,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
- 
+
 using System;
 using Gtk;
 
 namespace GoonTools.ColumnSelector
-{	
+{
 	
 	public class PopupWindow : Gtk.Window
 	{
-		private TreeViewColumnCollection _Columns;
+		private TreeViewColumn[] _Columns;
 		private ColumnSelectorTreeView _ColumnSelectorTreeView;
 		// the padding is just used to help fine tune the format of the popup window
 		private int _Padding = 3;
-		public PopupWindow(TreeViewColumnCollection col, Gdk.Rectangle ColHeaderRec) : base(Gtk.WindowType.Popup)
+		public PopupWindow(TreeViewColumn[] cols, Gdk.Rectangle ColHeaderRec) : base(Gtk.WindowType.Popup)
 		{
 			Build();
-			_Columns = col;
+			_Columns = cols;
 			this.WidthRequest = ColHeaderRec.Width;
 			this.HeightRequest = ColHeaderRec.Height;
 			this.Move(ColHeaderRec.Left - ColHeaderRec.Width + _Padding, ColHeaderRec.Top + 5);
@@ -63,7 +63,7 @@ namespace GoonTools.ColumnSelector
 			// add the child treeview to the window
 			_ColumnSelectorTreeView = new ColumnSelectorTreeView(this);
 			GtkScrolledWindow1.Add(_ColumnSelectorTreeView);
-			GtkAlignment1.Add(GtkScrolledWindow1);			
+			GtkAlignment1.Add(GtkScrolledWindow1);
 			frame1.Add(GtkAlignment1);
 			this.Add(frame1);
 			this.AppPaintable = true;
@@ -77,16 +77,23 @@ namespace GoonTools.ColumnSelector
 		///  this property gives access to the columns
 		///  for the child treeview
 		/// </summary>
-		internal TreeViewColumnCollection Columns
+		internal Gtk.TreeViewColumn[] Columns
 		{
 			get{return _Columns;}
 		}
 		
+		[GLib.ConnectBeforeAttribute()]
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
-			base.OnExposeEvent (evnt);
+				
+			_ColumnSelectorTreeView.ColumnStore.Clear();
+			for(int i = 0; i < _Columns.Length; i++)
+			{
+				if(((Gtk.TreeViewColumn)_Columns[i]).Title != "")
+					_ColumnSelectorTreeView.ColumnStore.AppendValues(i, ((Gtk.TreeViewColumn)_Columns[i]).Visible, ((Gtk.TreeViewColumn)_Columns[i]).Title);
+			}
 			int winWidth, winHeight;
-			this.GetSize (out winWidth, out winHeight);			
+			this.GetSize (out winWidth, out winHeight);
 			this.GdkWindow.DrawRectangle (this.Style.ForegroundGC (Gtk.StateType.Insensitive), false, 0, 0, winWidth-1, winHeight-1);
 			return false;
 		}
@@ -96,19 +103,6 @@ namespace GoonTools.ColumnSelector
 			this.Visible = true;
 			HollyLibrary.GrabUtil.GrabWindow(this);
 			this.ShowAll();
-		}
-		
-		/// <summary>
-		///  This add the columns from the treeview we are adjusting
-		///  to the child treeview that will display 
-		///  and control the visiblity of the columns on the parent treeivew
-		/// </summary>
-		/// <param name="Index"></param>
-		/// <param name="IsVisible"></param>
-		/// <param name="ColumnTitle"></param>
-		internal void AddColumn(int Index, bool IsVisible, string ColumnTitle)
-		{
-			_ColumnSelectorTreeView.ColumnStore.AppendValues(Index, IsVisible, ColumnTitle);
 		}
 
 		private void Close()
