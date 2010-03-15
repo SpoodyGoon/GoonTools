@@ -63,6 +63,16 @@ namespace GoonTools.ColumnSelector
 			_TreeViewColumns.Add (tc);
 		}
 
+		public void Insert (int index, TreeViewColumn tc)
+		{
+			_TreeViewColumns.Insert (index, tc);
+		}
+		
+		public void InsertRange(int index, TreeViewColumn[] tc)
+		{
+			_TreeViewColumns.InsertRange(index, tc);
+		}
+
 		public bool Contains  (TreeViewColumn tc)
 		{
 			return _TreeViewColumns.Contains (tc);
