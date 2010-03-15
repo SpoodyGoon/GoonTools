@@ -31,40 +31,150 @@ namespace GoonTools.ColumnSelector
 	[System.ComponentModel.ToolboxItem(true)]
 	public class TreeColumnSelector : Gtk.TreeViewColumn
 	{
-		private Gtk.Image _HeaderImage = new Gtk.Image(Gdk.Pixbuf.LoadFromResource("columnpicker.png"));
+		private Gdk.Pixbuf _HeaderImage = Gdk.Pixbuf.LoadFromResource("columnpicker.png");
+		private Gdk.Pixbuf _HeaderImage_Hover = Gdk.Pixbuf.LoadFromResource("columnpicker_hover.png");
+		private Gtk.Image _BaseImage;
+		private bool _UseHover = true;
+		private const int _MinImageWidth =  16;
+		private const int _MinImageHeight =  16;
+		
+		#region Constructors
+		
 		public TreeColumnSelector()
 		{
 			BuildGui();
 		}
 		
-		public TreeColumnSelector(Gdk.Pixbuf pix)
+		public TreeColumnSelector(bool usehover)
 		{
-			_HeaderImage = new Gtk.Image(pix);
+			_UseHover = usehover;
 			BuildGui();
+		}
+		
+		public TreeColumnSelector(Gdk.Pixbuf image)
+		{
+			try
+			{
+				if(image == null)
+					throw new ArgumentNullException("The image used for column header cannot be null");
+				if(image.Width < _MinImageWidth || image.Height < _MinImageHeight)
+					throw new Exception("The image for column header is less than minimum requirements of no less than 16 wide and 16 high");
+				_HeaderImage = image;
+				// REVIEW: making the assumtion that a hover image was not passed in
+				// most likely there is no hover image to use.
+				_UseHover = false;
+				BuildGui();
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, true, "<b>GoonTools Column Selector</b>\n" + ex.ToString(), "GoonTools Column Selector Error");
+				md.Run();
+				md.Destroy();
+			}
+		}
+		
+		public TreeColumnSelector(Gdk.Pixbuf image, Gdk.Pixbuf image_hover)
+		{
+			try
+			{
+				if(image == null)
+					throw new ArgumentNullException("The image used for column header cannot be null");
+				if(image.Width < _MinImageWidth || image.Height < _MinImageHeight)
+					throw new Exception("The image for column header is less than minimum requirements of no less than 16 wide and 16 high");
+				if(image_hover == null)
+					throw new ArgumentNullException("The hover image for column header cannot be null");
+				if(image_hover.Width < _MinImageWidth || image_hover.Height < _MinImageHeight)
+					throw new Exception("The hover image for column header is less than minimum requirements of no less than 16 wide and 16 high");
+				
+				_HeaderImage = image;
+				_HeaderImage_Hover = image_hover;
+				BuildGui();
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, true, "<b>GoonTools Column Selector</b>\n" + ex.ToString(), "GoonTools Column Selector Error");
+				md.Run();
+				md.Destroy();
+			}
 		}
 		
 		public TreeColumnSelector(string imagefile)
 		{
-			System.IO.FileInfo fi = new System.IO.FileInfo(imagefile);
-			if(fi.Exists)
-				_HeaderImage = new Gtk.Image(fi.FullName);
-			BuildGui();
+			try
+			{
+				System.IO.FileInfo fi = new System.IO.FileInfo(imagefile);
+				// check to be sure the image is there
+				if(!fi.Exists)
+					throw new System.IO.FileNotFoundException("Missing image file for column header.", fi.FullName);
+				
+				// REVIEW: making the assumtion that a hover image was not passed in
+				// most likely there is no hover image to use.
+				_UseHover = false;
+				_HeaderImage = new Gdk.Pixbuf(imagefile);
+				BuildGui();
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, true, "<b>GoonTools Column Selector</b>\n" + ex.ToString(), "GoonTools Column Selector Error");
+				md.Run();
+				md.Destroy();
+			}
+		}
+		
+		public TreeColumnSelector(string imagefile, string imagefile_hover)
+		{
+			try
+			{
+				System.IO.FileInfo fi = new System.IO.FileInfo(imagefile);
+				// check to be sure the image is there
+				if(!fi.Exists)
+					throw new System.IO.FileNotFoundException("Missing image file for column header.", fi.FullName);
+				// set the image file
+				_HeaderImage = new Gdk.Pixbuf(fi.FullName);
+				// check the minimum image hight requriements
+				if(_HeaderImage.Width < _MinImageWidth || _HeaderImage.Height < _MinImageHeight)
+					throw new Exception("Image for column header is less than minimum requirements of no less than 16 wide and 16 high");
+				
+				if(_UseHover || String.IsNullOrEmpty(imagefile_hover))
+				{
+					// REVIEW: making the assumtion that a hover image was not passed in
+					// most likely there is no hover image to use.
+					_UseHover = false;
+					System.IO.FileInfo fi_hover = new System.IO.FileInfo(imagefile_hover);
+					if(!fi_hover.Exists)
+						throw new System.IO.FileNotFoundException("Missing image file for column header.", fi_hover.FullName);
+					_HeaderImage_Hover = new Gdk.Pixbuf(fi_hover.FullName);
+					if(_HeaderImage_Hover.Width < _MinImageWidth || _HeaderImage_Hover.Height < _MinImageHeight)
+						throw new Exception("Image for column header is less than minimum requirements of no less than 16 wide and 16 high");
+				}
+				
+				BuildGui();
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, true, "<b>GoonTools Column Selector</b>\n" + ex.ToString(), "GoonTools Column Selector Error");
+				md.Run();
+				md.Destroy();
+			}
 		}
 
+		#endregion Constructors
+		
 		public void BuildGui()
 		{
 			try
 			{
-				this.FixedWidth = 25;
-				this.Clickable=true;
+				// set up the image that everything else will be based around
+				_BaseImage = new Image(_HeaderImage);
+				_BaseImage.SetPadding(3,0);
+				_BaseImage.IconSize = (int)Gtk.IconSize.SmallToolbar;
+				this.FixedWidth = _BaseImage.Allocation.Width;
+				
+				// finish setting up the TreeViewColumn
+				this.Clickable = true;
 				this.Resizable = false;
-				_HeaderImage.SetPadding(3,0);
-				Gtk.Fixed fx = new Gtk.Fixed();
-				_HeaderImage.IconSize = (int)Gtk.IconSize.SmallToolbar;
-				fx.Put(_HeaderImage, 0,0);
-				fx.SizeAllocate(_HeaderImage.Allocation);
-				this.Widget = (Gtk.Widget)fx;
-				fx.ShowAll();
+				this.Widget = _BaseImage;
+				this.Widget.ShowAll();
 			}
 			catch(Exception ex)
 			{
@@ -80,6 +190,9 @@ namespace GoonTools.ColumnSelector
 			try
 			{
 				int x, y, width = 120, height = 175;
+//				Gtk.Style rcs = Gtk.GetStyle((Gtk.Widget)this.TreeView);
+//				int t = rcs.Ythickness;
+				
 				// get the position of the parent window
 				this.TreeView.ParentWindow.GetPosition( out x, out y );
 				// now find the treeviews allocation
@@ -98,19 +211,20 @@ namespace GoonTools.ColumnSelector
 		
 		#region Public Properties
 		
-		public Gdk.Pixbuf WidgetImage
+		public Gdk.Pixbuf HeaderImage_Hover
 		{
-			set{_HeaderImage = new Gtk.Image(value);}
+			set{_HeaderImage_Hover = value;}
 		}
 		
-		public string WidgetImageFile
+		public Gdk.Pixbuf WidgetImage
 		{
-			set
-			{
-				System.IO.FileInfo fi = new System.IO.FileInfo(value);
-				if(fi.Exists)
-					_HeaderImage = new Gtk.Image(fi.FullName);
-			}
+			set{_HeaderImage = value;}
+		}
+		
+		public bool UseHover
+		{
+			set{_UseHover = value;}
+			get{return _UseHover;}
 		}
 		
 		#endregion Public Properties

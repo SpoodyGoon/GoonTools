@@ -60,8 +60,11 @@
     <Compile Include="ColumnSelectorTreeView.cs" />
     <Compile Include="ColumnSelectorTreeView.designer.cs" />
     <Compile Include="TreeViewColumnCollection.cs" />
-    <EmbeddedResource Include="columnpicker.png">
+    <EmbeddedResource Include="images\columnpicker.png">
       <LogicalName>columnpicker.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\columnpicker_hover.png">
+      <LogicalName>columnpicker_hover.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -70,13 +73,16 @@
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="pango-sharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
