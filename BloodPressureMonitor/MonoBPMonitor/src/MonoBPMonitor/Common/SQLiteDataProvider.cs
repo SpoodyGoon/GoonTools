@@ -1,30 +1,34 @@
-/*************************************************************************
-*                     SQLiteDataProvider.cs
- *
- *	 	Copyright (C) 2009
- *		Andrew York <goontools@brdstudio.net>
- *
- *************************************************************************/
+#region Copyright/License
+
 /*
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
+                     	SQLiteHelp.cs
+ 
+ 	 		Copyright (C) 2010
+		Andrew York <goontools@brdstudio.net>
+		
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
  */
+
+#endregion Copyright/License
 
 #region "Description"
 
 // This class is a dataprovider for SQLite (http://sqlite.org/) a file and/or memory based database
 // This class requires:
 //      + Mono .NET framework (http://www.mono-project.com)
+//	+ SQLite version 3
 
 #endregion "Description"
 
@@ -36,7 +40,7 @@ using System.Configuration;
 using Gtk;
 using System.ComponentModel;
 using System.Collections;
-using Mono.Data.SqliteClient;
+using mds = Mono.Data.SqliteClient;
 
 namespace SQLiteDataProvider
 {
@@ -45,11 +49,16 @@ namespace SQLiteDataProvider
 	/// </summary>
 	public class DataProvider
 	{
-		private string _ConnString = null;
-		private int _TimeOut = 300;
-		private int _BusyTimeout = 300;
-		private string _ExceptionMessage = null;
+		#region Private Properties
 
+		private string _ConnString = null;
+		private int _TimeOut = 500;
+		private int _BusyTimeout = 500;
+		private string _ExceptionMessage = null;
+		private mds.SqliteConnection sqlCN = new mds.SqliteConnection();
+		private mds.SqliteTransaction sqlTrans = null;
+		#endregion Private Properties
+		
 		#region Public Properties
 		
 		/// <summary>
@@ -139,20 +148,23 @@ namespace SQLiteDataProvider
 		///  Creates a new database connection
 		/// </summary>
 		/// <returns></returns>
-		private SqliteConnection GetConn()
+		private void OpenConnection()
 		{
-			SqliteConnection sqlCN = null;
+			bool blnSuccess = true;
 			try
 			{
-				sqlCN = new SqliteConnection(_ConnString);
+				sqlCN.ConnectionString = _ConnString;
 				sqlCN.BusyTimeout = _BusyTimeout;
+				if(sqlCN.State != ConnectionState.Open)
+					sqlCN.Open();
 			}
 			catch(Exception ex)
 			{
+				blnSuccess = false;
 				_ExceptionMessage = ex.ToString();
 				throw new Exception(ex.ToString());
 			}
-			return sqlCN;
+			return blnSuccess;
 		}
 		
 		#endregion Main Connection
