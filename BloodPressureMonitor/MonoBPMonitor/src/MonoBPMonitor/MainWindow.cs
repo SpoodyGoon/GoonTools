@@ -276,47 +276,19 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(so.File.Exists(Common.EnvData.UpdateFile))
-				{
-					RunUpdate(true);
-				}
-				else
-				{
-					throw new Exception("Unable to find update program.");
-				}
+				throw new NotImplementedException();
 			}
 			catch(Exception ex)
 			{
 				Common.HandleError(this, ex);
 			}
-		}
-		
-		private void RunUpdate()
-		{
-			RunUpdate(false);
 		}
 		
 		private void RunUpdate(bool showoptions)
 		{
 			try
 			{
-				System.Diagnostics.Process proc = new System.Diagnostics.Process();
-				proc.StartInfo.ErrorDialog = true;
-				proc.StartInfo.RedirectStandardError = true;
-				proc.StartInfo.WorkingDirectory = Common.EnvData.UpdatePath;
-				proc.StartInfo.FileName = Common.EnvData.UpdateFile;
-				if(!showoptions)
-					proc.StartInfo.Arguments += "\"ShowOptions=false\" ";
-				else
-					proc.StartInfo.Arguments += "\"ShowOptions=true\" ";
 				
-				if(!string.IsNullOrEmpty(Common.Option.CustomThemeFile) && System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true")
-					proc.StartInfo.Arguments += "\"ThemeFile=" + Common.Option.CustomThemeFile + "\" ";
-				proc.StartInfo.UseShellExecute = false;
-				
-				proc.StartInfo.RedirectStandardError = true;
-                proc.ErrorDataReceived += new DataReceivedEventHandler(UpdateErrorDataHandler);
-                proc.Start();
 				
 			}
 			catch(Exception ex)
@@ -324,23 +296,6 @@ namespace MonoBPMonitor
 				Common.HandleError(this, ex);
 			}
 		}
-
-        private void UpdateErrorDataHandler(object sendingProcess, DataReceivedEventArgs errLine)
-        {
-            if (!String.IsNullOrEmpty(errLine.Data))
-            {
-            	string str = "There has been an error starting the update process, would you like to diable the update program?";
-            	str += Environment.NewLine + "If you want to turn the update program on again you can do so in the options window.";
-            	Gtk.MessageDialog md = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.YesNo, false, "", "Error Starting Update Process.");
-				md.WindowPosition = WindowPosition.Mouse;
-				if((Gtk.ResponseType)md.Run() == Gtk.ResponseType.Yes)
-				{
-					Common.Option.AutoUpdate = false;
-				}
-				md.Destroy();
-            	Common.HandleError(this, new Exception(errLine.Data));
-            }
-        }
 		
 		#endregion Update Related
         protected virtual void OnProjectWebSiteActionActivated (object sender, System.EventArgs e)
