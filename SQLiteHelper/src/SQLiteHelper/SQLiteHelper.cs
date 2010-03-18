@@ -34,10 +34,11 @@
 
 
 using System;
-using so = System.IO;
-using sd = System.Data;
-using sc = System.Collections;
-using mds = Mono.Data.SqliteClient;
+using System.IO;
+using System.Data;
+using System.Collections;
+using System.Collections.Generic;
+using Mono.Data.SqliteClient;
 
 namespace GoonTools
 {
@@ -53,10 +54,11 @@ namespace GoonTools
 		private int _BusyTimeout = 500;
 		private int _LockedDBSleep = 500;
 		private string _ExceptionMessage = null;
-		private mds.SqliteConnection _SQLiteCN = null;
-		private mds.SqliteCommand _SQLiteCMD = null;
-		private mds.SqliteTransaction _SQLiteTrans = null;
-		private mds.SqliteDataReader _SQLiteReader = null;
+		private SqliteConnection _SQLiteCN = null;
+		private SqliteCommand _SQLiteCMD = null;
+		private SqliteTransaction _SQLiteTrans = null;
+		private SqliteDataReader _SQLiteReader = null;
+//		private Dictionary<string, object> _Parmeters = new Dictionary<string, object>();
 		
 		#endregion Private Properties
 		
@@ -96,6 +98,11 @@ namespace GoonTools
 		{
 			get { return _ExceptionMessage; }
 		}
+		
+//		public Dictionary<string, object> Parameters
+//		{
+//			get{return _Parmeters;}
+//		}
 
 		#endregion Public Properties
 		
@@ -145,9 +152,9 @@ namespace GoonTools
 			// close and dispose the conneciton
 			if(_SQLiteCN != null)
 			{
-				if(_SQLiteCN.State != sd.ConnectionState.Closed)
+				if(_SQLiteCN.State != ConnectionState.Closed)
 					_SQLiteCN.Close();
-			
+				
 				_SQLiteCN.Dispose();
 			}
 			// dispose any used sql data reader
@@ -161,16 +168,27 @@ namespace GoonTools
 		
 		#endregion Class Constructors
 		
+		#region Public Transaction Methods
+		
 		public void StartTransaction()
 		{
-			StartTransaction("DefaultTrans");
+			if(_SQLiteCN != null)
+				_SQLiteTrans = (SqliteTransaction)_SQLiteCN.BeginTransaction();
 		}
 		
-		public void StartTransaction(string TransName)
+		public void RollBackTransaction()
 		{
-			
+			_SQLiteTrans.Rollback();
+			_SQLiteTrans.Dispose();
 		}
 		
+		public void CommitTransaction()
+		{
+			_SQLiteTrans.Commit();
+			_SQLiteTrans.Dispose();
+		}
+		
+		#endregion Public Transaction Methods
 		
 		#region Main Connection
 		
@@ -180,7 +198,7 @@ namespace GoonTools
 		/// <returns></returns>
 		private void OpenConnection()
 		{
-			if(_SQLiteCN.State != sd.ConnectionState.Open)
+			if(_SQLiteCN.State != ConnectionState.Open)
 				_SQLiteCN.Open();
 		}
 		
@@ -193,9 +211,9 @@ namespace GoonTools
 		{
 			if(_SQLiteCN == null)
 			{
-				so.FileInfo fi = new so.FileInfo(_DatabaseURL);
+				FileInfo fi = new FileInfo(_DatabaseURL);
 				if(!fi.Exists)
-					throw new so.FileNotFoundException("Database not found for connection string.", fi.FullName);
+					throw new FileNotFoundException("Database not found for connection string.", fi.FullName);
 				
 				_SQLiteCN.ConnectionString = "URI=file:" +  fi.FullName + ",version=3, busy_timeout=" + _BusyTimeout.ToString();
 				_SQLiteCN.BusyTimeout = _BusyTimeout;
@@ -210,14 +228,20 @@ namespace GoonTools
 		///  Returns true if rows exist and false if they do not
 		///  Most likly to be used for quick security checks
 		/// </summary>
-		/// <param name="strSQL"></param>
+		/// <param name="SQL"></param>
 		/// <returns></returns>
 		public bool Exists(string SQL)
 		{
 			bool blnHasRows = false;
 			InitConnection();
-			_SQLiteCMD = new mds.SqliteCommand(SQL, _SQLiteCN);
-			_SQLiteCMD.CommandType = sd.CommandType.Text;
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			bool lockedDatabaseException = true;
 			while ( lockedDatabaseException )
@@ -228,6 +252,8 @@ namespace GoonTools
 					_SQLiteReader = _SQLiteCMD.ExecuteReader();
 					blnHasRows = _SQLiteReader.HasRows;
 					_SQLiteReader.Close();
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
 					lockedDatabaseException = false;
 				}
 				catch(Exception ex)
@@ -256,12 +282,18 @@ namespace GoonTools
 		///  this will parse out that single row into a hash table
 		///  not for use with web services
 		/// </summary>
-		public sc.Hashtable ExecuteHashTableRow(string SQL)
+		public Hashtable ExecuteHashTableRow(string SQL)
 		{
-			sc.Hashtable hshReturn = new sc.Hashtable();
+			Hashtable hshReturn = new Hashtable();
 			InitConnection();
-			_SQLiteCMD = new mds.SqliteCommand(SQL, _SQLiteCN);
-			_SQLiteCMD.CommandType = sd.CommandType.Text;
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			bool lockedDatabaseException = true;
 			while ( lockedDatabaseException )
@@ -279,6 +311,8 @@ namespace GoonTools
 					}
 					
 					_SQLiteReader.Close();
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
 					lockedDatabaseException = false;
 				}
 				catch(Exception ex)
@@ -306,15 +340,21 @@ namespace GoonTools
 		///  Used to return only the first column
 		///  in an ArrayList
 		/// </summary>
-		/// <param name="strSQL"></param>
+		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public sc.ArrayList ExecuteArrayList(string SQL)
+		public ArrayList ExecuteArrayList(string SQL)
 		{
-			sc.ArrayList arrReturn = new sc.ArrayList();
+			ArrayList arrReturn = new ArrayList();
 			InitConnection();
-			_SQLiteCMD = new mds.SqliteCommand(SQL, _SQLiteCN);
-			_SQLiteCMD.CommandType = sd.CommandType.Text;
-			_SQLiteCMD.CommandTimeout = _TimeOut;			
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
+			_SQLiteCMD.CommandTimeout = _TimeOut;
 			bool lockedDatabaseException = true;
 			while ( lockedDatabaseException )
 			{
@@ -327,6 +367,8 @@ namespace GoonTools
 						arrReturn.Add((object)_SQLiteReader[0]);
 					}
 					_SQLiteReader.Close();
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
 					lockedDatabaseException = false;
 				}
 				catch(Exception ex)
@@ -350,15 +392,21 @@ namespace GoonTools
 		/// Used to return only the named column
 		/// in an ArrayList
 		/// </summary>
-		/// <param name="strSQL"></param>
-		/// <param name="strColumnName"></param>
+		/// <param name="SQL"></param>
+		/// <param name="ColumnName"></param>
 		/// <returns></returns>
-		public sc.ArrayList ExecuteArrayList(string strSQL, string strColumnName)
+		public ArrayList ExecuteArrayList(string SQL, string ColumnName)
 		{
-			sc.ArrayList arrReturn = new sc.ArrayList();
+			ArrayList arrReturn = new ArrayList();
 			InitConnection();
-			_SQLiteCMD = new mds.SqliteCommand(strSQL, _SQLiteCN);
-			_SQLiteCMD.CommandType = sd.CommandType.Text;
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			
 			bool lockedDatabaseException = true;
@@ -370,9 +418,11 @@ namespace GoonTools
 					_SQLiteReader = _SQLiteCMD.ExecuteReader();
 					while(_SQLiteReader.Read())
 					{
-						arrReturn.Add((object)_SQLiteReader[strColumnName]);
+						arrReturn.Add((object)_SQLiteReader[ColumnName]);
 					}
 					_SQLiteReader.Close();
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
 					lockedDatabaseException = false;
 				}
 				catch(Exception ex)
@@ -395,14 +445,20 @@ namespace GoonTools
 		/// <summary>
 		/// Intended to return on single datarow in an array list
 		/// </summary>
-		/// <param name="strSQL"></param>
+		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public sc.ArrayList ExecuteArrayListRow(string strSQL)
+		public ArrayList ExecuteArrayListRow(string SQL)
 		{
-			sc.ArrayList arrReturn = new sc.ArrayList();
+			ArrayList arrReturn = new ArrayList();
 			InitConnection();
-			_SQLiteCMD = new mds.SqliteCommand(strSQL, _SQLiteCN);
-			_SQLiteCMD.CommandType = sd.CommandType.Text;
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			_SQLiteReader = null;
 			
@@ -422,6 +478,8 @@ namespace GoonTools
 						
 					}
 					_SQLiteReader.Close();
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
 					lockedDatabaseException = false;
 				}
 				catch(Exception ex)
@@ -443,17 +501,72 @@ namespace GoonTools
 		
 		#endregion Return Array Lists
 		
+		#region DataReader
+		
+		/// <summary>
+		/// Intended to return on single datarow in an array list
+		/// </summary>
+		/// <param name="SQL"></param>
+		/// <returns></returns>
+		public SqliteDataReader ExecuteReader(string SQL)
+		{
+			InitConnection();
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
+			_SQLiteCMD.CommandTimeout = _TimeOut;
+			
+			bool lockedDatabaseException = true;
+			while ( lockedDatabaseException )
+			{
+				try
+				{
+					OpenConnection();
+					_SQLiteReader = _SQLiteCMD.ExecuteReader();
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
+					lockedDatabaseException = false;
+				}
+				catch(Exception ex)
+				{
+					if (ex.Message.ToLower().Contains("database is locked"))
+					{
+						lockedDatabaseException = true;
+						System.Threading.Thread.Sleep(_LockedDBSleep);
+					}
+					else
+					{
+						lockedDatabaseException = false;
+						throw new Exception(ex.ToString());
+					}
+				}
+			}
+			return _SQLiteReader;
+		}
+		#endregion DataReader
+		
 		#region Scalar and NonQuery
 		
 		/// <summary>
 		///  Used to execute non-queries
 		/// </summary>
-		/// <param name="strSQL"></param>
+		/// <param name="SQL"></param>
 		public void ExecuteNonQuery(string SQL)
 		{
 			InitConnection();
-			_SQLiteCMD = new mds.SqliteCommand(SQL, _SQLiteCN);
-			_SQLiteCMD.CommandType = sd.CommandType.Text;
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			
 			bool lockedDatabaseException = true;
@@ -463,6 +576,9 @@ namespace GoonTools
 				{
 					OpenConnection();
 					_SQLiteCMD.ExecuteNonQuery();
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
+					
 					lockedDatabaseException = false;
 				}
 				catch(Exception ex)
@@ -487,25 +603,31 @@ namespace GoonTools
 		///  Executes Scalar when the last_insert_rowid statement
 		///  is already in the SQL string
 		/// </summary>
-		/// <param name="strSQL"></param>
+		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public string ExecuteScalar(string strSQL)
+		public string ExecuteScalar(string SQL)
 		{
-			return ExecuteScalar(strSQL, false);
+			return ExecuteScalar(SQL, false);
 		}
 		
 		/// <summary>
 		/// Executes Scalar when the last_insert_rowid statement
 		///  is not already in the SQL string
 		/// </summary>
-		/// <param name="strSQL"></param>
+		/// <param name="SQL"></param>
 		/// <param name="blnAddIdentityStatement"></param>
 		/// <returns></returns>
 		public string ExecuteScalar(string SQL, bool blnAddIdentityStatement)
 		{
 			InitConnection();
-			_SQLiteCMD = new mds.SqliteCommand(SQL, _SQLiteCN);
-			_SQLiteCMD.CommandType = sd.CommandType.Text;
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			string strReturn = null;
 			
@@ -518,8 +640,9 @@ namespace GoonTools
 				try
 				{
 					OpenConnection();
-					strReturn = _SQLiteCMD.ExecuteScalar().ToString();
-					_SQLiteCN.Close();
+					strReturn = _SQLiteCMD.ExecuteScalar().ToString();					
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
 					lockedDatabaseException = false;
 				}
 				catch(Exception ex)
@@ -543,19 +666,25 @@ namespace GoonTools
 		
 		#region DataSets and DataTables
 		
-		public sd.DataSet ExecuteDataSet(string SQL)
+		public DataSet ExecuteDataSet(string SQL)
 		{
 			return ExecuteDataSet(SQL, null);
 		}
 		
-		public sd.DataSet ExecuteDataSet(string SQL, string DataSetName)
+		public DataSet ExecuteDataSet(string SQL, string DataSetName)
 		{
 			InitConnection();
-			_SQLiteCMD = new mds.SqliteCommand(SQL, _SQLiteCN);
-			_SQLiteCMD.CommandType = sd.CommandType.Text;
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
-			mds.SqliteDataAdapter sqlDA =  new mds.SqliteDataAdapter(_SQLiteCMD);
-			sd.DataSet ds = new sd.DataSet();
+			SqliteDataAdapter sqlDA =  new SqliteDataAdapter(_SQLiteCMD);
+			DataSet ds = new DataSet();
 			
 			if(DataSetName != null)
 				ds.DataSetName = DataSetName;
@@ -568,6 +697,8 @@ namespace GoonTools
 				try
 				{
 					sqlDA.Fill(ds);
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
 					lockedDatabaseException = false;
 				}
 				catch(Exception ex)
@@ -591,9 +722,9 @@ namespace GoonTools
 		/// <summary>
 		/// Returns a DataTable without setting it's name
 		/// </summary>
-		/// <param name="strSQL"></param>
+		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public sd.DataTable ExecuteDataTable(string SQL)
+		public DataTable ExecuteDataTable(string SQL)
 		{
 			return ExecuteDataTable(SQL, null);
 		}
@@ -601,17 +732,23 @@ namespace GoonTools
 		/// <summary>
 		/// Returns a DataTable and sets it's name
 		/// </summary>
-		/// <param name="strSQL"></param>
+		/// <param name="SQL"></param>
 		/// <param name="strDataTableName"></param>
 		/// <returns></returns>
-		public sd.DataTable ExecuteDataTable(string SQL, string DataTableName)
+		public DataTable ExecuteDataTable(string SQL, string DataTableName)
 		{
 			InitConnection();
-			_SQLiteCMD = new mds.SqliteCommand(SQL, _SQLiteCN);
-			_SQLiteCMD.CommandType = sd.CommandType.Text;
+			// Initialize the SQL Command
+			_SQLiteCMD = new SqliteCommand(SQL);
+			// Set the Command Connection
+			_SQLiteCMD.Connection = _SQLiteCN;
+			// if there is an active transaction assign it to the Command
+			if(_SQLiteTrans != null)
+				_SQLiteCMD.Transaction = _SQLiteTrans;
+			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
-			mds.SqliteDataAdapter sqlDA = new mds.SqliteDataAdapter(_SQLiteCMD);
-			sd.DataTable dt = new sd.DataTable();
+			SqliteDataAdapter sqlDA = new SqliteDataAdapter(_SQLiteCMD);
+			DataTable dt = new DataTable();
 			
 			if(DataTableName != null)
 				dt.TableName = DataTableName;
@@ -624,6 +761,8 @@ namespace GoonTools
 				try
 				{
 					sqlDA.Fill(dt);
+					if(_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear();
 					lockedDatabaseException = false;
 				}
 				catch(Exception ex)
