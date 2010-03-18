@@ -24,7 +24,6 @@ using System;
 using System.Data;
 using Gtk;
 using GoonTools;
-using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Doctors
 {
@@ -95,8 +94,8 @@ namespace MonoBPMonitor.Doctors
 			try
 			{
 				lsDoctor.Clear();
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT DoctorID, DoctorName FROM tb_Doctor");
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				DataTable dt = shp.ExecuteDataTable("SELECT DoctorID, DoctorName FROM tb_Doctor");
 				foreach(DataRow dr in dt.Rows)
 				{
 					lsDoctor.AppendValues(Convert.ToInt32(dr["DoctorID"]), dr["DoctorName"].ToString());

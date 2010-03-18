@@ -24,7 +24,6 @@ using System;
 using System.Data;
 using Gtk;
 using GoonTools;
-using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Doctors
 {
@@ -44,8 +43,8 @@ namespace MonoBPMonitor.Doctors
 			try
 			{
 				_DoctorListsStore.Clear();
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT DoctorID, DoctorName, Location, PhoneNum, UserID FROM tb_Doctor");
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				DataTable dt = shp.ExecuteDataTable("SELECT DoctorID, DoctorName, Location, PhoneNum, UserID FROM tb_Doctor");
 				foreach(DataRow dr in dt.Rows)
 				{
 					Doctor d = new Doctor(Convert.ToInt32(dr["DoctorID"]), dr["DoctorName"].ToString(), dr["Location"].ToString(), dr["PhoneNum"].ToString(), Convert.ToInt32(dr["UserID"]));

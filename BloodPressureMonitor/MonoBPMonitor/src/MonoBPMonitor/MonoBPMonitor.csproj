@@ -46,14 +46,6 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.1\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -89,7 +81,13 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="ICSharpCode.SharpZipLib">
+    <Reference Include="Mono.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\SharpDevelop\3.0\AddIns\AddIns\Misc\AddInManager\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -126,6 +124,7 @@
       <LogicalName>date.png</LogicalName>
     </EmbeddedResource>
     <Compile Include="Common\MetaInfo.cs" />
+    <Compile Include="Common\SQLiteHelper.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmErrorMessage.cs" />
     <Compile Include="Help\frmErrorMessage.cs" />
     <Compile Include="MiscControls\ThemeComboBox.cs" />
@@ -153,7 +152,6 @@
     <Compile Include="Common\Const.cs" />
     <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="Common\Options.cs" />
-    <Compile Include="Common\SQLiteDataProvider.cs" />
     <Compile Include="frmOptions.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmOptions.cs" />
     <Compile Include="Medications\frmMedication.cs" />
@@ -203,7 +201,6 @@
     <EmbeddedResource Include="images\contents.png">
       <LogicalName>Contents.png</LogicalName>
     </EmbeddedResource>
-    <None Include="images\document-open-remote.png" />
     <EmbeddedResource Include="images\easymoblog.png">
       <LogicalName>Easymoblog.png</LogicalName>
     </EmbeddedResource>
@@ -227,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="images\webexport.png">
       <LogicalName>Webexport.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\document-open-remote.png">
+      <LogicalName>DocumentOnline.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

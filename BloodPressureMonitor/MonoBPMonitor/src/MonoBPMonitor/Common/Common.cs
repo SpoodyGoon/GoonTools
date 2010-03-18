@@ -146,20 +146,23 @@ namespace GoonTools
 		
 		public static void HandleError(Gtk.Window parent_window, Exception ex)
 		{
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			sb.Append(System.Environment.NewLine + "------------------------------------------------------------------------------");
+			sb.Append(System.Environment.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
+			sb.Append(System.Environment.NewLine + ex.ToString());
+			sb.Append(System.Environment.NewLine + "------------------------------------------------------------------------------");
 			if(_Option.SaveErrorLog == true)
 			{
 				StreamWriter sw = new StreamWriter(EnvData.ErrorLog, true);
-				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
-				sw.Write(sw.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
-				sw.Write(sw.NewLine + ex.ToString());
-				sw.Write(sw.NewLine + "------------------------------------------------------------------------------");
+				sw.Write(sb.ToString());
 				sw.Close();
 			}
 			
-			MonoBPMonitor.frmErrorMessage md = new MonoBPMonitor.frmErrorMessage();			
+			MonoBPMonitor.frmErrorMessage md = new MonoBPMonitor.frmErrorMessage(sb.ToString());
 			md.WindowPosition = WindowPosition.Mouse;
 			md.Run();
 			md.Destroy();
+			sb.Length = 0;
 		}
 		
 		public static void CleanErrorLog()

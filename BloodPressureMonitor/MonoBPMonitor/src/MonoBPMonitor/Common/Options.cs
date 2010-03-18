@@ -234,8 +234,8 @@ namespace GoonTools.Helper
 		}
 
 		public string ConnString {
-			get { return _ConnString; }
-			set { _ConnString = value; }
+			get { return _DBLocation; }
+			set { _DBLocation = value; }
 		}
 
 		public string DBLocation {

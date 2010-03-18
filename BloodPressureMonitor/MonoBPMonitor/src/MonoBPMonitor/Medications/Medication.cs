@@ -1,7 +1,6 @@
 
 using System;
 using Gtk;
-using SQLiteDataProvider;
 using GoonTools;
 
 namespace MonoBPMonitor
@@ -106,9 +105,9 @@ namespace MonoBPMonitor
 			{
 				if(_MedicineID < 0)
 				{
-					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					_MedicineID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Medicine(MedicineName, Dosage, StartDate,EndDate ,DoctorID, UserID)VALUES('" + _MedicineName + "','" + _Dosage + "','" + _StartDate.ToShortDateString() + "','" + _EndDate.ToShortDateString() + "'," + _DoctorID.ToString() + "," + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
-					dp.Dispose();
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					_MedicineID = Convert.ToInt32(shp.ExecuteScalar("INSERT INTO tb_Medicine(MedicineName, Dosage, StartDate,EndDate ,DoctorID, UserID)VALUES('" + _MedicineName + "','" + _Dosage + "','" + _StartDate.ToShortDateString() + "','" + _EndDate.ToShortDateString() + "'," + _DoctorID.ToString() + "," + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
+					shp.Dispose();
 				}
 				else
 				{
@@ -127,9 +126,9 @@ namespace MonoBPMonitor
 			{
 				if(_MedicineID > 0)
 				{
-					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					dp.ExecuteNonQuery("UPDATE tb_Medicine SET MedicineName = '" + _MedicineName + "', Dosage = '" + _Dosage + "', StartDate = '" + _StartDate.ToShortDateString() + "', EndDate = '" + _EndDate.ToShortDateString() + "', DoctorID = " + _DoctorID.ToString() + ", UserID = " + _UserID.ToString() + " WHERE MedicineID = " + _MedicineID.ToString() + ";");
-					dp.Dispose();
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					shp.ExecuteNonQuery("UPDATE tb_Medicine SET MedicineName = '" + _MedicineName + "', Dosage = '" + _Dosage + "', StartDate = '" + _StartDate.ToShortDateString() + "', EndDate = '" + _EndDate.ToShortDateString() + "', DoctorID = " + _DoctorID.ToString() + ", UserID = " + _UserID.ToString() + " WHERE MedicineID = " + _MedicineID.ToString() + ";");
+					shp.Dispose();
 				}
 				else
 				{
@@ -146,9 +145,9 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				dp.ExecuteNonQuery("DELETE FROM tb_Medicine WHERE MedicineID = " + _MedicineID.ToString() + ";");
-				dp.Dispose();
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				shp.ExecuteNonQuery("DELETE FROM tb_Medicine WHERE MedicineID = " + _MedicineID.ToString() + ";");
+				shp.Dispose();
 			}
 			catch(Exception ex)
 			{

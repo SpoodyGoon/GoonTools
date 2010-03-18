@@ -20,9 +20,11 @@ namespace MonoBPMonitor
 	public partial class frmErrorMessage : Gtk.Dialog
 	{
 
-		public frmErrorMessage ()
+		public frmErrorMessage (string errorstring)
 		{
 			this.Build ();
+			this.txtErrorDetails.Buffer.Text = errorstring;
+			this.ShowAll();
 		}
 
 		public frmErrorMessage (Exception ex)

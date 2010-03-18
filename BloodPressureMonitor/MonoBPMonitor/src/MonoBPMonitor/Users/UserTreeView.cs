@@ -24,7 +24,6 @@ using System;
 using System.Data;
 using Gtk;
 using GoonTools;
-using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Users
 {
@@ -44,8 +43,8 @@ namespace MonoBPMonitor.Users
 			try
 			{
 				_UserListsStore.Clear();
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT UserID, UserName, DateAdded, IsActive FROM tb_User");
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				DataTable dt = shp.ExecuteDataTable("SELECT UserID, UserName, DateAdded, IsActive FROM tb_User");
 				foreach(DataRow dr in dt.Rows)
 				{
 					User u = new User(Convert.ToInt32(dr["UserID"]), dr["UserName"].ToString(), DateTime.Parse(dr["DateAdded"].ToString()), Convert.ToBoolean(dr["IsActive"]));

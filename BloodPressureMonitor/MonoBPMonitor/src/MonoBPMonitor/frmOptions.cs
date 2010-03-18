@@ -2,7 +2,6 @@ using System;
 using so = System.IO;
 using System.Collections;
 using System.Data;
-using SQLiteDataProvider;
 using ICSharpCode.SharpZipLib.Zip;
 using Gtk;
 using GoonTools;
@@ -204,17 +203,18 @@ namespace MonoBPMonitor
 		{
 			try
 			{
+				
 				so.StreamWriter sw = new so.StreamWriter(so.Path.Combine(tmpFolderName, "Schema.sql"));
 				// write the database tables
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'table' and tbl_name NOT LIKE 'sqlite_%'", "Tables");
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				DataTable dt = shp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'table' and tbl_name NOT LIKE 'sqlite_%'", "Tables");
 				for(int i = 0; i < dt.Rows.Count; i++)
 				{
 					sw.WriteLine(dt.Rows[i]["sql"].ToString() + ";");
 				}
 				dt.Clear();
 				// write the database indexes
-				dt = dp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'index' and tbl_name NOT LIKE 'sqlite_%'", "Tables");
+				dt = shp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'index' and tbl_name NOT LIKE 'sqlite_%'", "Tables");
 				for(int i = 0; i < dt.Rows.Count; i++)
 				{
 					sw.WriteLine(dt.Rows[i]["sql"].ToString() + ";");
@@ -234,31 +234,31 @@ namespace MonoBPMonitor
 			{
 				so.StreamWriter sw = new so.StreamWriter(so.Path.Combine(tmpFolderName, "Data.sql"));
 				// write the database tables
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
 				// begin writing the data to the file
 				// backup the doctor table
-				DataTable dt = dp.ExecuteDataTable("SELECT DoctorID, DoctorName, Location, PhoneNum, UserID FROM tb_Doctor");
+				DataTable dt = shp.ExecuteDataTable("SELECT DoctorID, DoctorName, Location, PhoneNum, UserID FROM tb_Doctor");
 				for(int i = 0; i < dt.Rows.Count; i++)
 				{
 					sw.WriteLine("INSERT INTO tb_Doctor (DoctorID, DoctorName, Location, PhoneNum, UserID) VALUES(" + dt.Rows[i]["DoctorID"].ToString() + ", '" + dt.Rows[i]["DoctorName"].ToString() + "', '" + dt.Rows[i]["Location"].ToString() + "', '" + dt.Rows[i]["PhoneNum"].ToString() + "', " + dt.Rows[i]["UserID"].ToString() + ");");
 				}
 				dt.Clear();
 				// backup the doctor table
-				dt = dp.ExecuteDataTable("SELECT EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
+				dt = shp.ExecuteDataTable("SELECT EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry");
 				for(int i = 0; i < dt.Rows.Count; i++)
 				{
 					sw.WriteLine("INSERT INTO tb_Entry (EntryID, EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID) VALUES(" + dt.Rows[i]["EntryID"].ToString() + ", '" + Convert.ToDateTime(dt.Rows[i]["EntryDateTime"]).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["Systolic"].ToString() + ", " + dt.Rows[i]["Diastolic"].ToString() + ", " + dt.Rows[i]["HeartRate"].ToString() + ", '', " + dt.Rows[i]["UserID"].ToString() + ");");
 				}
 				dt.Clear();
 				// backup the doctor table
-				dt = dp.ExecuteDataTable("SELECT MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID FROM tb_Medicine");
+				dt = shp.ExecuteDataTable("SELECT MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID FROM tb_Medicine");
 				for(int i = 0; i < dt.Rows.Count; i++)
 				{
 					sw.WriteLine("INSERT INTO tb_Medicine (MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID) VALUES(" + dt.Rows[i]["MedicineID"].ToString() + ", '" + dt.Rows[i]["MedicineName"].ToString() + "', '" + dt.Rows[i]["Dosage"].ToString() + "', '" + Convert.ToDateTime(dt.Rows[i]["StartDate"]).ToString("yyyy-MM-dd hh:mm:ss") + "', '" + Convert.ToDateTime(dt.Rows[i]["EndDate"]).ToString("yyyy-MM-dd hh:mm:ss") + "', " + dt.Rows[i]["DoctorID"].ToString() + ", " + dt.Rows[i]["UserID"].ToString() + ");");
 				}
 				dt.Clear();
 				// backup the doctor table
-				dt = dp.ExecuteDataTable("SELECT UserID, UserName, DateAdded, IsActive FROM tb_User");
+				dt = shp.ExecuteDataTable("SELECT UserID, UserName, DateAdded, IsActive FROM tb_User");
 				for(int i = 0; i < dt.Rows.Count; i++)
 				{
 					sw.WriteLine("INSERT INTO tb_User (UserID, UserName, DateAdded, IsActive) VALUES(" + dt.Rows[i]["UserID"].ToString() + ", '" + dt.Rows[i]["UserName"].ToString() + "', '" + Convert.ToDateTime(dt.Rows[i]["DateAdded"]).ToString("yyyy-MM-dd hh:mm:ss") + "', '" + dt.Rows[i]["IsActive"].ToString() + "');");
@@ -474,14 +474,14 @@ namespace MonoBPMonitor
 				System.IO.StreamReader sr = new System.IO.StreamReader(SqlFileLocation);
 				string[] strSQL = rx.Split(sr.ReadToEnd());
 				sr.Close();
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
 				for(int i = 0; i < strSQL.Length; i++)
 				{
 					System.Diagnostics.Debug.WriteLine(strSQL[i].Trim() + ";");
 					if(strSQL[i].Trim().Length > 5)
-						dp.ExecuteNonQuery(strSQL[i].Trim() + ";");
+						shp.ExecuteNonQuery(strSQL[i].Trim() + ";");
 				}
-				dp.Dispose();
+				shp.Dispose();
 			}
 			catch(Exception ex)
 			{
@@ -495,14 +495,14 @@ namespace MonoBPMonitor
 			System.IO.StreamReader sr = new System.IO.StreamReader(SqlFileLocation);
 			string[] strSQL = rx.Split(sr.ReadToEnd());
 			sr.Close();
-			DataProvider dp = new DataProvider(Common.Option.ConnString);
+			SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
 			for(int i = 0; i < strSQL.Length; i++)
 			{
 				System.Diagnostics.Debug.WriteLine(strSQL[i].Trim() + ";");
 				if(strSQL[i].Trim().Length > 5)
-					dp.ExecuteNonQuery(strSQL[i].Trim() + ";");
+					shp.ExecuteNonQuery(strSQL[i].Trim() + ";");
 			}
-			dp.Dispose();
+			shp.Dispose();
 		}
 		
 		private void RestoreOptions(DataTable dt)
