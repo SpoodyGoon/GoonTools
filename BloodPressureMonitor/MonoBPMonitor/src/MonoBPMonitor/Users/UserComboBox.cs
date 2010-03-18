@@ -24,7 +24,6 @@ using System;
 using System.Data;
 using Gtk;
 using GoonTools;
-using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Users
 {
@@ -84,8 +83,8 @@ namespace MonoBPMonitor.Users
 			{
 				_IsLoading = true;
 				lsUser.Clear();
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT UserID, UserName FROM tb_User");
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				DataTable dt = shp.ExecuteDataTable("SELECT UserID, UserName FROM tb_User");
 				foreach(DataRow dr in dt.Rows)
 				{
 					lsUser.AppendValues(Convert.ToInt32(dr["UserID"]), dr["UserName"].ToString());
@@ -105,8 +104,8 @@ namespace MonoBPMonitor.Users
 			try
 			{
 				// use the person how last had an entry if there is an entry
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				System.Collections.ArrayList ar = dp.ExecuteArrayListRow("SELECT UserID FROM tb_Entry ORDER BY DATETIME(EntryDateTime, 'localtime') DESC LIMIT 1;");
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				System.Collections.ArrayList ar = shp.ExecuteArrayListRow("SELECT UserID FROM tb_Entry ORDER BY DATETIME(EntryDateTime, 'localtime') DESC LIMIT 1;");
 				if(ar.Count > 0)
 				{
 					intReturn = Convert.ToInt32(ar[0]);
@@ -114,7 +113,7 @@ namespace MonoBPMonitor.Users
 				else
 				{
 					// use the last person who was added as a user
-					System.Collections.ArrayList ar2 = dp.ExecuteArrayListRow("SELECT UserID FROM tb_User WHERE UserName NOT LIKE 'Default' ORDER BY DateAdded DESC LIMIT 1; ");
+					System.Collections.ArrayList ar2 = shp.ExecuteArrayListRow("SELECT UserID FROM tb_User WHERE UserName NOT LIKE 'Default' ORDER BY DateAdded DESC LIMIT 1; ");
 					if(ar2.Count > 0)
 					{
 						intReturn = Convert.ToInt32(ar2[0]);
@@ -132,7 +131,7 @@ namespace MonoBPMonitor.Users
 					}
 					
 				}
-				dp.Dispose();
+				shp.Dispose();
 			}
 			catch(Exception ex)
 			{

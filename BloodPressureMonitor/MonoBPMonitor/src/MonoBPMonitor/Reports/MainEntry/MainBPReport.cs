@@ -1,6 +1,5 @@
 using System;
 using Gtk;
-using SQLiteDataProvider;
 using GoonTools;
 
 namespace MonoBPMonitor.Reports

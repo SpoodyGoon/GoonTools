@@ -24,7 +24,6 @@ using System;
 using System.Data;
 using Gtk;
 using GoonTools;
-using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Reports
 {

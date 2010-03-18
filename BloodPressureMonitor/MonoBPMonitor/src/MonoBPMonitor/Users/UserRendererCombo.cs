@@ -24,7 +24,6 @@ using System;
 using System.Data;
 using Gtk;
 using GoonTools;
-using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Users
 {
@@ -96,8 +95,8 @@ namespace MonoBPMonitor.Users
 			try
 			{
 				lsUser.Clear();
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT UserID, UserName FROM tb_User");
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				DataTable dt = shp.ExecuteDataTable("SELECT UserID, UserName FROM tb_User");
 				foreach(DataRow dr in dt.Rows)
 				{
 					lsUser.AppendValues(Convert.ToInt32(dr["UserID"]), dr["UserName"].ToString());

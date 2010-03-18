@@ -2,7 +2,6 @@
 
 using System;
 using Gtk;
-using SQLiteDataProvider;
 using GoonTools;
 
 namespace MonoBPMonitor
@@ -89,9 +88,9 @@ namespace MonoBPMonitor
 			{
 				if(_DoctorID < 0)
 				{
-					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					_DoctorID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_Doctor(DoctorName, Location, PhoneNum, UserID)VALUES('" + _DoctorName + "','" + _Location + "','" + _PhoneNum + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
-					dp.Dispose();
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					_DoctorID = Convert.ToInt32(shp.ExecuteScalar("INSERT INTO tb_Doctor(DoctorName, Location, PhoneNum, UserID)VALUES('" + _DoctorName + "','" + _Location + "','" + _PhoneNum + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
+					shp.Dispose();
 				}
 				else
 				{
@@ -110,9 +109,9 @@ namespace MonoBPMonitor
 			{
 				if(_DoctorID > 0)
 				{
-					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					dp.ExecuteNonQuery("UPDATE tb_Doctor SET DoctorName = '" + _DoctorName + "', Location = '" + _Location + "', PhoneNum = '" + _PhoneNum + "', UserID = " + _UserID.ToString() + " WHERE DoctorID = " + _DoctorID.ToString() + ";");
-					dp.Dispose();
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					shp.ExecuteNonQuery("UPDATE tb_Doctor SET DoctorName = '" + _DoctorName + "', Location = '" + _Location + "', PhoneNum = '" + _PhoneNum + "', UserID = " + _UserID.ToString() + " WHERE DoctorID = " + _DoctorID.ToString() + ";");
+					shp.Dispose();
 				}
 				else
 				{
@@ -129,9 +128,9 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				dp.ExecuteNonQuery("DELETE FROM tb_Doctor WHERE DoctorID = " + _DoctorID.ToString() + ";");
-				dp.Dispose();
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				shp.ExecuteNonQuery("DELETE FROM tb_Doctor WHERE DoctorID = " + _DoctorID.ToString() + ";");
+				shp.Dispose();
 			}
 			catch(Exception ex)
 			{

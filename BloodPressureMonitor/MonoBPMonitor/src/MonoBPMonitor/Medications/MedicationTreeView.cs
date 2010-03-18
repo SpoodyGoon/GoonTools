@@ -24,7 +24,6 @@ using System;
 using System.Data;
 using Gtk;
 using GoonTools;
-using SQLiteDataProvider;
 
 namespace MonoBPMonitor.Medications
 {
@@ -43,8 +42,8 @@ namespace MonoBPMonitor.Medications
 		{
 			try
 			{
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				DataTable dt = dp.ExecuteDataTable("SELECT MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID FROM tb_Medicine");
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				DataTable dt = shp.ExecuteDataTable("SELECT MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID FROM tb_Medicine");
 				foreach(DataRow dr in dt.Rows)
 				{
 					Medication m = new Medication(Convert.ToInt32(dr["MedicineID"]), dr["MedicineName"].ToString(), dr["Dosage"].ToString(), Convert.ToDateTime(dr["StartDate"].ToString()), Convert.ToDateTime(dr["EndDate"].ToString()), Convert.ToInt32(dr["DoctorID"]), Convert.ToInt32(dr["UserID"]));

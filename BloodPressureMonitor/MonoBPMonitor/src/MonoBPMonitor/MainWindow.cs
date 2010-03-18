@@ -300,7 +300,7 @@ namespace MonoBPMonitor
 		#endregion Update Related
         protected virtual void OnProjectWebSiteActionActivated (object sender, System.EventArgs e)
 		{
-			frmErrorMessage fm = new frmErrorMessage();
+			frmErrorMessage fm = new frmErrorMessage("Test");
 			fm.Run();
 			fm.Destroy();
 		}

@@ -1,7 +1,6 @@
 
 using System;
 using Gtk;
-using SQLiteDataProvider;
 using GoonTools;
 
 namespace MonoBPMonitor
@@ -69,9 +68,9 @@ namespace MonoBPMonitor
 			{
 				if(_UserID < 0)
 				{
-					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					_UserID = Convert.ToInt32(dp.ExecuteScalar("INSERT INTO tb_User(UserName, DateAdded, IsActive)VALUES('" + _UserName + "','" + _DateAdded.ToShortDateString() + "','" + _IsActive.ToString() + "'); SELECT last_insert_rowid();" ));
-					dp.Dispose();
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					_UserID = Convert.ToInt32(shp.ExecuteScalar("INSERT INTO tb_User(UserName, DateAdded, IsActive)VALUES('" + _UserName + "','" + _DateAdded.ToShortDateString() + "','" + _IsActive.ToString() + "'); SELECT last_insert_rowid();" ));
+					shp.Dispose();
 				}
 				else
 				{
@@ -90,9 +89,9 @@ namespace MonoBPMonitor
 			{
 				if(_UserID > 0)
 				{
-					DataProvider dp = new DataProvider(Common.Option.ConnString);
-					dp.ExecuteNonQuery("UPDATE tb_User SET UserName = '" + _UserName + "', DateAdded = '" + _DateAdded.ToShortDateString() + "', IsActive = '" + _IsActive.ToString() + "' WHERE UserID = " + _UserID.ToString() + ";");
-					dp.Dispose();
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					shp.ExecuteNonQuery("UPDATE tb_User SET UserName = '" + _UserName + "', DateAdded = '" + _DateAdded.ToShortDateString() + "', IsActive = '" + _IsActive.ToString() + "' WHERE UserID = " + _UserID.ToString() + ";");
+					shp.Dispose();
 				}
 				else
 				{
@@ -109,9 +108,9 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				DataProvider dp = new DataProvider(Common.Option.ConnString);
-				dp.ExecuteNonQuery("DELETE FROM tb_User WHERE UserID = " + _UserID.ToString() + ";");
-				dp.Dispose();
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				shp.ExecuteNonQuery("DELETE FROM tb_User WHERE UserID = " + _UserID.ToString() + ";");
+				shp.Dispose();
 			}
 			catch(Exception ex)
 			{
