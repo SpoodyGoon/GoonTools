@@ -1,0 +1,103 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{4E6905D8-8826-432F-B793-3B9B95CB9F94}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>libGUPdotNET</RootNamespace>
+    <AssemblyName>libGUPdotNET</AssemblyName>
+    <MonoTargetFrameworkVersion>v2.0</MonoTargetFrameworkVersion>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\ayork\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="atk-sharp" />
+    <Reference Include="gdk-sharp" />
+    <Reference Include="glib-sharp" />
+    <Reference Include="gtk-sharp" />
+    <Reference Include="Mono.Data">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.SqliteClient">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="pango-sharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System.Configuration\2.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System.Data\2.0.0.0__b77a5c561934e089\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System.Xml\2.0.0.0__b77a5c561934e089\System.Xml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\CheckSum.cs" />
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\Const.cs" />
+    <Compile Include="Common\MetaInfo.cs" />
+    <Compile Include="Common\Options.cs" />
+    <Compile Include="frmConfirm.cs" />
+    <Compile Include="frmDownload.cs" />
+    <Compile Include="frmInstall.cs" />
+    <Compile Include="frmOptions.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.frmConfirm.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.frmDownload.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.frmInstall.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.frmOptions.cs" />
+    <Compile Include="libGUPdotNET.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateCheck.cs" />
+    <Compile Include="UpdateInfo.cs" />
+    <Compile Include="UpdateTimeCombo.cs" />
+    <None Include="app.config" />
+    <None Include="gtk-gui\gui.stetic" />
+    <None Include="images\cancel.png" />
+    <None Include="images\downloading.png" />
+    <None Include="images\hide.png" />
+    <None Include="images\update_large.ico" />
+    <None Include="images\update_large.png" />
+    <None Include="images\update_medium.png" />
+    <None Include="images\update_needed.png" />
+    <None Include="images\update_small.png" />
+    <Content Include="TimeValues.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="web_files\GetUpdateInfo.asp" />
+    <None Include="web_files\GetUpdateInfo.aspx" />
+    <None Include="web_files\GetUpdateInfo.php" />
+    <None Include="web_files\XMLTemplate.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common" />
+    <Folder Include="gtk-gui" />
+    <Folder Include="images" />
+    <Folder Include="Properties" />
+    <Folder Include="web_files" />
+  </ItemGroup>
+  <Import Project="$(MonoBuildTasksPath)\Mono.Build.CSharp.targets" />
+</Project>
