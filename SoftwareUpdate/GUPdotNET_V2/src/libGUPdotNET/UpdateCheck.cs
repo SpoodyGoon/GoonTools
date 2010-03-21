@@ -37,7 +37,6 @@ namespace libGUPdotNET
 		
 		public static bool RunUpdate(bool blnSilentUpdate)
 		{
-			Common.LoadAll();
 			bool blnSuccess = true;
 			UpdateInfo _UpdateInfo = new UpdateInfo(UpdateInfoType.All, blnSilentUpdate);
 			try

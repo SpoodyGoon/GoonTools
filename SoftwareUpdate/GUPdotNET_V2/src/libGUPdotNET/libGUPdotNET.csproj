@@ -8,6 +8,7 @@
     <AssemblyName>libGUPdotNET</AssemblyName>
     <MonoTargetFrameworkVersion>v2.0</MonoTargetFrameworkVersion>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\ayork\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <ApplicationIcon>images\update_large.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -55,9 +56,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\CheckSum.cs" />
+    <Compile Include="Common\CheckSumUtility.cs" />
     <Compile Include="Common\Common.cs" />
-    <Compile Include="Common\Const.cs" />
+    <Compile Include="Common\Licenses.cs" />
     <Compile Include="Common\MetaInfo.cs" />
     <Compile Include="Common\Options.cs" />
     <Compile Include="frmConfirm.cs" />
@@ -74,16 +75,32 @@
     <Compile Include="UpdateCheck.cs" />
     <Compile Include="UpdateInfo.cs" />
     <Compile Include="UpdateTimeCombo.cs" />
-    <None Include="app.config" />
+    <Content Include="app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="gtk-gui\gui.stetic" />
-    <None Include="images\cancel.png" />
-    <None Include="images\downloading.png" />
-    <None Include="images\hide.png" />
+    <EmbeddedResource Include="images\cancel.png">
+      <LogicalName>cancel.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\downloading.png">
+      <LogicalName>downloading.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\hide.png">
+      <LogicalName>hide.png</LogicalName>
+    </EmbeddedResource>
     <None Include="images\update_large.ico" />
-    <None Include="images\update_large.png" />
-    <None Include="images\update_medium.png" />
-    <None Include="images\update_needed.png" />
-    <None Include="images\update_small.png" />
+    <EmbeddedResource Include="images\update_large.png">
+      <LogicalName>update_large.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\update_medium.png">
+      <LogicalName>update_medium.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\update_needed.png">
+      <LogicalName>update_needed.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\update_small.png">
+      <LogicalName>update_small.png</LogicalName>
+    </EmbeddedResource>
     <Content Include="TimeValues.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

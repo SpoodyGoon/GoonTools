@@ -26,7 +26,7 @@ using so = System.IO;
 using System.Data;
 using Gtk;
 
-namespace GUPdotNET.Helper
+namespace GoonTools.Helper
 {
 	/// <summary>
 	/// This will be used to compair versons during loading of the programa

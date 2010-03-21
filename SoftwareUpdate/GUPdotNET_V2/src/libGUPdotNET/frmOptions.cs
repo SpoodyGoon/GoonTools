@@ -35,12 +35,12 @@ namespace libGUPdotNET
 		// this variable is used to not fire a combobox change event
 		// during loading the controls
 		private bool _Loading = false;
-		private int _Result = 0;
 		public frmOptions()
 		{
 			try
 			{
 				this.Build();
+				btnCheckNow.Clicked += OnBtnCheckNowClicked;
 				_Loading = true;
 				// load the controls for display;
 				LoadControls();
@@ -94,7 +94,7 @@ namespace libGUPdotNET
 				ad.Title = "About GUPdotNET";
 				ad.ProgramName = "GUPdotNET";
 				ad.Comments ="General Purpose Update program for Mono/Gtk#.";
-				ad.License = libGUPdotNET.Const.License;
+				ad.License = Common.CurrentLicense;
 				ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
 				ad.Version = " " + asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
 				ad.Logo = Gdk.Pixbuf.LoadFromResource("update_large.png");
