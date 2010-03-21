@@ -8,7 +8,7 @@
     <ProjectGuid>{2552A720-E6E3-4403-8096-A68B7D454EDA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AssemblyName>GUPdotNET</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <SourceAnalysisOverrideSettingsFile>C:\Users\Andy\AppData\Roaming\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <RootNamespace>GUPdotNET</RootNamespace>
     <StartupObject>GUPdotNET.MainClass</StartupObject>
@@ -17,7 +17,6 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <ApplicationIcon>images\update_large.ico</ApplicationIcon>
     <Description>General Purpose Update program for Mono/Gtk#.</Description>
-    <StartArguments>"ShowOptions=true" "ThemeFile=C:\Documents and Settings\ayork\My Documents\SharpDevelop Projects\MonoBPMonitor\src\MonoBPMonitor\bin\Debug\Themes\Neutrino\gtk-2.0\gtkrc" </StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <StartAction>Project</StartAction>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
