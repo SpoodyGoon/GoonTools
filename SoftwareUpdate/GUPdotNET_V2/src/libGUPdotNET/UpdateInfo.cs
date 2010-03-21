@@ -193,8 +193,8 @@ namespace libGUPdotNET
 		/// <summary>
 		///  The CheckSum Type
 		/// </summary>
-		private CheckSum.CheckSumType _UseCheckSumType = CheckSum.CheckSumType.MD5;
-		internal CheckSum.CheckSumType UseCheckSumType
+		private CheckSumType _UseCheckSumType = CheckSumType.MD5;
+		public CheckSumType UseCheckSumType
 		{
 			set{_UseCheckSumType=value;}
 			get{return _UseCheckSumType;}
@@ -367,22 +367,22 @@ namespace libGUPdotNET
 			}
 		}
 		
-		private GoonTools.CheckSum.CheckSumType GetCheckSumType(string strCheckSum)
+		private CheckSumType GetCheckSumType(string strCheckSum)
 		{
 			switch(strCheckSum)
 			{
 				case "MD5":
-					return CheckSum.CheckSumType.MD5;
+					return CheckSumType.MD5;
 				case "SHA1":
-					return CheckSum.CheckSumType.SHA1;
+					return CheckSumType.SHA1;
 				case "SHA256":
-					return CheckSum.CheckSumType.SHA256;
+					return CheckSumType.SHA256;
 				case "SHA384":
-					return CheckSum.CheckSumType.SHA384;
+					return CheckSumType.SHA384;
 				case "SHA512":
-					return CheckSum.CheckSumType.SHA512;
+					return CheckSumType.SHA512;
 			}
-			return CheckSum.CheckSumType.MD5;
+			return CheckSumType.MD5;
 		}
 	}
 	

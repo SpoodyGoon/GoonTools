@@ -24,7 +24,7 @@ using System;
 using System.Data;
 using System.Collections;
 
-namespace GUPdotNET.Helper
+namespace GoonTools.Helper
 {
 	public class Options
 	{

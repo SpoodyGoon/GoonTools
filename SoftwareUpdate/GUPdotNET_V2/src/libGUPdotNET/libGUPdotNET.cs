@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using Gtk;
+using System.Reflection;
 using GoonTools;
 
 namespace libGUPdotNET
@@ -18,16 +20,26 @@ namespace libGUPdotNET
 	{
 		public GUPdotNET()
 		{
-			Common.LoadAll();			
+			try
+			{
+				
+				Common.LoadAll();
+			}
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Error, Gtk.ButtonsType.Ok, false, ex.ToString(), "An Error Has Occured.");
+			md.Run();
+			md.Destroy();
+			}
 		}
-		
+
 		public void ShowOptions()
 		{
 			frmOptions fm = new frmOptions();
 			fm.Run();
 			fm.Destroy();
 		}
-		
+
 		public void RunUpdate()
 		{
 			UpdateCheck.RunUpdate();

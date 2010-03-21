@@ -24,6 +24,7 @@ using System;
 using System.Configuration;
 using so = System.IO;
 using System.Data;
+using GoonTools.Helper;
 using Gtk;
 
 namespace GoonTools
@@ -37,7 +38,7 @@ namespace GoonTools
 	{
 		#region Private Properties
 		
-		private static GUPdotNET.Helper.Options _Option;
+		private static Options _Option;
 		private static string _AppPath = null;
 		// this is where the calling application holds user info
 		private static string _BasePath = null;
@@ -46,11 +47,12 @@ namespace GoonTools
 		private static string _OptionsFile = null;
 		private static string _UpdateFile = null;
 		private static string _ErrorFile = null;
+		private static CheckSumUtility _CheckSum;
 		#endregion Private Properties
 		
 		#region Public Properties
 		
-		public static GUPdotNET.Helper.Options Option
+		public static Options Option
 		{
 			get{return _Option;}
 		}
@@ -68,6 +70,16 @@ namespace GoonTools
 		public static string DirChar
 		{
 			get{return _DirChar;}
+		}
+		
+		public static CheckSumUtility CheckSum
+		{
+			get{return _CheckSum;}
+		}
+		
+		public static string CurrentLicense
+		{
+			get{return GoonTools.Helper.Licenses.GPL3;}
 		}
 		
 		#endregion Public Properties
@@ -111,10 +123,10 @@ namespace GoonTools
 				}
 				else
 				{
-					_Option = new GUPdotNET.Helper.Options();
+					_Option = new Options();
 					SaveOptions();
 				}
-				
+				 _CheckSum = new CheckSumUtility();
 			}
 			catch(Exception ex)
 			{
@@ -128,7 +140,7 @@ namespace GoonTools
 			try
 			{
 				ds.ReadXml(_OptionsFile, XmlReadMode.ReadSchema);
-				_Option = new GUPdotNET.Helper.Options((DataTable)ds.Tables["Options"]);
+				_Option = new Options((DataTable)ds.Tables["Options"]);
 			}
 			catch(Exception ex)
 			{

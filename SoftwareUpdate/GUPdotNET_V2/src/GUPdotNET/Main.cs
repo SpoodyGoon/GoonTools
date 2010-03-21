@@ -59,6 +59,8 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
+				Console.WriteLine(ex.ToString());
+				Console.Read();
 				// one of the only places you'll ever catch me doing an empty catch block
 				// this is not a mission critical items if it fails let it and move on
 			}

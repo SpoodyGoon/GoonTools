@@ -23,7 +23,6 @@ using System;
 using so = System.IO;
 using System.Reflection;
 using System.Configuration;
-using libGUPdotNET;
 using Gtk;
 public partial class MainWindow: Gtk.Window
 {
@@ -77,6 +76,8 @@ public partial class MainWindow: Gtk.Window
 	{
 		try
 		{
+			libGUPdotNET.UpdateInfo UInfo = new libGUPdotNET.UpdateInfo();
+			
 			libGUPdotNET.GUPdotNET lg = new libGUPdotNET.GUPdotNET();
 			lg.ShowOptions();
 			
