@@ -43,17 +43,7 @@ namespace MonoBPMonitor
 				swEntityRpt.Add (tvEntityRpt);
 				cboUser.Changed += new EventHandler(cboUser_Changed);
 				tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e) { btnRemoveEntry.Sensitive = true; btnEditEntry.Sensitive = true; };
-				// check if update are allowed
-				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "false")
-				{
-					UpdatesAction.Visible = false;
-					menubar1.QueueDraw();
-				}
-				else
-				{
-					if(Common.Option.AutoUpdate == true)
-						RunUpdate(false);
-				}
+				
 			}
 			catch(Exception ex)
 			{
@@ -312,13 +302,6 @@ namespace MonoBPMonitor
         protected virtual void OnIssuesFeatureRequestsActionActivated (object sender, System.EventArgs e)
 		{
 		}
-		
-		
-		
-		
-		
-		
-		
 		
 		
 	}

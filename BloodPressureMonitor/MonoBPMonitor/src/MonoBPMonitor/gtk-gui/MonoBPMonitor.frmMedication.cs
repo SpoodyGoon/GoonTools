@@ -288,7 +288,6 @@ namespace MonoBPMonitor {
             w20.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment2.Name = "alignment2";
             // Container child alignment2.Gtk.Container+ContainerChild
             this.cboDoctor = new MonoBPMonitor.Doctors.DoctorComboBox();
             this.cboDoctor.Name = "cboDoctor";

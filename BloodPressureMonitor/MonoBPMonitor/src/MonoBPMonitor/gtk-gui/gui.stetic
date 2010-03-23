@@ -103,6 +103,7 @@
       </action>
       <action id="NewEntryAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;n</property>
         <property name="Label" translatable="yes">New Entry...</property>
         <property name="ShortLabel" translatable="yes">New Entry...</property>
         <property name="StockId">edit_add.png</property>
@@ -129,6 +130,7 @@
       </action>
       <action id="NewEntryAction1">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;n</property>
         <property name="Label" translatable="yes">New _Entry...</property>
         <property name="ShortLabel" translatable="yes">New _Entry...</property>
         <property name="StockId">edit_add.png</property>
@@ -1738,7 +1740,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmEntry" design-size="525 616">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmEntry" design-size="529 616">
     <property name="MemberName" />
     <property name="WidthRequest">525</property>
     <property name="Title" translatable="yes">Blood Presure Entry</property>
@@ -2157,73 +2159,6 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Alignment" id="algDelete">
-                <property name="MemberName" />
-                <property name="Visible">False</property>
-                <property name="Xscale">0.01</property>
-                <property name="Yscale">0.01</property>
-                <child>
-                  <widget class="Gtk.Frame" id="fraDelete">
-                    <property name="MemberName" />
-                    <property name="BorderWidth">2</property>
-                    <child>
-                      <widget class="Gtk.Alignment" id="GtkAlignment2">
-                        <property name="MemberName" />
-                        <property name="Xalign">0</property>
-                        <property name="Yalign">0</property>
-                        <property name="LeftPadding">15</property>
-                        <property name="TopPadding">5</property>
-                        <property name="RightPadding">15</property>
-                        <property name="BottomPadding">5</property>
-                        <child>
-                          <widget class="Gtk.HBox" id="hbox3">
-                            <property name="MemberName" />
-                            <property name="Spacing">6</property>
-                            <child>
-                              <widget class="Gtk.Label" id="label3">
-                                <property name="MemberName" />
-                                <property name="LabelProp" translatable="yes">&lt;span color="red"&gt;To delete the current reading use this button:&lt;/span&gt;</property>
-                                <property name="UseMarkup">True</property>
-                              </widget>
-                              <packing>
-                                <property name="Position">0</property>
-                                <property name="AutoSize">True</property>
-                                <property name="Expand">False</property>
-                                <property name="Fill">False</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <widget class="Gtk.Button" id="btnDeleteReading">
-                                <property name="MemberName" />
-                                <property name="CanFocus">True</property>
-                                <property name="UseStock">True</property>
-                                <property name="Type">StockItem</property>
-                                <property name="StockId">gtk-delete</property>
-                                <signal name="Clicked" handler="OnBtnDeleteReadingClicked" />
-                                <property name="label">gtk-delete</property>
-                              </widget>
-                              <packing>
-                                <property name="Position">1</property>
-                                <property name="AutoSize">True</property>
-                                <property name="Expand">False</property>
-                                <property name="Fill">False</property>
-                              </packing>
-                            </child>
-                          </widget>
-                        </child>
-                      </widget>
-                    </child>
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">2</property>
-                <property name="AutoSize">False</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
               <widget class="Gtk.Alignment" id="alignment2">
                 <property name="MemberName" />
                 <child>
@@ -2233,7 +2168,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">2</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -2254,7 +2189,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -2291,7 +2226,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">5</property>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
               </packing>
             </child>
@@ -2330,6 +2265,8 @@
         <child>
           <widget class="Gtk.Button" id="btnOk">
             <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="HasDefault">True</property>
             <property name="CanFocus">True</property>
             <property name="UseStock">True</property>
             <property name="Type">StockItem</property>
@@ -2347,10 +2284,11 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmCalendar" design-size="350 274">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmCalendar" design-size="354 315">
     <property name="MemberName" />
     <property name="WidthRequest">350</property>
     <property name="Icon">resource:date.png</property>
+    <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">Mouse</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">2</property>
@@ -2576,10 +2514,39 @@
                 <property name="Fill">False</property>
               </packing>
             </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment1">
+                <property name="MemberName" />
+                <property name="TopPadding">2</property>
+                <property name="BottomPadding">4</property>
+                <child>
+                  <widget class="Gtk.EventBox" id="evntDateTimeNow">
+                    <property name="MemberName" />
+                    <property name="AboveChild">True</property>
+                    <signal name="EnterNotifyEvent" handler="OnEvntDateTimeNowEnterNotifyEvent" />
+                    <signal name="LeaveNotifyEvent" handler="OnEvntDateTimeNowLeaveNotifyEvent" />
+                    <signal name="ButtonPressEvent" handler="OnEvntDateTimeNowButtonPressEvent" />
+                    <child>
+                      <widget class="Gtk.Label" id="lblNow">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">&lt;span size="8750" face="san serif" color="#000000"&gt;&lt;u&gt;&lt;b&gt;Set Date &amp;#38; Time to Now.&lt;/b&gt;&lt;/u&gt;&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
           </widget>
           <packing>
             <property name="Position">0</property>
-            <property name="AutoSize">True</property>
+            <property name="AutoSize">False</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

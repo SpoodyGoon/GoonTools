@@ -285,7 +285,6 @@ namespace MonoBPMonitor {
             w25.Padding = ((uint)(1));
             // Container child vbox2.Gtk.Box+BoxChild
             this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment2.Name = "alignment2";
             this.alignment2.LeftPadding = ((uint)(20));
             // Container child alignment2.Gtk.Container+ContainerChild
             this.hbuttonbox3 = new Gtk.HButtonBox();

@@ -55,6 +55,12 @@ namespace MonoBPMonitor {
         
         private Gtk.RadioButton rbnAM;
         
+        private Gtk.Alignment alignment1;
+        
+        private Gtk.EventBox evntDateTimeNow;
+        
+        private Gtk.Label lblNow;
+        
         private Gtk.Button buttonCancel;
         
         private Gtk.Button buttonOk;
@@ -65,6 +71,7 @@ namespace MonoBPMonitor {
             this.WidthRequest = 350;
             this.Name = "MonoBPMonitor.frmCalendar";
             this.Icon = Gdk.Pixbuf.LoadFromResource("date.png");
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(2));
             this.Modal = true;
             this.BorderWidth = ((uint)(2));
@@ -120,7 +127,6 @@ namespace MonoBPMonitor {
             this.frame2.Name = "frame2";
             // Container child frame2.Gtk.Container+ContainerChild
             this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 0.5F, 0.5F);
-            this.alignment2.Name = "alignment2";
             this.alignment2.LeftPadding = ((uint)(10));
             this.alignment2.TopPadding = ((uint)(4));
             this.alignment2.RightPadding = ((uint)(5));
@@ -198,7 +204,6 @@ namespace MonoBPMonitor {
             this.rbnPM = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("p.m."));
             this.rbnPM.CanFocus = true;
             this.rbnPM.Name = "rbnPM";
-            this.rbnPM.Active = true;
             this.rbnPM.DrawIndicator = true;
             this.rbnPM.UseUnderline = true;
             this.rbnPM.Group = new GLib.SList(System.IntPtr.Zero);
@@ -232,17 +237,38 @@ namespace MonoBPMonitor {
             w21.Position = 1;
             w21.Expand = false;
             w21.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment1.Name = "alignment1";
+            this.alignment1.TopPadding = ((uint)(2));
+            this.alignment1.BottomPadding = ((uint)(4));
+            // Container child alignment1.Gtk.Container+ContainerChild
+            this.evntDateTimeNow = new Gtk.EventBox();
+            this.evntDateTimeNow.Name = "evntDateTimeNow";
+            this.evntDateTimeNow.AboveChild = true;
+            // Container child evntDateTimeNow.Gtk.Container+ContainerChild
+            this.lblNow = new Gtk.Label();
+            this.lblNow.Name = "lblNow";
+            this.lblNow.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"8750\" face=\"san serif\" color=\"#000000\"><u><b>Set Date &#38; Time to Now.</b></u></span>");
+            this.lblNow.UseMarkup = true;
+            this.evntDateTimeNow.Add(this.lblNow);
+            this.alignment1.Add(this.evntDateTimeNow);
+            this.vbox2.Add(this.alignment1);
+            Gtk.Box.BoxChild w24 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
+            w24.Position = 2;
+            w24.Expand = false;
+            w24.Fill = false;
             w1.Add(this.vbox2);
-            Gtk.Box.BoxChild w22 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
-            w22.Position = 0;
-            w22.Expand = false;
-            w22.Fill = false;
+            Gtk.Box.BoxChild w25 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
+            w25.Position = 0;
+            w25.Expand = false;
+            w25.Fill = false;
             // Internal child MonoBPMonitor.frmCalendar.ActionArea
-            Gtk.HButtonBox w23 = this.ActionArea;
-            w23.Name = "dialog1_ActionArea";
-            w23.Spacing = 6;
-            w23.BorderWidth = ((uint)(5));
-            w23.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+            Gtk.HButtonBox w26 = this.ActionArea;
+            w26.Name = "dialog1_ActionArea";
+            w26.Spacing = 6;
+            w26.BorderWidth = ((uint)(5));
+            w26.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -252,9 +278,9 @@ namespace MonoBPMonitor {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w24 = ((Gtk.ButtonBox.ButtonBoxChild)(w23[this.buttonCancel]));
-            w24.Expand = false;
-            w24.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w27 = ((Gtk.ButtonBox.ButtonBoxChild)(w26[this.buttonCancel]));
+            w27.Expand = false;
+            w27.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -264,17 +290,20 @@ namespace MonoBPMonitor {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w25 = ((Gtk.ButtonBox.ButtonBoxChild)(w23[this.buttonOk]));
-            w25.Position = 1;
-            w25.Expand = false;
-            w25.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w28 = ((Gtk.ButtonBox.ButtonBoxChild)(w26[this.buttonOk]));
+            w28.Position = 1;
+            w28.Expand = false;
+            w28.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 350;
-            this.DefaultHeight = 274;
+            this.DefaultWidth = 354;
+            this.DefaultHeight = 315;
             this.Show();
             this.calendar2.DaySelectedDoubleClick += new System.EventHandler(this.OnCalendar2DaySelectedDoubleClick);
+            this.evntDateTimeNow.EnterNotifyEvent += new Gtk.EnterNotifyEventHandler(this.OnEvntDateTimeNowEnterNotifyEvent);
+            this.evntDateTimeNow.LeaveNotifyEvent += new Gtk.LeaveNotifyEventHandler(this.OnEvntDateTimeNowLeaveNotifyEvent);
+            this.evntDateTimeNow.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.OnEvntDateTimeNowButtonPressEvent);
             this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
             this.buttonOk.Clicked += new System.EventHandler(this.OnButtonOkClicked);
         }

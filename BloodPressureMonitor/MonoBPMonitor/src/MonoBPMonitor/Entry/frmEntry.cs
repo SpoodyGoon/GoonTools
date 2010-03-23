@@ -14,9 +14,6 @@ namespace MonoBPMonitor
 		{
 			this.Build();
 			txtNotes.WidthRequest = 375;
-			// this starts a new entry there is nothing to delete
-			// so we don't want the delete button.
-			algDelete.Destroy();
 			// Start a new Entry
 			_CurrentEntry = new Entry();
 			txtReadingDate.Text = _CurrentEntry.EntryDateTime.ToString("g");
@@ -106,14 +103,6 @@ namespace MonoBPMonitor
 
 		protected virtual void OnBtnCancelClicked (object sender, System.EventArgs e)
 		{
-			this.Hide();
-		}
-		
-		
-		protected virtual void OnBtnDeleteReadingClicked (object sender, System.EventArgs e)
-		{
-			_CurrentEntry.Remove();
-			this.Respond(ResponseType.Ok);
 			this.Hide();
 		}
 	}

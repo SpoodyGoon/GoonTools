@@ -95,7 +95,6 @@ namespace MonoBPMonitor {
             this.vbox2.Spacing = 6;
             // Container child vbox2.Gtk.Box+BoxChild
             this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment2.Name = "alignment2";
             // Container child alignment2.Gtk.Container+ContainerChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
