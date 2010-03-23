@@ -118,5 +118,28 @@ namespace MonoBPMonitor
 			this.Respond(Gtk.ResponseType.Ok);
 			this.Hide();
 		}
+		protected virtual void OnEvntDateTimeNowEnterNotifyEvent (object o, Gtk.EnterNotifyEventArgs args)
+		{			
+			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Hand1);
+			lblNow.Text = "<span size=\"8750\" face=\"san serif\"  color=\"#920000\"><u><b>Set Date &#38; Time to Now.</b></u></span>";
+			lblNow.UseMarkup = true;
+			lblNow.ShowNow();
+		}
+		
+		protected virtual void OnEvntDateTimeNowLeaveNotifyEvent (object o, Gtk.LeaveNotifyEventArgs args)
+		{
+			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Arrow);
+			lblNow.Text = "<span size=\"8750\" face=\"san serif\" color=\"#000000\"><u><b>Set Date &#38; Time to Now.</b></u></span>";
+			lblNow.UseMarkup = true;
+			lblNow.ShowNow();
+		}
+		
+		protected virtual void OnEvntDateTimeNowButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
+		{
+		}
+		
+		
+		
+		
 	}
 }

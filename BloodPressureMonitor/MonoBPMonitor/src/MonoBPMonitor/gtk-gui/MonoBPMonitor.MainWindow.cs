@@ -116,7 +116,7 @@ namespace MonoBPMonitor {
             w1.Add(this.DoctorsAction, null);
             this.NewEntryAction = new Gtk.Action("NewEntryAction", Mono.Unix.Catalog.GetString("New Entry..."), null, "edit_add.png");
             this.NewEntryAction.ShortLabel = Mono.Unix.Catalog.GetString("New Entry...");
-            w1.Add(this.NewEntryAction, null);
+            w1.Add(this.NewEntryAction, "<Control><Mod2>n");
             this.UsersAction = new Gtk.Action("UsersAction", Mono.Unix.Catalog.GetString("Users..."), null, "edit_user.png");
             this.UsersAction.ShortLabel = Mono.Unix.Catalog.GetString("Users...");
             w1.Add(this.UsersAction, null);
@@ -128,7 +128,7 @@ namespace MonoBPMonitor {
             w1.Add(this.aboutAction, null);
             this.NewEntryAction1 = new Gtk.Action("NewEntryAction1", Mono.Unix.Catalog.GetString("New _Entry..."), null, "edit_add.png");
             this.NewEntryAction1.ShortLabel = Mono.Unix.Catalog.GetString("New _Entry...");
-            w1.Add(this.NewEntryAction1, null);
+            w1.Add(this.NewEntryAction1, "<Control><Mod2>n");
             this.UsersAction1 = new Gtk.Action("UsersAction1", Mono.Unix.Catalog.GetString("_Users..."), null, "edit_user.png");
             this.UsersAction1.ShortLabel = Mono.Unix.Catalog.GetString("_Users...");
             w1.Add(this.UsersAction1, null);
@@ -227,7 +227,6 @@ namespace MonoBPMonitor {
             w5.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
             this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment2.Name = "alignment2";
             this.alignment2.LeftPadding = ((uint)(20));
             // Container child alignment2.Gtk.Container+ContainerChild
             this.hbox1 = new Gtk.HBox();
@@ -239,6 +238,7 @@ namespace MonoBPMonitor {
             this.alignment4.Name = "alignment4";
             // Container child alignment4.Gtk.Container+ContainerChild
             this.hbuttonbox1 = new Gtk.HButtonBox();
+            this.hbuttonbox1.Name = "hbuttonbox1";
             this.hbuttonbox1.Spacing = 24;
             // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
             this.btnAddEntry = new Gtk.Button();

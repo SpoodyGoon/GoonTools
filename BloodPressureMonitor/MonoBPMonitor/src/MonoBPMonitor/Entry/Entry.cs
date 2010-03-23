@@ -152,7 +152,7 @@ namespace MonoBPMonitor
 				if(_EntryID > 0)
 				{
 					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
-					shp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDateTime = DATETIME('" + _EntryDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "','localtime'), Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
+					shp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDateTime = " + shp.ToSQLiteDateTime(_EntryDateTime) + ", Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
 					shp.Dispose();
 				}
 				else

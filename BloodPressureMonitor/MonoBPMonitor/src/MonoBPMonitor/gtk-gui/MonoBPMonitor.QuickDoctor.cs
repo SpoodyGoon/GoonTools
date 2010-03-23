@@ -68,7 +68,6 @@ namespace MonoBPMonitor {
             this.table1.BorderWidth = ((uint)(8));
             // Container child table1.Gtk.Table+TableChild
             this.alignment2 = new Gtk.Alignment(0.98F, 0.5F, 0.01F, 1F);
-            this.alignment2.Name = "alignment2";
             // Container child alignment2.Gtk.Container+ContainerChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";

@@ -1,4 +1,4 @@
-﻿#region Copyright/License
+#region Copyright/License
 
 /*
                      	SQLiteHelp.cs
@@ -59,38 +59,38 @@ namespace GoonTools
 		private SqliteTransaction _SQLiteTrans = null;
 		private SqliteDataReader _SQLiteReader = null;
 //		private Dictionary<string, object> _Parmeters = new Dictionary<string, object>();
-		
+
 		#endregion Private Properties
-		
+
 		#region Public Properties
-		
+
 		/// <summary>
 		///  Sets of gets the connection busy time out
 		/// </summary>
 		public int BusyTimeout
 		{
-			set{ _BusyTimeout = value;}
-			get{ return _BusyTimeout;}
+			get { return _BusyTimeout; }
+			set { _BusyTimeout = value; }
 		}
-		
+
 		/// <summary>
 		///  Sets of gets the connection time out
 		/// </summary>
 		public int TimeOut
 		{
-			set{ _TimeOut = value;}
-			get{ return _TimeOut;}
+			get { return _TimeOut; }
+			set { _TimeOut = value; }
 		}
-		
+
 		/// <summary>
 		///  Sets or gets the connection string
 		/// </summary>
 		public string DatabaseURL
 		{
-			set{ _DatabaseURL = value;}
-			get{ return _DatabaseURL;}
+			get { return _DatabaseURL; }
+			set { _DatabaseURL = value; }
 		}
-		
+
 		/// <summary>
 		///  Returns and Exception message if needed
 		/// </summary>
@@ -98,296 +98,299 @@ namespace GoonTools
 		{
 			get { return _ExceptionMessage; }
 		}
-		
+
 //		public Dictionary<string, object> Parameters
 //		{
 //			get{return _Parmeters;}
 //		}
 
 		#endregion Public Properties
-		
+
 		#region Class Constructors
-		
+
 		/// <summary>
 		/// Base Class Constructor
 		/// </summary>
-		public SQLiteHelper()
+		public SQLiteHelper ()
 		{
 			_DatabaseURL = null;
 			_TimeOut = 0;
 			_ExceptionMessage = null;
 		}
-		
+
 		/// <summary>
 		///  Class Constructor that specifies the connection string
 		/// </summary>
 		/// <param name="Conn"></param>
-		public SQLiteHelper(string dbURL)
+		public SQLiteHelper (string dbURL)
 		{
 			_DatabaseURL = dbURL;
 		}
-		
+
 		/// <summary>
 		/// Class Constructor that specifies the connection string
 		/// and the connection time out
 		/// </summary>
 		/// <param name="dbURL">Location of the database</param>
 		/// <param name="TimeOut">Lenght of time out in milli-second</param>
-		public SQLiteHelper(string dbURL, int TimeOut)
+		public SQLiteHelper (string dbURL, int TimeOut)
 		{
 			_TimeOut = TimeOut;
 			_DatabaseURL = dbURL;
 		}
-		
+
 		/// <summary>
 		///  A dummmy dispose with no real purpose in life.
 		///  It's a sad Dispose()... nobody love it
 		/// </summary>
-		public void Dispose()
+		public void Dispose ()
 		{
 			// dispose any used sql transaction
-			if(_SQLiteTrans != null)
-				_SQLiteTrans.Dispose();
+			if (_SQLiteTrans != null)
+				_SQLiteTrans.Dispose ();
 			
 			// close and dispose the conneciton
-			if(_SQLiteCN != null)
+			if (_SQLiteCN != null)
 			{
-				if(_SQLiteCN.State != ConnectionState.Closed)
-					_SQLiteCN.Close();
+				if (_SQLiteCN.State != ConnectionState.Closed)
+					_SQLiteCN.Close ();
 				
-				_SQLiteCN.Dispose();
+				_SQLiteCN.Dispose ();
 			}
 			// dispose any used sql data reader
-			if(_SQLiteReader != null)
-				_SQLiteReader.Dispose();
+			if (_SQLiteReader != null)
+				_SQLiteReader.Dispose ();
 			// dispose any used sql command
-			if(_SQLiteCMD != null)
-				_SQLiteCMD.Dispose();
+			if (_SQLiteCMD != null)
+				_SQLiteCMD.Dispose ();
 			
 		}
-		
+
 		#endregion Class Constructors
-		
+
 		#region Public Transaction Methods
-		
-		public void StartTransaction()
+
+		public void StartTransaction ()
 		{
-			if(_SQLiteCN != null)
-				_SQLiteTrans = (SqliteTransaction)_SQLiteCN.BeginTransaction();
+			if (_SQLiteCN != null)
+				_SQLiteTrans = (SqliteTransaction)_SQLiteCN.BeginTransaction ();
 		}
-		
-		public void RollBackTransaction()
+
+		public void RollBackTransaction ()
 		{
-			_SQLiteTrans.Rollback();
-			_SQLiteTrans.Dispose();
+			_SQLiteTrans.Rollback ();
+			_SQLiteTrans.Dispose ();
 		}
-		
-		public void CommitTransaction()
+
+		public void CommitTransaction ()
 		{
-			_SQLiteTrans.Commit();
-			_SQLiteTrans.Dispose();
+			_SQLiteTrans.Commit ();
+			_SQLiteTrans.Dispose ();
 		}
-		
+
 		#endregion Public Transaction Methods
-		
+
 		#region Main Connection
-		
+
 		/// <summary>
 		///  Creates a new database connection
 		/// </summary>
 		/// <returns></returns>
-		private void OpenConnection()
+		private void OpenConnection ()
 		{
-			if(_SQLiteCN.State != ConnectionState.Open)
-				_SQLiteCN.Open();
+			if (_SQLiteCN.State != ConnectionState.Open)
+				_SQLiteCN.Open ();
 		}
-		
+
 		/// <summary>
 		///  Initialized a connection without opening it
 		///  for use with DataAdapters
 		/// </summary>
 		/// <returns></returns>
-		private void InitConnection()
+		private void InitConnection ()
 		{
-			if(_SQLiteCN == null)
+			if (_SQLiteCN == null)
 			{
-				FileInfo fi = new FileInfo(_DatabaseURL);
-				if(!fi.Exists)
-					throw new FileNotFoundException("Database not found for connection string.", fi.FullName);
+				FileInfo fi = new FileInfo (_DatabaseURL);
+				if (!fi.Exists)
+					throw new FileNotFoundException ("Database not found for connection string.", fi.FullName);
 				
-				_SQLiteCN = new SqliteConnection("URI=file:" +  fi.FullName + ",version=3, busy_timeout=" + _BusyTimeout.ToString());
+				_SQLiteCN = new SqliteConnection ("URI=file:" + fi.FullName + ",version=3, busy_timeout=" + _BusyTimeout.ToString ());
 				_SQLiteCN.BusyTimeout = _BusyTimeout;
 			}
 		}
-		
+
 		#endregion Main Connection
-		
+
 		#region Boolean
-		
+
 		/// <summary>
 		///  Returns true if rows exist and false if they do not
 		///  Most likly to be used for quick security checks
 		/// </summary>
 		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public bool Exists(string SQL)
+		public bool Exists (string SQL)
 		{
 			bool blnHasRows = false;
-			InitConnection();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					OpenConnection();
-					_SQLiteReader = _SQLiteCMD.ExecuteReader();
+					OpenConnection ();
+					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
 					blnHasRows = _SQLiteReader.HasRows;
-					_SQLiteReader.Close();
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					_SQLiteReader.Close ();
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
 			return blnHasRows;
 		}
-		
+
 		#endregion Boolean
-		
+
 		#region Hashtable
-		
+
 		/// <summary>
 		///  use this ONLY when you are certain only on row will return
 		///  this will parse out that single row into a hash table
 		///  not for use with web services
 		/// </summary>
-		public Hashtable ExecuteHashTableRow(string SQL)
+		public Hashtable ExecuteHashTableRow (string SQL)
 		{
-			Hashtable hshReturn = new Hashtable();
-			InitConnection();
+			Hashtable hshReturn = new Hashtable ();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					OpenConnection();
-					_SQLiteReader = _SQLiteCMD.ExecuteReader();
-					while(_SQLiteReader.Read())
+					OpenConnection ();
+					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
+					while (_SQLiteReader.Read ())
 					{
-						for(int i = 0; i < _SQLiteReader.FieldCount; i++)
+						for (int i = 0; i < _SQLiteReader.FieldCount; i++)
 						{
-							hshReturn.Add(_SQLiteReader.GetName(i).ToString(),_SQLiteReader[i].ToString());
+							hshReturn.Add (_SQLiteReader.GetName (i).ToString (), _SQLiteReader[i].ToString ());
 						}
 					}
 					
-					_SQLiteReader.Close();
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					_SQLiteReader.Close ();
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
 			return hshReturn;
 		}
-		
+
 		#endregion Hashtable
-		
+
 		#region Return Array Lists
-		
+
 		/// <summary>
 		///  Used to return only the first column
 		///  in an ArrayList
 		/// </summary>
 		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public ArrayList ExecuteArrayList(string SQL)
+		public ArrayList ExecuteArrayList (string SQL)
 		{
-			ArrayList arrReturn = new ArrayList();
-			InitConnection();
+			ArrayList arrReturn = new ArrayList ();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					OpenConnection();
-					_SQLiteReader = _SQLiteCMD.ExecuteReader();
-					while(_SQLiteReader.Read())
+					OpenConnection ();
+					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
+					while (_SQLiteReader.Read ())
 					{
-						arrReturn.Add((object)_SQLiteReader[0]);
+						arrReturn.Add ((object)_SQLiteReader[0]);
 					}
-					_SQLiteReader.Close();
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					_SQLiteReader.Close ();
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
 			return arrReturn;
 		}
-		
+
 		/// <summary>
 		/// Used to return only the named column
 		/// in an ArrayList
@@ -395,221 +398,225 @@ namespace GoonTools
 		/// <param name="SQL"></param>
 		/// <param name="ColumnName"></param>
 		/// <returns></returns>
-		public ArrayList ExecuteArrayList(string SQL, string ColumnName)
+		public ArrayList ExecuteArrayList (string SQL, string ColumnName)
 		{
-			ArrayList arrReturn = new ArrayList();
-			InitConnection();
+			ArrayList arrReturn = new ArrayList ();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					OpenConnection();
-					_SQLiteReader = _SQLiteCMD.ExecuteReader();
-					while(_SQLiteReader.Read())
+					OpenConnection ();
+					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
+					while (_SQLiteReader.Read ())
 					{
-						arrReturn.Add((object)_SQLiteReader[ColumnName]);
+						arrReturn.Add ((object)_SQLiteReader[ColumnName]);
 					}
-					_SQLiteReader.Close();
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					_SQLiteReader.Close ();
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
 			return arrReturn;
 		}
-		
+
 		/// <summary>
 		/// Intended to return on single datarow in an array list
 		/// </summary>
 		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public ArrayList ExecuteArrayListRow(string SQL)
+		public ArrayList ExecuteArrayListRow (string SQL)
 		{
-			ArrayList arrReturn = new ArrayList();
-			InitConnection();
+			ArrayList arrReturn = new ArrayList ();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			_SQLiteReader = null;
 			
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					OpenConnection();
-					_SQLiteReader = _SQLiteCMD.ExecuteReader();
-					while(_SQLiteReader.Read())
+					OpenConnection ();
+					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
+					while (_SQLiteReader.Read ())
 					{
-						for(int i = 0; i < _SQLiteReader.FieldCount; i++)
+						for (int i = 0; i < _SQLiteReader.FieldCount; i++)
 						{
-							arrReturn.Add((object)_SQLiteReader[i]);
+							arrReturn.Add ((object)_SQLiteReader[i]);
 						}
 						
 					}
-					_SQLiteReader.Close();
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					_SQLiteReader.Close ();
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
 			return arrReturn;
 		}
-		
+
 		#endregion Return Array Lists
-		
+
 		#region DataReader
-		
+
 		/// <summary>
 		/// Intended to return on single datarow in an array list
 		/// </summary>
 		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public SqliteDataReader ExecuteReader(string SQL)
+		public SqliteDataReader ExecuteReader (string SQL)
 		{
-			InitConnection();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					OpenConnection();
-					_SQLiteReader = _SQLiteCMD.ExecuteReader();
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					OpenConnection ();
+					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
 			return _SQLiteReader;
 		}
 		#endregion DataReader
-		
+
 		#region Scalar and NonQuery
-		
+
 		/// <summary>
 		///  Used to execute non-queries
 		/// </summary>
 		/// <param name="SQL"></param>
-		public void ExecuteNonQuery(string SQL)
+		public void ExecuteNonQuery (string SQL)
 		{
-			InitConnection();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					OpenConnection();
-					_SQLiteCMD.ExecuteNonQuery();
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					OpenConnection ();
+					_SQLiteCMD.ExecuteNonQuery ();
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
 		}
-		
-		
-		
+
+
+
 		/// <summary>
 		///  Executes Scalar when the last_insert_rowid statement
 		///  is already in the SQL string
 		/// </summary>
 		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public string ExecuteScalar(string SQL)
+		public string ExecuteScalar (string SQL)
 		{
-			return ExecuteScalar(SQL, false);
+			return ExecuteScalar (SQL, false);
 		}
-		
+
 		/// <summary>
 		/// Executes Scalar when the last_insert_rowid statement
 		///  is not already in the SQL string
@@ -617,173 +624,218 @@ namespace GoonTools
 		/// <param name="SQL"></param>
 		/// <param name="blnAddIdentityStatement"></param>
 		/// <returns></returns>
-		public string ExecuteScalar(string SQL, bool blnAddIdentityStatement)
+		public string ExecuteScalar (string SQL, bool blnAddIdentityStatement)
 		{
-			InitConnection();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			string strReturn = null;
 			
-			if(blnAddIdentityStatement == true)
+			if (blnAddIdentityStatement == true)
 				_SQLiteCMD.CommandText += "SELECT last_insert_rowid();";
 			
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					OpenConnection();
-					strReturn = _SQLiteCMD.ExecuteScalar().ToString();					
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					OpenConnection ();
+					strReturn = _SQLiteCMD.ExecuteScalar ().ToString ();
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
 			return strReturn;
 		}
-		
+
 		#endregion Scalar and NonQuery
-		
+
 		#region DataSets and DataTables
-		
-		public DataSet ExecuteDataSet(string SQL)
+
+		public DataSet ExecuteDataSet (string SQL)
 		{
-			return ExecuteDataSet(SQL, null);
+			return ExecuteDataSet (SQL, null);
 		}
-		
-		public DataSet ExecuteDataSet(string SQL, string DataSetName)
+
+		public DataSet ExecuteDataSet (string SQL, string DataSetName)
 		{
-			InitConnection();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
-			SqliteDataAdapter sqlDA =  new SqliteDataAdapter(_SQLiteCMD);
-			DataSet ds = new DataSet();
+			SqliteDataAdapter sqlDA = new SqliteDataAdapter (_SQLiteCMD);
+			DataSet ds = new DataSet ();
 			
-			if(DataSetName != null)
+			if (DataSetName != null)
 				ds.DataSetName = DataSetName;
 			else
 				ds.DataSetName = "ds";
 			
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					sqlDA.Fill(ds);
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					sqlDA.Fill (ds);
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
-			sqlDA.Dispose();
+			sqlDA.Dispose ();
 			return ds;
 		}
-		
+
 		/// <summary>
 		/// Returns a DataTable without setting it's name
 		/// </summary>
 		/// <param name="SQL"></param>
 		/// <returns></returns>
-		public DataTable ExecuteDataTable(string SQL)
+		public DataTable ExecuteDataTable (string SQL)
 		{
-			return ExecuteDataTable(SQL, null);
+			return ExecuteDataTable (SQL, null);
 		}
-		
+
 		/// <summary>
 		/// Returns a DataTable and sets it's name
 		/// </summary>
 		/// <param name="SQL"></param>
 		/// <param name="strDataTableName"></param>
 		/// <returns></returns>
-		public DataTable ExecuteDataTable(string SQL, string DataTableName)
+		public DataTable ExecuteDataTable (string SQL, string DataTableName)
 		{
-			InitConnection();
+			InitConnection ();
 			// Initialize the SQL Command
-			_SQLiteCMD = new SqliteCommand(SQL);
+			_SQLiteCMD = new SqliteCommand (SQL);
 			// Set the Command Connection
 			_SQLiteCMD.Connection = _SQLiteCN;
 			// if there is an active transaction assign it to the Command
-			if(_SQLiteTrans != null)
+			if (_SQLiteTrans != null)
 				_SQLiteCMD.Transaction = _SQLiteTrans;
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
-			SqliteDataAdapter sqlDA = new SqliteDataAdapter(_SQLiteCMD);
-			DataTable dt = new DataTable();
+			SqliteDataAdapter sqlDA = new SqliteDataAdapter (_SQLiteCMD);
+			DataTable dt = new DataTable ();
 			
-			if(DataTableName != null)
+			if (DataTableName != null)
 				dt.TableName = DataTableName;
 			else
 				dt.TableName = "dt";
 			
 			bool lockedDatabaseException = true;
-			while ( lockedDatabaseException )
+			while (lockedDatabaseException)
 			{
 				try
 				{
-					sqlDA.Fill(dt);
-					if(_SQLiteCMD.Parameters.Count > 0)
-						_SQLiteCMD.Parameters.Clear();
+					sqlDA.Fill (dt);
+					if (_SQLiteCMD.Parameters.Count > 0)
+						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					if (ex.Message.ToLower().Contains("database is locked"))
+					if (ex.Message.ToLower ().Contains ("database is locked"))
 					{
 						lockedDatabaseException = true;
-						System.Threading.Thread.Sleep(_LockedDBSleep);
+						System.Threading.Thread.Sleep (_LockedDBSleep);
 					}
+
 					else
 					{
 						lockedDatabaseException = false;
-						throw new Exception(ex.ToString());
+						throw new Exception (ex.ToString ());
 					}
 				}
 			}
-			sqlDA.Dispose();
+			sqlDA.Dispose ();
 			return dt;
 		}
+
+		#endregion DataSets and DataTables
+
+		#region Generic Conversions
 		
-		#endregion  DataSets and DataTables
+		public string DateTimeNow
+		{
+			get{return "DATETIME('now','localtime')";}
+		}
+
+		public string ToSQLiteDateTime (DateTime dt)
+		{
+			return "DATETIME('" + dt.ToString ("yyyy-MM-dd HH:mm:ss") + "','localtime')";
+		}
+
+		public string ToSQLiteDateTime (string DateTimeString)
+		{
+			string strReturn = "";
+			if(!IsDateTime(DateTimeString))
+			{
+				throw new Exception("Invalid DateTime Format");
+			}
+			else
+			{
+				strReturn = "DATETIME('" + Convert.ToDateTime(DateTimeString).ToString ("yyyy-MM-dd HH:mm:ss") + "','localtime')";
+			}
+			return strReturn;
+		}
+
+		public bool IsDateTime (string DateTimeString)
+		{
+			try
+			{
+				Convert.ToDateTime (DateTimeString);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+		
+		#endregion Generic Conversions
 		
 	}
+	
 }
