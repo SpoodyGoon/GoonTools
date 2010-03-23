@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="..\bin\Debug\MonoBPMonitor.exe" internal="true" />
+    <widget-library name="../bin/Debug/MonoBPMonitor.exe" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="edit_user.png">
@@ -4287,7 +4287,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmErrorMessage" design-size="751 792">
+  <widget class="Gtk.Dialog" id="MonoBPMonitor.frmErrorMessage" design-size="751 945">
     <property name="MemberName" />
     <property name="Title" translatable="yes">An Error Has Occured</property>
     <property name="Icon">stock:gtk-dialog-error Dialog</property>
@@ -4392,25 +4392,11 @@
                                     <property name="MemberName" />
                                     <property name="Spacing">6</property>
                                     <child>
-                                      <widget class="Gtk.Alignment" id="alignment10">
+                                      <widget class="Gtk.Alignment" id="alignment5">
                                         <property name="MemberName" />
-                                        <property name="Xscale">0.02</property>
-                                        <property name="TopPadding">11</property>
-                                        <property name="BottomPadding">5</property>
                                         <child>
-                                          <widget class="Gtk.Label" id="label3">
+                                          <widget class="Gtk.HSeparator" id="hseparator1">
                                             <property name="MemberName" />
-                                            <property name="WidthRequest">600</property>
-                                            <property name="LabelProp" translatable="yes">&lt;b&gt;It is simple and easy to report an error, just follow these two simple steps:&lt;/b&gt;
-	1. Click on the "Go to Project Web Site" button, your default browser will take you to where you need to go.
-	2. Fill in the couple of simple questions, copy/paste or attach the error as a text file to the page and your done.
-
-&lt;b&gt;Please Note:&lt;/b&gt; No one from Goontools or MonoBPMonitor will contact you unless you ask for us to. It's helpful for us to ask questions so we can better understand the problem better but not required and we understand that most people don't want to be contacted by people they don't know.
-
-&lt;b&gt;Thanks for your help.
-The MonoBPMonitor and Goontools developers.&lt;/b&gt;</property>
-                                            <property name="UseMarkup">True</property>
-                                            <property name="Wrap">True</property>
                                           </widget>
                                         </child>
                                       </widget>
@@ -4422,84 +4408,127 @@ The MonoBPMonitor and Goontools developers.&lt;/b&gt;</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="Gtk.Alignment" id="alignment5">
+                                      <widget class="Gtk.Expander" id="expander2">
                                         <property name="MemberName" />
+                                        <property name="CanFocus">True</property>
                                         <child>
-                                          <widget class="Gtk.HSeparator" id="hseparator1">
+                                          <widget class="Gtk.VBox" id="vbox4">
                                             <property name="MemberName" />
+                                            <property name="Spacing">6</property>
+                                            <child>
+                                              <widget class="Gtk.Alignment" id="alignment10">
+                                                <property name="MemberName" />
+                                                <property name="Xscale">0.02</property>
+                                                <property name="TopPadding">11</property>
+                                                <property name="BottomPadding">5</property>
+                                                <child>
+                                                  <widget class="Gtk.Label" id="label3">
+                                                    <property name="MemberName" />
+                                                    <property name="WidthRequest">600</property>
+                                                    <property name="LabelProp" translatable="yes">&lt;b&gt;It is simple and easy to report an error, just follow these two simple steps:&lt;/b&gt;
+	1. Click on the "Go to Project Web Site" button, your default browser will take you to where you need to go.
+	2. Fill in the couple of simple questions, copy/paste or attach the error as a text file to the page and your done.
+
+&lt;b&gt;Please Note:&lt;/b&gt; No one from Goontools or MonoBPMonitor will contact you unless you ask for us to. It's helpful for us to ask questions so we can better understand the problem better but not required and we understand that most people don't want to be contacted by people they don't know.
+
+&lt;b&gt;Thanks for your help.
+The MonoBPMonitor and Goontools developers.&lt;/b&gt;</property>
+                                                    <property name="UseMarkup">True</property>
+                                                    <property name="Wrap">True</property>
+                                                  </widget>
+                                                </child>
+                                              </widget>
+                                              <packing>
+                                                <property name="Position">0</property>
+                                                <property name="AutoSize">True</property>
+                                                <property name="Expand">False</property>
+                                                <property name="Fill">False</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <widget class="Gtk.Alignment" id="alignment8">
+                                                <property name="MemberName" />
+                                                <property name="TopPadding">7</property>
+                                                <child>
+                                                  <widget class="Gtk.HButtonBox" id="hbuttonbox3">
+                                                    <property name="MemberName" />
+                                                    <property name="Size">3</property>
+                                                    <property name="LayoutStyle">Spread</property>
+                                                    <child>
+                                                      <widget class="Gtk.Button" id="btnReportError">
+                                                        <property name="MemberName" />
+                                                        <property name="CanFocus">True</property>
+                                                        <property name="Type">TextAndIcon</property>
+                                                        <property name="Icon">resource:ProjectWebSite.png</property>
+                                                        <property name="Label" translatable="yes">Go to project web site.</property>
+                                                        <property name="UseUnderline">True</property>
+                                                        <signal name="Clicked" handler="OnBtnReportErrorClicked" />
+                                                      </widget>
+                                                      <packing>
+                                                        <property name="Expand">False</property>
+                                                        <property name="Fill">False</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <widget class="Gtk.Button" id="btnCopyError">
+                                                        <property name="MemberName" />
+                                                        <property name="WidthRequest">150</property>
+                                                        <property name="HeightRequest">32</property>
+                                                        <property name="CanFocus">True</property>
+                                                        <property name="Type">TextAndIcon</property>
+                                                        <property name="Icon">stock:gtk-copy Button</property>
+                                                        <property name="Label" translatable="yes">  Copy Error Text  </property>
+                                                        <property name="UseUnderline">True</property>
+                                                        <signal name="Clicked" handler="OnBtnCopyErrorClicked" />
+                                                      </widget>
+                                                      <packing>
+                                                        <property name="Position">1</property>
+                                                        <property name="Expand">False</property>
+                                                        <property name="Fill">False</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <widget class="Gtk.Button" id="btnSaveError">
+                                                        <property name="MemberName" />
+                                                        <property name="CanFocus">True</property>
+                                                        <property name="Type">TextAndIcon</property>
+                                                        <property name="Icon">stock:gtk-save Button</property>
+                                                        <property name="Label" translatable="yes"> Save error to file </property>
+                                                        <property name="UseUnderline">True</property>
+                                                        <signal name="Clicked" handler="OnBtnSaveErrorClicked" />
+                                                      </widget>
+                                                      <packing>
+                                                        <property name="Position">2</property>
+                                                        <property name="Expand">False</property>
+                                                        <property name="Fill">False</property>
+                                                      </packing>
+                                                    </child>
+                                                  </widget>
+                                                </child>
+                                              </widget>
+                                              <packing>
+                                                <property name="Position">1</property>
+                                                <property name="AutoSize">True</property>
+                                                <property name="Expand">False</property>
+                                                <property name="Fill">False</property>
+                                              </packing>
+                                            </child>
                                           </widget>
+                                        </child>
+                                        <child>
+                                          <widget class="Gtk.Label" id="GtkLabel5">
+                                            <property name="MemberName" />
+                                            <property name="LabelProp" translatable="yes">&lt;b&gt;How can I help?&lt;/b&gt;</property>
+                                            <property name="UseMarkup">True</property>
+                                            <property name="UseUnderline">True</property>
+                                          </widget>
+                                          <packing>
+                                            <property name="type">label_item</property>
+                                          </packing>
                                         </child>
                                       </widget>
                                       <packing>
                                         <property name="Position">1</property>
-                                        <property name="AutoSize">True</property>
-                                        <property name="Expand">False</property>
-                                        <property name="Fill">False</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <widget class="Gtk.Alignment" id="alignment8">
-                                        <property name="MemberName" />
-                                        <property name="TopPadding">7</property>
-                                        <child>
-                                          <widget class="Gtk.HButtonBox" id="hbuttonbox3">
-                                            <property name="MemberName" />
-                                            <property name="Size">3</property>
-                                            <property name="LayoutStyle">Spread</property>
-                                            <child>
-                                              <widget class="Gtk.Button" id="btnReportError">
-                                                <property name="MemberName" />
-                                                <property name="CanFocus">True</property>
-                                                <property name="Type">TextAndIcon</property>
-                                                <property name="Icon">resource:ProjectWebSite.png</property>
-                                                <property name="Label" translatable="yes">Go to project web site.</property>
-                                                <property name="UseUnderline">True</property>
-                                                <signal name="Clicked" handler="OnBtnReportErrorClicked" />
-                                              </widget>
-                                              <packing>
-                                                <property name="Expand">False</property>
-                                                <property name="Fill">False</property>
-                                              </packing>
-                                            </child>
-                                            <child>
-                                              <widget class="Gtk.Button" id="btnCopyError">
-                                                <property name="MemberName" />
-                                                <property name="WidthRequest">150</property>
-                                                <property name="HeightRequest">32</property>
-                                                <property name="CanFocus">True</property>
-                                                <property name="Type">TextAndIcon</property>
-                                                <property name="Icon">stock:gtk-copy Button</property>
-                                                <property name="Label" translatable="yes">  Copy Error Text  </property>
-                                                <property name="UseUnderline">True</property>
-                                                <signal name="Clicked" handler="OnBtnCopyErrorClicked" />
-                                              </widget>
-                                              <packing>
-                                                <property name="Position">1</property>
-                                                <property name="Expand">False</property>
-                                                <property name="Fill">False</property>
-                                              </packing>
-                                            </child>
-                                            <child>
-                                              <widget class="Gtk.Button" id="btnSaveError">
-                                                <property name="MemberName" />
-                                                <property name="CanFocus">True</property>
-                                                <property name="Type">TextAndIcon</property>
-                                                <property name="Icon">stock:gtk-save Button</property>
-                                                <property name="Label" translatable="yes"> Save error to file </property>
-                                                <property name="UseUnderline">True</property>
-                                                <signal name="Clicked" handler="OnBtnSaveErrorClicked" />
-                                              </widget>
-                                              <packing>
-                                                <property name="Position">2</property>
-                                                <property name="Expand">False</property>
-                                                <property name="Fill">False</property>
-                                              </packing>
-                                            </child>
-                                          </widget>
-                                        </child>
-                                      </widget>
-                                      <packing>
-                                        <property name="Position">2</property>
                                         <property name="AutoSize">True</property>
                                         <property name="Expand">False</property>
                                         <property name="Fill">False</property>
@@ -4525,7 +4554,7 @@ The MonoBPMonitor and Goontools developers.&lt;/b&gt;</property>
                                         </child>
                                       </widget>
                                       <packing>
-                                        <property name="Position">3</property>
+                                        <property name="Position">2</property>
                                         <property name="AutoSize">True</property>
                                       </packing>
                                     </child>
@@ -4540,7 +4569,7 @@ The MonoBPMonitor and Goontools developers.&lt;/b&gt;</property>
                     <child>
                       <widget class="Gtk.Label" id="GtkLabel3">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes">&lt;b&gt;View Error Info:&lt;/b&gt;</property>
+                        <property name="LabelProp" translatable="yes">&lt;b&gt;View Error Details:&lt;/b&gt;</property>
                         <property name="UseMarkup">True</property>
                         <property name="UseUnderline">True</property>
                       </widget>
