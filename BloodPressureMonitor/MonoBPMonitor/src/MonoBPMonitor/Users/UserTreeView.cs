@@ -43,7 +43,7 @@ namespace MonoBPMonitor.Users
 			try
 			{
 				_UserListsStore.Clear();
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				DataTable dt = shp.ExecuteDataTable("SELECT UserID, UserName, DateAdded, IsActive FROM tb_User");
 				foreach(DataRow dr in dt.Rows)
 				{

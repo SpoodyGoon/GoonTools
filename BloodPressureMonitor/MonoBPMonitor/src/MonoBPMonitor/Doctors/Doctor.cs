@@ -88,7 +88,7 @@ namespace MonoBPMonitor
 			{
 				if(_DoctorID < 0)
 				{
-					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 					_DoctorID = Convert.ToInt32(shp.ExecuteScalar("INSERT INTO tb_Doctor(DoctorName, Location, PhoneNum, UserID)VALUES('" + _DoctorName + "','" + _Location + "','" + _PhoneNum + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
 					shp.Dispose();
 				}
@@ -109,7 +109,7 @@ namespace MonoBPMonitor
 			{
 				if(_DoctorID > 0)
 				{
-					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 					shp.ExecuteNonQuery("UPDATE tb_Doctor SET DoctorName = '" + _DoctorName + "', Location = '" + _Location + "', PhoneNum = '" + _PhoneNum + "', UserID = " + _UserID.ToString() + " WHERE DoctorID = " + _DoctorID.ToString() + ";");
 					shp.Dispose();
 				}
@@ -128,7 +128,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				shp.ExecuteNonQuery("DELETE FROM tb_Doctor WHERE DoctorID = " + _DoctorID.ToString() + ";");
 				shp.Dispose();
 			}

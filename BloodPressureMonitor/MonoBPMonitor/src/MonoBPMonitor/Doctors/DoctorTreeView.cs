@@ -43,7 +43,7 @@ namespace MonoBPMonitor.Doctors
 			try
 			{
 				_DoctorListsStore.Clear();
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				DataTable dt = shp.ExecuteDataTable("SELECT DoctorID, DoctorName, Location, PhoneNum, UserID FROM tb_Doctor");
 				foreach(DataRow dr in dt.Rows)
 				{

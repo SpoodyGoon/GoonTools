@@ -19,9 +19,7 @@ namespace MonoBPMonitor
 			{
 				cbxAll.Activated += new EventHandler(OnCbxAllToggled);
 				spnDefaultHistory.Value = (double)GoonTools.Common.Option.HistoryDefaultShow;
-				cbxAutoUpdate.Active = GoonTools.Common.Option.LimitHistory;
 				cbxLogErrors.Active = GoonTools.Common.Option.SaveErrorLog;
-				cbxAutoUpdate.Active = GoonTools.Common.Option.AutoUpdate;
 				spnDefaultHistory.Sensitive = GoonTools.Common.Option.LimitHistory;
 				cbxDatabaseSchema.Active = Common.Option.BackupSchema;
 				cbxDatabaseData.Active = Common.Option.BackupData;
@@ -45,8 +43,6 @@ namespace MonoBPMonitor
 				{
 					lblGUPdotNETVersion.Destroy();
 					lblGUPdotNETText.Destroy();
-					lblAutoUpdates.Destroy();
-					cbxAutoUpdate.Destroy();
 				}
 				this.ShowAll();
 			}
@@ -72,10 +68,9 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				GoonTools.Common.Option.LimitHistory = cbxAutoUpdate.Active;
+				GoonTools.Common.Option.LimitHistory = cbxLimitRecords.Active;
 				GoonTools.Common.Option.HistoryDefaultShow=Convert.ToInt32(spnDefaultHistory.Value);
 				GoonTools.Common.Option.SaveErrorLog= cbxLogErrors.Active;
-				GoonTools.Common.Option.AutoUpdate = cbxAutoUpdate.Active;
 				Common.Option.BackupSchema = cbxDatabaseSchema.Active;
 				Common.Option.BackupData = cbxDatabaseData.Active;
 				Common.Option.BackupOptions = cbxOptions.Active;
@@ -91,7 +86,7 @@ namespace MonoBPMonitor
 		
 		protected virtual void OnCbxLimitRecordsToggled (object sender, System.EventArgs e)
 		{
-			spnDefaultHistory.Sensitive = cbxAutoUpdate.Active;
+			spnDefaultHistory.Sensitive = cbxLimitRecords.Active;
 		}
 
 		
@@ -206,7 +201,7 @@ namespace MonoBPMonitor
 				
 				so.StreamWriter sw = new so.StreamWriter(so.Path.Combine(tmpFolderName, "Schema.sql"));
 				// write the database tables
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				DataTable dt = shp.ExecuteDataTable("select tbl_name, sql from sqlite_master where type = 'table' and tbl_name NOT LIKE 'sqlite_%'", "Tables");
 				for(int i = 0; i < dt.Rows.Count; i++)
 				{
@@ -234,7 +229,7 @@ namespace MonoBPMonitor
 			{
 				so.StreamWriter sw = new so.StreamWriter(so.Path.Combine(tmpFolderName, "Data.sql"));
 				// write the database tables
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				// begin writing the data to the file
 				// backup the doctor table
 				DataTable dt = shp.ExecuteDataTable("SELECT DoctorID, DoctorName, Location, PhoneNum, UserID FROM tb_Doctor");
@@ -474,7 +469,7 @@ namespace MonoBPMonitor
 				System.IO.StreamReader sr = new System.IO.StreamReader(SqlFileLocation);
 				string[] strSQL = rx.Split(sr.ReadToEnd());
 				sr.Close();
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				for(int i = 0; i < strSQL.Length; i++)
 				{
 					System.Diagnostics.Debug.WriteLine(strSQL[i].Trim() + ";");
@@ -495,7 +490,7 @@ namespace MonoBPMonitor
 			System.IO.StreamReader sr = new System.IO.StreamReader(SqlFileLocation);
 			string[] strSQL = rx.Split(sr.ReadToEnd());
 			sr.Close();
-			SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+			SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 			for(int i = 0; i < strSQL.Length; i++)
 			{
 				System.Diagnostics.Debug.WriteLine(strSQL[i].Trim() + ";");
@@ -642,6 +637,13 @@ namespace MonoBPMonitor
 			}
 			CheckAll();
 		}
+		
+		protected virtual void OnLblDatabaseLocationShown (object sender, System.EventArgs e)
+		{
+			lblDatabaseLocation.WidthRequest = this.Allocation.Width - 35;
+			lblDatabaseLocation.QueueDraw();
+		}
+		
 		
 		
 		

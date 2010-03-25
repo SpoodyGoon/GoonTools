@@ -68,7 +68,7 @@ namespace MonoBPMonitor
 			{
 				if(_UserID < 0)
 				{
-					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 					_UserID = Convert.ToInt32(shp.ExecuteScalar("INSERT INTO tb_User(UserName, DateAdded, IsActive)VALUES('" + _UserName + "','" + _DateAdded.ToShortDateString() + "','" + _IsActive.ToString() + "'); SELECT last_insert_rowid();" ));
 					shp.Dispose();
 				}
@@ -89,7 +89,7 @@ namespace MonoBPMonitor
 			{
 				if(_UserID > 0)
 				{
-					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 					shp.ExecuteNonQuery("UPDATE tb_User SET UserName = '" + _UserName + "', DateAdded = '" + _DateAdded.ToShortDateString() + "', IsActive = '" + _IsActive.ToString() + "' WHERE UserID = " + _UserID.ToString() + ";");
 					shp.Dispose();
 				}
@@ -108,7 +108,7 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				shp.ExecuteNonQuery("DELETE FROM tb_User WHERE UserID = " + _UserID.ToString() + ";");
 				shp.Dispose();
 			}

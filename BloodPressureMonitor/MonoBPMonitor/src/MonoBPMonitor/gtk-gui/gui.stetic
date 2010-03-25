@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/MonoBPMonitor.exe" internal="true" />
+    <widget-library name="..\bin\Debug\MonoBPMonitor.exe" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="edit_user.png">
@@ -72,6 +72,16 @@
     <icon-set id="DocumentOnline.png">
       <source>
         <property name="Image">resource:DocumentOnline.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="issue_feature.png">
+      <source>
+        <property name="Image">resource:issue_feature.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="update_small.png">
+      <source>
+        <property name="Image">resource:update_small.png</property>
       </source>
     </icon-set>
   </icon-factory>
@@ -201,6 +211,7 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Updates...</property>
         <property name="ShortLabel" translatable="yes">Updates</property>
+        <property name="StockId">update_small.png</property>
         <signal name="Activated" handler="OnUpdatesActionActivated" />
       </action>
       <action id="OptionsAction">
@@ -234,6 +245,7 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Issues &amp; Feature Requests</property>
         <property name="ShortLabel" translatable="yes">Issues &amp; Feature Requests</property>
+        <property name="StockId">issue_feature.png</property>
         <signal name="Activated" handler="OnIssuesFeatureRequestsActionActivated" />
       </action>
     </action-group>
@@ -2642,7 +2654,7 @@
                         <child>
                           <widget class="Gtk.Table" id="table3">
                             <property name="MemberName" />
-                            <property name="NRows">4</property>
+                            <property name="NRows">3</property>
                             <property name="NColumns">2</property>
                             <property name="RowSpacing">6</property>
                             <property name="ColumnSpacing">6</property>
@@ -2708,33 +2720,6 @@
                               </packing>
                             </child>
                             <child>
-                              <widget class="Gtk.Alignment" id="alignment24">
-                                <property name="MemberName" />
-                                <property name="Xscale">0.01</property>
-                                <property name="Xalign">0.98</property>
-                                <property name="LeftPadding">30</property>
-                                <child>
-                                  <widget class="Gtk.Label" id="lblAutoUpdates">
-                                    <property name="MemberName" />
-                                    <property name="LabelProp" translatable="yes">Auto Updates:</property>
-                                  </widget>
-                                </child>
-                              </widget>
-                              <packing>
-                                <property name="TopAttach">3</property>
-                                <property name="BottomAttach">4</property>
-                                <property name="AutoSize">True</property>
-                                <property name="XOptions">Fill</property>
-                                <property name="YOptions">Fill</property>
-                                <property name="XExpand">False</property>
-                                <property name="XFill">True</property>
-                                <property name="XShrink">False</property>
-                                <property name="YExpand">False</property>
-                                <property name="YFill">True</property>
-                                <property name="YShrink">False</property>
-                              </packing>
-                            </child>
-                            <child>
                               <widget class="Gtk.Alignment" id="alignment5">
                                 <property name="MemberName" />
                                 <property name="Xscale">0.98</property>
@@ -2775,33 +2760,6 @@
                               <packing>
                                 <property name="TopAttach">1</property>
                                 <property name="BottomAttach">2</property>
-                                <property name="AutoSize">True</property>
-                                <property name="XOptions">Fill</property>
-                                <property name="YOptions">Fill</property>
-                                <property name="XExpand">False</property>
-                                <property name="XFill">True</property>
-                                <property name="XShrink">False</property>
-                                <property name="YExpand">False</property>
-                                <property name="YFill">True</property>
-                                <property name="YShrink">False</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <widget class="Gtk.CheckButton" id="cbxAutoUpdate">
-                                <property name="MemberName" />
-                                <property name="Label" translatable="yes" />
-                                <property name="Active">True</property>
-                                <property name="DrawIndicator">True</property>
-                                <property name="HasLabel">True</property>
-                                <property name="FocusOnClick">False</property>
-                                <property name="Xalign">0.01</property>
-                                <property name="Yalign">0.01</property>
-                              </widget>
-                              <packing>
-                                <property name="TopAttach">3</property>
-                                <property name="BottomAttach">4</property>
-                                <property name="LeftAttach">1</property>
-                                <property name="RightAttach">2</property>
                                 <property name="AutoSize">True</property>
                                 <property name="XOptions">Fill</property>
                                 <property name="YOptions">Fill</property>
@@ -3668,15 +3626,26 @@
                                 <property name="MemberName" />
                                 <property name="Spacing">6</property>
                                 <child>
-                                  <widget class="Gtk.Label" id="lblDatabaseLocation">
+                                  <widget class="Gtk.Alignment" id="alignment24">
                                     <property name="MemberName" />
-                                    <property name="LabelProp" translatable="yes">None</property>
-                                    <property name="Wrap">True</property>
-                                    <property name="Ellipsize">End</property>
+                                    <property name="Xscale">0.01</property>
+                                    <property name="Xalign">0.01</property>
+                                    <child>
+                                      <widget class="Gtk.Label" id="lblDatabaseLocation">
+                                        <property name="MemberName" />
+                                        <property name="WidthRequest">350</property>
+                                        <property name="LabelProp" translatable="yes">None</property>
+                                        <property name="Ellipsize">Middle</property>
+                                        <property name="SingleLineMode">True</property>
+                                        <signal name="Shown" handler="OnLblDatabaseLocationShown" />
+                                      </widget>
+                                    </child>
                                   </widget>
                                   <packing>
                                     <property name="Position">0</property>
-                                    <property name="AutoSize">False</property>
+                                    <property name="AutoSize">True</property>
+                                    <property name="Expand">False</property>
+                                    <property name="Fill">False</property>
                                   </packing>
                                 </child>
                               </widget>

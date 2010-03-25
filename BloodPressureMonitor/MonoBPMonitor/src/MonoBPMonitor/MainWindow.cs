@@ -21,6 +21,7 @@
  */
 
 using System;
+using System.Configuration;
 using so = System.IO;
 using System.Data;
 using System.Diagnostics;
@@ -43,7 +44,15 @@ namespace MonoBPMonitor
 				swEntityRpt.Add (tvEntityRpt);
 				cboUser.Changed += new EventHandler(cboUser_Changed);
 				tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e) { btnRemoveEntry.Sensitive = true; btnEditEntry.Sensitive = true; };
-				
+				// the update feature is available only
+				// for Windows and non-repository Linux versions
+				if(ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "false")
+				{
+					UpdatesAction.Visible = false;
+					UpdatesAction.VisibleHorizontal = false;
+					UpdatesAction.VisibleOverflown = false;
+					UpdatesAction.VisibleVertical = false;
+				}
 			}
 			catch(Exception ex)
 			{
@@ -110,7 +119,7 @@ namespace MonoBPMonitor
 		protected virtual void OnAboutActionActivated (object sender, System.EventArgs e)
 		{
 			Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link) {
-			                           	System.Diagnostics.Process.Start(link);
+			                           	Common.LaunchURL(link);
 			                           });
 			try
 			{
@@ -288,19 +297,40 @@ namespace MonoBPMonitor
 		}
 		
 		#endregion Update Related
-        protected virtual void OnProjectWebSiteActionActivated (object sender, System.EventArgs e)
+		protected virtual void OnProjectWebSiteActionActivated (object sender, System.EventArgs e)
 		{
-			frmErrorMessage fm = new frmErrorMessage("Test");
-			fm.Run();
-			fm.Destroy();
+			if(ConfigurationManager.AppSettings["ProjectSiteURL"] != "")
+			{
+				Common.LaunchURL(ConfigurationManager.AppSettings["ProjectSiteURL"]);
+			}
+			else
+			{
+				Common.HandleError(this, new Exception("Project web site URL not set in the configuation file"));
+			}
 		}
 		
-        protected virtual void OnOnlineDocumentationActionActivated (object sender, System.EventArgs e)
+		protected virtual void OnOnlineDocumentationActionActivated (object sender, System.EventArgs e)
 		{
+			if(ConfigurationManager.AppSettings["OnlineHelpURL"] != "")
+			{
+				Common.LaunchURL(ConfigurationManager.AppSettings["OnlineHelpURL"]);
+			}
+			else
+			{
+				Common.HandleError(this, new Exception("Online Documentation URL not set in the configuation file"));
+			}
 		}
 		
-        protected virtual void OnIssuesFeatureRequestsActionActivated (object sender, System.EventArgs e)
+		protected virtual void OnIssuesFeatureRequestsActionActivated (object sender, System.EventArgs e)
 		{
+			if(ConfigurationManager.AppSettings["ProjectIssuesURL"] != "")
+			{
+				Common.LaunchURL(ConfigurationManager.AppSettings["ProjectIssuesURL"]);
+			}
+			else
+			{
+				Common.HandleError(this, new Exception("Project Issues/Feature Request URL not set in the configuation file"));
+			}
 		}
 		
 		

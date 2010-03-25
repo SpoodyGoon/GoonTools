@@ -34,7 +34,7 @@ namespace MonoBPMonitor
 			if(open)
 			{
 				_EntryID = entryid;
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				System.Collections.Hashtable htEntry = shp.ExecuteHashTableRow("SELECT EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
 				shp.Dispose();
 				_EntryDateTime = Convert.ToDateTime(htEntry["EntryDateTime"]);
@@ -130,7 +130,7 @@ namespace MonoBPMonitor
 			{
 				if(_EntryID < 0)
 				{
-					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 					_EntryID = Convert.ToInt32(shp.ExecuteScalar("INSERT INTO tb_Entry(EntryDateTime, Systolic, Diastolic, HeartRate, Notes, UserID)VALUES('" + _EntryDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "'," + _Systolic.ToString() + "," + _Diastolic.ToString() + "," + _HeartRate.ToString() + ",'" +_Notes + "', " + _UserID.ToString() + "); SELECT last_insert_rowid();" ));
 					shp.Dispose();
 				}
@@ -151,7 +151,7 @@ namespace MonoBPMonitor
 			{
 				if(_EntryID > 0)
 				{
-					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 					shp.ExecuteNonQuery("UPDATE tb_Entry SET EntryDateTime = " + shp.ToSQLiteDateTime(_EntryDateTime) + ", Systolic = " + _Systolic.ToString() + ", Diastolic = " + _Diastolic.ToString() + ", HeartRate = " + _HeartRate.ToString() + ", Notes = '" + _Notes + "', UserID = " + _UserID.ToString() + " WHERE EntryID = " + _EntryID.ToString() + ";");
 					shp.Dispose();
 				}
@@ -174,7 +174,7 @@ namespace MonoBPMonitor
 				md.WindowPosition = WindowPosition.Mouse;
 				if(md.Run() == (int)ResponseType.Yes)
 				{
-					SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+					SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 					shp.ExecuteNonQuery("DELETE FROM tb_Entry WHERE EntryID = " + _EntryID.ToString() + ";");
 					shp.Dispose();
 				}

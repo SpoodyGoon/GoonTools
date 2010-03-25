@@ -35,6 +35,7 @@ namespace MonoBPMonitor
 
 		protected virtual void OnBtnCopyErrorClicked (object sender, System.EventArgs e)
 		{
+			// TODO: implement copy to clip board
 		}
 
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
@@ -76,7 +77,7 @@ namespace MonoBPMonitor
 		
 		protected virtual void OnBtnReportErrorClicked (object sender, System.EventArgs e)
 		{
-			System.Diagnostics.Process.Start (System.Configuration.ConfigurationManager.AppSettings["ProjectIssuesURL"]);
+			Common.LaunchURL(System.Configuration.ConfigurationManager.AppSettings["ProjectIssuesURL"]);
 		}
 		
 		

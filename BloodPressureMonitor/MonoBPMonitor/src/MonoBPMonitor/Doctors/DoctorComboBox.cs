@@ -58,7 +58,7 @@ namespace MonoBPMonitor.Doctors
 			{
 				_IsLoading = true;
 				lsDoctor.Clear();
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				DataTable dt = shp.ExecuteDataTable("SELECT DoctorID, DoctorName FROM tb_Doctor");
 				foreach(DataRow dr in dt.Rows)
 				{

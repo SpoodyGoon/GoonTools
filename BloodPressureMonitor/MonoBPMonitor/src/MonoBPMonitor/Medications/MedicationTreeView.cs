@@ -42,7 +42,7 @@ namespace MonoBPMonitor.Medications
 		{
 			try
 			{
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				DataTable dt = shp.ExecuteDataTable("SELECT MedicineID, MedicineName, Dosage, StartDate, EndDate, DoctorID, UserID FROM tb_Medicine");
 				foreach(DataRow dr in dt.Rows)
 				{
