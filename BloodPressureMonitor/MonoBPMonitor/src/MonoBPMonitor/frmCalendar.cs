@@ -136,6 +136,11 @@ namespace MonoBPMonitor
 		
 		protected virtual void OnEvntDateTimeNowButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
 		{
+			
+			_SelectedDate = DateTime.Now;
+			calendar2.Date = _SelectedDate.Date;
+			SetUpTime();
+			ShowAll();
 		}
 		
 		

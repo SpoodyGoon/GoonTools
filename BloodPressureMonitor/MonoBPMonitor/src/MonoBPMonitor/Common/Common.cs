@@ -23,6 +23,7 @@
 using System;
 using System.IO;
 using System.Data;
+using System.Diagnostics;
 using Gtk;
 using GoonTools.Helper;
 
@@ -181,6 +182,23 @@ namespace GoonTools
 		}
 		
 		#endregion Logs
+		
+		#region Launch URL 
+		
+		private static string _LaunchURL = string.Empty;
+		public static void LaunchURL(string URL)
+		{
+			_LaunchURL = URL;	
+			System.Threading.Thread trd = new System.Threading.Thread(new System.Threading.ThreadStart(StartURL));
+			trd.Start();
+		}
+		
+		private static void StartURL()
+		{
+			Process.Start(_LaunchURL);
+		}
+		
+		#endregion Launch URL
 		
 	}
 }

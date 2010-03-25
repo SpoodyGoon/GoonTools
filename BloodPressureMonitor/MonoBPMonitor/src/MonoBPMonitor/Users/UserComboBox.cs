@@ -83,7 +83,7 @@ namespace MonoBPMonitor.Users
 			{
 				_IsLoading = true;
 				lsUser.Clear();
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				DataTable dt = shp.ExecuteDataTable("SELECT UserID, UserName FROM tb_User");
 				foreach(DataRow dr in dt.Rows)
 				{
@@ -104,7 +104,7 @@ namespace MonoBPMonitor.Users
 			try
 			{
 				// use the person how last had an entry if there is an entry
-				SQLiteHelper shp = new SQLiteHelper(Common.Option.ConnString);
+				SQLiteHelper shp = new SQLiteHelper(Common.Option.DBLocation);
 				System.Collections.ArrayList ar = shp.ExecuteArrayListRow("SELECT UserID FROM tb_Entry ORDER BY DATETIME(EntryDateTime, 'localtime') DESC LIMIT 1;");
 				if(ar.Count > 0)
 				{

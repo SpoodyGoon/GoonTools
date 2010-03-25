@@ -31,7 +31,6 @@ namespace GoonTools.Helper
 	{
 		// for the dblocationand connection string the default locations
 		// are very likely to be the perminant locations
-		private string _ConnString = "URI=file:" + System.IO.Path.Combine (GoonTools.Common.EnvData.SavePath, "BPMonitor.s3db") + ",version=3, busy_timeout=3000";
 		private string _DBLocation = System.IO.Path.Combine (GoonTools.Common.EnvData.SavePath, "BPMonitor.s3db");
 		private bool _SaveErrorLog = true;
 		// this is just a flag to save the error to the save directory
@@ -44,7 +43,6 @@ namespace GoonTools.Helper
 		private bool _BackupLogs = true;
 		private string _CustomThemeName = "Elegance";
 		private string _CustomThemeFile = "";
-		private bool _AutoUpdate = true;
 		private bool _UseCustomTheme = true;
 		private int _FileVersion = 1;
 		// the file version does not nessicarily match the application version
@@ -63,9 +61,6 @@ namespace GoonTools.Helper
 				dr = (DataRow)dt.Rows.Find ("FileVersion");
 				if (dr != null)
 					_FileVersion = Convert.ToInt16 (dr["Value"]);
-				dr = (DataRow)dt.Rows.Find ("ConnString");
-				if (dr != null)
-					_ConnString = dr["Value"].ToString ();
 				dr = (DataRow)dt.Rows.Find ("DBLocation");
 				if (dr != null)
 					_DBLocation = dr["Value"].ToString ();
@@ -78,9 +73,6 @@ namespace GoonTools.Helper
 				dr = (DataRow)dt.Rows.Find ("CustomThemeFile");
 				if (dr != null)
 					_CustomThemeFile = dr["Value"].ToString ();
-				dr = (DataRow)dt.Rows.Find ("AutoUpdate");
-				if (dr != null)
-					_AutoUpdate = Convert.ToBoolean (dr["Value"]);
 				dr = (DataRow)dt.Rows.Find ("UseCustomTheme");
 				if (dr != null)
 					_UseCustomTheme = Convert.ToBoolean (dr["Value"]);
@@ -121,10 +113,6 @@ namespace GoonTools.Helper
 				dr["Value"] = _FileVersion;
 				dt.Rows.Add (dr);
 				dr = dt.NewRow ();
-				dr["Key"] = "ConnString";
-				dr["Value"] = _ConnString;
-				dt.Rows.Add (dr);
-				dr = dt.NewRow ();
 				dr["Key"] = "DBLocation";
 				dr["Value"] = _DBLocation;
 				dt.Rows.Add (dr);
@@ -139,10 +127,6 @@ namespace GoonTools.Helper
 				dr = dt.NewRow ();
 				dr["Key"] = "CustomThemeFile";
 				dr["Value"] = _CustomThemeFile;
-				dt.Rows.Add (dr);
-				dr = dt.NewRow ();
-				dr["Key"] = "AutoUpdate";
-				dr["Value"] = _AutoUpdate;
 				dt.Rows.Add (dr);
 				dr = dt.NewRow ();
 				dr["Key"] = "UseCustomTheme";
@@ -189,9 +173,6 @@ namespace GoonTools.Helper
 				dr = (DataRow)dt.Rows.Find ("FileVersion");
 				if (dr != null)
 					_FileVersion = Convert.ToInt16 (dr["Value"]);
-				dr = (DataRow)dt.Rows.Find ("ConnString");
-				if (dr != null)
-					_ConnString = dr["Value"].ToString ();
 				dr = (DataRow)dt.Rows.Find ("DBLocation");
 				if (dr != null)
 					_DBLocation = dr["Value"].ToString ();
@@ -204,9 +185,6 @@ namespace GoonTools.Helper
 				dr = (DataRow)dt.Rows.Find ("CustomThemeFile");
 				if (dr != null)
 					_CustomThemeFile = dr["Value"].ToString ();
-				dr = (DataRow)dt.Rows.Find ("AutoUpdate");
-				if (dr != null)
-					_AutoUpdate = Convert.ToBoolean (dr["Value"]);
 				dr = (DataRow)dt.Rows.Find ("UseCustomTheme");
 				if (dr != null)
 					_UseCustomTheme = Convert.ToBoolean (dr["Value"]);
@@ -231,11 +209,6 @@ namespace GoonTools.Helper
 			} catch (Exception ex) {
 				Common.HandleError (ex);
 			}
-		}
-
-		public string ConnString {
-			get { return _DBLocation; }
-			set { _DBLocation = value; }
 		}
 
 		public string DBLocation {
@@ -291,11 +264,6 @@ namespace GoonTools.Helper
 		public string CustomThemeFile {
 			get { return _CustomThemeFile; }
 			set { _CustomThemeFile = value; }
-		}
-
-		public bool AutoUpdate {
-			get { return _AutoUpdate; }
-			set { _AutoUpdate = value; }
 		}
 
 		public bool UseCustomTheme {
