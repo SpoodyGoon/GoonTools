@@ -71,7 +71,10 @@ namespace libGUPdotNET
 		#region Windows Install
 		
 		private void PrepInstallWin32()
-		{			
+		{		
+			// TODO: test this functinality
+			Process p = Process.GetCurrentProcess();
+			p.Exited += delegate { System.Diagnostics.Process.Start(_UpdateInfo.TempInstallerPath); };
 			// ask the user to save changes and close calling application
 			Gtk.MessageDialog md = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.OkCancel, false, "The update is ready to install " + _UpdateInfo.ProgramName + " please save any changes you have and click ok to continue the update.", "Save & Close");
 			if(((Gtk.ResponseType)md.Run()) == ResponseType.Ok)
@@ -79,7 +82,6 @@ namespace libGUPdotNET
 				Common.LogUpdate("Update install");
 				Common.Option.LastUpdate = DateTime.Now;
 				Common.SaveOptions();
-				System.Diagnostics.Process.Start(_UpdateInfo.TempInstallerPath);
 				Gtk.Application.Quit();
 				this.Respond(Gtk.ResponseType.Cancel);
 				this.Hide();
@@ -91,6 +93,8 @@ namespace libGUPdotNET
 			}
 			md.Destroy();
 		}
+		
+		
 		
 //		private bool HasAccess(string _TempInstallerPath)
 //		{
