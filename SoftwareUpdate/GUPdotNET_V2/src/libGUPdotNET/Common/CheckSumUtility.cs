@@ -37,7 +37,7 @@ namespace GoonTools.Helper
 	/// <summary>
 	/// Description of CheckSum.
 	/// </summary>
-	public class CheckSumUtility
+	internal class CheckSumUtility
 	{
 		#region Variable Declaration
 		
@@ -54,22 +54,22 @@ namespace GoonTools.Helper
 		
 		// default constructor
 		
-		public CheckSumUtility()
+		internal CheckSumUtility()
 		{
 		}
 		
-		public CheckSumUtility(string filepath)
+		internal CheckSumUtility(string filepath)
 		{
 			_FilePath = filepath;
 		}
 
-		public CheckSumUtility(string validatingchecksum, string filepath)
+		internal CheckSumUtility(string validatingchecksum, string filepath)
 		{
 			_ValidatingCheckSum = validatingchecksum;
 			_FilePath = filepath;
 		}
 
-		public CheckSumUtility(string validatingchecksum, string filepath, CheckSumType currchecksumtype)
+		internal CheckSumUtility(string validatingchecksum, string filepath, CheckSumType currchecksumtype)
 		{
 			_ValidatingCheckSum = validatingchecksum;
 			_FilePath = filepath;
@@ -80,19 +80,19 @@ namespace GoonTools.Helper
 		
 		#region public properties
 		
-		public string FilePath
+		internal string FilePath
 		{
 			set{_FilePath=value;}
 			get{return _FilePath;}
 		}
 		
-		public string ValidatingCheckSum
+		internal string ValidatingCheckSum
 		{
 			set{_ValidatingCheckSum=value;}
 			get{return _ValidatingCheckSum;}
 		}
 		
-		public CheckSumType CurrentCheckSumType
+		internal CheckSumType CurrentCheckSumType
 		{
 			set{_CurrentCheckSumType=value;}
 			get{return _CurrentCheckSumType;}
@@ -100,7 +100,7 @@ namespace GoonTools.Helper
 		
 		#endregion public properties
 		
-		public string GetCheckSum()
+		internal string GetCheckSum()
 		{
 			switch(_CurrentCheckSumType)
 			{
@@ -123,7 +123,7 @@ namespace GoonTools.Helper
 			return null;
 		}
 		
-		public bool ValidateFile()
+		internal bool ValidateFile()
 		{
 			switch(_CurrentCheckSumType)
 			{
@@ -171,7 +171,7 @@ namespace GoonTools.Helper
 
 namespace GoonTools
 {	
-		public enum CheckSumType
+		internal enum CheckSumType
 		{
 			MD5,
 			SHA1,

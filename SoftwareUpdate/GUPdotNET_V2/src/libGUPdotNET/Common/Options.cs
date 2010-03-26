@@ -26,7 +26,7 @@ using System.Collections;
 
 namespace GoonTools.Helper
 {
-	public class Options
+	internal class Options
 	{
 		// a simple list of the possible update vaiables in string form
 		public readonly string[] _UpdateTimes = new string[]{"Day", "Week", "Month", "Quarter", "Year", "Never"};
@@ -36,7 +36,7 @@ namespace GoonTools.Helper
 		/// <summary>
 		///  Empty basic constructor serves normally just for the first time use
 		/// </summary>
-		public Options()
+		internal Options()
 		{
 			
 		}
@@ -45,7 +45,7 @@ namespace GoonTools.Helper
 		/// Constructor for loading options from a hashtable
 		/// </summary>
 		/// <param name="hsh"></param>
-		public Options(System.Collections.Hashtable hsh)
+		internal Options(System.Collections.Hashtable hsh)
 		{
 			if(hsh.Contains("FileVersion"))
 				_FileVersion = Convert.ToInt16(hsh["FileVersion"]);
@@ -65,7 +65,7 @@ namespace GoonTools.Helper
 		///  Constructor for loading the options from a datatable
 		/// </summary>
 		/// <param name="dt"></param>
-		public Options(DataTable dt)
+		internal Options(DataTable dt)
 		{
 			if(dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
 				throw new Exception("Invalid Table Passed to load Options");
@@ -101,7 +101,7 @@ namespace GoonTools.Helper
 		///  Puts all the options into a hashtable for serialization
 		/// </summary>
 		/// <returns>System.Collections.Hashtable</returns>
-		public Hashtable ToHashtable()
+		internal Hashtable ToHashtable()
 		{
 			System.Collections.Hashtable hsh = new System.Collections.Hashtable();
 			hsh.Add("FileVersion", _FileVersion);
@@ -117,7 +117,7 @@ namespace GoonTools.Helper
 		///  Puts all the options into a datatable for serialization
 		/// </summary>
 		/// <returns>System.Data.DataTable</returns>
-		public DataTable ToDataTable()
+		internal DataTable ToDataTable()
 		{
 			DataTable dt = new DataTable("Options");
 			dt.Columns.AddRange(new DataColumn[] { new DataColumn("Key", typeof(string)), new DataColumn("Value", typeof(object))});
@@ -154,42 +154,42 @@ namespace GoonTools.Helper
 		#region Public Properties
 		
 		private int _UpdateHours = 24;
-		public int UpdateHours
+		internal int UpdateHours
 		{
 			set{ _UpdateHours = value;}
 			get{ return _UpdateHours;}
 		}
 		
 		private string _UpdateTime = "Day";
-		public string UpdateTime
+		internal string UpdateTime
 		{
 			set{ _UpdateTime = value;}
 			get{ return _UpdateTime;}
 		}
 		
 		private bool _AutoUpdate = true;
-		public bool AutoUpdate
+		internal bool AutoUpdate
 		{
 			set{ _AutoUpdate = value;}
 			get{ return _AutoUpdate;}
 		}
 		
 		private DateTime _LastUpdate = DateTime.Now;
-		public DateTime LastUpdate
+		internal DateTime LastUpdate
 		{
 			set{_LastUpdate=value;}
 			get{return _LastUpdate;}
 		}
 		
 		private DateTime _LastUpdateCheck = DateTime.Now;
-		public DateTime LastUpdateCheck
+		internal DateTime LastUpdateCheck
 		{
 			set{_LastUpdateCheck=value;}
 			get{return _LastUpdateCheck;}
 		}
 		
 		private float _FileVersion = 1.0f; // the file version does not nessicarily match the application version
-		public float FileVersion
+		internal float FileVersion
 		{
 			set{ _FileVersion = value;}
 			get{ return _FileVersion;}
