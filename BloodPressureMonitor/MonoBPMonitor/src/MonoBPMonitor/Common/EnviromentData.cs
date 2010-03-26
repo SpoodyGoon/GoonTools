@@ -33,7 +33,7 @@ namespace GoonTools.Helper
 	///  This class contains data that is related to the
 	///  enviroment around the probram
 	/// </summary>
-	public class EnviromentData
+	internal class EnviromentData
 	{
 		private string _OS = null;
 		private string _DirChar = null;
@@ -45,7 +45,7 @@ namespace GoonTools.Helper
 		private string _ThemePath = null;
 		private string _UserThemePath = null;
 		private string _DataPath = null;
-		public EnviromentData()
+		internal EnviromentData()
 		{
 			so.FileInfo fi;
 			so.DirectoryInfo di;
@@ -107,51 +107,51 @@ namespace GoonTools.Helper
 		
 		#region Public Properties
 		
-		public string OS
+		internal string OS
 		{
 			get{return _OS;}
 		}
 		
-		public string DirChar
+		internal string DirChar
 		{
 			get{return _DirChar;}
 		}
 		
-		public string AppPath
+		internal string AppPath
 		{
 			get{ return _AppPath;}
 		}
 		
-		public string ProgramName
+		internal string ProgramName
 		{
 			get{return _ProgramName;}
 		}
 		
-		public string SavePath
+		internal string SavePath
 		{
 			get{return _SavePath;}
 		}
-		public string UserOptionFile
+		internal string UserOptionFile
 		{
 			get{return _UserOptionFile;}
 		}
 		
-		public string DataPath
+		internal string DataPath
 		{
 			get{return _DataPath;}
 		}
 		
-		public string ThemeFolder
+		internal string ThemeFolder
 		{
 			get{return _ThemePath;}
 		}
 		
-		public string UserThemeFolder
+		internal string UserThemeFolder
 		{
 			get{return _UserThemePath;}
 		}
 		
-		public string ErrorLog
+		internal string ErrorLog
 		{
 			get{return _ErrorLogFile;}
 		}		
@@ -160,12 +160,12 @@ namespace GoonTools.Helper
 		
 		#region Public Methods
 		
-		public string GetNewTempFolder(string Name)
+		internal string GetNewTempFolder(string Name)
 		{
 			return GetNewTempFolder(Name, true);
 		}
 		
-		public string GetNewTempFolder(string Name, bool Overwrite)
+		internal string GetNewTempFolder(string Name, bool Overwrite)
 		{
 			string tmpName = so.Path.Combine(so.Path.GetTempPath(), Name);
 			try
@@ -197,17 +197,17 @@ namespace GoonTools.Helper
 			return tmpName;
 		}
 		
-		public string GetNewTempFile(string Name)
+		internal string GetNewTempFile(string Name)
 		{
 			return GetNewTempFile(so.Path.GetFileNameWithoutExtension(Name), so.Path.GetExtension(Name), true);
 		}
 		
-		public string GetNewTempFile(string Name, string Extension)
+		internal string GetNewTempFile(string Name, string Extension)
 		{
 			return GetNewTempFile(Name, Extension, true);
 		}
 		
-		public string GetNewTempFile(string Name, string Extension, bool Overwrite)
+		internal string GetNewTempFile(string Name, string Extension, bool Overwrite)
 		{
 			string tmpName = so.Path.Combine(System.IO.Path.GetTempPath(), Name + "." + Extension);
 			if(Overwrite)

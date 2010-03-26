@@ -27,7 +27,7 @@ using System.Data;
 namespace GoonTools.Helper
 {
 	[Serializable]
-	public class Options
+	internal class Options
 	{
 		// for the dblocationand connection string the default locations
 		// are very likely to be the perminant locations
@@ -46,11 +46,11 @@ namespace GoonTools.Helper
 		private bool _UseCustomTheme = true;
 		private int _FileVersion = 1;
 		// the file version does not nessicarily match the application version
-		public Options ()
+		internal Options ()
 		{
 		}
 
-		public Options (DataTable dt)
+		internal Options (DataTable dt)
 		{
 			try {
 				if (dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
@@ -99,7 +99,7 @@ namespace GoonTools.Helper
 			}
 		}
 
-		public DataTable ToDataTable ()
+		internal DataTable ToDataTable ()
 		{
 			DataTable dt = new DataTable ("Options");
 			try {
@@ -162,7 +162,7 @@ namespace GoonTools.Helper
 			return dt;
 		}
 
-		public void RefreshAll (System.Data.DataTable dt)
+		internal void RefreshAll (System.Data.DataTable dt)
 		{
 			try {
 				if (dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
@@ -211,62 +211,62 @@ namespace GoonTools.Helper
 			}
 		}
 
-		public string DBLocation {
+		internal string DBLocation {
 			get { return _DBLocation; }
 			set { _DBLocation = value; }
 		}
 
-		public bool SaveErrorLog {
+		internal bool SaveErrorLog {
 			get { return _SaveErrorLog; }
 			set { _SaveErrorLog = value; }
 		}
 
-		public bool LimitHistory {
+		internal bool LimitHistory {
 			get { return _LimitHistory; }
 			set { _LimitHistory = value; }
 		}
 
-		public int HistoryDefaultShow {
+		internal int HistoryDefaultShow {
 			get { return _HistoryDefaultShow; }
 			set { _HistoryDefaultShow = value; }
 		}
 
-		public int FileVersion {
+		internal int FileVersion {
 			get { return _FileVersion; }
 			set { _FileVersion = value; }
 		}
 
-		public bool BackupSchema {
+		internal bool BackupSchema {
 			get { return _BackupSchema; }
 			set { _BackupSchema = value; }
 		}
 
-		public bool BackupData {
+		internal bool BackupData {
 			get { return _BackupData; }
 			set { _BackupData = value; }
 		}
 
-		public bool BackupOptions {
+		internal bool BackupOptions {
 			get { return _BackupOptions; }
 			set { _BackupOptions = value; }
 		}
 
-		public bool BackupLogs {
+		internal bool BackupLogs {
 			get { return _BackupLogs; }
 			set { _BackupLogs = value; }
 		}
 
-		public string CustomThemeName {
+		internal string CustomThemeName {
 			get { return _CustomThemeName; }
 			set { _CustomThemeName = value; }
 		}
 
-		public string CustomThemeFile {
+		internal string CustomThemeFile {
 			get { return _CustomThemeFile; }
 			set { _CustomThemeFile = value; }
 		}
 
-		public bool UseCustomTheme {
+		internal bool UseCustomTheme {
 			get { return _UseCustomTheme; }
 			set { _UseCustomTheme = value; }
 		}

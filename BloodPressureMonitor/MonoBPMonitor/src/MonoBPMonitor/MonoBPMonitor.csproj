@@ -47,10 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Data">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.3\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.3\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
@@ -234,6 +234,12 @@
     <EmbeddedResource Include="images\document-open-remote.png">
       <LogicalName>DocumentOnline.png</LogicalName>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libGUPdotNET\libGUPdotNET.csproj">
+      <Project>{4E6905D8-8826-432F-B793-3B9B95CB9F94}</Project>
+      <Name>libGUPdotNET</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

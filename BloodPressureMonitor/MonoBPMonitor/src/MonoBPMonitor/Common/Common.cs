@@ -34,24 +34,24 @@ namespace GoonTools
 	/// are reqularly used by the program it also first off
 	/// the serialzation of certian objects
 	/// </summary>
-	public static class Common
+	internal static class Common
 	{
 		private static GoonTools.Helper.Options _Option;
 		private static GoonTools.Helper.MetaInformation _MetaInfo;
 		private static GoonTools.Helper.EnviromentData _EnvData = new GoonTools.Helper.EnviromentData();
 		#region Public Properties
 		
-		public static GoonTools.Helper.Options Option
+		internal static GoonTools.Helper.Options Option
 		{
 			get{return _Option;}
 		}
 		
-		public static GoonTools.Helper.EnviromentData EnvData
+		internal static GoonTools.Helper.EnviromentData EnvData
 		{
 			get{return _EnvData;}
 		}
 		
-		public static GoonTools.Helper.MetaInformation MetaInfo
+		internal static GoonTools.Helper.MetaInformation MetaInfo
 		{
 			get{return _MetaInfo;}
 		}
@@ -60,7 +60,7 @@ namespace GoonTools
 		
 		#region Loading and Saving
 		
-		public static void LoadAll()
+		internal static void LoadAll()
 		{
 			try
 			{
@@ -92,7 +92,7 @@ namespace GoonTools
 			}
 		}
 		
-		public static void LoadUserData()
+		internal static void LoadUserData()
 		{
 			try
 			{
@@ -119,7 +119,7 @@ namespace GoonTools
 			}
 		}
 		
-		public static void SaveUserData()
+		internal static void SaveUserData()
 		{
 			try
 			{
@@ -140,12 +140,12 @@ namespace GoonTools
 		
 		#region Logs
 		
-		public static void HandleError(Exception ex)
+		internal static void HandleError(Exception ex)
 		{
 			HandleError(null, ex);
 		}
 		
-		public static void HandleError(Gtk.Window parent_window, Exception ex)
+		internal static void HandleError(Gtk.Window parent_window, Exception ex)
 		{
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 			sb.Append(System.Environment.NewLine + "------------------------------------------------------------------------------");
@@ -166,7 +166,7 @@ namespace GoonTools
 			sb.Length = 0;
 		}
 		
-		public static void CleanErrorLog()
+		internal static void CleanErrorLog()
 		{
 			try
 			{
@@ -186,7 +186,7 @@ namespace GoonTools
 		#region Launch URL 
 		
 		private static string _LaunchURL = string.Empty;
-		public static void LaunchURL(string URL)
+		internal static void LaunchURL(string URL)
 		{
 			_LaunchURL = URL;	
 			System.Threading.Thread trd = new System.Threading.Thread(new System.Threading.ThreadStart(StartURL));
