@@ -194,7 +194,7 @@ namespace libGUPdotNET
 		///  The CheckSum Type
 		/// </summary>
 		private CheckSumType _UseCheckSumType = CheckSumType.MD5;
-		public CheckSumType UseCheckSumType
+		internal CheckSumType UseCheckSumType
 		{
 			set{_UseCheckSumType=value;}
 			get{return _UseCheckSumType;}

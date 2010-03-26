@@ -33,15 +33,15 @@ namespace GoonTools.Helper
 	/// if the version don't match then we will be albe to take care of any  
 	/// file or applciation version migration that needs to occure at the user level
 	/// </summary>
-	public class MetaInfo
+	internal class MetaInfo
 	{
-		public MetaInfo()
+		internal MetaInfo()
 		{
 			
 			
 		}
 		
-		public MetaInfo(DataTable dt)
+		internal MetaInfo(DataTable dt)
 		{
 //			if(dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
 //				throw new Exception("Invalid Table Passed to load Options");
@@ -69,7 +69,7 @@ namespace GoonTools.Helper
 //				_LastUpdateCheck = Convert.ToDateTime(dr["Value"]);
 		}
 		
-		public DataTable ToDataTable()
+		internal DataTable ToDataTable()
 		{
 			DataTable dt = new DataTable("MetaInfo");
 //			dt.Columns.AddRange(new DataColumn[] { new DataColumn("Key", typeof(string)), new DataColumn("Value", typeof(object))});

@@ -69,7 +69,7 @@ namespace libGUPdotNET
 			}
 		}
 		
-		public DownloadStatus CurrentStatus
+		internal DownloadStatus CurrentStatus
 		{
 			get{return _CurrentStatus;}
 		}

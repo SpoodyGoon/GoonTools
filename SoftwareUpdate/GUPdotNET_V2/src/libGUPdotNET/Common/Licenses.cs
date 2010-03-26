@@ -24,11 +24,11 @@ using System;
 
 namespace  GoonTools.Helper
 {
-	public static class Licenses
+	internal static class Licenses
 	{		
 		#region "License Text"
 		
-		public const string GPL3 =
+		internal const string GPL3 =
 			@"                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 

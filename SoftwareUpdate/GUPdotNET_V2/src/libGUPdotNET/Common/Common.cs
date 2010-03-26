@@ -34,7 +34,7 @@ namespace GoonTools
 	/// are reqularly used by the program it also first off
 	/// the serialzation of certian objects
 	/// </summary>
-	public static class Common
+	internal static class Common
 	{
 		#region Private Properties
 		
@@ -52,32 +52,32 @@ namespace GoonTools
 		
 		#region Public Properties
 		
-		public static Options Option
+		internal static Options Option
 		{
 			get{return _Option;}
 		}
 		
-		public static string UserSaveLoc
+		internal static string UserSaveLoc
 		{
 			get{return _SavePath;}
 		}
 		
-		public static string AppPath
+		internal static string AppPath
 		{
 			get{return _AppPath;}
 		}
 		
-		public static string DirChar
+		internal static string DirChar
 		{
 			get{return _DirChar;}
 		}
 		
-		public static CheckSumUtility CheckSum
+		internal static CheckSumUtility CheckSum
 		{
 			get{return _CheckSum;}
 		}
 		
-		public static string CurrentLicense
+		internal static string CurrentLicense
 		{
 			get{return GoonTools.Helper.Licenses.GPL3;}
 		}
@@ -86,7 +86,7 @@ namespace GoonTools
 		
 		#region Loading and Saving
 		
-		public static void LoadAll()
+		internal static void LoadAll()
 		{
 			try
 			{
@@ -134,7 +134,7 @@ namespace GoonTools
 			}
 		}
 		
-		public static void LoadOptions()
+		internal static void LoadOptions()
 		{
 			DataSet ds = new DataSet("GUPdotNET");
 			try
@@ -153,7 +153,7 @@ namespace GoonTools
 			}
 		}
 		
-		public static void SaveOptions()
+		internal static void SaveOptions()
 		{
 			DataSet ds = new DataSet("GUPdotNET");
 			try
@@ -176,7 +176,7 @@ namespace GoonTools
 		
 		#region Logs
 		
-		public static void LogUpdate(string ResultMess)
+		internal static void LogUpdate(string ResultMess)
 		{
 			try
 			{
@@ -195,12 +195,12 @@ namespace GoonTools
 			}
 		}
 		
-		public static void HandleError(Exception ex)
+		internal static void HandleError(Exception ex)
 		{
 			HandleError(null, ex);
 		}
 		
-		public static void HandleError(Gtk.Window parent_window, Exception ex)
+		internal static void HandleError(Gtk.Window parent_window, Exception ex)
 		{
 			if(ConfigurationManager.AppSettings["SaveErrorLog"].ToLower() == "true")
 			{
@@ -221,14 +221,14 @@ namespace GoonTools
 		
 	}
 	
-	public enum RunType
+	internal enum RunType
 	{
 		None,
 		UpdateCheck,
 		Options
 	}
 	
-	public enum DownloadStatus
+	internal enum DownloadStatus
 	{
 		Prep,
 		InProcess,

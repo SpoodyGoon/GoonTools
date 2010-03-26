@@ -75,9 +75,7 @@
     <Compile Include="UpdateCheck.cs" />
     <Compile Include="UpdateInfo.cs" />
     <Compile Include="UpdateTimeCombo.cs" />
-    <Content Include="app.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="app.config" />
     <None Include="gtk-gui\gui.stetic" />
     <EmbeddedResource Include="images\cancel.png">
       <LogicalName>cancel.png</LogicalName>
