@@ -24,13 +24,13 @@ using System;
 
 namespace  GoonTools
 {
-	public static class Const
+	internal static class Const
 	{
 		
 		
 		#region "License Text"
 		
-		public const string License =
+		internal const string License =
 			@"                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
@@ -711,7 +711,7 @@ Public License instead of this License.  But first, please read
 		
 		#region "Database SQL"
 		
-		public const string DatabaseSQL =
+		internal const string DatabaseSQL =
 			@"
 			BEGIN TRANSACTION;
 			

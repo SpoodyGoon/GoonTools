@@ -15,17 +15,17 @@ namespace GoonTools.Helper
 	/// <summary>
 	/// Description of MetaInfo.
 	/// </summary>
-	public class MetaInformation
+	internal class MetaInformation
 	{
 		private Version _MonoBPMonitor = new Version(0,1);
 		private Version _GUPdotNET = new Version(0,1);
 		private Version _UserFile = new Version(1,0);
 		private Version _Database = new Version(1,0);
-		public MetaInformation()
+		internal MetaInformation()
 		{
 		}
 		
-		public MetaInformation(DataTable dt)
+		internal MetaInformation(DataTable dt)
 		{			
 			try
 			{
@@ -53,7 +53,7 @@ namespace GoonTools.Helper
 			}
 		}
 		
-		public DataTable ToDataTable()
+		internal DataTable ToDataTable()
 		{			
 			DataTable dt = new DataTable ("MetaInfo");
 			try {
@@ -93,22 +93,22 @@ namespace GoonTools.Helper
 		
 		#region Public Properties
 		
-		public Version MonoBPMonitor
+		internal Version MonoBPMonitor
 		{
 			get{return _MonoBPMonitor;}
 		}
 		
-		public Version GUPdotNET
+		internal Version GUPdotNET
 		{
 			get{return _GUPdotNET;}
 		}
 		
-		public Version UserFile
+		internal Version UserFile
 		{
 			get{return _UserFile;}
 		}
 		
-		public Version Database
+		internal Version Database
 		{
 			get{return _Database;}
 		}

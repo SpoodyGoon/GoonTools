@@ -275,7 +275,8 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				throw new NotImplementedException();
+				libGUPdotNET.GUPdotNET g  = new libGUPdotNET.GUPdotNET();
+				g.ShowOptions();
 			}
 			catch(Exception ex)
 			{
@@ -297,6 +298,7 @@ namespace MonoBPMonitor
 		}
 		
 		#endregion Update Related
+		
 		protected virtual void OnProjectWebSiteActionActivated (object sender, System.EventArgs e)
 		{
 			if(ConfigurationManager.AppSettings["ProjectSiteURL"] != "")

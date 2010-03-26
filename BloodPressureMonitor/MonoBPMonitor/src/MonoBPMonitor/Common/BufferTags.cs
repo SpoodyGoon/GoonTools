@@ -27,13 +27,13 @@ namespace GoonTools.Helper
 {
 	
 	
-	public class BufferTags
+	internal class BufferTags
 	{
 		private const int gray50_width = 2;
 		private const int gray50_height = 2;
 		private const string gray50_bits = "\x02\x01";
 
-		public static void GetBufferTags(Gtk.TextBuffer buffer)
+		internal static void GetBufferTags(Gtk.TextBuffer buffer)
 		{
 		// Create a bunch of tags. Note that it's also possible to
 			// create tags with gtk_text_tag_new() then add them to the
