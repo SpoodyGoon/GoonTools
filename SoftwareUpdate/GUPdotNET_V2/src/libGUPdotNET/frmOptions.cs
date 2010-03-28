@@ -127,7 +127,7 @@ namespace libGUPdotNET
 		protected virtual void OnEbxAboutEnterNotifyEvent (object o, Gtk.EnterNotifyEventArgs args)
 		{
 			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Hand1);
-			lblAbout.Text = "<span size=\"8080\" color=\"#920000\"><b><u><tt>About GUPdotNET</tt></u></b></span>";
+			lblAbout.Text = "<span size=\"8750\" face=\"san serif\"  color=\"#920000\"><u><b>About GUPdotNET</b></u></span>";
 			lblAbout.UseMarkup = true;
 			lblAbout.ShowNow();
 		}
@@ -137,7 +137,7 @@ namespace libGUPdotNET
 		protected virtual void OnEbxAboutLeaveNotifyEvent (object o, Gtk.LeaveNotifyEventArgs args)
 		{
 			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Arrow);
-			lblAbout.Text = "<span size=\"8080\" color=\"#000000\"><b><u><tt>About GUPdotNET</tt></u></b></span>";
+			lblAbout.Text = "<span size=\"8750\" face=\"san serif\"  color=\"#000000\"><u><b>About GUPdotNET</b></u></span>";
 			lblAbout.UseMarkup = true;
 			lblAbout.ShowNow();
 		}
