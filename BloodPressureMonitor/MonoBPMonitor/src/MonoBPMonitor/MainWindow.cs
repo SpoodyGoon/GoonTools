@@ -275,8 +275,10 @@ namespace MonoBPMonitor
 		{
 			try
 			{
+				#if !REPO
 				libGUPdotNET.GUPdotNET g  = new libGUPdotNET.GUPdotNET();
 				g.ShowOptions();
+				#endif
 			}
 			catch(Exception ex)
 			{

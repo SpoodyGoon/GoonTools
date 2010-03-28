@@ -14,6 +14,8 @@ namespace MonoBPMonitor
 		private string tmpFolderName = "";
 		public frmOptions ()
 		{
+			// TODO: add a restart program button or notice when the theme changes to prompt restart
+			// all spelling on notice is wrong
 			this.Build();
 			try
 			{

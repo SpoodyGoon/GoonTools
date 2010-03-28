@@ -45,6 +45,7 @@ namespace GoonTools.Helper
 		private string _ThemePath = null;
 		private string _UserThemePath = null;
 		private string _DataPath = null;
+		private bool _IsWindows = false;
 		internal EnviromentData()
 		{
 			so.FileInfo fi;
@@ -103,6 +104,11 @@ namespace GoonTools.Helper
 			// the options save file
 			fi = new so.FileInfo(so.Path.Combine(_SavePath, _ProgramName + ".xml"));
 			_UserOptionFile = fi.FullName;
+			
+			if(se.OSVersion.Platform != PlatformID.MacOSX && se.OSVersion.Platform != PlatformID.Unix)
+				_IsWindows = true;
+			
+			
 		}
 		
 		#region Public Properties
@@ -154,6 +160,11 @@ namespace GoonTools.Helper
 		internal string ErrorLog
 		{
 			get{return _ErrorLogFile;}
+		}
+		
+		internal bool IsWindows
+		{
+			get{return _IsWindows;}
 		}		
 		
 		#endregion Public Properties
