@@ -171,7 +171,7 @@ namespace libGUPdotNET {
             // Container child ebxAbout.Gtk.Container+ContainerChild
             this.lblAbout = new Gtk.Label();
             this.lblAbout.Name = "lblAbout";
-            this.lblAbout.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"8080\"><b><u><tt>About GUPdotNET</tt></u></b></span>");
+            this.lblAbout.LabelProp = Mono.Unix.Catalog.GetString("<span size=\"8750\" face=\"san serif\"  color=\"#000000\"><u><b>About GUPdotNET</b></u></span>");
             this.lblAbout.UseMarkup = true;
             this.ebxAbout.Add(this.lblAbout);
             this.fixed1.Add(this.ebxAbout);

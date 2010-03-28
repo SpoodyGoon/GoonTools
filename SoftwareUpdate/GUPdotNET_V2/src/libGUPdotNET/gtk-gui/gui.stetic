@@ -472,7 +472,7 @@
                 <child>
                   <widget class="Gtk.Label" id="lblAbout">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;span size="8080"&gt;&lt;b&gt;&lt;u&gt;&lt;tt&gt;About GUPdotNET&lt;/tt&gt;&lt;/u&gt;&lt;/b&gt;&lt;/span&gt;</property>
+                    <property name="LabelProp" translatable="yes">&lt;span size="8750" face="san serif" color="#000000"&gt;&lt;u&gt;&lt;b&gt;About GUPdotNET&lt;/b&gt;&lt;/u&gt;&lt;/span&gt;</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                 </child>
