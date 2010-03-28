@@ -32,7 +32,7 @@ namespace MonoBPMonitor
 		{
 			Application.Init ();
 			GoonTools.Common.LoadAll();
-			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true" && GoonTools.Common.Option.UseCustomTheme == true)
+			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true" && GoonTools.Common.Option.UseCustomTheme == true && GoonTools.Common.EnvData.IsWindows == true)
 			{
 				if(GoonTools.Common.Option.CustomThemeFile == "")
 				{

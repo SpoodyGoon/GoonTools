@@ -24,6 +24,8 @@ namespace MonoBPMonitor
 		{
 			this.Build ();
 			this.txtErrorDetails.Buffer.Text = errorstring;
+			// TODO add to stectic
+			txtErrorDetails.WrapMode = Gtk.WrapMode.Word;
 			this.ShowAll();
 		}
 

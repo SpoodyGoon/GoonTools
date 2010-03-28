@@ -33,6 +33,8 @@ namespace MonoBPMonitor
 		public frmErrorLog()
 		{
 			this.Build();
+			// TODO add to stectic
+			txtErrorLog.WrapMode = Gtk.WrapMode.Word;
 			LoadErrorLog();			
 		}
 		
