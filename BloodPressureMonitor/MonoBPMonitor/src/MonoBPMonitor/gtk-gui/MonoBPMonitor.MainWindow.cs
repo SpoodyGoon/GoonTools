@@ -328,9 +328,7 @@ namespace MonoBPMonitor {
             this.alignment5 = new Gtk.Alignment(0.98F, 0.5F, 0.01F, 1F);
             this.alignment5.Name = "alignment5";
             // Container child alignment5.Gtk.Container+ContainerChild
-            this.cboUser = new MonoBPMonitor.Users.UserComboBox();
-            this.cboUser.WidthRequest = 200;
-            this.cboUser.Name = "cboUser";
+            this.cboUser = null;
             this.alignment5.Add(this.cboUser);
             this.hbox1.Add(this.alignment5);
             Gtk.Box.BoxChild w36 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment5]));

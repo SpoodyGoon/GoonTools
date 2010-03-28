@@ -5,12 +5,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoBPMonitor", "MonoBPMoni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteHelper", "..\..\SQLiteHelper\src\SQLiteHelper\SQLiteHelper.csproj", "{D210EDCC-43AF-48EF-B982-51901A144063}"
 EndProject
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "MonoBPMonitorPackage", "MonoBPMonitorPackage\MonoBPMonitorPackage.mdproj", "{07D5783B-AE64-4F7F-8E9B-50FA55722303}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07D5783B-AE64-4F7F-8E9B-50FA55722303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D5783B-AE64-4F7F-8E9B-50FA55722303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -157,8 +157,7 @@ namespace MonoBPMonitor {
             this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment1.Name = "alignment1";
             // Container child alignment1.Gtk.Container+ContainerChild
-            this.usercombobox2 = new MonoBPMonitor.Users.UserComboBox();
-            this.usercombobox2.Name = "usercombobox2";
+            this.usercombobox2 = null;
             this.alignment1.Add(this.usercombobox2);
             this.table1.Add(this.alignment1);
             Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.alignment1]));
@@ -290,8 +289,7 @@ namespace MonoBPMonitor {
             this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment2.Name = "alignment2";
             // Container child alignment2.Gtk.Container+ContainerChild
-            this.cboDoctor = new MonoBPMonitor.Doctors.DoctorComboBox();
-            this.cboDoctor.Name = "cboDoctor";
+            this.cboDoctor = null;
             this.alignment2.Add(this.cboDoctor);
             this.table1.Add(this.alignment2);
             Gtk.Table.TableChild w22 = ((Gtk.Table.TableChild)(this.table1[this.alignment2]));
