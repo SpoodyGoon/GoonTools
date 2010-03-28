@@ -19,6 +19,16 @@ namespace MonoBPMonitor
 			this.Build();
 			try
 			{
+				// themes are only used in Windows where a good looking theme is not a sure thing
+				if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "false" || Common.EnvData.IsWindows == false)
+				{
+					notebook1.RemovePage(2);
+				}
+				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "false" || Common.EnvData.IsWindows == false)
+				{
+					lblGUPdotNETVersion.Destroy();
+					lblGUPdotNETText.Destroy();
+				}
 				cbxAll.Activated += new EventHandler(OnCbxAllToggled);
 				spnDefaultHistory.Value = (double)GoonTools.Common.Option.HistoryDefaultShow;
 				cbxLogErrors.Active = GoonTools.Common.Option.SaveErrorLog;
@@ -37,16 +47,6 @@ namespace MonoBPMonitor
 				this.ActionArea.Destroy();
 				this.HasSeparator = false;
 				notebook1.CurrentPage = 0;
-				if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "false")
-				{
-					notebook1.RemovePage(2);
-				}
-				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "false")
-				{
-					lblGUPdotNETVersion.Destroy();
-					lblGUPdotNETText.Destroy();
-				}
-				this.ShowAll();
 			}
 			catch(Exception ex)
 			{
@@ -64,6 +64,7 @@ namespace MonoBPMonitor
 
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
+			SaveChanges();
 		}
 		
 		private void SaveChanges()
@@ -608,16 +609,7 @@ namespace MonoBPMonitor
 		protected virtual void OnClose (object sender, System.EventArgs e)
 		{
 			 SaveChanges();
-		}
-		
-		#region Themes
-		
-		private void LoadThemes()
-		{
-			
-		}
-		
-		#endregion Themes
+		}		
 		
 		protected virtual void OnBackupGeneral_Toggled (object sender, System.EventArgs e)
 		{

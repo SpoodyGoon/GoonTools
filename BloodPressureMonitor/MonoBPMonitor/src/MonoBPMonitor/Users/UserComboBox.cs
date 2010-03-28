@@ -145,8 +145,6 @@ namespace MonoBPMonitor.Users
 //		protected override void OnRealized ()
 //		{
 //			Build();
-//			int i = this.WidthRequest;
-//			this.WidthRequest = 185;
 //			base.OnRealized ();
 //		}
 

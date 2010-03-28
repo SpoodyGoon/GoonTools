@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="..\bin\Debug\MonoBPMonitor.exe" internal="true" />
+    <widget-library name="../bin/Debug/MonoBPMonitor.exe" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="edit_user.png">
@@ -2637,7 +2637,7 @@
               <widget class="Gtk.Notebook" id="notebook1">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="CurrentPage">0</property>
+                <property name="CurrentPage">2</property>
                 <child>
                   <widget class="Gtk.Alignment" id="GtkAlignment2">
                     <property name="MemberName" />
@@ -3263,7 +3263,7 @@
                                         <child>
                                           <widget class="Gtk.Label" id="label10">
                                             <property name="MemberName" />
-                                            <property name="LabelProp" translatable="yes">&lt;span color="Red"&gt;&lt;b&gt;PLEASE NOTE:&lt;/b&gt;&lt;/span&gt;   Changes require application resstart.</property>
+                                            <property name="LabelProp" translatable="yes">&lt;span color="Red"&gt;&lt;b&gt;PLEASE NOTE:&lt;/b&gt;&lt;/span&gt;   Changes require application restart.</property>
                                             <property name="UseMarkup">True</property>
                                             <property name="Justify">Center</property>
                                           </widget>
