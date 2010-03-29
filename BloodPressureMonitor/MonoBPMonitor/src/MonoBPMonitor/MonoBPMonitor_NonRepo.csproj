@@ -124,7 +124,6 @@
       <LogicalName>date.png</LogicalName>
     </EmbeddedResource>
     <Compile Include="Common\MetaInfo.cs" />
-    <Compile Include="Common\SQLiteHelper.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmErrorMessage.cs" />
     <Compile Include="Help\frmErrorMessage.cs" />
     <Compile Include="MiscControls\ThemeComboBox.cs" />
@@ -236,9 +235,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\libGUPdotNET\libGUPdotNET.csproj">
+    <ProjectReference Include="..\..\..\GUPdotNET_V2\src\libGUPdotNET\libGUPdotNET.csproj">
       <Project>{4E6905D8-8826-432F-B793-3B9B95CB9F94}</Project>
       <Name>libGUPdotNET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SQLiteHelper\src\SQLiteHelper\SQLiteHelper.csproj">
+      <Project>{D210EDCC-43AF-48EF-B982-51901A144063}</Project>
+      <Name>SQLiteHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
