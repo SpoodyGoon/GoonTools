@@ -34,6 +34,7 @@
 
 
 using System;
+using System.Threading;
 using System.IO;
 using System.Data;
 using System.Collections;
@@ -836,6 +837,80 @@ namespace GoonTools
 		
 		#endregion Generic Conversions
 		
+		public void Dump(string ExportFile)
+		{
+			if(String.IsNullOrEmpty(_DatabaseURL))
+				throw new Exception("Database File Location not set.");
+			
+			if(!File.Exists(_DatabaseURL))
+				throw new FileNotFoundException("Database File Location does not exist. " + Environment.NewLine + " Supplied Location: " + _DatabaseURL);
+			
+			try
+			{
+				if(File.Exists(ExportFile))
+					File.Delete(ExportFile);
+				
+				ArrayList ar = new ArrayList();
+				StreamWriter sw = new StreamWriter(ExportFile, false);
+				sw.WriteLine(" -- ######################## BEGIN TABLE SQL ######################## -- ");
+				sw.WriteLine("");
+				DataTable dt = ExecuteDataTable("SELECT name, sql FROM sqlite_master WHERE type='table' and name <> 'sqlite_sequence' ORDER BY name;");
+				for(int i = 0; i < dt.Rows.Count; i++)
+				{
+					ar.Add(dt.Rows[i]["name"].ToString());
+					sw.Write(dt.Rows[i]["sql"].ToString() + Environment.NewLine + Environment.NewLine);
+				}
+				dt.Clear();
+				sw.WriteLine("");
+				sw.WriteLine(" -- ######################## END TABLE SQL ######################### -- ");
+				sw.WriteLine("");
+				sw.WriteLine("");
+				sw.WriteLine(" -- ######################## BEGIN DATA SQL ######################## -- ");
+				string BaseInsert = "INSERT INTO -TABLENAME- (-COLUMNS-) VALUES (-VALUES-);";
+				System.Text.StringBuilder sb = new System.Text.StringBuilder();
+				System.Text.StringBuilder sbValues = new System.Text.StringBuilder();
+				for(int i = 0; i < ar.Count; i++)
+				{
+					dt = ExecuteDataTable("SELECT * FROM " + ar[i].ToString() + " ;");
+					// construct the insert portion
+					for(int j = 0; j < dt.Columns.Count; j ++)
+					{
+						sb.Append(dt.Columns[j].ColumnName + ",");
+					}
+					// get rid of the last comma
+					sb.Remove(sb.Length -1, 1);
+					for(int j = 0; j < dt.Rows.Count; j++)
+					{
+						for(int k = 0; k < dt.Columns.Count; k++)
+						{
+							sbValues.Append(dt.Rows[i][k].ToString() + ",");
+						}
+					}
+					if(sbValues.Length > 1)
+					{
+						// get rid of the last comma
+						sbValues.Remove(sbValues.Length -1, 1);
+					}
+					
+					sw.WriteLine(BaseInsert.Replace("-TABLENAME-", ar[i].ToString()).Replace("-COLUMNS-", sb.ToString()).Replace("-VALUES-", sbValues.ToString()));
+					sw.WriteLine("");
+					sb.Length = 0;
+					sbValues.Length = 0;
+				}
+				sw.WriteLine("");
+				sw.WriteLine(" -- ######################## END DATA SQL ########################## -- ");
+				sw.Flush();
+				sw.Close();
+				sw.Dispose();
+				
+			}
+			catch(Exception ex)
+			{
+				throw new Exception(ex.ToString());
+			}
+			
+			
+		}
 	}
 	
 }
