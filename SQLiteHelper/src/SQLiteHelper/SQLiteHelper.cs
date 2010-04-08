@@ -865,7 +865,44 @@ namespace GoonTools
 				sw.WriteLine(" -- ######################## END TABLE SQL ######################### -- ");
 				sw.WriteLine("");
 				sw.WriteLine("");
+				sw.WriteLine(" -- ######################## BEGIN INDEX SQL ######################## -- ");
+				sw.WriteLine("");
+				dt = ExecuteDataTable("SELECT name, sql FROM sqlite_master WHERE type='index' ORDER BY name;");
+				for(int i = 0; i < dt.Rows.Count; i++)
+				{
+					sw.Write(dt.Rows[i]["sql"].ToString() + Environment.NewLine);
+				}
+				dt.Clear();
+				sw.WriteLine("");
+				sw.WriteLine(" -- ######################## END INDEX SQL ######################### -- ");
+				sw.WriteLine("");
+				sw.WriteLine("");
+				sw.WriteLine(" -- ######################## BEGIN VIEW SQL ######################## -- ");
+				sw.WriteLine("");
+				dt = ExecuteDataTable("SELECT name, sql FROM sqlite_master WHERE type='view' ORDER BY name;");
+				for(int i = 0; i < dt.Rows.Count; i++)
+				{
+					sw.Write(dt.Rows[i]["sql"].ToString() + Environment.NewLine);
+				}
+				dt.Clear();
+				sw.WriteLine("");
+				sw.WriteLine(" -- ######################## END VIEW SQL ######################### -- ");
+				sw.WriteLine("");
+				sw.WriteLine("");
+				sw.WriteLine(" -- ######################## BEGIN TRIGGER SQL ######################## -- ");
+				sw.WriteLine("");
+				dt = ExecuteDataTable("SELECT name, sql FROM sqlite_master WHERE type='trigger' ORDER BY name;");
+				for(int i = 0; i < dt.Rows.Count; i++)
+				{
+					sw.Write(dt.Rows[i]["sql"].ToString() + Environment.NewLine);
+				}
+				dt.Clear();
+				sw.WriteLine("");
+				sw.WriteLine(" -- ######################## END TRIGGER SQL ######################### -- ");
+				sw.WriteLine("");
+				sw.WriteLine("");
 				sw.WriteLine(" -- ######################## BEGIN DATA SQL ######################## -- ");
+				sw.WriteLine("");
 				string BaseInsert = "INSERT INTO -TABLENAME- (-COLUMNS-) VALUES (-VALUES-);";
 				System.Text.StringBuilder sb = new System.Text.StringBuilder();
 				System.Text.StringBuilder sbValues = new System.Text.StringBuilder();
@@ -875,29 +912,58 @@ namespace GoonTools
 					// construct the insert portion
 					for(int j = 0; j < dt.Columns.Count; j ++)
 					{
-						sb.Append(dt.Columns[j].ColumnName + ",");
+						sb.Append(dt.Columns[j].ColumnName + ", ");
 					}
 					// get rid of the last comma
-					sb.Remove(sb.Length -1, 1);
+					sb.Remove(sb.Length -2, 2);
 					for(int j = 0; j < dt.Rows.Count; j++)
 					{
 						for(int k = 0; k < dt.Columns.Count; k++)
 						{
-							sbValues.Append(dt.Rows[i][k].ToString() + ",");
+							switch(dt.Columns[k].DataType.ToString())
+							{
+								case "System.String":
+								case "System.Xml":
+								case "System.Guid":
+									sbValues.Append("'"  + dt.Rows[j][k].ToString() + "', ");
+									break;
+								case "System.Decimal":
+								case "System.Double":
+								case "System.Currency":
+								case "System.Int16":
+								case "System.Int32":
+								case "System.Int64":
+								case "System.UInt16":
+								case "System.UInt32":
+								case "System.UInt64":
+									sbValues.Append(dt.Rows[j][k].ToString() + ", ");
+									break;
+									
+								case "System.Date":
+								case "System.DateTime":
+								case "System.Time":
+									sbValues.Append(ToSQLiteDateTime(dt.Rows[j][k].ToString()) + ", ");
+									break;
+									
+								case "System.Boolean":
+									sbValues.Append("'"  + dt.Rows[j][k].ToString() + "', ");
+									break;
+								default:
+									sbValues.Append("'"  + dt.Rows[j][k].ToString() + "', ");
+									break;
+							}
 						}
-					}
-					if(sbValues.Length > 1)
-					{
 						// get rid of the last comma
-						sbValues.Remove(sbValues.Length -1, 1);
+						if(sbValues.Length > 1)
+							sbValues.Remove(sbValues.Length -2, 2);
+						
+						sw.WriteLine(BaseInsert.Replace("-TABLENAME-", ar[i].ToString()).Replace("-COLUMNS-", sb.ToString()).Replace("-VALUES-", sbValues.ToString()));
+						sbValues.Remove(0, sbValues.Length);
 					}
-					
-					sw.WriteLine(BaseInsert.Replace("-TABLENAME-", ar[i].ToString()).Replace("-COLUMNS-", sb.ToString()).Replace("-VALUES-", sbValues.ToString()));
 					sw.WriteLine("");
-					sb.Length = 0;
-					sbValues.Length = 0;
+					if(sb.Length > 0)
+						sb.Remove(0, sb.Length);
 				}
-				sw.WriteLine("");
 				sw.WriteLine(" -- ######################## END DATA SQL ########################## -- ");
 				sw.Flush();
 				sw.Close();
@@ -908,9 +974,6 @@ namespace GoonTools
 			{
 				throw new Exception(ex.ToString());
 			}
-			
-			
 		}
 	}
-	
 }
