@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -29,15 +29,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="atk-sharp" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System" />
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="Mono.Posix" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -53,11 +53,11 @@
     <Folder Include="QuickTime\" />
     <Folder Include="QuickDate\" />
     <Compile Include="DropDownList.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="QuickDate\QuickDate2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ColumnSelector\columnpicker.png" />
-    <None Include="QuickDate\ClearDate.png" />
-    <None Include="QuickDate\QuickDate.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnSelector\ColumnSelectorTreeView.cs" />
@@ -66,7 +66,6 @@
     <Compile Include="ColumnSelector\TreeColumnSelector.cs" />
     <Compile Include="Common\GrabUtil.cs" />
     <Compile Include="Common\Common.cs" />
-    <Compile Include="QuickDate\QuickDate.cs" />
     <Compile Include="QuickTime\QuickTimeMenu.cs" />
     <Compile Include="QuickTime\QuickTime.cs" />
     <Compile Include="LinkButton.cs" />
@@ -77,6 +76,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuickTime\QuickTime.png">
       <LogicalName>QuickTime.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickDate\ClearDate.png">
+      <LogicalName>ClearDate.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickDate\QuickDate.png">
+      <LogicalName>QuickDate.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
