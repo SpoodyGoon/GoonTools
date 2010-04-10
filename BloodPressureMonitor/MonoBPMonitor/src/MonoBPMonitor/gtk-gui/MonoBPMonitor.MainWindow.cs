@@ -239,7 +239,6 @@ namespace MonoBPMonitor {
             this.alignment4.Name = "alignment4";
             // Container child alignment4.Gtk.Container+ContainerChild
             this.hbuttonbox1 = new Gtk.HButtonBox();
-            this.hbuttonbox1.Name = "hbuttonbox1";
             this.hbuttonbox1.Spacing = 24;
             // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
             this.btnAddEntry = new Gtk.Button();
@@ -328,7 +327,9 @@ namespace MonoBPMonitor {
             this.alignment5 = new Gtk.Alignment(0.98F, 0.5F, 0.01F, 1F);
             this.alignment5.Name = "alignment5";
             // Container child alignment5.Gtk.Container+ContainerChild
-            this.cboUser = null;
+            this.cboUser = new MonoBPMonitor.Users.UserComboBox();
+            this.cboUser.WidthRequest = 200;
+            this.cboUser.Name = "cboUser";
             this.alignment5.Add(this.cboUser);
             this.hbox1.Add(this.alignment5);
             Gtk.Box.BoxChild w36 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment5]));

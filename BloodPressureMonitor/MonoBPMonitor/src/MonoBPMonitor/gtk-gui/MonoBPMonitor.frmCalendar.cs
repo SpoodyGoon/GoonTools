@@ -49,11 +49,7 @@ namespace MonoBPMonitor {
         
         private Gtk.Alignment alignment8;
         
-        private Gtk.RadioButton rbnPM;
-        
         private Gtk.Alignment alignment7;
-        
-        private Gtk.RadioButton rbnAM;
         
         private Gtk.Alignment alignment1;
         
@@ -201,44 +197,27 @@ namespace MonoBPMonitor {
             // Container child hbox1.Gtk.Box+BoxChild
             this.alignment8 = new Gtk.Alignment(0.01F, 0.5F, 0.01F, 1F);
             this.alignment8.Name = "alignment8";
-            // Container child alignment8.Gtk.Container+ContainerChild
-            this.rbnPM = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("p.m."));
-            this.rbnPM.CanFocus = true;
-            this.rbnPM.Name = "rbnPM";
-            this.rbnPM.Active = true;
-            this.rbnPM.DrawIndicator = true;
-            this.rbnPM.UseUnderline = true;
-            this.rbnPM.Group = new GLib.SList(System.IntPtr.Zero);
-            this.alignment8.Add(this.rbnPM);
             this.hbox1.Add(this.alignment8);
-            Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment8]));
-            w15.PackType = ((Gtk.PackType)(1));
-            w15.Position = 4;
+            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment8]));
+            w14.PackType = ((Gtk.PackType)(1));
+            w14.Position = 4;
             // Container child hbox1.Gtk.Box+BoxChild
             this.alignment7 = new Gtk.Alignment(0.01F, 0.5F, 0.01F, 1F);
             this.alignment7.Name = "alignment7";
-            // Container child alignment7.Gtk.Container+ContainerChild
-            this.rbnAM = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("a.m."));
-            this.rbnAM.CanFocus = true;
-            this.rbnAM.Name = "rbnAM";
-            this.rbnAM.DrawIndicator = true;
-            this.rbnAM.UseUnderline = true;
-            this.rbnAM.Group = this.rbnPM.Group;
-            this.alignment7.Add(this.rbnAM);
             this.hbox1.Add(this.alignment7);
-            Gtk.Box.BoxChild w17 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment7]));
-            w17.PackType = ((Gtk.PackType)(1));
-            w17.Position = 5;
-            w17.Expand = false;
-            w17.Fill = false;
+            Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment7]));
+            w15.PackType = ((Gtk.PackType)(1));
+            w15.Position = 5;
+            w15.Expand = false;
+            w15.Fill = false;
             this.alignment2.Add(this.hbox1);
             this.frame2.Add(this.alignment2);
             this.algTime.Add(this.frame2);
             this.vbox2.Add(this.algTime);
-            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.vbox2[this.algTime]));
-            w21.Position = 1;
-            w21.Expand = false;
-            w21.Fill = false;
+            Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(this.vbox2[this.algTime]));
+            w19.Position = 1;
+            w19.Expand = false;
+            w19.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment1.Name = "alignment1";
@@ -256,21 +235,21 @@ namespace MonoBPMonitor {
             this.evntDateTimeNow.Add(this.lblNow);
             this.alignment1.Add(this.evntDateTimeNow);
             this.vbox2.Add(this.alignment1);
-            Gtk.Box.BoxChild w24 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
-            w24.Position = 2;
-            w24.Expand = false;
-            w24.Fill = false;
+            Gtk.Box.BoxChild w22 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
+            w22.Position = 2;
+            w22.Expand = false;
+            w22.Fill = false;
             w1.Add(this.vbox2);
-            Gtk.Box.BoxChild w25 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
-            w25.Position = 0;
-            w25.Expand = false;
-            w25.Fill = false;
+            Gtk.Box.BoxChild w23 = ((Gtk.Box.BoxChild)(w1[this.vbox2]));
+            w23.Position = 0;
+            w23.Expand = false;
+            w23.Fill = false;
             // Internal child MonoBPMonitor.frmCalendar.ActionArea
-            Gtk.HButtonBox w26 = this.ActionArea;
-            w26.Name = "dialog1_ActionArea";
-            w26.Spacing = 6;
-            w26.BorderWidth = ((uint)(5));
-            w26.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
+            Gtk.HButtonBox w24 = this.ActionArea;
+            w24.Name = "dialog1_ActionArea";
+            w24.Spacing = 6;
+            w24.BorderWidth = ((uint)(5));
+            w24.LayoutStyle = ((Gtk.ButtonBoxStyle)(1));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -280,9 +259,9 @@ namespace MonoBPMonitor {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w27 = ((Gtk.ButtonBox.ButtonBoxChild)(w26[this.buttonCancel]));
-            w27.Expand = false;
-            w27.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w25 = ((Gtk.ButtonBox.ButtonBoxChild)(w24[this.buttonCancel]));
+            w25.Expand = false;
+            w25.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -292,10 +271,10 @@ namespace MonoBPMonitor {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w28 = ((Gtk.ButtonBox.ButtonBoxChild)(w26[this.buttonOk]));
-            w28.Position = 1;
-            w28.Expand = false;
-            w28.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w26 = ((Gtk.ButtonBox.ButtonBoxChild)(w24[this.buttonOk]));
+            w26.Position = 1;
+            w26.Expand = false;
+            w26.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }

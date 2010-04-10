@@ -31,7 +31,8 @@ namespace MonoBPMonitor
 		public static void Main (string[] args)
 		{
 			Application.Init ();
-			GoonTools.Common.LoadAll();
+			GoonTools.Common.LoadAll ();
+#if !REPO
 			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true" && GoonTools.Common.Option.UseCustomTheme == true && GoonTools.Common.EnvData.IsWindows == true)
 			{
 				if(GoonTools.Common.Option.CustomThemeFile == "")
@@ -52,6 +53,7 @@ namespace MonoBPMonitor
 					Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeFile);
 				}
 			}
+#endif
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();
