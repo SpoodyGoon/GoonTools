@@ -886,7 +886,9 @@ namespace MonoBPMonitor {
             this.alignment10 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment10.Name = "alignment10";
             // Container child alignment10.Gtk.Container+ContainerChild
-            this.cboCustomTheme = null;
+            this.cboCustomTheme = new MonoBPMonitor.Data.ThemeComboBox();
+            this.cboCustomTheme.WidthRequest = 200;
+            this.cboCustomTheme.Name = "cboCustomTheme";
             this.alignment10.Add(this.cboCustomTheme);
             this.hbox1.Add(this.alignment10);
             Gtk.Box.BoxChild w76 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment10]));

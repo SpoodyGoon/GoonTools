@@ -46,36 +46,37 @@ namespace GoonTools.Helper
 		private string _UserThemePath = null;
 		private string _DataPath = null;
 		private bool _IsWindows = false;
-		internal EnviromentData()
+		internal EnviromentData ()
 		{
 			so.FileInfo fi;
 			so.DirectoryInfo di;
 			sr.Assembly asm = sr.Assembly.GetExecutingAssembly ();
 			
 			// set the operating system
-			_OS=se.OSVersion.Platform.ToString();
+			_OS = se.OSVersion.Platform.ToString ();
 			
 			// the character that seperates paths in the local directorys
-			_DirChar = so.Path.DirectorySeparatorChar.ToString();
+			_DirChar = so.Path.DirectorySeparatorChar.ToString ();
 			
 			// set the app path
-			 fi = new so.FileInfo(asm.Location);
+			fi = new so.FileInfo (asm.Location);
 			_AppPath = fi.Directory.FullName;
-			_ProgramName = asm.GetName().Name;
-			if(sc.ConfigurationManager.AppSettings["Debug"].ToLower() == "false")
+			_ProgramName = asm.GetName ().Name;
+			if (sc.ConfigurationManager.AppSettings["Debug"].ToLower () == "false")
 			{
 				// set the location of the save data for the user
-				di = new so.DirectoryInfo(so.Path.Combine(se.GetFolderPath(se.SpecialFolder.ApplicationData), _ProgramName));
-				
+				di = new so.DirectoryInfo (so.Path.Combine (se.GetFolderPath (se.SpecialFolder.ApplicationData), _ProgramName));
+			
 			}
 			else
 			{
-				di = new so.DirectoryInfo(so.Path.Combine(_AppPath, "DebugFiles"));
+				di = new so.DirectoryInfo (so.Path.Combine (_AppPath, "DebugFiles"));
 			}
 			
-			if(!di.Exists)
-				di.Create();
+			if (!di.Exists)
+				di.Create ();
 			
+			Console.WriteLine (di.FullName);
 			_SavePath = di.FullName;			
 			
 			// get the defaults path - this is where we keep the things we copy over

@@ -1,1 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  <PropertyGroup>    <ItemType>PackagingProject</ItemType>    <ProductVersion>9.0.21022</ProductVersion>    <SchemaVersion>2.0</SchemaVersion>    <ProjectGuid>{07D5783B-AE64-4F7F-8E9B-50FA55722303}</ProjectGuid>    <Packages>      <Packages xmlns="">        <Package name="Mono Makefile Sources">          <Builder targetFile="..\MonoBPMonitor-.tar.gz" format="MonoDevelop.Projects.FileFormat" ctype="SourcesZipPackageBuilder">            <ChildEntries>              <SolutionItemReference path="..\MonoBPMonitor\MonoBPMonitor.csproj" />              <SolutionItemReference path="..\..\..\SQLiteHelper\src\SQLiteHelper\SQLiteHelper.csproj" />            </ChildEntries>            <RootEntry path="..\MonoBPMonitor.sln" id=":root:" />          </Builder>        </Package>        <Package name="Tarball">          <Builder TargetDirectory=".." ctype="TarballDeployTarget">            <ChildEntries>              <SolutionItemReference path="..\MonoBPMonitor\MonoBPMonitor.csproj" />              <SolutionItemReference path="..\..\..\SQLiteHelper\src\SQLiteHelper\SQLiteHelper.csproj" />            </ChildEntries>            <RootEntry path="..\MonoBPMonitor.sln" id=":root:" />          </Builder>        </Package>      </Packages>    </Packages>  </PropertyGroup></Project>
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ItemType>PackagingProject</ItemType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{07D5783B-AE64-4F7F-8E9B-50FA55722303}</ProjectGuid>
+    <Packages>
+      <Packages>
+        <Package name="Mono Makefile Sources">
+          <Builder targetFile="..\MonoBPMonitor-.tar.gz" format="MonoDevelop.Projects.FileFormat" ctype="SourcesZipPackageBuilder">
+            <ChildEntries>
+              <SolutionItemReference path="..\MonoBPMonitor\MonoBPMonitor.csproj" />
+              <SolutionItemReference path="..\..\..\SQLiteHelper\src\SQLiteHelper\SQLiteHelper.csproj" />
+            </ChildEntries>
+            <RootEntry path="..\MonoBPMonitor.sln" id=":root:" />
+          </Builder>
+        </Package>
+        <Package name="Tarball">
+          <Builder TargetDirectory=".." ctype="TarballDeployTarget">
+            <ChildEntries>
+              <SolutionItemReference path="..\MonoBPMonitor\MonoBPMonitor.csproj" />
+              <SolutionItemReference path="..\..\..\SQLiteHelper\src\SQLiteHelper\SQLiteHelper.csproj" />
+            </ChildEntries>
+            <RootEntry path="..\MonoBPMonitor.sln" id=":root:" />
+          </Builder>
+        </Package>
+      </Packages>
+    </Packages>
+  </PropertyGroup>
+</Project>

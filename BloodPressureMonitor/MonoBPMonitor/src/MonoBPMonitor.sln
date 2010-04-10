@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-# SharpDevelop 3.1.1.5052
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoBPMonitor", "MonoBPMonitor\MonoBPMonitor.csproj", "{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteHelper", "..\..\SQLiteHelper\src\SQLiteHelper\SQLiteHelper.csproj", "{D210EDCC-43AF-48EF-B982-51901A144063}"
@@ -19,15 +18,20 @@ Global
 		{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D210EDCC-43AF-48EF-B982-51901A144063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D210EDCC-43AF-48EF-B982-51901A144063}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D210EDCC-43AF-48EF-B982-51901A144063}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D210EDCC-43AF-48EF-B982-51901A144063}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07D5783B-AE64-4F7F-8E9B-50FA55722303}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07D5783B-AE64-4F7F-8E9B-50FA55722303}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C0E23CD-62CC-458B-9BB8-8D61B5508B6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
+		description = Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.\n\nIt include methods to track medication as well as doctors but it's main focus is the simple tracking and reporting of blood pressure readings.
 		StartupItem = MonoBPMonitor\MonoBPMonitor.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.VersionControlPolicy = $2
+		$2.inheritsSet = Mono
 	EndGlobalSection
 EndGlobal
