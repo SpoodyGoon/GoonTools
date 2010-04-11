@@ -40,6 +40,7 @@ using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using Mono.Data.SqliteClient;
+using Gtk;
 
 namespace GoonTools
 {
@@ -61,6 +62,9 @@ namespace GoonTools
 		private SqliteDataReader _SQLiteReader = null;
 //		private Dictionary<string, object> _Parmeters = new Dictionary<string, object>();
 
+		// Local GUI Options
+		private bool _ReportExceptionInline = false;
+
 		#endregion Private Properties
 
 		#region Public Properties
@@ -68,8 +72,7 @@ namespace GoonTools
 		/// <summary>
 		///  Sets of gets the connection busy time out
 		/// </summary>
-		public int BusyTimeout
-		{
+		public int BusyTimeout {
 			get { return _BusyTimeout; }
 			set { _BusyTimeout = value; }
 		}
@@ -77,8 +80,7 @@ namespace GoonTools
 		/// <summary>
 		///  Sets of gets the connection time out
 		/// </summary>
-		public int TimeOut
-		{
+		public int TimeOut {
 			get { return _TimeOut; }
 			set { _TimeOut = value; }
 		}
@@ -86,8 +88,7 @@ namespace GoonTools
 		/// <summary>
 		///  Sets or gets the connection string
 		/// </summary>
-		public string DatabaseURL
-		{
+		public string DatabaseURL {
 			get { return _DatabaseURL; }
 			set { _DatabaseURL = value; }
 		}
@@ -95,9 +96,18 @@ namespace GoonTools
 		/// <summary>
 		///  Returns and Exception message if needed
 		/// </summary>
-		public string ExceptionMessage
-		{
+		public string ExceptionMessage {
 			get { return _ExceptionMessage; }
+		}
+
+		/// <summary>
+		///  If this is true then we will
+		/// show the error dialog from this class
+		/// otherwise it is passed backto the calling class
+		/// </summary>
+		public bool ReportExceptionInline {
+			get { return _ReportExceptionInline; }
+			set { _ReportExceptionInline = value; }
 		}
 
 //		public Dictionary<string, object> Parameters
@@ -107,6 +117,24 @@ namespace GoonTools
 
 		#endregion Public Properties
 
+		#region Private Methods
+
+		private void HandleError (Exception ex, string FunctionDesc)
+		{
+			// set the error message for return if needed
+			_ExceptionMessage = ex.ToString ();
+			// if the error message is shown inline
+			if (_ReportExceptionInline) {
+				Gtk.MessageDialog md = new Gtk.MessageDialog (null, DialogFlags.Modal | DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, ex.ToString () + " " + FunctionDesc, "An Error Has Occured");
+				md.Run ();
+				md.Destroy ();
+			} else {
+				// throw the error back at the calling class
+				throw new Exception (ex.ToString ());
+			}
+		}
+
+		#endregion Private Mehtods
 		#region Class Constructors
 
 		/// <summary>
@@ -151,8 +179,7 @@ namespace GoonTools
 				_SQLiteTrans.Dispose ();
 			
 			// close and dispose the conneciton
-			if (_SQLiteCN != null)
-			{
+			if (_SQLiteCN != null) {
 				if (_SQLiteCN.State != ConnectionState.Closed)
 					_SQLiteCN.Close ();
 				
@@ -210,8 +237,7 @@ namespace GoonTools
 		/// <returns></returns>
 		private void InitConnection ()
 		{
-			if (_SQLiteCN == null)
-			{
+			if (_SQLiteCN == null) {
 				FileInfo fi = new FileInfo (_DatabaseURL);
 				if (!fi.Exists)
 					throw new FileNotFoundException ("Database not found for connection string.", fi.FullName);
@@ -245,10 +271,8 @@ namespace GoonTools
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					OpenConnection ();
 					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
 					blnHasRows = _SQLiteReader.HasRows;
@@ -256,19 +280,14 @@ namespace GoonTools
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
-						throw new Exception (ex.ToString ());
+						HandleError (ex, null);
 					}
 				}
 			}
@@ -298,16 +317,12 @@ namespace GoonTools
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					OpenConnection ();
 					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
-					while (_SQLiteReader.Read ())
-					{
-						for (int i = 0; i < _SQLiteReader.FieldCount; i++)
-						{
+					while (_SQLiteReader.Read ()) {
+						for (int i = 0; i < _SQLiteReader.FieldCount; i++) {
 							hshReturn.Add (_SQLiteReader.GetName (i).ToString (), _SQLiteReader[i].ToString ());
 						}
 					}
@@ -316,17 +331,12 @@ namespace GoonTools
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
 						throw new Exception (ex.ToString ());
 					}
@@ -359,31 +369,23 @@ namespace GoonTools
 			_SQLiteCMD.CommandType = CommandType.Text;
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					OpenConnection ();
 					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
-					while (_SQLiteReader.Read ())
-					{
+					while (_SQLiteReader.Read ()) {
 						arrReturn.Add ((object)_SQLiteReader[0]);
 					}
 					_SQLiteReader.Close ();
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
 						throw new Exception (ex.ToString ());
 					}
@@ -414,31 +416,23 @@ namespace GoonTools
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					OpenConnection ();
 					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
-					while (_SQLiteReader.Read ())
-					{
+					while (_SQLiteReader.Read ()) {
 						arrReturn.Add ((object)_SQLiteReader[ColumnName]);
 					}
 					_SQLiteReader.Close ();
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
 						throw new Exception (ex.ToString ());
 					}
@@ -468,16 +462,12 @@ namespace GoonTools
 			_SQLiteReader = null;
 			
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					OpenConnection ();
 					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
-					while (_SQLiteReader.Read ())
-					{
-						for (int i = 0; i < _SQLiteReader.FieldCount; i++)
-						{
+					while (_SQLiteReader.Read ()) {
+						for (int i = 0; i < _SQLiteReader.FieldCount; i++) {
 							arrReturn.Add ((object)_SQLiteReader[i]);
 						}
 						
@@ -486,17 +476,12 @@ namespace GoonTools
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
 						throw new Exception (ex.ToString ());
 					}
@@ -528,26 +513,19 @@ namespace GoonTools
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					OpenConnection ();
 					_SQLiteReader = _SQLiteCMD.ExecuteReader ();
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
 						throw new Exception (ex.ToString ());
 					}
@@ -577,27 +555,20 @@ namespace GoonTools
 			_SQLiteCMD.CommandTimeout = _TimeOut;
 			
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					OpenConnection ();
 					_SQLiteCMD.ExecuteNonQuery ();
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
 						throw new Exception (ex.ToString ());
 					}
@@ -643,26 +614,19 @@ namespace GoonTools
 				_SQLiteCMD.CommandText += "SELECT last_insert_rowid();";
 			
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					OpenConnection ();
 					strReturn = _SQLiteCMD.ExecuteScalar ().ToString ();
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
 						throw new Exception (ex.ToString ());
 					}
@@ -701,25 +665,18 @@ namespace GoonTools
 				ds.DataSetName = "ds";
 			
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					sqlDA.Fill (ds);
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
 						throw new Exception (ex.ToString ());
 					}
@@ -766,25 +723,18 @@ namespace GoonTools
 				dt.TableName = "dt";
 			
 			bool lockedDatabaseException = true;
-			while (lockedDatabaseException)
-			{
-				try
-				{
+			while (lockedDatabaseException) {
+				try {
 					sqlDA.Fill (dt);
 					if (_SQLiteCMD.Parameters.Count > 0)
 						_SQLiteCMD.Parameters.Clear ();
 					lockedDatabaseException = false;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.ToLower ().Contains ("database is locked"))
-					{
+				} catch (Exception ex) {
+					if (ex.Message.ToLower ().Contains ("database is locked")) {
 						lockedDatabaseException = true;
 						System.Threading.Thread.Sleep (_LockedDBSleep);
-					}
-
-					else
-					{
+						
+					} else {
 						lockedDatabaseException = false;
 						throw new Exception (ex.ToString ());
 					}
@@ -797,10 +747,9 @@ namespace GoonTools
 		#endregion DataSets and DataTables
 
 		#region Generic Conversions
-		
-		public string DateTimeNow
-		{
-			get{return "DATETIME('now','localtime')";}
+
+		public string DateTimeNow {
+			get { return "DATETIME('now','localtime')"; }
 		}
 
 		public string ToSQLiteDateTime (DateTime dt)
@@ -811,168 +760,150 @@ namespace GoonTools
 		public string ToSQLiteDateTime (string DateTimeString)
 		{
 			string strReturn = "";
-			if(!IsDateTime(DateTimeString))
-			{
-				throw new Exception("Invalid DateTime Format");
-			}
-			else
-			{
-				strReturn = "DATETIME('" + Convert.ToDateTime(DateTimeString).ToString ("yyyy-MM-dd HH:mm:ss") + "','localtime')";
+			if (!IsDateTime (DateTimeString)) {
+				throw new Exception ("Invalid DateTime Format");
+			} else {
+				strReturn = "DATETIME('" + Convert.ToDateTime (DateTimeString).ToString ("yyyy-MM-dd HH:mm:ss") + "','localtime')";
 			}
 			return strReturn;
 		}
 
 		public bool IsDateTime (string DateTimeString)
 		{
-			try
-			{
+			try {
 				Convert.ToDateTime (DateTimeString);
 				return true;
-			}
-			catch
-			{
+			} catch {
 				return false;
 			}
 		}
-		
+
 		#endregion Generic Conversions
-		
-		public void Dump(string ExportFile)
+
+		public void Dump (string ExportFile)
 		{
-			if(String.IsNullOrEmpty(_DatabaseURL))
-				throw new Exception("Database File Location not set.");
+			if (String.IsNullOrEmpty (_DatabaseURL))
+				throw new Exception ("Database File Location not set.");
 			
-			if(!File.Exists(_DatabaseURL))
-				throw new FileNotFoundException("Database File Location does not exist. " + Environment.NewLine + " Supplied Location: " + _DatabaseURL);
+			if (!File.Exists (_DatabaseURL))
+				throw new FileNotFoundException ("Database File Location does not exist. " + Environment.NewLine + " Supplied Location: " + _DatabaseURL);
 			
-			try
-			{
-				if(File.Exists(ExportFile))
-					File.Delete(ExportFile);
+			try {
+				if (File.Exists (ExportFile))
+					File.Delete (ExportFile);
 				
-				ArrayList ar = new ArrayList();
-				StreamWriter sw = new StreamWriter(ExportFile, false);
-				sw.WriteLine(" -- ######################## BEGIN TABLE SQL ######################## -- ");
-				sw.WriteLine("");
-				DataTable dt = ExecuteDataTable("SELECT name, sql FROM sqlite_master WHERE type='table' and name <> 'sqlite_sequence' ORDER BY name;");
-				for(int i = 0; i < dt.Rows.Count; i++)
-				{
-					ar.Add(dt.Rows[i]["name"].ToString());
-					sw.Write(dt.Rows[i]["sql"].ToString() + Environment.NewLine + Environment.NewLine);
+				ArrayList ar = new ArrayList ();
+				StreamWriter sw = new StreamWriter (ExportFile, false);
+				sw.WriteLine (" -- ######################## BEGIN TABLE SQL ######################## -- ");
+				sw.WriteLine ("");
+				DataTable dt = ExecuteDataTable ("SELECT name, sql FROM sqlite_master WHERE type='table' and name <> 'sqlite_sequence' ORDER BY name;");
+				for (int i = 0; i < dt.Rows.Count; i++) {
+					ar.Add (dt.Rows[i]["name"].ToString ());
+					sw.Write (dt.Rows[i]["sql"].ToString () + Environment.NewLine + Environment.NewLine);
 				}
-				dt.Clear();
-				sw.WriteLine("");
-				sw.WriteLine(" -- ######################## END TABLE SQL ######################### -- ");
-				sw.WriteLine("");
-				sw.WriteLine("");
-				sw.WriteLine(" -- ######################## BEGIN INDEX SQL ######################## -- ");
-				sw.WriteLine("");
-				dt = ExecuteDataTable("SELECT name, sql FROM sqlite_master WHERE type='index' ORDER BY name;");
-				for(int i = 0; i < dt.Rows.Count; i++)
-				{
-					sw.Write(dt.Rows[i]["sql"].ToString() + Environment.NewLine);
+				dt.Clear ();
+				sw.WriteLine ("");
+				sw.WriteLine (" -- ######################## END TABLE SQL ######################### -- ");
+				sw.WriteLine ("");
+				sw.WriteLine ("");
+				sw.WriteLine (" -- ######################## BEGIN INDEX SQL ######################## -- ");
+				sw.WriteLine ("");
+				dt = ExecuteDataTable ("SELECT name, sql FROM sqlite_master WHERE type='index' ORDER BY name;");
+				for (int i = 0; i < dt.Rows.Count; i++) {
+					sw.Write (dt.Rows[i]["sql"].ToString () + Environment.NewLine);
 				}
-				dt.Clear();
-				sw.WriteLine("");
-				sw.WriteLine(" -- ######################## END INDEX SQL ######################### -- ");
-				sw.WriteLine("");
-				sw.WriteLine("");
-				sw.WriteLine(" -- ######################## BEGIN VIEW SQL ######################## -- ");
-				sw.WriteLine("");
-				dt = ExecuteDataTable("SELECT name, sql FROM sqlite_master WHERE type='view' ORDER BY name;");
-				for(int i = 0; i < dt.Rows.Count; i++)
-				{
-					sw.Write(dt.Rows[i]["sql"].ToString() + Environment.NewLine);
+				dt.Clear ();
+				sw.WriteLine ("");
+				sw.WriteLine (" -- ######################## END INDEX SQL ######################### -- ");
+				sw.WriteLine ("");
+				sw.WriteLine ("");
+				sw.WriteLine (" -- ######################## BEGIN VIEW SQL ######################## -- ");
+				sw.WriteLine ("");
+				dt = ExecuteDataTable ("SELECT name, sql FROM sqlite_master WHERE type='view' ORDER BY name;");
+				for (int i = 0; i < dt.Rows.Count; i++) {
+					sw.Write (dt.Rows[i]["sql"].ToString () + Environment.NewLine);
 				}
-				dt.Clear();
-				sw.WriteLine("");
-				sw.WriteLine(" -- ######################## END VIEW SQL ######################### -- ");
-				sw.WriteLine("");
-				sw.WriteLine("");
-				sw.WriteLine(" -- ######################## BEGIN TRIGGER SQL ######################## -- ");
-				sw.WriteLine("");
-				dt = ExecuteDataTable("SELECT name, sql FROM sqlite_master WHERE type='trigger' ORDER BY name;");
-				for(int i = 0; i < dt.Rows.Count; i++)
-				{
-					sw.Write(dt.Rows[i]["sql"].ToString() + Environment.NewLine);
+				dt.Clear ();
+				sw.WriteLine ("");
+				sw.WriteLine (" -- ######################## END VIEW SQL ######################### -- ");
+				sw.WriteLine ("");
+				sw.WriteLine ("");
+				sw.WriteLine (" -- ######################## BEGIN TRIGGER SQL ######################## -- ");
+				sw.WriteLine ("");
+				dt = ExecuteDataTable ("SELECT name, sql FROM sqlite_master WHERE type='trigger' ORDER BY name;");
+				for (int i = 0; i < dt.Rows.Count; i++) {
+					sw.Write (dt.Rows[i]["sql"].ToString () + Environment.NewLine);
 				}
-				dt.Clear();
-				sw.WriteLine("");
-				sw.WriteLine(" -- ######################## END TRIGGER SQL ######################### -- ");
-				sw.WriteLine("");
-				sw.WriteLine("");
-				sw.WriteLine(" -- ######################## BEGIN DATA SQL ######################## -- ");
-				sw.WriteLine("");
+				dt.Clear ();
+				sw.WriteLine ("");
+				sw.WriteLine (" -- ######################## END TRIGGER SQL ######################### -- ");
+				sw.WriteLine ("");
+				sw.WriteLine ("");
+				sw.WriteLine (" -- ######################## BEGIN DATA SQL ######################## -- ");
+				sw.WriteLine ("");
 				string BaseInsert = "INSERT INTO -TABLENAME- (-COLUMNS-) VALUES (-VALUES-);";
-				System.Text.StringBuilder sb = new System.Text.StringBuilder();
-				System.Text.StringBuilder sbValues = new System.Text.StringBuilder();
-				for(int i = 0; i < ar.Count; i++)
-				{
-					dt = ExecuteDataTable("SELECT * FROM " + ar[i].ToString() + " ;");
+				System.Text.StringBuilder sb = new System.Text.StringBuilder ();
+				System.Text.StringBuilder sbValues = new System.Text.StringBuilder ();
+				for (int i = 0; i < ar.Count; i++) {
+					dt = ExecuteDataTable ("SELECT * FROM " + ar[i].ToString () + " ;");
 					// construct the insert portion
-					for(int j = 0; j < dt.Columns.Count; j ++)
-					{
-						sb.Append(dt.Columns[j].ColumnName + ", ");
+					for (int j = 0; j < dt.Columns.Count; j++) {
+						sb.Append (dt.Columns[j].ColumnName + ", ");
 					}
 					// get rid of the last comma
-					sb.Remove(sb.Length -2, 2);
-					for(int j = 0; j < dt.Rows.Count; j++)
-					{
-						for(int k = 0; k < dt.Columns.Count; k++)
-						{
-							switch(dt.Columns[k].DataType.ToString())
-							{
-								case "System.String":
-								case "System.Xml":
-								case "System.Guid":
-									sbValues.Append("'"  + dt.Rows[j][k].ToString() + "', ");
-									break;
-								case "System.Decimal":
-								case "System.Double":
-								case "System.Currency":
-								case "System.Int16":
-								case "System.Int32":
-								case "System.Int64":
-								case "System.UInt16":
-								case "System.UInt32":
-								case "System.UInt64":
-									sbValues.Append(dt.Rows[j][k].ToString() + ", ");
-									break;
-									
-								case "System.Date":
-								case "System.DateTime":
-								case "System.Time":
-									sbValues.Append(ToSQLiteDateTime(dt.Rows[j][k].ToString()) + ", ");
-									break;
-									
-								case "System.Boolean":
-									sbValues.Append("'"  + dt.Rows[j][k].ToString() + "', ");
-									break;
-								default:
-									sbValues.Append("'"  + dt.Rows[j][k].ToString() + "', ");
-									break;
+					sb.Remove (sb.Length - 2, 2);
+					for (int j = 0; j < dt.Rows.Count; j++) {
+						for (int k = 0; k < dt.Columns.Count; k++) {
+							switch (dt.Columns[k].DataType.ToString ()) {
+							case "System.String":
+							case "System.Xml":
+							case "System.Guid":
+								sbValues.Append ("'" + dt.Rows[j][k].ToString () + "', ");
+								break;
+							case "System.Decimal":
+							case "System.Double":
+							case "System.Currency":
+							case "System.Int16":
+							case "System.Int32":
+							case "System.Int64":
+							case "System.UInt16":
+							case "System.UInt32":
+							case "System.UInt64":
+								sbValues.Append (dt.Rows[j][k].ToString () + ", ");
+								break;
+							
+							case "System.Date":
+							case "System.DateTime":
+							case "System.Time":
+								sbValues.Append (ToSQLiteDateTime (dt.Rows[j][k].ToString ()) + ", ");
+								break;
+							
+							case "System.Boolean":
+								sbValues.Append ("'" + dt.Rows[j][k].ToString () + "', ");
+								break;
+							default:
+								sbValues.Append ("'" + dt.Rows[j][k].ToString () + "', ");
+								break;
 							}
 						}
 						// get rid of the last comma
-						if(sbValues.Length > 1)
-							sbValues.Remove(sbValues.Length -2, 2);
+						if (sbValues.Length > 1)
+							sbValues.Remove (sbValues.Length - 2, 2);
 						
-						sw.WriteLine(BaseInsert.Replace("-TABLENAME-", ar[i].ToString()).Replace("-COLUMNS-", sb.ToString()).Replace("-VALUES-", sbValues.ToString()));
-						sbValues.Remove(0, sbValues.Length);
+						sw.WriteLine (BaseInsert.Replace ("-TABLENAME-", ar[i].ToString ()).Replace ("-COLUMNS-", sb.ToString ()).Replace ("-VALUES-", sbValues.ToString ()));
+						sbValues.Remove (0, sbValues.Length);
 					}
-					sw.WriteLine("");
-					if(sb.Length > 0)
-						sb.Remove(0, sb.Length);
+					sw.WriteLine ("");
+					if (sb.Length > 0)
+						sb.Remove (0, sb.Length);
 				}
-				sw.WriteLine(" -- ######################## END DATA SQL ########################## -- ");
-				sw.Flush();
-				sw.Close();
-				sw.Dispose();
+				sw.WriteLine (" -- ######################## END DATA SQL ########################## -- ");
+				sw.Flush ();
+				sw.Close ();
+				sw.Dispose ();
 				
-			}
-			catch(Exception ex)
-			{
-				throw new Exception(ex.ToString());
+			} catch (Exception ex) {
+				throw new Exception (ex.ToString ());
 			}
 		}
 	}
