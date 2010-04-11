@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectGuid>{D210EDCC-43AF-48EF-B982-51901A144063}</ProjectGuid>
@@ -63,5 +63,7 @@ This class requires:
       <HintPath>..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System.Data\2.0.0.0__b77a5c561934e089\System.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
 </Project>
