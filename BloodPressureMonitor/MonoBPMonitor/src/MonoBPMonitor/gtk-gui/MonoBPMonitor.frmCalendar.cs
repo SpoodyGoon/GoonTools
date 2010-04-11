@@ -47,9 +47,9 @@ namespace MonoBPMonitor {
         
         private Gtk.SpinButton spnMinute;
         
-        private Gtk.Alignment alignment8;
+        private Gtk.Alignment algPM;
         
-        private Gtk.Alignment alignment7;
+        private Gtk.Alignment algAM;
         
         private Gtk.Alignment alignment1;
         
@@ -195,17 +195,17 @@ namespace MonoBPMonitor {
             w13.Expand = false;
             w13.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
-            this.alignment8 = new Gtk.Alignment(0.01F, 0.5F, 0.01F, 1F);
-            this.alignment8.Name = "alignment8";
-            this.hbox1.Add(this.alignment8);
-            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment8]));
+            this.algPM = new Gtk.Alignment(0.01F, 0.5F, 0.01F, 1F);
+            this.algPM.Name = "algPM";
+            this.hbox1.Add(this.algPM);
+            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.hbox1[this.algPM]));
             w14.PackType = ((Gtk.PackType)(1));
             w14.Position = 4;
             // Container child hbox1.Gtk.Box+BoxChild
-            this.alignment7 = new Gtk.Alignment(0.01F, 0.5F, 0.01F, 1F);
-            this.alignment7.Name = "alignment7";
-            this.hbox1.Add(this.alignment7);
-            Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment7]));
+            this.algAM = new Gtk.Alignment(0.01F, 0.5F, 0.01F, 1F);
+            this.algAM.Name = "algAM";
+            this.hbox1.Add(this.algAM);
+            Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(this.hbox1[this.algAM]));
             w15.PackType = ((Gtk.PackType)(1));
             w15.Position = 5;
             w15.Expand = false;

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created by SharpDevelop.
  * User: ayork
  * Date: 2/3/2010
@@ -80,7 +80,6 @@ namespace MonoBPMonitor.Data
 			}
 		}
 		
-		[GLib.ConnectBeforeAttribute()]
 		protected override void OnRealized ()
 		{
 			this.WidthRequest = 200;
@@ -88,7 +87,7 @@ namespace MonoBPMonitor.Data
 		}
 
 		
-		[GLib.ConnectBeforeAttribute()]
+		//[GLib.ConnectBeforeAttribute()]
 		protected override void OnChanged ()
 		{
 			try

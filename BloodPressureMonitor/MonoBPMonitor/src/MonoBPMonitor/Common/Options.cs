@@ -94,18 +94,15 @@ namespace GoonTools.Helper
 		{
 			try
 			{
-				Version ver;
 				if (dt.TableName != "Options" || dt.Columns[0].ColumnName != "Key" || dt.Columns[1].ColumnName != "Value")
 					throw new Exception ("Invalid Table Passed to load Options");
 				dt.PrimaryKey = new DataColumn[] { (DataColumn)dt.Columns["Key"] };
 				DataRow dr;
+				// TODO: fix file version to use version instead of int
 				// FileVersion
-				dr = (DataRow)dt.Rows.Find ("FileVersion");
-				if (dr != null)
-				{
-					
-					_FileVersion = Convert.ToInt16 (dr["Value"]);
-				}
+//				dr = (DataRow)dt.Rows.Find ("FileVersion");
+//				if (dr != null)
+//					_FileVersion = new Version(Convert.ToInt16 (dr["Value"]), 0);
 				// DBLocation
 				dr = (DataRow)dt.Rows.Find ("DBLocation");
 				if (dr != null)
@@ -254,10 +251,11 @@ namespace GoonTools.Helper
 					throw new Exception ("Invalid Table Passed to load Options");
 				dt.PrimaryKey = new DataColumn[] { (DataColumn)dt.Columns["Key"] };
 				DataRow dr;
+				// TODO: fix file version to use version instead of int
 				// FileVersion
-				dr = (DataRow)dt.Rows.Find ("FileVersion");
-				if (dr != null)
-					_FileVersion = Convert.ToInt16 (dr["Value"]);
+//				dr = (DataRow)dt.Rows.Find ("FileVersion");
+//				if (dr != null)
+//					_FileVersion = Convert.ToInt16 (dr["Value"]);
 				// DBLocation
 				dr = (DataRow)dt.Rows.Find ("DBLocation");
 				if (dr != null)
@@ -341,7 +339,7 @@ namespace GoonTools.Helper
 			set { _HistoryDefaultShow = value; }
 		}
 
-		internal int FileVersion
+		internal Version FileVersion
 		{
 			get { return _FileVersion; }
 			set { _FileVersion = value; }
