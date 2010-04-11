@@ -4,56 +4,71 @@ using GoonTools;
 
 namespace MonoBPMonitor
 {
-	
-	
+
+
 	public partial class frmCalendar : Gtk.Dialog
 	{
-		
+
 		private DateTime _SelectedDate = DateTime.Now;
 		private bool _ShowTime = true;
-		public frmCalendar(DateTime selecteddate)
+		// for some reason I'm getting a GLib.SList casting error
+		// when these radiobuttons are in stetic so add them manually
+		private Gtk.RadioButton rbnAM = new Gtk.RadioButton ("A.M.");
+		private Gtk.RadioButton rbnPM = new Gtk.RadioButton ("P.M.");
+
+
+		public frmCalendar (DateTime selecteddate)
 		{
-			this.Build();
+			this.Build ();
 			try
 			{
-				_ShowTime= true;
+				bool Checked = false;
+				algAM.Add (rbnAM);
+				algPM.Add (rbnPM);
+				rbnAM.Active = false;
+				rbnPM.Active = true;
+//				rbnAM.Clicked += delegate { rbnPM.Active = rbnAM.Active ? false : true; };
+//				
+//				rbnPM.Clicked += delegate { rbnAM.Active = rbnPM.Active ? false : true; };
+				_ShowTime = true;
 				_SelectedDate = selecteddate;
 				calendar2.Date = selecteddate.Date;
-				SetUpTime();
-				ShowAll();
+				SetUpTime ();
+				ShowAll ();
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
-				Common.HandleError(ex);
+				Common.HandleError (ex);
 			}
 		}
-		
-		public frmCalendar(DateTime selecteddate, bool showtime)
+
+		public frmCalendar (DateTime selecteddate, bool showtime)
 		{
-			this.Build();
-			_ShowTime= showtime;
+			this.Build ();
+			_ShowTime = showtime;
 			_SelectedDate = selecteddate;
 			calendar2.Date = selecteddate.Date;
-			if(_ShowTime)
+			if (_ShowTime)
 			{
-				SetUpTime();
+				SetUpTime ();
 			}
+
 			else
-			{				
-            	algTime.Destroy();
+			{
+				algTime.Destroy ();
 			}
 			
-			algTime.ShowNow();
-			ShowAll();
+			algTime.ShowNow ();
+			ShowAll ();
 		}
-		
-		public frmCalendar()
+
+		public frmCalendar ()
 		{
-			this.Build();
+			this.Build ();
 			
 		}
-		
-		private void SetUpTime()
+
+		private void SetUpTime ()
 		{
 			try
 			{
@@ -78,18 +93,18 @@ namespace MonoBPMonitor
 //				
 //				spnMinute.Value = (double)_SelectedDate.Minute;
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
-				Common.HandleError(ex);
+				Common.HandleError (ex);
 			}
 		}
-		
+
 		public DateTime SelectedDate
 		{
-			set{_SelectedDate = value;}
-			get{ return _SelectedDate;}
+			get { return _SelectedDate; }
+			set { _SelectedDate = value; }
 		}
-		
+
 		protected virtual void OnCalendar2DaySelectedDoubleClick (object sender, System.EventArgs e)
 		{
 //			if(rbnAM.Active == true && spnHour.ValueAsInt == 12)
@@ -101,10 +116,10 @@ namespace MonoBPMonitor
 //			this.Respond(Gtk.ResponseType.Ok);
 //			this.Hide();
 		}
-		
+
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
 		{
-			this.Hide();
+			this.Hide ();
 		}
 
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
@@ -119,28 +134,28 @@ namespace MonoBPMonitor
 //			this.Hide();
 		}
 		protected virtual void OnEvntDateTimeNowEnterNotifyEvent (object o, Gtk.EnterNotifyEventArgs args)
-		{			
-			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Hand1);
+		{
+			this.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Hand1);
 			lblNow.Text = "<span size=\"8750\" face=\"san serif\"  color=\"#920000\"><u><b>Set Date &#38; Time to Now.</b></u></span>";
 			lblNow.UseMarkup = true;
-			lblNow.ShowNow();
+			lblNow.ShowNow ();
 		}
-		
+
 		protected virtual void OnEvntDateTimeNowLeaveNotifyEvent (object o, Gtk.LeaveNotifyEventArgs args)
 		{
-			this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Arrow);
+			this.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Arrow);
 			lblNow.Text = "<span size=\"8750\" face=\"san serif\" color=\"#000000\"><u><b>Set Date &#38; Time to Now.</b></u></span>";
 			lblNow.UseMarkup = true;
-			lblNow.ShowNow();
+			lblNow.ShowNow ();
 		}
-		
+
 		protected virtual void OnEvntDateTimeNowButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
 		{
 			
 			_SelectedDate = DateTime.Now;
 			calendar2.Date = _SelectedDate.Date;
-			SetUpTime();
-			ShowAll();
+			SetUpTime ();
+			ShowAll ();
 		}
 		
 		

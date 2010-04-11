@@ -2464,7 +2464,7 @@
                               </packing>
                             </child>
                             <child>
-                              <widget class="Gtk.Alignment" id="alignment8">
+                              <widget class="Gtk.Alignment" id="algPM">
                                 <property name="MemberName" />
                                 <property name="Xscale">0.01</property>
                                 <property name="Xalign">0.01</property>
@@ -2479,7 +2479,7 @@
                               </packing>
                             </child>
                             <child>
-                              <widget class="Gtk.Alignment" id="alignment7">
+                              <widget class="Gtk.Alignment" id="algAM">
                                 <property name="MemberName" />
                                 <property name="Xscale">0.01</property>
                                 <property name="Xalign">0.01</property>

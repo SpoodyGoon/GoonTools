@@ -73,7 +73,7 @@ namespace MonoBPMonitor.Doctors
 			}
 		}
 		
-		[GLib.ConnectBeforeAttribute()]
+		//[GLib.ConnectBeforeAttribute()]
 		protected override void OnRealized ()
 		{
 			Build();
@@ -82,7 +82,7 @@ namespace MonoBPMonitor.Doctors
 		}
 
 		
-		[GLib.ConnectBeforeAttribute()]
+		//[GLib.ConnectBeforeAttribute()]
 		protected override void OnChanged ()
 		{try
 			{

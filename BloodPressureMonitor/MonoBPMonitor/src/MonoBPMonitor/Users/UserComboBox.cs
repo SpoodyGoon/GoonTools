@@ -149,7 +149,7 @@ namespace MonoBPMonitor.Users
 //		}
 
 		
-		[GLib.ConnectBeforeAttribute()]
+		//[GLib.ConnectBeforeAttribute()]
 		protected override void OnChanged ()
 		{
 			try
