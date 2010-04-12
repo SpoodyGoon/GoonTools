@@ -47,9 +47,9 @@ namespace MonoBPMonitor {
         
         private Gtk.SpinButton spnMinute;
         
-        private Gtk.Alignment algPM;
-        
         private Gtk.Alignment algAM;
+        
+        private Gtk.CheckButton cbxPM;
         
         private Gtk.Alignment alignment1;
         
@@ -66,6 +66,7 @@ namespace MonoBPMonitor {
             // Widget MonoBPMonitor.frmCalendar
             this.WidthRequest = 350;
             this.Name = "MonoBPMonitor.frmCalendar";
+            this.Title = Mono.Unix.Catalog.GetString("Select Date");
             this.Icon = Gdk.Pixbuf.LoadFromResource("date.png");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(2));
@@ -74,6 +75,8 @@ namespace MonoBPMonitor {
             this.Resizable = false;
             this.AllowGrow = false;
             this.DestroyWithParent = true;
+            this.SkipPagerHint = true;
+            this.SkipTaskbarHint = true;
             // Internal child MonoBPMonitor.frmCalendar.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
@@ -149,7 +152,7 @@ namespace MonoBPMonitor {
             this.alignment4 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment4.Name = "alignment4";
             // Container child alignment4.Gtk.Container+ContainerChild
-            this.spnHour = new Gtk.SpinButton(1, 12, 1);
+            this.spnHour = new Gtk.SpinButton(0, 13, 1);
             this.spnHour.CanFocus = true;
             this.spnHour.Name = "spnHour";
             this.spnHour.Adjustment.PageIncrement = 10;
@@ -180,14 +183,13 @@ namespace MonoBPMonitor {
             this.alignment6 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment6.Name = "alignment6";
             // Container child alignment6.Gtk.Container+ContainerChild
-            this.spnMinute = new Gtk.SpinButton(0, 60, 5);
+            this.spnMinute = new Gtk.SpinButton(-5, 65, 5);
             this.spnMinute.CanFocus = true;
             this.spnMinute.Name = "spnMinute";
             this.spnMinute.Adjustment.PageIncrement = 10;
             this.spnMinute.ClimbRate = 5;
             this.spnMinute.Numeric = true;
             this.spnMinute.SnapToTicks = true;
-            this.spnMinute.Value = 30;
             this.alignment6.Add(this.spnMinute);
             this.hbox1.Add(this.alignment6);
             Gtk.Box.BoxChild w13 = ((Gtk.Box.BoxChild)(this.hbox1[this.alignment6]));
@@ -195,21 +197,20 @@ namespace MonoBPMonitor {
             w13.Expand = false;
             w13.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
-            this.algPM = new Gtk.Alignment(0.01F, 0.5F, 0.01F, 1F);
-            this.algPM.Name = "algPM";
-            this.hbox1.Add(this.algPM);
-            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.hbox1[this.algPM]));
-            w14.PackType = ((Gtk.PackType)(1));
-            w14.Position = 4;
-            // Container child hbox1.Gtk.Box+BoxChild
             this.algAM = new Gtk.Alignment(0.01F, 0.5F, 0.01F, 1F);
             this.algAM.Name = "algAM";
+            // Container child algAM.Gtk.Container+ContainerChild
+            this.cbxPM = new Gtk.CheckButton();
+            this.cbxPM.CanFocus = true;
+            this.cbxPM.Name = "cbxPM";
+            this.cbxPM.Label = Mono.Unix.Catalog.GetString("P.M.");
+            this.cbxPM.DrawIndicator = true;
+            this.cbxPM.UseUnderline = true;
+            this.algAM.Add(this.cbxPM);
             this.hbox1.Add(this.algAM);
             Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(this.hbox1[this.algAM]));
             w15.PackType = ((Gtk.PackType)(1));
-            w15.Position = 5;
-            w15.Expand = false;
-            w15.Fill = false;
+            w15.Position = 4;
             this.alignment2.Add(this.hbox1);
             this.frame2.Add(this.alignment2);
             this.algTime.Add(this.frame2);
@@ -282,6 +283,8 @@ namespace MonoBPMonitor {
             this.DefaultHeight = 315;
             this.Show();
             this.calendar2.DaySelectedDoubleClick += new System.EventHandler(this.OnCalendar2DaySelectedDoubleClick);
+            this.spnHour.ValueChanged += new System.EventHandler(this.OnSpnHourValueChanged);
+            this.spnMinute.ValueChanged += new System.EventHandler(this.OnSpnMinuteValueChanged);
             this.evntDateTimeNow.EnterNotifyEvent += new Gtk.EnterNotifyEventHandler(this.OnEvntDateTimeNowEnterNotifyEvent);
             this.evntDateTimeNow.LeaveNotifyEvent += new Gtk.LeaveNotifyEventHandler(this.OnEvntDateTimeNowLeaveNotifyEvent);
             this.evntDateTimeNow.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.OnEvntDateTimeNowButtonPressEvent);
