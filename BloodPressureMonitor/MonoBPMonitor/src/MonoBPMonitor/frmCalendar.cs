@@ -8,28 +8,13 @@ namespace MonoBPMonitor
 
 	public partial class frmCalendar : Gtk.Dialog
 	{
-
 		private DateTime _SelectedDate = DateTime.Now;
 		private bool _ShowTime = true;
-		// for some reason I'm getting a GLib.SList casting error
-		// when these radiobuttons are in stetic so add them manually
-		private Gtk.RadioButton rbnAM = new Gtk.RadioButton ("A.M.");
-		private Gtk.RadioButton rbnPM = new Gtk.RadioButton ("P.M.");
-
-
 		public frmCalendar (DateTime selecteddate)
 		{
 			this.Build ();
 			try
 			{
-				bool Checked = false;
-				algAM.Add (rbnAM);
-				algPM.Add (rbnPM);
-				rbnAM.Active = false;
-				rbnPM.Active = true;
-//				rbnAM.Clicked += delegate { rbnPM.Active = rbnAM.Active ? false : true; };
-//				
-//				rbnPM.Clicked += delegate { rbnAM.Active = rbnPM.Active ? false : true; };
 				_ShowTime = true;
 				_SelectedDate = selecteddate;
 				calendar2.Date = selecteddate.Date;
@@ -72,26 +57,23 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-//				if(_SelectedDate.Hour < 11)
-//				{
-//					spnHour.Value = (double)_SelectedDate.Hour;
-//					rbnAM.Active = true;
-//					rbnPM.Active = false;
-//				}
-//				else if(_SelectedDate.Hour == 0)
-//				{
-//					spnHour.Value = 12;
-//					rbnAM.Active = true;
-//					rbnPM.Active = false;
-//				}
-//				else
-//				{
-//					spnHour.Value = ((double)_SelectedDate.Hour) - 12;
-//					rbnAM.Active = false;
-//					rbnPM.Active = true;
-//				}
-//				
-//				spnMinute.Value = (double)_SelectedDate.Minute;
+				if (_SelectedDate.Hour < 11)
+				{
+					spnHour.Value = (double)_SelectedDate.Hour;
+					cbxPM.Active = true;
+				}
+				else if (_SelectedDate.Hour == 0)
+				{
+					spnHour.Value = 12;
+					cbxPM.Active = false;
+				}
+				else
+				{
+					spnHour.Value = ((double)_SelectedDate.Hour) - 12;
+					cbxPM.Active = true;
+				}
+				
+				spnMinute.Value = (double)_SelectedDate.Minute;
 			}
 			catch (Exception ex)
 			{
@@ -107,14 +89,14 @@ namespace MonoBPMonitor
 
 		protected virtual void OnCalendar2DaySelectedDoubleClick (object sender, System.EventArgs e)
 		{
-//			if(rbnAM.Active == true && spnHour.ValueAsInt == 12)
-//				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, 00, spnMinute.ValueAsInt, 0) ;
-//			if(rbnAM.Active == true)
-//				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt, spnMinute.ValueAsInt, 0) ;
-//			else
-//				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt + 12, spnMinute.ValueAsInt, 0) ;
-//			this.Respond(Gtk.ResponseType.Ok);
-//			this.Hide();
+			if(cbxPM.Active && spnHour.ValueAsInt == 12)
+				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, 00, spnMinute.ValueAsInt, 0) ;
+			if(!cbxPM.Active)
+				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt, spnMinute.ValueAsInt, 0) ;
+			else
+				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt + 12, spnMinute.ValueAsInt, 0) ;
+			this.Respond(Gtk.ResponseType.Ok);
+			this.Hide();
 		}
 
 		protected virtual void OnButtonCancelClicked (object sender, System.EventArgs e)
@@ -124,14 +106,14 @@ namespace MonoBPMonitor
 
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
-//			if(rbnAM.Active == true && spnHour.ValueAsInt == 12)
-//				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, 0, spnMinute.ValueAsInt, 0) ;
-//			if(rbnAM.Active == true)
-//				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt, spnMinute.ValueAsInt, 0) ;
-//			else
-//				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt + 12, spnMinute.ValueAsInt, 0) ;
-//			this.Respond(Gtk.ResponseType.Ok);
-//			this.Hide();
+			if (cbxPM.Active && spnHour.ValueAsInt == 12)
+				_SelectedDate = new DateTime (this.calendar2.Date.Year, this.calendar2.Date.Month, this.calendar2.Date.Day, 0, spnMinute.ValueAsInt, 0);
+			if(!cbxPM.Active)
+				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt, spnMinute.ValueAsInt, 0) ;
+			else
+				_SelectedDate = new DateTime(this.calendar2.Date.Year,this.calendar2.Date.Month, this.calendar2.Date.Day, spnHour.ValueAsInt + 12, spnMinute.ValueAsInt, 0) ;
+			this.Respond(Gtk.ResponseType.Ok);
+			this.Hide();
 		}
 		protected virtual void OnEvntDateTimeNowEnterNotifyEvent (object o, Gtk.EnterNotifyEventArgs args)
 		{
@@ -151,13 +133,50 @@ namespace MonoBPMonitor
 
 		protected virtual void OnEvntDateTimeNowButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
 		{
-			
 			_SelectedDate = DateTime.Now;
 			calendar2.Date = _SelectedDate.Date;
 			SetUpTime ();
 			ShowAll ();
 		}
 		
+		protected virtual void OnSpnMinuteValueChanged (object sender, System.EventArgs e)
+		{
+			if (spnMinute.ValueAsInt >= 60)
+			{
+				// if we are over 60 move to the next hour
+				spnMinute.Value = 0.0;
+				spnHour.Value = (double)(spnHour.Value + 1);
+			}
+			else if (spnMinute.ValueAsInt < 0)
+			{
+				// if we are below zero update to the previous hour
+				spnMinute.Value = 55.0;
+				spnHour.Value = (double)(spnHour.ValueAsInt - 1);
+			}
+		}
+		
+		protected virtual void OnSpnHourValueChanged (object sender, System.EventArgs e)
+		{
+			bool tmpActive = false;
+			// if we have gone over 12 then return to one and
+			// set the am/pm flag as needed
+			if (spnHour.ValueAsInt > 12)
+			{
+				// return the value to 1 (i.e. rollover)
+				spnHour.Value = 1.0;
+				// set the am/pm flag
+				tmpActive = cbxPM.Active ? false : true;
+				cbxPM.Active = tmpActive;
+			}
+			else if (spnHour.ValueAsInt < 1)
+			{
+				// return the value to 12 (i.e. rollover)
+				spnHour.Value = 12.0;
+				// set the am/pm flag
+				tmpActive = cbxPM.Active ? false : true;
+				cbxPM.Active = tmpActive;
+			}
+		}
 		
 		
 		
