@@ -33,7 +33,7 @@ namespace GoonTools.Helper
 		#region Private Properties
 		/// <summary>
 		/// for the dblocationand connection string the default locations
-		/// are very likely to be the perminant locations		
+		/// are very likely to be the perminant locations
 		/// </summary>
 		private string _DBLocation = System.IO.Path.Combine (GoonTools.Common.EnvData.SavePath, "BPMonitor.s3db");
 		/// <summary>
@@ -41,7 +41,7 @@ namespace GoonTools.Helper
 		/// </summary>
 		private bool _SaveErrorLog = true;
 		/// <summary>
-		/// Weather or not to limit the number or rows on displayed on the 
+		/// Weather or not to limit the number or rows on displayed on the
 		/// main (top level) form or not and if so what the limit is
 		/// </summary>
 		private bool _LimitHistory = true;
@@ -58,11 +58,11 @@ namespace GoonTools.Helper
 		/// there are a couple of different ways this is set
 		/// 1. by the checkbox on the options form
 		/// 2. by the app.config
-		/// 3. ONLY if the OS is Windows		
+		/// 3. ONLY if the OS is Windows
 		/// </summary>
 		private bool _UseCustomTheme = true;
 		/// <summary>
-		/// the flag to determine weather or not we will use a 
+		/// the flag to determine weather or not we will use a
 		/// application based updater or the repository
 		/// there are a couple of different ways this is set
 		/// 1. by the app.config
@@ -71,7 +71,7 @@ namespace GoonTools.Helper
 		/// </summary>
 		private bool _UseCustomUpdate = true;
 		/// <summary>
-		/// A way to keep track of different versions 
+		/// A way to keep track of different versions
 		/// of user save files in case there is a change and needs an update
 		/// not currently used but may be needed for later updates
 		/// </summary>
@@ -83,11 +83,11 @@ namespace GoonTools.Helper
 
 		internal Options ()
 		{
-			// Inital Setup of the global options 
+			// Inital Setup of the global options
 			// Custom Themes and Custom Update
-			if(cm.AppSettings["AllowCustomTheme"].ToLower() == "true" && GoonTools.Common.Option.UseCustomTheme == true && GoonTools.Common.EnvData.IsWindows == true)
-			{
-			}
+//			if(cm.AppSettings["AllowCustomTheme"].ToLower() == "true" && GoonTools.Common.Option.UseCustomTheme == true && GoonTools.Common.EnvData.IsWindows == true)
+//			{
+//			}
 		}
 
 		internal Options (DataTable dt)
@@ -98,11 +98,17 @@ namespace GoonTools.Helper
 					throw new Exception ("Invalid Table Passed to load Options");
 				dt.PrimaryKey = new DataColumn[] { (DataColumn)dt.Columns["Key"] };
 				DataRow dr;
-				// TODO: fix file version to use version instead of int
-				// FileVersion
-//				dr = (DataRow)dt.Rows.Find ("FileVersion");
-//				if (dr != null)
-//					_FileVersion = new Version(Convert.ToInt16 (dr["Value"]), 0);
+				int MajorVer = 1;
+				int MinorVer = 0;
+				// FileVersion Major
+				dr = (DataRow)dt.Rows.Find ("FileVersionMajor");
+				if(dr != null)
+					MajorVer = Convert.ToInt32 (dr["Value"]);
+				// FileVersion Minor
+				dr = (DataRow)dt.Rows.Find ("FileVersionMinor");
+				if (dr != null)
+					MinorVer = Convert.ToInt32 (dr["Value"]);
+				_FileVersion = new Version(MajorVer, MinorVer);
 				// DBLocation
 				dr = (DataRow)dt.Rows.Find ("DBLocation");
 				if (dr != null)
@@ -171,9 +177,14 @@ namespace GoonTools.Helper
 				dt.Columns.AddRange (new DataColumn[] { new DataColumn ("Key", typeof(string)), new DataColumn ("Value", typeof(object)) });
 				dt.PrimaryKey = new DataColumn[] { dt.Columns["Key"] };
 				System.Data.DataRow dr = dt.NewRow ();
-				// FileVersion
-				dr["Key"] = "FileVersion";
-				dr["Value"] = _FileVersion;
+				// FileVersion Major
+				dr["Key"] = "FileVersionMajor";
+				dr["Value"] = _FileVersion.Major;
+				dt.Rows.Add (dr);
+				// FileVersion Minor
+				dr = dt.NewRow ();
+				dr["Key"] = "FileVersionMinor";
+				dr["Value"] = _FileVersion.Minor;
 				dt.Rows.Add (dr);
 				// DBLocation
 				dr = dt.NewRow ();
@@ -251,11 +262,17 @@ namespace GoonTools.Helper
 					throw new Exception ("Invalid Table Passed to load Options");
 				dt.PrimaryKey = new DataColumn[] { (DataColumn)dt.Columns["Key"] };
 				DataRow dr;
-				// TODO: fix file version to use version instead of int
-				// FileVersion
-//				dr = (DataRow)dt.Rows.Find ("FileVersion");
-//				if (dr != null)
-//					_FileVersion = Convert.ToInt16 (dr["Value"]);
+				int MajorVer = 1;
+				int MinorVer = 0;
+				// FileVersion Major
+				dr = (DataRow)dt.Rows.Find ("FileVersionMajor");
+				if(dr != null)
+					MajorVer = Convert.ToInt32 (dr["Value"]);
+				// FileVersion Minor
+				dr = (DataRow)dt.Rows.Find ("FileVersionMinor");
+				if (dr != null)
+					MinorVer = Convert.ToInt32 (dr["Value"]);
+				_FileVersion = new Version(MajorVer, MinorVer);
 				// DBLocation
 				dr = (DataRow)dt.Rows.Find ("DBLocation");
 				if (dr != null)
