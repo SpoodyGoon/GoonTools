@@ -42,11 +42,15 @@ namespace MonoBPMonitor
 			{
 				tvEntityRpt = new Reports.EntryRptTreeView (cboUser.UserID);
 				swEntityRpt.Add (tvEntityRpt);
-				cboUser.Changed += new EventHandler(cboUser_Changed);
-				tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e) { btnRemoveEntry.Sensitive = true; btnEditEntry.Sensitive = true; };
+				cboUser.Changed += new EventHandler (cboUser_Changed);
+				tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e)
+				{
+					btnRemoveEntry.Sensitive = true;
+					btnEditEntry.Sensitive = true;
+				};
 				// the update feature is available only
 				// for Windows and non-repository Linux versions
-				if(ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "false")
+				if (ConfigurationManager.AppSettings["AllowCustomUpdate"].ToLower() == "false" || Common.Option.UseCustomUpdate == false)
 				{
 					UpdatesAction.Visible = false;
 					UpdatesAction.VisibleHorizontal = false;

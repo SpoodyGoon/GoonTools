@@ -16,19 +16,19 @@ namespace MonoBPMonitor
 		{
 			// TODO: add a restart program button or notice when the theme changes to prompt restart
 			// all spelling on notice is wrong
-			this.Build();
+			this.Build ();
 			try
 			{
 				// themes are only used in Windows where a good looking theme is not a sure thing
-//				if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "false" || Common.EnvData.IsWindows == false)
-//				{
-//					notebook1.RemovePage(notebook1.NPages - 1);
-//				}
-//				if(System.Configuration.ConfigurationManager.AppSettings["ShowUpdate"].ToLower() == "false" || Common.EnvData.IsWindows == false)
-//				{
-//					lblGUPdotNETVersion.Destroy();
-//					lblGUPdotNETText.Destroy();
-//				}
+				if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "false" || Common.Option.UseCustomUpdate == false)
+				{
+					notebook1.RemovePage(notebook1.NPages - 1);
+				}
+				if (System.Configuration.ConfigurationManager.AppSettings["AllowCustomUpdate"].ToLower() == "false" || Common.Option.UseCustomUpdate == false)
+				{
+					lblGUPdotNETVersion.Destroy();
+					lblGUPdotNETText.Destroy();
+				}
 				cbxAll.Activated += new EventHandler(OnCbxAllToggled);
 				spnDefaultHistory.Value = (double)GoonTools.Common.Option.HistoryDefaultShow;
 				cbxLogErrors.Active = GoonTools.Common.Option.SaveErrorLog;
