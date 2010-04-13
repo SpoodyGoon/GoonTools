@@ -32,28 +32,28 @@ namespace MonoBPMonitor
 		{
 			Application.Init ();
 			GoonTools.Common.LoadAll ();
-//#if !REPO
-//			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true" && GoonTools.Common.Option.UseCustomTheme == true && GoonTools.Common.EnvData.IsWindows == true)
-//			{
-//				if(GoonTools.Common.Option.CustomThemeFile == "")
-//				{
-//					so.DirectoryInfo di = new so.DirectoryInfo(so.Path.Combine(GoonTools.Common.EnvData.ThemeFolder, GoonTools.Common.Option.CustomThemeName));
-//					if(di.Exists)
-//					{
-//						so.FileInfo fi = new so.FileInfo(so.Path.Combine(so.Path.Combine(di.FullName, "gtk-2.0"), "gtkrc"));
-//						if(fi.Exists)
-//						{
-//							GoonTools.Common.Option.CustomThemeFile = fi.FullName;
-//							Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeFile);							
-//						}
-//					}
-//				}
-//				else
-//				{
-//					Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeFile);
-//				}
-//			}
-//#endif
+#if !REPO
+			if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "true" && GoonTools.Common.Option.UseCustomTheme == true)
+			{
+				if(GoonTools.Common.Option.CustomThemeFile == "")
+				{
+					so.DirectoryInfo di = new so.DirectoryInfo(so.Path.Combine(GoonTools.Common.EnvData.ThemeFolder, GoonTools.Common.Option.CustomThemeName));
+					if(di.Exists)
+					{
+						so.FileInfo fi = new so.FileInfo(so.Path.Combine(so.Path.Combine(di.FullName, "gtk-2.0"), "gtkrc"));
+						if(fi.Exists)
+						{
+							GoonTools.Common.Option.CustomThemeFile = fi.FullName;
+							Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeFile);							
+						}
+					}
+				}
+				else
+				{
+					Gtk.Rc.Parse(GoonTools.Common.Option.CustomThemeFile);
+				}
+			}
+#endif
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();
