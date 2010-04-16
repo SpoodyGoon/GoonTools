@@ -23,8 +23,8 @@ namespace CMYControls
 		private int _MinHeight;
         private int y_offset = 4, x_offset = 4;
 		private Gdk.Rectangle _BaseArea = new Gdk.Rectangle(0,0, 165, 26);
-		private Gdk.Rectangle _TestArea = new Gdk.Rectangle(2,3, 125, 20);
-		private Gdk.Rectangle _ShowButtonArea = new Gdk.Rectangle(126,0, 20, 20);
+		private Gdk.Rectangle _TextArea = new Gdk.Rectangle(2,3, 125, 20);
+		private Gdk.Rectangle _ShowButtonArea = new Gdk.Rectangle(126,3, 22, 20);
 		private Gdk.Rectangle _ClearButtonArea = new Gdk.Rectangle(0,0, 125, 20);
 		private Pango.Layout _BaseMessage;
 		public QuickDate2 ()
@@ -44,23 +44,25 @@ namespace CMYControls
 		[GLib.ConnectBefore()]
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
+			try
+			{
 			Gdk.Window win = evnt.Window;
 			Gdk.Rectangle area = evnt.Area;
-			this.HeightRequest = _BaseArea.Height + 2;
-			this.WidthRequest = _BaseArea.Width + 2;
-            int y_mid = (Allocation.Height - this.Allocation.Height) / 2;
-			//Gdk.Pixbuf display_pixbuf = Gdk.Pixbuf.LoadFromResource("QuickDate.png");
-            //GdkWindow.DrawRectangle(Style.BaseGC(StateType.Normal), true, 0, y_mid - y_offset, _BaseArea.Width - 4, _BaseArea.Height - 4);
-  			Gtk.Style.PaintBox (Style, GdkWindow, State, ShadowType.None, _BaseArea, this, "entry",  _BaseArea.X + 2,_BaseArea.Y + 2,  _BaseArea.Width - 4,_BaseArea.Height -4);
-            Gtk.Style.PaintShadow(Style, GdkWindow, StateType.Normal, ShadowType.In, _BaseArea, this, "entry", 0, y_mid - y_offset, _BaseArea.Width - 4,_BaseArea.Height -4);
-
+			// first draw the text area that the date will go into
+            Gtk.Style.PaintBox (this.Style, win, StateType.Prelight, ShadowType.In, _TextArea, this, "",  _TextArea.X,_TextArea.Y,  _TextArea.Width,_TextArea.Height);
+            win.DrawRectangle(Style.WhiteGC, true, _TextArea.X +2, _TextArea.Y + 2, _TextArea.Width - 4, _TextArea.Height - 4);
+            
+            // draw the base of the show calander button
+            Gtk.Style.PaintBox (this.Style, win, StateType.Normal, ShadowType.Out, _ShowButtonArea, this, "",  _ShowButtonArea.X,_ShowButtonArea.Y,  _ShowButtonArea.Width,_ShowButtonArea.Height);
+            Gdk.Pixbuf buf = Gdk.Pixbuf.LoadFromResource("QuickDate.png").ScaleSimple( 14, 14, Gdk.InterpType.Nearest );
+           
+           
+            GdkWindow.DrawPixbuf( this.Style.WhiteGC, buf, 0, 0, _ShowButtonArea.X + 4, _ShowButtonArea.Y + 2, 14, 14, Gdk.RgbDither.Normal, 0, 0 );
+            Gtk.Style.PaintArrow(this.Style, win, StateType.Active, ShadowType.Out, _ShowButtonArea, this, "", ArrowType.Down, true, (_ShowButtonArea.X + _ShowButtonArea.Width)/2,_ShowButtonArea.Y + _ShowButtonArea.Height - 16,  _ShowButtonArea.Width,_ShowButtonArea.Height);
+            //Gtk.Style.PaintShadow(this.Style, win, StateType.Selected, ShadowType.In, _BaseArea, this, "entry",  _TestArea.X + 2,_TestArea.Y + 2,  _TestArea.Width  -4,_TestArea.Height -4);
             //GdkWindow.DrawPixbuf(Style.BackgroundGC(StateType.Normal), display_pixbuf, 0, 0, 2, 2, _BaseArea.Width - 4, _BaseArea.Height - 4, Gdk.RgbDither.None, 0, 0);
+			//win.DrawRectangle (Style.BlackGC, false, new Gdk.Rectangle(_BaseArea.X , _BaseArea.Y, _BaseArea.Width, _BaseArea.Height));
 
-//			// draw the contols frame
-//			win.DrawRectangle (Style.BlackGC, false, new Gdk.Rectangle(_BaseArea.X , _BaseArea.Y, _BaseArea.Width, _BaseArea.Height));
-//			
-//			
-//			
 //			// draw the text box
 //			win.DrawRectangle (Style.BlackGC, true, _TestArea);
 //			win.DrawRectangle (Style.BaseGC(StateType.Prelight), true, new Gdk.Rectangle(_TestArea.X + 2, _TestArea.Y + 2, _TestArea.Width - 4, _TestArea.Height - 4));
@@ -76,12 +78,20 @@ namespace CMYControls
 //			p.RenderToDrawable(d, Style.WhiteGC, 0,0,0,0, 25, 25, Gdk.RgbDither.None, 0,0);
 //			Gdk.GC gc = new Gdk.GC(d);
 //			win.DrawPixbuf(gc ,p , 25,25,  _ShowButtonArea.X, _ShowButtonArea.Y, _ShowButtonArea.Width, _ShowButtonArea.Height, Gdk.RgbDither.None, 0,0);
+			this.HeightRequest = _BaseArea.Height + 2;
+			this.WidthRequest = _BaseArea.Width + 2;
 			((Gtk.Widget)this.Parent).HeightRequest = _BaseArea.Height;
 			((Gtk.Widget)this.Parent).WidthRequest = _BaseArea.Width;
 			((Gtk.Widget)this.Parent).QueueDraw();
 			((Gtk.Widget)this.Parent).ShowAll();
 			this.ParentWindow.Show();
-			
+			}
+			catch(Exception ex)
+			{
+				MessageDialog md = new MessageDialog (null, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, ex.ToString () + System.Environment.NewLine + System.Environment.NewLine + ex.ToString (), "An Error Has Occured");
+				md.Run ();
+				md.Destroy ();
+			}
 			
 			return true;
 		}
