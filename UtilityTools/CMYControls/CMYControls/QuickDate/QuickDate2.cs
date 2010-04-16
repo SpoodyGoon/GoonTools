@@ -50,11 +50,11 @@ namespace CMYControls
 			this.WidthRequest = _BaseArea.Width + 2;
             int y_mid = (Allocation.Height - this.Allocation.Height) / 2;
 			//Gdk.Pixbuf display_pixbuf = Gdk.Pixbuf.LoadFromResource("QuickDate.png");
-            GdkWindow.DrawRectangle(Style.BaseGC(StateType.Normal), true, 0, y_mid - y_offset, _BaseArea.Width - 4, _BaseArea.Height - 4);
-
+            //GdkWindow.DrawRectangle(Style.BaseGC(StateType.Normal), true, 0, y_mid - y_offset, _BaseArea.Width - 4, _BaseArea.Height - 4);
+  			Gtk.Style.PaintBox (Style, GdkWindow, State, ShadowType.None, _BaseArea, this, "entry",  _BaseArea.X + 2,_BaseArea.Y + 2,  _BaseArea.Width - 4,_BaseArea.Height -4);
             Gtk.Style.PaintShadow(Style, GdkWindow, StateType.Normal, ShadowType.In, _BaseArea, this, "entry", 0, y_mid - y_offset, _BaseArea.Width - 4,_BaseArea.Height -4);
 
-            GdkWindow.DrawPixbuf(Style.BackgroundGC(StateType.Normal), display_pixbuf, 0, 0, 2, 2, _BaseArea.Width - 4, _BaseArea.Height - 4, Gdk.RgbDither.None, 0, 0);
+            //GdkWindow.DrawPixbuf(Style.BackgroundGC(StateType.Normal), display_pixbuf, 0, 0, 2, 2, _BaseArea.Width - 4, _BaseArea.Height - 4, Gdk.RgbDither.None, 0, 0);
 
 //			// draw the contols frame
 //			win.DrawRectangle (Style.BlackGC, false, new Gdk.Rectangle(_BaseArea.X , _BaseArea.Y, _BaseArea.Width, _BaseArea.Height));
