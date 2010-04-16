@@ -19,6 +19,7 @@ namespace MonoBPMonitor
 				_SelectedDate = selecteddate;
 				calendar2.Date = selecteddate.Date;
 				SetUpTime ();
+				// added comment
 				ShowAll ();
 			}
 			catch (Exception ex)
