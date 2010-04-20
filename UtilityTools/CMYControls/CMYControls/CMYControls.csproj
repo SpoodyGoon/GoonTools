@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -49,7 +49,13 @@
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Mono.Posix" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.6.3\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.6.3\lib\mono\gac\glib-sharp\2.12.0.0__35e10195dab3c99f\glib-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -66,7 +72,9 @@
     <Folder Include="QuickDate\" />
     <Compile Include="DropDownList.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="QuickDate\QuickDate2.cs" />
+    <Compile Include="QuickDate\PopupCalendar.cs" />
+    <Compile Include="gtk-gui\CMYControls.QuickDate.cs" />
+    <Compile Include="QuickDate\QuickDate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ColumnSelector\columnpicker.png" />
