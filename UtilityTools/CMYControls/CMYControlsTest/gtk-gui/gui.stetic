@@ -86,8 +86,6 @@
                         <child>
                           <widget class="CMYControls.QuickDate" id="quickdate1">
                             <property name="MemberName" />
-                            <property name="WidthRequest">150</property>
-                            <property name="HeightRequest">35</property>
                             <property name="Events">ButtonPressMask</property>
                           </widget>
                         </child>
