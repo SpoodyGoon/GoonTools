@@ -110,8 +110,6 @@ public partial class MainWindow {
         this.algQuickDate.Name = "algQuickDate";
         // Container child algQuickDate.Gtk.Container+ContainerChild
         this.quickdate1 = new CMYControls.QuickDate();
-        this.quickdate1.WidthRequest = 150;
-        this.quickdate1.HeightRequest = 35;
         this.quickdate1.Events = ((Gdk.EventMask)(256));
         this.quickdate1.Name = "quickdate1";
         this.algQuickDate.Add(this.quickdate1);
