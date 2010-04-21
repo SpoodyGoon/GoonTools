@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8104C857-F52A-4154-BE6D-DD67E1759FE1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>CMYControls</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <Description>A collection of custom Mono/Gtk# widgets.</Description>
+    <RootNamespace>CMYControls</RootNamespace>
+    <SourceAnalysisOverrideSettingsFile>C:\Users\Andy\AppData\Roaming\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System" />
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.6.3\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.6.3\lib\mono\gac\glib-sharp\2.12.0.0__35e10195dab3c99f\glib-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Deployment.LinuxDeployData generateScript="false" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Folder Include="ColumnSelector\" />
+    <Folder Include="Common\" />
+    <Folder Include="QuickTime\" />
+    <Folder Include="QuickDate\" />
+    <Compile Include="DropDownList.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="QuickDate\PopupCalendar.cs" />
+    <Compile Include="gtk-gui\CMYControls.QuickDate.cs" />
+    <Compile Include="QuickDate\QuickDate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ColumnSelector\columnpicker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColumnSelector\ColumnSelectorTreeView.cs" />
+    <Compile Include="ColumnSelector\ColumnSelectorTreeView.designer.cs" />
+    <Compile Include="ColumnSelector\PopupWindow.cs" />
+    <Compile Include="ColumnSelector\TreeColumnSelector.cs" />
+    <Compile Include="Common\GrabUtil.cs" />
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="QuickTime\QuickTimeMenu.cs" />
+    <Compile Include="QuickTime\QuickTime.cs" />
+    <Compile Include="LinkButton.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="QuickTime\ClearTime.png">
+      <LogicalName>ClearTime.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickTime\QuickTime.png">
+      <LogicalName>QuickTime.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickDate\ClearDate.png">
+      <LogicalName>ClearDate.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickDate\QuickDate.png">
+      <LogicalName>QuickDate.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
