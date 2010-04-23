@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Data;
 
 namespace SQLiteHelper
 {
@@ -17,6 +18,7 @@ namespace SQLiteHelper
 	{
 		public DumpDataSet()
 		{
+			DataTable dt = new DataTable("");
 		}
 	}
 }
