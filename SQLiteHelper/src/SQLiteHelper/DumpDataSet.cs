@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created by SharpDevelop.
  * User: ayork
  * Date: 4/22/2010
@@ -9,7 +9,7 @@
 using System;
 using System.Data;
 
-namespace SQLiteHelper
+namespace GoonTools
 {
 	/// <summary>
 	/// Description of DumpDataSet.
