@@ -9,7 +9,6 @@
   </import>
   <widget class="Gtk.Bin" id="CMYControls.QuickDate" design-size="208 31">
     <property name="MemberName" />
-    <property name="Visible">False</property>
     <child>
       <widget class="Gtk.Frame" id="frame1">
         <property name="MemberName" />
