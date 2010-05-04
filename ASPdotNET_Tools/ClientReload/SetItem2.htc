@@ -1,0 +1,13 @@
+<PUBLIC:PROPERTY ID="propID" NAME="child" PUT="SetSelectedValue" GET="SelectedIndexGet" />
+
+   <SCRIPT LANGUAGE="JScript" >
+   var CurrentValue = null;
+   function SetSelectedValue()
+   {
+   }
+   
+   function SelectedIndexGet()
+   {
+   }
+   </SCRIPT>
+</PUBLIC:COMPONENT>

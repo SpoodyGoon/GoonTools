@@ -6,10 +6,13 @@
         <script type="text/javascript" id="jsCookieManagement">
             // Gets the cookie of the passed in name string
             // if the cookie does not exist return null                  
-            function GetCookie(c_name){
-                if (document.cookie.length > 0) {
+            function GetCookie(c_name)
+            {
+                if (document.cookie.length > 0) 
+                {
                     c_start = document.cookie.indexOf(c_name + "=");
-                    if (c_start != -1) {
+                    if (c_start != -1) 
+                    {
                         c_start = c_start + c_name.length + 1;
                         c_end = document.cookie.indexOf(";", c_start);
                         if (c_end == -1) 
@@ -22,85 +25,107 @@
             
             // sets a cookie of the name and value pairs
             // along with the time until it expires                   
-            function SetCookie(c_name, value, expiredays){
+            function SetCookie(c_name, value, expiredays)
+            {
                 var exdate = new Date();
                 exdate.setDate(exdate.getDate() + expiredays);
                 document.cookie = c_name + "=" + escape(value) + ";expires=" + exdate.toGMTString();
             }
-            
-            // Example of how to work with the above code
-            function CheckCookie(){
-                var CookieValue = GetCookie('CookieName');
-                if (CookieValue != null) {
-                    // do something with none existant cookie
-                }
-                else {
-                    // Do something with cookie
-                }
-            }
         </script>
         <script id="jsRefreshControl" type="text/javascript">
-            var TimeoutPeriod = 2; // 2 is as good as any default
-            var TimeoutObject;
-            function ddlRefresh_Changed(){
-                var ddlRefresh = document.getElementById("ddlRefresh");
-                TimeoutPeriod = parseInt(ddlRefresh.options[ddlRefresh.selectedIndex].value);
-                SetCookie("CSIPageRefresh", TimeoutPeriod, 5);
-                timedRefresh();
+            var TimeoutPeriod = 0;
+            var TimeoutObject = null;
+            function ddlRefresh_Changed()
+            {
+                var ddl = document.getElementById("ddlRefresh");
+                TimeoutPeriod = parseInt(ddl.options[ddl.selectedIndex].value);
+                SetCookie("CSIPageRefresh", TimeoutPeriod, 10);
+                TimedRefresh();
             }
             
-            function SetRefresh(RefVal){
-                try {
+            function SetRefresh(RefVal)
+            {
+                try 
+                {
                     TimeoutPeriod = parseInt(RefVal);
-                    var ddlRefresh = document.getElementById("ddlRefresh");
-                    SetSelectedIndex(ddlRefresh, TimeoutPeriod);
-                    timedRefresh();
+                    var ddl = document.getElementById("ddlRefresh");
+					ddl.SetItemByValue(TimeoutPeriod);
+                    TimedRefresh();
                 } 
-                catch (e) {
+                catch (e) 
+                {
                     alert("An Error has occured " + e.description);
                     
                 }
             }
             
-            function timedRefresh(TimeoutPeriod){
-                try {
-                    if (TimeoutPeriod > 0) {
+            function TimedRefresh(TimeoutPeriod)
+            {
+                try 
+                {
+                    if (TimeoutPeriod > 0) 
+                    {
                         TimeoutObject = setTimeout("location.reload(true);", TimeoutPeriod * 1000);
                     }
-                    else {
+                    else 
+                    {
                         if (TimeoutObject != null) 
                             clearTimeout(TimeoutObject);
                     }
                 } 
-                catch (e) {
+                catch (e) 
+                {
                     alert("An Error has occured " + e.description);
                     
                 }
             }
             
-            // set the selected index of the passed in select element
-            // to the option of the value passed in
-            function SetSelectedIndex(SelectElem, SelectedValue){
-                try {
-                    // check to see if we have a select element
-                    if (SelectElem.tagName.toLowerCase() == "select") {
-                        for (var i = 0; i < SelectElem.options.length; i++) {
-                            if (SelectElem.options[i].value == SelectedValue) {
-                                SelectElem.selectedIndex = i;
-                                return;
-                            }
-                        }
-                        // if we get here there was no match set the selectedIndex to -1
-                        // value not found leave it as is
-                    }
-                    else {
-                        alert('Invalid element type ("' + SelectElem.id + '" is a type of ' + SelectElem.tagName + ' at function SetSelectedIndex(SelectElem, SelectedValue)');
-                    }
-                } 
-                catch (e) {
-                    alert("An Error has occured " + e.description);
+            Element.prototype.SetItemByValue = function(value)
+            {
+                if (this.tagName.toLowerCase() != "select") 
+                {
+                    alert("Incorrect element type: Current Element " + this.id + " is a type of " + this.tagName.toLowerCase() + ". An element type of \"select\" is requred.");
+                    return false;
                 }
+                for (var i = 0; i < this.options.length; i++) 
+                {
+                    if (this.options[i].value == value) 
+                    {
+                        this.selectedIndex = i;
+                        return true;
+                    }
+                }
+                this.selectedIndex = -1;
+                return false;
             }
+            
+            Element.prototype.SetItemByText = function(value)
+            {
+                if (this.tagName.toLowerCase() != "select") 
+                {
+                    alert("Incorrect element type: Current Element " + this.id + " is a type of " + this.tagName.toLowerCase() + ". An element type of \"select\" is requred.");
+                    return false;
+                }
+                for (var i = 0; i < this.options.length; i++) 
+                {
+                    if (this.options[i].text == value) 
+                    {
+                        this.selectedIndex = i;
+                        return true;
+                    }
+                }
+                this.selectedIndex = -1;
+                return false;
+                
+            }
+            /*
+            function TestProto()            
+            {
+            	var ddl  = document.getElementById("ddlRefresh");
+				//ddl.SetItemByValue(2);
+				ddl.SetItemByText("Reload page every 10 minutes");
+            }
+            */
         </script>
     </head>
     <body>
@@ -114,17 +139,21 @@
             <option value="10">Reload page every 10 minutes</option>
             <option value="15">Reload page every 15 minutes</option>
         </select>
-        <hr/><input type="button" id="btnUpdate" onclick="javascript:SetRefresh(5);" value="click me"/>
-		<script type="text/javascript" id="jsStartTimer">
-			TimeoutPeriod = GetCookie("CSIPageRefresh")  
-			if(TimeoutPeriod != null)
-			{
-				SetRefresh(TimeoutPeriod);
-			}
-			else
-			{
-				SetRefresh(2);
-			}
-		</script>
+        <!-- this is used for testing purposes -->
+		<!--
+		<hr/>
+		<input type="button" id="btnUpdate" onclick="javascript:TestProto();" value="click me"/>
+		-->
+        <script type="text/javascript" id="jsStartTimer">
+            TimeoutPeriod = GetCookie("CSIPageRefresh")
+            if (TimeoutPeriod != null) 
+            {
+                SetRefresh(TimeoutPeriod);
+            }
+            else 
+            {
+                SetRefresh(2); // 2 minutes being the default
+            }
+        </script>
     </body>
 </html>

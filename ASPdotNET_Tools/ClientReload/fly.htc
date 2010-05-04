@@ -1,0 +1,10 @@
+<PUBLIC:COMPONENT NAME="toFly">
+   <PUBLIC:METHOD NAME="startFlying" />
+
+   <SCRIPT LANGUAGE="JScript" >
+      function startFlying()
+      {
+         alert("got here");
+      }
+   </SCRIPT>
+</PUBLIC:COMPONENT>
