@@ -341,6 +341,14 @@ namespace MonoBPMonitor
 			}
 		}
 		
+		protected virtual void OnBackupRestoreActionActivated (object sender, System.EventArgs e)
+		{
+			frmBackupRestore fm = new frmBackupRestore ();
+			fm.Run ();
+			fm.Destroy ();
+		}
+		
+		
 		
 	}
 

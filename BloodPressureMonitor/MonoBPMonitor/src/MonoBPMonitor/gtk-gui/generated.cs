@@ -49,6 +49,8 @@ namespace Stetic {
                 w1.Add("issue_feature.png", w15);
                 Gtk.IconSet w16 = new Gtk.IconSet(Gdk.Pixbuf.LoadFromResource("update_small.png"));
                 w1.Add("update_small.png", w16);
+                Gtk.IconSet w17 = new Gtk.IconSet(Gdk.Pixbuf.LoadFromResource("BackupRestore.png"));
+                w1.Add("BackupRestore.png", w17);
                 w1.AddDefault();
             }
         }
