@@ -63,6 +63,8 @@ namespace MonoBPMonitor {
         
         private Gtk.Action IssuesFeatureRequestsAction;
         
+        private Gtk.Action BackupRestoreAction;
+        
         private Gtk.VBox vbox1;
         
         private Gtk.MenuBar menubar1;
@@ -174,6 +176,9 @@ namespace MonoBPMonitor {
             this.IssuesFeatureRequestsAction = new Gtk.Action("IssuesFeatureRequestsAction", Mono.Unix.Catalog.GetString("Issues & Feature Requests"), null, "issue_feature.png");
             this.IssuesFeatureRequestsAction.ShortLabel = Mono.Unix.Catalog.GetString("Issues & Feature Requests");
             w1.Add(this.IssuesFeatureRequestsAction, null);
+            this.BackupRestoreAction = new Gtk.Action("BackupRestoreAction", Mono.Unix.Catalog.GetString("Backup/Restore"), null, "BackupRestore.png");
+            this.BackupRestoreAction.ShortLabel = Mono.Unix.Catalog.GetString("Backup/Restore");
+            w1.Add(this.BackupRestoreAction, null);
             this.UIManager.InsertActionGroup(w1, 0);
             this.AddAccelGroup(this.UIManager.AccelGroup);
             this.WidthRequest = 750;
@@ -191,7 +196,7 @@ namespace MonoBPMonitor {
             this.vbox1.Name = "vbox1";
             this.vbox1.Spacing = 6;
             // Container child vbox1.Gtk.Box+BoxChild
-            this.UIManager.AddUiFromString("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewEntryAction' action='NewEntryAction'/><menuitem name='MedicationAction' action='MedicationAction'/><menuitem name='DoctorsAction' action='DoctorsAction'/><menuitem name='UsersAction' action='UsersAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='UpdatesAction' action='UpdatesAction'/><menuitem name='OptionsAction' action='OptionsAction'/></menu><menu name='HelpAction' action='HelpAction'><menu name='OnlineHelpAction' action='OnlineHelpAction'><menuitem name='ProjectWebSiteAction' action='ProjectWebSiteAction'/><menuitem name='OnlineDocumentationAction' action='OnlineDocumentationAction'/><menuitem name='IssuesFeatureRequestsAction' action='IssuesFeatureRequestsAction'/></menu><menuitem name='ErrorLogAction' action='ErrorLogAction'/><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
+            this.UIManager.AddUiFromString("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewEntryAction' action='NewEntryAction'/><menuitem name='MedicationAction' action='MedicationAction'/><menuitem name='DoctorsAction' action='DoctorsAction'/><menuitem name='UsersAction' action='UsersAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='UpdatesAction' action='UpdatesAction'/><menuitem name='OptionsAction' action='OptionsAction'/><menuitem name='BackupRestoreAction' action='BackupRestoreAction'/></menu><menu name='HelpAction' action='HelpAction'><menu name='OnlineHelpAction' action='OnlineHelpAction'><menuitem name='ProjectWebSiteAction' action='ProjectWebSiteAction'/><menuitem name='OnlineDocumentationAction' action='OnlineDocumentationAction'/><menuitem name='IssuesFeatureRequestsAction' action='IssuesFeatureRequestsAction'/></menu><menuitem name='ErrorLogAction' action='ErrorLogAction'/><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
             this.menubar1 = ((Gtk.MenuBar)(this.UIManager.GetWidget("/menubar1")));
             this.menubar1.Name = "menubar1";
             this.vbox1.Add(this.menubar1);
@@ -239,6 +244,7 @@ namespace MonoBPMonitor {
             this.alignment4.Name = "alignment4";
             // Container child alignment4.Gtk.Container+ContainerChild
             this.hbuttonbox1 = new Gtk.HButtonBox();
+            this.hbuttonbox1.Name = "hbuttonbox1";
             this.hbuttonbox1.Spacing = 24;
             // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
             this.btnAddEntry = new Gtk.Button();
@@ -388,6 +394,7 @@ namespace MonoBPMonitor {
             this.ProjectWebSiteAction.Activated += new System.EventHandler(this.OnProjectWebSiteActionActivated);
             this.OnlineDocumentationAction.Activated += new System.EventHandler(this.OnOnlineDocumentationActionActivated);
             this.IssuesFeatureRequestsAction.Activated += new System.EventHandler(this.OnIssuesFeatureRequestsActionActivated);
+            this.BackupRestoreAction.Activated += new System.EventHandler(this.OnBackupRestoreActionActivated);
             this.btnAddEntry.Clicked += new System.EventHandler(this.OnBtnAddEntryClicked);
             this.btnRemoveEntry.Clicked += new System.EventHandler(this.OnBtnRemoveEntryClicked);
             this.btnEditEntry.Clicked += new System.EventHandler(this.OnBtnEditEntryClicked);

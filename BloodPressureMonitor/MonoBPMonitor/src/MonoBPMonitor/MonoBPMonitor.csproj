@@ -149,7 +149,6 @@
     <Compile Include="Common\Const.cs" />
     <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="Common\Options.cs" />
-    <Compile Include="frmOptions.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmOptions.cs" />
     <Compile Include="Medications\frmMedication.cs" />
     <Compile Include="Users\frmUsers.cs" />
@@ -234,6 +233,10 @@
     <None Include="Help\icon_small.png">
       <Visible>False</Visible>
     </None>
+    <Compile Include="Tools\frmBackupRestore.cs" />
+    <Compile Include="gtk-gui\MonoBPMonitor.frmBackupRestore.cs" />
+    <Compile Include="Tools\frmOptions.cs" />
+    <EmbeddedResource Include="images\BackupRestore.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -256,5 +259,8 @@
     <Resource Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tools\" />
   </ItemGroup>
 </Project>
