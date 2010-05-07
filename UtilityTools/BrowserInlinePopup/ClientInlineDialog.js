@@ -1,3 +1,7 @@
+/*
+ * MS Ref = http://msdn.microsoft.com/en-us/library/ms532998(VS.85).aspx
+ */
+
 function ShowInlineDialog(strMessage, ElemParent)
 {
 	try 
@@ -18,7 +22,46 @@ function ShowInlineDialog(strMessage, ElemParent)
 			
 		var divWindow = document.createElement("div");
 		var tblParent = document.createElement("table");
+		var trBaseRow;
+		var thTitle = document.createTHead();
+		var tdContent;
+		var tdFooter = document.createTFoot();
+		// put it together
+		/*
+		trBaseRow.appendChild(thTitle);
+		tblParent.appendChild(trBaseRow);
+		trBaseRow = document.createElement("tr");
+		trBaseRow.appendChild(tdContent);
+		tblParent.appendChild(trBaseRow);
+		//alert("got here " + tblParent.style.top.toString());
+		trBaseRow = document.createElement("tr");
+		trBaseRow.appendChild(tdFooter);
+		tblParent.appendChild(trBaseRow);
+		*/
+		
+		trBaseRow = tblParent.insertRow();
+		thTitle = trBaseRow.insertCell();
+		thTitle.innerHTML="Title";
+		trBaseRow = tblParent.insertRow();
+		tdContent = trBaseRow.insertCell();
+		tdContent.innerHTML = "Content";
+		trBaseRow = tblParent.insertRow();
+		tdContent = trBaseRow.insertCell();
+		tdContent.innerHTML = "Foot";
+		
+		ParentElem.appendChild(tblParent);
+		
+		tblParent.id = "tblParent";
+		tblParent.name = "tblParent";
+		thTitle.id = "thTitle";
+		thTitle.name = "thTitle";
+		tdContent.id = "tdContent";
+		tdContent.name = "tdContent";
+		tdFooter.id = "tdFooter";
+		tdFooter.name = "tdFooter";
+		
 		tblParent.style.position = "absolute";
+		tblParent.border = 1;
 		tblParent.style.top = "100px";
 		tblParent.style.left = "100px";
 		tblParent.style.width = "390px";
@@ -26,27 +69,15 @@ function ShowInlineDialog(strMessage, ElemParent)
 		//tblParent.style.display = "block";
 		tblParent.style.zIndex = 999; 
 		tblParent.style.backgroundColor = "#c9c9c9";
-		var trBaseRow = document.createElement("tr");
-		var thTitle = document.createElement("th");
+		
 		thTitle.innerHTML = "Title";
-		var tdContent = document.createElement("td");
 		tdContent.innerHTML = "Content";
-		var tdFooter = document.createElement("td");
 		tdFooter.innerHTML = "Footer";
-		// put it together
-		trBaseRow.appendChild(thTitle);
-		tblParent.appendChild(trBaseRow);
-		
-		trBaseRow = document.createElement("tr");
-		trBaseRow.appendChild(tdContent);
-		tblParent.appendChild(trBaseRow);
-		alert("got here " + tblParent.style.top.toString());
-		trBaseRow = document.createElement("tr");
-		trBaseRow.appendChild(tdFooter);
-		tblParent.appendChild(trBaseRow);
-		ParentElem.appendChild(tblParent);
-		
-		
+		/*
+		var rem = document.createElement("div");
+		rem.innerHTML = '<iframe style="display:none" src="about:blank" id="rpc" name="rpc"></iframe>'
+		ParentElem.appendChild(rem);
+		*/
 	} 
 	catch (ex) 
 	{
