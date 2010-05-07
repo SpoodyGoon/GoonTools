@@ -24,6 +24,24 @@ if(!Array.indexOf){
 	}
 }
 
+function Sleep(SleepSeconds)
+{
+	setTimeout( function () { return; }, SleepSeconds * 1000);
+}
+
+// validating an element to make sure it is valid
+function ValidateElement(ValElem, ShowError)
+{
+	if(isNaN(ValElem) || ValElem == null)
+	{
+		if(ShowError == true)
+			alert("Invalid HTML DOM Element");
+			
+		return false;
+	}
+	return true;
+}
+
 // first attempt at this function may be a bad idea
 // the idea is to find a good IsNumeric function
 String.prototype.IsNumeric = function() 
@@ -32,7 +50,7 @@ String.prototype.IsNumeric = function()
 	// put it there anyways
 	try
 	{
-		if(this.trim().lenght == 0)
+		if(this.trim().length == 0)
 		{
 			return false;
 		}
@@ -50,7 +68,7 @@ String.prototype.IsInt = function()
 {
 	try
 	{
-		if(this.trim().lenght == 0)
+		if(this.trim().length == 0)
 		{
 			return false;
 		}
@@ -64,7 +82,7 @@ String.prototype.IsInt = function()
 }
 
 // typeof with array support
-/* FIXME: Don't work in Firefox 
+/* FIXME: Don't work in Firefox
 function typeOf(obj) {
   if ( typeof(obj) == 'object' )
     if (obj.length)
@@ -74,7 +92,7 @@ function typeOf(obj) {
     } else
   return typeof(obj);
 }
-*/
+ */
 String.prototype.CurrencyFormatted = function()
 {
 	var i = parseFloat(this);
@@ -89,5 +107,33 @@ String.prototype.CurrencyFormatted = function()
 	if(s.indexOf('.') == (s.length - 2)) { s += '0'; }
 	s = minus + s;
 	return '$' + s;
+}
+
+
+function HandleError(CurrentError, Title)
+{
+	// TODO: finish this object
+	/*
+	this.ErrorDesc = CurrentError;
+	this.ErrorTitle = Title;
+	if(!isNaN(CurrentError.number) && CurrentError.number != null && CurrentError.number != undefined)
+	{
+		this.ErrorNum = CurrentError.number.toString();
+	}
+	else
+	{
+		this.ErrorNum = "";
+	}
+	
+	if(this.Title != null && !isNaN(this.Title) && this.Title.length > 1)
+	{
+		alert("\t\t\t" + this.Title + "\n\n" + this.ErrorDesc);
+	}
+	else
+	{
+	*/
+		alert(CurrentError);
+	//}
+	
 }
 
