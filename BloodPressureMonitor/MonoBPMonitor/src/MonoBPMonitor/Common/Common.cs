@@ -97,7 +97,7 @@ namespace GoonTools
 		static internal void LoadUserData ()
 		{
 			StreamReader sr;
-			DataSet ds = new DataSet (_EnvData.UserOptionFile);
+			DataSet ds = new DataSet (_EnvData.ProgramName);
 			try
 			{
 				// FIXME: when there is a failure to initially start
@@ -107,7 +107,7 @@ namespace GoonTools
 				
 				bool ValFile = false;
 				// take a look at the file to be sure it is not empty
-				FileInfo fi = new FileInfo (_EnvData.ProgramName);
+				FileInfo fi = new FileInfo (_EnvData.UserOptionFile);
 				if (fi.Exists)
 				{
 					sr = (StreamReader)fi.OpenText ();
@@ -117,7 +117,7 @@ namespace GoonTools
 				}
 				if (ValFile)
 				{
-					ds.ReadXml (_EnvData.UserOptionFile, XmlReadMode.ReadSchema);
+					ds.ReadXml (_EnvData.UserOptionFile);
 					DataTable dtTMP = (DataTable)ds.Tables["Options"];
 					if (dtTMP != null)
 						_Option = new GoonTools.Helper.Options (dtTMP);
