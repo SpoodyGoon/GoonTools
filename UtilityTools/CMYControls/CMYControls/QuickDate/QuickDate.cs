@@ -23,14 +23,27 @@ namespace CMYControls
 		{
 			this.AppPaintable = true;
 			this.Build ();
+			this.btnShowCalendar.Clicked += OnBtnShowCalendarClicked;
+			this.btnClearDate.Clicked += OnBtnClearCalendarClicked;
+			this.ShowAll();
 		}
 		
 		protected virtual void OnBtnShowCalendarClicked (object sender, System.EventArgs e)
 		{
+			int x, y, width = 120, height = 175;
+			// get the position of the parent window
+			this.ParentWindow.GetPosition( out x, out y );
+			// now find the treeviews allocation
+			x += this.Allocation.X;
+			y += this.Allocation.Y;
+			Gdk.Rectangle rec =  new Gdk.Rectangle(x,y,width,height);
+			PopupCalendar pc = new PopupCalendar(rec);
+			pc.ShowPopUp();
 		}
 		
 		protected virtual void OnBtnClearCalendarClicked (object sender, System.EventArgs e)
 		{
+			txtQuickDate.Text = "";
 		}
 		
 	}

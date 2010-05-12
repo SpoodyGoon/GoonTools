@@ -16,12 +16,13 @@ namespace CMYControls
 	public class PopupCalendar : Gtk.Window
 	{
 		private Gtk.Calendar _Calendar = new Gtk.Calendar();
-		public PopupCalendar(Gdk.Rectangle ParentRec)  : base(Gtk.WindowType.Popup)
+		private Gdk.Rectangle _PopUpRec;
+		public PopupCalendar(Gdk.Rectangle rec)  : base(Gtk.WindowType.Popup)
 		{
 			Build();
-			this.WidthRequest = ParentRec.Width;
-			this.HeightRequest = ParentRec.Height;
-			this.Move(ParentRec.Left, ParentRec.Bottom);
+			_PopUpRec = rec;
+//			this.WidthRequest = rec.Width;
+//			this.HeightRequest = rec.Height;
 			this.ShowAll();
 		}
 		
@@ -31,7 +32,8 @@ namespace CMYControls
 		{
 			base.OnExposeEvent (evnt);
 			int winWidth, winHeight;
-			this.GetSize (out winWidth, out winHeight);			
+			this.GetSize (out winWidth, out winHeight);	
+			this.Move(_PopUpRec.Left, _PopUpRec.Bottom);		
 			this.GdkWindow.DrawRectangle (this.Style.ForegroundGC (Gtk.StateType.Insensitive), false, 0, 0, winWidth-1, winHeight-1);
 			return false;
 		}
@@ -40,10 +42,12 @@ namespace CMYControls
 		{
 			this.CanFocus = true;
 			this.BorderWidth = 2;
-			this.AllowGrow = false;
+			this.AllowGrow = true;
+			this.AllowShrink = false;
 			this.DestroyWithParent = true;
 			this.SkipPagerHint = true;
 			this.SkipTaskbarHint = true;
+			this.AppPaintable = true;
 			// initialize the window with it not being visible
 			// we'll set it to visible after the treeview has been populated
 			this.Visible = false;
@@ -55,9 +59,7 @@ namespace CMYControls
 			GtkAlignment1.Add(_Calendar);			
 			frame1.Add(GtkAlignment1);
 			this.Add(frame1);
-			this.AppPaintable = true;
 			this.ModifyBg(Gtk.StateType.Normal, new Gdk.Color(0, 0,0));
-			this.Show();
 		}
 		
 		
