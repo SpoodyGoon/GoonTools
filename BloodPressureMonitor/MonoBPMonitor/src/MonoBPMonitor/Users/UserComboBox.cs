@@ -37,7 +37,7 @@ namespace MonoBPMonitor.Users
 		private int _SearchUserID;
 		private string _SearchUserName;
 		private bool _IsLoading = false;
-		public UserComboBox()
+		public UserComboBox() 
 		{
 			Build();
 			SetUser(LastUserGet());
@@ -69,7 +69,6 @@ namespace MonoBPMonitor.Users
 				Gtk.TreeIter iter;
 				if(lsUser.GetIterFirst(out iter))
 					this.SetActiveIter(iter);
-				
 			}
 			catch(Exception ex)
 			{
@@ -147,9 +146,8 @@ namespace MonoBPMonitor.Users
 //			Build();
 //			base.OnRealized ();
 //		}
-
 		
-		//[GLib.ConnectBeforeAttribute()]
+		[GLib.ConnectBeforeAttribute()]
 		protected override void OnChanged ()
 		{
 			try
@@ -188,7 +186,7 @@ namespace MonoBPMonitor.Users
 				Common.HandleError(ex);
 			}
 		}
-
+/**/
 		
 		#region Public Properties
 		

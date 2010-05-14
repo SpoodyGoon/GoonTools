@@ -19,6 +19,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <RunCodeAnalysis>False</RunCodeAnalysis>
     <newfilesearch>OnLoad</newfilesearch>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,14 +48,6 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.3\lib\mono\gac\Mono.Data\2.0.0.0__0738eb9f132ed756\Mono.Data.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>..\..\..\..\..\..\..\Program Files %28x86%29\Mono-2.6.3\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -85,10 +78,12 @@
     <Reference Include="System.Configuration">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\SharpDevelop\3.0\AddIns\AddIns\Misc\AddInManager\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -124,7 +119,6 @@
     <Compile Include="Common\MetaInfo.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmErrorMessage.cs" />
     <Compile Include="Help\frmErrorMessage.cs" />
-    <Compile Include="MiscControls\ThemeComboBox.cs" />
     <Compile Include="Doctors\DoctorTreeView.cs" />
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
@@ -146,7 +140,6 @@
     <Compile Include="gtk-gui\MonoBPMonitor.frmCalendar.cs" />
     <Compile Include="Common\BufferTags.cs" />
     <Compile Include="Common\Common.cs" />
-    <Compile Include="Common\Const.cs" />
     <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="Common\Options.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmOptions.cs" />
@@ -242,6 +235,17 @@
     <EmbeddedResource Include="images\edit.png">
       <LogicalName>edit.png</LogicalName>
     </EmbeddedResource>
+    <None Include="Data\License.txt" />
+    <Compile Include="Common\License.cs" />
+    <None Include="MainWin32.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="obj\Debug\MonoBPMonitor_NonRepo.csproj.FileListAbsolute.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="obj\Debug\ResolveAssemblyReference.cache">
+      <Visible>False</Visible>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

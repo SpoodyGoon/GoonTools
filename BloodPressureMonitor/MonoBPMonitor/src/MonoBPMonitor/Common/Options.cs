@@ -84,52 +84,7 @@ namespace GoonTools.Helper
 
 		internal Options ()
 		{
-			try
-			{
-				// Inital Setup of the global options
-				// Custom Themes logic is initially set up at the global level
-				// and set the file location
-				// Custom Themes is a Windows only option
-				// and you can turn if off by unchecking the flag in the options section
-				if (cm.AppSettings["AllowCustomTheme"].ToLower () == "true")
-				{
-					if (Common.EnvData.IsWindows)
-					{
-						_UseCustomTheme = true;
-						so.DirectoryInfo di = new so.DirectoryInfo (so.Path.Combine (GoonTools.Common.EnvData.ThemeFolder, GoonTools.Common.Option.CustomThemeName));
-						if (di.Exists)
-						{
-							so.FileInfo fi = new so.FileInfo (so.Path.Combine (so.Path.Combine (di.FullName, "gtk-2.0"), "gtkrc"));
-							if (fi.Exists)
-							{
-								GoonTools.Common.Option.CustomThemeFile = fi.FullName;
-							}
-						}
-					}
-					else
-					{
-						// we are not in windows reinforce no use of themes outside of windows
-						_UseCustomTheme = false;
-					}
-				}
-				else
-				{
-					_UseCustomTheme = false;
-				}
-				
-				if (cm.AppSettings["AllowCustomTheme"].ToLower () == "true")
-				{
-					_UseCustomUpdate = true;
-				}
-				else
-				{
-					_UseCustomUpdate = false;
-				}
-			}
-			catch(Exception ex)
-			{
-				Common.HandleError(ex);
-			}
+			
 		}
 
 		internal Options (DataTable dt)

@@ -126,7 +126,6 @@ namespace GoonTools
 					_Option = new Helper.Options ();
 					_MetaInfo = new Helper.MetaInformation ();
 				}
-				SaveUserData ();
 				
 			}
 			catch (Exception ex)

@@ -32,6 +32,11 @@ namespace MonoBPMonitor.Reports
 	/// </summary>
 	public partial class EntryRptTreeView : Gtk.TreeView
 	{
+		public EntryRptTreeView()
+		{
+			Build();
+		}
+		
 		public EntryRptTreeView(int userid)
 		{
 			_CurrentUser = userid;
@@ -149,11 +154,11 @@ namespace MonoBPMonitor.Reports
 			LoadData();
 		}
 		
-		public void Refresh(bool CheckOptionChange)
-		{
-			if(_CurrentHistoryLimit != Common.Option.HistoryDefaultShow)
-				LoadData();
-		}
+//		public void Refresh(bool CheckOptionChange)
+//		{
+//			if(_CurrentHistoryLimit != Common.Option.HistoryDefaultShow)
+//				LoadData();
+//		}
 		
 		#endregion public methods
 		
