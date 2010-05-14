@@ -128,7 +128,7 @@
     <Compile Include="gtk-gui\MonoBPMonitor.frmBackupRestore.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmErrorMessage.cs" />
     <Compile Include="Help\frmErrorMessage.cs" />
-    <Compile Include="MiscControls\ThemeComboBox.cs" />
+    <Compile Include="MainWin32.cs" />
     <Compile Include="Doctors\DoctorTreeView.cs" />
     <Compile Include="Doctors\DoctorTreeView.Designer.cs" />
     <Compile Include="Medications\MedicationTreeView.cs" />
@@ -143,7 +143,6 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.MainWindow.cs" />
-    <Compile Include="Main.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmUsers.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmDoctors.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmMedication.cs" />

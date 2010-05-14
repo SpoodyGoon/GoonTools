@@ -40,14 +40,9 @@ namespace MonoBPMonitor
 			this.Build ();
 			try
 			{
-				tvEntityRpt = new Reports.EntryRptTreeView (cboUser.UserID);
+				tvEntityRpt = new Reports.EntryRptTreeView ();
 				swEntityRpt.Add (tvEntityRpt);
-				cboUser.Changed += new EventHandler (cboUser_Changed);
-				tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e)
-				{
-					btnRemoveEntry.Sensitive = true;
-					btnEditEntry.Sensitive = true;
-				};
+				
 				// the update feature is available only
 				// for Windows and non-repository Linux versions
 				if (ConfigurationManager.AppSettings["AllowCustomUpdate"].ToLower() == "false" || Common.Option.UseCustomUpdate == false)
@@ -78,7 +73,14 @@ namespace MonoBPMonitor
 
 		private void cboUser_Changed(object sender, EventArgs e)
 		{
-			tvEntityRpt.Refresh(cboUser.UserID);
+			try
+			{
+				tvEntityRpt.Refresh(cboUser.UserID);
+			}
+			catch(Exception ex)
+			{
+				Common.HandleError(this, ex);
+			}
 		}
 
 		protected virtual void OnNewEntryActionActivated (object sender, System.EventArgs e)
@@ -197,7 +199,9 @@ namespace MonoBPMonitor
 			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
-			tvEntityRpt.Refresh (true);
+			
+			// TODO: what happens when the preferences change
+			//tvEntityRpt.Refresh (true);
 		}
 
 		protected virtual void OnRxPngActionActivated (object sender, System.EventArgs e)
@@ -350,7 +354,22 @@ namespace MonoBPMonitor
 			fm.Destroy ();
 		}
 		
-		
+		protected override bool OnExposeEvent(Gdk.EventExpose evnt)
+		{
+			
+			cboUser.Changed += cboUser_Changed;
+			tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e)
+			{
+				Gtk.TreeModel model;
+				Gtk.TreeIter iter;
+				if(tvEntityRpt.Selection.GetSelected(out model, out iter))
+				{
+					btnRemoveEntry.Sensitive = true;
+					btnEditEntry.Sensitive = true;
+				}
+			};
+			return base.OnExposeEvent(evnt);
+		}
 		
 	}
 

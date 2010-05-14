@@ -5,8 +5,8 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="../../../../SQLiteHelper/src/SQLiteHelper/bin/Debug/SQLiteHelper.dll" />
-    <widget-library name="../bin/Debug/MonoBPMonitor.exe" internal="true" />
+    <widget-library name="..\..\..\..\SQLiteHelper\src\SQLiteHelper\bin\Debug\SQLiteHelper.dll" />
+    <widget-library name="..\bin\Debug\MonoBPMonitor.exe" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="edit_user.png">
@@ -87,6 +87,11 @@
     <icon-set id="BackupRestore.png">
       <source>
         <property name="Image">resource:BackupRestore.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="edit.png">
+      <source>
+        <property name="Image">resource:edit.png</property>
       </source>
     </icon-set>
   </icon-factory>
@@ -260,6 +265,18 @@
         <property name="StockId">BackupRestore.png</property>
         <signal name="Activated" handler="OnBackupRestoreActionActivated" />
       </action>
+      <action id="EditEntryAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Edit Entry</property>
+        <property name="ShortLabel" translatable="yes">Edit Entry</property>
+        <property name="StockId">edit.png</property>
+      </action>
+      <action id="RemoveEntryAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Remove Entry</property>
+        <property name="ShortLabel" translatable="yes">Remove Entry</property>
+        <property name="StockId">edit_remove.png</property>
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="WidthRequest">750</property>
@@ -282,6 +299,9 @@
             <node name="menubar1" type="Menubar">
               <node type="Menu" action="FileAction">
                 <node type="Menuitem" action="NewEntryAction" />
+                <node type="Menuitem" action="EditEntryAction" />
+                <node type="Menuitem" action="RemoveEntryAction" />
+                <node type="Separator" />
                 <node type="Menuitem" action="MedicationAction" />
                 <node type="Menuitem" action="DoctorsAction" />
                 <node type="Menuitem" action="UsersAction" />
@@ -444,7 +464,7 @@
                   </widget>
                   <packing>
                     <property name="Position">1</property>
-                    <property name="AutoSize">True</property>
+                    <property name="AutoSize">False</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
