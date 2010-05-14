@@ -211,11 +211,13 @@ namespace MonoBPMonitor.Reports
 				this.SetCursor (path, tvc, false);
 				if ((int)args.Event.Button == 3 && this.Selection.GetSelected (out iter))
 				{
+					
+					MonoBPMonitor.MainWindow mw = (MonoBPMonitor.MainWindow)this.Toplevel;
 					Gtk.Menu popupMenu = new Menu ();
 					popupMenu.BorderWidth = 5;
 					popupMenu.AppPaintable = true;
 					Gdk.Color clrDarkBlue = new Gdk.Color ();
-					Gdk.Color.Parse ("#467097", ref clrDarkBlue);
+					Gdk.Color.Parse ("#8FA8C0", ref clrDarkBlue);
 					popupMenu.ModifyBg (Gtk.StateType.Normal, clrDarkBlue);
 					Gdk.Color clrWhite = new Gdk.Color ();
 					Gdk.Color.Parse ("#FFFFFF", ref clrWhite);
@@ -224,19 +226,19 @@ namespace MonoBPMonitor.Reports
 					Gtk.Image imgAdd = new Gtk.Image (Gdk.Pixbuf.LoadFromResource ("edit_add.png").ScaleSimple (16, 16, Gdk.InterpType.Nearest));
 					mmuAdd.Image = imgAdd;
 					popupMenu.Add (mmuAdd);
-					//mmuAdd.Activated += delegate { _page.AddTask (); };
+					mmuAdd.Activated += mw.OnBtnAddEntryClicked;
 				
-				ImageMenuItem mmuRemove = new ImageMenuItem ("Remove");
+					ImageMenuItem mmuRemove = new ImageMenuItem ("Remove");
 					Gtk.Image imgRemove = new Gtk.Image (Gdk.Pixbuf.LoadFromResource ("edit_remove.png").ScaleSimple (16, 16, Gdk.InterpType.Nearest));
 					mmuRemove.Image = imgRemove;
 					popupMenu.Add (mmuRemove);
-					//mmuRemove.Activated += delegate { _page.AddSubTask (); };
+					mmuRemove.Activated += mw.OnBtnRemoveEntryClicked;
 				
-				ImageMenuItem mmuEdit = new ImageMenuItem ("Edit");
+					ImageMenuItem mmuEdit = new ImageMenuItem ("Edit");
 					Gtk.Image imgEdit = new Gtk.Image (Gdk.Pixbuf.LoadFromResource ("edit.png").ScaleSimple (16, 16, Gdk.InterpType.Nearest));
 					mmuEdit.Image = imgEdit;
 					popupMenu.Add (mmuEdit);
-					//mmuEdit.Activated += delegate { _page.DeleteTask (); };
+					mmuEdit.Activated += mw.OnBtnEditEntryClicked;
 				
 				popupMenu.ShowAll ();
 					popupMenu.Popup ();

@@ -39,6 +39,7 @@ namespace GoonTools
 		private static GoonTools.Helper.Options _Option;
 		private static GoonTools.Helper.MetaInformation _MetaInfo;
 		private static GoonTools.Helper.EnviromentData _EnvData = new GoonTools.Helper.EnviromentData ();
+		
 		#region Public Properties
 
 		static internal GoonTools.Helper.Options Option
@@ -54,6 +55,11 @@ namespace GoonTools
 		static internal GoonTools.Helper.MetaInformation MetaInfo
 		{
 			get { return _MetaInfo; }
+		}
+		
+		internal static string CurrentLicense
+		{
+			get{return GoonTools.Helper.Licenses.GPL3;}
 		}
 
 		#endregion Public Properties
@@ -121,7 +127,7 @@ namespace GoonTools
 					_MetaInfo = new Helper.MetaInformation ();
 				}
 				SaveUserData ();
-			
+				
 			}
 			catch (Exception ex)
 			{
@@ -172,21 +178,31 @@ namespace GoonTools
 				sb.Append (System.Environment.NewLine + "--------------------------- " + DateTime.Now.ToString () + " --------------------------");
 				sb.Append (System.Environment.NewLine + ex.ToString ());
 				sb.Append (System.Environment.NewLine + "------------------------------------------------------------------------------");
-				if (_Option.SaveErrorLog == true)
+				if(_Option != null && _EnvData != null)
 				{
-					StreamWriter sw = new StreamWriter (_EnvData.ErrorLog, true);
-					sw.Write (sb.ToString ());
-					sw.Close ();
+					if (_Option.SaveErrorLog == true)
+					{
+						StreamWriter sw = new StreamWriter (_EnvData.ErrorLog, true);
+						sw.Write (sb.ToString ());
+						sw.Close ();
+					}
+					
+					
+					MonoBPMonitor.frmErrorMessage md = new MonoBPMonitor.frmErrorMessage (sb.ToString ());
+					md.WindowPosition = WindowPosition.Mouse;
+					md.Run ();
+					md.Destroy ();
 				}
-				
-				MonoBPMonitor.frmErrorMessage md = new MonoBPMonitor.frmErrorMessage (sb.ToString ());
-				md.WindowPosition = WindowPosition.Mouse;
-				md.Run ();
-				md.Destroy ();
+				else
+				{
+					MessageDialog md = new MessageDialog (parent_window, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, ex.ToString (), "An Error Has Occured");
+					md.Run ();
+					md.Destroy ();
+				}
 			}
 			catch (Exception exCatchAll)
 			{
-				MessageDialog md = new MessageDialog (null, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, exCatchAll.ToString () + System.Environment.NewLine + System.Environment.NewLine + ex.ToString (), "An Error Has Occured");
+				MessageDialog md = new MessageDialog (parent_window, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, exCatchAll.ToString () + System.Environment.NewLine + System.Environment.NewLine + ex.ToString (), "An Error Has Occured");
 				md.Run ();
 				md.Destroy ();
 			}
