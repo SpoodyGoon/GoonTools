@@ -411,7 +411,7 @@
                             <property name="Sensitive">False</property>
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
-                            <property name="Icon">stock:gtk-edit Menu</property>
+                            <property name="Icon">resource:edit.png</property>
                             <property name="Label" translatable="yes">_Edit</property>
                             <property name="UseUnderline">True</property>
                             <signal name="Clicked" handler="OnBtnEditEntryClicked" />

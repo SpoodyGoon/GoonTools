@@ -65,12 +65,12 @@ namespace GoonTools
 			try
 			{
 				// make sure the directory exists
-				if (!Directory.Exists (EnvData.SavePath))
-					Directory.CreateDirectory (EnvData.SavePath);
+				if (!Directory.Exists (_EnvData.SavePath))
+					Directory.CreateDirectory (_EnvData.SavePath);
 				
 				// search for the options file if it exists load it
 				// if it has not been saved load the defaults
-				if (File.Exists (EnvData.UserOptionFile))
+				if (File.Exists (_EnvData.UserOptionFile))
 				{
 					LoadUserData ();
 				}
@@ -85,7 +85,7 @@ namespace GoonTools
 				
 				// copy over a new database if it's not already there
 				if (!File.Exists (Option.DBLocation))
-					File.Copy (Path.Combine (EnvData.DataPath, "BPMonitor.s3db"), Option.DBLocation);
+					File.Copy (Path.Combine (_EnvData.DataPath, "BPMonitor.s3db"), _Option.DBLocation);
 				
 			}
 			catch (Exception ex)
@@ -96,26 +96,11 @@ namespace GoonTools
 
 		static internal void LoadUserData ()
 		{
-			StreamReader sr;
 			DataSet ds = new DataSet (_EnvData.ProgramName);
 			try
 			{
-				// FIXME: when there is a failure to initially start
-				// the XML is an empty file and will continue to fail
-				// which is very annoying.
-				// FIXME: the solution will be to validate the XML
-				
-				bool ValFile = false;
-				// take a look at the file to be sure it is not empty
 				FileInfo fi = new FileInfo (_EnvData.UserOptionFile);
 				if (fi.Exists)
-				{
-					sr = (StreamReader)fi.OpenText ();
-					string str = sr.ReadToEnd ();
-					if (str.Trim ().Length > 5)
-						ValFile = true;
-				}
-				if (ValFile)
 				{
 					ds.ReadXml (_EnvData.UserOptionFile);
 					DataTable dtTMP = (DataTable)ds.Tables["Options"];
@@ -156,7 +141,7 @@ namespace GoonTools
 				DataSet ds = new DataSet (_EnvData.ProgramName);
 				ds.Tables.Add ((System.Data.DataTable)_Option.ToDataTable ());
 				ds.Tables.Add ((System.Data.DataTable)_MetaInfo.ToDataTable ());
-				ds.WriteXml (EnvData.UserOptionFile, System.Data.XmlWriteMode.WriteSchema);
+				ds.WriteXml (_EnvData.UserOptionFile);
 				ds.Clear ();
 				ds.Dispose ();
 			}
@@ -189,7 +174,7 @@ namespace GoonTools
 				sb.Append (System.Environment.NewLine + "------------------------------------------------------------------------------");
 				if (_Option.SaveErrorLog == true)
 				{
-					StreamWriter sw = new StreamWriter (EnvData.ErrorLog, true);
+					StreamWriter sw = new StreamWriter (_EnvData.ErrorLog, true);
 					sw.Write (sb.ToString ());
 					sw.Close ();
 				}
@@ -215,7 +200,7 @@ namespace GoonTools
 		{
 			try
 			{
-				StreamWriter sw = new StreamWriter (EnvData.ErrorLog, false);
+				StreamWriter sw = new StreamWriter (_EnvData.ErrorLog, false);
 				sw.Write ("");
 				sw.Close ();
 			}

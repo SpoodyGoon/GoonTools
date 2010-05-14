@@ -36,16 +36,16 @@ namespace GoonTools.Helper
 				
 				dr = (DataRow)dt.Rows.Find ("MonoBPMonitor");
 				if (dr != null)
-					_MonoBPMonitor = new Version((int)dr["MajorVersion"], (int)dr["MinorVersion"]);
+					_MonoBPMonitor = new Version(Convert.ToInt32(dr["MajorVersion"]), Convert.ToInt32(dr["MinorVersion"]));
 				dr = (DataRow)dt.Rows.Find ("GUPdotNET");
 				if (dr != null)
-					_GUPdotNET = new Version((int)dr["MajorVersion"], (int)dr["MinorVersion"]);
+					_GUPdotNET = new Version(Convert.ToInt32(dr["MajorVersion"]), Convert.ToInt32(dr["MinorVersion"]));
 				dr = (DataRow)dt.Rows.Find ("UserFile");
 				if (dr != null)
-					_UserFile = new Version((int)dr["MajorVersion"], (int)dr["MinorVersion"]);
+					_UserFile = new Version(Convert.ToInt32(dr["MajorVersion"]), Convert.ToInt32(dr["MinorVersion"]));
 				dr = (DataRow)dt.Rows.Find ("Database");
 				if (dr != null)
-					_Database = new Version((int)dr["MajorVersion"], (int)dr["MinorVersion"]);
+					_Database = new Version(Convert.ToInt32(dr["MajorVersion"]), Convert.ToInt32(dr["MinorVersion"]));
 			}
 			catch(Exception ex)
 			{
