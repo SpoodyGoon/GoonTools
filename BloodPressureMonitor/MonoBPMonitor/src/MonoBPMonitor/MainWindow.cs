@@ -57,6 +57,7 @@ namespace MonoBPMonitor
 					UpdatesAction.VisibleOverflown = false;
 					UpdatesAction.VisibleVertical = false;
 				}
+				
 			}
 			catch(Exception ex)
 			{
@@ -132,7 +133,7 @@ namespace MonoBPMonitor
 				ad.Title = "About Mono Blood Pressure Monitor";
 				ad.ProgramName = "Mono Blood Pressure Monitor";
 				ad.Comments = "Simple .NET Blood Pressure Monitor written in Mono/Gtk# using SQLite for data storage.\n\nIt include methods to track medication as well as doctors but it's main focus is the simple tracking and reporting of blood pressure readings.";
-				ad.License = GoonTools.Const.License;
+				ad.License = GoonTools.Common.CurrentLicense;
 				ad.Authors = new String[]{"Andrew York <goontools@brdstudio.net>"};
 				ad.Version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString() + " alpha";
 				ad.Logo = Gdk.Pixbuf.LoadFromResource("icon_large.png");
@@ -149,6 +150,7 @@ namespace MonoBPMonitor
 				ad.WebsiteLabel = "MonoBPMonitor Project Site";
 				ad.Website = "http://code.google.com/p/goontools/wiki/MonoBPMonitor";
 				ad.WindowPosition = WindowPosition.Mouse;
+				
 				ad.Run();
 				ad.Destroy();
 			}
@@ -223,7 +225,7 @@ namespace MonoBPMonitor
 			fm.Destroy();
 		}
 		
-		protected virtual void OnBtnAddEntryClicked (object sender, System.EventArgs e)
+		internal virtual void OnBtnAddEntryClicked (object sender, System.EventArgs e)
 		{
 			try
 			{
@@ -241,7 +243,7 @@ namespace MonoBPMonitor
 			}
 		}
 		
-		protected virtual void OnBtnRemoveEntryClicked (object sender, System.EventArgs e)
+		internal virtual void OnBtnRemoveEntryClicked (object sender, System.EventArgs e)
 		{
 			try
 			{
@@ -253,7 +255,7 @@ namespace MonoBPMonitor
 			}
 		}
 		
-		protected virtual void OnBtnEditEntryClicked (object sender, System.EventArgs e)
+		internal virtual void OnBtnEditEntryClicked (object sender, System.EventArgs e)
 		{
 			try
 			{

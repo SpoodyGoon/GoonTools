@@ -123,7 +123,9 @@
     <EmbeddedResource Include="images\date.png">
       <LogicalName>date.png</LogicalName>
     </EmbeddedResource>
+    <Compile Include="Common\License.cs" />
     <Compile Include="Common\MetaInfo.cs" />
+    <Compile Include="gtk-gui\MonoBPMonitor.frmBackupRestore.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmErrorMessage.cs" />
     <Compile Include="Help\frmErrorMessage.cs" />
     <Compile Include="MiscControls\ThemeComboBox.cs" />
@@ -133,6 +135,8 @@
     <Compile Include="Medications\MedicationTreeView.Designer.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.cs" />
     <Compile Include="Reports\MainEntry\MainBPReport.cs" />
+    <Compile Include="Tools\frmBackupRestore.cs" />
+    <Compile Include="Tools\frmOptions.cs" />
     <Compile Include="Users\UserRendererCombo.cs" />
     <Compile Include="Users\UserTreeView.cs" />
     <Compile Include="Users\UserTreeView.Designer.cs" />
@@ -148,10 +152,8 @@
     <Compile Include="gtk-gui\MonoBPMonitor.frmCalendar.cs" />
     <Compile Include="Common\BufferTags.cs" />
     <Compile Include="Common\Common.cs" />
-    <Compile Include="Common\Const.cs" />
     <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="Common\Options.cs" />
-    <Compile Include="frmOptions.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmOptions.cs" />
     <Compile Include="Medications\frmMedication.cs" />
     <Compile Include="Users\frmUsers.cs" />
@@ -179,6 +181,15 @@
     <EmbeddedResource Include="images\update_small.png">
       <LogicalName>update_small.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="images\BackupRestore.png">
+      <LogicalName>BackupRestore.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\edit.png">
+      <LogicalName>edit.png</LogicalName>
+    </EmbeddedResource>
+    <Content Include="Data\License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Reports\MainEntry\Description.txt" />
     <Compile Include="Doctors\DoctorRendererCombo.cs" />
     <Compile Include="Reports\MainEntry\EntryTreeView.Designer.cs" />
@@ -243,6 +254,7 @@
       <Project>{D210EDCC-43AF-48EF-B982-51901A144063}</Project>
       <Name>SQLiteHelper</Name>
     </ProjectReference>
+    <Folder Include="Tools" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
