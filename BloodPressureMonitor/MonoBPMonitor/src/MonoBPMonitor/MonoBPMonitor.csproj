@@ -236,7 +236,12 @@
     <Compile Include="Tools\frmBackupRestore.cs" />
     <Compile Include="gtk-gui\MonoBPMonitor.frmBackupRestore.cs" />
     <Compile Include="Tools\frmOptions.cs" />
-    <EmbeddedResource Include="images\BackupRestore.png" />
+    <EmbeddedResource Include="images\BackupRestore.png">
+      <LogicalName>BackupRestore.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\edit.png">
+      <LogicalName>edit.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

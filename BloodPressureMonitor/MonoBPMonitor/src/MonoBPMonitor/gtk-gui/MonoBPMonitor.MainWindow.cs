@@ -244,7 +244,6 @@ namespace MonoBPMonitor {
             this.alignment4.Name = "alignment4";
             // Container child alignment4.Gtk.Container+ContainerChild
             this.hbuttonbox1 = new Gtk.HButtonBox();
-            this.hbuttonbox1.Name = "hbuttonbox1";
             this.hbuttonbox1.Spacing = 24;
             // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
             this.btnAddEntry = new Gtk.Button();
@@ -311,7 +310,7 @@ namespace MonoBPMonitor {
             w25.Spacing = 2;
             // Container child GtkHBox.Gtk.Container+ContainerChild
             Gtk.Image w26 = new Gtk.Image();
-            w26.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-edit", Gtk.IconSize.Menu, 16);
+            w26.Pixbuf = Gdk.Pixbuf.LoadFromResource("edit.png");
             w25.Add(w26);
             // Container child GtkHBox.Gtk.Container+ContainerChild
             Gtk.Label w28 = new Gtk.Label();
