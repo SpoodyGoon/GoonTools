@@ -109,6 +109,11 @@ namespace GoonTools
 			get { return _ReportExceptionInline; }
 			set { _ReportExceptionInline = value; }
 		}
+		
+		public Mono.Data.SqliteClient.SqliteDataReader DataReader
+		{
+			get{return _SQLiteReader;}
+		}
 
 //		public Dictionary<string, object> Parameters
 //		{
@@ -135,6 +140,7 @@ namespace GoonTools
 		}
 
 		#endregion Private Mehtods
+		
 		#region Class Constructors
 
 		/// <summary>
