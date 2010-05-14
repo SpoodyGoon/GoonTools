@@ -103,7 +103,7 @@ namespace GoonTools
 				else
 				{
 					// for debug purposeds just create a save folder in the excuting assembles directory
-					_BasePath = so.Path.Combine(_AppPath, "DebugOptions");
+					_BasePath = so.Path.Combine(_AppPath, "DebugFiles");
 					if(!so.Directory.Exists(_BasePath))
 						so.Directory.CreateDirectory(_BasePath);
 				}
