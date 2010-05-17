@@ -32,6 +32,7 @@ namespace MonoBPMonitor.Reports
 	/// </summary>
 	public partial class EntryRptTreeView : Gtk.TreeView
 	{
+		private int _SearchEntryID =  -1;
 		public EntryRptTreeView()
 		{
 			Build();
@@ -81,6 +82,11 @@ namespace MonoBPMonitor.Reports
 				{
 					return -1;
 				}
+			}
+			set
+			{
+				_SearchEntryID = value;
+				this.Model.Foreach(new TreeModelForeachFunc(ForeachEntryID));
 			}
 		}
 		
@@ -153,12 +159,6 @@ namespace MonoBPMonitor.Reports
 			_CurrentUser = userid;
 			LoadData();
 		}
-		
-//		public void Refresh(bool CheckOptionChange)
-//		{
-//			if(_CurrentHistoryLimit != Common.Option.HistoryDefaultShow)
-//				LoadData();
-//		}
 		
 		#endregion public methods
 		
@@ -253,5 +253,16 @@ namespace MonoBPMonitor.Reports
 		}
 		
 		#endregion Right Mouse Click Menu
+		
+		private bool ForeachEntryID(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+		{
+			MainBPReport e = (MainBPReport)_EntryRptListsStore.GetValue(iter, 0);
+			if(_SearchEntryID == e.EntryID)
+			{
+				this.SetCursor(path, null, false);
+				return true;
+			}
+			return false;
+		}
 	}
 }

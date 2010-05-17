@@ -34,7 +34,8 @@ namespace MonoBPMonitor
 
 	public partial class MainWindow : Gtk.Window
 	{
-		Reports.EntryRptTreeView tvEntityRpt;
+		private Reports.EntryRptTreeView tvEntityRpt;
+		private bool _InitFinished = false;
 		public MainWindow () : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
@@ -45,14 +46,13 @@ namespace MonoBPMonitor
 				
 				// the update feature is available only
 				// for Windows and non-repository Linux versions
-				if (ConfigurationManager.AppSettings["AllowCustomUpdate"].ToLower() == "false" || Common.Option.UseCustomUpdate == false)
+				if (ConfigurationManager.AppSettings["AllowCustomUpdate"].ToLower() == "false")
 				{
 					UpdatesAction.Visible = false;
 					UpdatesAction.VisibleHorizontal = false;
 					UpdatesAction.VisibleOverflown = false;
 					UpdatesAction.VisibleVertical = false;
 				}
-				
 			}
 			catch(Exception ex)
 			{
@@ -88,7 +88,6 @@ namespace MonoBPMonitor
 			frmEntry fm = new frmEntry ();
 			if(cboUser.UserID > -1)
 				fm.UserID = cboUser.UserID;
-			fm.WindowPosition = WindowPosition.Mouse;
 			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
 				tvEntityRpt.Refresh();
 			fm.Destroy ();
@@ -99,7 +98,6 @@ namespace MonoBPMonitor
 			frmMedication fm = new frmMedication ();
 			fm.UserID = cboUser.UserID;
 			fm.ParentWindow = this.GdkWindow;
-			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -108,7 +106,6 @@ namespace MonoBPMonitor
 		{
 			frmDoctors fm = new frmDoctors ();
 			fm.UserID = cboUser.UserID;
-			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -118,7 +115,6 @@ namespace MonoBPMonitor
 			// TODO: when returning from the users dialog we need to refresh the user
 			// combo box to reflect the changes
 			frmUsers fm = new frmUsers ();
-			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -166,7 +162,6 @@ namespace MonoBPMonitor
 		{
 			frmEntry fm = new frmEntry ();
 			fm.UserID = cboUser.UserID;
-			fm.WindowPosition = WindowPosition.Mouse;
 			if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
 				tvEntityRpt.Refresh();
 			
@@ -176,7 +171,6 @@ namespace MonoBPMonitor
 		protected virtual void OnEdituserPngActionActivated (object sender, System.EventArgs e)
 		{
 			frmUsers fm = new frmUsers ();
-			fm.WindowPosition = WindowPosition.Mouse;
 			fm.Run ();
 			fm.Destroy ();
 		}
@@ -263,14 +257,17 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				if(tvEntityRpt.SelectedEntryID > -1)
+				int tmpSelectedEntryID = tvEntityRpt.SelectedEntryID;
+				if(tmpSelectedEntryID > -1)
 				{
-					frmEntry fm = new frmEntry(tvEntityRpt.SelectedEntryID);
+					frmEntry fm = new frmEntry(tmpSelectedEntryID);
 					fm.UserID = cboUser.UserID;
 					if((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
+					{
 						tvEntityRpt.Refresh();
-					
+					}
 					fm.Destroy ();
+					tvEntityRpt.SelectedEntryID = tmpSelectedEntryID;
 				}
 			}
 			catch(Exception ex)
@@ -300,8 +297,10 @@ namespace MonoBPMonitor
 		{
 			try
 			{
-				
-				
+				#if !REPO
+				libGUPdotNET.GUPdotNET g  = new libGUPdotNET.GUPdotNET();
+				g.RunUpdate();
+				#endif
 			}
 			catch(Exception ex)
 			{
@@ -310,6 +309,8 @@ namespace MonoBPMonitor
 		}
 		
 		#endregion Update Related
+		
+		#region URL Web Open
 		
 		protected virtual void OnProjectWebSiteActionActivated (object sender, System.EventArgs e)
 		{
@@ -347,6 +348,8 @@ namespace MonoBPMonitor
 			}
 		}
 		
+		#endregion URL Web Open
+		
 		protected virtual void OnBackupRestoreActionActivated (object sender, System.EventArgs e)
 		{
 			frmBackupRestore fm = new frmBackupRestore ();
@@ -356,18 +359,22 @@ namespace MonoBPMonitor
 		
 		protected override bool OnExposeEvent(Gdk.EventExpose evnt)
 		{
-			
-			cboUser.Changed += cboUser_Changed;
-			tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e)
+			if(_InitFinished == false)
 			{
-				Gtk.TreeModel model;
-				Gtk.TreeIter iter;
-				if(tvEntityRpt.Selection.GetSelected(out model, out iter))
+				cboUser.Changed += cboUser_Changed;
+				tvEntityRpt.CursorChanged += delegate(object sender, EventArgs e)
 				{
-					btnRemoveEntry.Sensitive = true;
-					btnEditEntry.Sensitive = true;
-				}
-			};
+					Gtk.TreeModel model;
+					Gtk.TreeIter iter;
+					if(tvEntityRpt.Selection.GetSelected(out model, out iter))
+					{
+						btnRemoveEntry.Sensitive = true;
+						btnEditEntry.Sensitive = true;
+					}
+				};
+				tvEntityRpt.Refresh(cboUser.UserID);
+				_InitFinished = true;
+			}
 			return base.OnExposeEvent(evnt);
 		}
 		
