@@ -67,6 +67,7 @@ namespace MonoBPMonitor
 			FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
 			FileFilter filter = new FileFilter();
 			DataSet ds = new DataSet("BPMonitorBackup");
+			SQLiteBackup slb = new SQLiteBackup(Common.Option.DBLocation);
 			try
 			{
 				if(!cbxLogs.Active && !cbxDatabaseData.Active && !cbxDatabaseSchema.Active && !cbxOptions.Active)
@@ -88,13 +89,24 @@ namespace MonoBPMonitor
 					fc.SetCurrentFolder(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
 					if (fc.Run() == (int)ResponseType.Ok)
 					{
-						// put backup code here
-						ds.Tables.Add(BackupMetaInfo());
-						if(cbxDatabaseSchema.Active == true)
-							BackupSchema();
+						// get the backup summary info
+						ds.Tables.Add(BackupSummary());
+						// get the application meta info from the meta info class
+						ds.Tables.Add(Common.MetaInfo.ToDataTable());
 						
-						if(cbxDatabaseData.Active == true)
+						if(cbxDatabaseSchema.Active == true && cbxDatabaseData.Active == true)
+						{
+							//slb.WriteBackupFile();
+						}
+						else if(cbxDatabaseSchema.Active == true)
+						{
 							BackupData();
+						}
+						else if(cbxDatabaseData.Active == true)
+						{
+							BackupData();
+						}
+						
 						
 						if(cbxOptions.Active == true)
 							ds.Tables.Add(BackupOptions());
@@ -256,9 +268,11 @@ namespace MonoBPMonitor
 			
 		}
 		
-		private DataTable BackupMetaInfo()
+		private DataTable BackupSummary()
 		{
-			DataTable dt = SimpleDataTable("MetaInfo");
+			DataTable dt = new DataTable("BackupSummary");
+			dt.Columns.AddRange(new DataColumn[]{new DataColumn("Key", typeof(string)),new DataColumn("Value", typeof(string))});
+			dt.PrimaryKey = new DataColumn[]{dt.Columns[0]};
 			try
 			{
 				System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly ();
@@ -271,16 +285,12 @@ namespace MonoBPMonitor
 				dr["Value"] = "Mono BPMonitor - Backup Meta Info";
 				dt.Rows.Add(dr);
 				dr = dt.NewRow();
-				dr["Key"] = "MajorVersion";
-				dr["Value"] = asm.GetName().Version.Major.ToString();
-				dt.Rows.Add(dr);
-				dr = dt.NewRow();
-				dr["Key"] = "MinorVersion";
-				dr["Value"] = asm.GetName().Version.Minor.ToString();
-				dt.Rows.Add(dr);
-				dr = dt.NewRow();
-				dr["Key"] = "Contact Info";
+				dr["Key"] = "Program Author Info";
 				dr["Value"] = "Andy York <goontools@brdstudio.net>";
+				dt.Rows.Add(dr);
+				dr = dt.NewRow();
+				dr["Key"] = "Backup Date/Time";
+				dr["Value"] = DateTime.Now;
 				dt.Rows.Add(dr);
 				dr = dt.NewRow();
 				dr["Key"] = "Backup Database Schema";

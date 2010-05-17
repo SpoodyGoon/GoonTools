@@ -63,15 +63,6 @@ namespace GoonTools.Helper
 		/// </summary>
 		private bool _UseCustomTheme = true;
 		/// <summary>
-		/// the flag to determine weather or not we will use a
-		/// application based updater or the repository
-		/// there are a couple of different ways this is set
-		/// 1. by the app.config
-		/// 2. by the project debug variables
-		/// 3. ONLY if the OS is Windows
-		/// </summary>
-		private bool _UseCustomUpdate = true;
-		/// <summary>
 		/// A way to keep track of different versions
 		/// of user save files in case there is a change and needs an update
 		/// not currently used but may be needed for later updates
@@ -149,11 +140,7 @@ namespace GoonTools.Helper
 				// UseCustomTheme
 				dr = (DataRow)dt.Rows.Find ("UseCustomTheme");
 				if (dr != null)
-					_UseCustomUpdate = Convert.ToBoolean (dr["Value"]);
-				// UseCustomUpdate
-				dr = (DataRow)dt.Rows.Find ("UseCustomUpdate");
-				if (dr != null)
-					_UseCustomUpdate = Convert.ToBoolean (dr["Value"]);
+					_UseCustomTheme = Convert.ToBoolean (dr["Value"]);
 			}
 			catch (Exception ex)
 			{
@@ -238,11 +225,6 @@ namespace GoonTools.Helper
 				dr["Key"] = "UseCustomTheme";
 				dr["Value"] = _UseCustomTheme;
 				dt.Rows.Add (dr);
-				// UseCustomUpdate
-				dr = dt.NewRow ();
-				dr["Key"] = "UseCustomUpdate";
-				dr["Value"] = _UseCustomUpdate;
-				dt.Rows.Add (dr);
 			}
 			catch (Exception ex)
 			{
@@ -313,11 +295,7 @@ namespace GoonTools.Helper
 				// UseCustomTheme
 				dr = (DataRow)dt.Rows.Find ("UseCustomTheme");
 				if (dr != null)
-					_UseCustomUpdate = Convert.ToBoolean (dr["Value"]);
-				// UseCustomUpdate
-				dr = (DataRow)dt.Rows.Find ("UseCustomUpdate");
-				if (dr != null)
-					_UseCustomUpdate = Convert.ToBoolean (dr["Value"]);
+					_UseCustomTheme = Convert.ToBoolean (dr["Value"]);
 			}
 			catch (Exception ex)
 			{
@@ -399,12 +377,6 @@ namespace GoonTools.Helper
 		{
 			get { return _UseCustomTheme; }
 			set { _UseCustomTheme = value; }
-		}
-		
-		internal bool UseCustomUpdate
-		{
-			get { return _UseCustomUpdate; }
-			set { _UseCustomUpdate = value; }
 		}
 		
 		#endregion Public Properties

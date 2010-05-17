@@ -19,11 +19,11 @@ namespace MonoBPMonitor
 			try
 			{
 				// themes are only used in Windows where a good looking theme is not a sure thing
-				if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "false" || Common.Option.UseCustomUpdate == false)
+				if(System.Configuration.ConfigurationManager.AppSettings["AllowCustomTheme"].ToLower() == "false")
 				{
 					notebook1.RemovePage(notebook1.NPages - 1);
 				}
-				if (System.Configuration.ConfigurationManager.AppSettings["AllowCustomUpdate"].ToLower() == "false" || Common.Option.UseCustomUpdate == false)
+				if (System.Configuration.ConfigurationManager.AppSettings["AllowCustomUpdate"].ToLower() == "false")
 				{
 					lblGUPdotNETVersion.Destroy();
 					lblGUPdotNETText.Destroy();

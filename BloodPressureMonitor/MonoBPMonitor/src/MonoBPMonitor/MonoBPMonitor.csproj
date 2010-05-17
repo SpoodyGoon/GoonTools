@@ -246,6 +246,12 @@
     <None Include="obj\Debug\ResolveAssemblyReference.cache">
       <Visible>False</Visible>
     </None>
+    <None Include="images\Thumbs.db">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Help\Thumbs.db">
+      <Visible>False</Visible>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
