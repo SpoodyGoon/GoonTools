@@ -30,15 +30,15 @@ namespace CMYControls
 		
 		protected virtual void OnBtnShowCalendarClicked (object sender, System.EventArgs e)
 		{
-			int x, y, width = 120, height = 175;
+			int x, y;
 			// get the position of the parent window
 			this.ParentWindow.GetPosition( out x, out y );
 			// now find the treeviews allocation
 			x += this.Allocation.X;
 			y += this.Allocation.Y;
-			Gdk.Rectangle rec =  new Gdk.Rectangle(x,y,width,height);
+			Gdk.Rectangle rec =  new Gdk.Rectangle(x,y,this.Allocation.Width,this.Allocation.Height);
 			PopupCalendar pc = new PopupCalendar(rec);
-			pc.ShowPopUp();
+			//pc.ShowPopUp();
 		}
 		
 		protected virtual void OnBtnClearCalendarClicked (object sender, System.EventArgs e)
