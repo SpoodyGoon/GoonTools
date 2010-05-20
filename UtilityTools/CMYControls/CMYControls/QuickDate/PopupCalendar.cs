@@ -20,6 +20,7 @@ namespace CMYControls
 		public PopupCalendar(Gdk.Rectangle rec)  : base(Gtk.WindowType.Popup)
 		{
 			Build();
+			this.Visible = false;
 			_PopUpRec = rec;
 //			this.WidthRequest = rec.Width;
 //			this.HeightRequest = rec.Height;
@@ -33,8 +34,9 @@ namespace CMYControls
 			base.OnExposeEvent (evnt);
 			int winWidth, winHeight;
 			this.GetSize (out winWidth, out winHeight);	
-			this.Move(_PopUpRec.Left, _PopUpRec.Bottom);		
+			this.Move(_PopUpRec.Left, _PopUpRec.Bottom);	
 			this.GdkWindow.DrawRectangle (this.Style.ForegroundGC (Gtk.StateType.Insensitive), false, 0, 0, winWidth-1, winHeight-1);
+			GrabUtil.GrabWindow(this);
 			return false;
 		}
 		
@@ -66,9 +68,7 @@ namespace CMYControls
 		
 		internal void ShowPopUp()
 		{
-			this.Visible = true;
-			GrabUtil.GrabWindow(this);
-			this.ShowAll();
+			
 		}
 
 		private void Close()
