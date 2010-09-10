@@ -73,6 +73,8 @@
     <Compile Include="DropDownList.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="QuickDate\PopupCalendar.cs" />
+    <Compile Include="QuickDate\QuickDate.cs" />
+    <Compile Include="gtk-gui\CMYControls.QuickDate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ColumnSelector\columnpicker.png" />

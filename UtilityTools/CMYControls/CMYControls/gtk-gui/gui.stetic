@@ -7,4 +7,72 @@
   <import>
     <widget-library name="..\bin\Debug\CMYControls.dll" internal="true" />
   </import>
+  <widget class="Gtk.Bin" id="CMYControls.QuickDate" design-size="299 28">
+    <property name="MemberName" />
+    <child>
+      <widget class="Gtk.HBox" id="hbox1">
+        <property name="MemberName" />
+        <property name="Spacing">-1</property>
+        <child>
+          <widget class="Gtk.Entry" id="txtQuickDate">
+            <property name="MemberName" />
+            <property name="WidthRequest">150</property>
+            <property name="HeightRequest">26</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">False</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="btnShowCalendar">
+            <property name="MemberName" />
+            <property name="Tooltip" translatable="yes">Show Calendar</property>
+            <property name="CanDefault">True</property>
+            <property name="Type">Custom</property>
+            <property name="FocusOnClick">False</property>
+            <signal name="Clicked" handler="OnBtnShowCalendarClicked" />
+            <child>
+              <widget class="Gtk.Image" id="image6">
+                <property name="MemberName" />
+                <property name="Pixbuf">resource:QuickDate.png</property>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">False</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="btnClearDate">
+            <property name="MemberName" />
+            <property name="Tooltip" translatable="yes">Clear Date</property>
+            <property name="CanFocus">True</property>
+            <property name="Type">Custom</property>
+            <property name="FocusOnClick">False</property>
+            <signal name="Clicked" handler="OnBtnClearDateClicked" />
+            <child>
+              <widget class="Gtk.Image" id="image7">
+                <property name="MemberName" />
+                <property name="Pixbuf">resource:ClearDate.png</property>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">False</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
 </stetic-interface>

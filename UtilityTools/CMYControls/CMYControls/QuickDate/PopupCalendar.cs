@@ -20,13 +20,13 @@ namespace CMYControls
 		public PopupCalendar(Gdk.Rectangle rec)  : base(Gtk.WindowType.Popup)
 		{
 			Build();
-			this.Visible = false;
 			_PopUpRec = rec;
-//			this.WidthRequest = rec.Width;
-//			this.HeightRequest = rec.Height;
+            
+			this.WidthRequest = rec.Width;
+			this.HeightRequest = Convert.ToInt32(Math.Round(rec.Width * 0.75, 0));
 			this.ShowAll();
+            this.QueueDraw();
 		}
-		
 		
 		
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
@@ -37,7 +37,7 @@ namespace CMYControls
 			this.Move(_PopUpRec.Left, _PopUpRec.Bottom);	
 			this.GdkWindow.DrawRectangle (this.Style.ForegroundGC (Gtk.StateType.Insensitive), false, 0, 0, winWidth-1, winHeight-1);
 			GrabUtil.GrabWindow(this);
-			return false;
+            return false;
 		}
 		
 		private void Build()
@@ -58,7 +58,7 @@ namespace CMYControls
 			Gtk.Alignment GtkAlignment1 = new Gtk.Alignment(0F, 0F, 1F, 1F);
 			// add the calendar to the window
 			_Calendar.Date = DateTime.Now.Date;
-			GtkAlignment1.Add(_Calendar);			
+			GtkAlignment1.Add(_Calendar);		
 			frame1.Add(GtkAlignment1);
 			this.Add(frame1);
 			this.ModifyBg(Gtk.StateType.Normal, new Gdk.Color(0, 0,0));
