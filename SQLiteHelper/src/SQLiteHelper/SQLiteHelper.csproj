@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectGuid>{D210EDCC-43AF-48EF-B982-51901A144063}</ProjectGuid>
@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>SQLiteHelper</RootNamespace>
     <AssemblyName>SQLiteHelper</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <Description>This class is a dataprovider for SQLite (http://sqlite.org/) a file and/or memory based database.
 This class requires:
@@ -15,6 +15,7 @@ This class requires:
     + SQLite version 3</Description>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -50,21 +51,24 @@ This class requires:
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="DumpDataSet.cs" />
-    <Compile Include="SQLiteBackup.cs" />
+    <None Include="SQLiteBackup.cs.txt" />
     <Compile Include="SQLiteHelper.cs" />
+    <None Include="SQLiteHelper.cs.txt" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="sqlite3.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.10.1\lib\mono\gac\Mono.Data.Sqlite\4.0.0.0__0738eb9f132ed756\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System\2.0.0.0__b77a5c561934e089\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Data">
-      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System.Data\2.0.0.0__b77a5c561934e089\System.Data.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml">
+    </Reference>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
@@ -76,9 +80,6 @@ This class requires:
     </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.3\lib\mono\gac\Mono.Data.SqliteClient\2.0.0.0__0738eb9f132ed756\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
