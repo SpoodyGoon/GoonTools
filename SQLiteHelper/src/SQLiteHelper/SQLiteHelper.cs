@@ -39,10 +39,10 @@ using System.IO;
 using SD = System.Data;
 using System.Collections;
 using System.Collections.Generic;
-using SL = Mono.Data.Sqlite;
+using SL = Mono.Data.SqliteClient;
 using Gtk;
 
-namespace GoonTools
+namespace SQLiteDataHelper
 {	
 	/// <summary>
 	/// A SQLiteHelper for SQLite and Mono .NET
@@ -57,7 +57,7 @@ namespace GoonTools
 		private int _LockedDBSleep = 500;
 		private string _ExceptionMessage = null;
 		private SL.SqliteConnection _SQLiteCN = null;
-		//private SL.SqliteCommand _SQLiteCMD = null;
+		private SL.SqliteCommand _SQLiteCMD = null;
 		private SL.SqliteTransaction _SQLiteTrans = null;
 		private SL.SqliteDataReader _SQLiteReader = null;
 //		private Dictionary<string, object> _Parmeters = new Dictionary<string, object>();
@@ -227,39 +227,39 @@ namespace GoonTools
 		///  Creates a new database connection
 		/// </summary>
 		/// <returns></returns>
-//		private void OpenConnection ()
-//		{
-//			if (_SQLiteCN.State != SD.ConnectionState.Open)
-//				_SQLiteCN.Open ();
-//		}
+		private void OpenConnection ()
+		{
+			if (_SQLiteCN.State != SD.ConnectionState.Open)
+				_SQLiteCN.Open ();
+		}
 
 		/// <summary>
 		///  Initialized a connection without opening it
 		///  for use with DataAdapters
 		/// </summary>
 		/// <returns></returns>
-//		private void InitConnection ()
-//		{
-//			if (_SQLiteCN == null) {
-//				FileInfo fi = new FileInfo (_DatabaseURL);
-//				if (!fi.Exists)
-//					throw new FileNotFoundException ("Database not found for connection string.", fi.FullName);
-//				
-//				_SQLiteCN = new SL.SqliteConnection ("URI=file:" + fi.FullName + ",version=3, busy_timeout=" + _BusyTimeout.ToString ());
-//				_SQLiteCN.DefaultTimeout = _BusyTimeout;
-//			}
-//		}
+		private void InitConnection ()
+		{
+			if (_SQLiteCN == null) {
+				FileInfo fi = new FileInfo (_DatabaseURL);
+				if (!fi.Exists)
+					throw new FileNotFoundException ("Database not found for connection string.", fi.FullName);
+				
+				_SQLiteCN = new SL.SqliteConnection ("URI=file:" + fi.FullName + ",version=3, busy_timeout=" + _BusyTimeout.ToString ());
+				_SQLiteCN.BusyTimeout = _BusyTimeout;
+			}
+		}
 
 		#endregion Main Connection
 		
-		public override System.Data.IDbConnection ConnectionGet()
-		{
-			FileInfo fi = new FileInfo (_DatabaseURL);
-			if (!fi.Exists)
-				throw new FileNotFoundException ("Database not found for connection string.", fi.FullName);
-			
-			return = new SL.SqliteConnection ("URI=file:" + fi.FullName + ",version=3, busy_timeout=" + _BusyTimeout.ToString ());
-		}
+//		public System.Data.IDbConnection ConnectionGet()
+//		{
+//			FileInfo fi = new FileInfo (_DatabaseURL);
+//			if (!fi.Exists)
+//				throw new FileNotFoundException ("Database not found for connection string.", fi.FullName);
+//			
+//			return = new SL.SqliteConnection ("URI=file:" + fi.FullName + ",version=3, busy_timeout=" + _BusyTimeout.ToString ());
+//		}
 
 		#region Boolean
 
@@ -272,8 +272,7 @@ namespace GoonTools
 		public bool Exists (string SQL)
 		{
 			bool blnHasRows = false;
-			//InitConnection ();
-			SL.SqliteConnection sqlCN = ConnectionGet();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -319,7 +318,7 @@ namespace GoonTools
 		public Hashtable ExecuteHashTableRow (string SQL)
 		{
 			Hashtable hshReturn = new Hashtable ();
-			//InitConnection ();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -371,7 +370,7 @@ namespace GoonTools
 		public ArrayList ExecuteArrayList (string SQL)
 		{
 			ArrayList arrReturn = new ArrayList ();
-			//InitConnection ();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -417,7 +416,7 @@ namespace GoonTools
 		public ArrayList ExecuteArrayList (string SQL, string ColumnName)
 		{
 			ArrayList arrReturn = new ArrayList ();
-			//InitConnection ();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -462,7 +461,7 @@ namespace GoonTools
 		public ArrayList ExecuteArrayListRow (string SQL)
 		{
 			ArrayList arrReturn = new ArrayList ();
-			//InitConnection ();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -514,7 +513,7 @@ namespace GoonTools
 		/// <returns></returns>
 		public SL.SqliteDataReader ExecuteReader (string SQL)
 		{
-			//InitConnection ();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -556,7 +555,7 @@ namespace GoonTools
 		/// <param name="SQL"></param>
 		public void ExecuteNonQuery (string SQL)
 		{
-			//InitConnection ();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -611,7 +610,7 @@ namespace GoonTools
 		/// <returns></returns>
 		public string ExecuteScalar (string SQL, bool blnAddIdentityStatement)
 		{
-			//InitConnection ();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -659,7 +658,7 @@ namespace GoonTools
 
 		public SD.DataSet ExecuteDataSet (string SQL, string DataSetName)
 		{
-			//InitConnection ();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -722,7 +721,7 @@ namespace GoonTools
 		
 		private SD.DataTable DataTableGet (string SQL, string DataTableName)
 		{
-			//InitConnection ();
+			InitConnection ();
 			// Initialize the SQL Command
 			_SQLiteCMD = new SL.SqliteCommand (SQL);
 			// Set the Command Connection
@@ -801,4 +800,5 @@ namespace GoonTools
 		#endregion Generic Conversions
 		
 	}
+
 }
