@@ -51,18 +51,17 @@ This class requires:
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="DumpDataSet.cs" />
-    <None Include="SQLiteBackup.cs.txt" />
-    <Compile Include="SQLiteHelper.cs" />
-    <None Include="SQLiteHelper.cs.txt" />
+    <None Include="ExternalLibs\Mono.Data.SqliteClient.dll" />
+    <None Include="ExternalLibs\sqlite3.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
+    </None>
+    <None Include="SQLiteBackup.cs" />
+    <Compile Include="SQLiteHelper2.cs" />
+    <None Include="SQLiteHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="sqlite3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.10.1\lib\mono\gac\Mono.Data.Sqlite\4.0.0.0__0738eb9f132ed756\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
     <Reference Include="System">
     </Reference>
     <Reference Include="System.Data">
@@ -80,6 +79,9 @@ This class requires:
     </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>ExternalLibs\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
