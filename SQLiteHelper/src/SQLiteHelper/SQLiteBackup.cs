@@ -12,10 +12,10 @@ using System.IO;
 using System.Data;
 using System.Collections;
 using System.Collections.Generic;
-using Mono.Data.Sqlite;
+using Mono.Data.SqliteClient;
 using Gtk;
 
-namespace GoonTools
+namespace SQLiteDataHelper
 {
 	/// <summary>
 	/// Description of SQLiteBackup.
