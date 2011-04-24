@@ -190,9 +190,7 @@ namespace GoonTools.ColumnSelector
 			try
 			{
 				int x, y, width = 120, height = 175;
-//				Gtk.Style rcs = Gtk.GetStyle((Gtk.Widget)this.TreeView);
-//				int t = rcs.Ythickness;
-				
+				Gtk.TreeView tv = (Gtk.TreeView)this.TreeView;
 				// get the position of the parent window
 				this.TreeView.ParentWindow.GetPosition( out x, out y );
 				// now find the treeviews allocation
