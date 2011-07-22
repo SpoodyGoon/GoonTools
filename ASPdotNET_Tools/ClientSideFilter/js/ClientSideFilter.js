@@ -19,9 +19,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-
 /*
-	This is a simple client side table filter
-	ment to filter results from a table using javascript
-*/
-
+ This is a simple client side table filter
+ ment to filter results from a table using javascript
+ */
+function TableFilter()
+{
+}
