@@ -8,9 +8,23 @@ public partial class MainWindow: Gtk.Window
 		Build ();
 	}
 	
+	#region Application Shutdown
+
+	protected void Quit_Clicked (object sender, System.EventArgs e)
+	{
+		ShutdownApp();
+	}
+	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
-		Application.Quit ();
+		ShutdownApp();
 		a.RetVal = true;
 	}
+	
+	private void ShutdownApp()
+	{
+		Application.Quit();
+	}
+	
+	#endregion Application Shutdown
 }

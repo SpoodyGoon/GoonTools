@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,7 +9,8 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SQLiteMonoPlusUI</RootNamespace>
     <AssemblyName>SQLiteMonoPlusUI</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <StartupObject>SQLiteMonoPlusUI.MainClass</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,7 +31,8 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+    </Reference>
     <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
@@ -46,6 +48,15 @@
     <EmbeddedResource Include="Images\NewQuery.png">
       <LogicalName>NewQuery.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\ExecuteQuery.png">
+      <LogicalName>ExecuteQuery.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TabCloseHover.png">
+      <LogicalName>TabCloseHover.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TabClose.png">
+      <LogicalName>TabClose.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -53,9 +64,14 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Custom Controls\QueryEditor.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusUI.QueryEditor.cs" />
+    <Compile Include="Custom Controls\TabLabel.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusUI.TabLabel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Custom Controls\" />
   </ItemGroup>
 </Project>
