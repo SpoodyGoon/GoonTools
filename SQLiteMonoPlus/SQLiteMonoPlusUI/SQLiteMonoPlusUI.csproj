@@ -68,10 +68,15 @@
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.QueryEditor.cs" />
     <Compile Include="Custom Controls\TabLabel.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.TabLabel.cs" />
+    <Compile Include="Dialogs\DatabaseConnect.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusUI.DatabaseConnect.cs" />
+    <Compile Include="Dialogs\NewConnection.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusUI.NewConnection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="Custom Controls\" />
+    <Folder Include="Dialogs\" />
   </ItemGroup>
 </Project>
