@@ -60,18 +60,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="MainWindow.cs" />
-    <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Custom Controls\QueryEditor.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.QueryEditor.cs" />
     <Compile Include="Custom Controls\TabLabel.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.TabLabel.cs" />
-    <Compile Include="Dialogs\DatabaseConnect.cs" />
-    <Compile Include="gtk-gui\SQLiteMonoPlusUI.DatabaseConnect.cs" />
     <Compile Include="Dialogs\NewConnection.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.NewConnection.cs" />
+    <Compile Include="Dialogs\frmDatabaseConnect.cs" />
+    <Compile Include="frmMain.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmDatabaseConnect.cs" />
+    <Compile Include="gtk-gui\frmMain.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
