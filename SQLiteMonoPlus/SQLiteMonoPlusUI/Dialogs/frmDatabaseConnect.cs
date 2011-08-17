@@ -10,6 +10,12 @@ namespace SQLiteMonoPlusUI
 		private int _Version = 3;
 		private bool _Pooling = false;
 		private int _MaxPoolSize = 0;
+		///<description>
+		/// File Name Extentions for windows
+		/// sqlite
+		/// s3db
+		/// db
+		///</description>
 		public frmDatabaseConnect ()
 		{
 			this.Build ();

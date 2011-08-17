@@ -38,11 +38,11 @@ namespace SQLiteMonoPlusUI
 		private global::Gtk.Label label2;
 		private global::Gtk.Alignment alignment5;
 		private global::Gtk.Statusbar statusbar1;
-	    
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
-			// Widget frmMain
+			// Widget SQLiteMonoPlusUI.frmMain
 			this.UIManager = new global::Gtk.UIManager ();
 			global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
 			this.FileAction = new global::Gtk.Action ("FileAction", global::Mono.Unix.Catalog.GetString ("File"), null, null);
@@ -67,10 +67,10 @@ namespace SQLiteMonoPlusUI
 			w1.Add (this.ExecuteAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
-			this.Name = "frmMain";
+			this.Name = "SQLiteMonoPlusUI.frmMain";
 			this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
-			// Container child frmMain.Gtk.Container+ContainerChild
+			// Container child SQLiteMonoPlusUI.frmMain.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;
@@ -79,9 +79,9 @@ namespace SQLiteMonoPlusUI
 			this.alignment1.Name = "alignment1";
 			// Container child alignment1.Gtk.Container+ContainerChild
 			this.UIManager.AddUiFromString ("<ui><menubar name=\'menubar1\'><menu name=\'FileAction\' action=\'FileAction\'><menu na" +
-	                "me=\'NewAction\' action=\'NewAction\'><menuitem name=\'NewQueryAction1\' action=\'NewQu" +
-	                "eryAction1\'/></menu><menuitem name=\'quitAction\' action=\'quitAction\'/></menu></me" +
-	                "nubar></ui>");
+                    "me=\'NewAction\' action=\'NewAction\'><menuitem name=\'NewQueryAction1\' action=\'NewQu" +
+                    "eryAction1\'/></menu><menuitem name=\'quitAction\' action=\'quitAction\'/></menu></me" +
+                    "nubar></ui>");
 			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 			this.menubar1.Name = "menubar1";
 			this.alignment1.Add (this.menubar1);
@@ -95,7 +95,7 @@ namespace SQLiteMonoPlusUI
 			this.alignment2.Name = "alignment2";
 			// Container child alignment2.Gtk.Container+ContainerChild
 			this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar1\'><toolitem name=\'NewQueryAction\' action=\'NewQueryActi" +
-	                "on\'/><toolitem name=\'ExecuteAction\' action=\'ExecuteAction\'/></toolbar></ui>");
+                    "on\'/><toolitem name=\'ExecuteAction\' action=\'ExecuteAction\'/></toolbar></ui>");
 			this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 			this.toolbar1.Name = "toolbar1";
 			this.toolbar1.ShowArrow = false;
@@ -169,7 +169,7 @@ namespace SQLiteMonoPlusUI
 			this.alignment8.Name = "alignment8";
 			// Container child alignment8.Gtk.Container+ContainerChild
 			this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar2\'><toolitem name=\'connectAction\' action=\'connectAction" +
-	                "\'/></toolbar></ui>");
+                    "\'/></toolbar></ui>");
 			this.toolbar2 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar2")));
 			this.toolbar2.Name = "toolbar2";
 			this.toolbar2.ShowArrow = false;
