@@ -8,7 +8,7 @@ namespace SQLiteMonoPlusUI
 		public static void Main (string[] args)
 		{
 			Application.Init ();
-			MainWindow win = new MainWindow ();
+			frmMain win = new frmMain ();
 			win.Show ();
 			Application.Run ();
 		}
