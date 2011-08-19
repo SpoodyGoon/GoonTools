@@ -11,6 +11,7 @@
     <AssemblyName>SQLiteMonoPlusUI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <StartupObject>SQLiteMonoPlusUI.MainClass</StartupObject>
+    <ReferencePath>C:\Program Files\Mono-2.10.2\lib\mono\gac\</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +32,9 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>..\..\..\..\..\..\Program Files\Mono-2.10.2\lib\mono\gac\Mono.Data.Sqlite\4.0.0.0__0738eb9f132ed756\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="System">
     </Reference>
     <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
@@ -63,7 +67,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connections\ConnectionDataTable.cs" />
+    <Compile Include="Connections\ConnectionDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
@@ -77,12 +83,11 @@
     <Compile Include="Connections\ConnectionStore.cs" />
     <Compile Include="Connections\Connection.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmMain.cs" />
+    <Compile Include="GlobalData\SQL.cs" />
+    <Compile Include="Schema\SchemaStore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Schema" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Images\" />
-    <Folder Include="Custom Controls\" />
-    <Folder Include="Dialogs\" />
-    <Folder Include="Connections\" />
-  </ItemGroup>
 </Project>
