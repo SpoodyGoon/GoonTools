@@ -3,7 +3,7 @@ namespace SQLiteMonoPlusUI
 {
 	public class ForeignKey
 	{
-		public string FireignKeyName = string.Empty;
+		public string ForeignKeyName = string.Empty;
 		public ForeignKey ()
 		{
 		}
