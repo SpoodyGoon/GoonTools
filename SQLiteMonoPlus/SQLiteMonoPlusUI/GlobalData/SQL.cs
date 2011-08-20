@@ -5,7 +5,7 @@ namespace SQLiteMonoPlusUI.GlobalData
 	static class SQL
 	{
 		// this will need a union
-		public const string SchemaGet = "" +
+		public const string TablesGet = "" +
 			"SELECT " +
 			"	name AS ObjectName, " +
 			"	tbl_name AS TableName, " +
