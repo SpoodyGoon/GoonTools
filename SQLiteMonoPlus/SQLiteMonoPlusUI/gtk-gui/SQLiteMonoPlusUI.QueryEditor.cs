@@ -5,9 +5,11 @@ namespace SQLiteMonoPlusUI
 	public partial class QueryEditor
 	{
 		private global::Gtk.Alignment alignment7;
+
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+
 		private global::Gtk.TextView txtQueryEditor;
-        
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -15,7 +17,7 @@ namespace SQLiteMonoPlusUI
 			global::Stetic.BinContainer.Attach (this);
 			this.Name = "SQLiteMonoPlusUI.QueryEditor";
 			// Container child SQLiteMonoPlusUI.QueryEditor.Gtk.Container+ContainerChild
-			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment7 = new global::Gtk.Alignment (0.5f, 0.5f, 1f, 1f);
 			this.alignment7.Name = "alignment7";
 			// Container child alignment7.Gtk.Container+ContainerChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();

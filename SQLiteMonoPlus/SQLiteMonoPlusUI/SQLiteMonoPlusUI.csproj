@@ -82,7 +82,12 @@
     <Compile Include="Connections\Connection.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmMain.cs" />
     <Compile Include="GlobalData\SQL.cs" />
-    <Compile Include="Schema\SchemaStore.cs" />
+    <Compile Include="Schema\Database.cs" />
+    <Compile Include="Schema\Table.cs" />
+    <Compile Include="Schema\TableCollection.cs" />
+    <Compile Include="Schema\Column.cs" />
+    <Compile Include="Schema\ColumnCollection.cs" />
+    <Compile Include="Schema\Index.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
