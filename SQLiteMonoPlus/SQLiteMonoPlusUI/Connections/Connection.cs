@@ -4,7 +4,7 @@ namespace SQLiteMonoPlusUI
 {
 	public class Connection
 	{
-		public string FriendlyName = string.Empty;
+		public string ConnectionName = string.Empty;
 		public string FilePath = string.Empty;
 		public string Password = null;
 		public bool Pooling = false;
@@ -13,20 +13,20 @@ namespace SQLiteMonoPlusUI
 		
 		public Connection (string name, string path) 
 		{
-			FriendlyName = name;
+			ConnectionName = name;
 			FilePath = path;
 		}
 		
 		public Connection (string name, string path, string password) 
 		{
-			FriendlyName = name;
+			ConnectionName = name;
 			FilePath = path;
 			Password = password;
 		}
 		
 		public Connection (string name, string path, bool pooling, int maxpoolsize) 
 		{
-			FriendlyName = name;
+			ConnectionName = name;
 			FilePath = path;
 			Pooling = pooling;
 			MaxPoolSize = maxpoolsize;
@@ -34,7 +34,7 @@ namespace SQLiteMonoPlusUI
 		
 		public Connection (string name, string path, string password, bool pooling, int maxpoolsize) 
 		{
-			FriendlyName = name;
+			ConnectionName = name;
 			FilePath = path;
 			Password = password;
 			Pooling = pooling;
@@ -43,8 +43,8 @@ namespace SQLiteMonoPlusUI
 		
 		public Connection (System.Data.DataRow dr) 
 		{
-			if(!string.IsNullOrEmpty(dr["FriendlyName"].ToString()))
-				FriendlyName = dr["FriendlyName"].ToString();
+			if(!string.IsNullOrEmpty(dr["ConnectionName"].ToString()))
+				ConnectionName = dr["ConnectionName"].ToString();
 			
 			if(!string.IsNullOrEmpty(dr["FilePath"].ToString()))
 				FilePath = dr["FilePath"].ToString();

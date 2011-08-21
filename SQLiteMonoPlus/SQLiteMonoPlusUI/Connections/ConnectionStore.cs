@@ -6,16 +6,20 @@ namespace SQLiteMonoPlusUI
 {
 	public class ConnectionStore : Gtk.ListStore, Gtk.TreeModel
 	{
-		private string _SaveFile = string.Empty;
-		public ConnectionStore () : base(typeof(Connection))
+		private string _DBFilePath = string.Empty;
+		public ConnectionStore (string FilePath) : base(typeof(Connection))
 		{
+			if(!string.IsNullOrEmpty(FilePath))
+			{
+				_DBFilePath = FilePath;
+			}
 		}
 		
 		#region Public Methods
 		
-		public void Load(string strSaveFile)
+		public void Load(string FilePath)
 		{			
-			_SaveFile = strSaveFile;
+			_DBFilePath = FilePath;
 			DataTable dt = new DataTable();
 			dt.ReadXml(_SaveFile);
 		}
