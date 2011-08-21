@@ -27,28 +27,21 @@ using sr = System.Reflection;
 using sc = System.Configuration;
 using Gtk;
 
-namespace GlobalTools
+namespace SQLiteMonoPlusUI.GlobalTools
 {
     /// <summary>
     ///  This class contains data that is related to the
     ///  enviroment around the probram
     /// </summary>
-    internal class EnviromentData
+    public class EnviromentData
     {
         private string _OS = null;
         private string _AppPath = null;
         private string _ProgramName = null;
-        private string _SavePath = null;
-        private string _UserOptionFile = null;
         private string _ErrorLogFile = null;
-        private string _CommonImagePath = null;
-        private string _GameThemePath = null;
-        private string _GameThemeDefaultPath = null;
-        private string _GameThemeDefaultFile = null;
-        private string _ThemePath = null;
-        private string _UserThemePath = null;
-        private string _DataPath = null;
-        internal EnviromentData()
+        private string _UserDataPath = null;
+        private string _AppDataPath = null;
+        public EnviromentData()
         {
             so.FileInfo fi;
             so.DirectoryInfo di;
@@ -61,7 +54,7 @@ namespace GlobalTools
             fi = new so.FileInfo(asm.Location);
             _AppPath = fi.Directory.FullName;
             _ProgramName = asm.GetName().Name;
-            if (sc.ConfigurationManager.AppSettings["Debug"].ToLower() == "false")
+            if (SQLiteMonoPlusUI.UserConfig.Default.Debug == false)
             {
                 // set the location of the save data for the user
                 // in a non-development enviroment
@@ -77,126 +70,52 @@ namespace GlobalTools
             if (!di.Exists)
                 di.Create();
 
-            _SavePath = di.FullName;
+            _UserDataPath = di.FullName;
 
-            // get the defaults path - this is where we keep the things we copy over
-            // when setting up a new user
-            di = new so.DirectoryInfo(so.Path.Combine(_AppPath, "Data"));
-            if (!di.Exists)
-                di.Create();
+            // App Database for copying over application file during first use
+            di = new so.DirectoryInfo(so.Path.Combine(_AppPath, "GlobalData"));
+            _AppDataPath = di.FullName;
 
-            _DataPath = di.FullName;
-
-            // create the default game theme directory
-            di = new so.DirectoryInfo(so.Path.Combine(_DataPath, "GameThemes"));
-            if (!di.Exists)
-                di.Create();
-            _GameThemePath = di.FullName;
-
-            // create the default game theme directory
-            // were not checking this directory/file
-            // if it is missing we are hosed anyways
-            di = new so.DirectoryInfo(so.Path.Combine(_GameThemePath, "Default"));
-            _GameThemeDefaultPath = di.FullName;
-            fi = new so.FileInfo(so.Path.Combine(_GameThemeDefaultPath, "GameTheme.xml"));
-            _GameThemeDefaultFile = fi.FullName;
-
-            // create the default theme directory
-            di = new so.DirectoryInfo(so.Path.Combine(_DataPath, "Images"));
-            if (!di.Exists)
-                di.Create();
-            _CommonImagePath = di.FullName;
-
-            // create the default theme directory
-            di = new so.DirectoryInfo(so.Path.Combine(_AppPath, "Themes"));
-            if (!di.Exists)
-                di.Create();
-            _ThemePath = di.FullName;
-
-            // create the use theme directory
-            di = new so.DirectoryInfo(so.Path.Combine(_SavePath, "Themes"));
-            if (!di.Exists)
-                di.Create();
-            _UserThemePath = di.FullName;
 
             // the error file
-            fi = new so.FileInfo(so.Path.Combine(_SavePath, "error.txt"));
+            fi = new so.FileInfo(so.Path.Combine(_UserDataPath, "error.txt"));
             _ErrorLogFile = fi.FullName;
-            // the options save file
-            fi = new so.FileInfo(so.Path.Combine(_SavePath, _ProgramName + ".xml"));
-            _UserOptionFile = fi.FullName;
-
 
         }
 
         #region Public Properties
 
-        internal string OS
+        public string OS
         {
             get { return _OS; }
         }
 
-        internal string AppPath
+        public string AppPath
         {
             get { return _AppPath; }
         }
 
-        internal string ProgramName
+        public string AppDataPath
+        {
+            get { return _AppDataPath; }
+        }
+
+        public string ProgramName
         {
             get { return _ProgramName; }
         }
 
-        internal string SavePath
+        public string UserDataPath
         {
-            get { return _SavePath; }
+            get { return _UserDataPath; }
         }
 
-        internal string UserOptionFile
-        {
-            get { return _UserOptionFile; }
-        }
-
-        internal string DataPath
-        {
-            get { return _DataPath; }
-        }
-
-        internal string CommonImagePath
-        {
-            get { return _CommonImagePath; }
-        }
-
-        internal string GameThemePath
-        {
-            get { return _GameThemePath; }
-        }
-
-        internal string GameThemeDefaultPath
-        {
-            get { return _GameThemeDefaultPath; }
-        }
-
-        internal string GameThemeDefaultFile
-        {
-            get { return _GameThemeDefaultFile; }
-        }
-
-        internal string ThemeFolder
-        {
-            get { return _ThemePath; }
-        }
-
-        internal string UserThemeFolder
-        {
-            get { return _UserThemePath; }
-        }
-
-        internal string ErrorLog
+        public string ErrorLog
         {
             get { return _ErrorLogFile; }
         }
 
-        internal bool IsWindows
+        public bool IsWindows
         {
             get
             {
@@ -211,12 +130,12 @@ namespace GlobalTools
 
         #region Public Methods
 
-        internal string GetNewTempFolder(string Name)
+        public string GetNewTempFolder(string Name)
         {
             return GetNewTempFolder(Name, true);
         }
 
-        internal string GetNewTempFolder(string Name, bool Overwrite)
+        public string GetNewTempFolder(string Name, bool Overwrite)
         {
             string tmpName = so.Path.Combine(so.Path.GetTempPath(), Name);
             try
@@ -248,17 +167,17 @@ namespace GlobalTools
             return tmpName;
         }
 
-        internal string GetNewTempFile(string Name)
+        public string GetNewTempFile(string Name)
         {
             return GetNewTempFile(so.Path.GetFileNameWithoutExtension(Name), so.Path.GetExtension(Name), true);
         }
 
-        internal string GetNewTempFile(string Name, string Extension)
+        public string GetNewTempFile(string Name, string Extension)
         {
             return GetNewTempFile(Name, Extension, true);
         }
 
-        internal string GetNewTempFile(string Name, string Extension, bool Overwrite)
+        public string GetNewTempFile(string Name, string Extension, bool Overwrite)
         {
             string tmpName = so.Path.Combine(System.IO.Path.GetTempPath(), Name + "." + Extension);
             if (Overwrite)

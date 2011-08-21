@@ -21,7 +21,7 @@ namespace SQLiteMonoPlusUI
 		{			
 			_DBFilePath = FilePath;
 			DataTable dt = new DataTable();
-			dt.ReadXml(_SaveFile);
+            dt.ReadXml(_DBFilePath);
 		}
 		
 		public void Load()
@@ -46,7 +46,7 @@ namespace SQLiteMonoPlusUI
 		
 		public void Save()
 		{
-			if(string.IsNullOrEmpty(_SaveFile))
+            if (string.IsNullOrEmpty(_DBFilePath))
 				throw new System.IO.FileLoadException("Unable to save Connection data file path not set");
 			
 			

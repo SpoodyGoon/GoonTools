@@ -26,7 +26,7 @@ using System.Data;
 using System.Diagnostics;
 using Gtk;
 
-namespace GlobalTools
+namespace SQLiteMonoPlusUI.GlobalTools
 {
     /// <summary>
     /// This is a static class that holds values that
@@ -35,16 +35,17 @@ namespace GlobalTools
     /// </summary>
     public static class Common
     {
-        private static EnviromentData _EnvData = new EnviromentData();
+        public static EnviromentData EnvData = new EnviromentData();
 
-        #region public Properties
-
-        public static EnviromentData EnvData
+        public static void Load()
         {
-            get { return _EnvData; }
+            if (string.IsNullOrEmpty(UserConfig.Default.DBLocation) || !File.Exists(UserConfig.Default.DBLocation))
+            {
+                // TODO copy the database to the save folder
+                UserConfig.Default.DBLocation = new FileInfo(Path.Combine(EnvData.UserDataPath, "SQLiteMonoPlus.s3db")).FullName;
+                File.Copy(Path.Combine(EnvData.AppDataPath, "SQLiteMonoPlus.s3db"), UserConfig.Default.DBLocation);               
+            }
         }
-
-        #endregion public Properties
 
         #region Logs
 
@@ -60,27 +61,16 @@ namespace GlobalTools
             sb.Append(System.Environment.NewLine + "--------------------------- " + DateTime.Now.ToString() + " --------------------------");
             sb.Append(System.Environment.NewLine + ex.ToString());
             sb.Append(System.Environment.NewLine + "------------------------------------------------------------------------------");
-            if (YahtzeeSharp2.UserConfig.Default.UseErrorLog)
+            if (SQLiteMonoPlusUI.UserConfig.Default.UserErrorLog)
             {
                 StreamWriter sw = new StreamWriter(EnvData.ErrorLog, true);
                 sw.Write(sb.ToString());
                 sw.Close();
             }
 
-            YahtzeeSharp2.frmBasicError fmb = new YahtzeeSharp2.frmBasicError(parent_window, ex.ToString());
-            fmb.Run();
-            fmb.Destroy();
-//            if ((Gtk.ResponseType)fmb.Run() == Gtk.ResponseType.Accept)
-//            {
-//                fmb.Destroy();
-//                YahtzeeSharp2.frmErrorMessage fme = new YahtzeeSharp2.frmErrorMessage(parent_window, ex.Message);
-//                fme.Run();
-//                fme.Destroy();
-//            }
-//            else
-//            {
-//                fmb.Destroy();
-//            }
+            Gtk.MessageDialog md = new MessageDialog(parent_window, DialogFlags.Modal, MessageType.Error, ButtonsType.Close, ex.ToString());
+            md.Run();
+            md.Destroy();
             sb.Length = 0;
         }
 
