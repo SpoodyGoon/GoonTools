@@ -1,6 +1,7 @@
 
 using System;
 using Gtk;
+using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI
 {
@@ -12,20 +13,10 @@ namespace SQLiteMonoPlusUI
 		private int _SearchConnectionID;
 		private string _SearchConnectionName;
 		private DateTime _LastLoad = DateTime.Now;
-		private int _MinWidth = 175;
-		private int _MinHeight = 125;
 		public ConnectionComboBoxEntry()
 		{
 			Build();
 		}
-
-
-		//		public ConnectionComboBox(int statusid)
-		//		{
-		//			Build();
-		//			_SearchConnectionID = statusid;
-		//			this.Model.Foreach(new TreeModelForeachFunc(ForeachConnectionID));
-		//		}
 
 
 		private void Build()
@@ -37,15 +28,13 @@ namespace SQLiteMonoPlusUI
 				cellConnectionName.Editable = false;
 				this.PackStart(cellConnectionName, true);
 				this.SetCellDataFunc(cellConnectionName, new Gtk.CellLayoutDataFunc(RenderConnectionName));
-				this.Model = (Gtk.TreeModel)GoonTools.Common.ConnectionModel;
+                this.Model = (Gtk.TreeModel)GlobalData.StoreModels.Connections;
 				_LastLoad = DateTime.Now;
-				this.WidthRequest = _MinWidth;
 				this.QueueDraw();
 			}
 			catch (Exception ex)
-			{
-				Console.WriteLine(ex.ToString());
-				//Common.HandleError(ex);
+			{   
+				Common.HandleError(ex);
 			}
 		}
 
@@ -61,25 +50,25 @@ namespace SQLiteMonoPlusUI
 
 		#region Public Properties
 
-		//		public string ConnectionName
-		//		{
-		//			set
-		//			{
-		//				_SearchConnectionName = value;
-		//				this.Model.Foreach(new TreeModelForeachFunc(ForeachConnectionText));
-		//			}
-		//			get{return _ConnectionName;}
-		//		}
-		//		
-		//		public int ConnectionID
-		//		{
-		//			set
-		//			{
-		//				_SearchConnectionID = value;
-		//				this.Model.Foreach(new TreeModelForeachFunc(ForeachConnectionID));
-		//			}
-		//			get{return _ConnectionID;}
-		//		}
+        public string ConnectionName
+        {
+            set
+            {
+                _SearchConnectionName = value;
+                this.Model.Foreach(new TreeModelForeachFunc(ForeachConnectionName));
+            }
+            get { return _ConnectionName; }
+        }
+
+        public int ConnectionID
+        {
+            set
+            {
+                _SearchConnectionID = value;
+                this.Model.Foreach(new TreeModelForeachFunc(ForeachConnectionID));
+            }
+            get { return _ConnectionID; }
+        }
 
 		#endregion Public Properties
 

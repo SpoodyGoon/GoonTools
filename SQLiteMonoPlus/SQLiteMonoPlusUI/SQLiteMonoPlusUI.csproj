@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -65,6 +65,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\UserConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>UserConfig.settings</DependentUpon>
+    </Compile>
     <Compile Include="Connections\ConnectionDataTable.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -100,7 +105,16 @@
     <Compile Include="Common\EnviromentData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Common\" />
+    <None Include="App.config" />
+    <None Include="Common\UserConfig.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>UserConfig.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>SQLiteMonoPlusUI</CustomToolNamespace>
+    </None>
+    <Content Include="GlobalData\SQLiteMonoPlus.s3db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
