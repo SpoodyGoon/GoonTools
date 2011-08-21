@@ -2,7 +2,7 @@
  *                      Common.cs
  *
  *	 	Copyright (C) 2009
- *		Andrew York <YahtzeeSharp@brdstudio.net>
+ *		Andrew York <spoodygoon@gmail.com>
  *
  *************************************************************************/
 /*
@@ -25,7 +25,6 @@ using System.IO;
 using System.Data;
 using System.Diagnostics;
 using Gtk;
-using GlobalTools.Helper;
 
 namespace GlobalTools
 {
@@ -34,38 +33,27 @@ namespace GlobalTools
     /// are reqularly used by the program it also first off
     /// the serialzation of certian objects
     /// </summary>
-    internal static class Common
+    public static class Common
     {
         private static EnviromentData _EnvData = new EnviromentData();
-        private static YahtzeeSharp2.GameTheme _GameTheme = new YahtzeeSharp2.GameTheme();
 
-        #region internal Properties
+        #region public Properties
 
-        internal static EnviromentData EnvData
+        public static EnviromentData EnvData
         {
             get { return _EnvData; }
         }
 
-        internal static YahtzeeSharp2.GameTheme GameTheme
-        {
-            get { return _GameTheme; }
-        }
-
-        internal static Gdk.Pixbuf[] DiceImages
-        {
-            get { return _DiceImages; }
-        }
-
-        #endregion internal Properties
+        #endregion public Properties
 
         #region Logs
 
-        internal static void HandleError(Exception ex)
+        public static void HandleError(Exception ex)
         {
             HandleError(null, ex);
         }
 
-        internal static void HandleError(Gtk.Window parent_window, Exception ex)
+        public static void HandleError(Gtk.Window parent_window, Exception ex)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(System.Environment.NewLine + "------------------------------------------------------------------------------");
@@ -96,7 +84,7 @@ namespace GlobalTools
             sb.Length = 0;
         }
 
-        internal static void CleanErrorLog()
+        public static void CleanErrorLog()
         {
             try
             {
@@ -113,7 +101,7 @@ namespace GlobalTools
 
         #endregion Logs
 
-        internal static void DebugWrite(string StringToWrite)
+        public static void DebugWrite(string StringToWrite)
         {
             Console.WriteLine(StringToWrite);
             Console.ReadLine();
@@ -123,7 +111,7 @@ namespace GlobalTools
         #region Launch URL
 
         private static string _LaunchURL = string.Empty;
-        internal static void LaunchURL(string URL)
+        public static void LaunchURL(string URL)
         {
             _LaunchURL = URL;
             System.Threading.Thread trd = new System.Threading.Thread(new System.Threading.ThreadStart(StartURL));
