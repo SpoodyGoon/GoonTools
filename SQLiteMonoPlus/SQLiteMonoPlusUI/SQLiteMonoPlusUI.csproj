@@ -93,6 +93,14 @@
     <Compile Include="Schema\IndexCollection.cs" />
     <Compile Include="Schema\ForeignKeyCollection.cs" />
     <Compile Include="Schema\ViewCollection.cs" />
+    <Compile Include="Connections\ConnectionComboBoxEntry.cs" />
+    <Compile Include="GlobalData\StoreModels.cs" />
+    <Compile Include="Common\BufferTags.cs" />
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\EnviromentData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
 </Project>
