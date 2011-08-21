@@ -3,7 +3,7 @@ namespace SQLiteMonoPlusUI.GlobalData
 {
 	static class StoreModels
 	{
-		public static ConnectionStore Connections = new ConnectionStore(null);
+		public static ConnectionStore Connections = new ConnectionStore();
 	}
 }
 

@@ -105,7 +105,9 @@
     <Compile Include="Common\EnviromentData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Common\UserConfig.settings">

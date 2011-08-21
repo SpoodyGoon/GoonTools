@@ -1,56 +1,70 @@
 using System;
 using System.Data;
 using Mono.Data.Sqlite;
+using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI
 {
 	public class ConnectionStore : Gtk.ListStore, Gtk.TreeModel
 	{
-		private string _DBFilePath = string.Empty;
-		public ConnectionStore (string FilePath) : base(typeof(Connection))
+        public bool IsLoaded = false;
+        public DateTime LastLoaded = DateTime.Now;
+		public ConnectionStore () : base(typeof(Connection))
 		{
-			if(!string.IsNullOrEmpty(FilePath))
-			{
-				_DBFilePath = FilePath;
-			}
+            
 		}
 		
 		#region Public Methods
 		
-		public void Load(string FilePath)
-		{			
-			_DBFilePath = FilePath;
-			DataTable dt = new DataTable();
-            dt.ReadXml(_DBFilePath);
-		}
-		
 		public void Load()
-		{	
-//			if(string.IsNullOrEmpty(_SaveFile))
-//				throw new System.IO.FileLoadException("Unable to save Connection data file path not set");
-//			
-//			DataTable dt = new DataTable();
-//			dt.ReadXml(_SaveFile);
-//			Connection c = null;
-//			for(int i = 0; i < dt.Rows.Count; i++)
-//			{
-//				c = new Connection((DataRow)dt.Rows[i]);
-//				this.AppendValues(c);
-//			}
-		}
+        {
+            SqliteConnection sqlCN = new SqliteConnection(UserConfig.Default.DBLocation);
+            SqliteCommand sqlCMD = new SqliteCommand(GlobalData.SQL.ConnectionsGet, sqlCN);
+            sqlCMD.CommandType = CommandType.Text;
+            sqlCMD.CommandTimeout = 300;
+            SqliteDataReader sqlReader = null;
+            try
+            {
+                sqlCN.Open();
+                sqlReader = sqlCMD.ExecuteReader();
+                if (sqlReader.HasRows)
+                {
+                    Connection c;
+                    while (sqlReader.Read())
+                    {
+                        c = new Connection(Convert.ToInt32(sqlReader["ConnectionID"]), sqlReader["ConnectionName"].ToString(), sqlReader["FilePath"].ToString());
+                        this.AppendValues(c);
+                    } 
+                }
+                sqlReader.Close();
+                sqlCN.Close();
+                IsLoaded = true;
+                LastLoaded = DateTime.Now;
+            }
+            catch (Exception ex)
+            {
+                Common.HandleError(ex);
+            }
+            finally
+            {
+                if (sqlReader != null)
+                {
+                    if (!sqlReader.IsClosed)
+                        sqlReader.Close();
+                    sqlReader.Dispose();
+                }
+                sqlCMD.Dispose();
+                if (sqlCN.State != ConnectionState.Closed)
+                    sqlCN.Close();
+                sqlCN.Dispose();
+            }
+        }
+
+        public void Refresh()
+        {
+            Load();
+        }
 		
-		public void Refresh()
-		{
-			
-		}
-		
-		public void Save()
-		{
-            if (string.IsNullOrEmpty(_DBFilePath))
-				throw new System.IO.FileLoadException("Unable to save Connection data file path not set");
-			
-			
-		}
 		
 		#endregion Public Methods
 	}
