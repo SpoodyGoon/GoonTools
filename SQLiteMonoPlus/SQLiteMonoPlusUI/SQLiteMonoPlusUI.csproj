@@ -115,6 +115,8 @@
       <LastGenOutput>UserConfig.Designer.cs</LastGenOutput>
       <CustomToolNamespace>SQLiteMonoPlusUI</CustomToolNamespace>
     </None>
+    <None Include="dll\Mono.Data.Sqlite.dll" />
+    <Content Include="dll\README_DLL.txt" />
     <Content Include="GlobalData\SQLiteMonoPlus.s3db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

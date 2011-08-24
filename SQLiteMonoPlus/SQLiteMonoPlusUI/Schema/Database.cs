@@ -4,6 +4,7 @@ using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using Mono.Data.Sqlite;
+using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI.Schema
 {
@@ -27,17 +28,54 @@ namespace SQLiteMonoPlusUI.Schema
 			}
 		}
 		
-		private DataTable LoadTables()
-		{
-			SqliteConnection sqlCN = new SqliteConnection(_DatabaseFile);
-			SqliteCommand sqlCMD = new SqliteCommand(GlobalData.SQL.TablesGet, sqlCN);
-			sqlCMD.CommandType = CommandType.Text;
-			sqlCMD.CommandTimeout = 300;
-			SqliteDataAdapter sqlDA = new SqliteDataAdapter(sqlCMD);
-			DataTable dt = new DataTable();
-			sqlDA.Fill(dt);
-			return dt;
+		private void LoadTables()
+        {
+            SqliteConnection sqlCN = new SqliteConnection(_DatabaseFile);
+            SqliteCommand sqlCMD = new SqliteCommand(GlobalData.SQL.TablesGet, sqlCN);
+            sqlCMD.CommandType = CommandType.Text;
+            sqlCMD.CommandTimeout = 300;
+            SqliteDataReader sqlReader = null;
+            try
+            {
+                Table t;
+                sqlCN.Open();
+                sqlReader = sqlCMD.ExecuteReader();
+                while (sqlReader.Read())
+                {
+                    t = new Table(sqlReader["TableName"].ToString());
+                    this.Tables.Add(t);
+                }
+                sqlReader.Close();
+                sqlCN.Close();
+            }
+            catch (Exception ex)
+            {
+                Common.HandleError(ex);
+            }
 		}
+
+        private void LoadTableDetails()
+        {
+            SqliteConnection sqlCN = new SqliteConnection(_DatabaseFile);
+            SqliteCommand sqlCMD = new SqliteCommand(GlobalData.SQL.TableDetailsGet, sqlCN);
+            sqlCMD.CommandType = CommandType.Text;
+            sqlCMD.CommandTimeout = 300;
+            SqliteDataReader sqlReader = null;
+            try
+            {
+                sqlCN.Open();
+                sqlReader = sqlCMD.ExecuteReader();
+                while (sqlReader.Read())
+                {
+                }
+                sqlReader.Close();
+                sqlCN.Close();
+            }
+            catch (Exception ex)
+            {
+                Common.HandleError(ex);
+            }
+        }
 	}
 
 	public enum SQLiteDataType
