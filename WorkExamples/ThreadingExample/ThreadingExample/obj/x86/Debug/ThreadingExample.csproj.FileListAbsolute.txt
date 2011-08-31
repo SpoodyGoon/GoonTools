@@ -1,0 +1,10 @@
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\bin\Debug\ThreadingExample.exe
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\bin\Debug\ThreadingExample.pdb
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\obj\x86\Debug\ThreadingExample.frmAbout.resources
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\obj\x86\Debug\ThreadingExample.frmMain.resources
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\obj\x86\Debug\ThreadingExample.Properties.Resources.resources
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\obj\x86\Debug\ThreadingExample.exe
+C:\Documents and Settings\ayork\My Documents\Visual Studio 2010\Projects\ThreadingExample\ThreadingExample\obj\x86\Debug\ThreadingExample.pdb
