@@ -1,4 +1,5 @@
 using System;
+using Mono.Data.Sqlite;
 using Gtk;
 
 namespace SQLiteMonoPlusUI
@@ -14,7 +15,8 @@ namespace SQLiteMonoPlusUI
 	
 		protected void Quit_Clicked (object sender, System.EventArgs e)
 		{
-			ShutdownApp();
+			SqliteConnection sqlCN = new SqliteConnection(UserConfig.Default.DBLocation);
+			//ShutdownApp();
 		}
 		
 		protected void OnDeleteEvent (object sender, DeleteEventArgs a)
