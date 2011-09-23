@@ -20,7 +20,7 @@ namespace SQLiteMonoPlusUI.Schema
 			_DatabaseFile = DBFile;
 			if(File.Exists(_DatabaseFile))
 			{
-				DataTable dt = LoadTables();
+				LoadTables();
 				for(int i = 0; i < dt.Rows.Count; i ++)
 				{
 					// TODO load the rest of the data via Pragma
