@@ -1,0 +1,1221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>
+			JSON Research
+		</title>
+		<script src="js/jquery-1.7.min.js" id="jsJQuery" type="text/javascript">
+		</script>
+		<script src="js/json_sans_eval.js" id="jsJSONParse" type="text/javascript">
+		</script>
+		<script type="text/javascript" id="jsJSONResearch">
+			var intRebateCount = 0;
+			function RunTest()
+			{
+				var JsonFormat = $("#divJsonTemplate").html();
+				intRebateCount++;
+				var JsonData = $("#divJsonResults").html();
+				var objJsonParse = jsonParse(JsonData);
+				for (var i = 0; i < objJsonParse.Rebate.length; i++) 
+				{
+					for (var k in objJsonParse.Rebate[i]) 
+					{
+						alert(k + '=' + objJsonParse.Rebate[i][k]);
+					}
+				}
+			}
+			
+			function Test2()
+			{
+				alert("test");
+			}
+			
+			function LoadCountryList()
+			{
+				try 
+				{
+					var JsonData = $("#jsonCountryList").html();
+					var objJsonParse = jsonParse(JsonData);
+					$("#ddlCountry").empty();
+					for (var i = 0; i < objJsonParse.CountryList.length; i++) 
+					{
+						$("#ddlCountry").append('<option value="' + objJsonParse.CountryList[i].ID + '">' + objJsonParse.CountryList[i].Name + '</option>');
+					}
+				} 
+				catch (ex) 
+				{
+					alert("An Error Occured.\n\n" + ex.message);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="jsonCountryList" style="display:none;">
+			{
+			"CountryList": [
+			{
+			"ID": 1,
+			"Name": "United States"
+			},
+			{
+			"ID": 2,
+			"Name": "Canada"
+			},
+			{
+			"ID": 175,
+			"Name": "Romania"
+			},
+			{
+			"ID": 226,
+			"Name": "Yugoslavia"
+			},
+			{
+			"ID": 205,
+			"Name": "East Timor"
+			},
+			{
+			"ID": 230,
+			"Name": "Curacao"
+			},
+			{
+			"ID": 8,
+			"Name": "Andorra"
+			},
+			{
+			"ID": 10,
+			"Name": "United Arab Emirates"
+			},
+			{
+			"ID": 4,
+			"Name": "Afghanistan"
+			},
+			{
+			"ID": 15,
+			"Name": "Antigua and Barbuda"
+			},
+			{
+			"ID": 6,
+			"Name": "Anguilla"
+			},
+			{
+			"ID": 7,
+			"Name": "Albania"
+			},
+			{
+			"ID": 12,
+			"Name": "Armenia"
+			},
+			{
+			"ID": 9,
+			"Name": "Netherlands Antilles"
+			},
+			{
+			"ID": 5,
+			"Name": "Angola"
+			},
+			{
+			"ID": 234,
+			"Name": "Antarctica"
+			},
+			{
+			"ID": 11,
+			"Name": "Argentina"
+			},
+			{
+			"ID": 233,
+			"Name": "American Samoa"
+			},
+			{
+			"ID": 17,
+			"Name": "Austria"
+			},
+			{
+			"ID": 16,
+			"Name": "Australia"
+			},
+			{
+			"ID": 3,
+			"Name": "Aruba"
+			},
+			{
+			"ID": 232,
+			"Name": "Aland Islands"
+			},
+			{
+			"ID": 18,
+			"Name": "Azerbaijan"
+			},
+			{
+			"ID": 27,
+			"Name": "Bosnia and Herzegovina"
+			},
+			{
+			"ID": 33,
+			"Name": "Barbados"
+			},
+			{
+			"ID": 23,
+			"Name": "Bangladesh"
+			},
+			{
+			"ID": 20,
+			"Name": "Belgium"
+			},
+			{
+			"ID": 22,
+			"Name": "Burkina Faso"
+			},
+			{
+			"ID": 24,
+			"Name": "Bulgaria"
+			},
+			{
+			"ID": 25,
+			"Name": "Bahrain"
+			},
+			{
+			"ID": 19,
+			"Name": "Burundi"
+			},
+			{
+			"ID": 21,
+			"Name": "Benin"
+			},
+			{
+			"ID": 236,
+			"Name": "Saint Barthélemy"
+			},
+			{
+			"ID": 30,
+			"Name": "Bermuda"
+			},
+			{
+			"ID": 34,
+			"Name": "Brunei Darussalam"
+			},
+			{
+			"ID": 31,
+			"Name": "Bolivia"
+			},
+			{
+			"ID": 235,
+			"Name": "Bonaire, Saint Eustatius, Saba"
+			},
+			{
+			"ID": 32,
+			"Name": "Brazil"
+			},
+			{
+			"ID": 26,
+			"Name": "Bahamas"
+			},
+			{
+			"ID": 35,
+			"Name": "Bhutan"
+			},
+			{
+			"ID": 237,
+			"Name": "Bouvet Island"
+			},
+			{
+			"ID": 36,
+			"Name": "Botswana"
+			},
+			{
+			"ID": 28,
+			"Name": "Belarus"
+			},
+			{
+			"ID": 29,
+			"Name": "Belize"
+			},
+			{
+			"ID": 238,
+			"Name": "Cocos Islands"
+			},
+			{
+			"ID": 43,
+			"Name": "Congo, The Democratic Republic of the"
+			},
+			{
+			"ID": 37,
+			"Name": "Central African Republic"
+			},
+			{
+			"ID": 44,
+			"Name": "Congo"
+			},
+			{
+			"ID": 38,
+			"Name": "Switzerland"
+			},
+			{
+			"ID": 41,
+			"Name": "Côte d'Ivoire"
+			},
+			{
+			"ID": 45,
+			"Name": "Cook Islands"
+			},
+			{
+			"ID": 39,
+			"Name": "Chile"
+			},
+			{
+			"ID": 42,
+			"Name": "Cameroon"
+			},
+			{
+			"ID": 40,
+			"Name": "China"
+			},
+			{
+			"ID": 46,
+			"Name": "Colombia"
+			},
+			{
+			"ID": 49,
+			"Name": "Costa Rica"
+			},
+			{
+			"ID": 50,
+			"Name": "Cuba"
+			},
+			{
+			"ID": 48,
+			"Name": "Cape Verde"
+			},
+			{
+			"ID": 239,
+			"Name": "Curacao"
+			},
+			{
+			"ID": 240,
+			"Name": "Christmas Island"
+			},
+			{
+			"ID": 52,
+			"Name": "Cyprus"
+			},
+			{
+			"ID": 53,
+			"Name": "Czech Republic"
+			},
+			{
+			"ID": 54,
+			"Name": "Germany"
+			},
+			{
+			"ID": 55,
+			"Name": "Djibouti"
+			},
+			{
+			"ID": 57,
+			"Name": "Denmark"
+			},
+			{
+			"ID": 56,
+			"Name": "Dominica"
+			},
+			{
+			"ID": 58,
+			"Name": "Dominican Republic"
+			},
+			{
+			"ID": 59,
+			"Name": "Algeria"
+			},
+			{
+			"ID": 60,
+			"Name": "Ecuador"
+			},
+			{
+			"ID": 64,
+			"Name": "Estonia"
+			},
+			{
+			"ID": 61,
+			"Name": "Egypt"
+			},
+			{
+			"ID": 241,
+			"Name": "Western Sahara"
+			},
+			{
+			"ID": 62,
+			"Name": "Eritrea"
+			},
+			{
+			"ID": 63,
+			"Name": "Spain"
+			},
+			{
+			"ID": 65,
+			"Name": "Ethiopia"
+			},
+			{
+			"ID": 66,
+			"Name": "Finland"
+			},
+			{
+			"ID": 67,
+			"Name": "Fiji"
+			},
+			{
+			"ID": 68,
+			"Name": "Falkland Islands"
+			},
+			{
+			"ID": 71,
+			"Name": "Micronesia, Federated States of"
+			},
+			{
+			"ID": 70,
+			"Name": "Faroe Islands"
+			},
+			{
+			"ID": 69,
+			"Name": "France"
+			},
+			{
+			"ID": 72,
+			"Name": "Gabon"
+			},
+			{
+			"ID": 73,
+			"Name": "United Kingdom"
+			},
+			{
+			"ID": 83,
+			"Name": "Grenada"
+			},
+			{
+			"ID": 74,
+			"Name": "Georgia"
+			},
+			{
+			"ID": 86,
+			"Name": "French Guiana"
+			},
+			{
+			"ID": 242,
+			"Name": "Guernsey"
+			},
+			{
+			"ID": 75,
+			"Name": "Ghana"
+			},
+			{
+			"ID": 76,
+			"Name": "Gibraltar"
+			},
+			{
+			"ID": 84,
+			"Name": "Greenland"
+			},
+			{
+			"ID": 79,
+			"Name": "Gambia"
+			},
+			{
+			"ID": 77,
+			"Name": "Guinea"
+			},
+			{
+			"ID": 78,
+			"Name": "Guadeloupe"
+			},
+			{
+			"ID": 81,
+			"Name": "Equatorial Guinea"
+			},
+			{
+			"ID": 82,
+			"Name": "Greece"
+			},
+			{
+			"ID": 182,
+			"Name": "South Georgia and the South Sandwich Islands"
+			},
+			{
+			"ID": 85,
+			"Name": "Guatemala"
+			},
+			{
+			"ID": 87,
+			"Name": "Guam"
+			},
+			{
+			"ID": 80,
+			"Name": "Guinea-Bissau"
+			},
+			{
+			"ID": 88,
+			"Name": "Guyana"
+			},
+			{
+			"ID": 89,
+			"Name": "Hong Kong"
+			},
+			{
+			"ID": 243,
+			"Name": "Heard Island and McDonald Islands"
+			},
+			{
+			"ID": 90,
+			"Name": "Honduras"
+			},
+			{
+			"ID": 91,
+			"Name": "Croatia"
+			},
+			{
+			"ID": 92,
+			"Name": "Haiti"
+			},
+			{
+			"ID": 93,
+			"Name": "Hungary"
+			},
+			{
+			"ID": 94,
+			"Name": "Indonesia"
+			},
+			{
+			"ID": 97,
+			"Name": "Ireland"
+			},
+			{
+			"ID": 101,
+			"Name": "Israel"
+			},
+			{
+			"ID": 244,
+			"Name": "Isle of Man"
+			},
+			{
+			"ID": 95,
+			"Name": "India"
+			},
+			{
+			"ID": 96,
+			"Name": "British Indian Ocean Territory"
+			},
+			{
+			"ID": 99,
+			"Name": "Iraq"
+			},
+			{
+			"ID": 98,
+			"Name": "Iran, Islamic Republic of"
+			},
+			{
+			"ID": 100,
+			"Name": "Iceland"
+			},
+			{
+			"ID": 102,
+			"Name": "Italy"
+			},
+			{
+			"ID": 245,
+			"Name": "Jersey"
+			},
+			{
+			"ID": 103,
+			"Name": "Jamaica"
+			},
+			{
+			"ID": 104,
+			"Name": "Jordan"
+			},
+			{
+			"ID": 105,
+			"Name": "Japan"
+			},
+			{
+			"ID": 107,
+			"Name": "Kenya"
+			},
+			{
+			"ID": 108,
+			"Name": "Kyrgyzstan"
+			},
+			{
+			"ID": 109,
+			"Name": "Cambodia"
+			},
+			{
+			"ID": 110,
+			"Name": "Kiribati"
+			},
+			{
+			"ID": 47,
+			"Name": "Comoros"
+			},
+			{
+			"ID": 111,
+			"Name": "Saint Kitts and Nevis"
+			},
+			{
+			"ID": 169,
+			"Name": "Korea, Democratic People's Republic of"
+			},
+			{
+			"ID": 112,
+			"Name": "Korea, Republic of"
+			},
+			{
+			"ID": 113,
+			"Name": "Kuwait"
+			},
+			{
+			"ID": 51,
+			"Name": "Cayman Islands"
+			},
+			{
+			"ID": 106,
+			"Name": "Kazakhstan"
+			},
+			{
+			"ID": 114,
+			"Name": "Lao, People's Democratic Republic"
+			},
+			{
+			"ID": 115,
+			"Name": "Lebanon"
+			},
+			{
+			"ID": 118,
+			"Name": "Saint Lucia"
+			},
+			{
+			"ID": 119,
+			"Name": "Liechtenstein"
+			},
+			{
+			"ID": 120,
+			"Name": "Sri Lanka"
+			},
+			{
+			"ID": 116,
+			"Name": "Liberia"
+			},
+			{
+			"ID": 121,
+			"Name": "Lesotho"
+			},
+			{
+			"ID": 122,
+			"Name": "Lithuania"
+			},
+			{
+			"ID": 123,
+			"Name": "Luxembourg"
+			},
+			{
+			"ID": 124,
+			"Name": "Latvia"
+			},
+			{
+			"ID": 117,
+			"Name": "Libyan Arab Jamahiriya"
+			},
+			{
+			"ID": 126,
+			"Name": "Morocco"
+			},
+			{
+			"ID": 127,
+			"Name": "Monaco"
+			},
+			{
+			"ID": 128,
+			"Name": "Moldova, Republic of"
+			},
+			{
+			"ID": 247,
+			"Name": "Montenegro"
+			},
+			{
+			"ID": 246,
+			"Name": "Saint Martin"
+			},
+			{
+			"ID": 129,
+			"Name": "Madagascar"
+			},
+			{
+			"ID": 132,
+			"Name": "Marshall Islands"
+			},
+			{
+			"ID": 133,
+			"Name": "Macedonia, The Former Yugoslav Republic of"
+			},
+			{
+			"ID": 134,
+			"Name": "Mali"
+			},
+			{
+			"ID": 136,
+			"Name": "Myanmar"
+			},
+			{
+			"ID": 137,
+			"Name": "Mongolia"
+			},
+			{
+			"ID": 125,
+			"Name": "Macau"
+			},
+			{
+			"ID": 138,
+			"Name": "Northern Mariana Islands"
+			},
+			{
+			"ID": 142,
+			"Name": "Martinique"
+			},
+			{
+			"ID": 140,
+			"Name": "Mauritania"
+			},
+			{
+			"ID": 141,
+			"Name": "Montserrat"
+			},
+			{
+			"ID": 135,
+			"Name": "Malta"
+			},
+			{
+			"ID": 143,
+			"Name": "Mauritius"
+			},
+			{
+			"ID": 130,
+			"Name": "Maldives"
+			},
+			{
+			"ID": 144,
+			"Name": "Malawi"
+			},
+			{
+			"ID": 131,
+			"Name": "Mexico"
+			},
+			{
+			"ID": 145,
+			"Name": "Malaysia"
+			},
+			{
+			"ID": 139,
+			"Name": "Mozambique"
+			},
+			{
+			"ID": 147,
+			"Name": "Namibia"
+			},
+			{
+			"ID": 148,
+			"Name": "New Caledonia"
+			},
+			{
+			"ID": 149,
+			"Name": "Niger"
+			},
+			{
+			"ID": 150,
+			"Name": "Norfolk Island"
+			},
+			{
+			"ID": 151,
+			"Name": "Nigeria"
+			},
+			{
+			"ID": 152,
+			"Name": "Nicaragua"
+			},
+			{
+			"ID": 154,
+			"Name": "Netherlands"
+			},
+			{
+			"ID": 155,
+			"Name": "Norway"
+			},
+			{
+			"ID": 156,
+			"Name": "Nepal"
+			},
+			{
+			"ID": 157,
+			"Name": "Nauru"
+			},
+			{
+			"ID": 153,
+			"Name": "Niue"
+			},
+			{
+			"ID": 158,
+			"Name": "New Zealand"
+			},
+			{
+			"ID": 159,
+			"Name": "Oman"
+			},
+			{
+			"ID": 161,
+			"Name": "Panama"
+			},
+			{
+			"ID": 163,
+			"Name": "Peru"
+			},
+			{
+			"ID": 172,
+			"Name": "French Polynesia"
+			},
+			{
+			"ID": 166,
+			"Name": "Papua New Guinea"
+			},
+			{
+			"ID": 164,
+			"Name": "Philippines"
+			},
+			{
+			"ID": 160,
+			"Name": "Pakistan"
+			},
+			{
+			"ID": 167,
+			"Name": "Poland"
+			},
+			{
+			"ID": 189,
+			"Name": "Saint Pierre and Miquelon"
+			},
+			{
+			"ID": 162,
+			"Name": "Pitcairn"
+			},
+			{
+			"ID": 168,
+			"Name": "Puerto Rico"
+			},
+			{
+			"ID": 249,
+			"Name": "Palestinian Territory"
+			},
+			{
+			"ID": 170,
+			"Name": "Portugal"
+			},
+			{
+			"ID": 165,
+			"Name": "Palau"
+			},
+			{
+			"ID": 171,
+			"Name": "Paraguay"
+			},
+			{
+			"ID": 173,
+			"Name": "Qatar"
+			},
+			{
+			"ID": 174,
+			"Name": "Réunion"
+			},
+			{
+			"ID": 250,
+			"Name": "Romania"
+			},
+			{
+			"ID": 252,
+			"Name": "Serbia"
+			},
+			{
+			"ID": 176,
+			"Name": "Russian Federation"
+			},
+			{
+			"ID": 177,
+			"Name": "Rwanda"
+			},
+			{
+			"ID": 178,
+			"Name": "Saudi Arabia"
+			},
+			{
+			"ID": 184,
+			"Name": "Solomon Islands"
+			},
+			{
+			"ID": 196,
+			"Name": "Seychelles"
+			},
+			{
+			"ID": 179,
+			"Name": "Sudan"
+			},
+			{
+			"ID": 194,
+			"Name": "Sweden"
+			},
+			{
+			"ID": 181,
+			"Name": "Singapore"
+			},
+			{
+			"ID": 183,
+			"Name": "Saint Helena"
+			},
+			{
+			"ID": 193,
+			"Name": "Slovenia"
+			},
+			{
+			"ID": 251,
+			"Name": "Svalbard and Jan Mayen"
+			},
+			{
+			"ID": 192,
+			"Name": "Slovakia"
+			},
+			{
+			"ID": 185,
+			"Name": "Sierra Leone"
+			},
+			{
+			"ID": 187,
+			"Name": "San Marino"
+			},
+			{
+			"ID": 180,
+			"Name": "Senegal"
+			},
+			{
+			"ID": 188,
+			"Name": "Somalia"
+			},
+			{
+			"ID": 191,
+			"Name": "Suriname"
+			},
+			{
+			"ID": 253,
+			"Name": "South Sudan"
+			},
+			{
+			"ID": 190,
+			"Name": "Sao Tome and Principe"
+			},
+			{
+			"ID": 186,
+			"Name": "El Salvador"
+			},
+			{
+			"ID": 254,
+			"Name": "Saint Maarten"
+			},
+			{
+			"ID": 197,
+			"Name": "Syrian Arab Republic"
+			},
+			{
+			"ID": 195,
+			"Name": "Swaziland"
+			},
+			{
+			"ID": 198,
+			"Name": "Turks and Caicos Islands"
+			},
+			{
+			"ID": 199,
+			"Name": "Chad"
+			},
+			{
+			"ID": 14,
+			"Name": "French Southern Territories"
+			},
+			{
+			"ID": 200,
+			"Name": "Togo"
+			},
+			{
+			"ID": 201,
+			"Name": "Thailand"
+			},
+			{
+			"ID": 202,
+			"Name": "Tajikistan"
+			},
+			{
+			"ID": 203,
+			"Name": "Tokelau"
+			},
+			{
+			"ID": 255,
+			"Name": "Timor-Leste"
+			},
+			{
+			"ID": 204,
+			"Name": "Turkmenistan"
+			},
+			{
+			"ID": 208,
+			"Name": "Tunisia"
+			},
+			{
+			"ID": 206,
+			"Name": "Tonga"
+			},
+			{
+			"ID": 209,
+			"Name": "Turkey"
+			},
+			{
+			"ID": 207,
+			"Name": "Trinidad and Tobago"
+			},
+			{
+			"ID": 210,
+			"Name": "Tuvalu"
+			},
+			{
+			"ID": 231,
+			"Name": "Taiwan"
+			},
+			{
+			"ID": 256,
+			"Name": "Taiwan"
+			},
+			{
+			"ID": 211,
+			"Name": "Tanzania, United Republic of"
+			},
+			{
+			"ID": 213,
+			"Name": "Ukraine"
+			},
+			{
+			"ID": 212,
+			"Name": "Uganda"
+			},
+			{
+			"ID": 257,
+			"Name": "United States Minor Outlying Islands"
+			},
+			{
+			"ID": 214,
+			"Name": "Uruguay"
+			}
+			]
+			}
+		</div>
+		<div id="divJsonResults" style="display:none;">
+			{
+			"Rebate": [
+			{
+			"RebateName": "[RebateName]",
+			"Amount": "[Amount]",
+			"Sku": "[Sku]",
+			"PromoRebateID": "PromoRebateID",
+			"RebateType": "[RebateType]",
+			"RebateTypeID": "[RebateTypeID]",
+			"RebateDescription": "[RebateDescription]"
+			},
+			{
+			"RebateName": "[RebateName1]",
+			"Amount": "[Amount1]",
+			"Sku": "[Sku1]",
+			"PromoRebateID": "[PromoRebateID1]",
+			"RebateType": "[RebateType1]",
+			"RebateTypeID": "[RebateTypeID1]",
+			"RebateDescription": "[RebateDescription1]"
+			},
+			{
+			"RebateName": "[RebateName2]",
+			"Amount": "[Amount2]",
+			"Sku": "[Sku2]",
+			"PromoRebateID": "[PromoRebateID2]",
+			"RebateType": "[RebateType2]",
+			"RebateTypeID": "[RebateTypeID2]",
+			"RebateDescription": "[RebateDescription2]"
+			},
+			{
+			"RebateName": "[RebateName3]",
+			"Amount": "[Amount3]",
+			"Sku": "[Sku3]",
+			"PromoRebateID": "[PromoRebateID3]",
+			"RebateType": "[RebateType3]",
+			"RebateTypeID": "[RebateTypeID3]",
+			"RebateDescription": "[RebateDescription3]"
+			},
+			{
+			"RebateName": "[RebateName4]",
+			"Amount": "[Amount4]",
+			"Sku": "[Sku4]",
+			"PromoRebateID": "[PromoRebateID4]",
+			"RebateType": "[RebateType4]",
+			"RebateTypeID": "[RebateTypeID4]",
+			"RebateDescription": "[RebateDescription4]"
+			},
+			{
+			"RebateName": "[RebateName5]",
+			"Amount": "[Amount5]",
+			"Sku": "[Sku5]",
+			"PromoRebateID": "[PromoRebateID5]",
+			"RebateType": "[RebateType5]",
+			"RebateTypeID": "[RebateTypeID5]",
+			"RebateDescription": "[RebateDescription5]"
+			}
+			]}
+		</div>
+		<select id="ddlCountry" style="width:250px;">
+		
+		</select>
+		<input type="button" value="Load List" id="btnLoadList" onclick="LoadCountryList();"/>
+		<div id="divOutput" style="border: solid 3px #000000;width:750px;height:550px;">
+		</div>
+		<table cellpadding="3" cellspacing="0" rules="groups" style="width: 337px;display:none;">
+			<thead>
+				<tr>
+					<th colspan="2">
+						Add Rebate
+					</th>
+				</tr>
+				<tr>
+					<td>
+						Rebate Type:
+					</td>
+					<td>
+						<select id="ddlRebateType" name="ddlRebateType" style="width: 140px">
+							<optgroup label="Standard">
+								<option>
+									Check
+								</option>
+								<option>
+									Item
+								</option>
+							</optgroup>
+							<optgroup label="Custom">
+								<option>
+									Check
+								</option>
+								<option>
+									Item
+								</option>
+							</optgroup>
+						</select>
+					</td>
+				</tr>
+			</thead>
+			<tbody id="tbStandardCheck">
+				<tr>
+					<td>
+						Rebate Name:
+					</td>
+					<td>
+						<input id="txtRebateName" type="text" />
+					</td>
+				</tr>
+			</tbody>
+			<tbody id="tbStandardItem">
+				<tr>
+					<td>
+						Amount
+					</td>
+					<td>
+						<input id="txtAmount" type="text" />
+					</td>
+				</tr>
+			</tbody>
+			<tbody id="tbCustomCheck">
+				<tr>
+					<td>
+						Sku
+					</td>
+					<td>
+						<input id="txtSku" type="text" />
+					</td>
+				</tr>
+			</tbody>
+			<tbody id="tbCustomItem">
+				<tr>
+					<td>
+						Description
+					</td>
+					<td>
+						<input id="txtDescription" type="text" />
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<input id="btnAddRebate" type="button" value="Add Rebate" onclick="RunTest();"/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table cellpadding="0" cellspacing="3" style="display:none;">
+			<tr>
+				<td>
+					Standard/Custom
+				</td>
+				<td>
+					Rebate Type
+				</td>
+				<td>
+					&nbsp;
+					Rebate Name
+				</td>
+				<td>
+					Amount/Sku
+				</td>
+				<td>
+					Description
+				</td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					&nbsp;
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
