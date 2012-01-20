@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title> JQuery Research Test Page </title>
+		<script src="js/jquery-1.7.min.js" type="text/javascript" id="jQuery"></script>
+		<script src="js/jQuery.CheckAll.js" type="text/javascript" id="jsCheckAll"></script>
+	</head>
+	<body style="color: rgb(255, 255, 102); background-color: rgb(94, 103, 132);" alink="#000099" link="#000099" vlink="#990099">
+		<form id="frmMain">
+			<div id="divMain" style="display:inline;">
+				<h2 style="text-align: center; font-family: Georgia; font-style: italic;display:inline;"> JQuery Research Test Page </h2>
+				<br/>
+				<br/>
+				<input id="ouside" type="checkbox" CheckGroup="CG1" checked="checked">
+				<label for="ouside">ouside #0</label>
+				<br/>
+				<input id="ouside1" type="checkbox" checked="checked">
+				<label for="ouside1">ouside #1</label>
+				<br/>
+				<fieldset style="display:inline;">
+					<legend style="padding-left:5px;padding-right:5px;font-weight:bold;">
+						Testing
+					</legend>
+					<input id="cbxTest1" type="checkbox" checked="checked">
+					<label for="cbxTest1">Test 1 Nothing</label>
+					<br/>
+					<input id="cbxTest2" type="checkbox" checked="checked">
+					<label for="cbxTest2">Test 2 ParentID</label>
+					<br/>
+					<input id="cbxTest3" type="checkbox" checked="checked">
+					<label for="cbxTest3">Test 3 GroupID CG1 </label>
+					<br/>
+					<input id="cbxTest4" type="checkbox" checked="checked">
+					<label for="cbxTest4">Test 4 ParentID AND  GroupID CG1</label>
+					<br/>
+					<input type="button" id="btnTest1" value="Test with a Button True" style="margin:10px;"/>
+					<br/>
+					<input type="button" id="btnTest2" value="Test with a Button False" style="margin:10px;"/>
+				</fieldset>
+				<br/>
+				<div id="divContent" style="border:solid 3px #000000;padding:8px; width:500px;">
+					<p style="font-weight:bold;">
+						The id for this container is "divContent"
+					</p>
+					<input type="hidden" id="hidBasicInfoSaved" value="true"/>
+					<p>
+						<br/>
+						<input id="check0" type="checkbox" CheckGroup="CG1" checked="checked">
+						<label for="check0">My Check #0</label>
+						<br/>
+						<input id="check1" type="checkbox" CheckGroup="CG1" checked="checked">
+						<label for="check1">My Check #1</label>
+						<br/>
+						<input id="check2" type="checkbox" checked="checked">
+						<label for="check2">My Check #2</label>
+						<br/>
+						<input id="check3" type="checkbox" checked="checked">
+						<label for="check3">My Check #3</label>
+						<br/>
+						<input id="check4" type="checkbox" checked="checked">
+						<label for="check4">My Check #4</label>
+						<br/>
+						<input id="check5" class="test" type="checkbox" checked="checked">
+						<label for="check5" class="test">My Check #5</label>
+						<br/>
+						<input id="check6" type="checkbox" checked="checked">
+						<label for="check6">My Check #6</label>
+						<br/>
+						<input id="check7" type="checkbox" checked="checked">
+						<label for="check7">My Check #7</label>
+						<br/>
+						<input id="check8" type="checkbox" checked="checked">
+						<label for="check8">My Check #8</label>
+						<br/>
+						<input id="check9" type="checkbox" checked="checked">
+						<label for="check9">My Check #9</label>
+						<br/>
+						<input id="check10" type="checkbox" checked="checked">
+						<label for="check10">My Check #10</label>
+					</p>
+				</div>
+				<div id="divResults" style="font-weight:bold;border:2px solid #000000; display:block; width:550px;height:200px;padding:10px;">
+					Results Display
+				</div>
+			</div>
+			<script type="text/javascript" id="jsCheckAllBinding">
+                $(document).ready(function()
+                {                    
+					$("#cbxTest1").CheckAll();
+					$("#cbxTest2").CheckAll({ParentID : 'divContent'});
+					$("#cbxTest3").CheckAll({CheckGroup : 'CG1'});
+					$("#cbxTest4").CheckAll({ParentID : 'divContent',CheckGroup : 'CG1'});
+					$("#btnTest1").CheckAll({CheckGroup : 'CG1', Checked: 'false'});
+					$("#btnTest2").CheckAll({CustomSelector: '#check0', Checked: 'true'});
+                });
+
+			</script>
+		</form>
+	</body>
+</html>
