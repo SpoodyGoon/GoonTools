@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title> JQuery Research Test Page </title>
+		<script src="jquery-1.7.min.js" type="text/javascript" id="jQuery"></script>
+		<script src="Common.js" type="text/javascript" id="jsCommon"></script>
+		<style type="text/css">
+			.test {
+				color: red;
+			}
+		</style>
+	</head>
+	<body style="color: rgb(255, 255, 102); background-color: rgb(94, 103, 132);" alink="#000099" link="#000099" vlink="#990099">
+		<form id="frmMain">
+			<script type="text/javascript" id="jsExcelCallBack">
+                /*
+                function SetVis(FocusTab)
+                {
+                var TabArray = ["ddlClient", "ddlPromoCode"];
+                for (var i = 0; i < TabArray.length; i++)
+                {
+                if (TabArray[i] == FocusTab)
+                {
+                $("#" + TabArray[i]).show();
+                }
+                else
+                {
+                $("#" + TabArray[i]).hide();
+                }
+                }
+                //var strQueryString = "NavAction=SLAReport";
+                //var ddlClient = $("#ddlClient");
+                //var ddlPromoCode = $("#ddlPromoCode");
+                //var txtStartDateDate = $("#txtStartDateDate");
+                //var txtEndDate = $("#txtEndDate");
+                //var tmpValue = $("#ddlClient option:selected").text().trim();
+                //var tmpValue = $("#txtStartDateDate").val() + $("#txtEndDate").val();
+                //alert("got here\n" + tmpValue);
+                //$("#txtEndDate").val("Got Here");
+                }
+                */
+                /*
+                function CheckSaveStatus()
+                {
+                // we are looking for the first modified field
+                // the only thing we care about is if something has changed
+                // any one thing then flag it as not saved
+                $("#divContent select").each(function()
+                {
+                var $SelectID = $(this).attr("id");
+                $("#").append
+                if ($("#" + $SelectID + " :selected").val() !== $("#" + $SelectID).attr("OriginalValue"))
+                {
+                $("#hidBasicInfoSaved").val("false");
+                $("#btnText").prop("disabled", false);
+                }
+                $("#btnText").prop("disabled", true);
+                });
+                }
+                */
+                //$("#txtStartDateDate").change(function(){
+                // alert("chaged");}).change();
+                //$("divMain input:text").change(function(){ alert("chaged");});
+			</script>
+			<div id="divMain" style="display:inline;">
+				<h2 style="text-align: center; font-family: Georgia; font-style: italic;display:inline;"> JQuery Research Test Page </h2>
+				<br/>
+				<br/>
+				<input id="ouside" type="checkbox" CheckGroup="CG1" checked="checked">
+				<label for="ouside">ouside #0</label>
+				<br/>
+				<input id="ouside1" type="checkbox" checked="checked">
+				<label for="ouside1">ouside #1</label>
+				<table id="tblTest" width="550" border="0" cellspacing="0" cellpadding="3">
+					<tr>
+						<td> Selecter 1: </td>
+						<td>
+						<select id="ddlClient" OriginalValue="1">
+							<option selected="selected" value="1"> Item #1 </option>
+							<option value="2"> Item #2 </option>
+							<option value="3"> Item #3 </option>
+							<option value="4"> Item #4 </option>
+						</select></td>
+					</tr>
+					<tr>
+						<td> Selecter 2: </td>
+						<td>
+						<select id="ddlPromoCode" OriginalValue="6">
+							<option/>
+							<option value="5"> Item #5 </option>
+							<option value="6"> Item #6 </option>
+							<option value="7"> Item #7 </option>
+							<option value="8"> Item #8 </option>
+						</select></td>
+					</tr>
+				</table>
+				<fieldset style="display:inline;">
+					<legend style="padding-left:5px;padding-right:5px;font-weight:bold;">
+						Testing
+					</legend>
+					<input id="cbxTest1" type="checkbox" checked="checked">
+					<label for="cbxTest1">Test 1 Nothing</label>
+					<br/>
+					<input id="cbxTest2" type="checkbox" checked="checked">
+					<label for="cbxTest2">Test 2 ParentID</label>
+					<br/>
+					<input id="cbxTest3" type="checkbox" checked="checked">
+					<label for="cbxTest3">Test 3 GroupID CG1 </label>
+					<br/>
+					<input id="cbxTest4" type="checkbox" checked="checked">
+					<label for="cbxTest4">Test 4 ParentID AND  GroupID CG1</label>
+					<br/>
+					<input type="button" id="btnTest1" value="Test with a Button True" style="margin:10px;"/>
+					<br/>
+					<input type="button" id="btnTest2" value="Test with a Button False" style="margin:10px;"/>
+				</fieldset>
+				<fieldset style="display:none;">
+					<legend style="padding-left:5px;padding-right:5px; font-weight:bold;">
+						Arguements
+					</legend>
+					<p style="font-weight:bold;">
+						Arguments passed into the function.
+					</p>
+					<div>
+					<input id="txtParentID" type="text">
+					<label for="txtParentID">Parent ID (div, table, etc.)</label>
+					</div>
+					<div>
+					<input id="txtCheckGroup" type="text">
+					<label for="txtCheckGroup">CheckGroup attribute value (non-default attribute)</label>
+					</div>
+					<div>
+					<input id="txtCustom" type="text">
+					<label for="txtCustom">Custom Selector overrides all internal selector logic (use with caution)</label>
+					</div>
+					<div>
+						<p>Override/Force true/false value set</p>
+					<input id="txtCheckGroup0" type="radio" name="txtCheckGroupNone" value="" checked="checked">
+					<label for="txtCheckGroup">Do not Override/Force</label>
+					<input id="txtCheckGroup1" type="radio" name="txtCheckGroupYes" value="true">
+					<label for="txtCheckGroup">Override/Force true</label>
+					<input id="txtCheckGroup2" type="radio" name="txtCheckGroupNo" value="false">
+					<label for="txtCheckGroup">Override/Force false</label>
+					</div>
+				</fieldset>
+				<br/>
+				<br/>
+				<div id="divContent" style="border:solid 3px #000000;padding:8px; width:500px;">
+					<p style="font-weight:bold;">
+						The id for this container is "divContent"
+					</p>
+					<input type="hidden" id="hidBasicInfoSaved" value="true"/>
+					<p>
+						<br/>
+						<input id="check0" type="checkbox" CheckGroup="CG1" checked="checked">
+						<label for="check0">My Check #0</label>
+						<br/>
+						<input id="check1" type="checkbox" CheckGroup="CG1" checked="checked">
+						<label for="check1">My Check #1</label>
+						<br/>
+						<input id="check2" type="checkbox" checked="checked">
+						<label for="check2">My Check #2</label>
+						<br/>
+						<input id="check3" type="checkbox" checked="checked">
+						<label for="check3">My Check #3</label>
+						<br/>
+						<input id="check4" type="checkbox" checked="checked">
+						<label for="check4">My Check #4</label>
+						<br/>
+						<input id="check5" class="test" type="checkbox" checked="checked">
+						<label for="check5" class="test">My Check #5</label>
+						<br/>
+						<input id="check6" type="checkbox" checked="checked">
+						<label for="check6">My Check #6</label>
+						<br/>
+						<input id="check7" type="checkbox" checked="checked">
+						<label for="check7">My Check #7</label>
+						<br/>
+						<input id="check8" type="checkbox" checked="checked">
+						<label for="check8">My Check #8</label>
+						<br/>
+						<input id="check9" type="checkbox" checked="checked">
+						<label for="check9">My Check #9</label>
+						<br/>
+						<input id="check10" type="checkbox" checked="checked">
+						<label for="check10">My Check #10</label>
+						<br/>
+						<br/>
+						<input id="txtStartDateDate" type="text" OriginalValue="Test Value" />
+						<br/>
+						<br/>
+						<input id="txtEndDate" type="text" />
+						<br/>
+						<br/>
+						<input type="button" id="btnTest" value="Show Client" onclick="SetVis('ddlClient');"/>
+						<input type="button" value="Show PromoCode" onclick="SetVis('ddlPromoCode');"/>
+					</p>
+				</div>
+				<div id="divResults" style="font-weight:bold;border:2px solid #000000; display:block; width:550px;height:200px;padding:10px;">
+					Results Display
+				</div>
+			</div>
+			<script type="text/javascript" id="jsBinding">
+                $(document).ready(function()
+                {
+					/*
+                    $("#cbxTest1").click(function()
+                    {
+                        try
+                        {
+                            $(this).CheckAll();
+                        }
+                        catch(err)
+                        {
+                            alert(err.message);
+                        }
+                    });
+					*/
+                    
+					$("#cbxTest1").CheckAll();
+					$("#cbxTest2").CheckAll({ParentID : 'divContent'});
+					$("#cbxTest3").CheckAll({CheckGroup : 'CG1'});
+					$("#cbxTest4").CheckAll({ParentID : 'divContent',CheckGroup : 'CG1'});
+					$("#btnTest1").CheckAll({CheckGroup : 'CG1', Checked: 'false'});
+					$("#btnTest2").CheckAll({CustomSelector: '#check0', Checked: 'true'});
+					
+                  
+                    
+                    
+                    /*
+                     $("#divContent :checkbox").bind("change", function()
+                     {
+                     try
+                     {
+                     var sender = $(this);
+                     //alert($(this).is(":textbox"));
+                     if(sender.is(":checkbox") && sender.is(":checked"))
+                     {
+                     $("#divResults").html("got here " + sender.prop('checked'));
+                     }
+                     else if(sender.is(":checkbox") && !sender.is(":checked"))
+                     {
+                     $("#divResults").html("got here " + sender.prop('checked'));
+                     }
+                     if(sender.is(":text"))
+                     {
+                     $("#divResults").html("got here textbox");
+                     }
+                     }
+                     catch(err)
+                     {
+                     alert("An Error Has Occured\n\n" + err.message)
+                     }
+                     //if($(this).find(":selected").text().trim() !== "")
+                     //{
+                     //	alert("selected change " +
+                     // $(this).find(":selected").text());
+                     //}
+                     }).change();
+                     */
+                });
+
+			</script>
+		</form>
+	</body>
+</html>
