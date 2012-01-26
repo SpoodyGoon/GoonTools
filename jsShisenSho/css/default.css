@@ -5,3 +5,15 @@ body {
 h1 {
 	background-color: rgb(111,255,5);
 }
+
+.MenuContainer
+{
+	font-weight:bold;
+	background-color: #0b5075;
+	color:#ffffff;
+}
+
+.MenuContainer a
+{
+	color: #ffffff;
+}
