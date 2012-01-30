@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Theme ThemeName="Default" Status="Active" Version="1.0" ThemeEngineVersion="1.0">
+  <CreatedDate>1/30/2012</CreatedDate>
+  <ModifiedDate>1/30/2012</ModifiedDate>
+  <Author>Andy York</Author>
+  <Notes>Default Theme for YahtzeeSharp2 that comes installed with the application.</Notes>
+  <DefaultFont>
+    <FontDesc>Arial 10</FontDesc>
+    <FontFile>
+    </FontFile>
+    <Color>#000000</Color>
+  </DefaultFont>
+  <GameBoard>
+    <Image Type="Background">Background.png</Image>
+    <Sizes>
+      <Size Type="Default">
+        <Width>1000</Width>
+        <Height>950</Height>
+      </Size>
+      <Size Type="Min">
+        <Width>-1</Width>
+        <Height>-1</Height>
+      </Size>
+      <Size Type="Max">
+        <Width>-1</Width>
+        <Height>-1</Height>
+      </Size>
+    </Sizes>
+  </GameBoard>
+  <GamePieces>
+    <GamePiece Type="Normal">
+      <Font>
+        <FontDesc>Comic Sans MS Bold 10</FontDesc>
+        <FontFile>
+        </FontFile>
+        <Color>#ffffff</Color>
+      </Font>
+      <Image>GameButton.png</Image>
+      <Size>
+        <Width>40</Width>
+        <Height>40</Height>
+      </Size>
+    </GamePiece>
+    <GamePiece Type="Hover">
+      <Font>
+        <FontDesc>Comic Sans MS Bold 10</FontDesc>
+        <FontFile>
+        </FontFile>
+        <Color>#ffffff</Color>
+      </Font>
+      <Image>GameButton_Hover.png</Image>
+      <Size>
+        <Width>40</Width>
+        <Height>40</Height>
+      </Size>
+    </GamePiece>
+    <GamePiece Type="ScoreSet" Enabled="true">
+      <Font>
+        <FontDesc>Comic Sans MS Bold 10</FontDesc>
+        <FontFile>
+        </FontFile>
+        <Color>#f2f40e</Color>
+      </Font>
+      <Image>GameButton_Score.png</Image>
+      <Size>
+        <Width>40</Width>
+        <Height>40</Height>
+      </Size>
+    </GamePiece>
+    <GamePiece Type="Total" Enabled="false" />
+  </GamePieces>
+  <FeedbackMessage>
+    <Image Type="Background">FeedbackBackground.png</Image>
+    <Font>
+      <FontDesc>Verdana Bold 16</FontDesc>
+      <FontFile>
+      </FontFile>
+      <Color>#ffffff</Color>
+    </Font>
+    <Size>
+      <Width>450</Width>
+      <Height>100</Height>
+    </Size>
+    <Display UseClickEvent="True" UseEffects="False">
+      <Effects>
+        <DisplayTime>5000</DisplayTime>
+        <FadeIn>1000</FadeIn>
+        <FadeOut>1000</FadeOut>
+      </Effects>
+    </Display>
+  </FeedbackMessage>
+  <Dice />
+  <RollButton />
+</Theme>
