@@ -1,5 +1,5 @@
 using System;
-using Mono.Data.Sqlite;
+using Mono.Data.SqliteClient;
 using Gtk;
 
 namespace SQLiteMonoPlusUI
