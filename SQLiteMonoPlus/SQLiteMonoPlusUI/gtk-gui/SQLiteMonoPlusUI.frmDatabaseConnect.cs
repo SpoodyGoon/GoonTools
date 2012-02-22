@@ -40,8 +40,8 @@ namespace SQLiteMonoPlusUI
 		private global::Gtk.Button btnTestConnection;
 		private global::Gtk.Alignment alignment18;
 		private global::Gtk.CheckButton cbxSaveConnection;
-		private global::Gtk.Button btnCancel;
 		private global::Gtk.Button btnConnect;
+		private global::Gtk.Button btnCancel;
 		
 		protected virtual void Build ()
 		{
@@ -347,18 +347,6 @@ namespace SQLiteMonoPlusUI
 			w46.BorderWidth = ((uint)(7));
 			w46.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.btnCancel = new global::Gtk.Button ();
-			this.btnCancel.CanDefault = true;
-			this.btnCancel.CanFocus = true;
-			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.UseStock = true;
-			this.btnCancel.UseUnderline = true;
-			this.btnCancel.Label = "gtk-cancel";
-			this.AddActionWidget (this.btnCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w47 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w46 [this.btnCancel]));
-			w47.Expand = false;
-			w47.Fill = false;
-			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.btnConnect = new global::Gtk.Button ();
 			this.btnConnect.CanDefault = true;
 			this.btnConnect.CanFocus = true;
@@ -367,7 +355,19 @@ namespace SQLiteMonoPlusUI
 			this.btnConnect.UseUnderline = true;
 			this.btnConnect.Label = "gtk-connect";
 			this.AddActionWidget (this.btnConnect, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w48 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w46 [this.btnConnect]));
+			global::Gtk.ButtonBox.ButtonBoxChild w47 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w46 [this.btnConnect]));
+			w47.Expand = false;
+			w47.Fill = false;
+			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
+			this.btnCancel = new global::Gtk.Button ();
+			this.btnCancel.CanDefault = true;
+			this.btnCancel.CanFocus = true;
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.UseStock = true;
+			this.btnCancel.UseUnderline = true;
+			this.btnCancel.Label = "gtk-cancel";
+			this.AddActionWidget (this.btnCancel, -6);
+			global::Gtk.ButtonBox.ButtonBoxChild w48 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w46 [this.btnCancel]));
 			w48.Position = 1;
 			w48.Expand = false;
 			w48.Fill = false;
@@ -381,8 +381,7 @@ namespace SQLiteMonoPlusUI
 			this.Show ();
 			this.cbxPooling.Clicked += new global::System.EventHandler (this.cbxPooling_Clicked);
 			this.btnTestConnection.Clicked += new global::System.EventHandler (this.btnTestConnection_Clicked);
-			this.btnCancel.Clicked += new global::System.EventHandler (this.btnCancel_Clicked);
-			this.btnConnect.Clicked += new global::System.EventHandler (this.btnConnect_Clicked);
+			this.btnConnect.Clicked += new global::System.EventHandler (this.OnBtnConnectClicked);
 		}
 	}
 }

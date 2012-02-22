@@ -26,12 +26,7 @@ namespace SQLiteMonoPlusUI
 			throw new System.NotImplementedException ();
 		}
 
-		protected void btnConnect_Clicked (object sender, System.EventArgs e)
-		{
-			throw new System.NotImplementedException ();
-		}
-
-		protected void btnCancel_Clicked (object sender, System.EventArgs e)
+		protected void OnBtnConnectClicked (object sender, System.EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}

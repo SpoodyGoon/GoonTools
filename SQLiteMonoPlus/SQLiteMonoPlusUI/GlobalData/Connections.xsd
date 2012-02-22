@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Connections" targetNamespace="http://tempuri.org/Connections.xsd" xmlns:mstns="http://tempuri.org/Connections.xsd" xmlns="http://tempuri.org/Connections.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Connections" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Connections" msprop:Generator_UserDSName="Connections">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Connections" msprop:Generator_TableClassName="ConnectionsDataTable" msprop:Generator_TableVarName="tableConnections" msprop:Generator_TablePropName="_Connections" msprop:Generator_RowDeletingName="ConnectionsRowDeleting" msprop:Generator_UserTableName="Connections" msprop:Generator_RowChangingName="ConnectionsRowChanging" msprop:Generator_RowEvHandlerName="ConnectionsRowChangeEventHandler" msprop:Generator_RowDeletedName="ConnectionsRowDeleted" msprop:Generator_RowEvArgName="ConnectionsRowChangeEvent" msprop:Generator_RowChangedName="ConnectionsRowChanged" msprop:Generator_RowClassName="ConnectionsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ConnectionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnConnectionID" msprop:Generator_ColumnPropNameInRow="ConnectionID" msprop:Generator_ColumnPropNameInTable="ConnectionIDColumn" msprop:Generator_UserColumnName="ConnectionID" type="xs:int" />
+              <xs:element name="ConnectionName" msprop:Generator_ColumnVarNameInTable="columnConnectionName" msprop:Generator_ColumnPropNameInRow="ConnectionName" msprop:Generator_ColumnPropNameInTable="ConnectionNameColumn" msprop:Generator_UserColumnName="ConnectionName" type="xs:string" />
+              <xs:element name="FilePath" msprop:Generator_ColumnVarNameInTable="columnFilePath" msprop:Generator_ColumnPropNameInRow="FilePath" msprop:Generator_ColumnPropNameInTable="FilePathColumn" msprop:Generator_UserColumnName="FilePath" type="xs:string" />
+              <xs:element name="Password" msprop:Generator_ColumnVarNameInTable="columnPassword" msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnPropNameInTable="PasswordColumn" msprop:Generator_UserColumnName="Password" type="xs:string" minOccurs="0" />
+              <xs:element name="Pooling" msprop:Generator_ColumnVarNameInTable="columnPooling" msprop:Generator_ColumnPropNameInRow="Pooling" msprop:Generator_ColumnPropNameInTable="PoolingColumn" msprop:Generator_UserColumnName="Pooling" type="xs:string" minOccurs="0" />
+              <xs:element name="MaxPooling" msprop:Generator_ColumnVarNameInTable="columnMaxPooling" msprop:Generator_ColumnPropNameInRow="MaxPooling" msprop:Generator_ColumnPropNameInTable="MaxPoolingColumn" msprop:Generator_UserColumnName="MaxPooling" type="xs:int" minOccurs="0" />
+              <xs:element name="AddedDate" msprop:Generator_ColumnVarNameInTable="columnAddedDate" msprop:Generator_ColumnPropNameInRow="AddedDate" msprop:Generator_ColumnPropNameInTable="AddedDateColumn" msprop:Generator_UserColumnName="AddedDate" type="xs:dateTime" />
+              <xs:element name="LastUsedDate" msprop:Generator_ColumnVarNameInTable="columnLastUsedDate" msprop:Generator_ColumnPropNameInRow="LastUsedDate" msprop:Generator_ColumnPropNameInTable="LastUsedDateColumn" msprop:Generator_UserColumnName="LastUsedDate" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="ConnectionsKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Connections" />
+      <xs:field xpath="mstns:ConnectionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

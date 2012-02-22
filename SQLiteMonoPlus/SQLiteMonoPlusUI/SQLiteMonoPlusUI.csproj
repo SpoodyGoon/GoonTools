@@ -9,10 +9,9 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SQLiteMonoPlusUI</RootNamespace>
     <AssemblyName>SQLiteMonoPlusUI</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <StartupObject>SQLiteMonoPlusUI.MainClass</StartupObject>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\ayork\Application Data\ICSharpCode/SharpDevelop4\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
-    <SignAssembly>False</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <DelaySign>False</DelaySign>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
@@ -23,13 +22,18 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>Full</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -38,6 +42,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
@@ -53,18 +62,16 @@
     <Reference Include="Mono.Data.SqliteClient">
       <HintPath>dll\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
-    <Reference Include="System">
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="System.Data">
-    </Reference>
-    <Reference Include="System.Xml">
-    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
     <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +99,15 @@
     </Compile>
     <Compile Include="Connections\ConnectionDataTable.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GlobalData\Connections.cs">
+      <DependentUpon>Connections.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GlobalData\Connections.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Connections.xsd</DependentUpon>
     </Compile>
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Main.cs" />
@@ -142,5 +158,16 @@
     <None Include="dll\Mono.Data.SqliteClient.dll" />
     <None Include="dll\sqlite3.def" />
     <None Include="dll\sqlite3.dll" />
+    <None Include="GlobalData\Connections.xsc">
+      <DependentUpon>Connections.xsd</DependentUpon>
+    </None>
+    <None Include="GlobalData\Connections.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Connections.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="GlobalData\Connections.xss">
+      <DependentUpon>Connections.xsd</DependentUpon>
+    </None>
   </ItemGroup>
 </Project>
