@@ -1,5 +1,5 @@
 using System;
-using Mono.Data.Sqlite;
+using Mono.Data.SqliteClient;
 using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI
@@ -69,11 +69,11 @@ namespace SQLiteMonoPlusUI
             try
             {
                 sqlCN.Open();
-                sqlCMD.Parameters.AddWithValue("@ConnectionName", ConnectionName);
-                sqlCMD.Parameters.AddWithValue("@FilePath", FilePath);
-                sqlCMD.Parameters.AddWithValue("@Password", Password);
-                sqlCMD.Parameters.AddWithValue("@Pooling", Pooling);
-                sqlCMD.Parameters.AddWithValue("@MaxPoolSize", MaxPoolSize);
+                sqlCMD.Parameters.Add("@ConnectionName", ConnectionName);
+                sqlCMD.Parameters.Add("@FilePath", FilePath);
+                sqlCMD.Parameters.Add("@Password", Password);
+                sqlCMD.Parameters.Add("@Pooling", Pooling);
+                sqlCMD.Parameters.Add("@MaxPoolSize", MaxPoolSize);
                 ConnectionID = Convert.ToInt32(sqlCMD.ExecuteScalar());
                 sqlCN.Close();
             }
@@ -99,12 +99,12 @@ namespace SQLiteMonoPlusUI
             try
             {
                 sqlCN.Open();
-                sqlCMD.Parameters.AddWithValue("@ConnectionID", ConnectionID);
-                sqlCMD.Parameters.AddWithValue("@ConnectionName", ConnectionName);
-                sqlCMD.Parameters.AddWithValue("@FilePath", FilePath);
-                sqlCMD.Parameters.AddWithValue("@Password", Password);
-                sqlCMD.Parameters.AddWithValue("@Pooling", Pooling);
-                sqlCMD.Parameters.AddWithValue("@MaxPoolSize", MaxPoolSize);
+                sqlCMD.Parameters.Add("@ConnectionID", ConnectionID);
+                sqlCMD.Parameters.Add("@ConnectionName", ConnectionName);
+                sqlCMD.Parameters.Add("@FilePath", FilePath);
+                sqlCMD.Parameters.Add("@Password", Password);
+                sqlCMD.Parameters.Add("@Pooling", Pooling);
+                sqlCMD.Parameters.Add("@MaxPoolSize", MaxPoolSize);
                 sqlCMD.ExecuteNonQuery();
                 sqlCN.Close();
             }
@@ -131,7 +131,7 @@ namespace SQLiteMonoPlusUI
             try
             {
                 sqlCN.Open();
-                sqlCMD.Parameters.AddWithValue("@ConnectionID", ConnectionID);
+                sqlCMD.Parameters.Add("@ConnectionID", ConnectionID);
                 sqlCMD.ExecuteNonQuery();
                 sqlCN.Close();
                 // Refresh the Connection Store so it is current

@@ -1,6 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+# SharpDevelop 4.2.0.8528-beta
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteMonoPlus", "SQLiteMonoPlus\SQLiteMonoPlus.csproj", "{768D7523-8FEB-4293-B88C-FF267363F994}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteMonoPlusUI", "SQLiteMonoPlusUI\SQLiteMonoPlusUI.csproj", "{AA0A3E70-0387-440A-AE2D-46E7851B5108}"

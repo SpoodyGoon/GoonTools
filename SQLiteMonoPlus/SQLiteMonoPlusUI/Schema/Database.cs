@@ -3,7 +3,7 @@ using System.IO;
 using System.Data;
 using System.Collections;
 using System.Collections.Generic;
-using Mono.Data.Sqlite;
+using Mono.Data.SqliteClient;
 using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI.Schema
@@ -21,10 +21,10 @@ namespace SQLiteMonoPlusUI.Schema
 			if(File.Exists(_DatabaseFile))
 			{
 				LoadTables();
-				for(int i = 0; i < dt.Rows.Count; i ++)
-				{
-					// TODO load the rest of the data via Pragma
-				}
+                //for(int i = 0; i < dt.Rows.Count; i ++)
+                //{
+                //    // TODO load the rest of the data via Pragma
+                //}
 			}
 		}
 		
