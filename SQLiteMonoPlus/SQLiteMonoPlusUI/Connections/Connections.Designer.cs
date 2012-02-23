@@ -429,7 +429,7 @@ namespace SQLiteMonoPlusUI.GlobalData {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ConnectionsRow AddConnectionsRow(string ConnectionName, string FilePath, string Password, string Pooling, int MaxPooling, System.DateTime AddedDate, System.DateTime LastUsedDate) {
+            public ConnectionsRow AddConnectionsRow(string ConnectionName, string FilePath, string Password, bool Pooling, int MaxPooling, System.DateTime AddedDate, System.DateTime LastUsedDate) {
                 ConnectionsRow rowConnectionsRow = ((ConnectionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -490,7 +490,7 @@ namespace SQLiteMonoPlusUI.GlobalData {
                 base.Columns.Add(this.columnFilePath);
                 this.columnPassword = new global::System.Data.DataColumn("Password", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPassword);
-                this.columnPooling = new global::System.Data.DataColumn("Pooling", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnPooling = new global::System.Data.DataColumn("Pooling", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPooling);
                 this.columnMaxPooling = new global::System.Data.DataColumn("MaxPooling", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMaxPooling);
@@ -501,14 +501,17 @@ namespace SQLiteMonoPlusUI.GlobalData {
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("ConnectionsKey1", new global::System.Data.DataColumn[] {
                                 this.columnConnectionID}, true));
                 this.columnConnectionID.AutoIncrement = true;
-                this.columnConnectionID.AutoIncrementSeed = -1;
-                this.columnConnectionID.AutoIncrementStep = -1;
+                this.columnConnectionID.AutoIncrementSeed = 1;
                 this.columnConnectionID.AllowDBNull = false;
                 this.columnConnectionID.Unique = true;
                 this.columnConnectionName.AllowDBNull = false;
                 this.columnFilePath.AllowDBNull = false;
+                this.columnPooling.AllowDBNull = false;
+                this.columnPooling.DefaultValue = ((bool)(false));
                 this.columnAddedDate.AllowDBNull = false;
+                this.columnAddedDate.DateTimeMode = global::System.Data.DataSetDateTime.Local;
                 this.columnLastUsedDate.AllowDBNull = false;
+                this.columnLastUsedDate.DateTimeMode = global::System.Data.DataSetDateTime.Local;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_Connections");
                 this.ExtendedProperties.Add("Generator_UserTableName", "Connections");
             }
@@ -702,14 +705,9 @@ namespace SQLiteMonoPlusUI.GlobalData {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Pooling {
+            public bool Pooling {
                 get {
-                    try {
-                        return ((string)(this[this.tableConnections.PoolingColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Pooling\' in table \'Connections\' is DBNull.", e);
-                    }
+                    return ((bool)(this[this.tableConnections.PoolingColumn]));
                 }
                 set {
                     this[this.tableConnections.PoolingColumn] = value;
@@ -764,18 +762,6 @@ namespace SQLiteMonoPlusUI.GlobalData {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPasswordNull() {
                 this[this.tableConnections.PasswordColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPoolingNull() {
-                return this.IsNull(this.tableConnections.PoolingColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPoolingNull() {
-                this[this.tableConnections.PoolingColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

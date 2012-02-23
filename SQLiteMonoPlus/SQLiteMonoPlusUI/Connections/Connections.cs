@@ -1,4 +1,5 @@
-﻿namespace SQLiteMonoPlusUI.GlobalData {
+﻿namespace SQLiteMonoPlusUI.GlobalData
+{
     
     
     public partial class Connections {
