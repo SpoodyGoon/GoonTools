@@ -1,6 +1,6 @@
 using System;
+using System.IO;
 using System.Data;
-using Mono.Data.SqliteClient;
 using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI
@@ -18,45 +18,27 @@ namespace SQLiteMonoPlusUI
 		
 		public void Load()
         {
-            SqliteConnection sqlCN = new SqliteConnection(UserConfig.Default.DBLocation);
-            SqliteCommand sqlCMD = new SqliteCommand(GlobalData.SQL.ConnectionsGet, sqlCN);
-            sqlCMD.CommandType = CommandType.Text;
-            sqlCMD.CommandTimeout = 300;
-            SqliteDataReader sqlReader = null;
             try
             {
-                sqlCN.Open();
-                sqlReader = sqlCMD.ExecuteReader();
-                if (sqlReader.HasRows)
+                FileInfo fi = new FileInfo(Path.Combine(Common.EnvData.UserDataPath, "Connections.xml"));
+                if (fi.Exists)
                 {
-                    Connection c;
-                    while (sqlReader.Read())
-                    {
-                        c = new Connection(Convert.ToInt32(sqlReader["ConnectionID"]), sqlReader["ConnectionName"].ToString(), sqlReader["FilePath"].ToString());
-                        this.AppendValues(c);
-                    } 
+                    GlobalData.Connections cn = new GlobalData.Connections();
+                    cn.ReadXml(fi.FullName);
+
+                        Connection c;
+                        foreach(DataRow dr in cn.Tables["Connections"].Rows)
+                        {
+                            c = new Connection(Convert.ToInt32(dr["ConnectionID"]), dr["ConnectionName"].ToString(), dr["FilePath"].ToString());
+                            this.AppendValues(c);
+                        }
                 }
-                sqlReader.Close();
-                sqlCN.Close();
                 IsLoaded = true;
                 LastLoaded = DateTime.Now;
             }
             catch (Exception ex)
             {
                 Common.HandleError(ex);
-            }
-            finally
-            {
-                if (sqlReader != null)
-                {
-                    if (!sqlReader.IsClosed)
-                        sqlReader.Close();
-                    sqlReader.Dispose();
-                }
-                sqlCMD.Dispose();
-                if (sqlCN.State != ConnectionState.Closed)
-                    sqlCN.Close();
-                sqlCN.Dispose();
             }
         }
 

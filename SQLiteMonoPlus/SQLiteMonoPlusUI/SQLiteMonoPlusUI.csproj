@@ -97,14 +97,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>UserConfig.settings</DependentUpon>
     </Compile>
-    <Compile Include="Connections\ConnectionDataTable.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GlobalData\Connections.cs">
+    <Compile Include="Connections\Connections.cs">
       <DependentUpon>Connections.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GlobalData\Connections.Designer.cs">
+    <Compile Include="Connections\Connections.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Connections.xsd</DependentUpon>
@@ -158,15 +155,16 @@
     <None Include="dll\Mono.Data.SqliteClient.dll" />
     <None Include="dll\sqlite3.def" />
     <None Include="dll\sqlite3.dll" />
-    <None Include="GlobalData\Connections.xsc">
+    <None Include="Connections\Connections.xsc">
       <DependentUpon>Connections.xsd</DependentUpon>
     </None>
-    <None Include="GlobalData\Connections.xsd">
+    <None Include="Connections\Connections.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>Connections.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>SQLiteMonoPlusUI.GlobalData</CustomToolNamespace>
     </None>
-    <None Include="GlobalData\Connections.xss">
+    <None Include="Connections\Connections.xss">
       <DependentUpon>Connections.xsd</DependentUpon>
     </None>
   </ItemGroup>

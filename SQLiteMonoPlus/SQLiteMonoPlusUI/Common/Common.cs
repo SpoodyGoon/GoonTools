@@ -33,28 +33,31 @@ namespace SQLiteMonoPlusUI.GlobalTools
     /// are reqularly used by the program it also first off
     /// the serialzation of certian objects
     /// </summary>
-    public static class Common
+    internal static class Common
     {
-        public static EnviromentData EnvData = new EnviromentData();
+        internal static EnviromentData EnvData = new EnviromentData();
+        internal static ConnectionStore RecentConnections = new ConnectionStore();
 
-        public static void Load()
+
+        internal static void Load()
         {
-            if (string.IsNullOrEmpty(UserConfig.Default.DBLocation) || !File.Exists(UserConfig.Default.DBLocation))
-            {
-                // TODO copy the database to the save folder
-                UserConfig.Default.DBLocation = new FileInfo(Path.Combine(EnvData.UserDataPath, "SQLiteMonoPlus.s3db")).FullName;
-                File.Copy(Path.Combine(EnvData.AppDataPath, "SQLiteMonoPlus.s3db"), UserConfig.Default.DBLocation);               
-            }
+            RecentConnections.Load();
+            //if (string.IsNullOrEmpty(UserConfig.Default.DBLocation) || !File.Exists(UserConfig.Default.DBLocation))
+            //{
+            //    // TODO copy the database to the save folder
+            //    UserConfig.Default.DBLocation = new FileInfo(Path.Combine(EnvData.UserDataPath, "SQLiteMonoPlus.s3db")).FullName;
+            //    File.Copy(Path.Combine(EnvData.AppDataPath, "SQLiteMonoPlus.s3db"), UserConfig.Default.DBLocation);               
+            //}
         }
 
         #region Logs
 
-        public static void HandleError(Exception ex)
+        internal static void HandleError(Exception ex)
         {
             HandleError(null, ex);
         }
 
-        public static void HandleError(Gtk.Window parent_window, Exception ex)
+        internal static void HandleError(Gtk.Window parent_window, Exception ex)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(System.Environment.NewLine + "------------------------------------------------------------------------------");
@@ -74,7 +77,7 @@ namespace SQLiteMonoPlusUI.GlobalTools
             sb.Length = 0;
         }
 
-        public static void CleanErrorLog()
+        internal static void CleanErrorLog()
         {
             try
             {
@@ -91,7 +94,7 @@ namespace SQLiteMonoPlusUI.GlobalTools
 
         #endregion Logs
 
-        public static void DebugWrite(string StringToWrite)
+        internal static void DebugWrite(string StringToWrite)
         {
             Console.WriteLine(StringToWrite);
             Console.ReadLine();
@@ -101,7 +104,7 @@ namespace SQLiteMonoPlusUI.GlobalTools
         #region Launch URL
 
         private static string _LaunchURL = string.Empty;
-        public static void LaunchURL(string URL)
+        internal static void LaunchURL(string URL)
         {
             _LaunchURL = URL;
             System.Threading.Thread trd = new System.Threading.Thread(new System.Threading.ThreadStart(StartURL));
