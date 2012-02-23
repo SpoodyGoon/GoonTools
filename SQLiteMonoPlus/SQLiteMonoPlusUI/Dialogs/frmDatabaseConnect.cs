@@ -1,4 +1,5 @@
 using System;
+using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI
 {
@@ -28,7 +29,7 @@ namespace SQLiteMonoPlusUI
 
 		protected void OnBtnConnectClicked (object sender, System.EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			//Common.RecentConnections
 		}
 	}
 }
