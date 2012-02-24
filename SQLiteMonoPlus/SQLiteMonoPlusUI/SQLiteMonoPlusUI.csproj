@@ -98,15 +98,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>UserConfig.settings</DependentUpon>
     </Compile>
-    <Compile Include="Connections\Connections.cs">
-      <DependentUpon>Connections.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Connections\Connections.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Connections.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="Connections\ConnectionSaveFile.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
@@ -156,17 +148,5 @@
     <None Include="dll\Mono.Data.SqliteClient.dll" />
     <None Include="dll\sqlite3.def" />
     <None Include="dll\sqlite3.dll" />
-    <None Include="Connections\Connections.xsc">
-      <DependentUpon>Connections.xsd</DependentUpon>
-    </None>
-    <None Include="Connections\Connections.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Connections.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>SQLiteMonoPlusUI.GlobalData</CustomToolNamespace>
-    </None>
-    <None Include="Connections\Connections.xss">
-      <DependentUpon>Connections.xsd</DependentUpon>
-    </None>
   </ItemGroup>
 </Project>
