@@ -37,11 +37,18 @@ namespace SQLiteMonoPlusUI.GlobalTools
     {
         internal static EnviromentData EnvData = new EnviromentData();
         internal static ConnectionStore RecentConnections = new ConnectionStore();
+        internal static GlobalData.Connections ConnectionsFile = new GlobalData.Connections();
 
 
         internal static void Load()
-        {
-            RecentConnections.Load();
+        {            
+            FileInfo fi = new FileInfo(Common.EnvData.ConnectionFilePath);
+            if (fi.Exists)
+            {
+                ConnectionsFile.ReadXml(fi.FullName);
+            }
+            RecentConnections.Load(); 
+            
             //if (string.IsNullOrEmpty(UserConfig.Default.DBLocation) || !File.Exists(UserConfig.Default.DBLocation))
             //{
             //    // TODO copy the database to the save folder
@@ -66,7 +73,7 @@ namespace SQLiteMonoPlusUI.GlobalTools
             sb.Append(System.Environment.NewLine + "------------------------------------------------------------------------------");
             if (SQLiteMonoPlusUI.UserConfig.Default.UserErrorLog)
             {
-                StreamWriter sw = new StreamWriter(EnvData.ErrorLog, true);
+                StreamWriter sw = new StreamWriter(EnvData.ErrorLogFile, true);
                 sw.Write(sb.ToString());
                 sw.Close();
             }
@@ -81,7 +88,7 @@ namespace SQLiteMonoPlusUI.GlobalTools
         {
             try
             {
-                StreamWriter sw = new StreamWriter(EnvData.ErrorLog, false);
+                StreamWriter sw = new StreamWriter(EnvData.ErrorLogFile, false);
                 sw.Write("");
                 sw.Close();
             }
