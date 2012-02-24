@@ -21,18 +21,11 @@ namespace SQLiteMonoPlusUI
         {
             try
             {
-                FileInfo fi = new FileInfo(Path.Combine(Common.EnvData.UserDataPath, "Connections.xml"));
-                if (fi.Exists)
+                Connection c;
+                foreach(DataRow dr in Common.ConnectionsFile.Tables["Connections"].Rows)
                 {
-                    GlobalData.Connections cn = new GlobalData.Connections();
-                    cn.ReadXml(fi.FullName);
-
-                        Connection c;
-                        foreach(DataRow dr in cn.Tables["Connections"].Rows)
-                        {
-                            c = new Connection(Convert.ToInt32(dr["ConnectionID"]), dr["ConnectionName"].ToString(), dr["FilePath"].ToString());
-                            this.AppendValues(c);
-                        }
+                    c = new Connection(dr);
+                    this.AppendValues(c);
                 }
                 IsLoaded = true;
                 LastLoaded = DateTime.Now;
@@ -56,13 +49,33 @@ namespace SQLiteMonoPlusUI
             this.Foreach(new TreeModelForeachFunc(ForeachID));
             return _SearchConnection;
         }
+		
+        private Connection ConnectionGet(string Name)
+        {        	
+        	_SearchConnection = null;
+            _SearchName = Name;
+            this.Foreach(new TreeModelForeachFunc(ForeachName));
+            return _SearchConnection;
+        }
         
 		private int _SearchID = -1;
+		private string _SearchName = string.Empty;
 		private Connection _SearchConnection = null;
         private bool ForeachID(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
         {
             Connection cn = (Connection)this.GetValue(iter, 0);
             if (_SearchID == (int)cn.ConnectionID)
+            {
+                _SearchConnection = cn;
+                return true;
+            }
+            return false;
+        }
+        
+        private bool ForeachName(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+        {
+            Connection cn = (Connection)this.GetValue(iter, 0);
+            if (_SearchName == cn.ConnectionName)
             {
                 _SearchConnection = cn;
                 return true;

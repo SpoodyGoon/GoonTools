@@ -35,12 +35,13 @@ namespace SQLiteMonoPlusUI.GlobalTools
     /// </summary>
     public class EnviromentData
     {
-        private string _OS = null;
-        private string _AppPath = null;
-        private string _ProgramName = null;
-        private string _ErrorLogFile = null;
-        private string _UserDataPath = null;
-        private string _AppDataPath = null;
+        internal string OS = null;
+        internal string AppPath = null;
+       	internal string ProgramName = null;
+        internal string ErrorLogFile = null;
+        internal string ConnectionFilePath = null;
+        internal string UserDataPath = null;
+        internal string AppDataPath = null;
         public EnviromentData()
         {
             so.FileInfo fi;
@@ -48,85 +49,43 @@ namespace SQLiteMonoPlusUI.GlobalTools
             sr.Assembly asm = sr.Assembly.GetExecutingAssembly();
 
             // set the operating system
-            _OS = se.OSVersion.Platform.ToString();
+            OS = se.OSVersion.Platform.ToString();
 
             // set the app path
             fi = new so.FileInfo(asm.Location);
-            _AppPath = fi.Directory.FullName;
-            _ProgramName = asm.GetName().Name;
+            AppPath = fi.Directory.FullName;
+            ProgramName = asm.GetName().Name;
             if (SQLiteMonoPlusUI.UserConfig.Default.Debug == false)
             {
                 // set the location of the save data for the user
                 // in a non-development enviroment
-                di = new so.DirectoryInfo(so.Path.Combine(se.GetFolderPath(se.SpecialFolder.ApplicationData), _ProgramName));
+                di = new so.DirectoryInfo(so.Path.Combine(se.GetFolderPath(se.SpecialFolder.ApplicationData), ProgramName));
 
             }
             else
             {
                 // where the user data is saved for development
-                di = new so.DirectoryInfo(so.Path.Combine(_AppPath, "DebugFiles"));
+                di = new so.DirectoryInfo(so.Path.Combine(AppPath, "DebugFiles"));
             }
 
             if (!di.Exists)
                 di.Create();
 
-            _UserDataPath = di.FullName;
+            UserDataPath = di.FullName;
 
             // App Database for copying over application file during first use
-            di = new so.DirectoryInfo(so.Path.Combine(_AppPath, "GlobalData"));
-            _AppDataPath = di.FullName;
+            di = new so.DirectoryInfo(so.Path.Combine(AppPath, "GlobalData"));
+            AppDataPath = di.FullName;
 
 
             // the error file
-            fi = new so.FileInfo(so.Path.Combine(_UserDataPath, "error.txt"));
-            _ErrorLogFile = fi.FullName;
+            fi = new so.FileInfo(so.Path.Combine(UserDataPath, GlobalTools.Constants.ErrorLogName));
+            ErrorLogFile = fi.FullName;
+            
+            fi = new so.FileInfo(so.Path.Combine(Common.EnvData.UserDataPath, GlobalTools.Constants.ConnectionFileName));
+            ConnectionFilePath = fi.FullName;
 
         }
-
-        #region Public Properties
-
-        public string OS
-        {
-            get { return _OS; }
-        }
-
-        public string AppPath
-        {
-            get { return _AppPath; }
-        }
-
-        public string AppDataPath
-        {
-            get { return _AppDataPath; }
-        }
-
-        public string ProgramName
-        {
-            get { return _ProgramName; }
-        }
-
-        public string UserDataPath
-        {
-            get { return _UserDataPath; }
-        }
-
-        public string ErrorLog
-        {
-            get { return _ErrorLogFile; }
-        }
-
-        public bool IsWindows
-        {
-            get
-            {
-                if (se.OSVersion.Platform != PlatformID.MacOSX && se.OSVersion.Platform != PlatformID.Unix)
-                    return true;
-                else
-                    return false;
-            }
-        }
-
-        #endregion Public Properties
 
         #region Public Methods
 
