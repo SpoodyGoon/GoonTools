@@ -29,7 +29,16 @@ namespace SQLiteMonoPlusUI
 
 		protected void OnBtnConnectClicked (object sender, System.EventArgs e)
 		{
-			//Common.RecentConnections
+			if(cbxSaveConnection.Active)
+			{
+				Connection cn = Common.RecentConnections.Find("");
+				cn.ConnectionName = comboboxentry1.ActiveText;
+				cn.FilePath = fcDBFile.Filename;
+				cn.Password = txtPassword.Text.Trim();
+				cn.Pooling = cbxPooling.Active;
+				cn.MaxPoolSize = spnMaxPool.ValueAsInt;
+				cn.LastUsedDate = DateTime.Now;
+			}
 		}
 	}
 }

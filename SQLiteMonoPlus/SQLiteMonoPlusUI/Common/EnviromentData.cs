@@ -79,10 +79,10 @@ namespace SQLiteMonoPlusUI.GlobalTools
 
 
             // the error file
-            fi = new so.FileInfo(so.Path.Combine(UserDataPath, GlobalTools.Constants.ErrorLogName));
+            fi = new so.FileInfo(so.Path.Combine(UserDataPath, GlobalTools.Constants.FileStruture.ErrorLogName));
             ErrorLogFile = fi.FullName;
             
-            fi = new so.FileInfo(so.Path.Combine(Common.EnvData.UserDataPath, GlobalTools.Constants.ConnectionFileName));
+            fi = new so.FileInfo(so.Path.Combine(UserDataPath, GlobalTools.Constants.FileStruture.ConnectionFileName));
             ConnectionFilePath = fi.FullName;
 
         }

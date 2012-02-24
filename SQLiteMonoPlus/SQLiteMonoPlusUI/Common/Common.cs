@@ -36,17 +36,12 @@ namespace SQLiteMonoPlusUI.GlobalTools
     internal static class Common
     {
         internal static EnviromentData EnvData = new EnviromentData();
-        internal static ConnectionStore RecentConnections = new ConnectionStore();
-        internal static GlobalData.Connections ConnectionsFile = new GlobalData.Connections();
+        internal static GlobalData.ConnectionStore RecentConnections = new GlobalData.ConnectionStore();
 
 
         internal static void Load()
-        {            
-            FileInfo fi = new FileInfo(Common.EnvData.ConnectionFilePath);
-            if (fi.Exists)
-            {
-                ConnectionsFile.ReadXml(fi.FullName);
-            }
+        { 
+        	
             RecentConnections.Load(); 
             
             //if (string.IsNullOrEmpty(UserConfig.Default.DBLocation) || !File.Exists(UserConfig.Default.DBLocation))
