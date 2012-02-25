@@ -8,10 +8,10 @@ namespace SQLiteMonoPlusUI
 	[System.ComponentModel.ToolboxItem(true)]
 	public class ConnectionComboBoxEntry : Gtk.ComboBoxEntry
 	{
-		private int _ConnectionID;
-		private string _ConnectionName;
-		private int _SearchConnectionID;
-		private string _SearchConnectionName;
+		private Nullable<int> _ConnectionID = null;
+		private string _ConnectionName = null;
+		private Nullable<int> _SearchConnectionID = null;
+		private string _SearchConnectionName = null;
 		private DateTime _LastLoad = DateTime.Now;
 		public ConnectionComboBoxEntry()
 		{
@@ -54,16 +54,18 @@ namespace SQLiteMonoPlusUI
         {
             set
             {
+				_ConnectionName = null;
                 _SearchConnectionName = value;
                 this.Model.Foreach(new TreeModelForeachFunc(ForeachConnectionName));
             }
             get { return _ConnectionName; }
         }
 
-        public int ConnectionID
+        public Nullable<int> ConnectionID
         {
             set
             {
+				_ConnectionID = null;
                 _SearchConnectionID = value;
                 this.Model.Foreach(new TreeModelForeachFunc(ForeachConnectionID));
             }
