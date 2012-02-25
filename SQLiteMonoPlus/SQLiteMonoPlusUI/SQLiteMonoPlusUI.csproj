@@ -98,7 +98,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>UserConfig.settings</DependentUpon>
     </Compile>
-    <Compile Include="Connections\ConnectionSaveFile.cs" />
+    <Compile Include="Connections\ConnectionSaveFile.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
