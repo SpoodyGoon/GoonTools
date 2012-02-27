@@ -25,7 +25,7 @@ namespace SQLiteMonoPlusUI
 
 		protected void btnTestConnection_Clicked (object sender, System.EventArgs e)
 		{
-			if(TestConnection())
+			if(Common.DatabaseTryConnect(fcDBFile.Filename))
 			{
 				lblTestResult.Text = "Connection Success";
 			}
@@ -34,42 +34,30 @@ namespace SQLiteMonoPlusUI
 				lblTestResult.Text = "Connection Failure";
 			}
 		}
-		
-		private bool TestConnection ()
-		{
-			bool blnSuccess = true;
-			try 
-			{
-				SqliteConnection sqlCN = new SqliteConnection (Constants.ConnectionString.Simple.Replace ("[DBPATH]", fcDBFile.Filename));
-				SqliteCommand sqlCMD = new SqliteCommand(GlobalData.SQL.ConnectionTest, sqlCN);
-				sqlCN.Open ();
-				sqlCMD.ExecuteNonQuery();
-				sqlCN.Close ();
-				sqlCMD.Dispose();
-				sqlCN.Dispose ();
-			} 
-			catch (Exception ex) 
-			{
-				blnSuccess = false;
-				Console.WriteLine (ex.ToString ());				
-			}
-			return blnSuccess;
-		}
 
 		protected void OnBtnSaveConnectClicked (object sender, System.EventArgs e)
 		{
 			Connection cn;
-			if (cboConnectName.ConnectionID != null) {
+			if (cboConnectName.ConnectionID != null) 
+			{
 				cn = Common.RecentConnections.Find ((int)cboConnectName.ConnectionID);
 				cn.ConnectionName = cboConnectName.ActiveText;
 				cn.FilePath = fcDBFile.Filename;
-				cn.Password = txtPassword.Text.Trim ();
-			} else {
-				cn = new Connection (cboConnectName.ActiveText, fcDBFile.Filename, txtPassword.Text.Trim ());
+			} 
+			else 
+			{
+				cn = new Connection (cboConnectName.Entry.Text.Trim(), fcDBFile.Filename);
+				
 			}
-			cn.Pooling = cbxPooling.Active;
-			if (cbxPooling.Active)
-				cn.MaxPoolSize = spnMaxPool.ValueAsInt;
+				
+			if(cbxAdvanced.Active)
+			{
+				cn.Password = txtPassword.Text.Trim ();
+				cn.Pooling = cbxPooling.Active;
+				if (cbxPooling.Active)
+					cn.MaxPoolSize = spnMaxPool.ValueAsInt;
+				cn.Timeout = spnTimeout.ValueAsInt;
+			}
 			cn.LastUsedDate = DateTime.Now;
 		}
 

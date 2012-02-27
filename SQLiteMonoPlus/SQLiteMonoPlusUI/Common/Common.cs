@@ -24,6 +24,7 @@ using System;
 using System.IO;
 using System.Data;
 using System.Diagnostics;
+using Mono.Data.SqliteClient;
 using Gtk;
 
 namespace SQLiteMonoPlusUI.GlobalTools
@@ -119,6 +120,26 @@ namespace SQLiteMonoPlusUI.GlobalTools
         }
 
         #endregion Launch URL
-
+       
+        internal static bool DatabaseTryConnect(string DBFile)
+        {        	
+			bool blnSuccess = true;
+			try 
+			{
+				SqliteConnection sqlCN = new SqliteConnection (Constants.ConnectionString.Simple.Replace ("[DBPATH]", DBFile));
+				SqliteCommand sqlCMD = new SqliteCommand(GlobalData.SQL.ConnectionTest, sqlCN);
+				sqlCN.Open ();
+				sqlCMD.ExecuteNonQuery();
+				sqlCN.Close ();
+				sqlCMD.Dispose();
+				sqlCN.Dispose ();
+			} 
+			catch (Exception ex) 
+			{
+				blnSuccess = false;
+				Console.WriteLine (ex.ToString ());				
+			}
+			return blnSuccess;
+        }
     }
 }

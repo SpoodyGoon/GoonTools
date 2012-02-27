@@ -12,6 +12,7 @@ namespace SQLiteMonoPlusUI
 		private string _ConnectionName = string.Empty;
 		private string _FilePath = string.Empty;
 		private string _Password = string.Empty;
+		private int _Timeout = 1000;
 		private bool _Pooling = false;
 		private int _MaxPoolSize = -1;
         private DateTime _AddedDate = DateTime.Now;
@@ -62,6 +63,17 @@ namespace SQLiteMonoPlusUI
         		if(!_ConnectionID.Equals(value))
         			Common.RecentConnections.Modified = true;
         		_Password = value;
+        	}
+        }
+        
+        public int Timeout
+        {
+        	get{return _Timeout;}
+        	set
+        	{
+        		if(!_ConnectionID.Equals(value))
+        			Common.RecentConnections.Modified = true;
+        		_Timeout = value;
         	}
         }
         
