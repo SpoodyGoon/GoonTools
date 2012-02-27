@@ -33,8 +33,11 @@ namespace SQLiteMonoPlusUI
 	
 		protected void btnConnect_Clicked (object sender, System.EventArgs e)
 		{
-			frmDatabaseConnect fm = new frmDatabaseConnect();
-			fm.Run();
+			frmDatabaseConnect fm = new frmDatabaseConnect();			
+			if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
+			{
+				
+			}
 			fm.Destroy();
 		}
 	}

@@ -13,7 +13,8 @@ namespace SQLiteMonoPlusUI.GlobalData
 			"SELECT " +
 			"	name AS ObjectName, " +
 			"	tbl_name AS TableName, " +
-			"	sql AS SQL " +
+			"	sql AS SQL, " +
+			"	LOWER(type) AS Type, " +
 			"	CASE LOWER(type) WHEN 'table' THEN 1 WHEN 'index' THEN 2 WHEN 'view' THEN 3 ELSE 4 END as SortOrder" +
 			"FROM " +
 			"	sqlite_master " +
@@ -21,7 +22,7 @@ namespace SQLiteMonoPlusUI.GlobalData
 			"	name NOT LIKE 'sqlite_%'" +
 			"ORDER BY " +
 			"	SortOrder, tbl_name, name;";
-        public const string TableDetailsGet = "PRAGMA table_info(table-name);";
+        public const string TableDetailsGet = "PRAGMA table_info([TableName]);";
         public const string ConnectionTest = "SELECT * FROM sqlite_master WHERE 1=2";
 	}
 }

@@ -3,15 +3,18 @@ namespace SQLiteMonoPlusUI.Schema
 {
 	public class Table
 	{
-		public string TableName = "tb_NewTable";
+		public string TableName = string.Empty;
+		public string SQL = string.Empty;
 		public ColumnCollection Columns = new ColumnCollection();
-		public Table (string Name) 
+		public Table (string name, string sql) : base()
 		{
-			TableName = Name;
+			TableName = name;
+			SQL = sql;
 		}
 		
-		public Table()
+		public Table(string name)
 		{
+			TableName = name;
 		}
 		
 		
