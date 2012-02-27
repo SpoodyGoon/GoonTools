@@ -33,7 +33,7 @@ namespace SQLiteMonoPlusUI.GlobalData
             {
             	if(Modified)
             	{
-            		Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Warning, Gtk.ButtonsType.YesNo, false, GlobalTools.Constants.ConnectionMessage.SaveWarning, GlobalTools.Constants.ConnectionMessage.WarningTitle);
+            		Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Warning, Gtk.ButtonsType.YesNo, false, Constants.ConnectionMessage.SaveWarning, Constants.ConnectionMessage.WarningTitle);
             		if((Gtk.ResponseType)md.Run() == Gtk.ResponseType.Yes)
             		{
             			Save();

@@ -22,6 +22,7 @@ namespace SQLiteMonoPlusUI.GlobalData
 			"ORDER BY " +
 			"	SortOrder, tbl_name, name;";
         public const string TableDetailsGet = "PRAGMA table_info(table-name);";
+        public const string ConnectionTest = "SELECT * FROM sqlite_master WHERE 1=2";
 	}
 }
 

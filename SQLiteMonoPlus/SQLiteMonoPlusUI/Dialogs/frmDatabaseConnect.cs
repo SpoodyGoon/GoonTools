@@ -38,15 +38,20 @@ namespace SQLiteMonoPlusUI
 		private bool TestConnection ()
 		{
 			bool blnSuccess = true;
-			try {
-				SqliteConnection sqlCN = new SqliteConnection (SQLiteMonoPlusUI.GlobalTools.Constants.ConnectionString.Simple.Replace ("[DBPATH]", fcDBFile.Filename));
+			try 
+			{
+				SqliteConnection sqlCN = new SqliteConnection (Constants.ConnectionString.Simple.Replace ("[DBPATH]", fcDBFile.Filename));
+				SqliteCommand sqlCMD = new SqliteCommand(GlobalData.SQL.ConnectionTest, sqlCN);
 				sqlCN.Open ();
+				sqlCMD.ExecuteNonQuery();
 				sqlCN.Close ();
+				sqlCMD.Dispose();
 				sqlCN.Dispose ();
-			} catch (Exception ex) {
+			} 
+			catch (Exception ex) 
+			{
 				blnSuccess = false;
-				Console.WriteLine (ex.ToString ());
-				
+				Console.WriteLine (ex.ToString ());				
 			}
 			return blnSuccess;
 		}
@@ -66,6 +71,23 @@ namespace SQLiteMonoPlusUI
 			if (cbxPooling.Active)
 				cn.MaxPoolSize = spnMaxPool.ValueAsInt;
 			cn.LastUsedDate = DateTime.Now;
+		}
+
+		protected void OnCbxAdvancedToggled (object sender, System.EventArgs e)
+		{
+			algAdvanced.Visible = cbxAdvanced.Active;
+		}
+
+		protected void OnFcDBFileSelectionChanged (object sender, System.EventArgs e)
+		{
+			if(!string.IsNullOrEmpty(fcDBFile.Filename))
+			{
+				System.IO.FileInfo fi = new System.IO.FileInfo(fcDBFile.Filename);
+				if(string.IsNullOrEmpty(cboConnectName.ConnectionName))
+				{
+					cboConnectName.Entry.Text = fi.Name.Replace(fi.Extension, "");
+				}
+			}
 		}
 	}
 }
