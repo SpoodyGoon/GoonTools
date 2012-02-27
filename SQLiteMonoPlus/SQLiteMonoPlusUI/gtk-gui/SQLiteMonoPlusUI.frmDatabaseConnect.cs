@@ -20,22 +20,28 @@ namespace SQLiteMonoPlusUI
 		private global::Gtk.Label label6;
 		private global::Gtk.Alignment alignment15;
 		private global::SQLiteMonoPlusUI.ConnectionComboBoxEntry cboConnectName;
-		private global::Gtk.Alignment alignment19;
-		private global::Gtk.Label label4;
-		private global::Gtk.Alignment alignment20;
-		private global::Gtk.SpinButton spnTimeout;
-		private global::Gtk.Alignment alignment6;
-		private global::Gtk.Label label3;
-		private global::Gtk.Alignment alignment8;
+		private global::Gtk.Alignment alignment21;
+		private global::Gtk.CheckButton cbxAdvanced;
+		private global::Gtk.Alignment algAdvanced;
+		private global::Gtk.Frame fraAdvanced;
+		private global::Gtk.Alignment GtkAlignment3;
+		private global::Gtk.Table table2;
+		private global::Gtk.Alignment alignment16;
+		private global::Gtk.SpinButton spnMaxPool;
+		private global::Gtk.Alignment alignment22;
 		private global::Gtk.Entry txtPassword;
-		private global::Gtk.Alignment alignment5;
-		private global::Gtk.HBox hbox1;
-		private global::Gtk.Alignment alignment7;
+		private global::Gtk.Alignment alignment23;
+		private global::Gtk.Label label5;
+		private global::Gtk.Alignment alignment24;
+		private global::Gtk.SpinButton spnTimeout;
+		private global::Gtk.Alignment alignment25;
+		private global::Gtk.Label label7;
+		private global::Gtk.Alignment alignment26;
+		private global::Gtk.Label label8;
+		private global::Gtk.Alignment alignment27;
 		private global::Gtk.CheckButton cbxPooling;
 		private global::Gtk.Alignment alignment9;
 		private global::Gtk.Label lblMaxPool;
-		private global::Gtk.Alignment alignment16;
-		private global::Gtk.SpinButton spnMaxPool;
 		private global::Gtk.Alignment alignment10;
 		private global::Gtk.HSeparator hseparator2;
 		private global::Gtk.Alignment alignment11;
@@ -53,7 +59,13 @@ namespace SQLiteMonoPlusUI
 			global::Stetic.Gui.Initialize (this);
 			// Widget SQLiteMonoPlusUI.frmDatabaseConnect
 			this.Name = "SQLiteMonoPlusUI.frmDatabaseConnect";
+			this.Title = global::Mono.Unix.Catalog.GetString ("Database Connect");
+			this.Icon = global::Stetic.IconLoader.LoadIcon (this, "gtk-connect", global::Gtk.IconSize.Menu);
+			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Modal = true;
+			this.AllowShrink = true;
+			this.DestroyWithParent = true;
 			// Internal child SQLiteMonoPlusUI.frmDatabaseConnect.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";
@@ -101,7 +113,7 @@ namespace SQLiteMonoPlusUI
 			this.alignment4.Name = "alignment4";
 			this.alignment4.LeftPadding = ((uint)(17));
 			// Container child alignment4.Gtk.Container+ContainerChild
-			this.table1 = new global::Gtk.Table (((uint)(4)), ((uint)(2)), false);
+			this.table1 = new global::Gtk.Table (((uint)(2)), ((uint)(4)), false);
 			this.table1.Name = "table1";
 			this.table1.RowSpacing = ((uint)(11));
 			this.table1.ColumnSpacing = ((uint)(6));
@@ -118,7 +130,7 @@ namespace SQLiteMonoPlusUI
 			w7.TopAttach = ((uint)(1));
 			w7.BottomAttach = ((uint)(2));
 			w7.LeftAttach = ((uint)(1));
-			w7.RightAttach = ((uint)(2));
+			w7.RightAttach = ((uint)(4));
 			w7.XOptions = ((global::Gtk.AttachOptions)(4));
 			w7.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
@@ -158,124 +170,48 @@ namespace SQLiteMonoPlusUI
 			this.table1.Add (this.alignment15);
 			global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.table1 [this.alignment15]));
 			w13.LeftAttach = ((uint)(1));
-			w13.RightAttach = ((uint)(2));
+			w13.RightAttach = ((uint)(4));
 			w13.XOptions = ((global::Gtk.AttachOptions)(4));
 			w13.YOptions = ((global::Gtk.AttachOptions)(4));
-			// Container child table1.Gtk.Table+TableChild
-			this.alignment19 = new global::Gtk.Alignment (0.98F, 0.5F, 0.01F, 1F);
-			this.alignment19.Name = "alignment19";
-			// Container child alignment19.Gtk.Container+ContainerChild
-			this.label4 = new global::Gtk.Label ();
-			this.label4.Name = "label4";
-			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Timeout:");
-			this.alignment19.Add (this.label4);
-			this.table1.Add (this.alignment19);
-			global::Gtk.Table.TableChild w15 = ((global::Gtk.Table.TableChild)(this.table1 [this.alignment19]));
-			w15.TopAttach = ((uint)(3));
-			w15.BottomAttach = ((uint)(4));
-			w15.XOptions = ((global::Gtk.AttachOptions)(4));
-			w15.YOptions = ((global::Gtk.AttachOptions)(4));
-			// Container child table1.Gtk.Table+TableChild
-			this.alignment20 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
-			this.alignment20.Name = "alignment20";
-			// Container child alignment20.Gtk.Container+ContainerChild
-			this.spnTimeout = new global::Gtk.SpinButton (1000D, 50000D, 10D);
-			this.spnTimeout.CanFocus = true;
-			this.spnTimeout.Name = "spnTimeout";
-			this.spnTimeout.Adjustment.PageIncrement = 1D;
-			this.spnTimeout.ClimbRate = 1D;
-			this.spnTimeout.Numeric = true;
-			this.spnTimeout.SnapToTicks = true;
-			this.spnTimeout.UpdatePolicy = ((global::Gtk.SpinButtonUpdatePolicy)(1));
-			this.spnTimeout.Value = 1000D;
-			this.alignment20.Add (this.spnTimeout);
-			this.table1.Add (this.alignment20);
-			global::Gtk.Table.TableChild w17 = ((global::Gtk.Table.TableChild)(this.table1 [this.alignment20]));
-			w17.TopAttach = ((uint)(3));
-			w17.BottomAttach = ((uint)(4));
-			w17.LeftAttach = ((uint)(1));
-			w17.RightAttach = ((uint)(2));
-			w17.XOptions = ((global::Gtk.AttachOptions)(4));
-			w17.YOptions = ((global::Gtk.AttachOptions)(4));
-			// Container child table1.Gtk.Table+TableChild
-			this.alignment6 = new global::Gtk.Alignment (0.98F, 0.5F, 0.01F, 1F);
-			this.alignment6.Name = "alignment6";
-			// Container child alignment6.Gtk.Container+ContainerChild
-			this.label3 = new global::Gtk.Label ();
-			this.label3.Name = "label3";
-			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Password:");
-			this.alignment6.Add (this.label3);
-			this.table1.Add (this.alignment6);
-			global::Gtk.Table.TableChild w19 = ((global::Gtk.Table.TableChild)(this.table1 [this.alignment6]));
-			w19.TopAttach = ((uint)(2));
-			w19.BottomAttach = ((uint)(3));
-			w19.XOptions = ((global::Gtk.AttachOptions)(4));
-			w19.YOptions = ((global::Gtk.AttachOptions)(4));
-			// Container child table1.Gtk.Table+TableChild
-			this.alignment8 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
-			this.alignment8.Name = "alignment8";
-			// Container child alignment8.Gtk.Container+ContainerChild
-			this.txtPassword = new global::Gtk.Entry ();
-			this.txtPassword.WidthRequest = 200;
-			this.txtPassword.CanFocus = true;
-			this.txtPassword.Name = "txtPassword";
-			this.txtPassword.IsEditable = true;
-			this.txtPassword.InvisibleChar = '●';
-			this.alignment8.Add (this.txtPassword);
-			this.table1.Add (this.alignment8);
-			global::Gtk.Table.TableChild w21 = ((global::Gtk.Table.TableChild)(this.table1 [this.alignment8]));
-			w21.TopAttach = ((uint)(2));
-			w21.BottomAttach = ((uint)(3));
-			w21.LeftAttach = ((uint)(1));
-			w21.RightAttach = ((uint)(2));
-			w21.XOptions = ((global::Gtk.AttachOptions)(4));
-			w21.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.alignment4.Add (this.table1);
 			this.vbox2.Add (this.alignment4);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment4]));
-			w23.Position = 2;
-			w23.Expand = false;
-			w23.Fill = false;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment4]));
+			w15.Position = 2;
+			w15.Expand = false;
+			w15.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.alignment5 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
-			this.alignment5.Name = "alignment5";
-			this.alignment5.LeftPadding = ((uint)(110));
-			this.alignment5.TopPadding = ((uint)(5));
-			// Container child alignment5.Gtk.Container+ContainerChild
-			this.hbox1 = new global::Gtk.HBox ();
-			this.hbox1.Name = "hbox1";
-			this.hbox1.Spacing = 6;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment7.Name = "alignment7";
-			this.alignment7.RightPadding = ((uint)(44));
-			// Container child alignment7.Gtk.Container+ContainerChild
-			this.cbxPooling = new global::Gtk.CheckButton ();
-			this.cbxPooling.CanFocus = true;
-			this.cbxPooling.Name = "cbxPooling";
-			this.cbxPooling.Label = global::Mono.Unix.Catalog.GetString ("Connection Pooling");
-			this.cbxPooling.DrawIndicator = true;
-			this.cbxPooling.UseUnderline = true;
-			this.alignment7.Add (this.cbxPooling);
-			this.hbox1.Add (this.alignment7);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment7]));
-			w25.Position = 0;
-			w25.Expand = false;
-			w25.Fill = false;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment9.Name = "alignment9";
-			// Container child alignment9.Gtk.Container+ContainerChild
-			this.lblMaxPool = new global::Gtk.Label ();
-			this.lblMaxPool.Name = "lblMaxPool";
-			this.lblMaxPool.LabelProp = global::Mono.Unix.Catalog.GetString ("Max Pool Connections:");
-			this.alignment9.Add (this.lblMaxPool);
-			this.hbox1.Add (this.alignment9);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment9]));
-			w27.Position = 1;
-			w27.Expand = false;
-			w27.Fill = false;
-			// Container child hbox1.Gtk.Box+BoxChild
+			this.alignment21 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment21.Name = "alignment21";
+			this.alignment21.LeftPadding = ((uint)(17));
+			// Container child alignment21.Gtk.Container+ContainerChild
+			this.cbxAdvanced = new global::Gtk.CheckButton ();
+			this.cbxAdvanced.CanFocus = true;
+			this.cbxAdvanced.Name = "cbxAdvanced";
+			this.cbxAdvanced.Label = global::Mono.Unix.Catalog.GetString ("Advanced Settings");
+			this.cbxAdvanced.DrawIndicator = true;
+			this.cbxAdvanced.UseUnderline = true;
+			this.alignment21.Add (this.cbxAdvanced);
+			this.vbox2.Add (this.alignment21);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment21]));
+			w17.Position = 3;
+			w17.Expand = false;
+			w17.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.algAdvanced = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.algAdvanced.Name = "algAdvanced";
+			// Container child algAdvanced.Gtk.Container+ContainerChild
+			this.fraAdvanced = new global::Gtk.Frame ();
+			this.fraAdvanced.Name = "fraAdvanced";
+			// Container child fraAdvanced.Gtk.Container+ContainerChild
+			this.GtkAlignment3 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.GtkAlignment3.Name = "GtkAlignment3";
+			this.GtkAlignment3.BorderWidth = ((uint)(6));
+			// Container child GtkAlignment3.Gtk.Container+ContainerChild
+			this.table2 = new global::Gtk.Table (((uint)(3)), ((uint)(4)), false);
+			this.table2.Name = "table2";
+			this.table2.RowSpacing = ((uint)(11));
+			this.table2.ColumnSpacing = ((uint)(6));
+			// Container child table2.Gtk.Table+TableChild
 			this.alignment16 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment16.Name = "alignment16";
 			// Container child alignment16.Gtk.Container+ContainerChild
@@ -289,17 +225,136 @@ namespace SQLiteMonoPlusUI
 			this.spnMaxPool.UpdatePolicy = ((global::Gtk.SpinButtonUpdatePolicy)(1));
 			this.spnMaxPool.Value = 100D;
 			this.alignment16.Add (this.spnMaxPool);
-			this.hbox1.Add (this.alignment16);
-			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment16]));
-			w29.Position = 2;
-			w29.Expand = false;
-			w29.Fill = false;
-			this.alignment5.Add (this.hbox1);
-			this.vbox2.Add (this.alignment5);
-			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
-			w31.Position = 3;
-			w31.Expand = false;
-			w31.Fill = false;
+			this.table2.Add (this.alignment16);
+			global::Gtk.Table.TableChild w19 = ((global::Gtk.Table.TableChild)(this.table2 [this.alignment16]));
+			w19.TopAttach = ((uint)(2));
+			w19.BottomAttach = ((uint)(3));
+			w19.LeftAttach = ((uint)(3));
+			w19.RightAttach = ((uint)(4));
+			w19.XOptions = ((global::Gtk.AttachOptions)(4));
+			w19.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.alignment22 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
+			this.alignment22.Name = "alignment22";
+			// Container child alignment22.Gtk.Container+ContainerChild
+			this.txtPassword = new global::Gtk.Entry ();
+			this.txtPassword.WidthRequest = 200;
+			this.txtPassword.CanFocus = true;
+			this.txtPassword.Name = "txtPassword";
+			this.txtPassword.IsEditable = true;
+			this.txtPassword.InvisibleChar = '●';
+			this.alignment22.Add (this.txtPassword);
+			this.table2.Add (this.alignment22);
+			global::Gtk.Table.TableChild w21 = ((global::Gtk.Table.TableChild)(this.table2 [this.alignment22]));
+			w21.LeftAttach = ((uint)(1));
+			w21.RightAttach = ((uint)(4));
+			w21.XOptions = ((global::Gtk.AttachOptions)(4));
+			w21.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.alignment23 = new global::Gtk.Alignment (0.98F, 0.5F, 0.01F, 1F);
+			this.alignment23.Name = "alignment23";
+			// Container child alignment23.Gtk.Container+ContainerChild
+			this.label5 = new global::Gtk.Label ();
+			this.label5.Name = "label5";
+			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Password:");
+			this.alignment23.Add (this.label5);
+			this.table2.Add (this.alignment23);
+			global::Gtk.Table.TableChild w23 = ((global::Gtk.Table.TableChild)(this.table2 [this.alignment23]));
+			w23.XOptions = ((global::Gtk.AttachOptions)(4));
+			w23.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.alignment24 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
+			this.alignment24.Name = "alignment24";
+			// Container child alignment24.Gtk.Container+ContainerChild
+			this.spnTimeout = new global::Gtk.SpinButton (1000D, 50000D, 10D);
+			this.spnTimeout.CanFocus = true;
+			this.spnTimeout.Name = "spnTimeout";
+			this.spnTimeout.Adjustment.PageIncrement = 1D;
+			this.spnTimeout.ClimbRate = 1D;
+			this.spnTimeout.Numeric = true;
+			this.spnTimeout.SnapToTicks = true;
+			this.spnTimeout.UpdatePolicy = ((global::Gtk.SpinButtonUpdatePolicy)(1));
+			this.spnTimeout.Value = 1000D;
+			this.alignment24.Add (this.spnTimeout);
+			this.table2.Add (this.alignment24);
+			global::Gtk.Table.TableChild w25 = ((global::Gtk.Table.TableChild)(this.table2 [this.alignment24]));
+			w25.TopAttach = ((uint)(1));
+			w25.BottomAttach = ((uint)(2));
+			w25.LeftAttach = ((uint)(1));
+			w25.RightAttach = ((uint)(4));
+			w25.XOptions = ((global::Gtk.AttachOptions)(4));
+			w25.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.alignment25 = new global::Gtk.Alignment (0.98F, 0.5F, 0.01F, 1F);
+			this.alignment25.Name = "alignment25";
+			// Container child alignment25.Gtk.Container+ContainerChild
+			this.label7 = new global::Gtk.Label ();
+			this.label7.Name = "label7";
+			this.label7.LabelProp = global::Mono.Unix.Catalog.GetString ("Connection Timeout:");
+			this.alignment25.Add (this.label7);
+			this.table2.Add (this.alignment25);
+			global::Gtk.Table.TableChild w27 = ((global::Gtk.Table.TableChild)(this.table2 [this.alignment25]));
+			w27.TopAttach = ((uint)(1));
+			w27.BottomAttach = ((uint)(2));
+			w27.XOptions = ((global::Gtk.AttachOptions)(4));
+			w27.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.alignment26 = new global::Gtk.Alignment (0.98F, 0.5F, 0.01F, 1F);
+			this.alignment26.Name = "alignment26";
+			// Container child alignment26.Gtk.Container+ContainerChild
+			this.label8 = new global::Gtk.Label ();
+			this.label8.Name = "label8";
+			this.label8.LabelProp = global::Mono.Unix.Catalog.GetString ("Connection Pooling:");
+			this.alignment26.Add (this.label8);
+			this.table2.Add (this.alignment26);
+			global::Gtk.Table.TableChild w29 = ((global::Gtk.Table.TableChild)(this.table2 [this.alignment26]));
+			w29.TopAttach = ((uint)(2));
+			w29.BottomAttach = ((uint)(3));
+			w29.XOptions = ((global::Gtk.AttachOptions)(4));
+			w29.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.alignment27 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
+			this.alignment27.Name = "alignment27";
+			// Container child alignment27.Gtk.Container+ContainerChild
+			this.cbxPooling = new global::Gtk.CheckButton ();
+			this.cbxPooling.CanFocus = true;
+			this.cbxPooling.Name = "cbxPooling";
+			this.cbxPooling.Label = "";
+			this.cbxPooling.DrawIndicator = true;
+			this.cbxPooling.UseUnderline = true;
+			this.alignment27.Add (this.cbxPooling);
+			this.table2.Add (this.alignment27);
+			global::Gtk.Table.TableChild w31 = ((global::Gtk.Table.TableChild)(this.table2 [this.alignment27]));
+			w31.TopAttach = ((uint)(2));
+			w31.BottomAttach = ((uint)(3));
+			w31.LeftAttach = ((uint)(1));
+			w31.RightAttach = ((uint)(2));
+			w31.XOptions = ((global::Gtk.AttachOptions)(4));
+			w31.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment9.Name = "alignment9";
+			// Container child alignment9.Gtk.Container+ContainerChild
+			this.lblMaxPool = new global::Gtk.Label ();
+			this.lblMaxPool.Name = "lblMaxPool";
+			this.lblMaxPool.LabelProp = global::Mono.Unix.Catalog.GetString ("Max Pool Connections:");
+			this.alignment9.Add (this.lblMaxPool);
+			this.table2.Add (this.alignment9);
+			global::Gtk.Table.TableChild w33 = ((global::Gtk.Table.TableChild)(this.table2 [this.alignment9]));
+			w33.TopAttach = ((uint)(2));
+			w33.BottomAttach = ((uint)(3));
+			w33.LeftAttach = ((uint)(2));
+			w33.RightAttach = ((uint)(3));
+			w33.XOptions = ((global::Gtk.AttachOptions)(4));
+			w33.YOptions = ((global::Gtk.AttachOptions)(4));
+			this.GtkAlignment3.Add (this.table2);
+			this.fraAdvanced.Add (this.GtkAlignment3);
+			this.algAdvanced.Add (this.fraAdvanced);
+			this.vbox2.Add (this.algAdvanced);
+			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.algAdvanced]));
+			w37.Position = 4;
+			w37.Expand = false;
+			w37.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment10 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment10.Name = "alignment10";
@@ -310,14 +365,14 @@ namespace SQLiteMonoPlusUI
 			this.hseparator2.Name = "hseparator2";
 			this.alignment10.Add (this.hseparator2);
 			this.vbox2.Add (this.alignment10);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment10]));
-			w33.Position = 4;
-			w33.Expand = false;
-			w33.Fill = false;
+			global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment10]));
+			w39.Position = 5;
+			w39.Expand = false;
+			w39.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment11 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 1F);
 			this.alignment11.Name = "alignment11";
-			this.alignment11.TopPadding = ((uint)(8));
+			this.alignment11.TopPadding = ((uint)(6));
 			this.alignment11.BottomPadding = ((uint)(7));
 			// Container child alignment11.Gtk.Container+ContainerChild
 			this.hbox2 = new global::Gtk.HBox ();
@@ -331,26 +386,26 @@ namespace SQLiteMonoPlusUI
 			this.btnTestConnection.CanFocus = true;
 			this.btnTestConnection.Name = "btnTestConnection";
 			// Container child btnTestConnection.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w34 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+			global::Gtk.Alignment w40 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w35 = new global::Gtk.HBox ();
-			w35.Spacing = 2;
+			global::Gtk.HBox w41 = new global::Gtk.HBox ();
+			w41.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w36 = new global::Gtk.Image ();
-			w36.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-connect", global::Gtk.IconSize.Button);
-			w35.Add (w36);
+			global::Gtk.Image w42 = new global::Gtk.Image ();
+			w42.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-connect", global::Gtk.IconSize.Button);
+			w41.Add (w42);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w38 = new global::Gtk.Label ();
-			w38.LabelProp = global::Mono.Unix.Catalog.GetString ("Test Connection");
-			w35.Add (w38);
-			w34.Add (w35);
-			this.btnTestConnection.Add (w34);
+			global::Gtk.Label w44 = new global::Gtk.Label ();
+			w44.LabelProp = global::Mono.Unix.Catalog.GetString ("Test Connection");
+			w41.Add (w44);
+			w40.Add (w41);
+			this.btnTestConnection.Add (w40);
 			this.alignment17.Add (this.btnTestConnection);
 			this.hbox2.Add (this.alignment17);
-			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment17]));
-			w43.Position = 0;
-			w43.Expand = false;
-			w43.Fill = false;
+			global::Gtk.Box.BoxChild w49 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment17]));
+			w49.Position = 0;
+			w49.Expand = false;
+			w49.Fill = false;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.alignment18 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment18.Name = "alignment18";
@@ -359,28 +414,28 @@ namespace SQLiteMonoPlusUI
 			this.lblTestResult.Name = "lblTestResult";
 			this.alignment18.Add (this.lblTestResult);
 			this.hbox2.Add (this.alignment18);
-			global::Gtk.Box.BoxChild w45 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment18]));
-			w45.Position = 1;
-			w45.Expand = false;
-			w45.Fill = false;
+			global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment18]));
+			w51.Position = 1;
+			w51.Expand = false;
+			w51.Fill = false;
 			this.alignment11.Add (this.hbox2);
 			this.vbox2.Add (this.alignment11);
-			global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment11]));
-			w47.Position = 5;
-			w47.Expand = false;
-			w47.Fill = false;
+			global::Gtk.Box.BoxChild w53 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment11]));
+			w53.Position = 6;
+			w53.Expand = false;
+			w53.Fill = false;
 			this.alignment1.Add (this.vbox2);
 			w1.Add (this.alignment1);
-			global::Gtk.Box.BoxChild w49 = ((global::Gtk.Box.BoxChild)(w1 [this.alignment1]));
-			w49.Position = 0;
-			w49.Expand = false;
-			w49.Fill = false;
+			global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(w1 [this.alignment1]));
+			w55.Position = 0;
+			w55.Expand = false;
+			w55.Fill = false;
 			// Internal child SQLiteMonoPlusUI.frmDatabaseConnect.ActionArea
-			global::Gtk.HButtonBox w50 = this.ActionArea;
-			w50.Name = "dialog1_ActionArea";
-			w50.Spacing = 10;
-			w50.BorderWidth = ((uint)(7));
-			w50.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
+			global::Gtk.HButtonBox w56 = this.ActionArea;
+			w56.Name = "dialog1_ActionArea";
+			w56.Spacing = 10;
+			w56.BorderWidth = ((uint)(7));
+			w56.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.btnCancel = new global::Gtk.Button ();
 			this.btnCancel.CanDefault = true;
@@ -390,9 +445,9 @@ namespace SQLiteMonoPlusUI
 			this.btnCancel.UseUnderline = true;
 			this.btnCancel.Label = "gtk-cancel";
 			this.AddActionWidget (this.btnCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w51 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w50 [this.btnCancel]));
-			w51.Expand = false;
-			w51.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w57 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w56 [this.btnCancel]));
+			w57.Expand = false;
+			w57.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.btnConnect = new global::Gtk.Button ();
 			this.btnConnect.CanDefault = true;
@@ -402,10 +457,10 @@ namespace SQLiteMonoPlusUI
 			this.btnConnect.UseUnderline = true;
 			this.btnConnect.Label = "gtk-connect";
 			this.AddActionWidget (this.btnConnect, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w52 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w50 [this.btnConnect]));
-			w52.Position = 1;
-			w52.Expand = false;
-			w52.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w58 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w56 [this.btnConnect]));
+			w58.Position = 1;
+			w58.Expand = false;
+			w58.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.btnSaveConnect = new global::Gtk.Button ();
 			this.btnSaveConnect.CanFocus = true;
@@ -413,22 +468,23 @@ namespace SQLiteMonoPlusUI
 			this.btnSaveConnect.UseUnderline = true;
 			this.btnSaveConnect.Label = global::Mono.Unix.Catalog.GetString ("Save & Connect");
 			this.AddActionWidget (this.btnSaveConnect, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w53 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w50 [this.btnSaveConnect]));
-			w53.Position = 2;
-			w53.Expand = false;
-			w53.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w59 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w56 [this.btnSaveConnect]));
+			w59.Position = 2;
+			w59.Expand = false;
+			w59.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 624;
-			this.DefaultHeight = 327;
-			this.spnTimeout.Hide ();
-			this.alignment6.Hide ();
-			this.alignment8.Hide ();
-			this.lblMaxPool.Hide ();
+			this.DefaultHeight = 464;
 			this.spnMaxPool.Hide ();
-			this.hbox1.Hide ();
+			this.alignment22.Hide ();
+			this.alignment23.Hide ();
+			this.lblMaxPool.Hide ();
+			this.algAdvanced.Hide ();
 			this.Show ();
+			this.fcDBFile.SelectionChanged += new global::System.EventHandler (this.OnFcDBFileSelectionChanged);
+			this.cbxAdvanced.Toggled += new global::System.EventHandler (this.OnCbxAdvancedToggled);
 			this.cbxPooling.Clicked += new global::System.EventHandler (this.cbxPooling_Clicked);
 			this.btnTestConnection.Clicked += new global::System.EventHandler (this.btnTestConnection_Clicked);
 			this.btnSaveConnect.Clicked += new global::System.EventHandler (this.OnBtnSaveConnectClicked);

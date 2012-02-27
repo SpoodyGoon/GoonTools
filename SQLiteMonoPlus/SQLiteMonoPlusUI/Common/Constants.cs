@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace SQLiteMonoPlusUI.GlobalTools.Constants
+namespace SQLiteMonoPlusUI.Constants
 {
     /// <summary>
     /// Description of Constants.
