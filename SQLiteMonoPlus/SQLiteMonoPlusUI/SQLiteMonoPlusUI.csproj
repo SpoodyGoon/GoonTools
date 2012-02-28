@@ -116,6 +116,7 @@
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmMain.cs" />
     <Compile Include="GlobalData\SQL.cs" />
     <Compile Include="Schema\Database.cs" />
+    <Compile Include="Schema\SchemaEnums.cs" />
     <Compile Include="Schema\Table.cs" />
     <Compile Include="Schema\TableCollection.cs" />
     <Compile Include="Schema\Column.cs" />

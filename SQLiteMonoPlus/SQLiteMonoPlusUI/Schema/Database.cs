@@ -16,7 +16,6 @@ namespace SQLiteMonoPlusUI.Schema
 		public TableCollection Tables = new TableCollection ();
 		public ForeignKeyCollection ForeignKeys = new ForeignKeyCollection();
 		public ViewCollection Views = new ViewCollection();
-		public IndexCollection Indexes = new IndexCollection();
 		// TODO: move the list of pragmas to a config file
 		public string[] PragmaList = new string[]{"auto_vacuum","automatic_index","cache_size","case_sensitive_like","checkpoint_fullfsync","collation_list","compile_options","database_list","encoding","foreign_key_list","foreign_keys","freelist_count","fullfsync","ignore_check_constraints","incremental_vacuum","index_info","index_list","integrity_check","journal_mode","journal_size_limit","legacy_file_format","locking_mode","max_page_count","page_count","page_size","quick_check","read_uncommitted","recursive_triggers","reverse_unordered_selects","schema_version","secure_delete","shrink_memory","synchronous","table_info","temp_store","user_version","wal_autocheckpoint","wal_checkpoint","writable_schema"};
 		public string[] DatabasePragmaList = new string[]{"auto_vacuum","automatic_index","cache_size","case_sensitive_like","checkpoint_fullfsync","encoding","foreign_keys","ignore_check_constraints","journal_mode","journal_size_limit","legacy_file_format","locking_mode","max_page_count","page_size","quick_check","read_uncommitted","recursive_triggers","reverse_unordered_selects","schema_version","secure_delete","synchronous","temp_store","user_version","wal_autocheckpoint","wal_checkpoint","writable_schema"};
@@ -104,8 +103,9 @@ namespace SQLiteMonoPlusUI.Schema
 				Index idx;
 				foreach(DataRowView drv in dv)
 				{
-					idx = new Index(drv["ObjectName"].ToString().Trim(), drv["SQL"].ToString().Trim(), drv["TableName"].ToString().Trim());
-					this.Indexes.Add(idx);
+					tbl = Tables[drv["TableName"].ToString().Trim()];
+					idx = new Index(drv["ObjectName"].ToString().Trim(), drv["SQL"].ToString().Trim(), tbl.TableName);
+					tbl.Indexes.Add(idx);
 				}
 				
 				dv.RowFilter = "Type = 'view'";
@@ -169,7 +169,7 @@ namespace SQLiteMonoPlusUI.Schema
 			Views.Clear();
 		}
 
-        private void LoadTableDetails()
+        private void LoadTableColumns()
         {
             SqliteConnection sqlCN = new SqliteConnection(_ConnectionString);
             SqliteCommand sqlCMD = new SqliteCommand();
@@ -183,7 +183,7 @@ namespace SQLiteMonoPlusUI.Schema
                 for(int i = 0; i < Tables.Count; i++)
                 {
                 	t = (Table)Tables[i];
-                	sqlCMD.CommandText = GlobalData.SQL.TableDetailsGet.Replace("[TableName]", t.TableName);
+                	sqlCMD.CommandText = GlobalData.SQL.PragmaTableInfo.Replace("[TableName]", t.TableName);
            	 		sqlCMD.CommandType = CommandType.Text;
             		sqlCMD.CommandTimeout = 300;
                 	sqlReader = sqlCMD.ExecuteReader();
@@ -191,6 +191,43 @@ namespace SQLiteMonoPlusUI.Schema
                 	{
                 		c = new Column(Convert.ToInt32(sqlReader["cid"]),sqlReader["name"].ToString(),sqlReader["type"].ToString(),sqlReader["notnull"].ToString() == "0" ? true:false ,(object)sqlReader["dft_value"],Convert.ToBoolean(sqlReader["pk"]));
                 		t.Columns.Add(c);
+                	}
+                }
+                sqlReader.Close();
+                sqlCN.Close();
+            }
+            catch (Exception ex)
+            {
+                Common.HandleError(ex);
+            }
+        }
+
+        private void LoadIndexDetails()
+        {
+            SqliteConnection sqlCN = new SqliteConnection(_ConnectionString);
+            SqliteCommand sqlCMD = new SqliteCommand();
+            SqliteDataReader sqlReader = null;
+            try
+            {
+            	sqlCMD.Connection = sqlCN;
+                sqlCN.Open();
+				Table tbl;
+				Index idx;
+                for(int i = 0; i < Tables.Count; i++)
+                {
+                	tbl = (Table)Tables[i];
+                	for(int j = 0; j < tbl.Indexes.Count; j++)
+                	{
+                		idx = (Index)tbl.Indexes[j];
+	                	sqlCMD.CommandText = GlobalData.SQL.PragmaIndexInfo.Replace("[IndexName]", idx.IndexName);
+	           	 		sqlCMD.CommandType = CommandType.Text;
+	            		sqlCMD.CommandTimeout = 300;
+	                	sqlReader = sqlCMD.ExecuteReader();
+	                	while (sqlReader.Read())
+	                	{
+	                		//c = new Column(Convert.ToInt32(sqlReader["cid"]),sqlReader["name"].ToString(),sqlReader["type"].ToString(),sqlReader["notnull"].ToString() == "0" ? true:false ,(object)sqlReader["dft_value"],Convert.ToBoolean(sqlReader["pk"]));
+	                		//t.Columns.Add(c);
+	                	}
                 	}
                 }
                 sqlReader.Close();
