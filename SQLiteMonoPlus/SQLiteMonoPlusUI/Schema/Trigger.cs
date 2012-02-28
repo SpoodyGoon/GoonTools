@@ -16,12 +16,12 @@ namespace SQLiteMonoPlusUI.Schema
 	public class Trigger
 	{
 		public string TriggerName = string.Empty;
-		public string TriggerTable = string.Empty;
+		public string TableName;
 		public string SQL = string.Empty;
-		public Trigger(string name, string sql, string tbl_name)
+		public Trigger(string name, string sql, string table_name)
 		{
 			TriggerName = name;
-			TriggerTable = tbl_name;
+			TableName = table_name;
 			SQL = sql;
 		}
 	}

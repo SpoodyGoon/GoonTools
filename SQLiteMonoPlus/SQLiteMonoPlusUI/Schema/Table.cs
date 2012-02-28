@@ -8,6 +8,7 @@ namespace SQLiteMonoPlusUI.Schema
 		public string SQL = string.Empty;
 		public ColumnCollection Columns = new ColumnCollection();
 		public TriggerCollection Triggers = new TriggerCollection();
+		public IndexCollection Indexes = new IndexCollection();
 		public Table (string name, string sql) : base()
 		{
 			TableName = name;
