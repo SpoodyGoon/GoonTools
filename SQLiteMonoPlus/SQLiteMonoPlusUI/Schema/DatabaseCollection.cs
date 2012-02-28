@@ -2,7 +2,7 @@
  * Created by SharpDevelop.
  * User: ayork
  * Date: 2/28/2012
- * Time: 2:28 PM
+ * Time: 5:00 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -10,17 +10,13 @@ using System;
 
 namespace SQLiteMonoPlusUI.Schema
 {
-	public enum SortDirection
+	/// <summary>
+	/// Description of DatabaseCollection.
+	/// </summary>
+	public class DatabaseCollection
 	{
-		ASC,
-		DESC
-	}
-	
-	public enum DBObjectType
-	{
-		Database,
-		Table,
-		Column,
-		Index
+		public DatabaseCollection()
+		{
+		}
 	}
 }
