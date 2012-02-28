@@ -134,10 +134,13 @@
     <Compile Include="Common\BufferTags.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\EnviromentData.cs" />
+    <Compile Include="UI\ObjectExplorer\SchemaTreeView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="bin\Debug\" />
+    <Folder Include="UI" />
+    <Folder Include="UI\ObjectExplorer" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

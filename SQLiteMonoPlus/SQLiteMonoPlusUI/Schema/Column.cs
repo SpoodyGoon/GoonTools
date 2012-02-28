@@ -6,6 +6,7 @@ namespace SQLiteMonoPlusUI.Schema
 		public Nullable<int> CID = null;
 		public string ColumnName = string.Empty;
 		public SQLiteDataType DataType = SQLiteDataType.None;
+		public string DataTypeDisplay = string.Empty;
 		public int Size = 50;
 		public bool PrimaryKey = false;
 		public bool ForeingKey = false;
@@ -15,6 +16,7 @@ namespace SQLiteMonoPlusUI.Schema
 		{
 			CID = cid;
 			ColumnName = name;
+			DataTypeDisplay = type;
 			AllowNull = allow_null;
 			DefaultValue = default_value;
 			PrimaryKey = primary_key;
