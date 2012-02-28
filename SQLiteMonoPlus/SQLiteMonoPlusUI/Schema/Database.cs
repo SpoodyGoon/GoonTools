@@ -37,7 +37,8 @@ namespace SQLiteMonoPlusUI.Schema
 				_ConnectionString = Constants.ConnectionString.Simple.Replace ("[DBPATH]", _DatabaseFile);
 					
 				DBObjectsClear();
-				LoadDBObjects(DBObjectsGet());
+				LoadDBObjects();
+				LoadTableColumns();
 			}
 			catch(Exception ex)
 			{
@@ -88,6 +89,7 @@ namespace SQLiteMonoPlusUI.Schema
 		{
 			try
 			{
+				DataTable dt = DBObjectsGet();
 				DataView dv = dt.DefaultView;
 				dv.RowFilter = "Type = 'table'";
 				dv.Sort = "TableName ASC";
