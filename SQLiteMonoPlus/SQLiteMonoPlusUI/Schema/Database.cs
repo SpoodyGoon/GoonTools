@@ -85,7 +85,7 @@ namespace SQLiteMonoPlusUI.Schema
 			}
 		}
 		
-		private void LoadDBObjects(DataTable dt)
+		private void LoadDBObjects()
 		{
 			try
 			{

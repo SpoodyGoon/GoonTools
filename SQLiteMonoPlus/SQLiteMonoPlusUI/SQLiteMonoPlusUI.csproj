@@ -116,6 +116,8 @@
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmMain.cs" />
     <Compile Include="GlobalData\SQL.cs" />
     <Compile Include="Schema\Database.cs" />
+    <Compile Include="Schema\DatabaseCollection.cs" />
+    <Compile Include="Schema\OpenObjects.cs" />
     <Compile Include="Schema\SchemaEnums.cs" />
     <Compile Include="Schema\Table.cs" />
     <Compile Include="Schema\TableCollection.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="Common\BufferTags.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\EnviromentData.cs" />
+    <Compile Include="UI\ObjectExplorer\SchemaTreeModel.cs" />
     <Compile Include="UI\ObjectExplorer\SchemaTreeView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
