@@ -122,6 +122,8 @@
     <Compile Include="Schema\ColumnCollection.cs" />
     <Compile Include="Schema\Index.cs" />
     <Compile Include="Schema\ForeignKey.cs" />
+    <Compile Include="Schema\Trigger.cs" />
+    <Compile Include="Schema\TriggerCollection.cs" />
     <Compile Include="Schema\View.cs" />
     <Compile Include="Schema\IndexCollection.cs" />
     <Compile Include="Schema\ForeignKeyCollection.cs" />

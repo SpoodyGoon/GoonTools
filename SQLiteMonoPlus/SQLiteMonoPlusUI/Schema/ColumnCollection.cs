@@ -5,7 +5,7 @@ namespace SQLiteMonoPlusUI.Schema
 {
 	public class ColumnCollection : ICollection, IEnumerable
 	{
-		ArrayList _Columns = new ArrayList();
+		private ArrayList _Columns = new ArrayList();
 		public ColumnCollection ()
 		{
 		}
