@@ -33,12 +33,20 @@ namespace SQLiteMonoPlusUI
 	
 		protected void btnConnect_Clicked (object sender, System.EventArgs e)
 		{
+			string strDBFile = null;
 			frmDatabaseConnect fm = new frmDatabaseConnect();			
 			if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
 			{
-				
+				strDBFile = fm.SelectedDatabase;
 			}
 			fm.Destroy();
+			
+			if(!string.IsNullOrEmpty(strDBFile))
+			{
+				Schema.Database db = new Schema.Database(fm.SelectedDatabase);
+				Schema.OpenObjects.Databases.Add(db);
+				db.LoadSchema();                 
+			}
 		}
 	}
 }
