@@ -15,8 +15,6 @@ namespace SQLiteMonoPlusUI.Schema
 	/// </summary>
 	public class OpenObjects
 	{
-		public OpenObjects()
-		{
-		}
+		public static DatabaseCollection Databases = new DatabaseCollection();
 	}
 }

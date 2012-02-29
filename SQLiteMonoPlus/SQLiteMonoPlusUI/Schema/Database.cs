@@ -11,6 +11,7 @@ namespace SQLiteMonoPlusUI.Schema
 	public class Database
 	{
 		private string _DatabaseFile = string.Empty;
+		public string DatabaseName = string.Empty;
 		private string _ConnectionString = string.Empty;
 		public Dictionary<string, string> Pragmas = new Dictionary<string, string> ();
 		public TableCollection Tables = new TableCollection ();
@@ -24,17 +25,25 @@ namespace SQLiteMonoPlusUI.Schema
 		public Database (string DBFile)
 		{
 			_DatabaseFile = DBFile;
+		}
+		
+		public void LoadSchema()
+		{
 			try
 			{
-				if(!File.Exists(_DatabaseFile))
-					throw new FileNotFoundException("Unable to find database file.", _DatabaseFile);
+				FileInfo fi = new FileInfo(_DatabaseFile);
 				
-				if(!Common.DatabaseTryConnect(_DatabaseFile))
-					throw new SqliteExecutionException("Unable to connect to database: " + _DatabaseFile);
+				if(!fi.Exists)
+					throw new FileNotFoundException("Unable to find database file.", fi.FullName);
+				
+				if(!Common.DatabaseTryConnect(fi.FullName))
+					throw new SqliteExecutionException("Unable to connect to database: " + fi.FullName);
 				
 				// create the connection string used
 				// with this instance of the schema object
-				_ConnectionString = Constants.ConnectionString.Simple.Replace ("[DBPATH]", _DatabaseFile);
+				_ConnectionString = Constants.ConnectionString.Simple.Replace ("[DBPATH]", fi.FullName);
+				
+				DatabaseName = fi.Name.Replace(fi.Extension, "");
 					
 				DBObjectsClear();
 				LoadDBObjects();
@@ -44,6 +53,7 @@ namespace SQLiteMonoPlusUI.Schema
 			{
 				Common.HandleError(ex);
 			}
+			
 		}
 		
 		private void LoadPragmas()

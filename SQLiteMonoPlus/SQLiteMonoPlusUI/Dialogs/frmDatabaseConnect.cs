@@ -16,6 +16,18 @@ namespace SQLiteMonoPlusUI
 		{
 			this.Build ();
 		}
+		
+		public string SelectedDatabase
+		{
+			get
+			{
+				if(string.IsNullOrEmpty(fcDBFile.Name))
+					return null;
+				else
+					return fcDBFile.Name;
+			}
+		}
+		
 
 		protected void cbxPooling_Clicked (object sender, System.EventArgs e)
 		{
