@@ -7,16 +7,54 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using Gtk;
+using GlobalTools;
 
 namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 {
 	/// <summary>
 	/// Description of SchemaTreeView.
 	/// </summary>
-	public class SchemaTreeView
+	public class SchemaTreeView : Gtk.TreeView
 	{
-		public SchemaTreeView()
+		private Gtk.Window _Parent;
+		public SchemaTreeModel _TreeModel = new SchemaTreeModel();
+		public SchemaTreeView(Gtk.Window parent)
 		{
+			_Parent = parent;
+		}
+		
+		private void Build()
+		{
+			this.HeadersClickable = true;
+			this.HeadersVisible = true;
+			this.RulesHint = true;
+			this.EnableGridLines = Gtk.TreeViewGridLines.Both;
+			
+			// Create a column for the list name
+			Gtk.TreeViewColumn colObjectName = new Gtk.TreeViewColumn ();
+			colObjectName.Clickable = true;
+			colObjectName.Expand = true;
+			colObjectName.Resizable = true;
+			colObjectName.Title = "Object Name";
+			Gtk.CellRendererText cellObjectName = new Gtk.CellRendererText ();
+			cellObjectName.Editable = false;
+			cellObjectName.Ellipsize = Pango.EllipsizeMode.End;
+			colObjectName.PackStart (cellObjectName, true);
+			this.AppendColumn (colObjectName);
+			colObjectName.SetCellDataFunc(cellObjectName, new Gtk.TreeCellDataFunc(RenderObjectName));
+			this.Model = _TreeModel;
+		}
+		
+		private void RenderObjectName (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			SchemaDisplay sd = (SchemaDisplay)model.GetValue(iter, 0);
+			(cell as Gtk.CellRendererText).Text = sd.ObjectName;
+		}
+		
+		public void Load()
+		{
+			_TreeModel.Load();
 		}
 	}
 }

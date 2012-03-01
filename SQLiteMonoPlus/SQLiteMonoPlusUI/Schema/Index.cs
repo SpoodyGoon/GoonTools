@@ -7,6 +7,7 @@ namespace SQLiteMonoPlusUI.Schema
 		public string IndexTable = string.Empty;
 		public string SQL = string.Empty;
 		public bool Unique = false;
+		public System.Collections.ArrayList IndexColumns = new System.Collections.ArrayList();
 		public Index (string name, string sql,string table_name) : base()
 		{
 			IndexName = name;
@@ -21,6 +22,11 @@ namespace SQLiteMonoPlusUI.Schema
 			SQL = sql;
 			IndexTable = table_name;
 			Unique = unique;
+		}
+		
+		public void AddColumnInfo(IndexColumn idxColumn)
+		{
+			IndexColumns.Add(idxColumn);
 		}
 	}
 	

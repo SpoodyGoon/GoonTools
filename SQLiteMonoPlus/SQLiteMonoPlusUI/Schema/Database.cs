@@ -66,6 +66,7 @@ namespace SQLiteMonoPlusUI.Schema
             try
             {
             	sqlCN.Open();
+            
             	while(sqlReader.Read())
             	{
             		
