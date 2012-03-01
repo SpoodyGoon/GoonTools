@@ -6,9 +6,11 @@ namespace SQLiteMonoPlusUI
 {
 	public partial class frmMain: Gtk.Window
 	{	
+		protected SQLiteMonoPlusUI.UI.ObjectExplorer.SchemaTreeView SchemaView;
 		public frmMain (): base (Gtk.WindowType.Toplevel)
 		{
 			Build ();
+			SchemaView = new SQLiteMonoPlusUI.UI.ObjectExplorer.SchemaTreeView(this);
 		}
 		
 		#region Application Shutdown
