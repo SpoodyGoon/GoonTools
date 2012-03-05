@@ -22,14 +22,15 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 		public SchemaTreeView(Gtk.Window parent)
 		{
 			_Parent = parent;
+			this.Build();
 		}
 		
 		private void Build()
 		{
-			this.HeadersClickable = true;
-			this.HeadersVisible = true;
-			this.RulesHint = true;
-			this.EnableGridLines = Gtk.TreeViewGridLines.Both;
+			this.HeadersClickable = false;
+			this.HeadersVisible = false;
+			this.RulesHint = false;
+			this.EnableGridLines = Gtk.TreeViewGridLines.None;
 			
 			// Create a column for the list name
 			Gtk.TreeViewColumn colObjectName = new Gtk.TreeViewColumn ();
