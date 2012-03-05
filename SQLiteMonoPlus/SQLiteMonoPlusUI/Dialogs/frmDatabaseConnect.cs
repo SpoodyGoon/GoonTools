@@ -21,10 +21,10 @@ namespace SQLiteMonoPlusUI
 		{
 			get
 			{
-				if(string.IsNullOrEmpty(fcDBFile.Name))
+				if(string.IsNullOrEmpty(fcDBFile.Filename))
 					return null;
 				else
-					return fcDBFile.Name;
+					return fcDBFile.Filename;
 			}
 		}
 		

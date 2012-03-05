@@ -59,17 +59,22 @@ namespace SQLiteMonoPlusUI.Schema
 		private void LoadPragmas()
 		{
             SqliteConnection sqlCN = new SqliteConnection(_ConnectionString);
-            SqliteCommand sqlCMD = new SqliteCommand(GlobalData.SQL.TablesGet, sqlCN);
+            SqliteCommand sqlCMD = new SqliteCommand();
             sqlCMD.CommandType = CommandType.Text;
             sqlCMD.CommandTimeout = 300;
             SqliteDataReader sqlReader = null;
             try
             {
+            	sqlCMD.Connection = sqlCN;
             	sqlCN.Open();
-            
-            	while(sqlReader.Read())
+            	
+            	for(int i = 0; i < DatabasePragmaList.Length; i++)
             	{
-            		
+            		sqlCMD.CommandText = GlobalData.SQL.PragmaGeneric.Replace("[PragmaName]", DatabasePragmaList[i]);
+	            	while(sqlReader.Read())
+	            	{
+	            		
+	            	}
             	}
             	sqlReader.Close();
             	sqlCN.Close();
@@ -102,7 +107,7 @@ namespace SQLiteMonoPlusUI.Schema
 			{
 				DataTable dt = DBObjectsGet();
 				DataView dv = dt.DefaultView;
-				dv.RowFilter = "Type = 'table'";
+				dv.RowFilter = "ObjectType = 'table'";
 				dv.Sort = "TableName ASC";
 				Table tbl;
 				foreach(DataRowView drv in dv)
@@ -111,7 +116,7 @@ namespace SQLiteMonoPlusUI.Schema
 					this.Tables.Add(tbl);
 				}
 				
-				dv.RowFilter = "Type = 'index'";
+				dv.RowFilter = "ObjectType = 'index'";
 				dv.Sort = "TableName ASC, ObjectName ASC";
 				Index idx;
 				foreach(DataRowView drv in dv)
@@ -121,7 +126,7 @@ namespace SQLiteMonoPlusUI.Schema
 					tbl.Indexes.Add(idx);
 				}
 				
-				dv.RowFilter = "Type = 'view'";
+				dv.RowFilter = "ObjectType = 'view'";
 				dv.Sort = "TableName ASC, ObjectName ASC";
 				View vw;
 				foreach(DataRowView drv in dv)
@@ -130,7 +135,7 @@ namespace SQLiteMonoPlusUI.Schema
 					this.Views.Add(vw);
 				}
 				
-				dv.RowFilter = "Type = 'trigger'";
+				dv.RowFilter = "ObjectType = 'trigger'";
 				dv.Sort = "TableName ASC, ObjectName ASC";
 				Trigger tgr;
 				foreach(DataRowView drv in dv)
@@ -202,7 +207,7 @@ namespace SQLiteMonoPlusUI.Schema
                 	sqlReader = sqlCMD.ExecuteReader();
                 	while (sqlReader.Read())
                 	{
-                		c = new Column(Convert.ToInt32(sqlReader["cid"]),sqlReader["name"].ToString(),sqlReader["type"].ToString(),sqlReader["notnull"].ToString() == "0" ? true:false ,(object)sqlReader["dft_value"],Convert.ToBoolean(sqlReader["pk"]));
+                		c = new Column(Convert.ToInt32(sqlReader["cid"]),sqlReader["name"].ToString(),sqlReader["type"].ToString(),sqlReader["notnull"].ToString() == "0" ? true:false ,(object)sqlReader["dflt_value"],Convert.ToBoolean(sqlReader["pk"]));
                 		t.Columns.Add(c);
                 	}
                 }

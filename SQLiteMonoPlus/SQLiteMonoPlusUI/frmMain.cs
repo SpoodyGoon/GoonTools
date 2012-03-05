@@ -11,6 +11,8 @@ namespace SQLiteMonoPlusUI
 		{
 			Build ();
 			SchemaView = new SQLiteMonoPlusUI.UI.ObjectExplorer.SchemaTreeView(this);
+			algObjectExplorer.Add(SchemaView);
+			this.ShowAll();
 		}
 		
 		#region Application Shutdown
@@ -45,9 +47,11 @@ namespace SQLiteMonoPlusUI
 			
 			if(!string.IsNullOrEmpty(strDBFile))
 			{
-				Schema.Database db = new Schema.Database(fm.SelectedDatabase);
+				Schema.Database db = new Schema.Database(strDBFile);
 				Schema.OpenObjects.Databases.Add(db);
-				db.LoadSchema();                 
+				db.LoadSchema();   
+				SchemaView.Load();
+				this.ShowAll();
 			}
 		}
 	}

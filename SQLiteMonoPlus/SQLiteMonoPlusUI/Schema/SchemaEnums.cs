@@ -20,7 +20,9 @@ namespace SQLiteMonoPlusUI.Schema
 	{
 		Database,
 		Table,
+		View,
 		Column,
-		Index
+		Index,
+		Label
 	}
 }

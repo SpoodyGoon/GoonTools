@@ -9,19 +9,20 @@ namespace SQLiteMonoPlusUI.GlobalData
         public const string ConnectionUpdate = "UPDATE tb_Connections SET ConnectionName = @ConnectionName, FilePath = @FilePath, Password = @Password, Pooling = @Pooling, MaxPooling = @MaxPooling, LastUsedDate = (DATETIME('now')) WHERE ConnectionID = @ConnectionID;";
         public const string ConnectionDelete = "DELETE FROM tb_Connections WHERE ConnectionID = @ConnectionID;";
 		// this will need a union
-		public const string TablesGet = "" +
+		public const string TablesGet = " " +
 			"SELECT " +
 			"	name AS ObjectName, " +
 			"	tbl_name AS TableName, " +
 			"	sql AS SQL, " +
-			"	LOWER(type) AS Type, " +
-			"	CASE LOWER(type) WHEN 'table' THEN 1 WHEN 'index' THEN 2 WHEN 'view' THEN 3 ELSE 4 END as SortOrder" +
+			"	LOWER(type) AS ObjectType, " +
+			"	CASE LOWER(type) WHEN 'table' THEN 1 WHEN 'index' THEN 2 WHEN 'view' THEN 3 ELSE 4 END as SortOrder " +
 			"FROM " +
 			"	sqlite_master " +
 			"WHERE " +
-			"	name NOT LIKE 'sqlite_%'" +
+			"	name NOT LIKE 'sqlite_%' " +
 			"ORDER BY " +
-			"	SortOrder, tbl_name, name;";
+			"	SortOrder, tbl_name, name; ";
+        public const string PragmaGeneric = "PRAGMA [PragmaName];";
         public const string PragmaTableInfo = "PRAGMA table_info('[TableName]');";
         public const string PragmaIndexInfo = "PRAGMA index_info('[IndexName]');";
         public const string ConnectionTest = "SELECT * FROM sqlite_master WHERE 1=2";
