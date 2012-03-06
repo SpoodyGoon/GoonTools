@@ -113,7 +113,7 @@
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
-    <property name="AllowShrink">True</property>
+    <property name="AllowGrow">False</property>
     <property name="DestroyWithParent">True</property>
     <property name="Buttons">3</property>
     <property name="HelpButton">False</property>
@@ -183,6 +183,7 @@
                             <property name="MemberName" />
                             <property name="Xscale">0.01</property>
                             <property name="Xalign">0.01</property>
+                            <property name="RightPadding">10</property>
                             <child>
                               <widget class="Gtk.FileChooserButton" id="fcDBFile">
                                 <property name="MemberName" />
@@ -796,6 +797,7 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="AllowGrow">False</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -942,10 +944,29 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="Gtk.Alignment" id="algObjectExplorer">
+                                      <widget class="Gtk.Alignment" id="algBaseObjectExplorer">
                                         <property name="MemberName" />
                                         <child>
-                                          <placeholder />
+                                          <widget class="Gtk.ScrolledWindow" id="swObjectExplorer">
+                                            <property name="MemberName" />
+                                            <property name="CanFocus">True</property>
+                                            <property name="HscrollbarPolicy">Never</property>
+                                            <property name="ShadowType">In</property>
+                                            <child>
+                                              <widget class="Gtk.Viewport" id="GtkViewport">
+                                                <property name="MemberName" />
+                                                <property name="ShadowType">None</property>
+                                                <child>
+                                                  <widget class="Gtk.Alignment" id="algObjectExplorer">
+                                                    <property name="MemberName" />
+                                                    <child>
+                                                      <placeholder />
+                                                    </child>
+                                                  </widget>
+                                                </child>
+                                              </widget>
+                                            </child>
+                                          </widget>
                                         </child>
                                       </widget>
                                       <packing>
