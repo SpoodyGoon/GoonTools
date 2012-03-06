@@ -54,5 +54,10 @@ namespace SQLiteMonoPlusUI
 				this.ShowAll();
 			}
 		}
+
+		protected void OnAboutActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
 	}
 }
