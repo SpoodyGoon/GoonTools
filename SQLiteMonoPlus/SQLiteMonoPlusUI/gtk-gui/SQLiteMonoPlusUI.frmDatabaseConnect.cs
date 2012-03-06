@@ -64,7 +64,7 @@ namespace SQLiteMonoPlusUI
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Modal = true;
-			this.AllowShrink = true;
+			this.AllowGrow = false;
 			this.DestroyWithParent = true;
 			// Internal child SQLiteMonoPlusUI.frmDatabaseConnect.VBox
 			global::Gtk.VBox w1 = this.VBox;
@@ -120,6 +120,7 @@ namespace SQLiteMonoPlusUI
 			// Container child table1.Gtk.Table+TableChild
 			this.alignment12 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
 			this.alignment12.Name = "alignment12";
+			this.alignment12.RightPadding = ((uint)(10));
 			// Container child alignment12.Gtk.Container+ContainerChild
 			this.fcDBFile = new global::Gtk.FileChooserButton (global::Mono.Unix.Catalog.GetString ("Select A File"), ((global::Gtk.FileChooserAction)(0)));
 			this.fcDBFile.WidthRequest = 350;
