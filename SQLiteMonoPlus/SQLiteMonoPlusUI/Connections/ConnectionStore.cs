@@ -41,6 +41,7 @@ namespace SQLiteMonoPlusUI.GlobalData
                 	md.Destroy();
             	}
             	
+				this.Clear();
             	// See if the Connection save file exists
             	if(File.Exists(Common.EnvData.ConnectionFilePath))
             	{	

@@ -37,6 +37,17 @@ namespace SQLiteMonoPlusUI
 				Common.HandleError(ex);
 			}
 		}
+		
+		public void Load()
+		{
+		}
+		
+		public void Refresh()
+		{
+			Common.RecentConnections.Refresh();
+				_LastLoad = DateTime.Now;
+			this.ShowAll();
+		}
 
 		#region Cell Data Functions
 

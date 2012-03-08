@@ -12,6 +12,9 @@ namespace SQLiteMonoPlusUI
 		private global::Gtk.Action NewQueryAction1;
 		private global::Gtk.Action connectAction;
 		private global::Gtk.Action ExecuteAction;
+		private global::Gtk.Action connectAction1;
+		private global::Gtk.Action HelpAction;
+		private global::Gtk.Action aboutAction;
 		private global::Gtk.VBox vbox1;
 		private global::Gtk.Alignment alignment1;
 		private global::Gtk.MenuBar menubar1;
@@ -30,7 +33,8 @@ namespace SQLiteMonoPlusUI
 		private global::Gtk.HSeparator hseparator1;
 		private global::Gtk.Alignment alignment8;
 		private global::Gtk.Toolbar toolbar2;
-		private global::Gtk.Alignment algObjectExplorer;
+		private global::Gtk.Alignment alignment7;
+		private global::Gtk.ScrolledWindow swObjectExplorer;
 		private global::Gtk.Alignment alignment6;
 		private global::Gtk.Frame frame3;
 		private global::Gtk.Alignment GtkAlignment5;
@@ -65,11 +69,24 @@ namespace SQLiteMonoPlusUI
 			this.ExecuteAction = new global::Gtk.Action ("ExecuteAction", global::Mono.Unix.Catalog.GetString ("Execute"), global::Mono.Unix.Catalog.GetString ("Execute Query"), "ExecuteQuery");
 			this.ExecuteAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Execute");
 			w1.Add (this.ExecuteAction, null);
+			this.connectAction1 = new global::Gtk.Action ("connectAction1", global::Mono.Unix.Catalog.GetString ("New Connection"), global::Mono.Unix.Catalog.GetString ("New Connection"), "gtk-connect");
+			this.connectAction1.HideIfEmpty = false;
+			this.connectAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("New Connection");
+			w1.Add (this.connectAction1, null);
+			this.HelpAction = new global::Gtk.Action ("HelpAction", global::Mono.Unix.Catalog.GetString ("Help"), null, null);
+			this.HelpAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Help");
+			w1.Add (this.HelpAction, null);
+			this.aboutAction = new global::Gtk.Action ("aboutAction", global::Mono.Unix.Catalog.GetString ("_About"), null, "gtk-about");
+			this.aboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_About");
+			w1.Add (this.aboutAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "SQLiteMonoPlusUI.frmMain";
-			this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
+			this.Title = global::Mono.Unix.Catalog.GetString ("SQLite Mono Plus");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.AllowShrink = true;
+			this.DefaultWidth = 850;
+			this.DefaultHeight = 750;
 			// Container child SQLiteMonoPlusUI.frmMain.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
@@ -78,10 +95,7 @@ namespace SQLiteMonoPlusUI
 			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment1.Name = "alignment1";
 			// Container child alignment1.Gtk.Container+ContainerChild
-			this.UIManager.AddUiFromString ("<ui><menubar name=\'menubar1\'><menu name=\'FileAction\' action=\'FileAction\'><menu na" +
-					"me=\'NewAction\' action=\'NewAction\'><menuitem name=\'NewQueryAction1\' action=\'NewQu" +
-					"eryAction1\'/></menu><menuitem name=\'quitAction\' action=\'quitAction\'/></menu></me" +
-					"nubar></ui>");
+			this.UIManager.AddUiFromString (@"<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menu name='NewAction' action='NewAction'><menuitem name='NewQueryAction1' action='NewQueryAction1'/><menuitem name='connectAction1' action='connectAction1'/></menu><menuitem name='quitAction' action='quitAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
 			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 			this.menubar1.Name = "menubar1";
 			this.alignment1.Add (this.menubar1);
@@ -119,7 +133,7 @@ namespace SQLiteMonoPlusUI
 			this.hpaned1 = new global::Gtk.HPaned ();
 			this.hpaned1.CanFocus = true;
 			this.hpaned1.Name = "hpaned1";
-			this.hpaned1.Position = 320;
+			this.hpaned1.Position = 325;
 			// Container child hpaned1.Gtk.Paned+PanedChild
 			this.alignment4 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment4.Name = "alignment4";
@@ -182,17 +196,23 @@ namespace SQLiteMonoPlusUI
 			w11.Expand = false;
 			w11.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.algObjectExplorer = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.algObjectExplorer.Name = "algObjectExplorer";
-			this.vbox2.Add (this.algObjectExplorer);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.algObjectExplorer]));
-			w12.Position = 3;
+			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment7.Name = "alignment7";
+			// Container child alignment7.Gtk.Container+ContainerChild
+			this.swObjectExplorer = new global::Gtk.ScrolledWindow ();
+			this.swObjectExplorer.CanFocus = true;
+			this.swObjectExplorer.Name = "swObjectExplorer";
+			this.swObjectExplorer.ShadowType = ((global::Gtk.ShadowType)(1));
+			this.alignment7.Add (this.swObjectExplorer);
+			this.vbox2.Add (this.alignment7);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
+			w13.Position = 3;
 			this.GtkAlignment3.Add (this.vbox2);
 			this.frame2.Add (this.GtkAlignment3);
 			this.alignment4.Add (this.frame2);
 			this.hpaned1.Add (this.alignment4);
-			global::Gtk.Paned.PanedChild w16 = ((global::Gtk.Paned.PanedChild)(this.hpaned1 [this.alignment4]));
-			w16.Resize = false;
+			global::Gtk.Paned.PanedChild w17 = ((global::Gtk.Paned.PanedChild)(this.hpaned1 [this.alignment4]));
+			w17.Resize = false;
 			// Container child hpaned1.Gtk.Paned+PanedChild
 			this.alignment6 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment6.Name = "alignment6";
@@ -210,13 +230,13 @@ namespace SQLiteMonoPlusUI
 			this.nbQueryEditor.Name = "nbQueryEditor";
 			this.nbQueryEditor.CurrentPage = 0;
 			// Notebook tab
-			global::Gtk.Label w17 = new global::Gtk.Label ();
-			w17.Visible = true;
-			this.nbQueryEditor.Add (w17);
+			global::Gtk.Label w18 = new global::Gtk.Label ();
+			w18.Visible = true;
+			this.nbQueryEditor.Add (w18);
 			this.label2 = new global::Gtk.Label ();
 			this.label2.Name = "label2";
 			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("page1");
-			this.nbQueryEditor.SetTabLabel (w17, this.label2);
+			this.nbQueryEditor.SetTabLabel (w18, this.label2);
 			this.label2.ShowAll ();
 			this.GtkAlignment5.Add (this.nbQueryEditor);
 			this.frame3.Add (this.GtkAlignment5);
@@ -225,8 +245,8 @@ namespace SQLiteMonoPlusUI
 			this.GtkAlignment2.Add (this.hpaned1);
 			this.frame1.Add (this.GtkAlignment2);
 			this.vbox1.Add (this.frame1);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frame1]));
-			w24.Position = 2;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frame1]));
+			w25.Position = 2;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment5.Name = "alignment5";
@@ -236,20 +256,20 @@ namespace SQLiteMonoPlusUI
 			this.statusbar1.Spacing = 6;
 			this.alignment5.Add (this.statusbar1);
 			this.vbox1.Add (this.alignment5);
-			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.alignment5]));
-			w26.Position = 3;
-			w26.Expand = false;
-			w26.Fill = false;
+			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.alignment5]));
+			w27.Position = 3;
+			w27.Expand = false;
+			w27.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 1113;
-			this.DefaultHeight = 688;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.quitAction.Activated += new global::System.EventHandler (this.Quit_Clicked);
 			this.connectAction.Activated += new global::System.EventHandler (this.btnConnect_Clicked);
+			this.connectAction1.Activated += new global::System.EventHandler (this.btnConnect_Clicked);
+			this.aboutAction.Activated += new global::System.EventHandler (this.OnAboutActionActivated);
 		}
 	}
 }

@@ -11,7 +11,7 @@ namespace SQLiteMonoPlusUI
 		{
 			Build ();
 			SchemaView = new SQLiteMonoPlusUI.UI.ObjectExplorer.SchemaTreeView(this);
-			algObjectExplorer.Add(SchemaView);
+			swObjectExplorer.Add(SchemaView);
 			this.ShowAll();
 		}
 		
