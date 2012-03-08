@@ -200,6 +200,8 @@ namespace SQLiteMonoPlusUI
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.algAdvanced = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.algAdvanced.Name = "algAdvanced";
+			this.algAdvanced.LeftPadding = ((uint)(32));
+			this.algAdvanced.RightPadding = ((uint)(32));
 			// Container child algAdvanced.Gtk.Container+ContainerChild
 			this.fraAdvanced = new global::Gtk.Frame ();
 			this.fraAdvanced.Name = "fraAdvanced";
@@ -409,6 +411,7 @@ namespace SQLiteMonoPlusUI
 			w49.Fill = false;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.alignment18 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment18.WidthRequest = 175;
 			this.alignment18.Name = "alignment18";
 			// Container child alignment18.Gtk.Container+ContainerChild
 			this.lblTestResult = new global::Gtk.Label ();

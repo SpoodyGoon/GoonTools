@@ -15,6 +15,7 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 		
 		public void Load()
 		{
+			this.Clear();
 			Gtk.TreeIter DBIter = Gtk.TreeIter.Zero;
 			Gtk.TreeIter TBLabelIter = Gtk.TreeIter.Zero;
 			Gtk.TreeIter TBIter = Gtk.TreeIter.Zero;

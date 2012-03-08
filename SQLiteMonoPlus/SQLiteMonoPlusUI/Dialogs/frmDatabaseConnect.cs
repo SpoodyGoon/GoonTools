@@ -71,6 +71,9 @@ namespace SQLiteMonoPlusUI
 				cn.Timeout = spnTimeout.ValueAsInt;
 			}
 			cn.LastUsedDate = DateTime.Now;
+			Common.RecentConnections.AppendValues(cn);
+			Common.RecentConnections.Save();
+			cboConnectName.Refresh();
 		}
 
 		protected void OnCbxAdvancedToggled (object sender, System.EventArgs e)
