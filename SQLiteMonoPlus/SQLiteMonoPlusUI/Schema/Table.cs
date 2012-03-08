@@ -20,6 +20,12 @@ namespace SQLiteMonoPlusUI.Schema
 			TableName = name;
 		}
 		
+		// TODO: run though the sql and populate a 
+		// display text for each column
+		public void PopulateColumnDescriptions()
+		{
+			
+		}
 		
 	}
 }
