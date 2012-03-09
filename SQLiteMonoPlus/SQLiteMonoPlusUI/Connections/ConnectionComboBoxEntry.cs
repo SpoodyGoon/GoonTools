@@ -28,7 +28,7 @@ namespace SQLiteMonoPlusUI
 				cellConnectionName.Editable = false;
 				this.PackStart(cellConnectionName, true);
 				this.SetCellDataFunc(cellConnectionName, new Gtk.CellLayoutDataFunc(RenderConnectionName));
-                this.Model = (Gtk.TreeModel)GlobalData.StoreModels.Connections;
+                this.Model = (Gtk.TreeModel)Common.RecentConnections;
 				_LastLoad = DateTime.Now;
 				this.QueueDraw();
 			}
@@ -45,7 +45,7 @@ namespace SQLiteMonoPlusUI
 		public void Refresh()
 		{
 			Common.RecentConnections.Refresh();
-				_LastLoad = DateTime.Now;
+			_LastLoad = DateTime.Now;
 			this.ShowAll();
 		}
 
