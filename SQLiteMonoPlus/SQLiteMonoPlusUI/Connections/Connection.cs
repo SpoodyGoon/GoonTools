@@ -132,7 +132,7 @@ namespace SQLiteMonoPlusUI
             _FilePath = dr["FilePath"].ToString();
 			_Password =  dr["Password"].ToString();
 			_Pooling =  Convert.ToBoolean(dr["Pooling"]);
-			_MaxPoolSize =  Convert.ToInt32(dr["MaxPoolSize"]);
+			_MaxPoolSize =  Convert.ToInt32(dr["MaxPooling"]);
 			_AddedDate = Convert.ToDateTime(dr["AddedDate"]);
 			_LastUsedDate = Convert.ToDateTime(dr["LastUsedDate"]);
         }

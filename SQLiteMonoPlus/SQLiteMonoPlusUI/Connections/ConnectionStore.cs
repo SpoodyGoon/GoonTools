@@ -8,7 +8,7 @@ namespace SQLiteMonoPlusUI.GlobalData
 {
 	public class ConnectionStore : Gtk.ListStore, Gtk.TreeModel
 	{
-        private ConnectionSaveFile _SaveFile = new ConnectionSaveFile();
+        private ConnectionSaveFile _SaveFile;
         public bool Modified = false;
         
         #region Search Paramaters
@@ -31,6 +31,7 @@ namespace SQLiteMonoPlusUI.GlobalData
         {
             try
             {
+				/*
             	if(Modified)
             	{
             		Gtk.MessageDialog md = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Warning, Gtk.ButtonsType.YesNo, false, Constants.ConnectionMessage.SaveWarning, Constants.ConnectionMessage.WarningTitle);
@@ -40,11 +41,13 @@ namespace SQLiteMonoPlusUI.GlobalData
             		}
                 	md.Destroy();
             	}
+            	*/
             	
 				this.Clear();
             	// See if the Connection save file exists
             	if(File.Exists(Common.EnvData.ConnectionFilePath))
             	{	
+					_SaveFile = new ConnectionSaveFile();
             		// Load the save file from xml
             		_SaveFile.ReadXml(Common.EnvData.ConnectionFilePath);
 	                Connection c;
@@ -73,12 +76,12 @@ namespace SQLiteMonoPlusUI.GlobalData
         {
         	try
         	{       
-        		if(_SaveFile.Rows.Count > 0)
-        			_SaveFile.Clear();
+        		_SaveFile = new ConnectionSaveFile();
         		
         		// Loop through the TreeModel and Update the datatable
         		// before saving it to XML
             	this.Foreach(new TreeModelForeachFunc(SaveLoop));
+				_SaveFile.WriteXml(Common.EnvData.ConnectionFilePath);
         	}
             catch (Exception ex)
             {
