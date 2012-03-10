@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -22,7 +22,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>Full</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
@@ -33,7 +33,7 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <BaseAddress>4194304</BaseAddress>
     <FileAlignment>4096</FileAlignment>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -46,7 +46,7 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <BaseAddress>4194304</BaseAddress>
     <FileAlignment>4096</FileAlignment>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
@@ -89,6 +89,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\TabClose.png">
       <LogicalName>TabClose.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DatabaseTree\Column.png">
+      <LogicalName>DatabaseTree.Column.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DatabaseTree\Database.png">
+      <LogicalName>DatabaseTree.Database.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DatabaseTree\Folder.png">
+      <LogicalName>DatabaseTree.Folder.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DatabaseTree\ForeignKey.png">
+      <LogicalName>DatabaseTree.ForeignKey.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DatabaseTree\Index.png">
+      <LogicalName>DatabaseTree.Index.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DatabaseTree\PrimaryKey.png">
+      <LogicalName>DatabaseTree.PrimaryKey.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DatabaseTree\Table.png">
+      <LogicalName>DatabaseTree.Table.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DatabaseTree\View.png">
+      <LogicalName>DatabaseTree.View.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +166,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="UI\" />
+    <Folder Include="Images\DatabaseTree\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
