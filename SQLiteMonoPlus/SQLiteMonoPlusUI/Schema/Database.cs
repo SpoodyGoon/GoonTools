@@ -101,6 +101,13 @@ namespace SQLiteMonoPlusUI.Schema
 			}
 		}
 		
+		private void DBObjectsClear()
+		{
+			Tables.Clear();
+			ForeignKeys.Clear();
+			Views.Clear();
+		}
+		
 		private void LoadDBObjects()
 		{
 			try
@@ -179,13 +186,6 @@ namespace SQLiteMonoPlusUI.Schema
 			}
 			return dt;
 		}
-		
-		private void DBObjectsClear()
-		{
-			Tables.Clear();
-			ForeignKeys.Clear();
-			Views.Clear();
-		}
 
         private void LoadTableColumns()
         {
@@ -209,6 +209,7 @@ namespace SQLiteMonoPlusUI.Schema
                 	{
                 		c = new Column(Convert.ToInt32(sqlReader["cid"]),sqlReader["name"].ToString(),sqlReader["type"].ToString(),sqlReader["notnull"].ToString() == "0" ? true:false ,(object)sqlReader["dflt_value"],Convert.ToBoolean(sqlReader["pk"]));
                 		t.Columns.Add(c);
+                		t.PopulateColumnDescriptions();
                 	}
                 }
                 sqlReader.Close();

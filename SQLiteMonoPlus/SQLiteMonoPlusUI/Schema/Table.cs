@@ -24,7 +24,15 @@ namespace SQLiteMonoPlusUI.Schema
 		// display text for each column
 		public void PopulateColumnDescriptions()
 		{
-			
+			Column col;
+			string strColName = null;
+			string[] strColumnSQL = SQL.Substring(SQL.IndexOf("("), SQL.LastIndexOf(")")).Split(new char[]{','});
+			for(int i=0;i<strColumnSQL.Length;i++)
+			{
+				strColName = strColumnSQL[i].Substring(strColumnSQL[i].IndexOf("["), strColumnSQL[i].LastIndexOf("]"));
+				col = (Column)Columns[strColName];
+				col.DataTypeDisplay = strColumnSQL[i].Trim();
+			}
 		}
 		
 	}
