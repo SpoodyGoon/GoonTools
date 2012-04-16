@@ -12,7 +12,7 @@ namespace SQLiteMonoPlusUI.Schema
 		public Table (string name, string sql) : base()
 		{
 			TableName = name;
-			SQL = sql;
+			SQL = sql.Replace(Environment.NewLine, "").Replace("\r", "").Replace("\n", "");
 		}
 		
 		public Table(string name)
@@ -26,7 +26,10 @@ namespace SQLiteMonoPlusUI.Schema
 		{
 			Column col;
 			string strColName = null;
-			string[] strColumnSQL = SQL.Substring(SQL.IndexOf('('), SQL.LastIndexOf(')')).Split(new char[]{','});
+			int intTemp1 = SQL.LastIndexOf(')');
+			int intTemp2 = SQL.IndexOf('(');
+			string strTemp = SQL.Substring(SQL.IndexOf('('), SQL.LastIndexOf(')') - SQL.IndexOf('('));
+			string[] strColumnSQL = strTemp.Split(new char[]{','});
 			for(int i=0;i<strColumnSQL.Length;i++)
 			{
 				strColName = strColumnSQL[i].Substring(strColumnSQL[i].IndexOf("["), strColumnSQL[i].LastIndexOf("]"));
