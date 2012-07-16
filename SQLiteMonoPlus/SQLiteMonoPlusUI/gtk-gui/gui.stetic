@@ -808,13 +808,20 @@
         <property name="StockId">gtk-about</property>
         <signal name="Activated" handler="OnAboutActionActivated" />
       </action>
+      <action id="quitAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-quit</property>
+      </action>
     </action-group>
     <property name="MemberName" />
+    <property name="WidthRequest">1050</property>
+    <property name="HeightRequest">650</property>
     <property name="Title" translatable="yes">SQLite Mono Plus</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="AllowShrink">True</property>
-    <property name="DefaultWidth">850</property>
-    <property name="DefaultHeight">750</property>
+    <property name="DefaultWidth">1050</property>
+    <property name="DefaultHeight">650</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -858,6 +865,7 @@
                 <property name="ButtonStyle">Both</property>
                 <property name="IconSize">SmallToolbar</property>
                 <node name="toolbar1" type="Toolbar">
+                  <node type="Toolitem" action="quitAction1" />
                   <node type="Toolitem" action="NewQueryAction" />
                   <node type="Toolitem" action="ExecuteAction" />
                 </node>
