@@ -81,12 +81,14 @@ namespace SQLiteMonoPlusUI
 			w1.Add (this.aboutAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
+			this.WidthRequest = 975;
+			this.HeightRequest = 650;
 			this.Name = "SQLiteMonoPlusUI.frmMain";
 			this.Title = global::Mono.Unix.Catalog.GetString ("SQLite Mono Plus");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.AllowShrink = true;
-			this.DefaultWidth = 850;
-			this.DefaultHeight = 750;
+			this.DefaultWidth = 975;
+			this.DefaultHeight = 650;
 			// Container child SQLiteMonoPlusUI.frmMain.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
@@ -109,7 +111,8 @@ namespace SQLiteMonoPlusUI
 			this.alignment2.Name = "alignment2";
 			// Container child alignment2.Gtk.Container+ContainerChild
 			this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar1\'><toolitem name=\'NewQueryAction\' action=\'NewQueryActi" +
-					"on\'/><toolitem name=\'ExecuteAction\' action=\'ExecuteAction\'/></toolbar></ui>");
+				"on\'/><toolitem name=\'ExecuteAction\' action=\'ExecuteAction\'/></toolbar></ui>"
+			);
 			this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 			this.toolbar1.Name = "toolbar1";
 			this.toolbar1.ShowArrow = false;
@@ -183,7 +186,8 @@ namespace SQLiteMonoPlusUI
 			this.alignment8.Name = "alignment8";
 			// Container child alignment8.Gtk.Container+ContainerChild
 			this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar2\'><toolitem name=\'connectAction\' action=\'connectAction" +
-					"\'/></toolbar></ui>");
+				"\'/></toolbar></ui>"
+			);
 			this.toolbar2 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar2")));
 			this.toolbar2.Name = "toolbar2";
 			this.toolbar2.ShowArrow = false;
