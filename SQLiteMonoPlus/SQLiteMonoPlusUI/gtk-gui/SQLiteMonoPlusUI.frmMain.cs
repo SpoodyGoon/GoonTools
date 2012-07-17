@@ -15,6 +15,7 @@ namespace SQLiteMonoPlusUI
 		private global::Gtk.Action connectAction1;
 		private global::Gtk.Action HelpAction;
 		private global::Gtk.Action aboutAction;
+		private global::Gtk.Action quitAction1;
 		private global::Gtk.VBox vbox1;
 		private global::Gtk.Alignment alignment1;
 		private global::Gtk.MenuBar menubar1;
@@ -79,15 +80,17 @@ namespace SQLiteMonoPlusUI
 			this.aboutAction = new global::Gtk.Action ("aboutAction", global::Mono.Unix.Catalog.GetString ("_About"), null, "gtk-about");
 			this.aboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_About");
 			w1.Add (this.aboutAction, null);
+			this.quitAction1 = new global::Gtk.Action ("quitAction1", null, null, "gtk-quit");
+			w1.Add (this.quitAction1, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
-			this.WidthRequest = 975;
+			this.WidthRequest = 1050;
 			this.HeightRequest = 650;
 			this.Name = "SQLiteMonoPlusUI.frmMain";
 			this.Title = global::Mono.Unix.Catalog.GetString ("SQLite Mono Plus");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.AllowShrink = true;
-			this.DefaultWidth = 975;
+			this.DefaultWidth = 1050;
 			this.DefaultHeight = 650;
 			// Container child SQLiteMonoPlusUI.frmMain.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
@@ -110,8 +113,9 @@ namespace SQLiteMonoPlusUI
 			this.alignment2 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment2.Name = "alignment2";
 			// Container child alignment2.Gtk.Container+ContainerChild
-			this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar1\'><toolitem name=\'NewQueryAction\' action=\'NewQueryActi" +
-				"on\'/><toolitem name=\'ExecuteAction\' action=\'ExecuteAction\'/></toolbar></ui>"
+			this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar1\'><toolitem name=\'quitAction1\' action=\'quitAction1\'/><" +
+				"toolitem name=\'NewQueryAction\' action=\'NewQueryAction\'/><toolitem name=\'ExecuteA" +
+				"ction\' action=\'ExecuteAction\'/></toolbar></ui>"
 			);
 			this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 			this.toolbar1.Name = "toolbar1";

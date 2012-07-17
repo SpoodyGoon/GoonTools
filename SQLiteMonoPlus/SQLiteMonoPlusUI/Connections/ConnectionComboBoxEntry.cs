@@ -5,57 +5,52 @@ using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI
 {
-	[System.ComponentModel.ToolboxItem(true)]
-	public class ConnectionComboBoxEntry : Gtk.ComboBoxEntry
-	{
-		private Nullable<int> _ConnectionID = null;
-		private string _ConnectionName = null;
-		private Nullable<int> _SearchConnectionID = null;
-		private string _SearchConnectionName = null;
-		private DateTime _LastLoad = DateTime.Now;
-		public ConnectionComboBoxEntry()
-		{
-			Build();
-		}
+    [System.ComponentModel.ToolboxItem(true)]
+    public class ConnectionComboBoxEntry : Gtk.ComboBoxEntry
+    {
+        private Nullable<int> _SearchConnectionID = null;
+        private string _SearchConnectionName = null;
+        private DateTime _LastLoad = DateTime.Now;
+        public Connection CurrentConnection = null;
 
+        public ConnectionComboBoxEntry ()
+        {
+            Build ();
+        }
 
-		private void Build()
-		{
-			try
-			{
-				// set up the sell
-				Gtk.CellRendererText cellConnectionName = new Gtk.CellRendererText();
-				cellConnectionName.Editable = false;
-				this.PackStart(cellConnectionName, true);
-				this.SetCellDataFunc(cellConnectionName, new Gtk.CellLayoutDataFunc(RenderConnectionName));
+        private void Build ()
+        {
+            try
+            {
+                // set up the sell
+                Gtk.CellRendererText cellConnectionName = new Gtk.CellRendererText ();
+                cellConnectionName.Editable = true;
+                cellConnectionName.Sensitive = true;
+                this.PackStart (cellConnectionName, true);
+                this.SetCellDataFunc (cellConnectionName, new Gtk.CellLayoutDataFunc (RenderConnectionName));
                 this.Model = (Gtk.TreeModel)Common.RecentConnections;
-				_LastLoad = DateTime.Now;
-				this.QueueDraw();
-			}
-			catch (Exception ex)
-			{   
-				Common.HandleError(ex);
-			}
-		}
+                _LastLoad = DateTime.Now;
+                this.QueueDraw ();
+            } catch (Exception ex)
+            {   
+                Common.HandleError (ex);
+            }
+        }
 		
-		public void Load()
-		{
-		}
-		
-		public void Refresh()
-		{
-			Common.RecentConnections.Refresh();
-			_LastLoad = DateTime.Now;
-			this.ShowAll();
-		}
+        public void Refresh ()
+        {
+            Common.RecentConnections.Refresh ();
+            _LastLoad = DateTime.Now;
+            this.ShowAll ();
+        }
 
 		#region Cell Data Functions
 
-		private void RenderConnectionName(Gtk.CellLayout celllayout, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
-		{
-			Connection s = (Connection)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = s.ConnectionName;
-		}
+        private void RenderConnectionName (Gtk.CellLayout celllayout, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+        {
+            Connection s = (Connection)model.GetValue (iter, 0);
+            (cell as Gtk.CellRendererText).Text = s.ConnectionName;
+        }
 
 		#endregion Cell Data Functions
 
@@ -65,54 +60,92 @@ namespace SQLiteMonoPlusUI
         {
             set
             {
-				_ConnectionName = null;
+                Gtk.TreeIter iter = Gtk.TreeIter.Zero;
+                if (this.Model.GetIterFirst (out iter))
+                    this.SetActiveIter (iter);
+				
+                CurrentConnection = null;
                 _SearchConnectionName = value;
-                this.Model.Foreach(new TreeModelForeachFunc(ForeachConnectionName));
+                this.Model.Foreach (new TreeModelForeachFunc (ForeachConnectionName));
             }
-            get { return _ConnectionName; }
+            get { return CurrentConnection.ConnectionName; }
         }
 
         public Nullable<int> ConnectionID
         {
             set
             {
-				_ConnectionID = null;
+                Gtk.TreeIter iter = Gtk.TreeIter.Zero;
+                if (this.Model.GetIterFirst (out iter))
+                    this.SetActiveIter (iter);
+				
+                CurrentConnection = null;
                 _SearchConnectionID = value;
-                this.Model.Foreach(new TreeModelForeachFunc(ForeachConnectionID));
+                this.Model.Foreach (new TreeModelForeachFunc (ForeachConnectionID));
             }
-            get { return _ConnectionID; }
+            get { return CurrentConnection.ConnectionID; }
         }
 
 		#endregion Public Properties
 
 		#region Search Functions Related To Value Setting
 
-		private bool ForeachConnectionName(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
-		{
-			if (_SearchConnectionName == this.Model.GetValue(iter, 1).ToString())
-			{
-				_ConnectionName = this.Model.GetValue(iter, 1).ToString();
-				_ConnectionID = Convert.ToInt32(this.Model.GetValue(iter, 0));
-				this.SetActiveIter(iter);
-				return true;
-			}
-			return false;
-		}
+        private bool ForeachConnectionName (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+        {
+            Connection tmpCN = (Connection)this.Model.GetValue (iter, 0);
+            if (_SearchConnectionName == tmpCN.ConnectionName)
+            {
+                CurrentConnection = tmpCN;
+                this.SetActiveIter (iter);
+                return true;
+            }
+            return false;
+        }
 
-		private bool ForeachConnectionID(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
-		{
-			if (_SearchConnectionID == Convert.ToInt32(this.Model.GetValue(iter, 0)))
-			{
-				_ConnectionName = this.Model.GetValue(iter, 1).ToString();
-				_ConnectionID = Convert.ToInt32(this.Model.GetValue(iter, 0));
-				this.SetActiveIter(iter);
-				return true;
-			}
-			return false;
-		}
+        private bool ForeachConnectionID (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter)
+        {
+            Connection tmpCN = (Connection)this.Model.GetValue (iter, 0);
+            if (_SearchConnectionID == Convert.ToInt32 (tmpCN.ConnectionID))
+            {
+                CurrentConnection = tmpCN;
+                this.SetActiveIter (iter);
+                return true;
+            }
+            return false;
+        }
 
 		#endregion Search Functions Related To Value Setting
-	}
+		
+        protected override void OnChanged ()
+        {
+            Gtk.TreeIter iter = Gtk.TreeIter.Zero;
+            if (this.GetActiveIter (out iter))
+            {
+                Connection tmpCN = (Connection)this.Model.GetValue (iter, 0);
+                if (!string.IsNullOrEmpty (tmpCN.ConnectionName))
+                {
+                    if (System.IO.File.Exists (tmpCN.FilePath))
+                    {
+                        CurrentConnection = tmpCN;
+						this.SetActiveIter(iter);
+                    } else
+                    {						           
+                        string strTmp = "Unable to find SQLite database file from recent connections.\n\nWould you like to remove this file from the saved connections?";
+                        Gtk.MessageDialog md = new Gtk.MessageDialog (null, DialogFlags.Modal, MessageType.Question, Gtk.ButtonsType.YesNo, false, strTmp, "Database File Missing");
+                        if ((Gtk.ResponseType)md.Run () == Gtk.ResponseType.Yes)
+                        {
+							((SQLiteMonoPlusUI.GlobalData.ConnectionStore)this.Model).DeleteConnection(iter);
+                        }							
+                        md.Destroy ();
+                    }
+						
+                }
+            }
+            this.ShowNow();
+            this.QueueDraw();
+            base.OnChanged ();
+        }
+    }
 }
 
 

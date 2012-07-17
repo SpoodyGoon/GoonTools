@@ -162,6 +162,7 @@
     <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="UI\ObjectExplorer\SchemaTreeModel.cs" />
     <Compile Include="UI\ObjectExplorer\SchemaTreeView.cs" />
+    <Compile Include="Common\GtkTools.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

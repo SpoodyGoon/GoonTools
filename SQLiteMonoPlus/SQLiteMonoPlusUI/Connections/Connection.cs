@@ -124,6 +124,11 @@ namespace SQLiteMonoPlusUI
         #endregion Public Properties
         
         #region Constructors
+
+        public Connection(string name) : base()
+		{
+			_ConnectionName = name;
+		}
         
         public Connection(DataRow dr)
         {
@@ -161,14 +166,6 @@ namespace SQLiteMonoPlusUI
 			_ConnectionName = name;
 			_FilePath = path;
 			_Password = password;
-		}
-
-        public Connection(int id, string name, string path, bool pooling, int maxpoolsize) 
-		{
-			_ConnectionName = name;
-			_FilePath = path;
-			_Pooling = pooling;
-			_MaxPoolSize = maxpoolsize;
 		}
 
         public Connection(int id, string name, string path, string password, bool pooling, int maxpoolsize) 

@@ -269,6 +269,7 @@
                                 <property name="MemberName" />
                                 <property name="IsTextCombo">False</property>
                                 <property name="Items" translatable="yes" />
+                                <signal name="Changed" handler="OnCboConnectNameChanged" />
                               </widget>
                             </child>
                           </widget>
