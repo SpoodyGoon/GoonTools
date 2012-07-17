@@ -12,6 +12,9 @@ namespace SQLiteMonoPlusUI
 		/// s3db
 		/// db
 		///</description>
+		/// 
+		/// 
+	 
 		public frmDatabaseConnect ()
 		{
 			this.Build ();
@@ -92,6 +95,16 @@ namespace SQLiteMonoPlusUI
 				}
 			}
 		}
+		
+		protected void OnCboConnectNameChanged (object sender, EventArgs e)
+		{
+			if(cboConnectName.CurrentConnection != null)
+			{
+				lblTestResult.Text = "";
+				fcDBFile.SetUri(cboConnectName.CurrentConnection.FilePath);				
+			}
+		}
+
 	}
 }
 

@@ -487,6 +487,7 @@ namespace SQLiteMonoPlusUI
 			this.lblMaxPool.Hide ();
 			this.algAdvanced.Hide ();
 			this.Show ();
+			this.cboConnectName.Changed += new global::System.EventHandler (this.OnCboConnectNameChanged);
 			this.fcDBFile.SelectionChanged += new global::System.EventHandler (this.OnFcDBFileSelectionChanged);
 			this.cbxAdvanced.Toggled += new global::System.EventHandler (this.OnCbxAdvancedToggled);
 			this.cbxPooling.Clicked += new global::System.EventHandler (this.cbxPooling_Clicked);
