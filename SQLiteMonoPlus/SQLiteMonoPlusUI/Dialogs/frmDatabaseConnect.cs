@@ -89,9 +89,10 @@ namespace SQLiteMonoPlusUI
 			if(!string.IsNullOrEmpty(fcDBFile.Filename))
 			{
 				System.IO.FileInfo fi = new System.IO.FileInfo(fcDBFile.Filename);
-				if(string.IsNullOrEmpty(cboConnectName.ConnectionName))
+				if(cboConnectName.CurrentConnection == null)
 				{
 					cboConnectName.Entry.Text = fi.Name.Replace(fi.Extension, "");
+                    lblFilePath.Text = fi.Directory.FullName;
 				}
 			}
 		}

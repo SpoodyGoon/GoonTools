@@ -30,11 +30,18 @@ namespace SQLiteMonoPlusUI
                 this.SetCellDataFunc (cellConnectionName, new Gtk.CellLayoutDataFunc (RenderConnectionName));
                 this.Model = (Gtk.TreeModel)Common.RecentConnections;
                 _LastLoad = DateTime.Now;
+                this.Entry.ButtonReleaseEvent += HandleButtonReleaseEvent1;
                 this.QueueDraw ();
             } catch (Exception ex)
             {   
                 Common.HandleError (ex);
             }
+        }
+
+        void HandleButtonReleaseEvent1 (object o, ButtonReleaseEventArgs args)
+        {
+            string str = ""; 
+            
         }
 		
         public void Refresh ()
@@ -116,35 +123,35 @@ namespace SQLiteMonoPlusUI
 
 		#endregion Search Functions Related To Value Setting
 		
-        protected override void OnChanged ()
-        {
-            Gtk.TreeIter iter = Gtk.TreeIter.Zero;
-            if (this.GetActiveIter (out iter))
-            {
-                Connection tmpCN = (Connection)this.Model.GetValue (iter, 0);
-                if (!string.IsNullOrEmpty (tmpCN.ConnectionName))
-                {
-                    if (System.IO.File.Exists (tmpCN.FilePath))
-                    {
-                        CurrentConnection = tmpCN;
-						this.SetActiveIter(iter);
-                    } else
-                    {						           
-                        string strTmp = "Unable to find SQLite database file from recent connections.\n\nWould you like to remove this file from the saved connections?";
-                        Gtk.MessageDialog md = new Gtk.MessageDialog (null, DialogFlags.Modal, MessageType.Question, Gtk.ButtonsType.YesNo, false, strTmp, "Database File Missing");
-                        if ((Gtk.ResponseType)md.Run () == Gtk.ResponseType.Yes)
-                        {
-							((SQLiteMonoPlusUI.GlobalData.ConnectionStore)this.Model).DeleteConnection(iter);
-                        }							
-                        md.Destroy ();
-                    }
-						
-                }
-            }
-            this.ShowNow();
-            this.QueueDraw();
-            base.OnChanged ();
-        }
+//        protected override void OnChanged ()
+//        {
+//            Gtk.TreeIter iter = Gtk.TreeIter.Zero;
+//            if (this.GetActiveIter (out iter))
+//            {
+//                Connection tmpCN = (Connection)this.Model.GetValue (iter, 0);
+//                if (!string.IsNullOrEmpty (tmpCN.ConnectionName))
+//                {
+//                    if (System.IO.File.Exists (tmpCN.FilePath))
+//                    {
+//                        CurrentConnection = tmpCN;
+//						this.SetActiveIter(iter);
+//                    } else
+//                    {						           
+//                        string strTmp = "Unable to find SQLite database file from recent connections.\n\nWould you like to remove this file from the saved connections?";
+//                        Gtk.MessageDialog md = new Gtk.MessageDialog (null, DialogFlags.Modal, MessageType.Question, Gtk.ButtonsType.YesNo, false, strTmp, "Database File Missing");
+//                        if ((Gtk.ResponseType)md.Run () == Gtk.ResponseType.Yes)
+//                        {
+//							((SQLiteMonoPlusUI.GlobalData.ConnectionStore)this.Model).DeleteConnection(iter);
+//                        }							
+//                        md.Destroy ();
+//                    }
+//						
+//                }
+//            }
+//            this.ShowNow();
+//            this.QueueDraw();
+//            base.OnChanged ();
+//        }
     }
 }
 

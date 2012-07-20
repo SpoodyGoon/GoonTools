@@ -111,7 +111,7 @@
     <property name="Title" translatable="yes">Database Connect</property>
     <property name="Icon">stock:gtk-connect Menu</property>
     <property name="TypeHint">Dialog</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">Center</property>
     <property name="Modal">True</property>
     <property name="AllowGrow">False</property>
     <property name="DestroyWithParent">True</property>
@@ -174,7 +174,7 @@
                     <child>
                       <widget class="Gtk.Table" id="table1">
                         <property name="MemberName" />
-                        <property name="NRows">2</property>
+                        <property name="NRows">3</property>
                         <property name="NColumns">4</property>
                         <property name="RowSpacing">11</property>
                         <property name="ColumnSpacing">6</property>
@@ -274,6 +274,63 @@
                             </child>
                           </widget>
                           <packing>
+                            <property name="LeftAttach">1</property>
+                            <property name="RightAttach">4</property>
+                            <property name="AutoSize">True</property>
+                            <property name="XOptions">Fill</property>
+                            <property name="YOptions">Fill</property>
+                            <property name="XExpand">False</property>
+                            <property name="XFill">True</property>
+                            <property name="XShrink">False</property>
+                            <property name="YExpand">False</property>
+                            <property name="YFill">True</property>
+                            <property name="YShrink">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Alignment" id="alignment19">
+                            <property name="MemberName" />
+                            <property name="Xscale">0.01</property>
+                            <property name="Xalign">0.98</property>
+                            <child>
+                              <widget class="Gtk.Label" id="label3">
+                                <property name="MemberName" />
+                                <property name="LabelProp" translatable="yes">File Directory:</property>
+                              </widget>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="TopAttach">2</property>
+                            <property name="BottomAttach">3</property>
+                            <property name="AutoSize">True</property>
+                            <property name="XOptions">Fill</property>
+                            <property name="YOptions">Fill</property>
+                            <property name="XExpand">False</property>
+                            <property name="XFill">True</property>
+                            <property name="XShrink">False</property>
+                            <property name="YExpand">False</property>
+                            <property name="YFill">True</property>
+                            <property name="YShrink">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Alignment" id="alignment20">
+                            <property name="MemberName" />
+                            <property name="Xscale">0.01</property>
+                            <property name="Xalign">0.01</property>
+                            <child>
+                              <widget class="Gtk.Label" id="lblFilePath">
+                                <property name="MemberName" />
+                                <property name="WidthRequest">400</property>
+                                <property name="Xalign">0.01</property>
+                                <property name="Ellipsize">Middle</property>
+                                <property name="SingleLineMode">True</property>
+                              </widget>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="TopAttach">2</property>
+                            <property name="BottomAttach">3</property>
                             <property name="LeftAttach">1</property>
                             <property name="RightAttach">4</property>
                             <property name="AutoSize">True</property>
@@ -813,6 +870,7 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-quit</property>
+        <signal name="Activated" handler="Quit_Clicked" />
       </action>
     </action-group>
     <property name="MemberName" />
