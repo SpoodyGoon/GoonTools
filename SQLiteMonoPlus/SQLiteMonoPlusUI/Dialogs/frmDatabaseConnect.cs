@@ -20,17 +20,14 @@ namespace SQLiteMonoPlusUI
 			this.Build ();
 		}
 		
-		public string SelectedDatabase
-		{
-			get
-			{
-				if(string.IsNullOrEmpty(fcDBFile.Filename))
+		public string SelectedDatabase {
+			get {
+				if (string.IsNullOrEmpty (fcDBFile.Filename))
 					return null;
 				else
 					return fcDBFile.Filename;
 			}
 		}
-		
 
 		protected void cbxPooling_Clicked (object sender, System.EventArgs e)
 		{
@@ -40,43 +37,41 @@ namespace SQLiteMonoPlusUI
 
 		protected void btnTestConnection_Clicked (object sender, System.EventArgs e)
 		{
-			if(Common.DatabaseTryConnect(fcDBFile.Filename))
-			{
+			if (Common.DatabaseTryConnect (fcDBFile.Filename)) {
 				lblTestResult.Text = "Connection Success";
-			}
-			else
-			{
+			} else {
 				lblTestResult.Text = "Connection Failure";
 			}
 		}
 
 		protected void OnBtnSaveConnectClicked (object sender, System.EventArgs e)
 		{
-			Connection cn;
-			if (cboConnectName.ConnectionID != null) 
-			{
-				cn = Common.RecentConnections.Find ((int)cboConnectName.ConnectionID);
-				cn.ConnectionName = cboConnectName.ActiveText;
-				cn.FilePath = fcDBFile.Filename;
-			} 
-			else 
-			{
-				cn = new Connection (cboConnectName.Entry.Text.Trim(), fcDBFile.Filename);
+			try {
+				Connection cn;
+				if (cboConnectName.CurrentConnection != null) {
+					cn = Common.RecentConnections.Find ((int)cboConnectName.ConnectionID);
+					cn.ConnectionName = cboConnectName.ActiveText;
+					cn.FilePath = fcDBFile.Filename;
+				} else {
+					cn = new Connection (cboConnectName.Entry.Text.Trim (), fcDBFile.Filename);
 				
-			}
+				}
 				
-			if(cbxAdvanced.Active)
-			{
-				cn.Password = txtPassword.Text.Trim ();
-				cn.Pooling = cbxPooling.Active;
-				if (cbxPooling.Active)
-					cn.MaxPoolSize = spnMaxPool.ValueAsInt;
-				cn.Timeout = spnTimeout.ValueAsInt;
+				if (cbxAdvanced.Active) {
+					cn.Password = txtPassword.Text.Trim ();
+					cn.Pooling = cbxPooling.Active;
+					if (cbxPooling.Active)
+						cn.MaxPoolSize = spnMaxPool.ValueAsInt;
+					cn.Timeout = spnTimeout.ValueAsInt;
+				}
+				cn.LastUsedDate = DateTime.Now;
+				Common.RecentConnections.AppendValues (cn);
+				Common.RecentConnections.Save ();
+				cboConnectName.Refresh ();
+			
+			} catch (Exception ex) {   
+				Common.HandleError (ex);
 			}
-			cn.LastUsedDate = DateTime.Now;
-			Common.RecentConnections.AppendValues(cn);
-			Common.RecentConnections.Save();
-			cboConnectName.Refresh();
 		}
 
 		protected void OnCbxAdvancedToggled (object sender, System.EventArgs e)
@@ -86,23 +81,23 @@ namespace SQLiteMonoPlusUI
 
 		protected void OnFcDBFileSelectionChanged (object sender, System.EventArgs e)
 		{
-			if(!string.IsNullOrEmpty(fcDBFile.Filename))
-			{
-				System.IO.FileInfo fi = new System.IO.FileInfo(fcDBFile.Filename);
-				if(cboConnectName.CurrentConnection == null)
-				{
-					cboConnectName.Entry.Text = fi.Name.Replace(fi.Extension, "");
-                    lblFilePath.Text = fi.Directory.FullName;
+			if (!string.IsNullOrEmpty (fcDBFile.Filename)) {
+				System.IO.FileInfo fi = new System.IO.FileInfo (fcDBFile.Filename);
+				if (cboConnectName.CurrentConnection == null) {
+					cboConnectName.Entry.Text = fi.Name.Replace (fi.Extension, "");
+					lblFilePath.Text = fi.Directory.FullName;
 				}
 			}
 		}
 		
 		protected void OnCboConnectNameChanged (object sender, EventArgs e)
 		{
-			if(cboConnectName.CurrentConnection != null)
-			{
+			if (cboConnectName.CurrentConnection != null) {
 				lblTestResult.Text = "";
-				fcDBFile.SetUri(cboConnectName.CurrentConnection.FilePath);				
+				System.IO.FileInfo fi = new System.IO.FileInfo(cboConnectName.CurrentConnection.FilePath);
+				fcDBFile.SetUri (fi.FullName);
+				cboConnectName.Entry.Text = cboConnectName.ActiveText;
+				lblFilePath.Text = fi.Directory.FullName;				
 			}
 		}
 

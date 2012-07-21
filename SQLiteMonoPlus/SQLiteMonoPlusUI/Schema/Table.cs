@@ -32,7 +32,7 @@ namespace SQLiteMonoPlusUI.Schema
 			string[] strColumnSQL = strTemp.Split(new char[]{','});
 			for(int i=0;i<strColumnSQL.Length;i++)
 			{
-				strColName = strColumnSQL[i].Substring(strColumnSQL[i].IndexOf("["), strColumnSQL[i].LastIndexOf("]"));
+				strColName = strColumnSQL[i].Substring(strColumnSQL[i].IndexOf("[") + 1, strColumnSQL[i].LastIndexOf("]") - 1);
 				col = (Column)Columns[strColName];
 				col.DataTypeDisplay = strColumnSQL[i].Trim();
 			}
