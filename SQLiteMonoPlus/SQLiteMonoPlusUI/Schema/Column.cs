@@ -11,7 +11,7 @@ namespace SQLiteMonoPlusUI.Schema
 		public bool PrimaryKey = false;
 		public bool ForeingKey = false;
 		public bool AllowNull = true;
-		public object DefaultValue = "";
+		public object DefaultValue = null;
 		public Column (int cid, string name, string type, bool allow_null, object default_value, bool primary_key) : base()
 		{
 			CID = cid;
@@ -21,7 +21,7 @@ namespace SQLiteMonoPlusUI.Schema
 			DefaultValue = default_value;
 			PrimaryKey = primary_key;
 		}
-		
+
 		public Column (string name, string type, bool allow_null, object default_value, bool primary_key)
 		{
 		}
