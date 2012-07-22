@@ -402,7 +402,7 @@ namespace SQLiteMonoPlusUI.Schema
 				{
 					foreach (Index ix in t.Indexes) 
 					{
-						sqlCMD.CommandText = GlobalData.SQL.PragmaTableInfo.Replace ("[IndexName]", ix.IndexName);
+						sqlCMD.CommandText = GlobalData.SQL.PragmaIndexInfo.Replace ("[IndexName]", ix.IndexName);
 						sqlCMD.CommandType = CommandType.Text;
 						sqlCMD.CommandTimeout = 300;
 						sqlReader = sqlCMD.ExecuteReader ();
@@ -411,7 +411,15 @@ namespace SQLiteMonoPlusUI.Schema
 							ix.IndexColumns.Add((Column)t.Columns[sqlReader["name"].ToString()]);
 						}
 					}
-				
+
+					sqlCMD.CommandText = GlobalData.SQL.PragmaIndexList.Replace ("[TableName]", t.TableName);
+					sqlCMD.CommandType = CommandType.Text;
+					sqlCMD.CommandTimeout = 300;
+					sqlReader = sqlCMD.ExecuteReader ();
+					while (sqlReader.Read()) 
+					{
+						((Index)t.Indexes["name"]).Unique = sqlReader ["unique"].ToString () == "1" ? true : false;
+					}				
 				}
 				sqlReader.Close ();
 				sqlCN.Close ();
@@ -434,7 +442,7 @@ namespace SQLiteMonoPlusUI.Schema
 				{
 					foreach (Index ix in t.Indexes) 
 					{
-						sqlCMD.CommandText = GlobalData.SQL.PragmaTableInfo.Replace ("[IndexName]", ix.IndexName);
+						sqlCMD.CommandText = GlobalData.SQL.PragmaTableInfo.Replace ("[TableName]", ix.IndexName);
 						sqlCMD.CommandType = CommandType.Text;
 						sqlCMD.CommandTimeout = 300;
 						sqlReader = sqlCMD.ExecuteReader ();
