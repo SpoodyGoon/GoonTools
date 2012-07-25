@@ -22,13 +22,17 @@ namespace SQLiteMonoPlusUI.GlobalData
 			"	name NOT LIKE 'sqlite_%' " +
 			"ORDER BY " +
 			"	SortOrder, tbl_name, name; ";
-        public const string PragmaGeneric = "PRAGMA [PragmaName];";
-        public const string PragmaTableInfo = "PRAGMA table_info('[TableName]');";
-        public const string PragmaIndexInfo = "PRAGMA index_info('[IndexName]');";
-        public const string PragmaIndexList = "PRAGMA index_list('[TableName]');";
-		public const string PragmaForeignKeys = "PRAGMA foreign_keys;";
-		public const string PragmaForeignKeyList = "PRAGMA foreign_key_list('[TableName]');";
         public const string ConnectionTest = "SELECT * FROM sqlite_master WHERE 1=2";
+	}
+
+	static class Pragma
+	{
+        public const string PragmaBase = "PRAGMA [PragmaName];";
+        public const string TableInfo = "PRAGMA table_info('[TableName]');";
+        public const string IndexInfo = "PRAGMA index_info('[IndexName]');";
+        public const string IndexList = "PRAGMA index_list('[TableName]');";
+		public const string ForeignKeys = "PRAGMA foreign_keys;";
+		public const string ForeignKeyList = "PRAGMA foreign_key_list('[TableName]');";
 	}
 }
 
