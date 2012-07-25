@@ -79,7 +79,7 @@ namespace SQLiteMonoPlusUI.Schema
 				int index = -1;
 				for(int i = 0; i < _Indexs.Count; i++)
 				{
-					if(((Index)_Indexs[i]).IndexName == IndexName)
+					if(((Index)_Indexs[i]).IndexName.Equals(IndexName,StringComparison.InvariantCultureIgnoreCase))
 					{
 						index = i;
 						break;
@@ -87,7 +87,7 @@ namespace SQLiteMonoPlusUI.Schema
 				}
 				
                 if (index < 0 || index >= Count)
-                    throw new ArgumentOutOfRangeException("index");
+					throw new ArgumentOutOfRangeException("index", "Could not find index named: " + IndexName);
 
                 return (Index)_Indexs[index];
             }

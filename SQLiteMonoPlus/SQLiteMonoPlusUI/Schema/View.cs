@@ -14,11 +14,6 @@ namespace SQLiteMonoPlusUI.Schema
 		public View ()
 		{
 		}
-
-		public void AddViewColumn(Column col)
-		{
-
-		}
 	}
 }
 

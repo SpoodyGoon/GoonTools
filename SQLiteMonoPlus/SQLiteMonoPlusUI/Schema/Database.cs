@@ -427,40 +427,9 @@ namespace SQLiteMonoPlusUI.Schema
 					sqlReader = sqlCMD.ExecuteReader ();
 					while (sqlReader.Read()) 
 					{
-						((Index)t.Indexes["name"]).Unique = sqlReader ["unique"].ToString () == "1" ? true : false;
+						if(!sqlReader["name"].ToString().Contains("sqlite_autoindex"))
+							((Index)t.Indexes[sqlReader ["name"].ToString()]).Unique = sqlReader ["unique"].ToString () == "1" ? true : false;
 					}				
-				}
-				sqlReader.Close ();
-				sqlCN.Close ();
-			}
-			catch (Exception ex) {
-				Common.HandleError (ex);
-			}
-		}
-
-		private void LoadViewColumns ()
-		{
-			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
-			SqliteCommand sqlCMD = new SqliteCommand ();
-			SqliteDataReader sqlReader = null;
-			try 
-			{
-				sqlCMD.Connection = sqlCN;
-				sqlCN.Open ();
-				foreach (Table t in this.Tables) 
-				{
-					foreach (Index ix in t.Indexes) 
-					{
-						sqlCMD.CommandText = GlobalData.Pragma.TableInfo.Replace ("[TableName]", ix.IndexName);
-						sqlCMD.CommandType = CommandType.Text;
-						sqlCMD.CommandTimeout = 300;
-						sqlReader = sqlCMD.ExecuteReader ();
-						while (sqlReader.Read()) 
-						{
-							ix.IndexColumns.Add((Column)t.Columns[sqlReader["name"].ToString()]);
-						}
-					}
-				
 				}
 				sqlReader.Close ();
 				sqlCN.Close ();

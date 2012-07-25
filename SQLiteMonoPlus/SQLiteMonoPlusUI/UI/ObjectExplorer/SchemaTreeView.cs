@@ -50,7 +50,7 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 		private void RenderObjectName (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			SchemaDisplay sd = (SchemaDisplay)model.GetValue(iter, 0);
-			(cell as Gtk.CellRendererText).Text = sd.ObjectName;
+			(cell as Gtk.CellRendererText).Text = sd.ObjectDisplay;
 		}
 		
 		public void Load()
