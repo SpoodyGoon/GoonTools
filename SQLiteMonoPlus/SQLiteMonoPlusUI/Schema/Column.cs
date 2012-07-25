@@ -20,6 +20,7 @@ namespace SQLiteMonoPlusUI.Schema
 			AllowNull = allow_null;
 			DefaultValue = default_value;
 			PrimaryKey = primary_key;
+
 		}
 
 		public Column (string name, string type, bool allow_null, object default_value, bool primary_key)
@@ -36,6 +37,17 @@ namespace SQLiteMonoPlusUI.Schema
 		
 		public Column ()
 		{
+		}
+
+		public string DisplayFormat {
+
+			get
+			{ 
+				if(!this.PrimaryKey)
+					return ColumnName + " (" + DataTypeDisplay + " ," + (AllowNull == true ? "null" : "not null") + ")";
+				else
+					return ColumnName + " (PK, " + DataTypeDisplay + " ," + (AllowNull == true ? "null" : "not null") + ")";
+			}
 		}
 	}
 }
