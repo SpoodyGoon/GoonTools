@@ -31,8 +31,15 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 			this.HeadersVisible = false;
 			this.RulesHint = false;
 			this.EnableGridLines = Gtk.TreeViewGridLines.None;
-			
-			// Create a column for the list name
+
+			Gtk.TreeViewColumn colPixbuf = new TreeViewColumn();
+			colPixbuf.Clickable = false;
+			colPixbuf.Expand = false;
+			colPixbuf.Resizable = false;
+			colPixbuf.Title = "";
+			Gtk.CellRendererPixbuf cellPixbuf = new Gtk.CellRendererPixbuf();
+			colPixbuf.PackStart(cellPixbuf, true);
+			this.AppendColumn(colPixbuf);
 			Gtk.TreeViewColumn colObjectName = new Gtk.TreeViewColumn ();
 			colObjectName.Clickable = true;
 			colObjectName.Expand = true;
@@ -43,6 +50,8 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 			cellObjectName.Ellipsize = Pango.EllipsizeMode.End;
 			colObjectName.PackStart (cellObjectName, true);
 			this.AppendColumn (colObjectName);
+			
+			colPixbuf.SetCellDataFunc(cellPixbuf, new Gtk.TreeCellDataFunc(RenderPixbuf));
 			colObjectName.SetCellDataFunc(cellObjectName, new Gtk.TreeCellDataFunc(RenderObjectName));
 			this.Model = _TreeModel;
 		}
@@ -51,6 +60,12 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 		{
 			SchemaDisplay sd = (SchemaDisplay)model.GetValue(iter, 0);
 			(cell as Gtk.CellRendererText).Text = sd.ObjectDisplay;
+		}
+		
+		private void RenderPixbuf (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			SchemaDisplay sd = (SchemaDisplay)model.GetValue(iter, 0);
+			(cell as Gtk.CellRendererPixbuf).Pixbuf = sd.ObjectImage;
 		}
 		
 		public void Load()
