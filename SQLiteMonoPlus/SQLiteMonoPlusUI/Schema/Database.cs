@@ -398,6 +398,35 @@ namespace SQLiteMonoPlusUI.Schema
 			}
 		}
 
+		private void LoadForeignKeys ()
+		{
+			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
+			SqliteCommand sqlCMD = new SqliteCommand ();
+			SqliteDataReader sqlReader = null;
+			try 
+			{
+				ForeignKey fk;
+				sqlCMD.Connection = sqlCN;
+				sqlCN.Open ();
+				foreach (Table t in this.Tables) 
+				{
+						sqlCMD.CommandText = GlobalData.Pragma.ForeignKeyList.Replace ("[TableName]", ix.IndexName);
+						sqlCMD.CommandType = CommandType.Text;
+						sqlCMD.CommandTimeout = 300;
+						sqlReader = sqlCMD.ExecuteReader ();
+						while (sqlReader.Read()) 
+						{
+							
+						}			
+				}
+				sqlReader.Close ();
+				sqlCN.Close ();
+			}
+			catch (Exception ex) {
+				Common.HandleError (ex);
+			}
+		}
+
 		private void LoadIndexDetails ()
 		{
 			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
