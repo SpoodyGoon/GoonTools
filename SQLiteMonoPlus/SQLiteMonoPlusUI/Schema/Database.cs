@@ -410,7 +410,7 @@ namespace SQLiteMonoPlusUI.Schema
 				sqlCN.Open ();
 				foreach (Table t in this.Tables) 
 				{
-						sqlCMD.CommandText = GlobalData.Pragma.ForeignKeyList.Replace ("[TableName]", ix.IndexName);
+						sqlCMD.CommandText = GlobalData.Pragma.ForeignKeyList.Replace ("[TableName]", t.TableName);
 						sqlCMD.CommandType = CommandType.Text;
 						sqlCMD.CommandTimeout = 300;
 						sqlReader = sqlCMD.ExecuteReader ();
