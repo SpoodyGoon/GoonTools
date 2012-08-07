@@ -42,6 +42,8 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 					{
 						if(col.PrimaryKey)
 							this.AppendValues(TBOLabelIter, new SchemaDisplay(pxPriKey, sc.DBObjectType.Column, col.ColumnName, col.DisplayFormat));
+						else if(col.ForeingKey)
+							this.AppendValues(TBOLabelIter, new SchemaDisplay(pxForeignKey, sc.DBObjectType.Column, col.ColumnName, col.DisplayFormat));
 						else
 							this.AppendValues(TBOLabelIter, new SchemaDisplay(pxColumn, sc.DBObjectType.Column, col.ColumnName, col.DisplayFormat));
 					}
