@@ -235,10 +235,11 @@ namespace SQLiteMonoPlusUI.Schema
 				DatabaseName = fi.Name.Replace (fi.Extension, "");
 					
 				DBObjectsClear ();
-				LoadPragmas();
+				LoadPragmas ();
 				LoadDBObjects ();
 				LoadTableColumns ();
 				LoadIndexDetails ();
+				LoadForeignKeys ();
 			}
 			catch (Exception ex) {
 				Common.HandleError (ex);
@@ -253,23 +254,21 @@ namespace SQLiteMonoPlusUI.Schema
 			sqlCMD.CommandType = CommandType.Text;
 			sqlCMD.CommandTimeout = 300;
 			SqliteDataReader sqlReader = null;
-			try 
-			{
-				Pragmas.Clear();
+			try {
+				Pragmas.Clear ();
 				sqlCMD.Connection = sqlCN;
 				sqlCN.Open ();
             	
 				for (int i = 0; i < DatabasePragmaList.Length; i++) {
-					sqlCMD.CommandText = GlobalData.Pragma.PragmaBase.Replace ("[PragmaName]", DatabasePragmaList[i]);
+					sqlCMD.CommandText = GlobalData.Pragma.PragmaBase.Replace ("[PragmaName]", DatabasePragmaList [i]);
 					sqlCMD.CommandType = CommandType.Text;
 					sqlCMD.CommandTimeout = 300;
 					sqlReader = sqlCMD.ExecuteReader ();
-					if(sqlReader.HasRows)
-					{
-					while (sqlReader.Read()) {
-						Pragmas.Add(DatabasePragmaList[i], sqlReader[0].ToString());
-						System.Diagnostics.Debug.WriteLine(DatabasePragmaList[i] + " - " + sqlReader[0].ToString());
-					}
+					if (sqlReader.HasRows) {
+						while (sqlReader.Read()) {
+							Pragmas.Add (DatabasePragmaList [i], sqlReader [0].ToString ());
+							System.Diagnostics.Debug.WriteLine (DatabasePragmaList [i] + " - " + sqlReader [0].ToString ());
+						}
 					}
 				}
 				sqlReader.Close ();
@@ -379,14 +378,12 @@ namespace SQLiteMonoPlusUI.Schema
 			try {
 				sqlCMD.Connection = sqlCN;
 				sqlCN.Open ();
-				foreach(Table t in this.Tables) 
-				{
+				foreach (Table t in this.Tables) {
 					sqlCMD.CommandText = GlobalData.Pragma.TableInfo.Replace ("[TableName]", t.TableName);
 					sqlCMD.CommandType = CommandType.Text;
 					sqlCMD.CommandTimeout = 300;
 					sqlReader = sqlCMD.ExecuteReader ();
-					while (sqlReader.Read()) 
-					{
+					while (sqlReader.Read()) {
 						t.Columns.Add (new Column (Convert.ToInt32 (sqlReader ["cid"]), sqlReader ["name"].ToString (), sqlReader ["type"].ToString (), sqlReader ["notnull"].ToString () == "0" ? true : false, (object)sqlReader ["dflt_value"], Convert.ToBoolean (sqlReader ["pk"])));
 					}
 				}
@@ -403,21 +400,34 @@ namespace SQLiteMonoPlusUI.Schema
 			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			SqliteDataReader sqlReader = null;
-			try 
-			{
+			try {
 				ForeignKey fk;
+				Column col;
+				ForeignKeyAction tmpAction;
 				sqlCMD.Connection = sqlCN;
 				sqlCN.Open ();
-				foreach (Table t in this.Tables) 
-				{
-						sqlCMD.CommandText = GlobalData.Pragma.ForeignKeyList.Replace ("[TableName]", t.TableName);
-						sqlCMD.CommandType = CommandType.Text;
-						sqlCMD.CommandTimeout = 300;
-						sqlReader = sqlCMD.ExecuteReader ();
-						while (sqlReader.Read()) 
-						{
-							
-						}			
+				foreach (Table t in this.Tables) {
+					sqlCMD.CommandText = GlobalData.Pragma.ForeignKeyList.Replace ("[TableName]", t.TableName);
+					sqlCMD.CommandType = CommandType.Text;
+					sqlCMD.CommandTimeout = 300;
+					sqlReader = sqlCMD.ExecuteReader ();
+					while (sqlReader.Read()) {
+						fk = new ForeignKey();
+						col = (Column)t.Columns [sqlReader ["from"].ToString ()];
+						fk.PKColumn = col;
+						col.ForeingKey =true;
+						fk.FKTable = (Table)this.Tables [sqlReader ["table"].ToString ()];
+						col = (Column)fk.FKTable.Columns [sqlReader ["to"].ToString ()];
+						fk.FKColumn = col;
+						col.ForeingKey = true;
+						if(ForeignKeyAction.TryParse(sqlReader["on_update"].ToString(), out tmpAction))
+						   fk.OnUpdate = tmpAction;
+						if(ForeignKeyAction.TryParse(sqlReader["on_delete"].ToString(), out tmpAction))
+						   fk.OnDelete = tmpAction;
+
+						t.ForeignKeys.Add(fk);
+
+					}			
 				}
 				sqlReader.Close ();
 				sqlCN.Close ();
@@ -432,21 +442,17 @@ namespace SQLiteMonoPlusUI.Schema
 			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			SqliteDataReader sqlReader = null;
-			try 
-			{
+			try {
 				sqlCMD.Connection = sqlCN;
 				sqlCN.Open ();
-				foreach (Table t in this.Tables) 
-				{
-					foreach (Index ix in t.Indexes) 
-					{
+				foreach (Table t in this.Tables) {
+					foreach (Index ix in t.Indexes) {
 						sqlCMD.CommandText = GlobalData.Pragma.IndexInfo.Replace ("[IndexName]", ix.IndexName);
 						sqlCMD.CommandType = CommandType.Text;
 						sqlCMD.CommandTimeout = 300;
 						sqlReader = sqlCMD.ExecuteReader ();
-						while (sqlReader.Read()) 
-						{
-							ix.IndexColumns.Add((Column)t.Columns[sqlReader["name"].ToString()]);
+						while (sqlReader.Read()) {
+							ix.IndexColumns.Add ((Column)t.Columns [sqlReader ["name"].ToString ()]);
 						}
 					}
 
@@ -454,10 +460,9 @@ namespace SQLiteMonoPlusUI.Schema
 					sqlCMD.CommandType = CommandType.Text;
 					sqlCMD.CommandTimeout = 300;
 					sqlReader = sqlCMD.ExecuteReader ();
-					while (sqlReader.Read()) 
-					{
-						if(!sqlReader["name"].ToString().Contains("sqlite_autoindex"))
-							((Index)t.Indexes[sqlReader ["name"].ToString()]).Unique = sqlReader ["unique"].ToString () == "1" ? true : false;
+					while (sqlReader.Read()) {
+						if (!sqlReader ["name"].ToString ().Contains ("sqlite_autoindex"))
+							((Index)t.Indexes [sqlReader ["name"].ToString ()]).Unique = sqlReader ["unique"].ToString () == "1" ? true : false;
 					}				
 				}
 				sqlReader.Close ();

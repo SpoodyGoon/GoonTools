@@ -165,12 +165,15 @@
     <Compile Include="Common\GtkTools.cs" />
     <Compile Include="UI\Dialogs\frmPragmas.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmPragmas.cs" />
+    <Compile Include="UI\ContexMenus\DBLevel.cs" />
+    <Compile Include="UI\ContexMenus\TableLevel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="UI\" />
     <Folder Include="Images\DatabaseTree\" />
     <Folder Include="UI\Dialogs\" />
+    <Folder Include="UI\ContexMenus\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

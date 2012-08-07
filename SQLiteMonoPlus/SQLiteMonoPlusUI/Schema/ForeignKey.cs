@@ -4,7 +4,6 @@ namespace SQLiteMonoPlusUI.Schema
 	public class ForeignKey
 	{
 		public string ForeignKeyName = string.Empty;
-		public Table PKTable;
 		public Column PKColumn;
 		public Table FKTable;
 		public Column FKColumn;
@@ -12,7 +11,15 @@ namespace SQLiteMonoPlusUI.Schema
 		public ForeignKeyAction OnDelete = ForeignKeyAction.NoAction;
 		public bool Deferrable = false;
 		public bool InitiallyDeferred = false;
-		public ForeignKey ()
+		public ForeignKey() :base()
+		{
+		}
+
+		public ForeignKey (Column pkcolumn, Table fktable, Column fkcolumn, ForeignKeyAction onupdate, ForeignKeyAction ondelete) 
+		{
+		}
+
+		public ForeignKey (string pkcolumn, string fktable, string fkcolumn, string onupdate, string ondelete)
 		{
 		}
 	}
