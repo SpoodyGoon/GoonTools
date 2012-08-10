@@ -5,7 +5,8 @@ namespace SQLiteMonoPlusUI.UI.ContexMenus
 {
 	public class DBLevel : Gtk.Menu
 	{
-		public DBLevel ()
+		SQLiteMonoPlusUI.Schema.Database _Database; 
+		public DBLevel (SQLiteMonoPlusUI.Schema.Database database)
 		{
 			BuildTopLevelMenu();	
 		}
@@ -31,16 +32,27 @@ namespace SQLiteMonoPlusUI.UI.ContexMenus
 
 			tmpMenu = new Gtk.MenuItem("Pragmas");
 			tmpMenu.ButtonReleaseEvent += delegate {
-				///frmPragmas fm = new frmPragmas();
+				frmPragmas frm = new frmPragmas(_Database);
+				frm.Run();
+				frm.Destroy();
 			};
 			this.Add(tmpMenu);	
 
 
 			tmpMenu = new Gtk.MenuItem("Properties");
 			tmpMenu.ButtonReleaseEvent += delegate {
-				LocalEvent();
+				frmProperties frm = new frmProperties();
+				frm.Run();
+				frm.Destroy();
 			};
-			this.Add(tmpMenu);					
+			this.Add(tmpMenu);	
+
+
+			tmpMenu = new Gtk.MenuItem("Refresh");
+//			tmpMenu.ButtonReleaseEvent += delegate {
+//				LocalEvent();
+//			};
+			this.Add(tmpMenu);						
 		}
 		
 		#region "SubMenus"

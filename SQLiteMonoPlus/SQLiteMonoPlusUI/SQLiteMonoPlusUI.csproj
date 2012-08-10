@@ -167,6 +167,9 @@
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmPragmas.cs" />
     <Compile Include="UI\ContexMenus\DBLevel.cs" />
     <Compile Include="UI\ContexMenus\TableLevel.cs" />
+    <Compile Include="UI\Dialogs\frmProperties.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmProperties.cs" />
+    <Compile Include="UI\ContexMenus\ScriptAsLevel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

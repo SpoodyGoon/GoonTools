@@ -75,9 +75,9 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 
 				if (sd.ObjectType == SQLiteMonoPlusUI.Schema.DBObjectType.Database)
 				{
-					mnu = new SQLiteMonoPlusUI.UI.ContexMenus.DBLevel ();
-				mnu.ShowAll ();
-				mnu.Popup ();
+					mnu = new SQLiteMonoPlusUI.UI.ContexMenus.DBLevel ((Schema.Database)Schema.OpenObjects.Databases[sd.ObjectName]);
+					mnu.ShowAll ();
+					mnu.Popup ();
 				}
 				else
 				if (sd.ObjectType == SQLiteMonoPlusUI.Schema.DBObjectType.Table)
