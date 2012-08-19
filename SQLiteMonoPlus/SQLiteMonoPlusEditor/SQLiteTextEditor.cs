@@ -1,10 +1,11 @@
 using System;
+using Gtk;
 
-namespace SQLiteMonoPlusEditor
+namespace SQLiteMonoPlusEditor.SQLEditor
 {
-	public class SQLiteTextEditor
+	public class SQLEditor : Gtk.TextView
 	{
-		public SQLiteTextEditor ()
+		public SQLEditor (SQLiteBuffer SQLBuf) : base(SQLBuf)
 		{
 		}
 	}
