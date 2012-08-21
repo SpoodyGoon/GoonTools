@@ -2,9 +2,9 @@ using System;
 
 namespace SQLiteMonoPlus
 {
-	public class MyClass
+	public class Utilities
 	{
-		public MyClass ()
+		public Utilities ()
 		{
 		}
 	}

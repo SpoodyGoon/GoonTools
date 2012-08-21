@@ -6,6 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="../../SQLiteMonoPlusEditor/bin/Debug/SQLiteMonoPlusEditor.dll" />
     <widget-library name="../bin/Debug/SQLiteMonoPlusUI.exe" internal="true" />
   </import>
   <icon-factory>
@@ -820,6 +821,7 @@
         <property name="ShortLabel" translatable="yes">New Query</property>
         <property name="StockId">NewQuery</property>
         <property name="Tooltip" translatable="yes">New Query</property>
+        <signal name="Activated" handler="OnNewQueryActionActivated" />
       </action>
       <action id="NewAction">
         <property name="Type">Action</property>
@@ -944,7 +946,7 @@
             <property name="ShadowType">In</property>
             <property name="BorderWidth">2</property>
             <child>
-              <widget class="Gtk.Alignment" id="GtkAlignment2">
+              <widget class="Gtk.Alignment" id="GtkAlignment3">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
                 <property name="Yalign">0</property>
@@ -962,7 +964,7 @@
                             <property name="ShadowType">In</property>
                             <property name="BorderWidth">4</property>
                             <child>
-                              <widget class="Gtk.Alignment" id="GtkAlignment3">
+                              <widget class="Gtk.Alignment" id="GtkAlignment4">
                                 <property name="MemberName" />
                                 <property name="Xalign">0</property>
                                 <property name="Yalign">0</property>
@@ -1075,15 +1077,16 @@
                             <property name="ShadowType">In</property>
                             <property name="BorderWidth">2</property>
                             <child>
-                              <widget class="Gtk.Alignment" id="GtkAlignment5">
+                              <widget class="Gtk.Alignment" id="GtkAlignment6">
                                 <property name="MemberName" />
                                 <property name="Xalign">0</property>
                                 <property name="Yalign">0</property>
                                 <child>
-                                  <widget class="Gtk.Notebook" id="nbQueryEditor">
+                                  <widget class="Gtk.Notebook" id="nbkEditor">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="CurrentPage">0</property>
+                                    <property name="BorderWidth">5</property>
                                     <child>
                                       <placeholder />
                                     </child>

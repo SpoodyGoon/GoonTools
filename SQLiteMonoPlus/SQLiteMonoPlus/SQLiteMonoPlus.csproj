@@ -31,10 +31,42 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Mono.Data.SqliteClient">
+      <HintPath>ExternalLibs\Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Schema\Column.cs" />
+    <Compile Include="Schema\ColumnCollection.cs" />
+    <Compile Include="Schema\Database.cs" />
+    <Compile Include="Schema\DatabaseCollection.cs" />
+    <Compile Include="Schema\ForeignKey.cs" />
+    <Compile Include="Schema\ForeignKeyCollection.cs" />
+    <Compile Include="Schema\Index.cs" />
+    <Compile Include="Schema\IndexCollection.cs" />
+    <Compile Include="Schema\OpenObjects.cs" />
+    <Compile Include="Schema\SchemaEnums.cs" />
+    <Compile Include="Schema\Table.cs" />
+    <Compile Include="Schema\TableCollection.cs" />
+    <Compile Include="Schema\Trigger.cs" />
+    <Compile Include="Schema\TriggerCollection.cs" />
+    <Compile Include="Schema\View.cs" />
+    <Compile Include="Schema\ViewCollection.cs" />
+    <Compile Include="Util\Utilities.cs" />
+    <Compile Include="GlobalData\AdminSQL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="ExternalLibs\Mono.Data.SqliteClient.dll" />
+    <None Include="ExternalLibs\README_DLL.txt" />
+    <None Include="ExternalLibs\sqlite3.def" />
+    <None Include="ExternalLibs\sqlite3.dll" />
+    <None Include="GlobalData\SQLiteMonoPlus.s3db" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Util\" />
+  </ItemGroup>
 </Project>

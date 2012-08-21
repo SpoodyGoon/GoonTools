@@ -1,6 +1,6 @@
 ﻿using System;
 using Gtk;
-using sc = SQLiteMonoPlusUI.Schema;
+using sc = SQLiteMonoPlus.Schema;
 
 namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 {

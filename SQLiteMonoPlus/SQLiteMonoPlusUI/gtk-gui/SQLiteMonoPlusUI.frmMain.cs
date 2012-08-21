@@ -22,11 +22,11 @@ namespace SQLiteMonoPlusUI
 		private global::Gtk.Alignment alignment2;
 		private global::Gtk.Toolbar toolbar1;
 		private global::Gtk.Frame frame1;
-		private global::Gtk.Alignment GtkAlignment2;
+		private global::Gtk.Alignment GtkAlignment3;
 		private global::Gtk.HPaned hpaned1;
 		private global::Gtk.Alignment alignment4;
 		private global::Gtk.Frame frame2;
-		private global::Gtk.Alignment GtkAlignment3;
+		private global::Gtk.Alignment GtkAlignment4;
 		private global::Gtk.VBox vbox2;
 		private global::Gtk.Fixed fixed1;
 		private global::Gtk.Label label3;
@@ -38,8 +38,8 @@ namespace SQLiteMonoPlusUI
 		private global::Gtk.ScrolledWindow swObjectExplorer;
 		private global::Gtk.Alignment alignment6;
 		private global::Gtk.Frame frame3;
-		private global::Gtk.Alignment GtkAlignment5;
-		private global::Gtk.Notebook nbQueryEditor;
+		private global::Gtk.Alignment GtkAlignment6;
+		private global::Gtk.Notebook nbkEditor;
 		private global::Gtk.Label label2;
 		private global::Gtk.Alignment alignment5;
 		private global::Gtk.Statusbar statusbar1;
@@ -134,9 +134,9 @@ namespace SQLiteMonoPlusUI
 			this.frame1.ShadowType = ((global::Gtk.ShadowType)(1));
 			this.frame1.BorderWidth = ((uint)(2));
 			// Container child frame1.Gtk.Container+ContainerChild
-			this.GtkAlignment2 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
-			this.GtkAlignment2.Name = "GtkAlignment2";
-			// Container child GtkAlignment2.Gtk.Container+ContainerChild
+			this.GtkAlignment3 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.GtkAlignment3.Name = "GtkAlignment3";
+			// Container child GtkAlignment3.Gtk.Container+ContainerChild
 			this.hpaned1 = new global::Gtk.HPaned ();
 			this.hpaned1.CanFocus = true;
 			this.hpaned1.Name = "hpaned1";
@@ -150,9 +150,9 @@ namespace SQLiteMonoPlusUI
 			this.frame2.ShadowType = ((global::Gtk.ShadowType)(1));
 			this.frame2.BorderWidth = ((uint)(4));
 			// Container child frame2.Gtk.Container+ContainerChild
-			this.GtkAlignment3 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
-			this.GtkAlignment3.Name = "GtkAlignment3";
-			// Container child GtkAlignment3.Gtk.Container+ContainerChild
+			this.GtkAlignment4 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.GtkAlignment4.Name = "GtkAlignment4";
+			// Container child GtkAlignment4.Gtk.Container+ContainerChild
 			this.vbox2 = new global::Gtk.VBox ();
 			this.vbox2.Name = "vbox2";
 			// Container child vbox2.Gtk.Box+BoxChild
@@ -215,8 +215,8 @@ namespace SQLiteMonoPlusUI
 			this.vbox2.Add (this.alignment7);
 			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
 			w13.Position = 3;
-			this.GtkAlignment3.Add (this.vbox2);
-			this.frame2.Add (this.GtkAlignment3);
+			this.GtkAlignment4.Add (this.vbox2);
+			this.frame2.Add (this.GtkAlignment4);
 			this.alignment4.Add (this.frame2);
 			this.hpaned1.Add (this.alignment4);
 			global::Gtk.Paned.PanedChild w17 = ((global::Gtk.Paned.PanedChild)(this.hpaned1 [this.alignment4]));
@@ -230,28 +230,29 @@ namespace SQLiteMonoPlusUI
 			this.frame3.ShadowType = ((global::Gtk.ShadowType)(1));
 			this.frame3.BorderWidth = ((uint)(2));
 			// Container child frame3.Gtk.Container+ContainerChild
-			this.GtkAlignment5 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
-			this.GtkAlignment5.Name = "GtkAlignment5";
-			// Container child GtkAlignment5.Gtk.Container+ContainerChild
-			this.nbQueryEditor = new global::Gtk.Notebook ();
-			this.nbQueryEditor.CanFocus = true;
-			this.nbQueryEditor.Name = "nbQueryEditor";
-			this.nbQueryEditor.CurrentPage = 0;
+			this.GtkAlignment6 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.GtkAlignment6.Name = "GtkAlignment6";
+			// Container child GtkAlignment6.Gtk.Container+ContainerChild
+			this.nbkEditor = new global::Gtk.Notebook ();
+			this.nbkEditor.CanFocus = true;
+			this.nbkEditor.Name = "nbkEditor";
+			this.nbkEditor.CurrentPage = 0;
+			this.nbkEditor.BorderWidth = ((uint)(5));
 			// Notebook tab
 			global::Gtk.Label w18 = new global::Gtk.Label ();
 			w18.Visible = true;
-			this.nbQueryEditor.Add (w18);
+			this.nbkEditor.Add (w18);
 			this.label2 = new global::Gtk.Label ();
 			this.label2.Name = "label2";
 			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("page1");
-			this.nbQueryEditor.SetTabLabel (w18, this.label2);
+			this.nbkEditor.SetTabLabel (w18, this.label2);
 			this.label2.ShowAll ();
-			this.GtkAlignment5.Add (this.nbQueryEditor);
-			this.frame3.Add (this.GtkAlignment5);
+			this.GtkAlignment6.Add (this.nbkEditor);
+			this.frame3.Add (this.GtkAlignment6);
 			this.alignment6.Add (this.frame3);
 			this.hpaned1.Add (this.alignment6);
-			this.GtkAlignment2.Add (this.hpaned1);
-			this.frame1.Add (this.GtkAlignment2);
+			this.GtkAlignment3.Add (this.hpaned1);
+			this.frame1.Add (this.GtkAlignment3);
 			this.vbox1.Add (this.frame1);
 			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frame1]));
 			w25.Position = 2;
@@ -275,6 +276,7 @@ namespace SQLiteMonoPlusUI
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.quitAction.Activated += new global::System.EventHandler (this.Quit_Clicked);
+			this.NewQueryAction.Activated += new global::System.EventHandler (this.OnNewQueryActionActivated);
 			this.connectAction.Activated += new global::System.EventHandler (this.btnConnect_Clicked);
 			this.connectAction1.Activated += new global::System.EventHandler (this.btnConnect_Clicked);
 			this.aboutAction.Activated += new global::System.EventHandler (this.OnAboutActionActivated);

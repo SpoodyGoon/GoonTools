@@ -138,25 +138,7 @@
     <Compile Include="Connections\ConnectionStore.cs" />
     <Compile Include="Connections\Connection.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmMain.cs" />
-    <Compile Include="GlobalData\SQL.cs" />
-    <Compile Include="Schema\Database.cs" />
-    <Compile Include="Schema\DatabaseCollection.cs" />
-    <Compile Include="Schema\OpenObjects.cs" />
-    <Compile Include="Schema\SchemaEnums.cs" />
-    <Compile Include="Schema\Table.cs" />
-    <Compile Include="Schema\TableCollection.cs" />
-    <Compile Include="Schema\Column.cs" />
-    <Compile Include="Schema\ColumnCollection.cs" />
-    <Compile Include="Schema\Index.cs" />
-    <Compile Include="Schema\ForeignKey.cs" />
-    <Compile Include="Schema\Trigger.cs" />
-    <Compile Include="Schema\TriggerCollection.cs" />
-    <Compile Include="Schema\View.cs" />
-    <Compile Include="Schema\IndexCollection.cs" />
-    <Compile Include="Schema\ForeignKeyCollection.cs" />
-    <Compile Include="Schema\ViewCollection.cs" />
     <Compile Include="Connections\ConnectionComboBoxEntry.cs" />
-    <Compile Include="GlobalData\StoreModels.cs" />
     <Compile Include="Common\BufferTags.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\EnviromentData.cs" />
@@ -170,6 +152,8 @@
     <Compile Include="UI\Dialogs\frmProperties.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmProperties.cs" />
     <Compile Include="UI\ContexMenus\ScriptAsLevel.cs" />
+    <Compile Include="Common\StoreModels.cs" />
+    <Compile Include="Common\SQL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -186,11 +170,18 @@
       <CustomToolNamespace>SQLiteMonoPlusUI</CustomToolNamespace>
     </None>
     <Content Include="dll\README_DLL.txt" />
-    <Content Include="GlobalData\SQLiteMonoPlus.s3db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="dll\Mono.Data.SqliteClient.dll" />
     <None Include="dll\sqlite3.def" />
     <None Include="dll\sqlite3.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SQLiteMonoPlusEditor\SQLiteMonoPlusEditor.csproj">
+      <Project>{236C5A87-1525-4DB3-BF77-0537AE08A058}</Project>
+      <Name>SQLiteMonoPlusEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLiteMonoPlus\SQLiteMonoPlus.csproj">
+      <Project>{768D7523-8FEB-4293-B88C-FF267363F994}</Project>
+      <Name>SQLiteMonoPlus</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

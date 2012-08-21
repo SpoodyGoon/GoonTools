@@ -25,5 +25,6 @@ namespace SQLiteMonoPlusUI.Constants
 		internal const string Simple = "URI=file:[DBPATH],version=3, busy_timeout=300";
 		internal const string WithPasword = "";
 		internal const string WithPooling = "";
+        internal const string ConnectionTest = "SELECT * FROM sqlite_master WHERE 1=2";
 	}
 }

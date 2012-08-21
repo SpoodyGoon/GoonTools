@@ -1,5 +1,5 @@
 using System;
-using SQLiteMonoPlusUI.Schema;
+using SQLiteMonoPlus.Schema;
 
 namespace SQLiteMonoPlusUI
 {

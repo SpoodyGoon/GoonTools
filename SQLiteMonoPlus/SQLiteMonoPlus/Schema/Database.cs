@@ -1,16 +1,14 @@
 using System;
-using System.IO;
 using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using Mono.Data.SqliteClient;
-using SQLiteMonoPlusUI.GlobalTools;
+using SQLiteMonoPlus.Data.Schema;
 
-namespace SQLiteMonoPlusUI.Schema
+namespace SQLiteMonoPlus.Schema
 {
 	public class Database
 	{
-		private string _DatabaseFile = string.Empty;
 		public string DatabaseName = string.Empty;
 		private string _ConnectionString = string.Empty;
 		public Dictionary<string, string> Pragmas = new Dictionary<string, string> ();
@@ -212,39 +210,20 @@ namespace SQLiteMonoPlusUI.Schema
 				"WHERE"
 			};
 
-		public Database (string DBFile)
+		public Database (string DBConnString, string DBName)
 		{
-			_DatabaseFile = DBFile;
+			_ConnectionString = DBConnString;
+			DatabaseName = DBName;
 		}
 		
 		public void LoadSchema ()
 		{
-			try {
-				FileInfo fi = new FileInfo (_DatabaseFile);
-				
-				if (!fi.Exists)
-					throw new FileNotFoundException ("Unable to find database file.", fi.FullName);
-				
-				if (!Common.DatabaseTryConnect (fi.FullName))
-					throw new SqliteExecutionException ("Unable to connect to database: " + fi.FullName);
-				
-				// create the connection string used
-				// with this instance of the schema object
-				_ConnectionString = Constants.ConnectionString.Simple.Replace ("[DBPATH]", fi.FullName);
-				
-				DatabaseName = fi.Name.Replace (fi.Extension, "");
-					
 				DBObjectsClear ();
 				LoadPragmas ();
 				LoadDBObjects ();
 				LoadTableColumns ();
 				LoadIndexDetails ();
 				LoadForeignKeys ();
-			}
-			catch (Exception ex) {
-				Common.HandleError (ex);
-			}
-			
 		}
 		
 		private void LoadPragmas ()
@@ -254,13 +233,12 @@ namespace SQLiteMonoPlusUI.Schema
 			sqlCMD.CommandType = CommandType.Text;
 			sqlCMD.CommandTimeout = 300;
 			SqliteDataReader sqlReader = null;
-			try {
 				Pragmas.Clear ();
 				sqlCMD.Connection = sqlCN;
 				sqlCN.Open ();
             	
 				for (int i = 0; i < DatabasePragmaList.Length; i++) {
-					sqlCMD.CommandText = GlobalData.Pragma.PragmaBase.Replace ("[PragmaName]", DatabasePragmaList [i]);
+					sqlCMD.CommandText = Pragma.PragmaBase.Replace ("[PragmaName]", DatabasePragmaList [i]);
 					sqlCMD.CommandType = CommandType.Text;
 					sqlCMD.CommandTimeout = 300;
 					sqlReader = sqlCMD.ExecuteReader ();
@@ -273,24 +251,6 @@ namespace SQLiteMonoPlusUI.Schema
 				}
 				sqlReader.Close ();
 				sqlCN.Close ();
-			}
-			catch (Exception ex) {
-				Common.HandleError (ex);
-			}
-			finally {
-				if (sqlReader != null) {
-					if (!sqlReader.IsClosed)
-						sqlReader.Close ();
-					
-					sqlReader.Dispose ();
-				}
-				
-				if (sqlCN.State != ConnectionState.Closed)
-					sqlCN.Close ();
-				sqlCN.Dispose ();
-				sqlCMD.Dispose ();
-				
-			}
 		}
 		
 		private void DBObjectsClear ()
@@ -302,7 +262,6 @@ namespace SQLiteMonoPlusUI.Schema
 		
 		private void LoadDBObjects ()
 		{
-			try {
 				DataTable dt = DBObjectsGet ();
 				DataView dv = dt.DefaultView;
 				dv.RowFilter = "ObjectType = 'table'";
@@ -338,35 +297,17 @@ namespace SQLiteMonoPlusUI.Schema
 					tgr = new Trigger (drv ["ObjectName"].ToString ().Trim (), drv ["SQL"].ToString ().Trim (), tbl.TableName);
 					tbl.Triggers.Add (tgr);
 				}
-				
-				
-			}
-			catch (Exception ex) {
-				Common.HandleError (ex);
-			}
 		}
 		
 		private DataTable DBObjectsGet ()
 		{
 			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
-			SqliteCommand sqlCMD = new SqliteCommand (GlobalData.SQL.TablesGet, sqlCN);
+			SqliteCommand sqlCMD = new SqliteCommand (AdminSQL.TablesGet, sqlCN);
 			sqlCMD.CommandType = CommandType.Text;
 			sqlCMD.CommandTimeout = 300;
 			SqliteDataAdapter sqlDA = new SqliteDataAdapter (sqlCMD);
 			DataTable dt = new DataTable ("DBObjects");
-			try {
 				sqlDA.Fill (dt);
-			}
-			catch (Exception ex) {
-				Common.HandleError (ex);
-			}
-			finally {
-				if (sqlCN.State != ConnectionState.Closed)
-					sqlCN.Close ();
-				sqlCN.Dispose ();
-				sqlCMD.Dispose ();
-				sqlDA.Dispose ();
-			}
 			return dt;
 		}
 
@@ -375,11 +316,10 @@ namespace SQLiteMonoPlusUI.Schema
 			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			SqliteDataReader sqlReader = null;
-			try {
 				sqlCMD.Connection = sqlCN;
 				sqlCN.Open ();
 				foreach (Table t in this.Tables) {
-					sqlCMD.CommandText = GlobalData.Pragma.TableInfo.Replace ("[TableName]", t.TableName);
+					sqlCMD.CommandText = Pragma.TableInfo.Replace ("[TableName]", t.TableName);
 					sqlCMD.CommandType = CommandType.Text;
 					sqlCMD.CommandTimeout = 300;
 					sqlReader = sqlCMD.ExecuteReader ();
@@ -389,10 +329,6 @@ namespace SQLiteMonoPlusUI.Schema
 				}
 				sqlReader.Close ();
 				sqlCN.Close ();
-			}
-			catch (Exception ex) {
-				Common.HandleError (ex);
-			}
 		}
 
 		private void LoadForeignKeys ()
@@ -400,14 +336,13 @@ namespace SQLiteMonoPlusUI.Schema
 			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			SqliteDataReader sqlReader = null;
-			try {
 				ForeignKey fk;
 				Column col;
 				ForeignKeyAction tmpAction;
 				sqlCMD.Connection = sqlCN;
 				sqlCN.Open ();
 				foreach (Table t in this.Tables) {
-					sqlCMD.CommandText = GlobalData.Pragma.ForeignKeyList.Replace ("[TableName]", t.TableName);
+					sqlCMD.CommandText = Pragma.ForeignKeyList.Replace ("[TableName]", t.TableName);
 					sqlCMD.CommandType = CommandType.Text;
 					sqlCMD.CommandTimeout = 300;
 					sqlReader = sqlCMD.ExecuteReader ();
@@ -431,10 +366,6 @@ namespace SQLiteMonoPlusUI.Schema
 				}
 				sqlReader.Close ();
 				sqlCN.Close ();
-			}
-			catch (Exception ex) {
-				Common.HandleError (ex);
-			}
 		}
 
 		private void LoadIndexDetails ()
@@ -442,12 +373,11 @@ namespace SQLiteMonoPlusUI.Schema
 			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			SqliteDataReader sqlReader = null;
-			try {
 				sqlCMD.Connection = sqlCN;
 				sqlCN.Open ();
 				foreach (Table t in this.Tables) {
 					foreach (Index ix in t.Indexes) {
-						sqlCMD.CommandText = GlobalData.Pragma.IndexInfo.Replace ("[IndexName]", ix.IndexName);
+						sqlCMD.CommandText = Pragma.IndexInfo.Replace ("[IndexName]", ix.IndexName);
 						sqlCMD.CommandType = CommandType.Text;
 						sqlCMD.CommandTimeout = 300;
 						sqlReader = sqlCMD.ExecuteReader ();
@@ -456,7 +386,7 @@ namespace SQLiteMonoPlusUI.Schema
 						}
 					}
 
-					sqlCMD.CommandText = GlobalData.Pragma.IndexList.Replace ("[TableName]", t.TableName);
+					sqlCMD.CommandText = Pragma.IndexList.Replace ("[TableName]", t.TableName);
 					sqlCMD.CommandType = CommandType.Text;
 					sqlCMD.CommandTimeout = 300;
 					sqlReader = sqlCMD.ExecuteReader ();
@@ -467,10 +397,6 @@ namespace SQLiteMonoPlusUI.Schema
 				}
 				sqlReader.Close ();
 				sqlCN.Close ();
-			}
-			catch (Exception ex) {
-				Common.HandleError (ex);
-			}
 		}
 	}
 

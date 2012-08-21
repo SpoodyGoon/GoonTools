@@ -1,5 +1,8 @@
 using System;
+using System.IO;
 using Mono.Data.SqliteClient;
+using SQLiteMonoPlusEditor;
+using SQLiteMonoPlus.Schema;
 using Gtk;
 
 namespace SQLiteMonoPlusUI
@@ -12,6 +15,10 @@ namespace SQLiteMonoPlusUI
 			Build ();
 			SchemaView = new SQLiteMonoPlusUI.UI.ObjectExplorer.SchemaTreeView(this);
 			swObjectExplorer.Add(SchemaView);
+			SQLiteMonoPlusEditor.SQLEditor.EditorView ev = new SQLiteMonoPlusEditor.SQLEditor.EditorView();
+			nbkEditor.Add(ev);
+
+
 			this.ShowAll();
 		}
 		
@@ -37,21 +44,31 @@ namespace SQLiteMonoPlusUI
 	
 		protected void btnConnect_Clicked (object sender, System.EventArgs e)
 		{
-			string strDBFile = null;
-			frmDatabaseConnect fm = new frmDatabaseConnect();			
-			if((Gtk.ResponseType)fm.Run() == Gtk.ResponseType.Ok)
-			{
-				strDBFile = fm.SelectedDatabase;
-			}
-			fm.Destroy();
+			try {
+				string strDBFile = null;
+				frmDatabaseConnect fm = new frmDatabaseConnect ();			
+				if ((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok) {
+					strDBFile = fm.SelectedDatabase;
+				}
+				fm.Destroy ();
 			
-			if(!string.IsNullOrEmpty(strDBFile))
-			{
-				Schema.Database db = new Schema.Database(strDBFile);
-				Schema.OpenObjects.Databases.Add(db);
-				db.LoadSchema();   
-				SchemaView.Load();
-				this.ShowAll();
+				if (!string.IsNullOrEmpty (strDBFile)) {
+					FileInfo fi = new FileInfo (strDBFile);
+					if (!fi.Exists)
+						throw new System.IO.FileNotFoundException ("Unable to load SQLite Database.", strDBFile);
+
+					string strConnString = Constants.ConnectionString.Simple.Replace ("[DBPATH]", fi.FullName);
+					string strDBName = fi.Name.Replace (fi.Extension, "");
+
+					Database db = new Database (strConnString, strDBName);
+					OpenObjects.Databases.Add (db);
+					db.LoadSchema ();   
+					SchemaView.Load ();
+					this.ShowAll ();
+				}
+			}
+			catch (Exception ex) {
+				GlobalTools.Common.HandleError(ex);
 			}
 		}
 
@@ -59,5 +76,11 @@ namespace SQLiteMonoPlusUI
 		{
 			throw new System.NotImplementedException ();
 		}
+
+		protected void OnNewQueryActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
 	}
 }
