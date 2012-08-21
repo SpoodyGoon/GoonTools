@@ -53,6 +53,8 @@
     <Compile Include="TableDesigner.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusEditor.TableDesigner.cs" />
     <Compile Include="TextBuffer.cs" />
+    <Compile Include="TableDesignerTreeView.cs" />
+    <Compile Include="TableDesignerTreeModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
