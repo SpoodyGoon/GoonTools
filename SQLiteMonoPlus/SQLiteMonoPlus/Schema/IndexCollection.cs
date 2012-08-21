@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-namespace SQLiteMonoPlusUI.Schema
+namespace SQLiteMonoPlus.Schema
 {
 	public class IndexCollection : ICollection, IEnumerable
 	{

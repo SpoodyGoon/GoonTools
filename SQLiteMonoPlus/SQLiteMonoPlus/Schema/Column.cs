@@ -1,5 +1,5 @@
 using System;
-namespace SQLiteMonoPlusUI.Schema
+namespace SQLiteMonoPlus.Schema
 {
 	public class Column
 	{

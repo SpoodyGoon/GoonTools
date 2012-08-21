@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace SQLiteMonoPlusUI.Schema
+namespace SQLiteMonoPlus.Schema
 {
 	/// <summary>
 	/// Description of OpenObjects.

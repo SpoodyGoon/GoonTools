@@ -9,7 +9,7 @@
 using System;
 using System.Collections;
 
-namespace SQLiteMonoPlusUI.Schema
+namespace SQLiteMonoPlus.Schema
 {
 	/// <summary>
 	/// Description of DatabaseCollection.

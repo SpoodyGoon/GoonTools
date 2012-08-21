@@ -5,9 +5,10 @@ namespace SQLiteMonoPlusUI.UI.ContexMenus
 {
 	public class DBLevel : Gtk.Menu
 	{
-		SQLiteMonoPlusUI.Schema.Database _Database; 
-		public DBLevel (SQLiteMonoPlusUI.Schema.Database database)
+		SQLiteMonoPlus.Schema.Database _Database; 
+		public DBLevel (SQLiteMonoPlus.Schema.Database database)
 		{
+			_Database = database;
 			BuildTopLevelMenu();	
 		}
 

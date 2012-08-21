@@ -28,7 +28,8 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 		private const int gray50_width = 2;
 		private const int gray50_height = 2;
 		private const string gray50_bits = "\x02\x01";
-		public SQLiteBuffer () : base(IntPtr.Zero) 
+		private int _DefaultFontSize;
+		public SQLiteBuffer (TextTagTable TagTable) : base(TagTable) 
 		{
 
 			// Create a bunch of tags. Note that it's also possible to
@@ -49,21 +50,30 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 			// tag.  You can modify tag priorities with
 			// gtk_text_tag_set_priority().
 
-			TextTag tag  = new TextTag ("heading");
+			_DefaultFontSize = (int)Pango.Scale.PangoScale * 10;
+
+		
+
+			TextTag tag  = new TextTag ("Keyword");
 			tag.Weight = Pango.Weight.Bold;
-			tag.Size = (int) Pango.Scale.PangoScale * 15;
+			tag.Size = _DefaultFontSize;
 			this.TagTable.Add (tag);
 
-			tag  = new TextTag ("sub_heading");
+			tag = new TextTag("BG");
+			tag.BackgroundGdk = new Gdk.Color(111,111,111);
+			this.TagTable.Add(tag);
+
+			tag  = new TextTag ("Comment");
 			tag.Weight = Pango.Weight.Bold;
 			tag.Size = (int) Pango.Scale.PangoScale * 10;
 			this.TagTable.Add (tag);
 
-			tag  = new TextTag ("italic");
+			tag  = new TextTag ("String");
 			tag.Style = Pango.Style.Italic;
+			tag.ForegroundGdk = new Gdk.Color(0, 255,0);
 			this.TagTable.Add (tag);
 
-			tag  = new TextTag ("bold");
+			tag  = new TextTag ("Number");
 			tag.Weight = Pango.Weight.Bold;
 			this.TagTable.Add (tag);
 

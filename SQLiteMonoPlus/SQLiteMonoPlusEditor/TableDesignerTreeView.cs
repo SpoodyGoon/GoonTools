@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
 
 namespace SQLiteMonoPlusEditor
 {
@@ -43,19 +44,19 @@ namespace SQLiteMonoPlusEditor
 			colColumnName.Title = "Column Name";
 			Gtk.CellRendererText cellColumnName = new Gtk.CellRendererText ();
 			cellColumnName.Editable = true;
-			cellColumnName.PackStart (cellObjectName, true);
+			colColumnName.PackStart (cellColumnName, true);
 			this.AppendColumn (colColumnName);
 			
-			colPixbuf.SetCellDataFunc (cellPixbuf, new Gtk.TreeCellDataFunc (RenderPixbuf));
-			colObjectName.SetCellDataFunc (cellObjectName, new Gtk.TreeCellDataFunc (RenderObjectName));
+			//colPixbuf.SetCellDataFunc (cellPixbuf, new Gtk.TreeCellDataFunc (RenderPixbuf));
+			//colObjectName.SetCellDataFunc (cellObjectName, new Gtk.TreeCellDataFunc (RenderObjectName));
 			this.Model = _TreeModel;
 
 		}
 		
 		private void RenderColumnName (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
-			SchemaDisplay sd = (SchemaDisplay)model.GetValue (iter, 0);
-			(cell as Gtk.CellRendererText).Text = sd.ObjectDisplay;
+			//SchemaDisplay sd = (SchemaDisplay)model.GetValue (iter, 0);
+			//(cell as Gtk.CellRendererText).Text = sd.ObjectDisplay;
 		}
 	}
 

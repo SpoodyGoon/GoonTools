@@ -1,0 +1,1 @@
+﻿This folder is for dll libraries that are not normally available in the GAC or is not available in Windows

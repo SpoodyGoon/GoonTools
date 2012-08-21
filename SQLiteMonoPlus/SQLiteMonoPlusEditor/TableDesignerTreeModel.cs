@@ -22,9 +22,9 @@ using System;
 
 namespace SQLiteMonoPlusEditor
 {
-	public class TableDesignerTreeModel
+	public class TableDesignerTreeModel : Gtk.TreeStore, Gtk.TreeModel
 	{
-		public TableDesignerTreeModel ()
+		public TableDesignerTreeModel () : base()
 		{
 		}
 	}

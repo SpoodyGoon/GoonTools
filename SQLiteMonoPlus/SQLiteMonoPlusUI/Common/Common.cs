@@ -122,7 +122,7 @@ namespace SQLiteMonoPlusUI.GlobalTools
 			bool blnSuccess = true;
 			try {
 				SqliteConnection sqlCN = new SqliteConnection (Constants.ConnectionString.Simple.Replace ("[DBPATH]", DBFile));
-				SqliteCommand sqlCMD = new SqliteCommand (GlobalData.SQL.ConnectionTest, sqlCN);
+				SqliteCommand sqlCMD = new SqliteCommand (Constants.ConnectionString.ConnectionTest, sqlCN);
 				sqlCN.Open ();
 				sqlCMD.ExecuteNonQuery ();
 				sqlCN.Close ();

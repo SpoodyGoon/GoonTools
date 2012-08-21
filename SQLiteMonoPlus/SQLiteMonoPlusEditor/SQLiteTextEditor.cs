@@ -3,10 +3,14 @@ using Gtk;
 
 namespace SQLiteMonoPlusEditor.SQLEditor
 {
-	public class SQLEditor : Gtk.TextView
+	[System.ComponentModel.ToolboxItem(true)]
+	public class EditorView : Gtk.TextView
 	{
-		public SQLEditor (SQLiteBuffer SQLBuf) : base(SQLBuf)
+		public EditorView () : base()
 		{
+			TextBuffer tb = new TextBuffer(new TextTagTable());
+			this.Buffer = tb;
+			this.ModifyBg(StateType.Normal, new Gdk.Color(111,111,111));
 		}
 	}
 }
