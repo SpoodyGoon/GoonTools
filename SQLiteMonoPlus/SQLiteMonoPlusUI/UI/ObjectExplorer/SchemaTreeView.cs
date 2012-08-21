@@ -9,6 +9,7 @@
 using System;
 using Gtk;
 using GlobalTools;
+using SQLiteMonoPlus;
 using SQLiteMonoPlus.Schema;
 
 namespace SQLiteMonoPlusUI.UI.ObjectExplorer
@@ -74,14 +75,14 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 
 				SchemaDisplay sd = (SchemaDisplay)this.Model.GetValue (iter, 0);
 
-				if (sd.ObjectType == SQLiteMonoPlus.Schema.DBObjectType.Database)
+				if (sd.ObjectType == DBObjectType.Database)
 				{
 					mnu = new SQLiteMonoPlusUI.UI.ContexMenus.DBLevel ((Database)OpenObjects.Databases[sd.ObjectName]);
 					mnu.ShowAll ();
 					mnu.Popup ();
 				}
 				else
-				if (sd.ObjectType == SQLiteMonoPlus.Schema.DBObjectType.Table)
+				if (sd.ObjectType == DBObjectType.Table)
 				{
 					mnu = new SQLiteMonoPlusUI.UI.ContexMenus.TableLevel ();
 				mnu.ShowAll ();

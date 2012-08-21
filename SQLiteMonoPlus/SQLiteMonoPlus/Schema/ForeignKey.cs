@@ -23,14 +23,5 @@ namespace SQLiteMonoPlus.Schema
 		{
 		}
 	}
-	// test test
-	public enum ForeignKeyAction
-	{
-		NoAction, 
-		Restrict, 
-		SetNull, 
-		SetDefault,
-		Cascade
-	}
 }
 

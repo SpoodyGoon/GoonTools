@@ -31,7 +31,12 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 		private int _DefaultFontSize;
 		public SQLiteBuffer (TextTagTable TagTable) : base(TagTable) 
 		{
+			_DefaultFontSize = (int)Pango.Scale.PangoScale * 10;
+			BuildTagTable();
+		}
 
+		private void BuildTagTable()
+		{
 			// Create a bunch of tags. Note that it's also possible to
 			// create tags with gtk_text_tag_new() then add them to the
 			// tag table for the buffer, gtk_text_buffer_create_tag() is
@@ -50,9 +55,6 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 			// tag.  You can modify tag priorities with
 			// gtk_text_tag_set_priority().
 
-			_DefaultFontSize = (int)Pango.Scale.PangoScale * 10;
-
-		
 
 			TextTag tag  = new TextTag ("Keyword");
 			tag.Weight = Pango.Weight.Bold;
