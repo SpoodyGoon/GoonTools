@@ -52,13 +52,19 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="TableDesigner.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusEditor.TableDesigner.cs" />
-    <Compile Include="TextBuffer.cs" />
     <Compile Include="TableDesignerTreeView.cs" />
     <Compile Include="TableDesignerTreeModel.cs" />
+    <Compile Include="SQLiteBuffer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SQLiteMonoPlus\SQLiteMonoPlus.csproj">
+      <Project>{768D7523-8FEB-4293-B88C-FF267363F994}</Project>
+      <Name>SQLiteMonoPlus</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

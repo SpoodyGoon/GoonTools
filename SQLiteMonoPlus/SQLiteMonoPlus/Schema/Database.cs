@@ -316,19 +316,20 @@ namespace SQLiteMonoPlus.Schema
 			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			SqliteDataReader sqlReader = null;
-				sqlCMD.Connection = sqlCN;
-				sqlCN.Open ();
-				foreach (Table t in this.Tables) {
-					sqlCMD.CommandText = Pragma.TableInfo.Replace ("[TableName]", t.TableName);
-					sqlCMD.CommandType = CommandType.Text;
-					sqlCMD.CommandTimeout = 300;
-					sqlReader = sqlCMD.ExecuteReader ();
-					while (sqlReader.Read()) {
-						t.Columns.Add (new Column (Convert.ToInt32 (sqlReader ["cid"]), sqlReader ["name"].ToString (), sqlReader ["type"].ToString (), sqlReader ["notnull"].ToString () == "0" ? true : false, (object)sqlReader ["dflt_value"], Convert.ToBoolean (sqlReader ["pk"])));
-					}
+			sqlCMD.Connection = sqlCN;
+			sqlCN.Open ();
+			foreach (Table t in this.Tables) {
+				sqlCMD.CommandText = Pragma.TableInfo.Replace("[TableName]", t.TableName);
+				sqlCMD.CommandType = CommandType.Text;
+				sqlCMD.CommandTimeout = 300;
+				sqlReader = sqlCMD.ExecuteReader ();
+				while (sqlReader.Read()) {
+					t.Columns.Add (new Column (Convert.ToInt32 (sqlReader ["cid"]), sqlReader ["name"].ToString (), sqlReader ["type"].ToString (), sqlReader ["notnull"].ToString () == "0" ? true : false, (object)sqlReader ["dflt_value"], Convert.ToBoolean (sqlReader ["pk"])));
 				}
-				sqlReader.Close ();
-				sqlCN.Close ();
+				sqlCMD.Parameters.Clear();
+			}
+			sqlReader.Close ();
+			sqlCN.Close ();
 		}
 
 		private void LoadForeignKeys ()
@@ -398,19 +399,6 @@ namespace SQLiteMonoPlus.Schema
 				sqlReader.Close ();
 				sqlCN.Close ();
 		}
-	}
-
-	public enum SQLiteDataType
-	{
-		Integer,
-		Bool,
-		Varchar,
-		Double,
-		Text,
-		Blob,
-		Real,
-		DateTime,
-		None
 	}
 }
 

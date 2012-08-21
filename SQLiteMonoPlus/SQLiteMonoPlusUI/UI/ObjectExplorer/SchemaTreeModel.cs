@@ -1,5 +1,6 @@
 ﻿using System;
 using Gtk;
+using SQLiteMonoPlus;
 using sc = SQLiteMonoPlus.Schema;
 
 namespace SQLiteMonoPlusUI.UI.ObjectExplorer
@@ -32,32 +33,32 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 			//sc.ForeignKey fk;
 			foreach(sc.Database db in sc.OpenObjects.Databases)
 			{
-				DBIter = this.AppendValues(new SchemaDisplay(pxDatabase, sc.DBObjectType.Database, db.DatabaseName, null));
-				TBLabelIter = this.AppendValues(DBIter, new SchemaDisplay(pxFolder, sc.DBObjectType.Label, "Tables", null));
+				DBIter = this.AppendValues(new SchemaDisplay(pxDatabase, DBObjectType.Database, db.DatabaseName, null));
+				TBLabelIter = this.AppendValues(DBIter, new SchemaDisplay(pxFolder, DBObjectType.Label, "Tables", null));
 				foreach(sc.Table tbl in db.Tables)
 				{	
-					TBIter = this.AppendValues(TBLabelIter, new SchemaDisplay(pxTable, sc.DBObjectType.Table, tbl.TableName, null));
-					TBOLabelIter = this.AppendValues(TBIter, new SchemaDisplay(pxFolder, sc.DBObjectType.Label, "Columns", null));
+					TBIter = this.AppendValues(TBLabelIter, new SchemaDisplay(pxTable, DBObjectType.Table, tbl.TableName, null));
+					TBOLabelIter = this.AppendValues(TBIter, new SchemaDisplay(pxFolder, DBObjectType.Label, "Columns", null));
 					foreach(sc.Column col in tbl.Columns)
 					{
 						if(col.PrimaryKey)
-							this.AppendValues(TBOLabelIter, new SchemaDisplay(pxPriKey, sc.DBObjectType.Column, col.ColumnName, col.DisplayFormat));
+							this.AppendValues(TBOLabelIter, new SchemaDisplay(pxPriKey, DBObjectType.Column, col.ColumnName, col.DisplayFormat));
 						else if(col.ForeingKey)
-							this.AppendValues(TBOLabelIter, new SchemaDisplay(pxForeignKey, sc.DBObjectType.Column, col.ColumnName, col.DisplayFormat));
+							this.AppendValues(TBOLabelIter, new SchemaDisplay(pxForeignKey, DBObjectType.Column, col.ColumnName, col.DisplayFormat));
 						else
-							this.AppendValues(TBOLabelIter, new SchemaDisplay(pxColumn, sc.DBObjectType.Column, col.ColumnName, col.DisplayFormat));
+							this.AppendValues(TBOLabelIter, new SchemaDisplay(pxColumn, DBObjectType.Column, col.ColumnName, col.DisplayFormat));
 					}
-					TBOLabelIter = this.AppendValues(TBIter, new SchemaDisplay(pxFolder, sc.DBObjectType.Label, "Indexes", null));
+					TBOLabelIter = this.AppendValues(TBIter, new SchemaDisplay(pxFolder, DBObjectType.Label, "Indexes", null));
 					foreach(sc.Index idx in tbl.Indexes)
 					{				
-						this.AppendValues(TBOLabelIter, new SchemaDisplay(pxIndex, sc.DBObjectType.Column, idx.IndexName, null));
+						this.AppendValues(TBOLabelIter, new SchemaDisplay(pxIndex, DBObjectType.Column, idx.IndexName, null));
 					}
 				}
 
-				TBLabelIter = this.AppendValues(DBIter, new SchemaDisplay(pxFolder, sc.DBObjectType.Label, "Views", null));
+				TBLabelIter = this.AppendValues(DBIter, new SchemaDisplay(pxFolder, DBObjectType.Label, "Views", null));
 				foreach(sc.View vw in db.Views)
 				{
-					TBIter = this.AppendValues(TBLabelIter, new SchemaDisplay(pxView, sc.DBObjectType.View, vw.ViewName, null));
+					TBIter = this.AppendValues(TBLabelIter, new SchemaDisplay(pxView, DBObjectType.View, vw.ViewName, null));
 				}
 				
 			}
@@ -66,11 +67,11 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 	
 	public struct SchemaDisplay
 	{
-		public sc.DBObjectType ObjectType;
+		public DBObjectType ObjectType;
 		public string ObjectName;
 		public string ObjectDisplay;
 		public Gdk.Pixbuf ObjectImage;
-		public SchemaDisplay(Gdk.Pixbuf px, sc.DBObjectType type, string name, string display)
+		public SchemaDisplay(Gdk.Pixbuf px, DBObjectType type, string name, string display)
 		{
 			ObjectType = type;
 			ObjectName = name;

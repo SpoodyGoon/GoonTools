@@ -48,7 +48,6 @@
     <Compile Include="Schema\Index.cs" />
     <Compile Include="Schema\IndexCollection.cs" />
     <Compile Include="Schema\OpenObjects.cs" />
-    <Compile Include="Schema\SchemaEnums.cs" />
     <Compile Include="Schema\Table.cs" />
     <Compile Include="Schema\TableCollection.cs" />
     <Compile Include="Schema\Trigger.cs" />
@@ -57,6 +56,7 @@
     <Compile Include="Schema\ViewCollection.cs" />
     <Compile Include="Util\Utilities.cs" />
     <Compile Include="GlobalData\AdminSQL.cs" />
+    <Compile Include="Util\SQLiteEnums.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

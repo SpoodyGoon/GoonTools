@@ -13,11 +13,15 @@ namespace SQLiteMonoPlusUI
 		public frmMain (): base (Gtk.WindowType.Toplevel)
 		{
 			Build ();
+			
 			SchemaView = new SQLiteMonoPlusUI.UI.ObjectExplorer.SchemaTreeView(this);
 			swObjectExplorer.Add(SchemaView);
-			SQLiteMonoPlusEditor.SQLEditor.EditorView ev = new SQLiteMonoPlusEditor.SQLEditor.EditorView();
-			nbkEditor.Add(ev);
-
+			// clear all the existing pages 
+			// being displayed at startup
+			int intPages = nbkEditor.NPages;
+			for (int i =0; i<intPages; i++) {
+				nbkEditor.Remove(nbkEditor.GetNthPage(i));
+			}
 
 			this.ShowAll();
 		}
@@ -46,6 +50,7 @@ namespace SQLiteMonoPlusUI
 		{
 			try {
 				string strDBFile = null;
+				Database db = null;
 				frmDatabaseConnect fm = new frmDatabaseConnect ();			
 				if ((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok) {
 					strDBFile = fm.SelectedDatabase;
@@ -60,11 +65,17 @@ namespace SQLiteMonoPlusUI
 					string strConnString = Constants.ConnectionString.Simple.Replace ("[DBPATH]", fi.FullName);
 					string strDBName = fi.Name.Replace (fi.Extension, "");
 
-					Database db = new Database (strConnString, strDBName);
+					db = new Database (strConnString, strDBName);
 					OpenObjects.Databases.Add (db);
 					db.LoadSchema ();   
 					SchemaView.Load ();
 					this.ShowAll ();
+				}
+
+				if(db != null)
+				{
+					SQLiteMonoPlusEditor.SQLEditor.EditorView ev = new SQLiteMonoPlusEditor.SQLEditor.EditorView(db);
+					nbkEditor.Add(ev);
 				}
 			}
 			catch (Exception ex) {
