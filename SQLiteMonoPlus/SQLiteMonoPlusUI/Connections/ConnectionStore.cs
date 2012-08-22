@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Data;
 using Gtk;
+using SQLiteMonoPlus;
 using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI.GlobalData
@@ -85,11 +86,13 @@ namespace SQLiteMonoPlusUI.GlobalData
                     _SaveFile = new ConnectionSaveFile ();
                     // Load the save file from xml
                     _SaveFile.ReadXml (Common.EnvData.ConnectionFilePath);
-                    Connection cn = new Connection ("");
+                    SQLiteMonoPlus.Connection cn = new SQLiteMonoPlus.Connection ("");
                     this.AppendValues (cn);
                     foreach (DataRow dr in _SaveFile.Rows)
                     {
-                        cn = new Connection (dr);
+						cn = new SQLiteMonoPlus.Connection (Convert.ToInt32(dr["ConnectionID"]), dr["ConnectionName"].ToString(), dr["FilePath"].ToString());
+						cn.AddedDate=Convert.ToDateTime(dr["AddedDate"]);
+						cn.LastUsedDate=Convert.ToDateTime(dr["LastUsedDate"]);
                         this.AppendValues (cn);
                     }
 	                

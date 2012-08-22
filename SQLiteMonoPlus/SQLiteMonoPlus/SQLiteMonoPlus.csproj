@@ -57,6 +57,7 @@
     <Compile Include="Util\Utilities.cs" />
     <Compile Include="GlobalData\AdminSQL.cs" />
     <Compile Include="Util\SQLiteEnums.cs" />
+    <Compile Include="Connection\Connection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -68,5 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Util\" />
+    <Folder Include="Connection\" />
   </ItemGroup>
 </Project>

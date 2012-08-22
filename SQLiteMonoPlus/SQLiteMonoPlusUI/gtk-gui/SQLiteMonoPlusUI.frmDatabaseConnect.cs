@@ -169,8 +169,7 @@ namespace SQLiteMonoPlusUI
 			this.alignment15.WidthRequest = 150;
 			this.alignment15.Name = "alignment15";
 			// Container child alignment15.Gtk.Container+ContainerChild
-			this.cboConnectName = new global::SQLiteMonoPlusUI.ConnectionComboBoxEntry ();
-			this.cboConnectName.Name = "cboConnectName";
+			this.cboConnectName = null;
 			this.alignment15.Add (this.cboConnectName);
 			this.table1.Add (this.alignment15);
 			global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.table1 [this.alignment15]));
@@ -524,7 +523,6 @@ namespace SQLiteMonoPlusUI
 			this.lblMaxPool.Hide ();
 			this.algAdvanced.Hide ();
 			this.Show ();
-			this.cboConnectName.Changed += new global::System.EventHandler (this.OnCboConnectNameChanged);
 			this.fcDBFile.SelectionChanged += new global::System.EventHandler (this.OnFcDBFileSelectionChanged);
 			this.cbxAdvanced.Toggled += new global::System.EventHandler (this.OnCbxAdvancedToggled);
 			this.cbxPooling.Clicked += new global::System.EventHandler (this.cbxPooling_Clicked);

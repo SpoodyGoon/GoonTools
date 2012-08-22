@@ -1,5 +1,6 @@
 using System;
 using Mono.Data.SqliteClient;
+using SQLiteMonoPlus;
 using SQLiteMonoPlusUI.GlobalTools;
 
 namespace SQLiteMonoPlusUI
