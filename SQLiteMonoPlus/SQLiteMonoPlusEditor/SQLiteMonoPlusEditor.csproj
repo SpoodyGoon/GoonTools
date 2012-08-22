@@ -55,6 +55,7 @@
     <Compile Include="TableDesignerTreeView.cs" />
     <Compile Include="TableDesignerTreeModel.cs" />
     <Compile Include="SQLiteBuffer.cs" />
+    <Compile Include="IDatabaseEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
