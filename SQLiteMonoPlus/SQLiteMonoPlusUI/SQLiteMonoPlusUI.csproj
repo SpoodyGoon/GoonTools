@@ -136,7 +136,6 @@
     <Compile Include="frmMain.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmDatabaseConnect.cs" />
     <Compile Include="Connections\ConnectionStore.cs" />
-    <Compile Include="Connections\Connection.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmMain.cs" />
     <Compile Include="Connections\ConnectionComboBoxEntry.cs" />
     <Compile Include="Common\BufferTags.cs" />

@@ -1,8 +1,6 @@
 using System;
-using System.Data;
-using SQLiteMonoPlusUI.GlobalTools;
 
-namespace SQLiteMonoPlusUI
+namespace SQLiteMonoPlus
 {
 	public class Connection
 	{
@@ -27,8 +25,6 @@ namespace SQLiteMonoPlusUI
         	get{return _ConnectionID;}
         	set
         	{
-        		if(!_ConnectionID.Equals(value))
-        			Common.RecentConnections.Modified = true;
         		_ConnectionID = value;
         	}
         }
@@ -38,8 +34,6 @@ namespace SQLiteMonoPlusUI
         	get{return _ConnectionName;}
         	set
         	{
-        		if(!_ConnectionID.Equals(value))
-        			Common.RecentConnections.Modified = true;
         		_ConnectionName = value;
         	}
         }
@@ -49,8 +43,6 @@ namespace SQLiteMonoPlusUI
         	get{return _FilePath;}
         	set
         	{
-        		if(!_ConnectionID.Equals(value))
-        			Common.RecentConnections.Modified = true;
         		_FilePath = value;
         	}
         }
@@ -60,8 +52,6 @@ namespace SQLiteMonoPlusUI
         	get{return _Password;}
         	set
         	{
-        		if(!_ConnectionID.Equals(value))
-        			Common.RecentConnections.Modified = true;
         		_Password = value;
         	}
         }
@@ -71,8 +61,6 @@ namespace SQLiteMonoPlusUI
         	get{return _Timeout;}
         	set
         	{
-        		if(!_ConnectionID.Equals(value))
-        			Common.RecentConnections.Modified = true;
         		_Timeout = value;
         	}
         }
@@ -82,8 +70,6 @@ namespace SQLiteMonoPlusUI
         	get{return _Pooling;}
         	set
         	{
-        		if(!_ConnectionID.Equals(value))
-        			Common.RecentConnections.Modified = true;
         		_Pooling = value;
         	}
         }
@@ -93,8 +79,6 @@ namespace SQLiteMonoPlusUI
         	get{return _MaxPoolSize;}
         	set
         	{
-        		if(!_ConnectionID.Equals(value))
-        			Common.RecentConnections.Modified = true;
         		_MaxPoolSize = value;
         	}
         }
@@ -104,8 +88,6 @@ namespace SQLiteMonoPlusUI
         	get{return _AddedDate;}
         	set
         	{
-        		if(!_ConnectionID.Equals(value))
-        			Common.RecentConnections.Modified = true;
         		_AddedDate = value;
         	}
         }
@@ -115,8 +97,6 @@ namespace SQLiteMonoPlusUI
         	get{return _LastUsedDate;}
         	set
         	{
-        		if(!_ConnectionID.Equals(value))
-        			Common.RecentConnections.Modified = true;
         		_LastUsedDate = value;
         	}
         }
@@ -129,18 +109,6 @@ namespace SQLiteMonoPlusUI
 		{
 			_ConnectionName = name;
 		}
-        
-        public Connection(DataRow dr)
-        {
-        	_ConnectionID = Convert.ToInt32(dr["ConnectionID"]);
-            _ConnectionName = dr["ConnectionName"].ToString();
-            _FilePath = dr["FilePath"].ToString();
-			_Password =  dr["Password"].ToString();
-			_Pooling =  Convert.ToBoolean(dr["Pooling"]);
-			_MaxPoolSize =  Convert.ToInt32(dr["MaxPooling"]);
-			_AddedDate = Convert.ToDateTime(dr["AddedDate"]);
-			_LastUsedDate = Convert.ToDateTime(dr["LastUsedDate"]);
-        }
         
         public Connection(string name, string path, string password)
         {

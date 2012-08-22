@@ -7,6 +7,7 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 	[System.ComponentModel.ToolboxItem(true)]
 	public class EditorView : Gtk.TextView
 	{
+
 		Database _CurrentDatabase;
 		public EditorView () : base()
 		{
@@ -35,6 +36,7 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 		{
 			switch (evnt.Key) {
 			case Gdk.Key.F5:
+
 				break;
 			case Gdk.Key.space:
 				break;
