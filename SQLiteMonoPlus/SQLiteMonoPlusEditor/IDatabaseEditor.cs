@@ -24,6 +24,14 @@ namespace SQLiteMonoPlusEditor
 {
 	public interface IDatabaseEditor
 	{
+		event SQLiteMonoPlusEditor.Events.SQLExecutedEventHandler SQLExecuted;
+		event SQLiteMonoPlusEditor.Events.SQLModifiedEventHandler SQLChanged;
+		SQLiteMonoPlus.Connection CurrentConnection{ get; }
+		string SQLText{ get; }
+		string SQLSelectedText{ get; }
+		bool ExecuteComplete{ set; }
+		SQLiteMonoPlus.DBEditorType EditorType{ get; }
+
 	}
 }
 

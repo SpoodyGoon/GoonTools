@@ -39,5 +39,14 @@ namespace SQLiteMonoPlus
 		Index,
 		Label
 	}
+
+	public enum DBEditorType
+	{
+		Editor,
+		Database,
+		Table,
+		View,
+		Pragma
+	}
 }
 
