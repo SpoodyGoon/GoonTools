@@ -5,20 +5,48 @@ using SQLiteMonoPlus.Schema;
 namespace SQLiteMonoPlusEditor.SQLEditor
 {
 	[System.ComponentModel.ToolboxItem(true)]
-	public class EditorView : Gtk.TextView
+	public class EditorView : Gtk.TextView, IDatabaseEditor
 	{
+		private SQLiteMonoPlus.Connection _CurrentConnection;
 
-		Database _CurrentDatabase;
+		public event SQLiteMonoPlusEditor.Events.SQLExecutedEventHandler SQLExecuted;
+		public event SQLiteMonoPlusEditor.Events.SQLModifiedEventHandler SQLChanged;
+
+		private bool _ExecuteComple = true;
+
 		public EditorView () : base()
 		{
 			LoadWidget ();
 		}
 
-		public EditorView (Database db)
+		public EditorView (SQLiteMonoPlus.Connection EditorConnection)
 		{
-			_CurrentDatabase = db;
-			LoadWidget();
+			_CurrentConnection = EditorConnection;
+			LoadWidget ();
 		}
+
+		public SQLiteMonoPlus.Connection CurrentConnection {
+			get{ return _CurrentConnection;}
+		}
+
+		public string SQLText{ get { return this.Buffer.Text; } }
+
+		public string SQLSelectedText { 
+			get {
+				if (this.Buffer.HasSelection) {
+					Gtk.TextIter IterStart, IterEnd;
+					this.Buffer.GetSelectionBounds (out IterStart, out IterEnd);
+					return this.Buffer.GetText (IterStart, IterEnd, false);
+				}
+				else {
+					return this.Buffer.Text;
+				}
+			} 
+		}
+
+		public bool ExecuteComplete{ set { _ExecuteComple = value; } }
+
+		public SQLiteMonoPlus.DBEditorType EditorType{ get { return SQLiteMonoPlus.DBEditorType.Editor; } }
 
 		private void LoadWidget ()
 		{
@@ -29,6 +57,7 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 			//this.ModifyBg (StateType.Insensitive, new Gdk.Color (111, 111, 111));
 			this.AppPaintable = true;
 			this.DoubleBuffered = true;
+
 			this.ShowAll ();
 		}
 
@@ -44,6 +73,11 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 				break;
 			}
 			return base.OnKeyReleaseEvent (evnt);
+		}
+
+
+		private void ExecuteStatement()
+		{
 		}
 	}
 }

@@ -74,7 +74,7 @@ namespace SQLiteMonoPlusUI
 
 				if(db != null)
 				{
-					SQLiteMonoPlusEditor.SQLEditor.EditorView ev = new SQLiteMonoPlusEditor.SQLEditor.EditorView(db);
+					SQLiteMonoPlusEditor.SQLEditor.EditorView ev = new SQLiteMonoPlusEditor.SQLEditor.EditorView();
 					nbkEditor.Add(ev);
 				}
 			}
