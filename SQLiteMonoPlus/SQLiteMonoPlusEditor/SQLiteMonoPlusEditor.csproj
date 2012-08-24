@@ -48,15 +48,17 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SQLiteTextEditor.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="TableDesigner.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusEditor.TableDesigner.cs" />
-    <Compile Include="TableDesignerTreeView.cs" />
-    <Compile Include="TableDesignerTreeModel.cs" />
-    <Compile Include="SQLiteBuffer.cs" />
-    <Compile Include="IDatabaseEditor.cs" />
-    <Compile Include="DatabaseEditorEvents.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusEditor.SQLTextEditor.cs" />
+    <Compile Include="GridDisplays\TableDesignerTreeModel.cs" />
+    <Compile Include="GridDisplays\TableDesignerTreeView.cs" />
+    <Compile Include="EditorPages\SQLTextEditor.cs" />
+    <Compile Include="EditorPages\TableDesigner.cs" />
+    <Compile Include="Events\DatabaseEditorEvents.cs" />
+    <Compile Include="CustomObjects\SQLiteBuffer.cs" />
+    <Compile Include="CustomObjects\IDatabaseEditor.cs" />
+    <Compile Include="CustomObjects\SQLEditorView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -68,5 +70,11 @@
       <Project>{768D7523-8FEB-4293-B88C-FF267363F994}</Project>
       <Name>SQLiteMonoPlus</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EditorPages\" />
+    <Folder Include="GridDisplays\" />
+    <Folder Include="Events\" />
+    <Folder Include="CustomObjects\" />
   </ItemGroup>
 </Project>

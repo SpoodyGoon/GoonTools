@@ -43,12 +43,11 @@ namespace SQLiteMonoPlusUI
 			// Container child alignment4.Gtk.Container+ContainerChild
 			this.evtClose = new global::Gtk.EventBox ();
 			this.evtClose.Name = "evtClose";
+			this.evtClose.AboveChild = true;
+			this.evtClose.VisibleWindow = false;
 			// Container child evtClose.Gtk.Container+ContainerChild
 			this.imgClose = new global::Gtk.Image ();
-			this.imgClose.WidthRequest = 12;
-			this.imgClose.HeightRequest = 12;
 			this.imgClose.Name = "imgClose";
-			this.imgClose.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("TabClose.png");
 			this.evtClose.Add (this.imgClose);
 			this.alignment4.Add (this.evtClose);
 			this.hbox1.Add (this.alignment4);

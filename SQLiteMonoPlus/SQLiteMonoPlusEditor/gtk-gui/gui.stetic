@@ -7,6 +7,29 @@
   <import>
     <widget-library name="../bin/Debug/SQLiteMonoPlusEditor.dll" internal="true" />
   </import>
+  <widget class="Gtk.Bin" id="SQLiteMonoPlusEditor.SQLTextEditor" design-size="779 608">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.Alignment" id="alignment1">
+        <property name="MemberName" />
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+            <property name="MemberName" />
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="SQLiteMonoPlusEditor.SQLEditor.SQLEditorView" id="sqleditorview4">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShowScrollbars">True</property>
+                <property name="Text" translatable="yes" />
+              </widget>
+            </child>
+          </widget>
+        </child>
+      </widget>
+    </child>
+  </widget>
   <widget class="Gtk.Bin" id="SQLiteMonoPlusEditor.TableDesigner" design-size="749 554">
     <property name="MemberName" />
     <property name="Visible">False</property>
