@@ -4,8 +4,7 @@ using SQLiteMonoPlus.Schema;
 
 namespace SQLiteMonoPlusEditor.SQLEditor
 {
-	[System.ComponentModel.ToolboxItem(true)]
-	public class EditorView : Gtk.TextView, IDatabaseEditor
+	public class SQLEditorView : Gtk.TextView, IDatabaseEditor
 	{
 		private SQLiteMonoPlus.Connection _CurrentConnection;
 
@@ -14,12 +13,12 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 
 		private bool _ExecuteComple = true;
 
-		public EditorView () : base()
+		public SQLEditorView () : base()
 		{
 			LoadWidget ();
 		}
 
-		public EditorView (SQLiteMonoPlus.Connection EditorConnection)
+		public SQLEditorView (SQLiteMonoPlus.Connection EditorConnection)
 		{
 			_CurrentConnection = EditorConnection;
 			LoadWidget ();
@@ -76,8 +75,9 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 		}
 
 
-		private void ExecuteStatement()
+		private void OnSQLExecuted(string strSQL)
 		{
+			SQLExecuted(this, new SQLiteMonoPlusEditor.Events.SQLExecutedEventArgs(_CurrentConnection, strSQL));
 		}
 	}
 }

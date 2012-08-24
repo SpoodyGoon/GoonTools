@@ -237,14 +237,14 @@ namespace SQLiteMonoPlusUI
 			this.nbkEditor.CanFocus = true;
 			this.nbkEditor.Name = "nbkEditor";
 			this.nbkEditor.CurrentPage = 0;
-			this.nbkEditor.BorderWidth = ((uint)(5));
 			// Notebook tab
 			global::Gtk.Label w18 = new global::Gtk.Label ();
 			w18.Visible = true;
 			this.nbkEditor.Add (w18);
 			this.label2 = new global::Gtk.Label ();
 			this.label2.Name = "label2";
-			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("page1");
+			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>SQL Editor 1</b>");
+			this.label2.UseMarkup = true;
 			this.nbkEditor.SetTabLabel (w18, this.label2);
 			this.label2.ShowAll ();
 			this.GtkAlignment6.Add (this.nbkEditor);

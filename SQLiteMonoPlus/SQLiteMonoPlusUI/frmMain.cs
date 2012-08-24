@@ -23,6 +23,9 @@ namespace SQLiteMonoPlusUI
 				nbkEditor.Remove(nbkEditor.GetNthPage(i));
 			}
 
+			SQLTextEditor ste = new SQLTextEditor();
+			nbkEditor.AppendPage(ste, new TabLabel("SQL Editor"));
+
 			this.ShowAll();
 		}
 		
@@ -74,7 +77,7 @@ namespace SQLiteMonoPlusUI
 
 				if(db != null)
 				{
-					SQLiteMonoPlusEditor.SQLEditor.EditorView ev = new SQLiteMonoPlusEditor.SQLEditor.EditorView();
+					SQLiteMonoPlusEditor.SQLEditor.SQLEditorView ev = new SQLiteMonoPlusEditor.SQLEditor.SQLEditorView();
 					nbkEditor.Add(ev);
 				}
 			}
