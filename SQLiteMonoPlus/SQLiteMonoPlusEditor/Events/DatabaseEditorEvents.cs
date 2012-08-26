@@ -23,5 +23,13 @@ namespace SQLiteMonoPlusEditor.Events
 			HasChanged  =changed;
 		}
 	}
+
+	public delegate void ConnectionChangeEventHandler(object sender, SQLModifiedEventArgs args);
+	public class ConnectionChangeEventArgs : System.EventArgs
+	{
+		public ConnectionChangeEventArgs ()
+		{
+		}
+	}
 }
 
