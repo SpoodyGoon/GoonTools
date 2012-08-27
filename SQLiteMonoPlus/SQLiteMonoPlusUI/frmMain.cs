@@ -23,8 +23,11 @@ namespace SQLiteMonoPlusUI
 				nbkEditor.Remove(nbkEditor.GetNthPage(i));
 			}
 
-			SQLTextEditor ste = new SQLTextEditor();
-			nbkEditor.AppendPage(ste, new TabLabel("SQL Editor"));
+			
+					SQLiteMonoPlusEditor.SQLEditor.SQLEditorView ev = new SQLiteMonoPlusEditor.SQLEditor.SQLEditorView();
+					//nbkEditor.Add(ev);
+			//SQLTextEditor ste = new SQLTextEditor();
+			nbkEditor.AppendPage(ev, new TabLabel("SQL Editor"));
 
 			this.ShowAll();
 		}

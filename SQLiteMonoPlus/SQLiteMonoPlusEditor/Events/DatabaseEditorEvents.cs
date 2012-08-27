@@ -31,5 +31,13 @@ namespace SQLiteMonoPlusEditor.Events
 		{
 		}
 	}
+
+	public delegate void ConnectMenuItemEventHandler(object sender);
+	public class ConnectMenuItemEventArgs : System.EventArgs
+	{
+		public ConnectMenuItemEventArgs ()
+		{
+		}
+	}
 }
 
