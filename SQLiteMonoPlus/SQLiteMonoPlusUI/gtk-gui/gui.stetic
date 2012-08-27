@@ -789,7 +789,6 @@
             <property name="Label" translatable="yes">Save &amp; Connect</property>
             <property name="UseUnderline">True</property>
             <property name="ResponseId">-5</property>
-            <signal name="Clicked" handler="OnBtnSaveConnectClicked" />
           </widget>
           <packing>
             <property name="Position">2</property>
@@ -2461,7 +2460,6 @@ UTF-16be</property>
   </widget>
   <widget class="Gtk.Dialog" id="SQLiteMonoPlusUI.frmProperties" design-size="400 300">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">dialog1</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>

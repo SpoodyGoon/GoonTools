@@ -12,7 +12,6 @@ namespace SQLiteMonoPlusUI
 			global::Stetic.Gui.Initialize (this);
 			// Widget SQLiteMonoPlusUI.frmProperties
 			this.Name = "SQLiteMonoPlusUI.frmProperties";
-			this.Title = global::Mono.Unix.Catalog.GetString ("dialog1");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Internal child SQLiteMonoPlusUI.frmProperties.VBox
 			global::Gtk.VBox w1 = this.VBox;

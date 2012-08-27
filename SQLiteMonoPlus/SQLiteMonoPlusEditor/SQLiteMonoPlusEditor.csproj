@@ -60,6 +60,8 @@
     <Compile Include="CustomObjects\IDatabaseEditor.cs" />
     <Compile Include="CustomObjects\SQLEditorView.cs" />
     <Compile Include="CustomObjects\SQLEditorViewMenu.cs" />
+    <Compile Include="EditorPages\PragmaDesigner.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusEditor.PragmaDesigner.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

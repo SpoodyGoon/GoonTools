@@ -4,6 +4,7 @@ using SQLiteMonoPlus.Schema;
 
 namespace SQLiteMonoPlusEditor.SQLEditor
 {
+	[System.ComponentModel.ToolboxItem(true)]
 	public class SQLEditorView : Gtk.TextView
 	{
 		private SQLiteMonoPlus.Connection _CurrentConnection;
@@ -27,6 +28,7 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 
 		public SQLiteMonoPlus.Connection CurrentConnection
 		{
+			set{ _CurrentConnection = value;}
 			get{ return _CurrentConnection;}
 		}
 
@@ -86,7 +88,15 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 			if (evnt.Button == 3)
 			{
 				SQLiteMonoPlusEditor.ContexMenus.SQLEditorViewMenu mnu = new SQLiteMonoPlusEditor.ContexMenus.SQLEditorViewMenu();
+				Gdk.Window win = this.ParentWindow;
 				mnu.ShowAll();
+				mnu.ConnectChangeRequested += delegate()
+				{
+					ConnectionChanged(this, new SQLiteMonoPlusEditor.Events.ConnectionChangeEventArgs(this.CurrentConnection));
+//					Gtk.MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, ButtonsType.Close, "Connection Change Request Fired", "Fired");
+//					md.Run();
+//					md.Destroy();
+				};
 				mnu.Popup();
 
 			}

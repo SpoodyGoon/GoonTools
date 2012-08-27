@@ -4,7 +4,7 @@ namespace SQLiteMonoPlusEditor.ContexMenus
 {
 	public class SQLEditorViewMenu : Gtk.Menu
 	{
-		protected delegate void OnConnectionActivate;
+		public event SQLiteMonoPlusEditor.Events.ConnectMenuItemEventHandler ConnectChangeRequested;
 		public SQLEditorViewMenu () : base()
 		{
 			BuildTopLevelMenu();
@@ -35,7 +35,10 @@ namespace SQLiteMonoPlusEditor.ContexMenus
 		{
 			Gtk.Menu mnu = new Gtk.Menu ();
 			Gtk.MenuItem mi = new Gtk.MenuItem ("Connect...");
-			mi.Activated += HandleActivated;
+			mi.Activated += delegate
+			{
+				ConnectChangeRequested();
+			};
 			mnu.Append (mi); 
 			mi = new Gtk.MenuItem ("Disconnect");
 			mnu.Append (mi); 
@@ -44,12 +47,6 @@ namespace SQLiteMonoPlusEditor.ContexMenus
 			mi = new Gtk.MenuItem ("Change Connection");
 			mnu.Append (mi); 
 			return mnu;
-		}
-
-		public System.EventHandler ConnectMenuItemHandler;
-		public void HandleActivated (object sender, EventArgs e)
-		{
-			
 		}
 		
 	}
