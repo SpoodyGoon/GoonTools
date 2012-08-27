@@ -4,12 +4,13 @@ using SQLiteMonoPlus.Schema;
 
 namespace SQLiteMonoPlusEditor.SQLEditor
 {
-	public class SQLEditorView : Gtk.TextView, IDatabaseEditor
+	public class SQLEditorView : Gtk.TextView
 	{
 		private SQLiteMonoPlus.Connection _CurrentConnection;
 
 		public event SQLiteMonoPlusEditor.Events.SQLExecutedEventHandler SQLExecuted;
 		public event SQLiteMonoPlusEditor.Events.SQLModifiedEventHandler SQLChanged;
+		public event SQLiteMonoPlusEditor.Events.ConnectionChangeEventHandler ConnectionChanged;
 
 		private bool _ExecuteComple = true;
 
@@ -24,20 +25,25 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 			LoadWidget ();
 		}
 
-		public SQLiteMonoPlus.Connection CurrentConnection {
+		public SQLiteMonoPlus.Connection CurrentConnection
+		{
 			get{ return _CurrentConnection;}
 		}
 
 		public string SQLText{ get { return this.Buffer.Text; } }
 
-		public string SQLSelectedText { 
-			get {
-				if (this.Buffer.HasSelection) {
+		public string SQLSelectedText
+		{ 
+			get
+			{
+				if (this.Buffer.HasSelection)
+				{
 					Gtk.TextIter IterStart, IterEnd;
 					this.Buffer.GetSelectionBounds (out IterStart, out IterEnd);
 					return this.Buffer.GetText (IterStart, IterEnd, false);
 				}
-				else {
+				else
+				{
 					return this.Buffer.Text;
 				}
 			} 
@@ -62,22 +68,34 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 
 		protected override bool OnKeyReleaseEvent (Gdk.EventKey evnt)
 		{
-			switch (evnt.Key) {
-			case Gdk.Key.F5:
+			switch (evnt.Key)
+			{
+				case Gdk.Key.F5:
 
 				break;
-			case Gdk.Key.space:
+				case Gdk.Key.space:
 				break;
-			case Gdk.Key.Tab:
+				case Gdk.Key.Tab:
 				break;
 			}
 			return base.OnKeyReleaseEvent (evnt);
 		}
 
-
-		private void OnSQLExecuted(string strSQL)
+		protected override bool OnButtonPressEvent (Gdk.EventButton evnt)
 		{
-			SQLExecuted(this, new SQLiteMonoPlusEditor.Events.SQLExecutedEventArgs(_CurrentConnection, strSQL));
+			if (evnt.Button == 3)
+			{
+				SQLiteMonoPlusEditor.ContexMenus.SQLEditorViewMenu mnu = new SQLiteMonoPlusEditor.ContexMenus.SQLEditorViewMenu();
+				mnu.ShowAll();
+				mnu.Popup();
+
+			}
+			return false;
+		}
+
+		private void OnSQLExecuted (string strSQL)
+		{
+			SQLExecuted (this, new SQLiteMonoPlusEditor.Events.SQLExecutedEventArgs (_CurrentConnection, strSQL));
 		}
 	}
 }
