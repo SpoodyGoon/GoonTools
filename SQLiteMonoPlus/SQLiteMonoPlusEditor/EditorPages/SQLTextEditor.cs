@@ -28,6 +28,17 @@ namespace SQLiteMonoPlusEditor
 		public SQLTextEditor ()
 		{
 			this.Build ();
+			sqleditorview2.SQLExecuted += SQLEditor_SQLExecuted;
+		}
+
+		protected void SQLEditor_SQLExecuted (object sender, SQLiteMonoPlusEditor.Events.SQLExecutedEventArgs args)
+		{
+			
+		}
+
+		public SQLiteMonoPlusEditor.SQLEditor.SQLEditorView SQLEditor
+		{
+			get{ return this.sqleditorview2;}
 		}
 	}
 }

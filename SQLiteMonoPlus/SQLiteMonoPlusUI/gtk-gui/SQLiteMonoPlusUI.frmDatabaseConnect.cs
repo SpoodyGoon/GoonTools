@@ -529,7 +529,6 @@ namespace SQLiteMonoPlusUI
 			this.cbxAdvanced.Toggled += new global::System.EventHandler (this.OnCbxAdvancedToggled);
 			this.cbxPooling.Clicked += new global::System.EventHandler (this.cbxPooling_Clicked);
 			this.btnTestConnection.Clicked += new global::System.EventHandler (this.btnTestConnection_Clicked);
-			this.btnSaveConnect.Clicked += new global::System.EventHandler (this.OnBtnSaveConnectClicked);
 		}
 	}
 }

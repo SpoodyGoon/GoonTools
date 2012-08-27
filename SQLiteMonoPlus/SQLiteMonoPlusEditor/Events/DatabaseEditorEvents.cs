@@ -24,20 +24,16 @@ namespace SQLiteMonoPlusEditor.Events
 		}
 	}
 
-	public delegate void ConnectionChangeEventHandler(object sender, SQLModifiedEventArgs args);
+	public delegate void ConnectionChangeEventHandler(object sender, ConnectionChangeEventArgs args);
 	public class ConnectionChangeEventArgs : System.EventArgs
 	{
-		public ConnectionChangeEventArgs ()
+		public SQLiteMonoPlus.Connection CurrentConnection;
+		public ConnectionChangeEventArgs (SQLiteMonoPlus.Connection connection)
 		{
+			CurrentConnection = connection;
 		}
 	}
 
-	public delegate void ConnectMenuItemEventHandler(object sender);
-	public class ConnectMenuItemEventArgs : System.EventArgs
-	{
-		public ConnectMenuItemEventArgs ()
-		{
-		}
-	}
+	public delegate void ConnectMenuItemEventHandler();
 }
 

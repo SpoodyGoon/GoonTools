@@ -24,9 +24,17 @@ namespace SQLiteMonoPlusUI
 			}
 
 			
-					SQLiteMonoPlusEditor.SQLEditor.SQLEditorView ev = new SQLiteMonoPlusEditor.SQLEditor.SQLEditorView();
-					//nbkEditor.Add(ev);
-			//SQLTextEditor ste = new SQLTextEditor();
+			//SQLiteMonoPlusEditor.SQLEditor.SQLEditorView ev = new SQLiteMonoPlusEditor.SQLEditor.SQLEditorView();
+			SQLTextEditor ev = new SQLTextEditor();
+			ev.SQLEditor.ConnectionChanged += delegate(object sender, SQLiteMonoPlusEditor.Events.ConnectionChangeEventArgs args)
+			{
+				frmDatabaseConnect frm = new frmDatabaseConnect();			
+				if ((Gtk.ResponseType)frm.Run () == Gtk.ResponseType.Ok) {
+					SQLTextEditor edt = (SQLTextEditor)sender;
+					edt.SQLEditor.CurrentConnection = frm.SelectedConnection;
+				}
+				frm.Destroy();
+			};
 			nbkEditor.AppendPage(ev, new TabLabel("SQL Editor"));
 
 			this.ShowAll();
@@ -59,7 +67,7 @@ namespace SQLiteMonoPlusUI
 				Database db = null;
 				frmDatabaseConnect fm = new frmDatabaseConnect ();			
 				if ((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok) {
-					strDBFile = fm.SelectedDatabase;
+					strDBFile = fm.SelectedDatabaseName;
 				}
 				fm.Destroy ();
 			
