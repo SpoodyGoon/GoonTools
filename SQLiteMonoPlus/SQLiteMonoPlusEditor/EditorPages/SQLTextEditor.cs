@@ -19,6 +19,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Data;
+using Mono.Data.SqliteClient;
 
 namespace SQLiteMonoPlusEditor
 {
@@ -28,17 +30,33 @@ namespace SQLiteMonoPlusEditor
 		public SQLTextEditor ()
 		{
 			this.Build ();
-			sqleditorview2.SQLExecuted += SQLEditor_SQLExecuted;
+			sqleditorview1.SQLExecuted += SQLEditor_SQLExecuted;
 		}
 
 		protected void SQLEditor_SQLExecuted (object sender, SQLiteMonoPlusEditor.Events.SQLExecutedEventArgs args)
 		{
-			
+			SqliteDataAdapter sqlDA = new SqliteDataAdapter (args.SQLStatement, args.CurrentConnection.ConnectionString);
+			DataTable dt = new DataTable ();
+			sqlDA.Fill (dt);
+			int intColumnCount = dt.Columns.Count;
+			System.Type[] typs = new System.Type[intColumnCount];
+			for (int i = 0; i< dt.Columns.Count; i++)
+			{
+				typs [i] = dt.Columns [i].DataType;
+			}
+			Gtk.ListStore ls = new Gtk.ListStore (typs);
+			foreach (DataRow dr in dt.Rows)
+			{
+				ls.AppendValues(dr.ItemArray);
+			}
+			Gtk.TreeView tv = new Gtk.TreeView(ls);
+			algResults.Add(tv);
+			this.ShowAll();
 		}
 
 		public SQLiteMonoPlusEditor.SQLEditor.SQLEditorView SQLEditor
 		{
-			get{ return this.sqleditorview2;}
+			get{ return this.sqleditorview1;}
 		}
 	}
 }

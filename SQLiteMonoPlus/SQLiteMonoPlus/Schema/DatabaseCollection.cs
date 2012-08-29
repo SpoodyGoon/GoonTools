@@ -89,7 +89,7 @@ namespace SQLiteMonoPlus.Schema
 				int index = -1;
 				for(int i = 0; i < _Databases.Count; i++)
 				{
-					if(((Database)_Databases[i]).DatabaseName == DatabaseName)
+					if(((Database)_Databases[i]).DBConnection.ConnectionName == DatabaseName)
 					{
 						index = i;
 						break;

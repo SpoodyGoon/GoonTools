@@ -10,90 +10,96 @@ namespace SQLiteMonoPlusUI
 	public partial class frmMain: Gtk.Window
 	{	
 		protected SQLiteMonoPlusUI.UI.ObjectExplorer.SchemaTreeView SchemaView;
+
 		public frmMain (): base (Gtk.WindowType.Toplevel)
 		{
 			Build ();
 			
-			SchemaView = new SQLiteMonoPlusUI.UI.ObjectExplorer.SchemaTreeView(this);
-			swObjectExplorer.Add(SchemaView);
+			SchemaView = new SQLiteMonoPlusUI.UI.ObjectExplorer.SchemaTreeView (this);
+			swObjectExplorer.Add (SchemaView);
 			// clear all the existing pages 
 			// being displayed at startup
 			int intPages = nbkEditor.NPages;
-			for (int i =0; i<intPages; i++) {
-				nbkEditor.Remove(nbkEditor.GetNthPage(i));
+			for (int i =0; i<intPages; i++)
+			{
+				nbkEditor.Remove (nbkEditor.GetNthPage (i));
 			}
 
 			
 			//SQLiteMonoPlusEditor.SQLEditor.SQLEditorView ev = new SQLiteMonoPlusEditor.SQLEditor.SQLEditorView();
-			SQLTextEditor ev = new SQLTextEditor();
-			ev.SQLEditor.ConnectionChanged += delegate(object sender, SQLiteMonoPlusEditor.Events.ConnectionChangeEventArgs args)
-			{
-				frmDatabaseConnect frm = new frmDatabaseConnect();			
-				if ((Gtk.ResponseType)frm.Run () == Gtk.ResponseType.Ok) {
-					SQLTextEditor edt = (SQLTextEditor)sender;
-					edt.SQLEditor.CurrentConnection = frm.SelectedConnection;
-				}
-				frm.Destroy();
-			};
-			nbkEditor.AppendPage(ev, new TabLabel("SQL Editor"));
 
-			this.ShowAll();
+			this.ShowAll ();
 		}
 		
 		#region Application Shutdown
 	
 		protected void Quit_Clicked (object sender, System.EventArgs e)
 		{
-			SqliteConnection sqlCN = new SqliteConnection(UserConfig.Default.DBLocation);
+			SqliteConnection sqlCN = new SqliteConnection (UserConfig.Default.DBLocation);
 			//ShutdownApp();
+		}
+
+		private void AddEditorTab (SQLiteMonoPlus.Connection conn)
+		{			
+			SQLTextEditor ev = new SQLTextEditor ();
+			ev.SQLEditor.CurrentConnection = conn;
+			ev.SQLEditor.ConnectionChanged += delegate(object sender, SQLiteMonoPlusEditor.Events.ConnectionChangeEventArgs args)
+			{
+				frmDatabaseConnect frm = new frmDatabaseConnect ();			
+				if ((Gtk.ResponseType)frm.Run () == Gtk.ResponseType.Ok)
+				{
+					SQLiteMonoPlusEditor.SQLEditor.SQLEditorView edt = (SQLiteMonoPlusEditor.SQLEditor.SQLEditorView)sender;
+					edt.CurrentConnection = frm.SelectedConnection;
+				}
+				frm.Destroy ();
+			};
+			nbkEditor.AppendPage (ev, new TabLabel ("SQL Editor"));
+			this.ShowAll ();
 		}
 		
 		protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 		{
-			ShutdownApp();
+			ShutdownApp ();
 			a.RetVal = true;
 		}
 		
-		private void ShutdownApp()
+		private void ShutdownApp ()
 		{
-			Application.Quit();
+			Application.Quit ();
 		}
 		#endregion Application Shutdown
 	
 		protected void btnConnect_Clicked (object sender, System.EventArgs e)
 		{
-			try {
-				string strDBFile = null;
+			try
+			{
+				SQLiteMonoPlus.Connection conn = null;
 				Database db = null;
 				frmDatabaseConnect fm = new frmDatabaseConnect ();			
-				if ((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok) {
-					strDBFile = fm.SelectedDatabaseName;
+				if ((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
+				{
+					conn = fm.SelectedConnection;
 				}
 				fm.Destroy ();
 			
-				if (!string.IsNullOrEmpty (strDBFile)) {
-					FileInfo fi = new FileInfo (strDBFile);
+				if (conn != null)
+				{
+					FileInfo fi = new FileInfo (conn.FilePath);
 					if (!fi.Exists)
-						throw new System.IO.FileNotFoundException ("Unable to load SQLite Database.", strDBFile);
+						throw new System.IO.FileNotFoundException ("Unable to load SQLite Database.", conn.FilePath);
 
-					string strConnString = Constants.ConnectionString.Simple.Replace ("[DBPATH]", fi.FullName);
-					string strDBName = fi.Name.Replace (fi.Extension, "");
-
-					db = new Database (strConnString, strDBName);
+					db = new Database (conn);
 					OpenObjects.Databases.Add (db);
 					db.LoadSchema ();   
 					SchemaView.Load ();
+					AddEditorTab (conn);
 					this.ShowAll ();
 				}
 
-				if(db != null)
-				{
-					SQLiteMonoPlusEditor.SQLEditor.SQLEditorView ev = new SQLiteMonoPlusEditor.SQLEditor.SQLEditorView();
-					nbkEditor.Add(ev);
-				}
 			}
-			catch (Exception ex) {
-				GlobalTools.Common.HandleError(ex);
+			catch (Exception ex)
+			{
+				GlobalTools.Common.HandleError (ex);
 			}
 		}
 

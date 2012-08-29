@@ -237,6 +237,7 @@ namespace SQLiteMonoPlusUI
 			this.nbkEditor.CanFocus = true;
 			this.nbkEditor.Name = "nbkEditor";
 			this.nbkEditor.CurrentPage = 0;
+			this.nbkEditor.Scrollable = true;
 			// Notebook tab
 			global::Gtk.Label w18 = new global::Gtk.Label ();
 			w18.Visible = true;

@@ -9,8 +9,7 @@ namespace SQLiteMonoPlus.Schema
 {
 	public class Database
 	{
-		public string DatabaseName = string.Empty;
-		private string _ConnectionString = string.Empty;
+		public Connection DBConnection;
 		public Dictionary<string, string> Pragmas = new Dictionary<string, string> ();
 		public TableCollection Tables = new TableCollection ();
 		public ForeignKeyCollection ForeignKeys = new ForeignKeyCollection ();
@@ -210,10 +209,9 @@ namespace SQLiteMonoPlus.Schema
 				"WHERE"
 			};
 
-		public Database (string DBConnString, string DBName)
+		public Database (Connection DBConn)
 		{
-			_ConnectionString = DBConnString;
-			DatabaseName = DBName;
+			DBConnection = DBConn;
 		}
 		
 		public void LoadSchema ()
@@ -228,7 +226,7 @@ namespace SQLiteMonoPlus.Schema
 		
 		private void LoadPragmas ()
 		{
-			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
+			SqliteConnection sqlCN = new SqliteConnection (DBConnection.ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			sqlCMD.CommandType = CommandType.Text;
 			sqlCMD.CommandTimeout = 300;
@@ -301,7 +299,7 @@ namespace SQLiteMonoPlus.Schema
 		
 		private DataTable DBObjectsGet ()
 		{
-			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
+			SqliteConnection sqlCN = new SqliteConnection (DBConnection.ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand (AdminSQL.TablesGet, sqlCN);
 			sqlCMD.CommandType = CommandType.Text;
 			sqlCMD.CommandTimeout = 300;
@@ -313,7 +311,7 @@ namespace SQLiteMonoPlus.Schema
 
 		private void LoadTableColumns ()
 		{
-			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
+			SqliteConnection sqlCN = new SqliteConnection (DBConnection.ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			SqliteDataReader sqlReader = null;
 			sqlCMD.Connection = sqlCN;
@@ -334,7 +332,7 @@ namespace SQLiteMonoPlus.Schema
 
 		private void LoadForeignKeys ()
 		{
-			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
+			SqliteConnection sqlCN = new SqliteConnection (DBConnection.ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			SqliteDataReader sqlReader = null;
 				ForeignKey fk;
@@ -371,7 +369,7 @@ namespace SQLiteMonoPlus.Schema
 
 		private void LoadIndexDetails ()
 		{
-			SqliteConnection sqlCN = new SqliteConnection (_ConnectionString);
+			SqliteConnection sqlCN = new SqliteConnection (DBConnection.ConnectionString);
 			SqliteCommand sqlCMD = new SqliteCommand ();
 			SqliteDataReader sqlReader = null;
 				sqlCMD.Connection = sqlCN;

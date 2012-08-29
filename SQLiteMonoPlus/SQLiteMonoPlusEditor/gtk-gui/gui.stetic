@@ -9,7 +9,8 @@
   </import>
   <widget class="Gtk.Bin" id="SQLiteMonoPlusEditor.SQLTextEditor" design-size="779 608">
     <property name="MemberName" />
-    <property name="Visible">False</property>
+    <property name="CanDefault">True</property>
+    <property name="CanFocus">True</property>
     <property name="ExtensionEvents">All</property>
     <child>
       <widget class="Gtk.Alignment" id="alignment2">
@@ -20,20 +21,15 @@
             <property name="CanFocus">True</property>
             <property name="Position">375</property>
             <child>
-              <widget class="Gtk.Alignment" id="alignment4">
+              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
                 <property name="MemberName" />
+                <property name="ShadowType">In</property>
                 <child>
-                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+                  <widget class="SQLiteMonoPlusEditor.SQLEditor.SQLEditorView" id="sqleditorview1">
                     <property name="MemberName" />
-                    <property name="ShadowType">In</property>
-                    <child>
-                      <widget class="SQLiteMonoPlusEditor.SQLEditor.SQLEditorView" id="sqleditorview2">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="ShowScrollbars">True</property>
-                        <property name="Text" translatable="yes" />
-                      </widget>
-                    </child>
+                    <property name="CanFocus">True</property>
+                    <property name="ShowScrollbars">True</property>
+                    <property name="Text" translatable="yes" />
                   </widget>
                 </child>
               </widget>
@@ -48,9 +44,14 @@
                   <widget class="Gtk.Notebook" id="notebook2">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="CurrentPage">2</property>
+                    <property name="CurrentPage">0</property>
                     <child>
-                      <placeholder />
+                      <widget class="Gtk.Alignment" id="algResults">
+                        <property name="MemberName" />
+                        <child>
+                          <placeholder />
+                        </child>
+                      </widget>
                     </child>
                     <child>
                       <widget class="Gtk.Label" id="label4">

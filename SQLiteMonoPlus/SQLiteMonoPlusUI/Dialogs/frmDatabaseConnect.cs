@@ -90,7 +90,6 @@ namespace SQLiteMonoPlusUI
 
 		protected void frmDatabaseConnect_Response (object sender, Gtk.ResponseArgs args)
 		{
-			Gtk.Button btn = (Gtk.Button)sender;
 			try
 			{
 				if (args.ResponseId == Gtk.ResponseType.Ok)
@@ -110,7 +109,6 @@ namespace SQLiteMonoPlusUI
 						Common.RecentConnections.AppendValues (cn);
 						Common.RecentConnections.Save ();
 					}
-
 				}
 			}
 			catch (Exception ex)
