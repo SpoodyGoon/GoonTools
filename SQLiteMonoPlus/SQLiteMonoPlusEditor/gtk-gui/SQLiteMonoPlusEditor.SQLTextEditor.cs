@@ -55,6 +55,7 @@ namespace SQLiteMonoPlusEditor
 			// Container child notebook2.Gtk.Notebook+NotebookChild
 			this.algResults = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.algResults.Name = "algResults";
+			this.algResults.BottomPadding = ((uint)(4));
 			this.notebook2.Add (this.algResults);
 			// Notebook tab
 			this.label4 = new global::Gtk.Label ();
