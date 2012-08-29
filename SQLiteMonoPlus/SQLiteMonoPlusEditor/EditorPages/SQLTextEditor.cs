@@ -35,21 +35,54 @@ namespace SQLiteMonoPlusEditor
 
 		protected void SQLEditor_SQLExecuted (object sender, SQLiteMonoPlusEditor.Events.SQLExecutedEventArgs args)
 		{
+			if (algResults.Children.Length > 0)
+			{
+				for(int i=0;i< algResults.Children.Length;i++)
+				{
+					algResults.Remove(algResults.Children[i]);
+				}
+			}
+			Gtk.TreeView tv = new Gtk.TreeView ();
+			Gtk.TreeViewColumn tvc;
+			Gtk.CellRendererText crt;
 			SqliteDataAdapter sqlDA = new SqliteDataAdapter (args.SQLStatement, args.CurrentConnection.ConnectionString);
 			DataTable dt = new DataTable ();
 			sqlDA.Fill (dt);
 			int intColumnCount = dt.Columns.Count;
-			System.Type[] typs = new System.Type[intColumnCount];
+			//System.Type[] typs = new System.Type[intColumnCount];
+			GLib.GType[] typs = new GLib.GType[intColumnCount];
+			string[] strValues = new string[intColumnCount];
 			for (int i = 0; i< dt.Columns.Count; i++)
 			{
-				typs [i] = dt.Columns [i].DataType;
+				typs [i] = GLib.GType.String;//dt.Columns [i].DataType;
+				tvc = new Gtk.TreeViewColumn();
+				tvc.Title = dt.Columns[i].ColumnName;
+				tvc.Expand = true;
+				tvc.Resizable = true;
+				tvc.Visible = true;
+				crt = new Gtk.CellRendererText();
+				crt.Visible = true;
+				crt.Editable = true;
+				crt.Mode = Gtk.CellRendererMode.Editable;
+				crt.Width = 50;
+				crt.Xpad = 3;
+				tvc.PackStart(crt, true);
+				tv.AppendColumn(tvc);
 			}
-			Gtk.ListStore ls = new Gtk.ListStore (typs);
+			Gtk.ListStore ls = new Gtk.ListStore(typs);
+			Gtk.TreeIter iter;
 			foreach (DataRow dr in dt.Rows)
 			{
-				ls.AppendValues(dr.ItemArray);
+				iter = ls.Append();
+				for (int i = 0; i< dt.Columns.Count; i++)
+				{
+					ls.SetValue(iter, i, dr[i].ToString());
+				}
 			}
-			Gtk.TreeView tv = new Gtk.TreeView(ls);
+			tv.ColumnsAutosize();
+			tv.RulesHint = true;
+			tv.EnableGridLines = Gtk.TreeViewGridLines.Both;
+			tv.Model = ls;
 			algResults.Add(tv);
 			this.ShowAll();
 		}

@@ -48,6 +48,7 @@
                     <child>
                       <widget class="Gtk.Alignment" id="algResults">
                         <property name="MemberName" />
+                        <property name="BottomPadding">4</property>
                         <child>
                           <placeholder />
                         </child>
