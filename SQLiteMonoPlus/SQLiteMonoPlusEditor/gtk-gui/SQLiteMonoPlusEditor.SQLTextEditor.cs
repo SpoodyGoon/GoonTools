@@ -6,11 +6,11 @@ namespace SQLiteMonoPlusEditor
 	{
 		private global::Gtk.Alignment alignment2;
 		private global::Gtk.VPaned vpaned1;
-		private global::Gtk.Alignment alignment4;
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-		private global::SQLiteMonoPlusEditor.SQLEditor.SQLEditorView sqleditorview2;
+		private global::SQLiteMonoPlusEditor.SQLEditor.SQLEditorView sqleditorview1;
 		private global::Gtk.Alignment alignment3;
 		private global::Gtk.Notebook notebook2;
+		private global::Gtk.Alignment algResults;
 		private global::Gtk.Label label4;
 		private global::Gtk.Label label2;
 		private global::Gtk.Label label3;
@@ -20,6 +20,8 @@ namespace SQLiteMonoPlusEditor
 			global::Stetic.Gui.Initialize (this);
 			// Widget SQLiteMonoPlusEditor.SQLTextEditor
 			global::Stetic.BinContainer.Attach (this);
+			this.CanDefault = true;
+			this.CanFocus = true;
 			this.ExtensionEvents = ((global::Gdk.ExtensionMode)(1));
 			this.Name = "SQLiteMonoPlusEditor.SQLTextEditor";
 			// Container child SQLiteMonoPlusEditor.SQLTextEditor.Gtk.Container+ContainerChild
@@ -31,21 +33,17 @@ namespace SQLiteMonoPlusEditor
 			this.vpaned1.Name = "vpaned1";
 			this.vpaned1.Position = 375;
 			// Container child vpaned1.Gtk.Paned+PanedChild
-			this.alignment4 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment4.Name = "alignment4";
-			// Container child alignment4.Gtk.Container+ContainerChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.sqleditorview2 = new global::SQLiteMonoPlusEditor.SQLEditor.SQLEditorView ();
-			this.sqleditorview2.CanFocus = true;
-			this.sqleditorview2.Name = "sqleditorview2";
-			this.GtkScrolledWindow.Add (this.sqleditorview2);
-			this.alignment4.Add (this.GtkScrolledWindow);
-			this.vpaned1.Add (this.alignment4);
-			global::Gtk.Paned.PanedChild w3 = ((global::Gtk.Paned.PanedChild)(this.vpaned1 [this.alignment4]));
-			w3.Resize = false;
+			this.sqleditorview1 = new global::SQLiteMonoPlusEditor.SQLEditor.SQLEditorView ();
+			this.sqleditorview1.CanFocus = true;
+			this.sqleditorview1.Name = "sqleditorview1";
+			this.GtkScrolledWindow.Add (this.sqleditorview1);
+			this.vpaned1.Add (this.GtkScrolledWindow);
+			global::Gtk.Paned.PanedChild w2 = ((global::Gtk.Paned.PanedChild)(this.vpaned1 [this.GtkScrolledWindow]));
+			w2.Resize = false;
 			// Container child vpaned1.Gtk.Paned+PanedChild
 			this.alignment3 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment3.Name = "alignment3";
@@ -53,36 +51,37 @@ namespace SQLiteMonoPlusEditor
 			this.notebook2 = new global::Gtk.Notebook ();
 			this.notebook2.CanFocus = true;
 			this.notebook2.Name = "notebook2";
-			this.notebook2.CurrentPage = 2;
+			this.notebook2.CurrentPage = 0;
+			// Container child notebook2.Gtk.Notebook+NotebookChild
+			this.algResults = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.algResults.Name = "algResults";
+			this.notebook2.Add (this.algResults);
 			// Notebook tab
-			global::Gtk.Label w4 = new global::Gtk.Label ();
-			w4.Visible = true;
-			this.notebook2.Add (w4);
 			this.label4 = new global::Gtk.Label ();
 			this.label4.Name = "label4";
 			this.label4.Xpad = 4;
 			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Results");
-			this.notebook2.SetTabLabel (w4, this.label4);
+			this.notebook2.SetTabLabel (this.algResults, this.label4);
 			this.label4.ShowAll ();
 			// Notebook tab
-			global::Gtk.Label w5 = new global::Gtk.Label ();
-			w5.Visible = true;
-			this.notebook2.Add (w5);
+			global::Gtk.Label w4 = new global::Gtk.Label ();
+			w4.Visible = true;
+			this.notebook2.Add (w4);
 			this.label2 = new global::Gtk.Label ();
 			this.label2.Name = "label2";
 			this.label2.Xpad = 4;
 			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Messages");
-			this.notebook2.SetTabLabel (w5, this.label2);
+			this.notebook2.SetTabLabel (w4, this.label2);
 			this.label2.ShowAll ();
 			// Notebook tab
-			global::Gtk.Label w6 = new global::Gtk.Label ();
-			w6.Visible = true;
-			this.notebook2.Add (w6);
+			global::Gtk.Label w5 = new global::Gtk.Label ();
+			w5.Visible = true;
+			this.notebook2.Add (w5);
 			this.label3 = new global::Gtk.Label ();
 			this.label3.Name = "label3";
 			this.label3.Xpad = 4;
 			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Execution Plan");
-			this.notebook2.SetTabLabel (w6, this.label3);
+			this.notebook2.SetTabLabel (w5, this.label3);
 			this.label3.ShowAll ();
 			this.alignment3.Add (this.notebook2);
 			this.vpaned1.Add (this.alignment3);
@@ -91,7 +90,7 @@ namespace SQLiteMonoPlusEditor
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.Hide ();
+			this.Show ();
 		}
 	}
 }

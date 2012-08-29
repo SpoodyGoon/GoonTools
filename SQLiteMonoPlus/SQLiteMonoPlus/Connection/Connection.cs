@@ -100,6 +100,11 @@ namespace SQLiteMonoPlus
         		_LastUsedDate = value;
         	}
         }
+
+		public string ConnectionString
+		{
+			get{ return "URI=file:" + _FilePath + ",version=3, busy_timeout=300";}
+		}
               
         #endregion Public Properties
         

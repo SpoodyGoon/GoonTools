@@ -33,7 +33,7 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 			//sc.ForeignKey fk;
 			foreach(sc.Database db in sc.OpenObjects.Databases)
 			{
-				DBIter = this.AppendValues(new SchemaDisplay(pxDatabase, DBObjectType.Database, db.DatabaseName, null));
+				DBIter = this.AppendValues(new SchemaDisplay(pxDatabase, DBObjectType.Database, db.DBConnection.ConnectionName, null));
 				TBLabelIter = this.AppendValues(DBIter, new SchemaDisplay(pxFolder, DBObjectType.Label, "Tables", null));
 				foreach(sc.Table tbl in db.Tables)
 				{	

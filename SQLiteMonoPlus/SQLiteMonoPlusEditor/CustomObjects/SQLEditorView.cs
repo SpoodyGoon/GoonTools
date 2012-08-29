@@ -38,16 +38,16 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 		{ 
 			get
 			{
-				if (this.Buffer.HasSelection)
-				{
-					Gtk.TextIter IterStart, IterEnd;
-					this.Buffer.GetSelectionBounds (out IterStart, out IterEnd);
-					return this.Buffer.GetText (IterStart, IterEnd, false);
-				}
-				else
-				{
+//				if (this.Buffer.HasSelection)
+//				{
+//					Gtk.TextIter IterStart, IterEnd;
+//					this.Buffer.GetSelectionBounds (out IterStart, out IterEnd);
+//					return this.Buffer.GetText (IterStart, IterEnd, false);
+//				}
+//				else
+//				{
 					return this.Buffer.Text;
-				}
+//				}
 			} 
 		}
 
@@ -59,7 +59,7 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 		{
 			TextBuffer tb = new TextBuffer (new TextTagTable ());
 			this.Buffer = tb;
-			this.BorderWidth = 5;
+			//this.BorderWidth = 5;
 
 			//this.ModifyBg (StateType.Insensitive, new Gdk.Color (111, 111, 111));
 			this.AppPaintable = true;
@@ -73,7 +73,7 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 			switch (evnt.Key)
 			{
 				case Gdk.Key.F5:
-
+					SQLExecuted(this, new SQLiteMonoPlusEditor.Events.SQLExecutedEventArgs(this.CurrentConnection, this.SQLSelectedText));
 				break;
 				case Gdk.Key.space:
 				break;
@@ -87,20 +87,24 @@ namespace SQLiteMonoPlusEditor.SQLEditor
 		{
 			if (evnt.Button == 3)
 			{
-				SQLiteMonoPlusEditor.ContexMenus.SQLEditorViewMenu mnu = new SQLiteMonoPlusEditor.ContexMenus.SQLEditorViewMenu();
+				SQLiteMonoPlusEditor.ContexMenus.SQLEditorViewMenu mnu = new SQLiteMonoPlusEditor.ContexMenus.SQLEditorViewMenu ();
 				Gdk.Window win = this.ParentWindow;
-				mnu.ShowAll();
+				mnu.ShowAll ();
 				mnu.ConnectChangeRequested += delegate()
 				{
-					ConnectionChanged(this, new SQLiteMonoPlusEditor.Events.ConnectionChangeEventArgs(this.CurrentConnection));
+					ConnectionChanged (this, new SQLiteMonoPlusEditor.Events.ConnectionChangeEventArgs (this.CurrentConnection));
 //					Gtk.MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, ButtonsType.Close, "Connection Change Request Fired", "Fired");
 //					md.Run();
 //					md.Destroy();
 				};
-				mnu.Popup();
+				mnu.Popup ();
 
 			}
-			return false;
+			else
+			{
+	
+			}
+			return base.OnButtonPressEvent(evnt);
 		}
 
 		private void OnSQLExecuted (string strSQL)
