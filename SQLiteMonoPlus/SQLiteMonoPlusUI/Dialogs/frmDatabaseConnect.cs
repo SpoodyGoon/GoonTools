@@ -101,14 +101,8 @@ namespace SQLiteMonoPlusUI
 					else
 						_SelectedConnection = new Connection (cboConnectName.Entry.Text.Trim (), fcDBFile.Filename);				
 
-
-					// Update the connection store if the file is not already in the store
-					Connection cn = Common.RecentConnections.FindFile (fcDBFile.Filename);
-					if (cn == null)
-					{
-						Common.RecentConnections.AppendValues (cn);
-						Common.RecentConnections.Save ();
-					}
+					Common.RecentConnections.AppendValues (_SelectedConnection);
+					Common.RecentConnections.Save ();
 				}
 			}
 			catch (Exception ex)
