@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteMonoPlusUI", "SQLiteM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteMonoPlusEditor", "SQLiteMonoPlusEditor\SQLiteMonoPlusEditor.csproj", "{236C5A87-1525-4DB3-BF77-0537AE08A058}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libGlobalTools", "libGlobalTools\libGlobalTools.csproj", "{27264AAE-8D10-44DC-AA22-AE63B52151AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{236C5A87-1525-4DB3-BF77-0537AE08A058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{236C5A87-1525-4DB3-BF77-0537AE08A058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{236C5A87-1525-4DB3-BF77-0537AE08A058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27264AAE-8D10-44DC-AA22-AE63B52151AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27264AAE-8D10-44DC-AA22-AE63B52151AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27264AAE-8D10-44DC-AA22-AE63B52151AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27264AAE-8D10-44DC-AA22-AE63B52151AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{768D7523-8FEB-4293-B88C-FF267363F994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{768D7523-8FEB-4293-B88C-FF267363F994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{768D7523-8FEB-4293-B88C-FF267363F994}.Release|Any CPU.ActiveCfg = Release|Any CPU

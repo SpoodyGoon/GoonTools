@@ -1,4 +1,5 @@
 using System;
+using Mono.Data.SqliteClient;
 
 namespace SQLiteMonoPlus
 {
@@ -104,6 +105,28 @@ namespace SQLiteMonoPlus
 		public string ConnectionString
 		{
 			get{ return "URI=file:" + _FilePath + ",version=3, busy_timeout=300";}
+		}
+		
+		private bool CanConnect
+		{
+			get
+			{				
+				bool blnSuccess = true;
+				try {
+					SqliteConnection sqlCN = new SqliteConnection(this.ConnectionString);
+					SqliteCommand sqlCMD = new SqliteCommand (SQLiteMonoPlus.Constants.ConnectionString.ConnectionTest, sqlCN);
+					sqlCN.Open ();
+					sqlCMD.ExecuteNonQuery ();
+					sqlCN.Close ();
+					sqlCMD.Dispose ();
+					sqlCN.Dispose ();
+				}
+				catch (Exception ex) {
+					blnSuccess = false;
+					Console.WriteLine (ex.ToString ());				
+				}
+				return blnSuccess;
+			}
 		}
               
         #endregion Public Properties
