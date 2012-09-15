@@ -247,7 +247,9 @@ namespace SQLiteMonoPlus.Schema
 						}
 					}
 				}
-				sqlReader.Close ();
+				
+				if(sqlReader != null)
+					sqlReader.Close ();
 				sqlCN.Close ();
 		}
 		
@@ -326,7 +328,9 @@ namespace SQLiteMonoPlus.Schema
 				}
 				sqlCMD.Parameters.Clear();
 			}
-			sqlReader.Close ();
+
+			if(sqlReader!= null)
+				sqlReader.Close ();
 			sqlCN.Close ();
 		}
 
@@ -363,7 +367,8 @@ namespace SQLiteMonoPlus.Schema
 
 					}			
 				}
-				sqlReader.Close ();
+				if(sqlReader!= null)
+					sqlReader.Close ();
 				sqlCN.Close ();
 		}
 
@@ -394,7 +399,8 @@ namespace SQLiteMonoPlus.Schema
 							((Index)t.Indexes [sqlReader ["name"].ToString ()]).Unique = sqlReader ["unique"].ToString () == "1" ? true : false;
 					}				
 				}
-				sqlReader.Close ();
+				if(sqlReader!= null)
+					sqlReader.Close ();
 				sqlCN.Close ();
 		}
 	}

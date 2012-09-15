@@ -100,12 +100,10 @@ namespace Stetic
 						gc.RgbFgColor = new Gdk.Color (255, 0, 0);
 						pmap.DrawLine (gc, (sz / 4), (sz / 4), ((sz - 1) 
 							- (sz / 4)), ((sz - 1) 
-							- (sz / 4))
-						);
+							- (sz / 4)));
 						pmap.DrawLine (gc, ((sz - 1) 
 							- (sz / 4)), (sz / 4), (sz / 4), ((sz - 1) 
-							- (sz / 4))
-						);
+							- (sz / 4)));
 						return Gdk.Pixbuf.FromDrawable (pmap, pmap.Colormap, 0, 0, 0, 0, sz, sz);
 					}
 				}
