@@ -50,10 +50,13 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="EnviromentData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gtk\BufferTags.cs" />
     <Compile Include="Gtk\GtkTools.cs" />
+    <Compile Include="ErrorCollection.cs" />
+    <Compile Include="FileInfoCollection.cs" />
+    <Compile Include="LocalSystemTools.cs" />
+    <Compile Include="libGlobalToolsEnum.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
