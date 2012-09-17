@@ -7,16 +7,16 @@
  *************************************************************************/
 /*
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General internal License as published by
+ * it under the terms of the GNU General public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General internal License for more details.
+ * GNU General public License for more details.
  *
- * You should have received a copy of the GNU General internal License
+ * You should have received a copy of the GNU General public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 using System;
@@ -27,22 +27,22 @@ using Gtk;
 
 namespace libGlobalTools
 {
-	internal static class Common
+	public static class Common
 	{
-		internal static EnviromentData EnvData = new EnviromentData ();
+		public static LocalSystemTools LocalSystem = new LocalSystemTools ();
 
-		internal static void Load ()
+		public static void Load ()
 		{ 
 		}
 
         #region Logs
 
-		internal static void HandleError (Exception ex)
+		public static void HandleError (Exception ex)
 		{
 			HandleError (null, ex);
 		}
 
-		internal static void HandleError (Gtk.Window parent_window, Exception ex)
+		public static void HandleError (Gtk.Window parent_window, Exception ex)
 		{
 			System.Text.StringBuilder sb = new System.Text.StringBuilder ();
 			sb.Append (System.Environment.NewLine + "------------------------------------------------------------------------------");
@@ -50,11 +50,18 @@ namespace libGlobalTools
 			sb.Append (System.Environment.NewLine + ex.ToString ());
 			sb.Append (System.Environment.NewLine + "------------------------------------------------------------------------------");
 
-			if (EnvData.UserErrorLog) {
-				StreamWriter sw = new StreamWriter (EnvData.ErrorLogFile, true);
+			if (LocalSystem.UserErrorLog) {
+				StreamWriter sw = new StreamWriter (LocalSystem.ErrorLogFile, true);
 				sw.Write (sb.ToString ());
 				sw.Close ();
 			}
+			/*
+			 * code to write to the event log
+			if (!EventLog.SourceExists(cs))
+				EventLog.CreateEventSource(cs, "Application");    
+			
+			EventLog.WriteEntry(cs, message, EventLogEntryType.Error);
+			*/
 
 			Gtk.MessageDialog md = new MessageDialog (parent_window, DialogFlags.Modal, MessageType.Error, ButtonsType.Close, ex.ToString ());
 			md.Run ();
@@ -62,10 +69,10 @@ namespace libGlobalTools
 			sb.Length = 0;
 		}
 
-		internal static void CleanErrorLog ()
+		public static void CleanErrorLog ()
 		{
 			try {
-				StreamWriter sw = new StreamWriter (EnvData.ErrorLogFile, false);
+				StreamWriter sw = new StreamWriter (LocalSystem.ErrorLogFile, false);
 				sw.Write ("");
 				sw.Close ();
 			}
@@ -77,7 +84,7 @@ namespace libGlobalTools
 
         #endregion Logs
 
-		internal static void DebugWrite (string StringToWrite)
+		public static void DebugWrite (string StringToWrite)
 		{
 			Console.WriteLine (StringToWrite);
 			Console.ReadLine ();
@@ -88,7 +95,7 @@ namespace libGlobalTools
 
 		private static string _LaunchURL = string.Empty;
 
-		internal static void LaunchURL (string URL)
+		public static void LaunchURL (string URL)
 		{
 			_LaunchURL = URL;
 			System.Threading.Thread trd = new System.Threading.Thread (new System.Threading.ThreadStart (StartURL));
@@ -102,7 +109,7 @@ namespace libGlobalTools
 
         #endregion Launch URL
 
-		internal static T StringToEnum<T> (string name)
+		public static T StringToEnum<T> (string name)
 		{
 			return (T)Enum.Parse (typeof(T), name);
 		}

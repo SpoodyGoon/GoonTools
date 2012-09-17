@@ -1,80 +1,129 @@
-﻿using System;
-using so = System.IO;
-using se = System.Environment;
-using sr = System.Reflection;
-using sc = System.Configuration;
+/*************************************************************************
+ *                      EnviromentData.cs
+ *
+ *      Copyright (C) 2010
+ *      Andrew York <GlobalTools@brdstudio.net>
+ *
+ *************************************************************************/
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
 
-namespace GlobalTools
+using System;
+using System.IO;
+using System.Reflection;
+using CM = System.Configuration.ConfigurationManager;
+using Gtk;
+
+namespace libGlobalTools
 {
     /// <summary>
-    /// This class contains basic navigation functionality and some
-    /// commonly used functions related to folder navigation and/or manipulation
+    ///  This class contains data that is related to the
+    ///  enviroment around the probram
     /// </summary>
     public class LocalSystemTools
     {
-        public string AppPath;
-        public string AppDBFile;
-        public string AppDataPath;
-        public string AppDBConnectionString;
-        public string ProgramName;
-        public string ErrorLogFile;
-        public bool DebugMode = false;
+        public string OS = null;
+        public string AppPath = null;
+       	public string ProgramName = null;
+		public bool UserErrorLog = false;
+        public string ErrorLogFile = null;
+        public string ConnectionFilePath = null;
+        public string UserDataPath = null;
+        public string AppDataPath = null;
+		public bool DebugMode = false;
         public LocalSystemTools()
         {
-            so.FileInfo fi;
-            so.DirectoryInfo di;
-            sr.Assembly asm = sr.Assembly.GetExecutingAssembly();
+            FileInfo fi;
+            DirectoryInfo di;
+            Assembly asm = Assembly.GetExecutingAssembly();
+
+            // set the operating system
+			OS = Environment.OSVersion.Platform.ToString();
 
             // set the app path
-            fi = new so.FileInfo(asm.Location);
+            fi = new FileInfo(asm.Location);
             AppPath = fi.Directory.FullName;
             ProgramName = asm.GetName().Name;
-            DebugMode = Convert.ToBoolean(sc.ConfigurationManager.AppSettings["DebugMode"].ToString().Trim());
 
-            // path to where the application keeps its data
-            di = new so.DirectoryInfo(so.Path.Combine(AppPath, "Data"));
-            AppDataPath = di.FullName;
+			// Set the flags for when to use the error log
+			if (CM.AppSettings["UserErrorLog"] != null && Convert.ToBoolean(CM.AppSettings["UserErrorLog"]))
+			{
+				UserErrorLog = true;				
+			}
+
+			if (CM.AppSettings["DebugMode"] != null && Convert.ToBoolean(CM.AppSettings["DebugMode"]))
+            {
+                // set the location of the save data for the user
+                // in a non-development enviroment
+				di = new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ProgramName));
+				DebugMode = true;
+            }
+            else
+            {
+                // where the user data is saved for development
+                di = new DirectoryInfo(Path.Combine(AppPath, "DebugFiles"));
+            }
+
             if (!di.Exists)
                 di.Create();
 
-            // path to the error log
-            ErrorLogFile = so.Path.Combine(AppDataPath, "ErrorLog.txt");
-            // location of the database for the applciation
-            fi = new so.FileInfo(so.Path.Combine(AppDataPath, "DatabaseBuilder.s3db"));
-            AppDBFile = fi.FullName;
-            AppDBConnectionString = @"URI=file:C:\Temp\DatabaseBuilder.s3db, version=3, busy_timeout=300";
-            //AppDBConnectionString = Constants.SVNScanSQL.ConnStringFormat.Replace("[FilePath]", fi.FullName);
+            UserDataPath = di.FullName;
+
+            // App Database for copying over application file during first use
+            di = new DirectoryInfo(Path.Combine(AppPath, "GlobalData"));
+            AppDataPath = di.FullName;
+
+
+            // the error file
+            fi = new FileInfo(Path.Combine(UserDataPath, Constants.FileStruture.ErrorLogName));
+            ErrorLogFile = fi.FullName;
+            
+            fi = new FileInfo(Path.Combine(UserDataPath, Constants.FileStruture.ConnectionFileName));
+            ConnectionFilePath = fi.FullName;
+
         }
 
-        #region Temp File/Folder Functions
+        #region Public Methods
 
-        internal string GetNewTempFolder(string Name)
+        public string GetNewTempFolder(string Name)
         {
             return GetNewTempFolder(Name, true);
         }
 
-        internal string GetNewTempFolder(string Name, bool Overwrite)
+        public string GetNewTempFolder(string Name, bool Overwrite)
         {
-            string tmpName = so.Path.Combine(so.Path.GetTempPath(), Name);
+            string tmpName = Path.Combine(Path.GetTempPath(), Name);
             try
             {
                 if (Overwrite)
                 {
-                    if (so.Directory.Exists(tmpName))
-                        so.Directory.Delete(tmpName);
+                    if (Directory.Exists(tmpName))
+                        Directory.Delete(tmpName);
 
-                    so.Directory.CreateDirectory(tmpName);
+                    Directory.CreateDirectory(tmpName);
                 }
                 else
                 {
                     string tmp = tmpName;
                     int i = 0;
-                    while (so.Directory.Exists(tmp))
+                    while (Directory.Exists(tmp))
                     {
                         tmp = tmpName + i.ToString();
                         i++;
                     }
-                    so.Directory.CreateDirectory(tmp);
+                    Directory.CreateDirectory(tmp);
                     tmpName = tmp;
                 }
             }
@@ -85,92 +134,42 @@ namespace GlobalTools
             return tmpName;
         }
 
-        internal string GetNewTempFile(string Name)
+        public string GetNewTempFile(string Name)
         {
-            return GetNewTempFile(so.Path.GetFileNameWithoutExtension(Name), so.Path.GetExtension(Name), true);
+            return GetNewTempFile(Path.GetFileNameWithoutExtension(Name), Path.GetExtension(Name), true);
         }
 
-        internal string GetNewTempFile(string Name, string Extension)
+        public string GetNewTempFile(string Name, string Extension)
         {
             return GetNewTempFile(Name, Extension, true);
         }
 
-        internal string GetNewTempFile(string Name, string Extension, bool Overwrite)
+        public string GetNewTempFile(string Name, string Extension, bool Overwrite)
         {
-            string tmpName = so.Path.Combine(System.IO.Path.GetTempPath(), Name + "." + Extension);
+            string tmpName = Path.Combine(System.IO.Path.GetTempPath(), Name + "." + Extension);
             if (Overwrite)
             {
-                if (so.File.Exists(tmpName))
-                    so.File.Delete(tmpName);
+                if (File.Exists(tmpName))
+                    File.Delete(tmpName);
 
-                so.File.Create(tmpName);
+                File.Create(tmpName);
             }
             else
             {
                 string tmp = tmpName;
                 int i = 0;
-                while (so.File.Exists(tmp))
+                while (File.Exists(tmp))
                 {
                     tmp = tmpName + i.ToString();
                     i++;
                 }
-                so.File.Create(tmp);
+                File.Create(tmp);
                 tmpName = tmp;
             }
             return tmpName;
         }
 
-        internal void ClearDirectory(string strPath)
-        {
-            so.DirectoryInfo di = new so.DirectoryInfo(strPath);
-            so.DirectoryInfo[] diTmp = di.GetDirectories();
-            if (diTmp.Length > 0)
-            {
-                for (int i = 0; i < diTmp.Length; i++)
-                {
-                    diTmp[i].Delete(true);
-                }
-            }
-
-            so.FileInfo[] fi = di.GetFiles();
-            if (fi.Length > 0)
-            {
-                for (int i = 0; i < fi.Length; i++)
-                {
-                    fi[i].Delete();
-                }
-            }
-        }
-
-        internal void TextFileDump(string strText, string strPath)
-        {
-            if (so.File.Exists(strPath))
-                throw new FieldAccessException("File already exists: " + strPath);
-
-            using (so.StreamWriter sw = new so.StreamWriter(strPath, false, System.Text.Encoding.UTF8))
-            {
-                sw.Write(strText);
-            }
-        }
-
-        #endregion Temp File/Folder Functions
-
-        #region Launch URL
-
-        private string _LaunchURL = string.Empty;
-        internal void LaunchURL(string URL)
-        {
-            _LaunchURL = URL;
-            System.Threading.Thread trd = new System.Threading.Thread(new System.Threading.ThreadStart(StartURL));
-            trd.Start();
-        }
-
-        private void StartURL()
-        {
-            System.Diagnostics.Process.Start(_LaunchURL);
-        }
-
-        #endregion Launch URL
+        #endregion Public Methods
     }
 
 }
