@@ -50,7 +50,7 @@ namespace libGlobalTools
 			sb.Append (System.Environment.NewLine + ex.ToString ());
 			sb.Append (System.Environment.NewLine + "------------------------------------------------------------------------------");
 
-			if (LocalSystem.UserErrorLog) {
+			if (LocalSystem.UseErrorLog) {
 				StreamWriter sw = new StreamWriter (LocalSystem.ErrorLogFile, true);
 				sw.Write (sb.ToString ());
 				sw.Close ();

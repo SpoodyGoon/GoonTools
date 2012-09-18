@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Data" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -53,14 +54,32 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gtk\BufferTags.cs" />
     <Compile Include="Gtk\GtkTools.cs" />
-    <Compile Include="ErrorCollection.cs" />
-    <Compile Include="FileInfoCollection.cs" />
     <Compile Include="LocalSystemTools.cs" />
     <Compile Include="libGlobalToolsEnum.cs" />
+    <Compile Include="ILocalSystemTools.cs" />
+    <Compile Include="ErrorManager\dlgErrorLogDisplay.cs" />
+    <Compile Include="gtk-gui\ErrorManager.dlgErrorLogDisplay.cs" />
+    <Compile Include="GlobalTools.cs" />
+    <Compile Include="ErrorManager\ErrorManagerTools.cs" />
+    <Compile Include="ErrorManager\ErrorMessage.cs" />
+    <Compile Include="Collections\FileInfoCollection.cs" />
+    <Compile Include="Collections\ErrorCollection.cs" />
+    <Compile Include="gtk-gui\libGlobalTools.dlgErrorMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Gtk\" />
     <Folder Include="Properties\" />
+    <Folder Include="ErrorManager\" />
+    <Folder Include="Collections\" />
   </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="Hierarchical" ResourceNamePolicy="FileFormatDefault" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>

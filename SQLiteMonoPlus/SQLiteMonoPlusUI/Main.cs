@@ -1,4 +1,5 @@
 using System;
+using libGlobalTools;
 using Gtk;
 
 namespace SQLiteMonoPlusUI
@@ -8,7 +9,8 @@ namespace SQLiteMonoPlusUI
 		public static void Main (string[] args)
 		{
 			Application.Init ();
-            GlobalTools.Common.Load();
+            libGlobalTools.Common.Load();
+			GlobalData.StaticDataAccess.Load();
 			frmMain win = new frmMain ();
 			win.Show ();
 			Application.Run ();

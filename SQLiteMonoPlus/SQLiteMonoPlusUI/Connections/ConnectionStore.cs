@@ -3,7 +3,7 @@ using System.IO;
 using System.Data;
 using Gtk;
 using SQLiteMonoPlus;
-using SQLiteMonoPlusUI.GlobalTools;
+using libGlobalTools;
 
 namespace SQLiteMonoPlusUI.GlobalData
 {

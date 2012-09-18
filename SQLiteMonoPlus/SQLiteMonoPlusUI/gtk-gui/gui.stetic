@@ -7,6 +7,7 @@
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../../SQLiteMonoPlusEditor/bin/Debug/SQLiteMonoPlusEditor.dll" />
+    <widget-library name="../../libGlobalTools/bin/Debug/libGlobalTools.dll" />
     <widget-library name="../bin/Debug/SQLiteMonoPlusUI.exe" internal="true" />
   </import>
   <icon-factory>

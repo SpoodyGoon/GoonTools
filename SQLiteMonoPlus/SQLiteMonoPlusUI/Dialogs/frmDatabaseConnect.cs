@@ -1,7 +1,8 @@
 using System;
 using Mono.Data.SqliteClient;
 using SQLiteMonoPlus;
-using SQLiteMonoPlusUI.GlobalTools;
+using SQLiteMonoPlusUI.GlobalData;
+using libGlobalTools;
 
 namespace SQLiteMonoPlusUI
 {
@@ -48,7 +49,7 @@ namespace SQLiteMonoPlusUI
 
 		protected void btnTestConnection_Clicked (object sender, System.EventArgs e)
 		{
-			if (Common.DatabaseTryConnect (fcDBFile.Filename))
+			if (Utilities.DatabaseTryConnect (fcDBFile.Filename))
 			{
 				lblTestResult.Text = "Connection Success";
 			}
@@ -101,8 +102,8 @@ namespace SQLiteMonoPlusUI
 					else
 						_SelectedConnection = new Connection (cboConnectName.Entry.Text.Trim (), fcDBFile.Filename);				
 
-					Common.RecentConnections.AppendValues (_SelectedConnection);
-					Common.RecentConnections.Save ();
+					StaticDataAccess.RecentConnections.AppendValues (_SelectedConnection);
+					StaticDataAccess.RecentConnections.Save ();
 				}
 			}
 			catch (Exception ex)

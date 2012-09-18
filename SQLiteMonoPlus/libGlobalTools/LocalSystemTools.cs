@@ -32,70 +32,93 @@ namespace libGlobalTools
     ///  This class contains data that is related to the
     ///  enviroment around the probram
     /// </summary>
-    public class LocalSystemTools
+	public class LocalSystemTools : ILocalSystemTools
     {
-        public string OS = null;
-        public string AppPath = null;
-       	public string ProgramName = null;
-		public bool UserErrorLog = false;
-        public string ErrorLogFile = null;
-        public string ConnectionFilePath = null;
-        public string UserDataPath = null;
-        public string AppDataPath = null;
-		public bool DebugMode = false;
-        public LocalSystemTools()
-        {
-            FileInfo fi;
-            DirectoryInfo di;
-            Assembly asm = Assembly.GetExecutingAssembly();
+		private string _AppPath;
+		private string _AppDBFile;
+		private string _AppDataPath;
+		private string _DBConnectionString;
+		private string _ProgramName;
+		private string _ErrorLogFile;
+		private bool _UseErrorLog = false;
+		private bool _DebugMode = false;
+		private string _OS = null;
+        private string _UserDataPath = null;
+        public LocalSystemTools ()
+		{
+			FileInfo fi;
+			DirectoryInfo di;
+			Assembly asm = Assembly.GetExecutingAssembly ();
 
-            // set the operating system
-			OS = Environment.OSVersion.Platform.ToString();
+			// set the operating system
+			_OS = Environment.OSVersion.Platform.ToString ();
 
-            // set the app path
-            fi = new FileInfo(asm.Location);
-            AppPath = fi.Directory.FullName;
-            ProgramName = asm.GetName().Name;
+			// set the app path
+			fi = new FileInfo (asm.Location);
+			_AppPath = fi.Directory.FullName;
+			_ProgramName = asm.GetName ().Name;
 
 			// Set the flags for when to use the error log
-			if (CM.AppSettings["UserErrorLog"] != null && Convert.ToBoolean(CM.AppSettings["UserErrorLog"]))
+			if (CM.AppSettings ["UserErrorLog"] != null && Convert.ToBoolean (CM.AppSettings ["UserErrorLog"]))
 			{
-				UserErrorLog = true;				
+				_UseErrorLog = true;				
 			}
 
-			if (CM.AppSettings["DebugMode"] != null && Convert.ToBoolean(CM.AppSettings["DebugMode"]))
-            {
-                // set the location of the save data for the user
-                // in a non-development enviroment
-				di = new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ProgramName));
-				DebugMode = true;
-            }
-            else
-            {
-                // where the user data is saved for development
-                di = new DirectoryInfo(Path.Combine(AppPath, "DebugFiles"));
-            }
+			if (CM.AppSettings ["DebugMode"] != null && Convert.ToBoolean (CM.AppSettings ["DebugMode"]))
+			{
+				// set the location of the save data for the user
+				// in a non-development enviroment
+				di = new DirectoryInfo (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData), _ProgramName));
+				_DebugMode = true;
+			}
+			else
+			{
+				// where the user data is saved for development
+				di = new DirectoryInfo (Path.Combine (_AppPath, "DebugFiles"));
+			}
 
-            if (!di.Exists)
-                di.Create();
+			if (!di.Exists)
+				di.Create ();
 
-            UserDataPath = di.FullName;
+			_UserDataPath = di.FullName;
 
-            // App Database for copying over application file during first use
-            di = new DirectoryInfo(Path.Combine(AppPath, "GlobalData"));
-            AppDataPath = di.FullName;
+			// App Database for copying over application file during first use
+			di = new DirectoryInfo (Path.Combine (_AppPath, "AppData"));
+			_AppDataPath = di.FullName;
 
 
-            // the error file
-            fi = new FileInfo(Path.Combine(UserDataPath, Constants.FileStruture.ErrorLogName));
-            ErrorLogFile = fi.FullName;
-            
-            fi = new FileInfo(Path.Combine(UserDataPath, Constants.FileStruture.ConnectionFileName));
-            ConnectionFilePath = fi.FullName;
+			// the error file
+			fi = new FileInfo (Path.Combine (UserDataPath, Constants.FileStruture.ErrorLogName));			
+			if (_UseErrorLog)
+			{
+				_ErrorLogFile = fi.FullName;
+				if(!fi.Exists)
+					fi.Create();
+			}
+
+			// location of the database for the applciation
+			fi = new FileInfo(Path.Combine(AppDataPath, Constants.SQLite.DatabaseFileName));
+			_AppDBFile = fi.FullName;
+			_DBConnectionString = Constants.SQLite.ConnectionStringFormat.Replace(Constants.SQLite.FilePlaceHolder, System.Web.HttpUtility.UrlEncode(fi.FullName.Trim()));
 
         }
+		
+		#region Public Properties
+		
+		public string AppPath { get { return _AppPath; } }
+		public string AppDBFile { get { return _AppDBFile; } }
+		public string AppDataPath { get { return _AppDataPath; } }
+		public string DBConnectionString { get { return _DBConnectionString; } }
+		public string ProgramName { get { return _ProgramName; } }
+		public string ErrorLogFile { get { return _ErrorLogFile; } }
+		public string UserDataPath { get { return _UserDataPath; } }
+		public bool UseErrorLog { get { return _UseErrorLog; } }
+		public bool DebugMode { get { return _DebugMode; } }
+		public string OS { get { return _OS; } }
+		
+		#endregion Public Properties
 
-        #region Public Methods
+		#region Temp File/Folder Functions
 
         public string GetNewTempFolder(string Name)
         {
@@ -168,8 +191,47 @@ namespace libGlobalTools
             }
             return tmpName;
         }
+		
+		public void ClearDirectory(string strPath)
+		{
+			DirectoryInfo di = new DirectoryInfo(strPath);
+			DirectoryInfo[] diTmp = di.GetDirectories();
+			if (diTmp.Length > 0)
+			{
+				for (int i = 0; i < diTmp.Length; i++)
+				{
+					diTmp[i].Delete(true);
+				}
+			}
+			
+			FileInfo[] fi = di.GetFiles();
+			if (fi.Length > 0)
+			{
+				for (int i = 0; i < fi.Length; i++)
+				{
+					fi[i].Delete();
+				}
+			}
+		}
 
-        #endregion Public Methods
+		#endregion Temp File/Folder Functions
+		
+		#region Launch URL
+		
+		private string _LaunchURL = string.Empty;
+		public void LaunchURL(string URL)
+		{
+			_LaunchURL = URL;
+			System.Threading.Thread trd = new System.Threading.Thread(new System.Threading.ThreadStart(StartURL));
+			trd.Start();
+		}
+		
+		private void StartURL()
+		{
+			System.Diagnostics.Process.Start(_LaunchURL);
+		}
+		
+		#endregion Launch URL
     }
 
 }

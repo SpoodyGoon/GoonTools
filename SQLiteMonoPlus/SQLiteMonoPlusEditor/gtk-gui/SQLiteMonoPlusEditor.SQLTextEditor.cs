@@ -37,9 +37,7 @@ namespace SQLiteMonoPlusEditor
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.sqleditorview1 = new global::SQLiteMonoPlusEditor.SQLEditor.SQLEditorView ();
-			this.sqleditorview1.CanFocus = true;
-			this.sqleditorview1.Name = "sqleditorview1";
+			this.sqleditorview1 = null;
 			this.GtkScrolledWindow.Add (this.sqleditorview1);
 			this.vpaned1.Add (this.GtkScrolledWindow);
 			global::Gtk.Paned.PanedChild w2 = ((global::Gtk.Paned.PanedChild)(this.vpaned1 [this.GtkScrolledWindow]));
