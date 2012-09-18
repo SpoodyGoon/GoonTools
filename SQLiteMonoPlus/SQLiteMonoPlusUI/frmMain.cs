@@ -99,7 +99,7 @@ namespace SQLiteMonoPlusUI
 			}
 			catch (Exception ex)
 			{
-				GlobalTools.Common.HandleError (ex);
+				Common.HandleError (ex);
 			}
 		}
 

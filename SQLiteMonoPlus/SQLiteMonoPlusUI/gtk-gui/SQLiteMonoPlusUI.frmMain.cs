@@ -115,8 +115,7 @@ namespace SQLiteMonoPlusUI
 			// Container child alignment2.Gtk.Container+ContainerChild
 			this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar1\'><toolitem name=\'quitAction1\' action=\'quitAction1\'/><" +
 				"toolitem name=\'NewQueryAction\' action=\'NewQueryAction\'/><toolitem name=\'ExecuteA" +
-				"ction\' action=\'ExecuteAction\'/></toolbar></ui>"
-			);
+				"ction\' action=\'ExecuteAction\'/></toolbar></ui>");
 			this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 			this.toolbar1.Name = "toolbar1";
 			this.toolbar1.ShowArrow = false;
@@ -190,8 +189,7 @@ namespace SQLiteMonoPlusUI
 			this.alignment8.Name = "alignment8";
 			// Container child alignment8.Gtk.Container+ContainerChild
 			this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar2\'><toolitem name=\'connectAction\' action=\'connectAction" +
-				"\'/></toolbar></ui>"
-			);
+				"\'/></toolbar></ui>");
 			this.toolbar2 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar2")));
 			this.toolbar2.Name = "toolbar2";
 			this.toolbar2.ShowArrow = false;

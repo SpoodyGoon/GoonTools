@@ -2,7 +2,7 @@
 using System;
 using Gtk;
 using SQLiteMonoPlus;
-using SQLiteMonoPlusUI.GlobalTools;
+using libGlobalTools;
 
 namespace SQLiteMonoPlusUI
 {

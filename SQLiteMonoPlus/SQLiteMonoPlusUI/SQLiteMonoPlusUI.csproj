@@ -138,12 +138,8 @@
     <Compile Include="Connections\ConnectionStore.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmMain.cs" />
     <Compile Include="Connections\ConnectionComboBoxEntry.cs" />
-    <Compile Include="Common\BufferTags.cs" />
-    <Compile Include="Common\Common.cs" />
-    <Compile Include="Common\EnviromentData.cs" />
     <Compile Include="UI\ObjectExplorer\SchemaTreeModel.cs" />
     <Compile Include="UI\ObjectExplorer\SchemaTreeView.cs" />
-    <Compile Include="Common\GtkTools.cs" />
     <Compile Include="UI\Dialogs\frmPragmas.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmPragmas.cs" />
     <Compile Include="UI\ContexMenus\DBLevel.cs" />
@@ -153,6 +149,7 @@
     <Compile Include="UI\ContexMenus\ScriptAsLevel.cs" />
     <Compile Include="Common\StoreModels.cs" />
     <Compile Include="Common\SQL.cs" />
+    <Compile Include="Common\StaticDataAccess.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -181,6 +178,10 @@
     <ProjectReference Include="..\SQLiteMonoPlus\SQLiteMonoPlus.csproj">
       <Project>{768D7523-8FEB-4293-B88C-FF267363F994}</Project>
       <Name>SQLiteMonoPlus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libGlobalTools\libGlobalTools.csproj">
+      <Project>{27264AAE-8D10-44DC-AA22-AE63B52151AD}</Project>
+      <Name>libGlobalTools</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
