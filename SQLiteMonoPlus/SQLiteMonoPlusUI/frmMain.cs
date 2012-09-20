@@ -4,6 +4,7 @@ using Mono.Data.SqliteClient;
 using SQLiteMonoPlusEditor;
 using SQLiteMonoPlus.Schema;
 using Gtk;
+using libGlobalTools;
 
 namespace SQLiteMonoPlusUI
 {
@@ -74,7 +75,6 @@ namespace SQLiteMonoPlusUI
 			try
 			{
 				SQLiteMonoPlus.Connection conn = null;
-				Database db = null;
 				frmDatabaseConnect fm = new frmDatabaseConnect ();			
 				if ((Gtk.ResponseType)fm.Run () == Gtk.ResponseType.Ok)
 				{
@@ -84,14 +84,11 @@ namespace SQLiteMonoPlusUI
 			
 				if (conn != null)
 				{
-					FileInfo fi = new FileInfo (conn.FilePath);
-					if (!fi.Exists)
-						throw new System.IO.FileNotFoundException ("Unable to load SQLite Database.", conn.FilePath);
-
-					db = new Database (conn);
-					OpenObjects.Databases.Add (db);
-					db.LoadSchema ();   
-					SchemaView.Load ();
+					if(conn.CanConnect)
+					{
+						Database db = conn.DatabaseOpen();
+						db.ObjectExporerDisplay = true;
+					}
 					AddEditorTab (conn);
 					this.ShowAll ();
 				}

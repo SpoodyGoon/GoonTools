@@ -29,7 +29,7 @@ namespace SQLiteMonoPlusUI
                 cellConnectionName.Sensitive = true;
                 this.PackStart (cellConnectionName, true);
                 this.SetCellDataFunc (cellConnectionName, new Gtk.CellLayoutDataFunc (RenderConnectionName));
-                this.Model = (Gtk.TreeModel)Common.RecentConnections;
+				this.Model = (Gtk.TreeModel)GlobalData.StaticDataAccess.RecentConnections;
                 _LastLoad = DateTime.Now;
                 this.QueueDraw ();
             } catch (Exception ex)
@@ -40,7 +40,7 @@ namespace SQLiteMonoPlusUI
 		
         public void Refresh ()
         {
-            Common.RecentConnections.Refresh ();
+			GlobalData.StaticDataAccess.RecentConnections.Refresh ();
             _LastLoad = DateTime.Now;
             this.ShowAll ();
         }

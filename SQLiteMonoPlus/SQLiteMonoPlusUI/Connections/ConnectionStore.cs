@@ -19,12 +19,14 @@ namespace SQLiteMonoPlusUI.GlobalData
         private string _SearchFilePath = string.Empty;
         private Connection _SearchConnection = null;
         private Gtk.TreeIter _SearchIter = Gtk.TreeIter.Zero;
+		private const string _SaveFileName = "RecentConnections.xml";
+		private string _SaveFileFullPath = "";
 		
         #endregion Search Paramaters
         
         public ConnectionStore () : base(typeof(Connection))
         {
-            
+			_SaveFileFullPath = Path.Combine(Common.LocalSystem.UserDataPath, _SaveFileName);
         }
 		
         public void DeleteConnection(Gtk.TreeIter iter)
@@ -81,11 +83,11 @@ namespace SQLiteMonoPlusUI.GlobalData
             	
                 this.Clear ();
                 // See if the Connection save file exists
-                if (File.Exists (Common.EnvData.ConnectionFilePath))
+				if (File.Exists (_SaveFileFullPath))
                 {	
                     _SaveFile = new ConnectionSaveFile ();
                     // Load the save file from xml
-                    _SaveFile.ReadXml (Common.EnvData.ConnectionFilePath);
+					_SaveFile.ReadXml (_SaveFileFullPath);
                     SQLiteMonoPlus.Connection cn = new SQLiteMonoPlus.Connection ("");
                     this.AppendValues (cn);
                     foreach (DataRow dr in _SaveFile.Rows)
@@ -119,7 +121,7 @@ namespace SQLiteMonoPlusUI.GlobalData
                 // Loop through the TreeModel and Update the datatable
                 // before saving it to XML
                 this.Foreach (new TreeModelForeachFunc (SaveLoop));
-                _SaveFile.WriteXml (Common.EnvData.ConnectionFilePath);
+						_SaveFile.WriteXml (_SaveFileFullPath);
             } catch (Exception ex)
             {
                 Common.HandleError (ex);

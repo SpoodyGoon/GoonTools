@@ -59,6 +59,7 @@
     <Compile Include="Util\SQLiteEnums.cs" />
     <Compile Include="Connection\Connection.cs" />
     <Compile Include="Util\Constants.cs" />
+    <Compile Include="Schema\OpenConnections.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

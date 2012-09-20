@@ -14,6 +14,10 @@ namespace SQLiteMonoPlus.Schema
 		public TableCollection Tables = new TableCollection ();
 		public ForeignKeyCollection ForeignKeys = new ForeignKeyCollection ();
 		public ViewCollection Views = new ViewCollection ();
+		public bool ObjectExporerDisplay = false;
+
+		#region Keyword List
+
 		// TODO: move the list of pragmas to a config file
 		public string[] PragmaList = new string[] {
 				"auto_vacuum",
@@ -208,13 +212,15 @@ namespace SQLiteMonoPlus.Schema
 				"WHEN",
 				"WHERE"
 			};
+		
+		#endregion Keyword List
 
 		public Database (Connection DBConn)
 		{
 			DBConnection = DBConn;
 		}
 		
-		public void LoadSchema ()
+		internal void LoadSchema ()
 		{
 				DBObjectsClear ();
 				LoadPragmas ();
