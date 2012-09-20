@@ -16,6 +16,7 @@ namespace SQLiteMonoPlus
 		private int _MaxPoolSize = -1;
         private DateTime _AddedDate = DateTime.Now;
         private DateTime _LastUsedDate = DateTime.Now;
+		private SQLiteMonoPlus.Schema.Database _Database;
         
 		#endregion Private Properties
 
@@ -104,28 +105,14 @@ namespace SQLiteMonoPlus
 
 		public string ConnectionString
 		{
-			get{ return "URI=file:" + _FilePath + ",version=3, busy_timeout=300";}
+			get{ return "URI=file:" + Uri.EscapeUriString(_FilePath) + ",version=3, busy_timeout=300";}
 		}
 		
-		private bool CanConnect
+		public bool CanConnect
 		{
 			get
 			{				
-				bool blnSuccess = true;
-				try {
-					SqliteConnection sqlCN = new SqliteConnection(this.ConnectionString);
-					SqliteCommand sqlCMD = new SqliteCommand (SQLiteMonoPlus.Constants.ConnectionString.ConnectionTest, sqlCN);
-					sqlCN.Open ();
-					sqlCMD.ExecuteNonQuery ();
-					sqlCN.Close ();
-					sqlCMD.Dispose ();
-					sqlCN.Dispose ();
-				}
-				catch (Exception ex) {
-					blnSuccess = false;
-					Console.WriteLine (ex.ToString ());				
-				}
-				return blnSuccess;
+				return Utilities.DatabaseTryConnect(_FilePath);
 			}
 		}
               
@@ -174,8 +161,17 @@ namespace SQLiteMonoPlus
 		}
         
         #endregion Constructors
-		
-        
+
+		#region Public Methods
+
+		public Schema.Database DatabaseOpen()
+		{
+			_Database = new SQLiteMonoPlus.Schema.Database(this);
+			_Database.LoadSchema();
+			return _Database;
+		}
+
+		#endregion Public Methods
 	}
 }
 
