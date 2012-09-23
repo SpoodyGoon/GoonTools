@@ -170,6 +170,14 @@ namespace SQLiteMonoPlus
 			_Database.LoadSchema();
 			return _Database;
 		}
+		
+		public Schema.Database DatabaseCreate()
+		{
+			// TODO: add logic to create new database
+			_Database = new SQLiteMonoPlus.Schema.Database(this);
+			_Database.LoadSchema();
+			return _Database;
+		}
 
 		#endregion Public Methods
 	}

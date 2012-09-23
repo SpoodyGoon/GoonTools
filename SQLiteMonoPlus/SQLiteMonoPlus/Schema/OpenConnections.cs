@@ -2,11 +2,9 @@ using System;
 
 namespace SQLiteMonoPlus
 {
-	public class OpenConnections
+	public static class OpenConnections
 	{
-		public OpenConnections ()
-		{
-		}
+		public static SQLiteMonoPlus.Schema.DatabaseCollection Databases = new SQLiteMonoPlus.Schema.DatabaseCollection();
 	}
 }
 
