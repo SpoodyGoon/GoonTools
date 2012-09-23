@@ -60,6 +60,9 @@
     <Compile Include="Connection\Connection.cs" />
     <Compile Include="Util\Constants.cs" />
     <Compile Include="Schema\OpenConnections.cs" />
+    <Compile Include="Properties\Pragma.cs" />
+    <Compile Include="Properties\PragmaCollection.cs" />
+    <Compile Include="Properties\PragmaTypes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -72,5 +75,6 @@
   <ItemGroup>
     <Folder Include="Util\" />
     <Folder Include="Connection\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 </Project>
