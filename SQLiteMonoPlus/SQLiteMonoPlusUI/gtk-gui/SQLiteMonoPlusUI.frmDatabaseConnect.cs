@@ -56,7 +56,6 @@ namespace SQLiteMonoPlusUI
 		private global::Gtk.Label lblTestResult;
 		private global::Gtk.Button btnCancel;
 		private global::Gtk.Button btnConnect;
-		private global::Gtk.Button btnSaveConnect;
 		
 		protected virtual void Build ()
 		{
@@ -169,7 +168,8 @@ namespace SQLiteMonoPlusUI
 			this.alignment15.WidthRequest = 150;
 			this.alignment15.Name = "alignment15";
 			// Container child alignment15.Gtk.Container+ContainerChild
-			this.cboConnectName = null;
+			this.cboConnectName = new global::SQLiteMonoPlusUI.ConnectionComboBoxEntry ();
+			this.cboConnectName.Name = "cboConnectName";
 			this.alignment15.Add (this.cboConnectName);
 			this.table1.Add (this.alignment15);
 			global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.table1 [this.alignment15]));
@@ -501,17 +501,6 @@ namespace SQLiteMonoPlusUI
 			w62.Position = 1;
 			w62.Expand = false;
 			w62.Fill = false;
-			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.btnSaveConnect = new global::Gtk.Button ();
-			this.btnSaveConnect.CanFocus = true;
-			this.btnSaveConnect.Name = "btnSaveConnect";
-			this.btnSaveConnect.UseUnderline = true;
-			this.btnSaveConnect.Label = global::Mono.Unix.Catalog.GetString ("Save & Connect");
-			this.AddActionWidget (this.btnSaveConnect, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w63 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w60 [this.btnSaveConnect]));
-			w63.Position = 2;
-			w63.Expand = false;
-			w63.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
@@ -523,6 +512,7 @@ namespace SQLiteMonoPlusUI
 			this.lblMaxPool.Hide ();
 			this.algAdvanced.Hide ();
 			this.Show ();
+			this.cboConnectName.Changed += new global::System.EventHandler (this.OnCboConnectNameChanged);
 			this.fcDBFile.SelectionChanged += new global::System.EventHandler (this.OnFcDBFileSelectionChanged);
 			this.cbxAdvanced.Toggled += new global::System.EventHandler (this.OnCbxAdvancedToggled);
 			this.cbxPooling.Clicked += new global::System.EventHandler (this.cbxPooling_Clicked);

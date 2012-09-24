@@ -105,7 +105,7 @@ namespace SQLiteMonoPlus
 
 		public string ConnectionString
 		{
-			get{ return "URI=file:" + Uri.EscapeUriString(_FilePath) + ",version=3, busy_timeout=300";}
+			get{ return "URI=file:" + _FilePath + ",version=3, busy_timeout=300";}
 		}
 		
 		public bool CanConnect
@@ -167,6 +167,7 @@ namespace SQLiteMonoPlus
 		public Schema.Database DatabaseOpen()
 		{
 			_Database = new SQLiteMonoPlus.Schema.Database(this);
+			_Database.ObjectExporerDisplay = true;
 			_Database.LoadSchema();
 			return _Database;
 		}

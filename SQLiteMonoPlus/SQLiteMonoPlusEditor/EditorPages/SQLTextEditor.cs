@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Data;
+using Gtk;
 using Mono.Data.SqliteClient;
 
 namespace SQLiteMonoPlusEditor
@@ -27,63 +28,50 @@ namespace SQLiteMonoPlusEditor
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class SQLTextEditor : Gtk.Bin
 	{
+		private Gtk.ListStore _ResultStore = new Gtk.ListStore(IntPtr.Zero);
 		public SQLTextEditor ()
 		{
 			this.Build ();
+			tvResults.Model = _ResultStore;
 			sqleditorview1.SQLExecuted += SQLEditor_SQLExecuted;
 		}
 
 		protected void SQLEditor_SQLExecuted (object sender, SQLiteMonoPlusEditor.Events.SQLExecutedEventArgs args)
 		{
-			if (algResults.Children.Length > 0)
+			for (int i = 0; i< tvResults.Columns.Length; i++)
 			{
-				for(int i=0;i< algResults.Children.Length;i++)
-				{
-					algResults.Remove(algResults.Children[i]);
-				}
+				tvResults.RemoveColumn (tvResults.Columns [i]);
 			}
-			Gtk.TreeView tv = new Gtk.TreeView ();
-			Gtk.TreeViewColumn tvc;
-			Gtk.CellRendererText crt;
+
 			SqliteDataAdapter sqlDA = new SqliteDataAdapter (args.SQLStatement, args.CurrentConnection.ConnectionString);
 			DataTable dt = new DataTable ();
 			sqlDA.Fill (dt);
 			int intColumnCount = dt.Columns.Count;
-			//System.Type[] typs = new System.Type[intColumnCount];
+
 			GLib.GType[] typs = new GLib.GType[intColumnCount];
-			string[] strValues = new string[intColumnCount];
-			for (int i = 0; i< dt.Columns.Count; i++)
+			for (int i = 0; i< intColumnCount; i++)
 			{
-				typs [i] = GLib.GType.String;//dt.Columns [i].DataType;
-				tvc = new Gtk.TreeViewColumn();
-				tvc.Title = dt.Columns[i].ColumnName;
-				tvc.Expand = true;
-				tvc.Resizable = true;
-				tvc.Visible = true;
-				crt = new Gtk.CellRendererText();
-				crt.Visible = true;
-				crt.Editable = true;
-				crt.Mode = Gtk.CellRendererMode.Editable;
-				crt.Width = 50;
-				crt.Xpad = 3;
-				tvc.PackStart(crt, true);
-				tv.AppendColumn(tvc);
+				tvResults.AppendColumn(dt.Columns [i].ColumnName, new CellRendererText(), "text", i);
+				typs [i] = GLib.GType.String;
 			}
-			Gtk.ListStore ls = new Gtk.ListStore(typs);
-			Gtk.TreeIter iter;
+
+			_ResultStore = new Gtk.ListStore (typs);
+			Gtk.TreeIter iter = Gtk.TreeIter.Zero;
 			foreach (DataRow dr in dt.Rows)
 			{
-				iter = ls.Append();
-				for (int i = 0; i< dt.Columns.Count; i++)
+				iter = _ResultStore.Append();
+				for (int i = 0; i< intColumnCount; i++)
 				{
-					ls.SetValue(iter, i, dr[i].ToString());
+					_ResultStore.SetValue(iter, i, dr[i].ToString());
 				}
 			}
-			tv.ColumnsAutosize();
-			tv.RulesHint = true;
-			tv.EnableGridLines = Gtk.TreeViewGridLines.Both;
-			tv.Model = ls;
-			algResults.Add(tv);
+			tvResults.ColumnsAutosize ();
+			tvResults.CheckResize();
+			tvResults.RulesHint = true;
+			tvResults.EnableGridLines = Gtk.TreeViewGridLines.Both;
+			tvResults.Model = _ResultStore;
+			tvResults.QueueDraw();
+			tvResults.ShowAll();
 			this.ShowAll();
 		}
 

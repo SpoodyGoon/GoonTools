@@ -98,17 +98,20 @@ namespace SQLiteMonoPlusUI
 					// Start by getting the selected Connection
 					// or creating a new one from the information provided
 					if (cboConnectName.CurrentConnection != null)
+					{
 						_SelectedConnection = cboConnectName.CurrentConnection;
+					}
 					else
-						_SelectedConnection = new Connection (cboConnectName.Entry.Text.Trim (), fcDBFile.Filename);				
-
-					StaticDataAccess.RecentConnections.AppendValues (_SelectedConnection);
-					StaticDataAccess.RecentConnections.Save ();
+					{
+						_SelectedConnection = new Connection (cboConnectName.Entry.Text.Trim (), fcDBFile.Filename);	
+						StaticDataAccess.RecentConnections.AddConnection(_SelectedConnection);
+						StaticDataAccess.RecentConnections.Save ();			
+					}
 				}
 			}
 			catch (Exception ex)
 			{
-				Common.HandleError (ex);
+				Common.HandleError(this, ex);
 			}
 		}
 	}
