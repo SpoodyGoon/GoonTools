@@ -277,6 +277,7 @@ namespace SQLiteMonoPlusUI
 			this.quitAction.Activated += new global::System.EventHandler (this.Quit_Clicked);
 			this.NewQueryAction.Activated += new global::System.EventHandler (this.OnNewQueryActionActivated);
 			this.connectAction.Activated += new global::System.EventHandler (this.btnConnect_Clicked);
+			this.ExecuteAction.Activated += new global::System.EventHandler (this.OnExecuteActionActivated);
 			this.connectAction1.Activated += new global::System.EventHandler (this.btnConnect_Clicked);
 			this.aboutAction.Activated += new global::System.EventHandler (this.OnAboutActionActivated);
 			this.quitAction1.Activated += new global::System.EventHandler (this.Quit_Clicked);

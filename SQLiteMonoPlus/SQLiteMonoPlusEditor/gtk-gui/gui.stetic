@@ -46,11 +46,16 @@
                     <property name="CanFocus">True</property>
                     <property name="CurrentPage">0</property>
                     <child>
-                      <widget class="Gtk.Alignment" id="algResults">
+                      <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow1">
                         <property name="MemberName" />
-                        <property name="BottomPadding">4</property>
+                        <property name="ShadowType">In</property>
                         <child>
-                          <placeholder />
+                          <widget class="Gtk.TreeView" id="tvResults">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="ShowScrollbars">True</property>
+                            <property name="RulesHint">True</property>
+                          </widget>
                         </child>
                       </widget>
                     </child>

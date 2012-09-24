@@ -8,7 +8,7 @@ namespace SQLiteMonoPlus
 		public static bool DatabaseTryConnect (string DBFile)
 		{        	
 			bool blnSuccess = true;
-			DBFile = Uri.EscapeUriString(DBFile);
+			//DBFile = Uri.EscapeUriString(DBFile);
 			if(!System.IO.File.Exists(DBFile))
 			   return false;
 

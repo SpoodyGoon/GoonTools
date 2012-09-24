@@ -106,7 +106,15 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 		
 		public void Load ()
 		{
-			_TreeModel.Load ();
+			_TreeModel.LoadOpenConnections ();
+		}
+
+		public void AddDatabase (Database db)
+		{
+			if (db.ObjectExporerDisplay)
+			{
+				_TreeModel.AddDatabase (db);
+			}
 		}
 	}
 }

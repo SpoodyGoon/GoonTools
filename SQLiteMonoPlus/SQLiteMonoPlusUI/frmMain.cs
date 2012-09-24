@@ -87,9 +87,9 @@ namespace SQLiteMonoPlusUI
 					if(conn.CanConnect)
 					{
 						Database db = conn.DatabaseOpen();
-						db.ObjectExporerDisplay = true;
+						SchemaView.AddDatabase(db);
+						AddEditorTab (conn);
 					}
-					AddEditorTab (conn);
 					this.ShowAll ();
 				}
 
@@ -110,5 +110,11 @@ namespace SQLiteMonoPlusUI
 			throw new System.NotImplementedException ();
 		}
 
+		protected void OnExecuteActionActivated (object sender, EventArgs e)
+		{
+			MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Close, "Execute Fired", "Execute Fired");
+			md.Run();
+			md.Destroy();
+		}
 	}
 }
