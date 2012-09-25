@@ -1,8 +1,10 @@
 using System;
 using System.IO;
 using Mono.Data.SqliteClient;
-using SQLiteMonoPlusEditor;
 using SQLiteMonoPlus.Schema;
+using SQLiteMonoPlusUI.Editors.Events;
+using SQLiteMonoPlusUI.Editors.SQL;
+using SQLiteMonoPlusUI.Editors.Pages;
 using Gtk;
 using libGlobalTools;
 
@@ -44,12 +46,12 @@ namespace SQLiteMonoPlusUI
 		{			
 			SQLTextEditor ev = new SQLTextEditor ();
 			ev.SQLEditor.CurrentConnection = conn;
-			ev.SQLEditor.ConnectionChanged += delegate(object sender, SQLiteMonoPlusEditor.Events.ConnectionChangeEventArgs args)
+			ev.SQLEditor.ConnectionChanged += delegate(object sender, ConnectionChangeEventArgs args)
 			{
 				frmDatabaseConnect frm = new frmDatabaseConnect ();			
 				if ((Gtk.ResponseType)frm.Run () == Gtk.ResponseType.Ok)
 				{
-					SQLiteMonoPlusEditor.SQLEditor.SQLEditorView edt = (SQLiteMonoPlusEditor.SQLEditor.SQLEditorView)sender;
+					SQLEditorView edt = (SQLEditorView)sender;
 					edt.CurrentConnection = frm.SelectedConnection;
 				}
 				frm.Destroy ();

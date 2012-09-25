@@ -56,17 +56,17 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusEditor.TableDesigner.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusEditor.SQLTextEditor.cs" />
-    <Compile Include="GridDisplays\TableDesignerTreeModel.cs" />
-    <Compile Include="GridDisplays\TableDesignerTreeView.cs" />
     <Compile Include="EditorPages\SQLTextEditor.cs" />
     <Compile Include="EditorPages\TableDesigner.cs" />
-    <Compile Include="Events\DatabaseEditorEvents.cs" />
-    <Compile Include="CustomObjects\SQLiteBuffer.cs" />
+    <Compile Include="EditorPages\PragmaDesigner.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusEditor.PragmaDesigner.cs" />
     <Compile Include="CustomObjects\IDatabaseEditor.cs" />
     <Compile Include="CustomObjects\SQLEditorView.cs" />
     <Compile Include="CustomObjects\SQLEditorViewMenu.cs" />
-    <Compile Include="EditorPages\PragmaDesigner.cs" />
-    <Compile Include="gtk-gui\SQLiteMonoPlusEditor.PragmaDesigner.cs" />
+    <Compile Include="CustomObjects\SQLiteBuffer.cs" />
+    <Compile Include="GridDisplays\TableDesignerTreeModel.cs" />
+    <Compile Include="GridDisplays\TableDesignerTreeView.cs" />
+    <Compile Include="Events\DatabaseEditorEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

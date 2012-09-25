@@ -152,6 +152,19 @@
     <Compile Include="UI\Dialogs\frmDatabaseConnect.cs" />
     <Compile Include="UI\Dialogs\frmConnectionManager.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmConnectionManager.cs" />
+    <Compile Include="UI\Editors\Events\DatabaseEditorEvents.cs" />
+    <Compile Include="UI\Editors\GridDisplays\TableDesignerTreeModel.cs" />
+    <Compile Include="UI\Editors\GridDisplays\TableDesignerTreeView.cs" />
+    <Compile Include="UI\Editors\CustomWidgets\IDatabaseEditor.cs" />
+    <Compile Include="UI\Editors\CustomWidgets\SQLEditorView.cs" />
+    <Compile Include="UI\Editors\CustomWidgets\SQLEditorViewMenu.cs" />
+    <Compile Include="UI\Editors\CustomWidgets\SQLiteBuffer.cs" />
+    <Compile Include="UI\Editors\Pages\SQLTextEditor.cs" />
+    <Compile Include="UI\Editors\Pages\TableEditor.cs" />
+    <Compile Include="UI\Editors\Pages\PragmaEditor.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusUI.Editors.Pages.SQLTextEditor.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusUI.Editors.Pages.TableEditor.cs" />
+    <Compile Include="gtk-gui\SQLiteMonoPlusUI.Editors.Pages.PragmaEditor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -159,6 +172,11 @@
     <Folder Include="Images\DatabaseTree\" />
     <Folder Include="UI\Dialogs\" />
     <Folder Include="UI\ContexMenus\" />
+    <Folder Include="UI\Editors\" />
+    <Folder Include="UI\Editors\Pages\" />
+    <Folder Include="UI\Editors\CustomWidgets\" />
+    <Folder Include="UI\Editors\Events\" />
+    <Folder Include="UI\Editors\GridDisplays\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -173,10 +191,6 @@
     <None Include="dll\sqlite3.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SQLiteMonoPlusEditor\SQLiteMonoPlusEditor.csproj">
-      <Project>{236C5A87-1525-4DB3-BF77-0537AE08A058}</Project>
-      <Name>SQLiteMonoPlusEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SQLiteMonoPlus\SQLiteMonoPlus.csproj">
       <Project>{768D7523-8FEB-4293-B88C-FF267363F994}</Project>
       <Name>SQLiteMonoPlus</Name>
