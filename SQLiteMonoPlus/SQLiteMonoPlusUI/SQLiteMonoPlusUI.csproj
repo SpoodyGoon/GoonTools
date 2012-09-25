@@ -165,6 +165,7 @@
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.Editors.Pages.SQLTextEditor.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.Editors.Pages.TableEditor.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.Editors.Pages.PragmaEditor.cs" />
+    <Compile Include="UI\Editors\CustomWidgets\DataTypeCombobox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
