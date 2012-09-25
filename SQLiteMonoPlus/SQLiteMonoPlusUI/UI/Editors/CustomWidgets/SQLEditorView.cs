@@ -98,13 +98,13 @@ namespace SQLiteMonoPlusUI.Editors.SQL
 //					md.Destroy();
 				};
 				mnu.Popup ();
-
+				return false;
 			}
 			else
 			{
-	
+				return true;
 			}
-			return base.OnButtonPressEvent(evnt);
+			//return base.OnButtonPressEvent(evnt);
 		}
 
 		private void OnSQLExecuted (string strSQL)

@@ -19,12 +19,17 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using SQLiteMonoPlus.Schema;
 
 namespace SQLiteMonoPlusUI.Editors.GridDisplays
 {
 	public class TableDesignerTreeModel : Gtk.TreeStore, Gtk.TreeModel
 	{
 		public TableDesignerTreeModel () : base()
+		{
+		}
+
+		internal void LoadTable(Table table)
 		{
 		}
 	}

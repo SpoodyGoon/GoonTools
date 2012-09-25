@@ -16,7 +16,7 @@ namespace SQLiteMonoPlusUI.Editors.Pages
 			sqleditorview1.SQLExecuted += SQLEditor_SQLExecuted;
 		}
 		
-		protected void SQLEditor_SQLExecuted (object sender, SQLiteMonoPlusUI.Editors.Events.SQLExecutedEventArgs args)
+		protected void SQLEditor_SQLExecuted (object sender, Editors.Events.SQLExecutedEventArgs args)
 		{
 			for (int i = 0; i< tvResults.Columns.Length; i++)
 			{
