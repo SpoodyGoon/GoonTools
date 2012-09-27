@@ -102,7 +102,7 @@ namespace SQLiteMonoPlusUI.Editors.SQL
 			}
 			else
 			{
-				return true;
+				return base.OnButtonPressEvent(evnt);
 			}
 			//return base.OnButtonPressEvent(evnt);
 		}
