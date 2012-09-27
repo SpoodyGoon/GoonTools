@@ -63,14 +63,56 @@ namespace SQLiteMonoPlusUI.UI.ContexMenus
 			// tasks menu
 			Gtk.Menu mnu = new Gtk.Menu();
 			Gtk.MenuItem mnuLevel2 = new Gtk.MenuItem("Create To");
+			mnuLevel2.Sensitive = true;
+			mnuLevel2.Submenu = ScriptToMenu ();
 			mnu.Add(mnuLevel2);
 			mnuLevel2 = new Gtk.MenuItem("Alter To");
+			mnuLevel2.Sensitive = false;
+			mnuLevel2.Submenu = ScriptToMenu ();
 			mnu.Add(mnuLevel2);
 			mnuLevel2 = new Gtk.MenuItem("Drop To");
+			mnuLevel2.Sensitive = true;
+			mnuLevel2.Submenu = ScriptToMenu ();
 			mnu.Add(mnuLevel2);
 			mnuLevel2 = new Gtk.MenuItem("Drop & Create To");
+			mnuLevel2.Sensitive = true;
+			mnuLevel2.Submenu = ScriptToMenu ();
+			mnu.Add(mnuLevel2);
+			mnu.Add(new SeparatorMenuItem());
+			mnuLevel2 = new Gtk.MenuItem("Select To");
+			mnuLevel2.Sensitive = false;
+			mnuLevel2.Submenu = ScriptToMenu ();
+			mnu.Add(mnuLevel2);
+			mnuLevel2 = new Gtk.MenuItem("Insert To");
+			mnuLevel2.Sensitive = false;
+			mnuLevel2.Submenu = ScriptToMenu ();
+			mnu.Add(mnuLevel2);
+			mnuLevel2 = new Gtk.MenuItem("Update To");
+			mnuLevel2.Sensitive = false;
+			mnuLevel2.Submenu = ScriptToMenu ();
+			mnu.Add(mnuLevel2);
+			mnuLevel2 = new Gtk.MenuItem("Delete To");
+			mnuLevel2.Sensitive = false;
+			mnuLevel2.Submenu = ScriptToMenu ();
 			mnu.Add(mnuLevel2);
 			return mnu;
+		}
+		
+		private Gtk.Menu ScriptToMenu ()
+		{
+			Gtk.Menu mnu = new Gtk.Menu();
+			Gtk.MenuItem mnuLevel3 = new Gtk.MenuItem("New Query Editor Window");
+			mnuLevel3.Sensitive = true;
+			mnu.Add(mnuLevel3);
+			mnu.Add(new SeparatorMenuItem());
+			mnuLevel3 = new Gtk.MenuItem("File...");
+			mnuLevel3.Sensitive = true;
+			mnu.Add(mnuLevel3);
+			mnuLevel3 = new Gtk.MenuItem("Clipboard");
+			mnuLevel3.Sensitive = true;
+			mnu.Add(mnuLevel3);
+			return mnu;
+			
 		}
 		
 		#endregion "SubMenus"

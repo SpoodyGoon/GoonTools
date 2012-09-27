@@ -12,48 +12,60 @@ namespace SQLiteMonoPlusUI.Editors.Pages
 		public SQLTextEditor ()
 		{
 			this.Build ();
-			tvResults.Model = _ResultStore;
+			tvExecuteResults.Model = _ResultStore;
 			sqleditorview1.SQLExecuted += SQLEditor_SQLExecuted;
 		}
 		
 		protected void SQLEditor_SQLExecuted (object sender, Editors.Events.SQLExecutedEventArgs args)
 		{
-			for (int i = 0; i< tvResults.Columns.Length; i++)
+			for (int i = 0; i< tvExecuteResults.Columns.Length; i++)
 			{
-				tvResults.RemoveColumn (tvResults.Columns [i]);
+				tvExecuteResults.RemoveColumn (tvExecuteResults.Columns [i]);
 			}
-			
-			SqliteDataAdapter sqlDA = new SqliteDataAdapter (args.SQLStatement, args.CurrentConnection.ConnectionString);
-			DataTable dt = new DataTable ();
-			sqlDA.Fill (dt);
-			int intColumnCount = dt.Columns.Count;
-			
-			GLib.GType[] typs = new GLib.GType[intColumnCount];
-			for (int i = 0; i< intColumnCount; i++)
+			txtResultMessage.Buffer.Text = "";
+			try
 			{
-				tvResults.AppendColumn(dt.Columns [i].ColumnName, new CellRendererText(), "text", i);
-				typs [i] = GLib.GType.String;
-			}
+				SqliteDataAdapter sqlDA = new SqliteDataAdapter (args.SQLStatement, args.CurrentConnection.ConnectionString);
+				DataTable dt = new DataTable ();
+				sqlDA.Fill (dt);
+				int intColumnCount = dt.Columns.Count;
+				int intRowCount = dt.Rows.Count;
 			
-			_ResultStore = new Gtk.ListStore (typs);
-			Gtk.TreeIter iter = Gtk.TreeIter.Zero;
-			foreach (DataRow dr in dt.Rows)
-			{
-				iter = _ResultStore.Append();
+				GLib.GType[] typs = new GLib.GType[intColumnCount];
 				for (int i = 0; i< intColumnCount; i++)
 				{
-					_ResultStore.SetValue(iter, i, dr[i].ToString());
+					tvExecuteResults.AppendColumn (dt.Columns [i].ColumnName, new CellRendererText (), "text", i);
+					typs [i] = GLib.GType.String;
 				}
+			
+				_ResultStore = new Gtk.ListStore (typs);
+				Gtk.TreeIter iter = Gtk.TreeIter.Zero;
+				foreach (DataRow dr in dt.Rows)
+				{
+					iter = _ResultStore.Append ();
+					for (int i = 0; i< intColumnCount; i++)
+					{
+						_ResultStore.SetValue (iter, i, dr [i].ToString ());
+					}
+				}
+				tvExecuteResults.ColumnsAutosize ();
+				tvExecuteResults.CheckResize ();
+				tvExecuteResults.RulesHint = true;
+				tvExecuteResults.EnableGridLines = Gtk.TreeViewGridLines.Both;
+				tvExecuteResults.Model = _ResultStore;
+				tvExecuteResults.QueueDraw ();
+				tvExecuteResults.ShowAll ();
+				txtResultMessage.SuccessMessage = "(" + intRowCount.ToString() + " row(s) affected)";
+				nbkResults.CurrentPage = 0;
 			}
-			tvResults.ColumnsAutosize ();
-			tvResults.CheckResize();
-			tvResults.RulesHint = true;
-			tvResults.EnableGridLines = Gtk.TreeViewGridLines.Both;
-			tvResults.Model = _ResultStore;
-			tvResults.QueueDraw();
-			tvResults.ShowAll();
+			catch (Exception ex)
+			{
+				txtResultMessage.ErrorMessage = ex.Message.ToString();
+				nbkResults.CurrentPage = 1;
+			}
 			this.ShowAll();
 		}
+
 		
 		public SQLiteMonoPlusUI.Editors.SQL.SQLEditorView SQLEditor
 		{

@@ -10,7 +10,7 @@ using System;
 using Gtk;
 using GlobalTools;
 using SQLiteMonoPlus;
-using SQLiteMonoPlus.Schema;
+using sc = SQLiteMonoPlus.Schema;
 
 namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 {
@@ -71,24 +71,23 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 			// set the cursor to the row under the mouse
 			this.GetPathAtPos ((int)Math.Round (args.Event.X, 0), (int)Math.Round (args.Event.Y, 0), out path, out tvc);
 			this.SetCursor (path, tvc, false);
-			if ((int)args.Event.Button == 3 && this.Selection.GetSelected (out iter)) {
+			if ((int)args.Event.Button == 3 && this.Selection.GetSelected (out iter))
+			{
 
 				SchemaDisplay sd = (SchemaDisplay)this.Model.GetValue (iter, 0);
-
-				if (sd.ObjectType == DBObjectType.Database)
+				switch(sd.ObjectType)
 				{
-					mnu = new SQLiteMonoPlusUI.UI.ContexMenus.DBLevel ((Database)OpenObjects.Databases[sd.ObjectName]);
-					mnu.ShowAll ();
-					mnu.Popup ();
+					case DBObjectType.Database:
+						mnu = new SQLiteMonoPlusUI.UI.ContexMenus.DBLevel ((sc.Database)sd.SchemaItem);
+						mnu.ShowAll ();
+						mnu.Popup ();
+						break;
+					case DBObjectType.Table:
+						mnu = new SQLiteMonoPlusUI.UI.ContexMenus.TableLevel((sc.Table)sd.SchemaItem);
+						mnu.ShowAll ();
+						mnu.Popup ();
+						break;
 				}
-				else
-				if (sd.ObjectType == DBObjectType.Table)
-				{
-					mnu = new SQLiteMonoPlusUI.UI.ContexMenus.TableLevel ();
-				mnu.ShowAll ();
-				mnu.Popup ();
-				}
-
 			}
 		}
 		
@@ -109,7 +108,7 @@ namespace SQLiteMonoPlusUI.UI.ObjectExplorer
 			_TreeModel.LoadOpenConnections ();
 		}
 
-		public void AddDatabase (Database db)
+		public void AddDatabase (sc.Database db)
 		{
 			if (db.ObjectExporerDisplay)
 			{
