@@ -63,6 +63,7 @@
     <Compile Include="Properties\Pragma.cs" />
     <Compile Include="Properties\PragmaCollection.cs" />
     <Compile Include="Properties\PragmaTypes.cs" />
+    <Compile Include="Util\DatabaseEnums.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

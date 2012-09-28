@@ -9,12 +9,16 @@ namespace SQLiteMonoPlus.Schema
 {
 	public class Database
 	{
+		#region Public Properties
+
 		public Connection DBConnection;
 		public Dictionary<string, string> Pragmas = new Dictionary<string, string> ();
 		public TableCollection Tables = new TableCollection ();
 		public ForeignKeyCollection ForeignKeys = new ForeignKeyCollection ();
 		public ViewCollection Views = new ViewCollection ();
 		public bool ObjectExporerDisplay = false;
+
+		#endregion Public Properties
 
 		#region Keyword List
 
@@ -219,7 +223,27 @@ namespace SQLiteMonoPlus.Schema
 		{
 			DBConnection = DBConn;
 		}
-		
+
+		#region SQL Text Methods
+
+		public string SQLScriptGet (ScriptToAction action)
+		{
+			string strSQLReturn = null;
+			switch (action)
+			{
+				case ScriptToAction.Create:
+
+					break;
+				case ScriptToAction.Drop:
+					break;
+				case ScriptToAction.DropCreate:
+					break;
+			}
+			return strSQLReturn;
+		}
+
+		#endregion SQL Text Methods
+
 		internal void LoadSchema ()
 		{
 				DBObjectsClear ();
@@ -229,7 +253,9 @@ namespace SQLiteMonoPlus.Schema
 				LoadIndexDetails ();
 				LoadForeignKeys ();
 		}
-		
+
+		#region Schema Loading
+
 		private void LoadPragmas ()
 		{
 			SqliteConnection sqlCN = new SqliteConnection (DBConnection.ConnectionString);
@@ -409,6 +435,8 @@ namespace SQLiteMonoPlus.Schema
 					sqlReader.Close ();
 				sqlCN.Close ();
 		}
+	
+		#endregion Schema Loading
 	}
 }
 
