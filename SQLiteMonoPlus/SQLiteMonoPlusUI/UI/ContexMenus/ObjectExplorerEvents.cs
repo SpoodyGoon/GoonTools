@@ -1,12 +1,16 @@
 using System;
 
-namespace SQLiteMonoPlusUI.UI.ContexMenus
+namespace SQLiteMonoPlusUI.UI.ContexMenus.Events
 {
-	public delegate void ScriptObjectToEventHandler(object sender,ScriptObjectToEventArgs args);
+	public delegate void ScriptObjectToEventHandler(object sender, ScriptObjectToEventArgs args);
 	public class ScriptObjectToEventArgs : EventArgs
 	{
-		public ScriptObjectToEventArgs ()
+		public SQLiteMonoPlus.Connection CurrentConnection;
+		public string SQLStatement = "";
+		public ScriptObjectToEventArgs (SQLiteMonoPlus.Connection connection, string sqlstatement)
 		{
+			CurrentConnection = connection;
+			SQLStatement = sqlstatement;
 		}
 	}
 }

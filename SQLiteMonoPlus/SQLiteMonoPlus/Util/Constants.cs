@@ -16,4 +16,9 @@ namespace SQLiteMonoPlus.Constants
 		internal const string WithPooling = "";
 		internal const string ConnectionTest = "SELECT * FROM sqlite_master WHERE 1=2";
 	}
+
+	internal class ScriptTableTemplate
+	{
+		internal const string Alter = "";
+	}
 }

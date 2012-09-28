@@ -21,6 +21,62 @@ namespace SQLiteMonoPlus.Schema
 			TableName = name;
 		}
 		
+		#region SQL Text Methods
+		
+		public string SQLScriptGet (ScriptToAction action)
+		{
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			switch (action)
+			{
+				case ScriptToAction.Create:
+					sb.Append(this.SQL);
+					break;
+				case ScriptToAction.Drop:
+					sb.Append("DROP TABLE " + this.TableName + ";");
+					break;
+				case ScriptToAction.DropCreate:
+					sb.Append("DROP TABLE " + this.TableName + ";" + Environment.NewLine);
+					sb.Append(this.SQL);
+					break;
+				case ScriptToAction.Select:
+					sb.Append("SELECT " + Environment.NewLine + SQLScriptColumnListGet() + "FROM " + Environment.NewLine + "    [" + this.TableName + "];");
+					break;
+				case ScriptToAction.Insert:
+					sb.Append("INSERT INTO [" + this.TableName + "] " + Environment.NewLine + "(" + Environment.NewLine + SQLScriptColumnListGet() + ")" + Environment.NewLine + "VALUES");
+					sb.Append(Environment.NewLine  + "(");
+					sb.Append(SQLScriptColumnListGet().Replace("[", "<").Replace("]", ">"));
+					sb.Append(Environment.NewLine + ")");
+					break;
+				case ScriptToAction.Update:
+					break;
+				case ScriptToAction.Delete:
+					sb.Append("DELETE FROM " + Environment.NewLine + "    [" + this.TableName + "]" + Environment.NewLine + "WHERE " + Environment.NewLine + "    <Search Conditions>;");
+					break;
+			}
+			return sb.ToString();
+		}
+
+		private string SQLScriptColumnListGet ()
+		{
+			int intColumnCount = this.Columns.Count;
+			int index=0;
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			foreach(Column col in this.Columns)
+			{
+				sb.Append("    [" + col.ColumnName + "]");
+				
+				if(index < intColumnCount)
+					sb.Append("," + Environment.NewLine); 
+				else
+					sb.Append(Environment.NewLine);
+				
+				index++;
+			}
+			return sb.ToString();
+		}
+
+		#endregion SQL Text Methods
+		
 		// TODO: run though the sql and populate a 
 		// display text for each column
 		public void PopulateColumnDescriptions()

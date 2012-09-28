@@ -145,7 +145,6 @@
     <Compile Include="UI\ContexMenus\TableLevel.cs" />
     <Compile Include="UI\Dialogs\frmProperties.cs" />
     <Compile Include="gtk-gui\SQLiteMonoPlusUI.frmProperties.cs" />
-    <Compile Include="UI\ContexMenus\ScriptAsLevel.cs" />
     <Compile Include="Common\StoreModels.cs" />
     <Compile Include="Common\SQL.cs" />
     <Compile Include="Common\StaticDataAccess.cs" />
@@ -168,6 +167,7 @@
     <Compile Include="UI\Editors\CustomWidgets\DataTypeCombobox.cs" />
     <Compile Include="UI\Editors\CustomWidgets\ResultMessageView.cs" />
     <Compile Include="UI\ContexMenus\ObjectExplorerEvents.cs" />
+    <Compile Include="UI\ContexMenus\ScriptToMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -27,7 +27,7 @@ namespace SQLiteMonoPlusUI.UI.ContexMenus
 			this.Add(tmpMenu);
 			
 			Gtk.MenuItem mnuCreateMenu = new Gtk.MenuItem("Script Database As");
-			mnuCreateMenu.Submenu = ScriptMenu();
+			mnuCreateMenu.Submenu = new ScriptToMenu(SQLiteMonoPlus.DBObjectType.Database, (object)_Database);
 			this.Add(mnuCreateMenu);
 
 
