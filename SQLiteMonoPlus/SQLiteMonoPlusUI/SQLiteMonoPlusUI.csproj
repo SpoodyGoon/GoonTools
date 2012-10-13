@@ -168,6 +168,7 @@
     <Compile Include="UI\Editors\CustomWidgets\ResultMessageView.cs" />
     <Compile Include="UI\ContexMenus\ObjectExplorerEvents.cs" />
     <Compile Include="UI\ContexMenus\ScriptToMenu.cs" />
+    <Compile Include="UI\ContexMenus\ScriptAsMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
