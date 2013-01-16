@@ -29,14 +29,65 @@ namespace MonoTools.IO
 {
     public abstract class LocalSystemTools
     {
-        protected string AppPath = null;
-        protected string AppDataPath = null;
-        protected string ProgramName = null;
-        protected string UserDataPath = null;
-        protected string OS = null;
-        protected bool UserErrorLog = false;
+        #region Protected Properties
+
+        protected string ApplicationPath = null;
+        protected string ApplicationDataPath = null;
+        protected string ActiveUserDataPath = null;
+        protected string OperatingSystem = null;
+        protected bool UseErrorLog = false;
         protected string ErrorLogFile = null;
         protected bool DebugMode = false;
+
+        #endregion Protected Properties
+
+        #region Public Properties
+
+        public virtual string AppPath
+        {
+            get{ return ApplicationPath;}
+            set{ ApplicationPath = value;}
+        }
+        
+        public virtual string AppDataPath
+        {
+            get{ return ApplicationDataPath;}
+            set{ ApplicationDataPath = value;}
+        }
+        
+        public virtual string UserDataPath
+        {
+            get{ return ActiveUserDataPath;}
+            set{ ActiveUserDataPath = value;}
+        }
+        
+        public virtual string OS
+        {
+            get{ return OperatingSystem;}
+            set{ OperatingSystem = value;}
+        }
+        
+        public virtual string ErrorLogPath
+        {
+            get{ return ErrorLogFile;}
+            set{ ErrorLogFile = value;}
+        }
+
+        public virtual bool Debug
+        {
+            get{ return DebugMode;}
+            set{ DebugMode = value;}
+        }
+
+        #endregion Public Properties
+
+        protected virtual void Initalize()
+        {
+            if(System.Environment.OSVersion.Platform == System.PlatformID.Unix)
+            {
+                this.OperatingSystem = "Linux";
+            }
+        }
     }
 }
 

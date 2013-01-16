@@ -31,15 +31,42 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="LocalSystemTools.cs" />
     <Compile Include="IO\LocalSystemTools.cs" />
+    <Compile Include="ErrorManager\ErrorManagerEnums.cs" />
+    <Compile Include="GtkTools\GtkTools.cs" />
+    <Compile Include="Collections\ErrorCollection.cs" />
+    <Compile Include="Collections\FileInfoCollection.cs" />
+    <Compile Include="MonoTools.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="ErrorManager\dlgErrorLogViewer.cs" />
+    <Compile Include="gtk-gui\libMonoTools.ErrorManager.dlgErrorLogViewer.cs" />
+    <Compile Include="ErrorManager\dlgErrorMessage.cs" />
+    <Compile Include="gtk-gui\libMonoTools.ErrorManager.dlgErrorMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="IO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\dialog-error.png" />
+    <None Include="Resources\Images\dialog-warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
