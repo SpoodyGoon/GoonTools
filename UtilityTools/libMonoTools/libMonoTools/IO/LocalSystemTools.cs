@@ -18,11 +18,11 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using sc = System.Collections;
 using so = System.IO;
 using se = System.Environment;
 using sr = System.Reflection;
-using sc = System.Configuration;
+using cm = System.Configuration.ConfigurationManager;
 using Gtk;
 
 namespace MonoTools.IO
@@ -31,12 +31,13 @@ namespace MonoTools.IO
     {
         #region Protected Properties
 
-        protected string ApplicationPath = null;
-        protected string ApplicationDataPath = null;
+        protected string ApplicationPath = System.Environment.CurrentDirectory;
+        protected string ApplicationDataPath = so.Path.Combine(System.Environment.CurrentDirectory, "Data");
         protected string ActiveUserDataPath = null;
-        protected string OperatingSystem = null;
+        protected string OperatingSystem = "Windows";
         protected bool UseErrorLog = false;
-        protected string ErrorLogFile = null;
+        protected string ErrorLogFileName = "ErrorLog.txt";
+        protected string ErrorLogFilePath = null;
         protected bool DebugMode = false;
 
         #endregion Protected Properties
@@ -69,8 +70,8 @@ namespace MonoTools.IO
         
         public virtual string ErrorLogPath
         {
-            get{ return ErrorLogFile;}
-            set{ ErrorLogFile = value;}
+            get{ return ErrorLogFilePath;}
+            set{ ErrorLogFilePath = value;}
         }
 
         public virtual bool Debug
@@ -83,10 +84,59 @@ namespace MonoTools.IO
 
         protected virtual void Initalize()
         {
-            if(System.Environment.OSVersion.Platform == System.PlatformID.Unix)
+            so.FileInfo fi;
+            so.DirectoryInfo di;
+            switch (System.Environment.OSVersion.Platform) 
             {
-                this.OperatingSystem = "Linux";
+                case System.PlatformID.Win32NT:
+                case System.PlatformID.Win32S:
+                case System.PlatformID.Win32Windows:
+                case System.PlatformID.WinCE:
+                    this.OperatingSystem = "Windows";
+                    break;
+                case System.PlatformID.Unix:
+                    this.OperatingSystem = "Linux";
+                    break;
+                case System.PlatformID.MacOSX:
+                    this.OperatingSystem = "Mac";
+                    break;
             }
+
+            // Get commonly used path information
+            sr.Assembly asm = sr.Assembly.GetExecutingAssembly();
+            fi = new so.FileInfo(asm.Location);
+            ApplicationPath = fi.Directory.FullName;
+
+
+            _ProgramName = asm.GetName().Name;
+            
+            // Set the flags for when to use the error log
+            if (cm.AppSettings["UserErrorLog"] != null && Convert.ToBoolean(cm.AppSettings["UserErrorLog"]))
+            {
+                _UseErrorLog = true;
+            }
+            
+            if (cm.AppSettings["DebugMode"] != null && Convert.ToBoolean(cm.AppSettings["DebugMode"]))
+            {
+                // set the location of the save data for the user
+                // in a non-development enviroment
+                di = new so.DirectoryInfo(so.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), _ProgramName));
+                _DebugMode = true;
+            }
+            else
+            {
+                // where the user data is saved for development
+                di = new so.DirectoryInfo(so.Path.Combine(_AppPath, "DebugFiles"));
+            }
+            
+            if (!di.Exists)
+                di.Create();
+            
+            _UserDataPath = di.FullName;
+            
+            // the error file
+            fi = new so.FileInfo(so.Path.Combine(UserDataPath, "ErrorLog.txt"));
+            _ErrorLogFile = fi.FullName;
         }
     }
 }
