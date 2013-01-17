@@ -78,7 +78,7 @@ namespace libMonoTools.IO
 
         #endregion Public Properties
 
-		protected virtual void Initalize ()
+        public virtual void Initalize ()
 		{
 			so.FileInfo fi;
 			so.DirectoryInfo di;
