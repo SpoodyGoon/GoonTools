@@ -31,44 +31,44 @@ namespace libMonoTools.IO
 	{
         #region Protected Properties
 
-		protected string ApplicationPath = System.Environment.CurrentDirectory;
-		protected string ApplicationDataPath = so.Path.Combine (System.Environment.CurrentDirectory, "Data");
-		protected string ActiveUserDataPath = null;
-		protected string OperatingSystem = "Windows";
-		protected string ProgramName = null;
+		private string _AppPath = null;
+		protected string AppDataPathName = "Data";
+		private string _AppDataPath = null;
+		protected string UserDataPathName = "DebugData";
+		private string _UserDataPath = null;
+		protected string _OS = "Windows";
 		protected bool UseErrorLog = false;
 		protected string ErrorLogFileName = "ErrorLog.txt";
-		protected string ErrorLogFilePath = null;
+		protected string _ErrorLogPath = null;
 		protected bool DebugMode = false;
-		private string DefaultErrorLogName = "ErrorLog.txt";
 
         #endregion Protected Properties
 
         #region Public Properties
 
 		public virtual string AppPath {
-			get{ return ApplicationPath;}
-			set{ ApplicationPath = value;}
+			get{ return _AppPath;}
+			set{ _AppPath = value;}
 		}
         
 		public virtual string AppDataPath {
-			get{ return ApplicationDataPath;}
-			set{ ApplicationDataPath = value;}
+			get{ return _AppDataPath;}
+			set{ _AppDataPath = value;}
 		}
         
 		public virtual string UserDataPath {
-			get{ return ActiveUserDataPath;}
-			set{ ActiveUserDataPath = value;}
+			get{ return _UserDataPath;}
+			set{ _UserDataPath = value;}
 		}
         
 		public virtual string OS {
-			get{ return OperatingSystem;}
-			set{ OperatingSystem = value;}
+			get{ return _OS;}
+			set{ _OS = value;}
 		}
         
 		public virtual string ErrorLogPath {
-			get{ return ErrorLogFilePath;}
-			set{ ErrorLogFilePath = value;}
+			get{ return _ErrorLogPath;}
+			set{ _ErrorLogPath = value;}
 		}
 
 		public virtual bool Debug {
@@ -78,7 +78,7 @@ namespace libMonoTools.IO
 
         #endregion Public Properties
 
-        public virtual void Initalize ()
+		public virtual void Initalize ()
 		{
 			so.FileInfo fi;
 			so.DirectoryInfo di;
@@ -88,67 +88,34 @@ namespace libMonoTools.IO
 			case System.PlatformID.Win32S:
 			case System.PlatformID.Win32Windows:
 			case System.PlatformID.WinCE:
-				this.OperatingSystem = "Windows";
+				this._OS = "Windows";
 				break;
 			case System.PlatformID.Unix:
-				this.OperatingSystem = "Linux";
+				this._OS = "Linux";
 				break;
 			case System.PlatformID.MacOSX:
-				this.OperatingSystem = "Mac";
+				this._OS = "Mac";
 				break;
 			}
 
 			// Get commonly used path information
 			sr.Assembly asm = sr.Assembly.GetExecutingAssembly ();
 			fi = new so.FileInfo (asm.Location);
-			ApplicationPath = fi.Directory.FullName;
-			ProgramName = asm.GetName ().Name;
+			_AppPath = fi.Directory.FullName;
 
-			di = new so.DirectoryInfo (so.Path.Combine (ApplicationDataPath, "AppData"));
+			di = new so.DirectoryInfo (so.Path.Combine (_AppPath, AppDataPathName));
 			if (!di.Exists)
 				di.Create ();
-			ApplicationDataPath = di.FullName;
+			_AppDataPath = di.FullName;
 
+			_ErrorLogPath = so.Path.Combine (_AppDataPath, ErrorLogFileName);
 
-            
-			// Set the flags for when to use the error log
-			if (cm.AppSettings ["UserErrorLog"] != null && System.Convert.ToBoolean (cm.AppSettings ["UserErrorLog"]))
-			{
-				UseErrorLog = true;
-				if (cm.AppSettings ["ErrorLogFileName"] != null && !string.IsNullOrEmpty (cm.AppSettings ["ErrorLogFileName"].ToString()))
-				{
-					ErrorLogPath = so.Path.Combine (AppDataPath, cm.AppSettings ["ErrorLogFileName"].ToString());
-				}
-				else
-				{
-					ErrorLogPath = so.Path.Combine (AppDataPath, DefaultErrorLogName);
-				}
-			}
-			// UserDataFolder
-			if (cm.AppSettings ["DebugMode"] != null && !System.Convert.ToBoolean (cm.AppSettings ["DebugMode"]))
-			{
-				DebugMode = true;
-				// set the location of the save data for the user
-				// in a non-development enviroment				
-				if (cm.AppSettings ["UserDataFolder"] != null && !string.IsNullOrEmpty (cm.AppSettings ["UserDataFolder"].ToString ()))
-				{
-					di = new so.DirectoryInfo (so.Path.Combine (se.GetFolderPath (se.SpecialFolder.ApplicationData), cm.AppSettings ["UserDataFolder"].ToString ()));
-				}
-				else
-				{
-					di = new so.DirectoryInfo (so.Path.Combine (se.GetFolderPath (se.SpecialFolder.ApplicationData), asm.GetName ().Name));
-				}
-			}
-			else
-			{
-				// where the user data is saved for development
-				di = new so.DirectoryInfo (so.Path.Combine (ApplicationPath, "DebugFiles"));
-			}
+			di = new so.DirectoryInfo (so.Path.Combine (_AppPath, UserDataPathName));
             
 			if (!di.Exists)
 				di.Create ();
             
-			ActiveUserDataPath  = di.FullName;            
+			_UserDataPath = di.FullName;            
 		}
 	}
 }
