@@ -22,11 +22,22 @@ using System;
 
 namespace libMonoTools.ErrorManager
 {
-    public partial class dlgErrorMessage : Gtk.Dialog
+    internal partial class dlgErrorMessage : Gtk.Dialog
     {
-        public dlgErrorMessage (string message)
+        internal dlgErrorMessage(Gtk.Window ParentWin, string ErrorMessage)
         {
-            this.Build ();
+            this.Build();
+            
+            if(ParentWin != null)
+                this.ParentWindow = ParentWin.GdkWindow;
+            
+            txtErrorMessage.Buffer.Text = ErrorMessage;
+            this.ShowAll();
+        }
+
+        protected void OnBtnCloseClicked (object sender, EventArgs e)
+        {
+            this.Destroy();
         }
     }
 }

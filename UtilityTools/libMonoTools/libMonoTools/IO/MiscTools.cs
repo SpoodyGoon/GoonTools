@@ -22,7 +22,7 @@ using System;
 
 namespace libMonoTools.IO
 {
-    public static class MiscTools
+    public static class ProcessTools
     {        
         #region Launch URL
         

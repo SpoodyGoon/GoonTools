@@ -58,18 +58,21 @@
     <Compile Include="ErrorManager\dlgErrorMessage.cs" />
     <Compile Include="gtk-gui\libMonoTools.ErrorManager.dlgErrorMessage.cs" />
     <Compile Include="IO\MiscTools.cs" />
+    <Compile Include="IO\Licenses.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="IO\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Images\dialog-error.png" />
-    <None Include="Resources\Images\dialog-warning.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\dialog-error.png">
+      <LogicalName>Resources.Images.dialog-error.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\dialog-warning.png">
+      <LogicalName>Resources.Images.dialog-warning.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
