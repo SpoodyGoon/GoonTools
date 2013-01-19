@@ -19,14 +19,61 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
 
 namespace libMonoTools.ErrorManager
 {
-    public partial class dlgErrorLogViewer : Gtk.Dialog
+    internal partial class dlgErrorLogViewer : Gtk.Dialog
     {
-        public dlgErrorLogViewer ()
+        internal dlgErrorLogViewer ()
         {
             this.Build ();
+            System.IO.FileInfo fi = new System.IO.FileInfo ("");
+            if (fi.Exists)
+            {
+                System.IO.StreamReader sr = new System.IO.StreamReader (fi.FullName);
+                txtErrorLogDisplay.Buffer.Text = sr.ReadToEnd ();
+                sr.Close ();
+                sr.Dispose ();
+            }
+            else
+            {
+                txtErrorLogDisplay.Buffer.Clear();
+            }
+        }
+
+        protected void OnBtnSaveErrorLogClicked (object sender, EventArgs e)
+        {
+            System.IO.FileInfo fi = new System.IO.FileInfo ("");
+            if (fi.Exists)
+            {
+                FileChooserDialog dcf = new FileChooserDialog ("Save Error Log", this, FileChooserAction.Save, "Cance", ResponseType.Cancel, "Save", ResponseType.Ok);
+                if (dcf.Run () == (int)Gtk.ResponseType.Ok)
+                {
+                    fi.CopyTo(dcf.Filename);
+                }
+                dcf.Destroy ();
+            }
+            else
+            {
+                MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Close, "No Error Log is available to export");
+                md.Run();
+                md.Destroy();
+            }
+        }
+
+        protected void OnBtnClearErrorLogClicked (object sender, EventArgs e)
+        {
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("", false);
+            sw.Write("");
+            sw.Close();
+            txtErrorLogDisplay.Buffer.Text = "";
+            txtErrorLogDisplay.ShowNow();
+        }
+
+        protected void OnBtnCloseClicked (object sender, EventArgs e)
+        {
+            this.Destroy();
         }
     }
 }

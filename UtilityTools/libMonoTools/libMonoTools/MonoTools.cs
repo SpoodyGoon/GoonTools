@@ -22,6 +22,13 @@
 
 namespace libMonoTools
 {
+    public static class MonoTools
+    {
+        public static void Load()
+        {
+        }
+    }
+
     public static class ErrorTools
     {   
         #region Error Handling
@@ -33,18 +40,14 @@ namespace libMonoTools
         
         public static void HandleError(Gtk.Window ParentWindow, System.Exception ex)
         {
-            ErrorManager.dlgErrorMessage dlg = new ErrorManager.dlgErrorMessage(ex.ToString());
-            if(ParentWindow != null)
-                dlg.ParentWindow = ParentWindow.GdkWindow;
+            ErrorManager.dlgErrorMessage dlg = new ErrorManager.dlgErrorMessage(ParentWindow, ex.ToString());
             dlg.Run();
             dlg.Destroy();
         }
         
         public static void HandleError(Gtk.Window ParentWindow, System.Exception ex, params ErrorManager.ErrorManagerFlags[] ErrorFlags)
         {
-            ErrorManager.dlgErrorMessage dlg = new ErrorManager.dlgErrorMessage(ex.ToString());
-            if(ParentWindow != null)
-                dlg.ParentWindow = ParentWindow.GdkWindow;
+            ErrorManager.dlgErrorMessage dlg = new ErrorManager.dlgErrorMessage(ParentWindow, ex.ToString());
             dlg.Run();
             dlg.Destroy();
         }
