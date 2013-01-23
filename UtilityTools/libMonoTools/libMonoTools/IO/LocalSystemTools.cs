@@ -18,11 +18,9 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using sc = System.Collections;
 using so = System.IO;
 using se = System.Environment;
 using sr = System.Reflection;
-using cm = System.Configuration.ConfigurationManager;
 using Gtk;
 
 namespace libMonoTools.IO

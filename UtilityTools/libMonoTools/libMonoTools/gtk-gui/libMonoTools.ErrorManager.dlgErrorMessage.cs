@@ -10,9 +10,18 @@ namespace libMonoTools.ErrorManager
 		private global::Gtk.Label label1;
 		private global::Gtk.Alignment alignment3;
 		private global::Gtk.HSeparator hseparator1;
-		private global::Gtk.Alignment alignment5;
-		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+		private global::Gtk.Alignment alignment4;
+		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
 		private global::Gtk.TextView txtErrorMessage;
+		private global::Gtk.Alignment alignment5;
+		private global::Gtk.Expander expander1;
+		private global::Gtk.Alignment alignment6;
+		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+		private global::Gtk.TextView txtErrorDetails;
+		private global::Gtk.Label GtkLabel1;
+		private global::Gtk.Alignment alignment7;
+		private global::Gtk.HBox hbox1;
+		private global::Gtk.Label label2;
 		private global::Gtk.Button btnClose;
 		
 		protected virtual void Build ()
@@ -25,6 +34,7 @@ namespace libMonoTools.ErrorManager
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Modal = true;
+			this.AllowShrink = true;
 			// Internal child libMonoTools.ErrorManager.dlgErrorMessage.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";
@@ -68,38 +78,103 @@ namespace libMonoTools.ErrorManager
 			w5.Expand = false;
 			w5.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
+			this.alignment4 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment4.Name = "alignment4";
+			this.alignment4.LeftPadding = ((uint)(8));
+			this.alignment4.RightPadding = ((uint)(8));
+			// Container child alignment4.Gtk.Container+ContainerChild
+			this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
+			this.GtkScrolledWindow1.VscrollbarPolicy = ((global::Gtk.PolicyType)(2));
+			this.GtkScrolledWindow1.HscrollbarPolicy = ((global::Gtk.PolicyType)(2));
+			// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
+			this.txtErrorMessage = new global::Gtk.TextView ();
+			this.txtErrorMessage.Sensitive = false;
+			this.txtErrorMessage.Name = "txtErrorMessage";
+			this.txtErrorMessage.Editable = false;
+			this.txtErrorMessage.CursorVisible = false;
+			this.txtErrorMessage.AcceptsTab = false;
+			this.GtkScrolledWindow1.Add (this.txtErrorMessage);
+			this.alignment4.Add (this.GtkScrolledWindow1);
+			this.vbox2.Add (this.alignment4);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment4]));
+			w8.Position = 2;
+			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment5.Name = "alignment5";
 			// Container child alignment5.Gtk.Container+ContainerChild
+			this.expander1 = new global::Gtk.Expander (null);
+			this.expander1.CanFocus = true;
+			this.expander1.Name = "expander1";
+			// Container child expander1.Gtk.Container+ContainerChild
+			this.alignment6 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment6.Name = "alignment6";
+			// Container child alignment6.Gtk.Container+ContainerChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.txtErrorMessage = new global::Gtk.TextView ();
-			this.txtErrorMessage.CanFocus = true;
-			this.txtErrorMessage.Name = "txtErrorMessage";
-			this.txtErrorMessage.Editable = false;
-			this.txtErrorMessage.CursorVisible = false;
-			this.txtErrorMessage.WrapMode = ((global::Gtk.WrapMode)(2));
-			this.txtErrorMessage.PixelsAboveLines = 3;
-			this.txtErrorMessage.PixelsBelowLines = 3;
-			this.txtErrorMessage.LeftMargin = 5;
-			this.txtErrorMessage.RightMargin = 5;
-			this.GtkScrolledWindow.Add (this.txtErrorMessage);
-			this.alignment5.Add (this.GtkScrolledWindow);
+			this.txtErrorDetails = new global::Gtk.TextView ();
+			this.txtErrorDetails.Sensitive = false;
+			this.txtErrorDetails.CanFocus = true;
+			this.txtErrorDetails.Name = "txtErrorDetails";
+			this.txtErrorDetails.Editable = false;
+			this.txtErrorDetails.CursorVisible = false;
+			this.txtErrorDetails.AcceptsTab = false;
+			this.txtErrorDetails.WrapMode = ((global::Gtk.WrapMode)(2));
+			this.txtErrorDetails.PixelsAboveLines = 3;
+			this.txtErrorDetails.PixelsBelowLines = 3;
+			this.txtErrorDetails.LeftMargin = 5;
+			this.txtErrorDetails.RightMargin = 5;
+			this.GtkScrolledWindow.Add (this.txtErrorDetails);
+			this.alignment6.Add (this.GtkScrolledWindow);
+			this.expander1.Add (this.alignment6);
+			this.GtkLabel1 = new global::Gtk.Label ();
+			this.GtkLabel1.Name = "GtkLabel1";
+			this.GtkLabel1.Xpad = 8;
+			this.GtkLabel1.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Details</b>");
+			this.GtkLabel1.UseMarkup = true;
+			this.GtkLabel1.UseUnderline = true;
+			this.expander1.LabelWidget = this.GtkLabel1;
+			this.alignment5.Add (this.expander1);
 			this.vbox2.Add (this.alignment5);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
-			w8.Position = 2;
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
+			w13.Position = 3;
+			w13.Expand = false;
+			w13.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment7.Name = "alignment7";
+			this.alignment7.LeftPadding = ((uint)(20));
+			// Container child alignment7.Gtk.Container+ContainerChild
+			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1.Name = "hbox1";
+			this.hbox1.Spacing = 6;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.label2 = new global::Gtk.Label ();
+			this.label2.Name = "label2";
+			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("label1");
+			this.hbox1.Add (this.label2);
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.label2]));
+			w14.Position = 0;
+			w14.Expand = false;
+			w14.Fill = false;
+			this.alignment7.Add (this.hbox1);
+			this.vbox2.Add (this.alignment7);
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
+			w16.Position = 5;
+			w16.Expand = false;
+			w16.Fill = false;
 			this.alignment1.Add (this.vbox2);
 			w1.Add (this.alignment1);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(w1 [this.alignment1]));
-			w10.Position = 0;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(w1 [this.alignment1]));
+			w18.Position = 0;
 			// Internal child libMonoTools.ErrorManager.dlgErrorMessage.ActionArea
-			global::Gtk.HButtonBox w11 = this.ActionArea;
-			w11.Name = "dialog1_ActionArea";
-			w11.Spacing = 10;
-			w11.BorderWidth = ((uint)(5));
-			w11.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
+			global::Gtk.HButtonBox w19 = this.ActionArea;
+			w19.Name = "dialog1_ActionArea";
+			w19.Spacing = 10;
+			w19.BorderWidth = ((uint)(5));
+			w19.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.btnClose = new global::Gtk.Button ();
 			this.btnClose.CanDefault = true;
@@ -109,14 +184,14 @@ namespace libMonoTools.ErrorManager
 			this.btnClose.UseUnderline = true;
 			this.btnClose.Label = "gtk-close";
 			this.AddActionWidget (this.btnClose, -7);
-			global::Gtk.ButtonBox.ButtonBoxChild w12 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w11 [this.btnClose]));
-			w12.Expand = false;
-			w12.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w20 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w19 [this.btnClose]));
+			w20.Expand = false;
+			w20.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 791;
-			this.DefaultHeight = 642;
+			this.DefaultWidth = 648;
+			this.DefaultHeight = 299;
 			this.Show ();
 			this.btnClose.Clicked += new global::System.EventHandler (this.OnBtnCloseClicked);
 		}
