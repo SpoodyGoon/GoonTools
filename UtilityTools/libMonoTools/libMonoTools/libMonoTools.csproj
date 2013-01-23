@@ -9,7 +9,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>libMonoTools</RootNamespace>
     <AssemblyName>libMonoTools</AssemblyName>
-    <ReleaseVersion>1.6</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -59,10 +58,16 @@
     <Compile Include="gtk-gui\libMonoTools.ErrorManager.dlgErrorMessage.cs" />
     <Compile Include="IO\MiscTools.cs" />
     <Compile Include="IO\Licenses.cs" />
+    <Compile Include="ErrorManager\ErrorLogSaveFile.cs" />
+    <Compile Include="ErrorManager\ErrorManagement.cs" />
+    <Compile Include="UI\Custom\LabelButton.cs" />
+    <Compile Include="UI\Custom\URLButton.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="IO\" />
+    <Folder Include="UI\" />
+    <Folder Include="UI\Custom\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

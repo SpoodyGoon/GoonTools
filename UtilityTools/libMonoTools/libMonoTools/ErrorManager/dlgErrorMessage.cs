@@ -31,7 +31,7 @@ namespace libMonoTools.ErrorManager
             if(ParentWin != null)
                 this.ParentWindow = ParentWin.GdkWindow;
             
-            txtErrorMessage.Buffer.Text = ErrorMessage;
+            txtErrorDetails.Buffer.Text = ErrorMessage;
             this.ShowAll();
         }
 
