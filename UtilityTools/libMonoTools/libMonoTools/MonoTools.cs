@@ -54,12 +54,10 @@ namespace libMonoTools
         
         public static void ShowErrorLogViewer()
         {
-            ErrorManager.dlgErrorLogViewer dlg = new ErrorManager.dlgErrorLogViewer();
-            dlg.Run();
-            dlg.Destroy();
+            ShowErrorLogViewer(null);
         }
         
-        public static void ShowErrorLogViewer(Gtk.Window ParentWindow, System.Exception ex)
+        public static void ShowErrorLogViewer(Gtk.Window ParentWindow)
         {
             ErrorManager.dlgErrorLogViewer dlg = new ErrorManager.dlgErrorLogViewer();
             if(ParentWindow != null)

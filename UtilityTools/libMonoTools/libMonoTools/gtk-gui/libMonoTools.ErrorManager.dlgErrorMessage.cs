@@ -162,7 +162,7 @@ namespace libMonoTools.ErrorManager
 			this.alignment7.Add (this.hbox1);
 			this.vbox2.Add (this.alignment7);
 			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
-			w16.Position = 5;
+			w16.Position = 4;
 			w16.Expand = false;
 			w16.Fill = false;
 			this.alignment1.Add (this.vbox2);

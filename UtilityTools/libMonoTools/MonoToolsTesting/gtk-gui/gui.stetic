@@ -1,0 +1,690 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stetic-interface>
+  <configuration>
+    <images-root-path>..</images-root-path>
+    <target-gtk-version>2.12</target-gtk-version>
+  </configuration>
+  <import>
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="../../libMonoTools/bin/Debug/libMonoTools.dll" />
+    <widget-library name="../bin/Debug/MonoToolsTesting.exe" internal="true" />
+  </import>
+  <widget class="Gtk.Window" id="MainWindow" design-size="699 519">
+    <action-group name="Default">
+      <action id="tbrQuit">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-quit</property>
+        <signal name="Activated" handler="OnTbrQuitActivated" />
+      </action>
+      <action id="tbrPreferences">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-preferences</property>
+        <signal name="Activated" handler="OnTbrPreferencesActivated" />
+      </action>
+      <action id="tbrHelp">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-help</property>
+        <signal name="Activated" handler="OnTbrHelpActivated" />
+      </action>
+    </action-group>
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">MonoTools Testing Application</property>
+    <property name="Icon">stock:gtk-execute Dialog</property>
+    <property name="WindowPosition">Center</property>
+    <property name="AllowShrink">True</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
+    <child>
+      <widget class="Gtk.Alignment" id="alignment1">
+        <property name="MemberName" />
+        <child>
+          <widget class="Gtk.VBox" id="vbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment2">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.Toolbar" id="tbrMain">
+                    <property name="MemberName" />
+                    <property name="ShowArrow">False</property>
+                    <node name="tbrMain" type="Toolbar">
+                      <node type="Toolitem" action="tbrQuit" />
+                      <node type="Toolitem" action="tbrPreferences" />
+                      <node type="Toolitem" action="tbrHelp" />
+                    </node>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment3">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.Notebook" id="nbkMain">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="CurrentPage">0</property>
+                    <child>
+                      <widget class="Gtk.VBox" id="vbox3">
+                        <property name="MemberName" />
+                        <property name="Spacing">6</property>
+                        <child>
+                          <widget class="Gtk.Alignment" id="alignment9">
+                            <property name="MemberName" />
+                            <property name="LeftPadding">8</property>
+                            <property name="TopPadding">8</property>
+                            <property name="RightPadding">8</property>
+                            <property name="BottomPadding">4</property>
+                            <child>
+                              <widget class="Gtk.Expander" id="expErrorToolsSetup">
+                                <property name="MemberName" />
+                                <property name="CanFocus">True</property>
+                                <child>
+                                  <widget class="Gtk.Alignment" id="alignment11">
+                                    <property name="MemberName" />
+                                    <child>
+                                      <widget class="Gtk.Frame" id="frame3">
+                                        <property name="MemberName" />
+                                        <child>
+                                          <widget class="Gtk.Alignment" id="GtkAlignment3">
+                                            <property name="MemberName" />
+                                            <property name="Xalign">0</property>
+                                            <property name="Yalign">0</property>
+                                            <property name="RightPadding">5</property>
+                                            <property name="BorderWidth">8</property>
+                                            <child>
+                                              <widget class="Gtk.Table" id="tblErrorTools1">
+                                                <property name="MemberName" />
+                                                <property name="NRows">5</property>
+                                                <property name="NColumns">2</property>
+                                                <property name="RowSpacing">6</property>
+                                                <property name="ColumnSpacing">6</property>
+                                                <child>
+                                                  <widget class="Gtk.Alignment" id="alignment12">
+                                                    <property name="MemberName" />
+                                                    <property name="Xscale">0.01</property>
+                                                    <property name="Xalign">0.98</property>
+                                                    <child>
+                                                      <widget class="Gtk.Label" id="lblDisplayErrorLog1">
+                                                        <property name="MemberName" />
+                                                        <property name="LabelProp" translatable="yes">Error Log File Name:</property>
+                                                        <property name="SingleLineMode">True</property>
+                                                      </widget>
+                                                    </child>
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="TopAttach">1</property>
+                                                    <property name="BottomAttach">2</property>
+                                                    <property name="AutoSize">True</property>
+                                                    <property name="XOptions">Fill</property>
+                                                    <property name="YOptions">Fill</property>
+                                                    <property name="XExpand">False</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">False</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">True</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <widget class="Gtk.Alignment" id="alignment14">
+                                                    <property name="MemberName" />
+                                                    <property name="Xscale">0.01</property>
+                                                    <property name="Xalign">0.98</property>
+                                                    <child>
+                                                      <widget class="Gtk.Label" id="lblDisplayErrorMessage1">
+                                                        <property name="MemberName" />
+                                                        <property name="LabelProp" translatable="yes">User Error Log:</property>
+                                                        <property name="SingleLineMode">True</property>
+                                                      </widget>
+                                                    </child>
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="AutoSize">True</property>
+                                                    <property name="XOptions">Fill</property>
+                                                    <property name="YOptions">Fill</property>
+                                                    <property name="XExpand">False</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">False</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">True</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <widget class="Gtk.Alignment" id="alignment15">
+                                                    <property name="MemberName" />
+                                                    <property name="Xscale">0.01</property>
+                                                    <property name="Xalign">0.98</property>
+                                                    <child>
+                                                      <widget class="Gtk.Label" id="lblDisplayErrorLog2">
+                                                        <property name="MemberName" />
+                                                        <property name="LabelProp" translatable="yes">Bug Tracking URL:</property>
+                                                        <property name="SingleLineMode">True</property>
+                                                      </widget>
+                                                    </child>
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="TopAttach">2</property>
+                                                    <property name="BottomAttach">3</property>
+                                                    <property name="AutoSize">True</property>
+                                                    <property name="XOptions">Fill</property>
+                                                    <property name="YOptions">Fill</property>
+                                                    <property name="XExpand">False</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">False</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">True</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <widget class="Gtk.Alignment" id="alignment16">
+                                                    <property name="MemberName" />
+                                                    <property name="Xscale">0.01</property>
+                                                    <property name="Xalign">0.98</property>
+                                                    <child>
+                                                      <widget class="Gtk.Label" id="lblDisplayErrorLog3">
+                                                        <property name="MemberName" />
+                                                        <property name="LabelProp" translatable="yes">New Ticket URL:</property>
+                                                        <property name="SingleLineMode">True</property>
+                                                      </widget>
+                                                    </child>
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="TopAttach">3</property>
+                                                    <property name="BottomAttach">4</property>
+                                                    <property name="AutoSize">True</property>
+                                                    <property name="XOptions">Fill</property>
+                                                    <property name="YOptions">Fill</property>
+                                                    <property name="XExpand">False</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">False</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">True</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <widget class="Gtk.Alignment" id="alignment17">
+                                                    <property name="MemberName" />
+                                                    <property name="Xscale">0.01</property>
+                                                    <property name="Xalign">0.98</property>
+                                                    <child>
+                                                      <widget class="Gtk.Label" id="lblDisplayErrorLog4">
+                                                        <property name="MemberName" />
+                                                        <property name="LabelProp" translatable="yes">User Data Path:</property>
+                                                        <property name="SingleLineMode">True</property>
+                                                      </widget>
+                                                    </child>
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="TopAttach">4</property>
+                                                    <property name="BottomAttach">5</property>
+                                                    <property name="AutoSize">True</property>
+                                                    <property name="XOptions">Fill</property>
+                                                    <property name="YOptions">Fill</property>
+                                                    <property name="XExpand">False</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">False</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">True</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <widget class="Gtk.Alignment" id="alignment18">
+                                                    <property name="MemberName" />
+                                                    <child>
+                                                      <widget class="Gtk.CheckButton" id="cbxUseErrorLog">
+                                                        <property name="MemberName" />
+                                                        <property name="CanFocus">True</property>
+                                                        <property name="Label" translatable="yes" />
+                                                        <property name="Active">True</property>
+                                                        <property name="DrawIndicator">True</property>
+                                                        <property name="HasLabel">True</property>
+                                                        <property name="UseUnderline">True</property>
+                                                      </widget>
+                                                    </child>
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="LeftAttach">1</property>
+                                                    <property name="RightAttach">2</property>
+                                                    <property name="AutoSize">True</property>
+                                                    <property name="XOptions">Fill</property>
+                                                    <property name="YOptions">Fill</property>
+                                                    <property name="XExpand">False</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">False</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">True</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <widget class="Gtk.Alignment" id="alignment19">
+                                                    <property name="MemberName" />
+                                                    <property name="Xscale">0.01</property>
+                                                    <property name="Xalign">0</property>
+                                                    <child>
+                                                      <widget class="Gtk.Entry" id="txtErrorLogFileName">
+                                                        <property name="MemberName" />
+                                                        <property name="WidthRequest">175</property>
+                                                        <property name="CanFocus">True</property>
+                                                        <property name="Text" translatable="yes">ErrorLog.txt</property>
+                                                        <property name="IsEditable">True</property>
+                                                      </widget>
+                                                    </child>
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="TopAttach">1</property>
+                                                    <property name="BottomAttach">2</property>
+                                                    <property name="LeftAttach">1</property>
+                                                    <property name="RightAttach">2</property>
+                                                    <property name="AutoSize">True</property>
+                                                    <property name="XOptions">Fill</property>
+                                                    <property name="YOptions">Fill</property>
+                                                    <property name="XExpand">False</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">False</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">True</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <widget class="Gtk.FileChooserButton" id="fcUserDataPath">
+                                                    <property name="MemberName" />
+                                                    <property name="Title" translatable="yes">Set the path to use as the \"User Data Path\"</property>
+                                                    <property name="Action">SelectFolder</property>
+                                                    <signal name="ExposeEvent" handler="OnFcUserDataPathExposeEvent" />
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="TopAttach">4</property>
+                                                    <property name="BottomAttach">5</property>
+                                                    <property name="LeftAttach">1</property>
+                                                    <property name="RightAttach">2</property>
+                                                    <property name="AutoSize">False</property>
+                                                    <property name="XOptions">Expand, Shrink, Fill</property>
+                                                    <property name="YOptions">0</property>
+                                                    <property name="XExpand">True</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">True</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">False</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <widget class="Gtk.Entry" id="txtBugTrackingURL">
+                                                    <property name="MemberName" />
+                                                    <property name="CanFocus">True</property>
+                                                    <property name="Text" translatable="yes">http://mono-project.com/Main_Page</property>
+                                                    <property name="IsEditable">True</property>
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="TopAttach">2</property>
+                                                    <property name="BottomAttach">3</property>
+                                                    <property name="LeftAttach">1</property>
+                                                    <property name="RightAttach">2</property>
+                                                    <property name="AutoSize">False</property>
+                                                    <property name="XOptions">Expand, Shrink, Fill</property>
+                                                    <property name="YOptions">0</property>
+                                                    <property name="XExpand">True</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">True</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">False</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <widget class="Gtk.Entry" id="txtNewTicketURL">
+                                                    <property name="MemberName" />
+                                                    <property name="CanFocus">True</property>
+                                                    <property name="Text" translatable="yes">http://monodevelop.com/</property>
+                                                    <property name="IsEditable">True</property>
+                                                  </widget>
+                                                  <packing>
+                                                    <property name="TopAttach">3</property>
+                                                    <property name="BottomAttach">4</property>
+                                                    <property name="LeftAttach">1</property>
+                                                    <property name="RightAttach">2</property>
+                                                    <property name="AutoSize">False</property>
+                                                    <property name="XOptions">Expand, Shrink, Fill</property>
+                                                    <property name="YOptions">0</property>
+                                                    <property name="XExpand">True</property>
+                                                    <property name="XFill">True</property>
+                                                    <property name="XShrink">True</property>
+                                                    <property name="YExpand">False</property>
+                                                    <property name="YFill">False</property>
+                                                    <property name="YShrink">False</property>
+                                                  </packing>
+                                                </child>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                        </child>
+                                        <child>
+                                          <widget class="Gtk.Label" id="GtkLabel6">
+                                            <property name="MemberName" />
+                                          </widget>
+                                          <packing>
+                                            <property name="type">label_item</property>
+                                          </packing>
+                                        </child>
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                </child>
+                                <child>
+                                  <widget class="Gtk.Label" id="GtkLabel7">
+                                    <property name="MemberName" />
+                                    <property name="Xpad">5</property>
+                                    <property name="LabelProp" translatable="yes">&lt;b&gt;Error Tools Setup&lt;/b&gt;</property>
+                                    <property name="UseMarkup">True</property>
+                                    <property name="UseUnderline">True</property>
+                                    <property name="SingleLineMode">True</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="type">label_item</property>
+                                  </packing>
+                                </child>
+                              </widget>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">0</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Alignment" id="alignment5">
+                            <property name="MemberName" />
+                            <property name="LeftPadding">8</property>
+                            <property name="TopPadding">8</property>
+                            <property name="RightPadding">8</property>
+                            <property name="BottomPadding">4</property>
+                            <child>
+                              <widget class="Gtk.Table" id="tblErrorTools">
+                                <property name="MemberName" />
+                                <property name="NRows">3</property>
+                                <property name="NColumns">4</property>
+                                <property name="RowSpacing">6</property>
+                                <property name="ColumnSpacing">6</property>
+                                <child>
+                                  <placeholder />
+                                </child>
+                                <child>
+                                  <placeholder />
+                                </child>
+                                <child>
+                                  <placeholder />
+                                </child>
+                                <child>
+                                  <placeholder />
+                                </child>
+                                <child>
+                                  <placeholder />
+                                </child>
+                                <child>
+                                  <placeholder />
+                                </child>
+                                <child>
+                                  <widget class="Gtk.Alignment" id="alignment13">
+                                    <property name="MemberName" />
+                                    <child>
+                                      <widget class="Gtk.Button" id="btnErrorLogDisplay">
+                                        <property name="MemberName" />
+                                        <property name="CanFocus">True</property>
+                                        <property name="Type">TextOnly</property>
+                                        <property name="Label" translatable="yes">Display Log Dialog...</property>
+                                        <property name="UseUnderline">True</property>
+                                        <signal name="Clicked" handler="OnBtnErrorLogDisplayClicked" />
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="TopAttach">1</property>
+                                    <property name="BottomAttach">2</property>
+                                    <property name="LeftAttach">1</property>
+                                    <property name="RightAttach">2</property>
+                                    <property name="AutoSize">True</property>
+                                    <property name="XOptions">Fill</property>
+                                    <property name="YOptions">Fill</property>
+                                    <property name="XExpand">False</property>
+                                    <property name="XFill">True</property>
+                                    <property name="XShrink">False</property>
+                                    <property name="YExpand">False</property>
+                                    <property name="YFill">True</property>
+                                    <property name="YShrink">False</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="Gtk.Alignment" id="alignment6">
+                                    <property name="MemberName" />
+                                    <property name="Xscale">0.01</property>
+                                    <property name="Xalign">0.98</property>
+                                    <child>
+                                      <widget class="Gtk.Label" id="lblDisplayErrorMessage">
+                                        <property name="MemberName" />
+                                        <property name="LabelProp" translatable="yes">Display Error Message:</property>
+                                        <property name="SingleLineMode">True</property>
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="AutoSize">True</property>
+                                    <property name="XOptions">Fill</property>
+                                    <property name="YOptions">Fill</property>
+                                    <property name="XExpand">False</property>
+                                    <property name="XFill">True</property>
+                                    <property name="XShrink">False</property>
+                                    <property name="YExpand">False</property>
+                                    <property name="YFill">True</property>
+                                    <property name="YShrink">False</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="Gtk.Alignment" id="alignment7">
+                                    <property name="MemberName" />
+                                    <child>
+                                      <widget class="Gtk.Button" id="btnErrorDialogDisplay">
+                                        <property name="MemberName" />
+                                        <property name="CanFocus">True</property>
+                                        <property name="Type">TextOnly</property>
+                                        <property name="Label" translatable="yes">Display Error Dialog...</property>
+                                        <property name="UseUnderline">True</property>
+                                        <signal name="Clicked" handler="OnBtnErrorDialogDisplayClicked" />
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="LeftAttach">1</property>
+                                    <property name="RightAttach">2</property>
+                                    <property name="AutoSize">True</property>
+                                    <property name="XOptions">Fill</property>
+                                    <property name="YOptions">Fill</property>
+                                    <property name="XExpand">False</property>
+                                    <property name="XFill">True</property>
+                                    <property name="XShrink">False</property>
+                                    <property name="YExpand">False</property>
+                                    <property name="YFill">True</property>
+                                    <property name="YShrink">False</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="Gtk.Alignment" id="alignment8">
+                                    <property name="MemberName" />
+                                    <property name="Xscale">0.01</property>
+                                    <property name="Xalign">0.98</property>
+                                    <child>
+                                      <widget class="Gtk.Label" id="lblDisplayErrorLog">
+                                        <property name="MemberName" />
+                                        <property name="LabelProp" translatable="yes">Display Error Log:</property>
+                                        <property name="SingleLineMode">True</property>
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="TopAttach">1</property>
+                                    <property name="BottomAttach">2</property>
+                                    <property name="AutoSize">True</property>
+                                    <property name="XOptions">Fill</property>
+                                    <property name="YOptions">Fill</property>
+                                    <property name="XExpand">False</property>
+                                    <property name="XFill">True</property>
+                                    <property name="XShrink">False</property>
+                                    <property name="YExpand">False</property>
+                                    <property name="YFill">True</property>
+                                    <property name="YShrink">False</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="Gtk.Entry" id="txtErrorMessage">
+                                    <property name="MemberName" />
+                                    <property name="CanFocus">True</property>
+                                    <property name="Text" translatable="yes">This is a test error.</property>
+                                    <property name="IsEditable">True</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="LeftAttach">2</property>
+                                    <property name="RightAttach">4</property>
+                                    <property name="AutoSize">True</property>
+                                    <property name="YOptions">Fill</property>
+                                    <property name="XExpand">True</property>
+                                    <property name="XFill">True</property>
+                                    <property name="XShrink">False</property>
+                                    <property name="YExpand">False</property>
+                                    <property name="YFill">True</property>
+                                    <property name="YShrink">False</property>
+                                  </packing>
+                                </child>
+                              </widget>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
+                          </packing>
+                        </child>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="lblErrorTools">
+                        <property name="MemberName" />
+                        <property name="Xpad">5</property>
+                        <property name="LabelProp" translatable="yes">&lt;b&gt;Error Tools&lt;/b&gt;</property>
+                        <property name="UseMarkup">True</property>
+                        <property name="SingleLineMode">True</property>
+                      </widget>
+                      <packing>
+                        <property name="type">tab</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label2">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">page2</property>
+                      </widget>
+                      <packing>
+                        <property name="type">tab</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label3">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">page3</property>
+                      </widget>
+                      <packing>
+                        <property name="type">tab</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label4">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">page4</property>
+                      </widget>
+                      <packing>
+                        <property name="type">tab</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Alignment" id="alignment10">
+                        <property name="MemberName" />
+                        <property name="LeftPadding">8</property>
+                        <property name="TopPadding">8</property>
+                        <child>
+                          <placeholder />
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label5">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">page5</property>
+                      </widget>
+                      <packing>
+                        <property name="type">tab</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment4">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.Statusbar" id="sbrMain">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+        </child>
+      </widget>
+    </child>
+  </widget>
+</stetic-interface>
