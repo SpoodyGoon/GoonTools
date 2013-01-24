@@ -352,9 +352,6 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder />
-                </child>
-                <child>
                   <widget class="Gtk.Alignment" id="alignment7">
                     <property name="MemberName" />
                     <property name="LeftPadding">20</property>
@@ -375,14 +372,7 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="libMonoTools.UI.Custom.URLButton" id="urlbutton1">
-                            <property name="MemberName" />
-                            <property name="Text">Submit Issue Ticket</property>
-                          </widget>
-                          <packing>
-                            <property name="Position">1</property>
-                            <property name="AutoSize">True</property>
-                          </packing>
+                          <placeholder />
                         </child>
                         <child>
                           <placeholder />
@@ -391,7 +381,7 @@
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">5</property>
+                    <property name="Position">4</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
