@@ -360,22 +360,34 @@
                         <property name="MemberName" />
                         <property name="Spacing">6</property>
                         <child>
-                          <widget class="Gtk.Label" id="label2">
+                          <widget class="Gtk.Alignment" id="alignment8">
                             <property name="MemberName" />
-                            <property name="LabelProp" translatable="yes">label1</property>
+                            <child>
+                              <widget class="libMonoTools.UI.Custom.URLButton" id="ubnBugTracking">
+                                <property name="MemberName" />
+                                <property name="Text">Go To Bug Tracking Site</property>
+                              </widget>
+                            </child>
                           </widget>
                           <packing>
                             <property name="Position">0</property>
                             <property name="AutoSize">True</property>
-                            <property name="Expand">False</property>
-                            <property name="Fill">False</property>
                           </packing>
                         </child>
                         <child>
-                          <placeholder />
-                        </child>
-                        <child>
-                          <placeholder />
+                          <widget class="Gtk.Alignment" id="alignment9">
+                            <property name="MemberName" />
+                            <child>
+                              <widget class="libMonoTools.UI.Custom.URLButton" id="ubnBugSubmit">
+                                <property name="MemberName" />
+                                <property name="Text">Submit Bug Ticket</property>
+                              </widget>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
+                          </packing>
                         </child>
                       </widget>
                     </child>

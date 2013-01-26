@@ -35,6 +35,7 @@ namespace libMonoTools.ErrorManager
             txtErrorDetails.Buffer.Text = ErrorMessage;
             this.ShowAll();
         }
+
         internal dlgErrorMessage(Gtk.Window ParentWin, System.Exception ex)
         {
             this.Build();
@@ -46,6 +47,7 @@ namespace libMonoTools.ErrorManager
             txtErrorDetails.Buffer.Text = ex.ToString();
             this.ShowAll();
         }
+
 
         protected void OnBtnCloseClicked (object sender, EventArgs e)
         {

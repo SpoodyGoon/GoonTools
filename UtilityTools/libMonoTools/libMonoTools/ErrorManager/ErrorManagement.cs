@@ -8,7 +8,12 @@ namespace libMonoTools.ErrorManager
 		protected string NewTicketURL = "";
         protected string ErrorLogPath = "";
 
-        public abstract void Initalize();
+        public virtual void Initalize()
+        {
+            ErrorSettings.BugReportSiteURL = BugTrackingURL;
+            ErrorSettings.BugSubmitUrl = NewTicketURL;
+            ErrorSettings.ErrorLogFile = ErrorLogPath;
+        }
 
         #region Error Handling Methods
         
