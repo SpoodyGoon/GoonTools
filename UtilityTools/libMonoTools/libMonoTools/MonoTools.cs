@@ -29,42 +29,13 @@ namespace libMonoTools
         }
     }
 
-    public static class ErrorTools
+    internal static class ErrorSettings
     {   
         #region Error Handling
         
-        public static void HandleError(System.Exception ex)
-        {
-            HandleError(null, ex);          
-        }
-        
-        public static void HandleError(Gtk.Window ParentWindow, System.Exception ex)
-        {
-            ErrorManager.dlgErrorMessage dlg = new ErrorManager.dlgErrorMessage(ParentWindow, ex.ToString());
-            dlg.Run();
-            dlg.Destroy();
-        }
-        
-        public static void HandleError(Gtk.Window ParentWindow, System.Exception ex, params ErrorManager.ErrorManagerFlags[] ErrorFlags)
-        {
-            ErrorManager.dlgErrorMessage dlg = new ErrorManager.dlgErrorMessage(ParentWindow, ex.ToString());
-            dlg.Run();
-            dlg.Destroy();
-        }
-        
-        public static void ShowErrorLogViewer()
-        {
-            ShowErrorLogViewer(null);
-        }
-        
-        public static void ShowErrorLogViewer(Gtk.Window ParentWindow)
-        {
-            ErrorManager.dlgErrorLogViewer dlg = new ErrorManager.dlgErrorLogViewer();
-            if(ParentWindow != null)
-                dlg.ParentWindow = ParentWindow.GdkWindow;
-            dlg.Run();
-            dlg.Destroy();
-        }
+        internal static string BugReportSiteURL = "";
+        internal static string BugSubmitUrl ="";
+        internal static string ErrorLogFile = "";
         
         #endregion Error Handling
     }
