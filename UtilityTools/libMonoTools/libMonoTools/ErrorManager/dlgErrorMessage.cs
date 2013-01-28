@@ -30,9 +30,10 @@ namespace libMonoTools.ErrorManager
             
             if(ParentWin != null)
                 this.ParentWindow = ParentWin.GdkWindow;
-            
-            txtErrorMessage.Buffer.Text = ErrorMessage;
+
+            lblErrorMessage.Text = ErrorMessage;
             txtErrorDetails.Buffer.Text = ErrorMessage;
+            this.QueueResize();
             this.ShowAll();
         }
 
@@ -43,8 +44,9 @@ namespace libMonoTools.ErrorManager
             if(ParentWin != null)
                 this.ParentWindow = ParentWin.GdkWindow;
 
-            txtErrorMessage.Buffer.Text = ex.Message;
+            lblErrorMessage.Text = ex.Message;
             txtErrorDetails.Buffer.Text = ex.ToString();
+            this.QueueResize();
             this.ShowAll();
         }
 
@@ -52,6 +54,12 @@ namespace libMonoTools.ErrorManager
         protected void OnBtnCloseClicked (object sender, EventArgs e)
         {
             this.Destroy();
+        }
+
+        protected void OnExpDetailsActivated(object sender, EventArgs e)
+        {
+            this.QueueResize();
+            this.ShowAll();
         }
     }
 }
