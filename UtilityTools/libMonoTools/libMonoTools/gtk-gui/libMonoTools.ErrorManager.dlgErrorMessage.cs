@@ -20,9 +20,8 @@ namespace libMonoTools.ErrorManager
 		private global::Gtk.Alignment alignment7;
 		private global::Gtk.HBox hbox1;
 		private global::Gtk.Alignment alignment8;
-		private global::libMonoTools.UI.Custom.URLButton ubnBugTracking;
+		private global::libMonoTools.UI.Custom.URLButton ubnBugTracker;
 		private global::Gtk.Alignment alignment9;
-		private global::libMonoTools.UI.Custom.URLButton ubnBugSubmit;
 		private global::Gtk.Button btnClose;
 		
 		protected virtual void Build ()
@@ -144,39 +143,45 @@ namespace libMonoTools.ErrorManager
 			this.alignment8 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment8.Name = "alignment8";
 			// Container child alignment8.Gtk.Container+ContainerChild
-			this.ubnBugTracking = new global::libMonoTools.UI.Custom.URLButton ();
-			this.ubnBugTracking.Name = "ubnBugTracking";
-			this.ubnBugTracking.Text = "Go To Bug Tracking Site";
-			this.alignment8.Add (this.ubnBugTracking);
+			this.ubnBugTracker = new global::libMonoTools.UI.Custom.URLButton ();
+			this.ubnBugTracker.Name = "ubnBugTracker";
+			this.ubnBugTracker.LabelProp = global::Mono.Unix.Catalog.GetString ("Bug Tracking Site");
+			this.ubnBugTracker.DisplayText = "Bug Tracking Sites";
+			this.ubnBugTracker.FontColor = "#CC0000";
+			this.ubnBugTracker.Underlined = true;
+			this.ubnBugTracker.Bold = false;
+			this.ubnBugTracker.Italic = false;
+			this.ubnBugTracker.HoverFontColor = "#003399";
+			this.ubnBugTracker.HoverUnderlined = true;
+			this.ubnBugTracker.HoverBold = false;
+			this.ubnBugTracker.HoverItalic = false;
+			this.alignment8.Add (this.ubnBugTracker);
 			this.hbox1.Add (this.alignment8);
 			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment8]));
 			w14.Position = 0;
+			w14.Expand = false;
+			w14.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment9.Name = "alignment9";
-			// Container child alignment9.Gtk.Container+ContainerChild
-			this.ubnBugSubmit = new global::libMonoTools.UI.Custom.URLButton ();
-			this.ubnBugSubmit.Name = "ubnBugSubmit";
-			this.ubnBugSubmit.Text = "Submit Bug Ticket";
-			this.alignment9.Add (this.ubnBugSubmit);
 			this.hbox1.Add (this.alignment9);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment9]));
-			w16.Position = 1;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment9]));
+			w15.Position = 1;
 			this.alignment7.Add (this.hbox1);
 			this.vbox2.Add (this.alignment7);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
-			w18.Position = 4;
-			w18.Expand = false;
-			w18.Fill = false;
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
+			w17.Position = 4;
+			w17.Expand = false;
+			w17.Fill = false;
 			w1.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
-			w19.Position = 0;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
+			w18.Position = 0;
 			// Internal child libMonoTools.ErrorManager.dlgErrorMessage.ActionArea
-			global::Gtk.HButtonBox w20 = this.ActionArea;
-			w20.Name = "dialog1_ActionArea";
-			w20.Spacing = 10;
-			w20.BorderWidth = ((uint)(5));
-			w20.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
+			global::Gtk.HButtonBox w19 = this.ActionArea;
+			w19.Name = "dialog1_ActionArea";
+			w19.Spacing = 10;
+			w19.BorderWidth = ((uint)(5));
+			w19.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.btnClose = new global::Gtk.Button ();
 			this.btnClose.CanDefault = true;
@@ -186,14 +191,14 @@ namespace libMonoTools.ErrorManager
 			this.btnClose.UseUnderline = true;
 			this.btnClose.Label = "gtk-close";
 			this.AddActionWidget (this.btnClose, -7);
-			global::Gtk.ButtonBox.ButtonBoxChild w21 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w20 [this.btnClose]));
-			w21.Expand = false;
-			w21.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w20 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w19 [this.btnClose]));
+			w20.Expand = false;
+			w20.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 648;
-			this.DefaultHeight = 235;
+			this.DefaultHeight = 278;
 			this.Show ();
 			this.expDetails.Activated += new global::System.EventHandler (this.OnExpDetailsActivated);
 			this.btnClose.Clicked += new global::System.EventHandler (this.OnBtnCloseClicked);

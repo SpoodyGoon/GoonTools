@@ -40,7 +40,6 @@ namespace libMonoTools.ErrorManager
         internal dlgErrorMessage(Gtk.Window ParentWin, System.Exception ex)
         {
             this.Build();
-            
             if(ParentWin != null)
                 this.ParentWindow = ParentWin.GdkWindow;
 
@@ -49,7 +48,6 @@ namespace libMonoTools.ErrorManager
             this.QueueResize();
             this.ShowAll();
         }
-
 
         protected void OnBtnCloseClicked (object sender, EventArgs e)
         {

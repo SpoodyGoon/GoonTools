@@ -3,56 +3,124 @@ using Gtk;
 
 namespace libMonoTools.UI.Custom
 {
-    [System.ComponentModel.ToolboxItem(true)]
     public abstract class LabelButton : Gtk.Label
     {
-        protected string _Text = "LinkButton";
-        private Gtk.Label _DisplayLabel = new Gtk.Label("URLButton");
-        protected Gdk.Color _NormalColor = new Gdk.Color(222, 111,111);
-        private string _NormalColorHex = "#AD0000";
-        private Gdk.Color _HoverColor = new Gdk.Color(222, 111,111);
-        private string _HoverColorHex = "#AD0000";
+        protected string _DisplayText = "URLButton";
+        private string _NormalColorHex = "#003399";
+        private string _HoverColorHex = "#CC0000";
         private bool _Underlined = true;
         private bool _Bold = false;
-        public string DisplayText
-        {
-            set
-            {
-                this.Text = value;
+        private bool _Italic = false;
+        private bool _HoverItalic = false;
+        private bool _HoverUnderlined = true;
+        private bool _HoverBold = false;
+        protected string FontMarkupText = "Test Markup";
 
-            }
+        public LabelButton()
+        {
+            Build();
         }
 
-        [System.ComponentModel.DefaultValue("#AD0000")]
-        public string FontColor
-        {
-            set
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Display Properties")]
+        [System.ComponentModel.DefaultValue("URLButton")]
+        [System.ComponentModel.Description("The text that is displayed.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual string DisplayText {
+            set 
             {
-                _NormalColorHex = value;
-                _NormalColor = MonoTools.ColorConvert.ColorFromHex(_NormalColorHex);
+                _DisplayText = value;
+                base.LabelProp = _DisplayText;
+                base.QueueDraw();
+                this.QueueDraw();
             }
+            get{ return _DisplayText;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue("#003399")]
+        [System.ComponentModel.Description("A hex value for the fonts color during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual string FontColor {
+            set {
+                _NormalColorHex = value;
+            }
+            get{return _NormalColorHex;}
         }
         
-        [System.ComponentModel.DefaultValue("#AD0000")]
-        public string HoverFontColor
-        {
-            set
-            {
-                _NormalColorHex = value;
-                _NormalColor = MonoTools.ColorConvert.ColorFromHex(_NormalColorHex);
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue(true)]
+        [System.ComponentModel.Description("Is the font underlined during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool Underlined {
+            set{ _Underlined = value;}
+            get{return _Underlined;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("Is the font bold during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool Bold {
+            set{ _Bold = value;}
+            get{return _Bold;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("Is the font italic during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool Italic {
+            set{ _Italic = value;}
+            get{return _Italic;}
+        }
+        
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue("#CC0000")]
+        [System.ComponentModel.Description("A hex value for the fonts color during hover display.")]
+        [System.ComponentModel.Browsable(true)]
+        public string HoverFontColor {
+            set {
+                _HoverColorHex = value;
             }
+            get{return _HoverColorHex;}
         }
-
-        public bool Underlined
-        {
-            set{_Underlined = value;}
+        
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue(true)]
+        [System.ComponentModel.Description("Is the font underlined during hover.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool HoverUnderlined {
+            set{ _HoverUnderlined = value;}
+            get{return _HoverUnderlined;}
         }
-
-        public bool Bold 
-        {
-            set{_Bold = value;}
+        
+        
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("Is the font bold during hover display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool HoverBold {
+            set{ _HoverBold = value;}
+            get{return _HoverBold;}
         }
-
+        
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("Is the font italic during hover display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool HoverItalic {
+            set{ _HoverItalic = value;}
+            get{return _HoverItalic;}
+        }
         
         private void Build ()
         {
@@ -67,31 +135,11 @@ namespace libMonoTools.UI.Custom
         
         private void SetLabel ()
         {
-            _DisplayLabel.Text = _Text;
-            _DisplayLabel.QueueResize();
+            //_DisplayLabel.Text = _Text;
+            //_DisplayLabel.QueueResize();
             this.QueueResize();
             this.QueueDraw();
             this.ShowAll();
-        }
-
-        protected override void OnShown ()
-        {
-            base.OnShown();
-        }
-
-        protected override bool OnExposeEvent (Gdk.EventExpose evnt)
-        {
-            return base.OnExposeEvent(evnt);
-        }
-
-        protected override bool OnEnterNotifyEvent (Gdk.EventCrossing evnt)
-        {
-            return base.OnEnterNotifyEvent(evnt);
-        }
-        
-        protected override bool OnLeaveNotifyEvent (Gdk.EventCrossing evnt)
-        {
-            return base.OnLeaveNotifyEvent(evnt);
         }
     }
 }
