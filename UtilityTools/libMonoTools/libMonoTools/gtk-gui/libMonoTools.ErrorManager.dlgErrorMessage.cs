@@ -144,7 +144,9 @@ namespace libMonoTools.ErrorManager
 			this.alignment8 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment8.Name = "alignment8";
 			// Container child alignment8.Gtk.Container+ContainerChild
-			this.ubnBugTracking = null;
+			this.ubnBugTracking = new global::libMonoTools.UI.Custom.URLButton ();
+			this.ubnBugTracking.Name = "ubnBugTracking";
+			this.ubnBugTracking.Text = "Go To Bug Tracking Site";
 			this.alignment8.Add (this.ubnBugTracking);
 			this.hbox1.Add (this.alignment8);
 			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment8]));
@@ -153,7 +155,9 @@ namespace libMonoTools.ErrorManager
 			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment9.Name = "alignment9";
 			// Container child alignment9.Gtk.Container+ContainerChild
-			this.ubnBugSubmit = null;
+			this.ubnBugSubmit = new global::libMonoTools.UI.Custom.URLButton ();
+			this.ubnBugSubmit.Name = "ubnBugSubmit";
+			this.ubnBugSubmit.Text = "Submit Bug Ticket";
 			this.alignment9.Add (this.ubnBugSubmit);
 			this.hbox1.Add (this.alignment9);
 			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment9]));
