@@ -204,7 +204,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="libMonoTools.ErrorManager.dlgErrorMessage" design-size="648 235">
+  <widget class="Gtk.Dialog" id="libMonoTools.ErrorManager.dlgErrorMessage" design-size="648 278">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
     <property name="Title" translatable="yes">An Error Has Occured</property>
@@ -354,25 +354,33 @@
                       <widget class="Gtk.Alignment" id="alignment8">
                         <property name="MemberName" />
                         <child>
-                          <widget class="libMonoTools.UI.Custom.URLButton" id="ubnBugTracking">
+                          <widget class="libMonoTools.UI.Custom.URLButton" id="ubnBugTracker">
                             <property name="MemberName" />
-                            <property name="Text">Go To Bug Tracking Site</property>
+                            <property name="LabelProp" translatable="yes">Bug Tracking Site</property>
+                            <property name="DisplayText">Bug Tracking Sites</property>
+                            <property name="FontColor">#CC0000</property>
+                            <property name="Underlined">True</property>
+                            <property name="Bold">False</property>
+                            <property name="Italic">False</property>
+                            <property name="HoverFontColor">#003399</property>
+                            <property name="HoverUnderlined">True</property>
+                            <property name="HoverBold">False</property>
+                            <property name="HoverItalic">False</property>
                           </widget>
                         </child>
                       </widget>
                       <packing>
                         <property name="Position">0</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="Gtk.Alignment" id="alignment9">
                         <property name="MemberName" />
                         <child>
-                          <widget class="libMonoTools.UI.Custom.URLButton" id="ubnBugSubmit">
-                            <property name="MemberName" />
-                            <property name="Text">Submit Bug Ticket</property>
-                          </widget>
+                          <placeholder />
                         </child>
                       </widget>
                       <packing>
