@@ -1,5 +1,5 @@
 //
-//  MonoTools.cs
+//  ColorConverter.cs
 //
 //  Author:
 //       Andy York <andy@brdstudio.net>
@@ -19,27 +19,27 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-namespace libMonoTools
+namespace libMonoTools.Tools
 {
-    public static class MonoTools
-    {
-        public static libMonoTools.Tools.GtkHelper GtkTools = new libMonoTools.Tools.GtkHelper();
-        public static libMonoTools.Tools.ColorConverter ColorConvert = new libMonoTools.Tools.ColorConverter();
-        public static void Load()
-        {
-        }
-    }
-
-    internal static class ErrorSettings
+    public class ColorConverter
     {   
-        #region Error Handling
-        
-        internal static string BugReportSiteURL = "";
-        internal static string BugSubmitUrl ="";
-        internal static string ErrorLogFile = "";
-        
-        #endregion Error Handling
+        public Gdk.Color ColorFromHex (string HexString)
+        {
+            Gdk.Color c = new Gdk.Color();
+            if(Gdk.Color.Parse(HexString, ref c))
+            {
+                return c;
+            }
+            else
+            {
+                throw new System.Exception("Unable to convert the provided Hex string to a Gdk.Color." + System.Environment.NewLine + "Provided string (HexString): " + HexString);
+            }
+        }
+
+        public string HexFromColor(Gdk.Color color)
+        {
+            return System.String.Format ("#{0:x2}{1:x2}{2:x2}", (byte)(color.Red >> 8), (byte)(color.Green >> 8),(byte)(color.Blue >> 8));
+        }
     }
 }
 

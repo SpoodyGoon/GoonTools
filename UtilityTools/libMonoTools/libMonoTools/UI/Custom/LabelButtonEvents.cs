@@ -1,5 +1,5 @@
 //
-//  MonoTools.cs
+//  LabelButtonEvents.cs
 //
 //  Author:
 //       Andy York <andy@brdstudio.net>
@@ -18,28 +18,40 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 
-
-namespace libMonoTools
+namespace libMonoTools.UI.Custom
 {
-    public static class MonoTools
+    public delegate void TextChanged(object sender,TextChangedEventArgs args);
+    public class TextChangedEventArgs : EventArgs
     {
-        public static libMonoTools.Tools.GtkHelper GtkTools = new libMonoTools.Tools.GtkHelper();
-        public static libMonoTools.Tools.ColorConverter ColorConvert = new libMonoTools.Tools.ColorConverter();
-        public static void Load()
+        public TextChangedEventArgs ()
         {
         }
     }
 
-    internal static class ErrorSettings
-    {   
-        #region Error Handling
-        
-        internal static string BugReportSiteURL = "";
-        internal static string BugSubmitUrl ="";
-        internal static string ErrorLogFile = "";
-        
-        #endregion Error Handling
+    public delegate void Click(object sender,ClickEventArgs args);
+    public class ClickEventArgs : EventArgs
+    {
+        public ClickEventArgs ()
+        {
+        }
+    }
+
+    public delegate void MouseOver(object sender,MouseOverEventArgs args);
+    public class MouseOverEventArgs : EventArgs
+    {
+        public MouseOverEventArgs ()
+        {
+        }
+    }
+
+    public delegate void MouseOut(object sender,MouseOutEventArgs args);
+    public class MouseOutEventArgs : EventArgs
+    {
+        public MouseOutEventArgs ()
+        {
+        }
     }
 }
 

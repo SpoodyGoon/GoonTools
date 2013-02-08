@@ -1,5 +1,5 @@
 //
-//  MonoTools.cs
+//  BaseWidget.cs
 //
 //  Author:
 //       Andy York <andy@brdstudio.net>
@@ -18,28 +18,17 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+using System;
 
 namespace libMonoTools
 {
-    public static class MonoTools
+    [System.ComponentModel.ToolboxItem(true)]
+    public partial class BaseWidget : Gtk.Bin
     {
-        public static libMonoTools.Tools.GtkHelper GtkTools = new libMonoTools.Tools.GtkHelper();
-        public static libMonoTools.Tools.ColorConverter ColorConvert = new libMonoTools.Tools.ColorConverter();
-        public static void Load()
+        public BaseWidget()
         {
+            this.Build();
         }
-    }
-
-    internal static class ErrorSettings
-    {   
-        #region Error Handling
-        
-        internal static string BugReportSiteURL = "";
-        internal static string BugSubmitUrl ="";
-        internal static string ErrorLogFile = "";
-        
-        #endregion Error Handling
     }
 }
 

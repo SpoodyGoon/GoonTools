@@ -4,42 +4,65 @@ using Gtk;
 namespace libMonoTools.UI.Custom
 {
     [System.ComponentModel.ToolboxItem(true)]
-    public class LabelButton : Gtk.EventBox
+    public abstract class LabelButton : Gtk.Label
     {
-        private string _Text = "LinkButton";
+        protected string _Text = "LinkButton";
         private Gtk.Label _DisplayLabel = new Gtk.Label("URLButton");
-        public LabelButton() : base()
+        protected Gdk.Color _NormalColor = new Gdk.Color(222, 111,111);
+        private string _NormalColorHex = "#AD0000";
+        private Gdk.Color _HoverColor = new Gdk.Color(222, 111,111);
+        private string _HoverColorHex = "#AD0000";
+        private bool _Underlined = true;
+        private bool _Bold = false;
+        public string DisplayText
         {
-            Build();
-        }
+            set
+            {
+                this.Text = value;
 
-        public LabelButton(string text) 
-        {
-            _Text = text;
-            Build();
-        }
-
-        public string Text {
-            get {
-                return _Text;
             }
-            set { 
-                _Text = value;
-                SetLabel();
+        }
+
+        [System.ComponentModel.DefaultValue("#AD0000")]
+        public string FontColor
+        {
+            set
+            {
+                _NormalColorHex = value;
+                _NormalColor = MonoTools.ColorConvert.ColorFromHex(_NormalColorHex);
             }
         }
         
+        [System.ComponentModel.DefaultValue("#AD0000")]
+        public string HoverFontColor
+        {
+            set
+            {
+                _NormalColorHex = value;
+                _NormalColor = MonoTools.ColorConvert.ColorFromHex(_NormalColorHex);
+            }
+        }
+
+        public bool Underlined
+        {
+            set{_Underlined = value;}
+        }
+
+        public bool Bold 
+        {
+            set{_Bold = value;}
+        }
+
+        
         private void Build ()
         {
-            this.AboveChild = true;
-            this.VisibleWindow = true;
             this.AppPaintable = true;
-            this.CanFocus = true;
-            this.Sensitive = true;
-            _DisplayLabel.SingleLineMode = true;
-            _DisplayLabel.Xpad = 5;
-            this.Add(_DisplayLabel);
-            SetLabel();
+//            this.CanFocus = true;
+//            this.Sensitive = true;
+//            _DisplayLabel.SingleLineMode = true;
+//            _DisplayLabel.Xpad = 5;
+//
+//            SetLabel();
         }
         
         private void SetLabel ()
@@ -50,7 +73,17 @@ namespace libMonoTools.UI.Custom
             this.QueueDraw();
             this.ShowAll();
         }
-        
+
+        protected override void OnShown ()
+        {
+            base.OnShown();
+        }
+
+        protected override bool OnExposeEvent (Gdk.EventExpose evnt)
+        {
+            return base.OnExposeEvent(evnt);
+        }
+
         protected override bool OnEnterNotifyEvent (Gdk.EventCrossing evnt)
         {
             return base.OnEnterNotifyEvent(evnt);
@@ -60,8 +93,6 @@ namespace libMonoTools.UI.Custom
         {
             return base.OnLeaveNotifyEvent(evnt);
         }
-
-
     }
 }
 
