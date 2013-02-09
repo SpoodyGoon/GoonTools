@@ -357,14 +357,20 @@
                           <widget class="libMonoTools.UI.Custom.URLButton" id="ubnBugTracker">
                             <property name="MemberName" />
                             <property name="LabelProp" translatable="yes">Bug Tracking Site</property>
-                            <property name="DisplayText">Bug Tracking Sites</property>
+                            <property name="DisplayText">Bug Tracking Site</property>
+                            <property name="URL">www.google.com</property>
+                            <property name="DisplayText">Bug Tracking Site</property>
+                            <property name="FontName">Arial</property>
                             <property name="FontColor">#CC0000</property>
-                            <property name="Underlined">True</property>
+                            <property name="Size">10</property>
                             <property name="Bold">False</property>
+                            <property name="Underlined">True</property>
                             <property name="Italic">False</property>
+                            <property name="HoverFontName">Arial</property>
                             <property name="HoverFontColor">#003399</property>
-                            <property name="HoverUnderlined">True</property>
+                            <property name="HoverSize">10</property>
                             <property name="HoverBold">False</property>
+                            <property name="HoverUnderlined">True</property>
                             <property name="HoverItalic">False</property>
                           </widget>
                         </child>
