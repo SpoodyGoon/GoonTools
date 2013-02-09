@@ -27,12 +27,12 @@ namespace libMonoTools.ErrorManager
         internal dlgErrorMessage(Gtk.Window ParentWin, string ErrorMessage)
         {
             this.Build();
-            
             if(ParentWin != null)
                 this.ParentWindow = ParentWin.GdkWindow;
 
             lblErrorMessage.Text = ErrorMessage;
             txtErrorDetails.Buffer.Text = ErrorMessage;
+            lblErrorMessage.LineWrapMode = Pango.WrapMode.Char;
             this.QueueResize();
             this.ShowAll();
         }

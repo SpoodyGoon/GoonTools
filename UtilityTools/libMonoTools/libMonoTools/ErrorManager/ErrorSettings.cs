@@ -1,5 +1,5 @@
 //
-//  MonoTools.cs
+//  ErrorSettings.cs
 //
 //  Author:
 //       Andy York <andy@brdstudio.net>
@@ -18,21 +18,31 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+using System;
 
 namespace libMonoTools
-{
-    public static class MonoTools
-    {
-        public static libMonoTools.Tools.GtkHelper GtkTools = new libMonoTools.Tools.GtkHelper();
-        public static libMonoTools.Tools.ColorConverter ColorConvert = new libMonoTools.Tools.ColorConverter();
+{   
+    public class ErrorSettings
+    {   
+        #region Error Handling
+        
+        public string BugReportSiteURL = "";
+        public string BugSubmitUrl ="";
+        public string ErrorLogFile = "";
+        
+        #endregion Error Handling
 
-//        public static void LoadErrorTools(ErrorSettings settings)
-//        {
-//            ErrorTools.Load(settings);
-//        }
+        public ErrorSettings()
+        {
+
+        }
+        
+        public ErrorSettings(string BugReportURL, string SubmitURL, string LogFile)
+        {
+            BugReportSiteURL = BugReportURL;
+            BugSubmitUrl = SubmitURL;
+            ErrorLogFile = LogFile;
+        }
     }
-
-
 }
 
