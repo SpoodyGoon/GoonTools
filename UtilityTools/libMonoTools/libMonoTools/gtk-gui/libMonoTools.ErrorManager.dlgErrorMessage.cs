@@ -21,7 +21,9 @@ namespace libMonoTools.ErrorManager
 		private global::Gtk.HBox hbox1;
 		private global::Gtk.Alignment alignment8;
 		private global::libMonoTools.UI.Custom.URLButton ubnBugTracker;
+		private global::Gtk.VSeparator vseparator1;
 		private global::Gtk.Alignment alignment9;
+		private global::libMonoTools.LinkButton lbnShowErrorLog;
 		private global::Gtk.Button btnClose;
 		
 		protected virtual void Build ()
@@ -88,6 +90,8 @@ namespace libMonoTools.ErrorManager
 			this.vbox2.Add (this.alignment4);
 			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment4]));
 			w7.Position = 2;
+			w7.Expand = false;
+			w7.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment5.Name = "alignment5";
@@ -129,8 +133,6 @@ namespace libMonoTools.ErrorManager
 			this.vbox2.Add (this.alignment5);
 			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
 			w12.Position = 3;
-			w12.Expand = false;
-			w12.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment7.Name = "alignment7";
@@ -138,7 +140,7 @@ namespace libMonoTools.ErrorManager
 			// Container child alignment7.Gtk.Container+ContainerChild
 			this.hbox1 = new global::Gtk.HBox ();
 			this.hbox1.Name = "hbox1";
-			this.hbox1.Spacing = 6;
+			this.hbox1.Spacing = 9;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.alignment8 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment8.Name = "alignment8";
@@ -146,9 +148,8 @@ namespace libMonoTools.ErrorManager
 			this.ubnBugTracker = new global::libMonoTools.UI.Custom.URLButton ();
 			this.ubnBugTracker.Name = "ubnBugTracker";
 			this.ubnBugTracker.LabelProp = global::Mono.Unix.Catalog.GetString ("Bug Tracking Site");
-			this.ubnBugTracker.DisplayText = "Bug Tracking Site";
+			this.ubnBugTracker.DisplayText = "Bug Tracking Sit";
 			this.ubnBugTracker.URL = "www.google.com";
-			this.ubnBugTracker.DisplayText = "Bug Tracking Site";
 			this.ubnBugTracker.FontName = "Arial";
 			this.ubnBugTracker.FontColor = "#CC0000";
 			this.ubnBugTracker.Size = "10";
@@ -168,26 +169,56 @@ namespace libMonoTools.ErrorManager
 			w14.Expand = false;
 			w14.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
+			this.vseparator1 = new global::Gtk.VSeparator ();
+			this.vseparator1.Name = "vseparator1";
+			this.hbox1.Add (this.vseparator1);
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vseparator1]));
+			w15.Position = 1;
+			w15.Expand = false;
+			w15.Fill = false;
+			// Container child hbox1.Gtk.Box+BoxChild
 			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment9.Name = "alignment9";
+			// Container child alignment9.Gtk.Container+ContainerChild
+			this.lbnShowErrorLog = new global::libMonoTools.LinkButton ();
+			this.lbnShowErrorLog.Name = "lbnShowErrorLog";
+			this.lbnShowErrorLog.LabelProp = global::Mono.Unix.Catalog.GetString ("Show Error Log");
+			this.lbnShowErrorLog.UseMarkup = true;
+			this.lbnShowErrorLog.DisplayText = "Show Error Log";
+			this.lbnShowErrorLog.MouseOverHand = true;
+			this.lbnShowErrorLog.FontName = "Arial";
+			this.lbnShowErrorLog.FontColor = "#CC0000";
+			this.lbnShowErrorLog.Size = "10";
+			this.lbnShowErrorLog.Bold = false;
+			this.lbnShowErrorLog.Underlined = true;
+			this.lbnShowErrorLog.Italic = false;
+			this.lbnShowErrorLog.HoverFontName = "Arial";
+			this.lbnShowErrorLog.HoverFontColor = "#003399";
+			this.lbnShowErrorLog.HoverSize = "10";
+			this.lbnShowErrorLog.HoverBold = false;
+			this.lbnShowErrorLog.HoverUnderlined = true;
+			this.lbnShowErrorLog.HoverItalic = false;
+			this.alignment9.Add (this.lbnShowErrorLog);
 			this.hbox1.Add (this.alignment9);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment9]));
-			w15.Position = 1;
-			this.alignment7.Add (this.hbox1);
-			this.vbox2.Add (this.alignment7);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
-			w17.Position = 4;
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment9]));
+			w17.Position = 2;
 			w17.Expand = false;
 			w17.Fill = false;
+			this.alignment7.Add (this.hbox1);
+			this.vbox2.Add (this.alignment7);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
+			w19.Position = 4;
+			w19.Expand = false;
+			w19.Fill = false;
 			w1.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
-			w18.Position = 0;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
+			w20.Position = 0;
 			// Internal child libMonoTools.ErrorManager.dlgErrorMessage.ActionArea
-			global::Gtk.HButtonBox w19 = this.ActionArea;
-			w19.Name = "dialog1_ActionArea";
-			w19.Spacing = 10;
-			w19.BorderWidth = ((uint)(5));
-			w19.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
+			global::Gtk.HButtonBox w21 = this.ActionArea;
+			w21.Name = "dialog1_ActionArea";
+			w21.Spacing = 10;
+			w21.BorderWidth = ((uint)(5));
+			w21.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.btnClose = new global::Gtk.Button ();
 			this.btnClose.CanDefault = true;
@@ -197,9 +228,9 @@ namespace libMonoTools.ErrorManager
 			this.btnClose.UseUnderline = true;
 			this.btnClose.Label = "gtk-close";
 			this.AddActionWidget (this.btnClose, -7);
-			global::Gtk.ButtonBox.ButtonBoxChild w20 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w19 [this.btnClose]));
-			w20.Expand = false;
-			w20.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w22 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w21 [this.btnClose]));
+			w22.Expand = false;
+			w22.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
@@ -207,6 +238,7 @@ namespace libMonoTools.ErrorManager
 			this.DefaultHeight = 278;
 			this.Show ();
 			this.expDetails.Activated += new global::System.EventHandler (this.OnExpDetailsActivated);
+			this.lbnShowErrorLog.Clicked += new global::libMonoTools.UI.Custom.Click (this.OnShowErrorLogClicked);
 			this.btnClose.Clicked += new global::System.EventHandler (this.OnBtnCloseClicked);
 		}
 	}

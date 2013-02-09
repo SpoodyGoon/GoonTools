@@ -281,7 +281,9 @@
               </widget>
               <packing>
                 <property name="Position">2</property>
-                <property name="AutoSize">False</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
             <child>
@@ -337,9 +339,7 @@
               </widget>
               <packing>
                 <property name="Position">3</property>
-                <property name="AutoSize">False</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
+                <property name="AutoSize">True</property>
               </packing>
             </child>
             <child>
@@ -349,7 +349,7 @@
                 <child>
                   <widget class="Gtk.HBox" id="hbox1">
                     <property name="MemberName" />
-                    <property name="Spacing">6</property>
+                    <property name="Spacing">9</property>
                     <child>
                       <widget class="Gtk.Alignment" id="alignment8">
                         <property name="MemberName" />
@@ -357,9 +357,8 @@
                           <widget class="libMonoTools.UI.Custom.URLButton" id="ubnBugTracker">
                             <property name="MemberName" />
                             <property name="LabelProp" translatable="yes">Bug Tracking Site</property>
-                            <property name="DisplayText">Bug Tracking Site</property>
+                            <property name="DisplayText">Bug Tracking Sit</property>
                             <property name="URL">www.google.com</property>
-                            <property name="DisplayText">Bug Tracking Site</property>
                             <property name="FontName">Arial</property>
                             <property name="FontColor">#CC0000</property>
                             <property name="Size">10</property>
@@ -383,15 +382,47 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Alignment" id="alignment9">
+                      <widget class="Gtk.VSeparator" id="vseparator1">
                         <property name="MemberName" />
-                        <child>
-                          <placeholder />
-                        </child>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Alignment" id="alignment9">
+                        <property name="MemberName" />
+                        <child>
+                          <widget class="libMonoTools.LinkButton" id="lbnShowErrorLog">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">Show Error Log</property>
+                            <property name="UseMarkup">True</property>
+                            <property name="DisplayText">Show Error Log</property>
+                            <property name="MouseOverHand">True</property>
+                            <property name="FontName">Arial</property>
+                            <property name="FontColor">#CC0000</property>
+                            <property name="Size">10</property>
+                            <property name="Bold">False</property>
+                            <property name="Underlined">True</property>
+                            <property name="Italic">False</property>
+                            <property name="HoverFontName">Arial</property>
+                            <property name="HoverFontColor">#003399</property>
+                            <property name="HoverSize">10</property>
+                            <property name="HoverBold">False</property>
+                            <property name="HoverUnderlined">True</property>
+                            <property name="HoverItalic">False</property>
+                            <signal name="Clicked" handler="OnShowErrorLogClicked" />
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                   </widget>

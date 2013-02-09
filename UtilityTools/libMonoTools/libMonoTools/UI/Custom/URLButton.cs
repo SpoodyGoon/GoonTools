@@ -2,11 +2,11 @@ using System;
 
 namespace libMonoTools.UI.Custom
 {
+    [System.ComponentModel.DefaultProperty("DisplayText")]
     [System.ComponentModel.ToolboxItem(true)]
     public class URLButton : libMonoTools.UI.Custom.LabelButton
     {
         private string _URL = null;
-
         public URLButton()
         {
             this.ShowAll();
@@ -18,18 +18,27 @@ namespace libMonoTools.UI.Custom
             _URL = url;
             this.ShowAll();
         }
-
-        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
-        [System.ComponentModel.Category("Display Properties")]
-        [System.ComponentModel.DefaultValue("URLButton")]
-        [System.ComponentModel.Description("The text displayed for the URL Button.")]
-        [System.ComponentModel.Browsable(true)]
-        public override string DisplayText {
+        
+        protected override string TextValue {
             get {
                 return base.Text;
             }
             set {
                 base.Text = value;
+            }
+        }
+        
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Display Properties")]
+        [System.ComponentModel.DefaultValue("LinkButton")]
+        [System.ComponentModel.Description("The text displayed for the Link Button.")]
+        [System.ComponentModel.Browsable(true)]
+        public string DisplayText {
+            get {
+                return this.TextValue;
+            }
+            set {
+                this.TextValue = value;
             }
         }
         
@@ -47,7 +56,6 @@ namespace libMonoTools.UI.Custom
             }
         }
 
-        [System.ComponentModel.Browsable(false)]
         protected override bool OnButtonReleaseEvent (Gdk.EventButton evnt)
         {
             if(!string.IsNullOrEmpty(_URL) && System.Uri.IsWellFormedUriString(_URL, UriKind.RelativeOrAbsolute))
@@ -59,13 +67,15 @@ namespace libMonoTools.UI.Custom
 
         protected override bool OnEnterNotifyEvent (Gdk.EventCrossing evnt)
         {
-            this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Hand2);
+            evnt.Window.Cursor = new Gdk.Cursor(Gdk.CursorType.Hand2);
+            evnt.Window.Display.Sync(); 
             return base.OnEnterNotifyEvent(evnt);
         }
 
         protected override bool OnLeaveNotifyEvent (Gdk.EventCrossing evnt)
         {
-            this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.LastCursor);
+            evnt.Window.Cursor = new Gdk.Cursor(Gdk.CursorType.LastCursor);
+            evnt.Window.Display.Sync(); 
             return base.OnLeaveNotifyEvent(evnt);
         }
     }

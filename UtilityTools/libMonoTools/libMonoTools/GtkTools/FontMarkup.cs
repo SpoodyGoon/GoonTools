@@ -37,78 +37,63 @@ namespace libMonoTools.Tools
         private string _Markup = string.Empty;
         public const string PlaceHolder = "[TEXT]";
 
-        public string MarkupName
-        {
-            set{_MarkupName = value;}
-            get{return _MarkupName;}
+        public string MarkupName {
+            set{ _MarkupName = value;}
+            get{ return _MarkupName;}
         }
         
-        public MarkupFontState FontState
-        {
-            set{_FontState = value;}
-            get{return _FontState;}
+        public MarkupFontState FontState {
+            set{ _FontState = value;}
+            get{ return _FontState;}
         }
         
-        public string FontName
-        {
-            set
-            {
-                    _FontName = value;
+        public string FontName {
+            set {
+                _FontName = value;
             }
-            get{return _FontName;}
+            get{ return _FontName;}
         }
         
-        public Nullable<int> Size
-        {
-            set
-            {
-                    _Size = value;
+        public Nullable<int> Size {
+            set {
+                _Size = value;
             }
-            get{return _Size;}
+            get{ return _Size;}
         }
         
-        public string Color
-        {
-            set
-            {
-                    _Color = value;
+        public string Color {
+            set {
+                _Color = value;
             }
-            get{return _Color;}
+            get{ return _Color;}
         }
 
-        public bool Bold
-        {
-            set
-            {
-                    _Bold = value;
+        public bool Bold {
+            set {
+                _Bold = value;
             }
-            get{return _Bold;}
+            get{ return _Bold;}
         }
         
-        public bool Italic
-        {
-            set
-            {
-                    _Italic = value;
+        public bool Italic {
+            set {
+                _Italic = value;
             }
-            get{return _Italic;}
+            get{ return _Italic;}
         }
         
-        public bool Underline
-        {
-            set
-            {
-                    _Underline = value;
+        public bool Underline {
+            set {
+                _Underline = value;
             }
-            get{return _Underline;}
+            get{ return _Underline;}
         }
 
-        public string Markup
-        {
+        public string Markup {
             get { return _Markup; }
-        } 
+        }
 
-        public string MarkupTextGet(string text)
+        public string MarkupTextGet (string text)
         {
             if(!string.IsNullOrEmpty(_Markup))
                 return _Markup.Replace(PlaceHolder, text);
@@ -126,7 +111,7 @@ namespace libMonoTools.Tools
             _Underline = underline;
             _Italic = italic;
             BuildMarkup();
-        }   
+        }
         
         public FontMarkup(MarkupFontState fontstate, string fontname, string color, bool bold)
         {
@@ -135,7 +120,7 @@ namespace libMonoTools.Tools
             _Color = color;
             _Bold = bold;
             BuildMarkup();
-        }   
+        }
         
         public FontMarkup(string fontname, string color, bool bold)
         {
@@ -143,41 +128,43 @@ namespace libMonoTools.Tools
             _Color = color;
             _Bold = bold;
             BuildMarkup();
-        }    
+        }
         
         public FontMarkup(string fontname, string color)
         {
             _FontName = fontname;
             _Color = color;
             BuildMarkup();
-        }    
+        }
         
         public FontMarkup()
         {
             BuildMarkup();
-        } 
+        }
         
-        public void BuildMarkup()
+        public void BuildMarkup ()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append("<span");
-            if (_FontName != null)
+            if(_FontName != null)
                 sb.Append(" face=\"" + _FontName + "\"");
-            if (_Size != null)
-                sb.Append(" size=\"" + _Size.ToString() + "\"");
-            if (_Color != null)
+            // Assume sizes are all in points perform math
+            // to convert to markup usable size in 1024ths of a point
+            if(_Size != null)
+                sb.Append(" size=\"" + (_Size * 1024).ToString() + "\"");
+            if(_Color != null)
                 sb.Append(" foreground=\"" + _Color + "\"");
-            if (_Bold)
+            if(_Bold)
                 sb.Append(" weight=\"Bold\"");
-            if (_Italic)
+            if(_Italic)
                 sb.Append(" style=\"Italic\"");
-            if (_Underline)
+            if(_Underline)
                 sb.Append(" underline=\"single\"");
             sb.Append(">" + PlaceHolder + "</span>");
             _Markup = sb.ToString();
         }
         
-        public void Scale(double scale)
+        public void Scale (double scale)
         {
             if(_Size != null && _Size > 0)
             {
@@ -186,7 +173,6 @@ namespace libMonoTools.Tools
             }
         }
     }
-
 
     public enum MarkupFontState
     {
