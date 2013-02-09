@@ -13,7 +13,7 @@
     <property name="Title" translatable="yes">Error Log Viewer</property>
     <property name="Icon">resource:Resources.Images.dialog-error.png</property>
     <property name="TypeHint">Dialog</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">CenterAlways</property>
     <property name="Modal">True</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
@@ -204,13 +204,13 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="libMonoTools.ErrorManager.dlgErrorMessage" design-size="648 278">
+  <widget class="Gtk.Dialog" id="libMonoTools.ErrorManager.dlgErrorMessage" design-size="648 342">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
     <property name="Title" translatable="yes">An Error Has Occured</property>
     <property name="Icon">resource:Resources.Images.dialog-error.png</property>
     <property name="TypeHint">Dialog</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">CenterAlways</property>
     <property name="Modal">True</property>
     <property name="AllowShrink">True</property>
     <property name="Buttons">1</property>
@@ -343,9 +343,27 @@
               </packing>
             </child>
             <child>
+              <widget class="Gtk.Alignment" id="alignment1">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.HSeparator" id="hseparator2">
+                    <property name="MemberName" />
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">4</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.Alignment" id="alignment7">
                 <property name="MemberName" />
                 <property name="LeftPadding">20</property>
+                <property name="TopPadding">1</property>
+                <property name="BottomPadding">3</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox1">
                     <property name="MemberName" />
@@ -357,7 +375,7 @@
                           <widget class="libMonoTools.UI.Custom.URLButton" id="ubnBugTracker">
                             <property name="MemberName" />
                             <property name="LabelProp" translatable="yes">Bug Tracking Site</property>
-                            <property name="DisplayText">Bug Tracking Sit</property>
+                            <property name="DisplayText">Bug Tracking Site</property>
                             <property name="URL">www.google.com</property>
                             <property name="FontName">Arial</property>
                             <property name="FontColor">#CC0000</property>
@@ -429,7 +447,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">5</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>

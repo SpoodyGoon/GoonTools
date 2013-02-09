@@ -28,7 +28,7 @@ namespace libMonoTools.ErrorManager
         internal dlgErrorLogViewer ()
         {
             this.Build ();
-            System.IO.FileInfo fi = new System.IO.FileInfo ("");
+            System.IO.FileInfo fi = new System.IO.FileInfo (ErrorTools.ErrorToolSettings.ErrorLogFile);
             if (fi.Exists)
             {
                 System.IO.StreamReader sr = new System.IO.StreamReader (fi.FullName);
@@ -44,7 +44,7 @@ namespace libMonoTools.ErrorManager
 
         protected void OnBtnSaveErrorLogClicked (object sender, EventArgs e)
         {
-            System.IO.FileInfo fi = new System.IO.FileInfo ("");
+            System.IO.FileInfo fi = new System.IO.FileInfo (ErrorTools.ErrorToolSettings.ErrorLogFile);
             if (fi.Exists)
             {
                 FileChooserDialog dcf = new FileChooserDialog ("Save Error Log", this, FileChooserAction.Save, "Cance", ResponseType.Cancel, "Save", ResponseType.Ok);
@@ -64,7 +64,7 @@ namespace libMonoTools.ErrorManager
 
         protected void OnBtnClearErrorLogClicked (object sender, EventArgs e)
         {
-            System.IO.StreamWriter sw = new System.IO.StreamWriter("", false);
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(ErrorTools.ErrorToolSettings.ErrorLogFile, false);
             sw.Write("");
             sw.Close();
             txtErrorLogDisplay.Buffer.Text = "";
@@ -73,7 +73,8 @@ namespace libMonoTools.ErrorManager
 
         protected void OnBtnCloseClicked (object sender, EventArgs e)
         {
-            this.Destroy();
+            this.Respond(ResponseType.Close);
+            this.Hide();
         }
     }
 }

@@ -48,12 +48,14 @@
     <Reference Include="Mono.Cairo, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Private>False</Private>
     </Reference>
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="IO\LocalSystemTools.cs" />
     <Compile Include="ErrorManager\ErrorManagerEnums.cs" />
-    <Compile Include="GtkTools\GtkTools.cs" />
     <Compile Include="Collections\ErrorCollection.cs" />
     <Compile Include="Collections\FileInfoCollection.cs" />
     <Compile Include="MonoTools.cs" />
@@ -70,8 +72,11 @@
     <Compile Include="UI\Custom\URLButton.cs" />
     <Compile Include="UI\Custom\LinkButton.cs" />
     <Compile Include="UI\Custom\LabelButtonEvents.cs" />
-    <Compile Include="GtkTools\ColorConverter.cs" />
-    <Compile Include="GtkTools\FontMarkup.cs" />
+    <Compile Include="Tools\GtkTools.cs" />
+    <Compile Include="Tools\ColorConverter.cs" />
+    <Compile Include="Tools\FontMarkup.cs" />
+    <Compile Include="Tools\TrueRandom.cs" />
+    <Compile Include="ErrorManager\ErrorSettings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
