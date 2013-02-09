@@ -26,6 +26,20 @@ namespace libMonoTools
     {
         public static libMonoTools.Tools.GtkHelper GtkTools = new libMonoTools.Tools.GtkHelper();
         public static libMonoTools.Tools.ColorConverter ColorConvert = new libMonoTools.Tools.ColorConverter();
+        public static void ShowErrorLog()
+        {
+            try
+            {
+            libMonoTools.ErrorManager.dlgErrorLogViewer frm = new libMonoTools.ErrorManager.dlgErrorLogViewer();
+            frm.Run();
+            frm.Destroy();
+            }
+            catch(System.Exception ex)
+            {
+                GtkTools.SimpleMessage(ex.ToString(), "Error");
+            }
+        }
+
         public static void Load()
         {
         }
@@ -41,5 +55,7 @@ namespace libMonoTools
         
         #endregion Error Handling
     }
+
+
 }
 

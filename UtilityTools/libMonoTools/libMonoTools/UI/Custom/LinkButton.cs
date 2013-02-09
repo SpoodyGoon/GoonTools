@@ -22,10 +22,88 @@ using System;
 
 namespace libMonoTools
 {
-    public class LinkButton
+    [System.ComponentModel.DefaultEvent("Clicked")]
+    [System.ComponentModel.DefaultProperty("DisplayText")]
+    [System.ComponentModel.ToolboxItem(true)]
+    public class LinkButton : libMonoTools.UI.Custom.LabelButton
     {
-        public LinkButton()
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Custom Events")]
+        public event libMonoTools.UI.Custom.Click Clicked;
+        private bool _MouseOverHand = true;
+        public LinkButton() : base()
         {
+            this.Events = Gdk.EventMask.LeaveNotifyMask | Gdk.EventMask.EnterNotifyMask | Gdk.EventMask.ButtonReleaseMask | Gdk.EventMask.AllEventsMask;
+            this.CanFocus = true;
+            this.Sensitive = true;
+            this.AppPaintable = true;
+            this.Selectable = true;
+            this.SingleLineMode = true;
+            this.Wrap = false;
+            this.AppPaintable = true;
+        }
+        
+        protected override string TextValue {
+            get {
+                return base.Text;
+            }
+            set {
+                base.Text = value;
+            }
+        }
+        
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Display Properties")]
+        [System.ComponentModel.DefaultValue("LinkButton")]
+        [System.ComponentModel.Description("The text displayed for the Link Button.")]
+        [System.ComponentModel.Browsable(true)]
+        public string DisplayText {
+            get {
+                return this.TextValue;
+            }
+            set {
+                this.TextValue = value;
+            }
+        }
+        
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Display Properties")]
+        [System.ComponentModel.DefaultValue(true)]
+        [System.ComponentModel.Description("Use the hand cursor for mouse over.")]
+        [System.ComponentModel.Browsable(true)]
+        public bool MouseOverHand {
+            get {
+                return _MouseOverHand;
+            }
+            set {
+                _MouseOverHand = value;
+            }
+        }
+
+        protected override bool OnButtonReleaseEvent (Gdk.EventButton evnt)
+        {
+            Clicked(this);
+            return base.OnButtonReleaseEvent(evnt);
+        }
+        
+        protected override bool OnEnterNotifyEvent (Gdk.EventCrossing evnt)
+        {
+            if(_MouseOverHand)
+            {
+                evnt.Window.Cursor = new Gdk.Cursor(Gdk.CursorType.Hand2);
+                evnt.Window.Display.Sync(); 
+            }
+            return base.OnEnterNotifyEvent(evnt);
+        }
+        
+        protected override bool OnLeaveNotifyEvent (Gdk.EventCrossing evnt)
+        {
+            if(_MouseOverHand)
+            {
+                evnt.Window.Cursor = new Gdk.Cursor(Gdk.CursorType.LastCursor);
+                evnt.Window.Display.Sync(); 
+            }
+            return base.OnLeaveNotifyEvent(evnt);
         }
     }
 }

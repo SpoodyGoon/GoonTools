@@ -22,36 +22,6 @@ using System;
 
 namespace libMonoTools.UI.Custom
 {
-    public delegate void TextChanged(object sender,TextChangedEventArgs args);
-    public class TextChangedEventArgs : EventArgs
-    {
-        public TextChangedEventArgs ()
-        {
-        }
-    }
-
-    public delegate void Click(object sender,ClickEventArgs args);
-    public class ClickEventArgs : EventArgs
-    {
-        public ClickEventArgs ()
-        {
-        }
-    }
-
-    public delegate void MouseOver(object sender,MouseOverEventArgs args);
-    public class MouseOverEventArgs : EventArgs
-    {
-        public MouseOverEventArgs ()
-        {
-        }
-    }
-
-    public delegate void MouseOut(object sender,MouseOutEventArgs args);
-    public class MouseOutEventArgs : EventArgs
-    {
-        public MouseOutEventArgs ()
-        {
-        }
-    }
+    public delegate void Click(object sender);
 }
 

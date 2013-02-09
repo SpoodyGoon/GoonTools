@@ -59,6 +59,13 @@ namespace libMonoTools.ErrorManager
             this.QueueResize();
             this.ShowAll();
         }
+
+        protected void OnShowErrorLogClicked(object sender)
+        {
+            dlgErrorLogViewer frm = new dlgErrorLogViewer();
+            frm.Run();
+            frm.Destroy();
+        }
     }
 }
 

@@ -8,6 +8,8 @@ namespace libMonoTools.UI.Custom
         private libMonoTools.Tools.FontMarkup _NormalMarkup = new libMonoTools.Tools.FontMarkup();
         private libMonoTools.Tools.FontMarkup _HoverMarkup = new libMonoTools.Tools.FontMarkup();
         private bool _IsHover = false;
+        protected string FontMarkupText = "Test Markup";
+        protected abstract string TextValue{ set; get; }
 
         #region Private Properties Normal Font Format
         private string _FontName = "";
@@ -17,6 +19,7 @@ namespace libMonoTools.UI.Custom
         private bool _Bold = false;
         private bool _Italic = false;
         #endregion  Private PropertiesNormal Font Format
+
         #region  Private PropertiesHover Font Format
         private string _HoverFontName = "";
         private string _HoverColorHex = "#CC0000";
@@ -25,9 +28,7 @@ namespace libMonoTools.UI.Custom
         private bool _HoverUnderlined = true;
         private bool _HoverItalic = false;
         #endregion  Private PropertiesHover Font Format
-        protected string FontMarkupText = "Test Markup";
 
-        public abstract string DisplayText{ set; get; }
         
         #region Private Properties Normal Font Format        
         [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
@@ -36,7 +37,8 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("The font name during normal display.")]
         [System.ComponentModel.Browsable(true)]
         public virtual string FontName {
-            set{ _FontName = value;UpdateMarkup(true, false);}
+            set{ _FontName = value;
+                UpdateMarkup(true, false);}
             get{ return _FontName;}
         }
 
@@ -59,7 +61,8 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("The size of font in points during normal display.")]
         [System.ComponentModel.Browsable(true)]
         public virtual string Size {
-            set{ _Size = value;UpdateMarkup(true, false);}
+            set{ _Size = value;
+                UpdateMarkup(true, false);}
             get{ return _Size;}
         }
         
@@ -69,8 +72,7 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("Is the font bold during normal display.")]
         [System.ComponentModel.Browsable(true)]
         public virtual bool Bold {
-            set
-            { 
+            set { 
                 _Bold = value;
                 UpdateMarkup(true, false);
             }
@@ -83,7 +85,8 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("Is the font underlined during normal display.")]
         [System.ComponentModel.Browsable(true)]
         public virtual bool Underlined {
-            set{ _Underlined = value;UpdateMarkup(true, false);}
+            set{ _Underlined = value;
+                UpdateMarkup(true, false);}
             get{ return _Underlined;}
         }
 
@@ -93,10 +96,12 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("Is the font italic during normal display.")]
         [System.ComponentModel.Browsable(true)]
         public virtual bool Italic {
-            set{ _Italic = value;UpdateMarkup(true, false);}
+            set{ _Italic = value;
+                UpdateMarkup(true, false);}
             get{ return _Italic;}
         }        
         #endregion Private Properties Normal Font Format
+
         #region Private Properties Hover Font Format
         [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
         [System.ComponentModel.Category("Hover Font Format")]
@@ -104,7 +109,8 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("The font name during normal display.")]
         [System.ComponentModel.Browsable(true)]
         public virtual string HoverFontName {
-            set{ _HoverFontName = value;UpdateMarkup(false, true);}
+            set{ _HoverFontName = value;
+                UpdateMarkup(false, true);}
             get{ return _HoverFontName;}
         }
 
@@ -115,7 +121,8 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Browsable(true)]
         public string HoverFontColor {
             set {
-                _HoverColorHex = value;UpdateMarkup(false, true);
+                _HoverColorHex = value;
+                UpdateMarkup(false, true);
             }
             get{ return _HoverColorHex;}
         }
@@ -126,7 +133,8 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("The size of font in points during normal display.")]
         [System.ComponentModel.Browsable(true)]
         public virtual string HoverSize {
-            set{ _HoverSize = value;UpdateMarkup(false, true);}
+            set{ _HoverSize = value;
+                UpdateMarkup(false, true);}
             get{ return _HoverSize;}
         }
         
@@ -136,7 +144,8 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("Is the font bold during hover display.")]
         [System.ComponentModel.Browsable(true)]
         public virtual bool HoverBold {
-            set{ _HoverBold = value;UpdateMarkup(false, true);}
+            set{ _HoverBold = value;
+                UpdateMarkup(false, true);}
             get{ return _HoverBold;}
         }
         
@@ -146,7 +155,8 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("Is the font underlined during hover.")]
         [System.ComponentModel.Browsable(true)]
         public virtual bool HoverUnderlined {
-            set{ _HoverUnderlined = value;UpdateMarkup(false, true);}
+            set{ _HoverUnderlined = value;
+                UpdateMarkup(false, true);}
             get{ return _HoverUnderlined;}
         }
         
@@ -156,12 +166,39 @@ namespace libMonoTools.UI.Custom
         [System.ComponentModel.Description("Is the font italic during hover display.")]
         [System.ComponentModel.Browsable(true)]
         public virtual bool HoverItalic {
-            set{ _HoverItalic = value;UpdateMarkup(false, true);}
+            set{ _HoverItalic = value;
+                UpdateMarkup(false, true);}
             get{ return _HoverItalic;}
         }
         #endregion Private Properties Hover Font Format
-        
-        private void UpdateMarkup (bool blnNormal, bool blnHover)
+
+        public LabelButton() : base()
+        {
+            this.Events = Gdk.EventMask.LeaveNotifyMask | Gdk.EventMask.EnterNotifyMask | Gdk.EventMask.ButtonReleaseMask | Gdk.EventMask.AllEventsMask;
+            this.SetFlag(Gtk.WidgetFlags.AppPaintable);
+            this.SetFlag(Gtk.WidgetFlags.Sensitive);
+            this.CanFocus = true;
+            this.Sensitive = true;
+            this.AppPaintable = true;
+            this.Selectable = true;
+            this.SingleLineMode = true;
+            this.Wrap = false;
+            this.AppPaintable = true;
+            this.Ypad = 3;
+
+//            this.EnterNotifyEvent += delegate(object o, EnterNotifyEventArgs args)
+//            {
+//                _IsHover = true;
+//                UpdateDisplay();
+//            };
+//            this.LeaveNotifyEvent += delegate(object o, LeaveNotifyEventArgs args)
+//            {
+//                _IsHover = false;
+//                UpdateDisplay();
+//            };
+        }
+
+        protected void UpdateMarkup (bool blnNormal, bool blnHover)
         {
             if(blnNormal)
             {
@@ -171,9 +208,9 @@ namespace libMonoTools.UI.Custom
                 if(!string.IsNullOrEmpty(_Size))
                     _NormalMarkup.Size = Convert.ToInt32(_Size);
                 else
-                    _NormalMarkup.Size= null;
+                    _NormalMarkup.Size = null;
                 _NormalMarkup.Bold = _Bold;
-                _NormalMarkup.Underline =_Underlined;
+                _NormalMarkup.Underline = _Underlined;
                 _NormalMarkup.Italic = _Italic;
                 _NormalMarkup.BuildMarkup();
             }
@@ -185,16 +222,16 @@ namespace libMonoTools.UI.Custom
                 if(!string.IsNullOrEmpty(_HoverSize))
                     _HoverMarkup.Size = Convert.ToInt32(_HoverSize);
                 else
-                    _HoverMarkup.Size= null;
+                    _HoverMarkup.Size = null;
                 _HoverMarkup.Bold = _HoverBold;
-                _HoverMarkup.Underline =_HoverUnderlined;
+                _HoverMarkup.Underline = _HoverUnderlined;
                 _HoverMarkup.Italic = _HoverItalic;
                 _HoverMarkup.BuildMarkup();
             }
             UpdateDisplay();
         }
 
-        private void UpdateDisplay()
+        private void UpdateDisplay ()
         {
             if(_IsHover)
             {
@@ -204,8 +241,6 @@ namespace libMonoTools.UI.Custom
             {
                 this.LabelProp = _NormalMarkup.MarkupTextGet(this.Text);
             }
-            this.DoubleBuffered = true;
-            this.AppPaintable = true;
             this.UseMarkup = true;
             this.QueueResize();
             this.QueueDraw();
