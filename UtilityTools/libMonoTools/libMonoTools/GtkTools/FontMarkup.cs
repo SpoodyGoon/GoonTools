@@ -35,8 +35,74 @@ namespace libMonoTools.Tools
         private bool _Italic = false;
         private bool _Underline = false;
         private string _Markup = string.Empty;
-        public string PlaceHolder = "[TEXT]";
+        public const string PlaceHolder = "[TEXT]";
+
+        public string MarkupName
+        {
+            set{_MarkupName = value;}
+            get{return _MarkupName;}
+        }
         
+        public MarkupFontState FontState
+        {
+            set{_FontState = value;}
+            get{return _FontState;}
+        }
+        
+        public string FontName
+        {
+            set
+            {
+                    _FontName = value;
+            }
+            get{return _FontName;}
+        }
+        
+        public Nullable<int> Size
+        {
+            set
+            {
+                    _Size = value;
+            }
+            get{return _Size;}
+        }
+        
+        public string Color
+        {
+            set
+            {
+                    _Color = value;
+            }
+            get{return _Color;}
+        }
+
+        public bool Bold
+        {
+            set
+            {
+                    _Bold = value;
+            }
+            get{return _Bold;}
+        }
+        
+        public bool Italic
+        {
+            set
+            {
+                    _Italic = value;
+            }
+            get{return _Italic;}
+        }
+        
+        public bool Underline
+        {
+            set
+            {
+                    _Underline = value;
+            }
+            get{return _Underline;}
+        }
+
         public string Markup
         {
             get { return _Markup; }
@@ -59,6 +125,7 @@ namespace libMonoTools.Tools
             _Bold = bold;
             _Underline = underline;
             _Italic = italic;
+            BuildMarkup();
         }   
         
         public FontMarkup(MarkupFontState fontstate, string fontname, string color, bool bold)
@@ -67,6 +134,7 @@ namespace libMonoTools.Tools
             _FontName = fontname;
             _Color = color;
             _Bold = bold;
+            BuildMarkup();
         }   
         
         public FontMarkup(string fontname, string color, bool bold)
@@ -74,19 +142,22 @@ namespace libMonoTools.Tools
             _FontName = fontname;
             _Color = color;
             _Bold = bold;
+            BuildMarkup();
         }    
         
         public FontMarkup(string fontname, string color)
         {
             _FontName = fontname;
             _Color = color;
+            BuildMarkup();
         }    
         
         public FontMarkup()
         {
+            BuildMarkup();
         } 
         
-        private string BuildMarkup()
+        public void BuildMarkup()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append("<span");
@@ -103,7 +174,7 @@ namespace libMonoTools.Tools
             if (_Underline)
                 sb.Append(" underline=\"single\"");
             sb.Append(">" + PlaceHolder + "</span>");
-            return sb.ToString();
+            _Markup = sb.ToString();
         }
         
         public void Scale(double scale)
