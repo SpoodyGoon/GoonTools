@@ -22,14 +22,26 @@
 
 using System;
 
-namespace  libMonoTools
+namespace  libMonoTools.Tools
 {
-	public static class Licenses 
-	{		
-		#region Licence Text
-		
-		public static string GPL3 =
-			@"                    GNU GENERAL PUBLIC LICENSE
+	public class LicenseText
+    {
+        public LicenseText()
+        {
+        }
+
+        #region Place Holder Text
+
+        public string Copyright = "[COPYRIGHT]";
+        public string Description = "[SHORT_DESCRIPTION]";
+        public string ProgramName = "[PROGRAM_NAME]";
+
+        #endregion Place Holder Text
+
+        #region Licence Text
+
+        public string GPL3 =
+            @"                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
@@ -663,7 +675,7 @@ state the exclusion of warranty; and each file should have at least
 the ""copyright"" line and a pointer to where the full notice is found.
 
     [SHORT_DESCRIPTION]
-    Copyright (C) [YEAR] [AUTHOR_NAME]
+    [COPYRIGHT]
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -683,7 +695,7 @@ Also add information on how to contact you by electronic and paper mail.
   If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
-    [PROGRAM_NAME] Copyright (C) [YEAR] [AUTHOR_NAME]
+    [PROGRAM_NAME] [COPYRIGHT]
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
