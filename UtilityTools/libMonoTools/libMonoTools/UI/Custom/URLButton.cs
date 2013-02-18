@@ -60,7 +60,7 @@ namespace libMonoTools.UI.Custom
         {
             if(!string.IsNullOrEmpty(_URL) && System.Uri.IsWellFormedUriString(_URL, UriKind.RelativeOrAbsolute))
             {
-                libMonoTools.IO.ProcessTools.LaunchURL(_URL);
+                ProcessTools.LaunchURL(_URL);
             }
             return base.OnButtonReleaseEvent(evnt);
         }
