@@ -30,10 +30,7 @@ namespace libMonoTools.ErrorManager
             if(ParentWin != null)
                 this.ParentWindow = ParentWin.GdkWindow;
 
-            lblErrorMessage.Text = ErrorMessage;
-            txtErrorDetails.Buffer.Text = ErrorMessage;
-            lblErrorMessage.LineWrapMode = Pango.WrapMode.Char;
-            this.QueueResize();
+            txtErrorMessage.Buffer.Text = ErrorMessage;
             this.ShowAll();
         }
 
@@ -43,8 +40,7 @@ namespace libMonoTools.ErrorManager
             if(ParentWin != null)
                 this.ParentWindow = ParentWin.GdkWindow;
 
-            lblErrorMessage.Text = ex.Message;
-            txtErrorDetails.Buffer.Text = ex.ToString();
+            txtErrorMessage.Buffer.Text = ex.ToString();
             this.QueueResize();
             this.ShowAll();
         }
