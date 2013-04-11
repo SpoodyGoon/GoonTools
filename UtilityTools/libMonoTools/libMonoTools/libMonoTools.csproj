@@ -76,6 +76,7 @@
     <Compile Include="ErrorManager\ErrorSettings.cs" />
     <Compile Include="IO\NameValueSerialize.cs" />
     <Compile Include="ThirdPartyTools\HollyLIbrary\GrabUtil.cs" />
+    <Compile Include="Data\Generic\ApplicationAttributes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -84,6 +85,8 @@
     <Folder Include="UI\Custom\" />
     <Folder Include="UI\Custom\Controls\" />
     <Folder Include="UI\Custom\Windows\" />
+    <Folder Include="Data\" />
+    <Folder Include="Data\Generic\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
