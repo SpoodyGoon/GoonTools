@@ -57,7 +57,7 @@ namespace libMonoTools.Data.SQLite
         /// <returns>The non query.</returns>
         /// <param name="commandText">Command text for the sql statement.</param>
         /// <param name="commandParameters">Command parameters for the sql statement.</param>
-        public int ExecuteNonQuery(string commandText, params IDataParameter[] commandParameters)
+        public int ExecuteNonQuery(string commandText, Dictionary<string, object> commandParameters)
         {
             int nonQueryResult = -1;
             using (SqliteConnection sqlCN = new SqliteConnection(this.ConnectionString))
@@ -67,9 +67,9 @@ namespace libMonoTools.Data.SQLite
                 {           
                     if (commandParameters != null)
                     {
-                        foreach (IDataParameter p in commandParameters)
+                        foreach (KeyValuePair<string,object> parameter in commandParameters)
                         {
-                            sqlCMD.Parameters.Add(p);
+                            sqlCMD.Parameters.Add(new SqliteParameter(parameter.Key, parameter.Value));
                         }
                     }
                 
@@ -88,7 +88,7 @@ namespace libMonoTools.Data.SQLite
         /// <returns>The reader.</returns>
         /// <param name="commandText">Command text.</param>
         /// <param name="commandParameters">Command parameters.</param>
-        public IDataReader ExecuteReader(string commandText, params IDataParameter[] commandParameters)
+        public IDataReader ExecuteReader(string commandText, Dictionary<string, object> commandParameters)
         {
             SqliteConnection sqlCN = new SqliteConnection(this.ConnectionString);
             sqlCN.Open();            
@@ -98,9 +98,9 @@ namespace libMonoTools.Data.SQLite
                 {   
                     if (commandParameters != null)
                     {
-                        foreach (IDataParameter p in commandParameters)
+                        foreach (KeyValuePair<string,object> parameter in commandParameters)
                         {
-                            sqlCMD.Parameters.Add(p);
+                            sqlCMD.Parameters.Add(new SqliteParameter(parameter.Key, parameter.Value));
                         }
                     }
                     
@@ -127,7 +127,7 @@ namespace libMonoTools.Data.SQLite
         /// <returns>The scalar.</returns>
         /// <param name="commandText">Command text.</param>
         /// <param name="commandParameters">Command parameters.</param>
-        public object ExecuteScalar(string commandText, params IDataParameter[] commandParameters)
+        public object ExecuteScalar(string commandText, Dictionary<string, object> commandParameters)
         {
             using (SqliteConnection sqlCN = new SqliteConnection(this.ConnectionString))
             {
@@ -136,9 +136,9 @@ namespace libMonoTools.Data.SQLite
                 {                    
                     if (commandParameters != null)
                     {
-                        foreach (IDataParameter p in commandParameters)
+                        foreach (KeyValuePair<string,object> parameter in commandParameters)
                         {
-                            sqlCMD.Parameters.Add(p);
+                            sqlCMD.Parameters.Add(new SqliteParameter(parameter.Key, parameter.Value));
                         }
                     }
                     
@@ -153,7 +153,7 @@ namespace libMonoTools.Data.SQLite
         /// <returns>A data set based on the command text.</returns>
         /// <param name="commandText">Command text for the sql statement.</param>
         /// <param name="commandParameters">Command parameters for the sql statement.</param>
-        public DataSet ExecuteDataset(string commandText, params IDataParameter[] commandParameters)
+        public DataSet ExecuteDataset(string commandText, Dictionary<string, object> commandParameters)
         {
             return this.ExecuteDataset("NewDataSet", commandText, commandParameters);
         }
@@ -165,7 +165,7 @@ namespace libMonoTools.Data.SQLite
         /// <param name="dataSetName">Optional name for the data set.</param>
         /// <param name="commandText">Command text for the sql statement.</param>
         /// <param name="commandParameters">Command parameters for the sql statement.</param>
-        public DataSet ExecuteDataset(string dataSetName, string commandText, params IDataParameter[] commandParameters)
+        public DataSet ExecuteDataset(string dataSetName, string commandText, Dictionary<string, object> commandParameters)
         {
             DataSet dataSet = new DataSet(dataSetName);
             using (SqliteConnection sqlCN = new SqliteConnection(this.ConnectionString))
@@ -175,9 +175,9 @@ namespace libMonoTools.Data.SQLite
                 {
                     if (commandParameters != null)
                     {
-                        foreach (IDataParameter p in commandParameters)
+                        foreach (KeyValuePair<string,object> parameter in commandParameters)
                         {
-                            sqlCMD.Parameters.Add(p);
+                            sqlCMD.Parameters.Add(new SqliteParameter(parameter.Key, parameter.Value));
                         }
                     }
                     
@@ -199,7 +199,7 @@ namespace libMonoTools.Data.SQLite
         /// <returns>The data table.</returns>
         /// <param name="commandText">Command text for the sql statement.</param>
         /// <param name="commandParameters">Command parameters for the sql statement.</param>
-        public DataTable ExecuteDataTable(string commandText, params IDataParameter[] commandParameters)
+        public DataTable ExecuteDataTable(string commandText, Dictionary<string, object> commandParameters)
         {
             return this.ExecuteDataTable("NewTable", commandText, commandParameters); 
         }
@@ -211,7 +211,7 @@ namespace libMonoTools.Data.SQLite
         /// <param name="tableName">Optional name for the data table.</param>
         /// <param name="commandText">Command text for the sql statement.</param>
         /// <param name="commandParameters">Command parameters for the sql statement.</param>
-        public DataTable ExecuteDataTable(string tableName, string commandText, params IDataParameter[] commandParameters)
+        public DataTable ExecuteDataTable(string tableName, string commandText, Dictionary<string, object> commandParameters)
         {
             DataTable dataTable = new DataTable(tableName);
             using (SqliteConnection sqlCN = new SqliteConnection(this.ConnectionString))
@@ -221,9 +221,9 @@ namespace libMonoTools.Data.SQLite
                 {
                     if (commandParameters != null)
                     {
-                        foreach (IDataParameter p in commandParameters)
+                        foreach (KeyValuePair<string,object> parameter in commandParameters)
                         {
-                            sqlCMD.Parameters.Add(p);
+                            sqlCMD.Parameters.Add(new SqliteParameter(parameter.Key, parameter.Value));
                         }
                     }
                     
@@ -244,7 +244,7 @@ namespace libMonoTools.Data.SQLite
         /// </summary>
         /// <param name="commandText">Command text for the sql statement.</param>
         /// <param name="commandParameters">Command parameters for the sql statement.</param>
-        public bool Exists(string commandText, params IDataParameter[] commandParameters)
+        public bool Exists(string commandText, Dictionary<string, object> commandParameters)
         {
             bool rowExists = true;            
             using (SqliteConnection sqlCN = new SqliteConnection(this.ConnectionString))
@@ -254,9 +254,9 @@ namespace libMonoTools.Data.SQLite
                 {                    
                     if (commandParameters != null)
                     {
-                        foreach (IDataParameter p in commandParameters)
+                        foreach (KeyValuePair<string,object> parameter in commandParameters)
                         {
-                            sqlCMD.Parameters.Add(p);
+                            sqlCMD.Parameters.Add(new SqliteParameter(parameter.Key, parameter.Value));
                         }
                     }
                     
