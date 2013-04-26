@@ -1,9 +1,5 @@
 <stylecopresultscache>
   <version>12</version>
-  <project key="676976559">
-    <configuration>
-    </configuration>
-  </project>
   <project key="1411729805">
     <configuration>
     </configuration>
@@ -58,4 +54,8 @@
       </violation>
     </violations>
   </sourcecode>
+  <project key="676976559">
+    <configuration>
+    </configuration>
+  </project>
 </stylecopresultscache>
