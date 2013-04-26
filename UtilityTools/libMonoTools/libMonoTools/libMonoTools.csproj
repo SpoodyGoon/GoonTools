@@ -56,6 +56,7 @@
     <Reference Include="Mono.Data.SqliteClient">
       <HintPath>Resources\Libs\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
