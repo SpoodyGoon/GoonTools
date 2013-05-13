@@ -30,7 +30,7 @@ namespace libMonoTools.Data.SQLite
     /// <summary>
     /// Collections of methods to help interact with SQLite.
     /// </summary>
-    public class SqliteHelper
+    public class SqliteHelper : GLib.Object
     {
         /// <summary>
         /// The connection string format.
