@@ -29,7 +29,7 @@ namespace libMonoTools.ErrorManager
 			this.Title = global::Mono.Unix.Catalog.GetString ("Error Log Viewer");
 			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("Resources.Images.dialog-error.png");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
-			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Modal = true;
 			// Internal child libMonoTools.ErrorManager.dlgErrorLogViewer.VBox
 			global::Gtk.VBox w1 = this.VBox;
