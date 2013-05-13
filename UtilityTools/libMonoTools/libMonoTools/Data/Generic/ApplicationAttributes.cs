@@ -45,7 +45,17 @@ namespace libMonoTools.Data.Generic
 		/// <summary>
 		/// Gets or sets the company to be used for the application.
 		/// </summary>
-		public string Company{get; private set;}
+        public string Company { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the license to be used for the application.
+        /// </summary>
+        public string License { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the contact info for the project.
+        /// </summary>
+        public ProjectContactInfo ContactInfo { get; private set; }
 		
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libMonoTools.Data.Generic.ApplicationAttributes"/> class.
