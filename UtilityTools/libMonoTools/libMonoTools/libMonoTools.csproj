@@ -30,7 +30,7 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="xcopy  /E /I /F /Y &quot;${ProjectDir}\Resources\Libs\*&quot; &quot;${TargetDir}\*&quot;" externalConsole="true" />
+        <Command type="AfterBuild" command="xcopy  /E /I /F /Y &quot;${ProjectDir}\Resources\Libs\*&quot; &quot;${TargetDir}\*&quot;" externalConsole="True" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -129,13 +129,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Libs\Mono.Data.SqliteClient.dll">
-      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
     </Content>
     <Content Include="Resources\Libs\sqlite3.dll">
-      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
     </Content>
     <Content Include="Resources\Libs\sqlite3.def">
-      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
     </Content>
   </ItemGroup>
 </Project>
