@@ -1,0 +1,47 @@
+/*
+    Document   : layout.css
+    Created on : May 26, 2013, 9:55:14 PM
+    Author     : andy
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root {
+    display: block;
+}
+
+form {
+    display: inline;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+}
+
+.LoginTable {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    display: block;
+}
+
+#browserSupportContainer {
+    border: 1px solid #000000;
+}
+
+.PadAll5px {
+    padding: 5px;
+}
+
+.PadSides5px {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.PadSides5px {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
