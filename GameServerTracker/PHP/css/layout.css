@@ -55,12 +55,10 @@ html, body {
     padding-left: 5px;
 }
 
-
 #documentSection {
     width: 1200px;
     min-height: 100%;
     height: 100%;
-    
     border-top-color: black;
     border-right-color: black;
     border-bottom-color: black;
@@ -78,11 +76,51 @@ html, body {
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#headerSection {
+    padding: 5px 0px 0px 0px;
+    display: block;
+    height: 65px;
+    border-bottom-style: double;
+    border-bottom-width: 4px;
+    border-bottom-color: #000000;
+    position: relative;
+    background-color: #405CBF;
+    color: #FFFF00;
+}
+
+#headerLeft {
+    float: left;
+    width: 450px;
+    height: 100%;
+    position: relative;
 }
 
 #headerLogoText {
-    font-family: 'Finger Paint', cursive;
-    font-size: 24pt;
+    padding: 0px 22px 0px 0px;
+    margin: 0px;
+    font-family: 'Finger Paint' , cursive;
+    font-size: 36px;
     font-weight: bold;
     font-variant: small-caps;
+    bottom: -20px;
+    position: relative;
+    vertical-align: baseline;
+    text-align: right;text-shadow: 2px 1px 2px #c9c9c9;
+}
+
+#headerMenu {
+    height: 20px;
+    bottom: -14px;
+    position: relative;
+}
+
+#rightHeader {
+    float: none;
+    width: auto;
+    height: 100%;
+    position: relative;
 }
