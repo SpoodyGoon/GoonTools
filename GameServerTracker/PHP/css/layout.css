@@ -1,126 +1,165 @@
-root {
-    display: block;
+root {  
+  display: block;
 }
 
-form {
-    display: inline;
+form {  
+  display: inline;
 }
 
-html, body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 10pt;
-    color: black;
-    background-color: #fffee7;
-    display: block;
-    height: 100%;
+html, body {  
+  font-family: Arial, Helvetica, sans-serif;  
+  font-size: 10pt;  
+  color: black;  
+  background-color: #fffee7;  
+  display: block;  
+  height: 100%;
 }
 
-.LoginTable {
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 10px;
-    display: block;
+.LoginTable {  
+  width: 400px;  
+  margin-left: auto;  
+  margin-right: auto;  
+  padding-top: 10px;  
+  display: block;
 }
 
-#browserSupportContainer {
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: black;
-    border-right-color: black;
-    border-bottom-color: black;
-    border-left-color: black;
+#browserSupportContainer {  
+  border-top-width: 1px;  
+  border-right-width: 1px;  
+  border-bottom-width: 1px;  
+  border-left-width: 1px;  
+  border-top-style: solid;  
+  border-right-style: solid;  
+  border-bottom-style: solid;  
+  border-left-style: solid;  
+  border-top-color: black;  
+  border-right-color: black;  
+  border-bottom-color: black;  
+  border-left-color: black;
 }
 
-.PadAll5px {
-    padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
+.PadAll5px {  
+  padding-top: 5px;  
+  padding-right: 5px;  
+  padding-bottom: 5px;  
+  padding-left: 5px;
 }
 
-.PadSides5px {
-    padding-right: 5px;
-    padding-left: 5px;
+.PadSides5px {  
+  padding-right: 5px;  
+  padding-left: 5px;
 }
 
-.PadSides5px {
-    padding-right: 5px;
-    padding-left: 5px;
+.PadSides5px {  
+  padding-right: 5px;  
+  padding-left: 5px;
 }
 
-#documentSection {
-    width: 1200px;
-    min-height: 100%;
-    height: 100%;
-    border-top-color: black;
-    border-right-color: black;
-    border-bottom-color: black;
-    border-left-color: black;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    background-color: white;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    margin-right: auto;
-    margin-left: auto;
+#documentSection {  
+  width: 1050px;  
+  min-height: 100%;  
+  height: 100%;  
+  border-top-color: black;  
+  border-right-color: black;  
+  border-bottom-color: black;  
+  border-left-color: black;  
+  border-top-width: 2px;  
+  border-right-width: 2px;  
+  border-bottom-width: 2px;  
+  border-left-width: 2px;  
+  border-top-style: solid;  
+  border-right-style: solid;  
+  border-bottom-style: solid;  
+  border-left-style: solid;  
+  background-color: white;  
+  padding-top: 0px;  
+  padding-right: 0px;  
+  padding-bottom: 0px;  
+  padding-left: 0px;  
+  margin-right: auto;  
+  margin-left: auto;  
+  margin-top: 8px;  -webkit-box-shadow: 2px 2px 2px 4px;
+  box-shadow: 2px 2px 2px 4px;
 }
 
-#headerSection {
-    padding: 5px 0px 0px 0px;
-    display: block;
-    height: 65px;
-    border-bottom-style: double;
-    border-bottom-width: 4px;
-    border-bottom-color: #000000;
-    position: relative;
-    background-color: #405CBF;
-    color: #FFFF00;
+#headerSection {  
+  padding-top: 5px;  
+  padding-right: 0px;  
+  padding-bottom: 2px;  
+  padding-left: 0px;  
+  display: block;  
+  height: 65px;  
+  border-bottom-width: 6px;  
+  border-bottom-style: double;  
+  border-bottom-color: black;  
+  position: relative;  
+  background-color: #7fa9bb;  
+  color: #fcfddd;
 }
 
-#headerLeft {
-    float: left;
-    width: 450px;
-    height: 100%;
-    position: relative;
+#headerLeft {  
+  float: left;  
+  width: 450px;  
+  height: 100%;  
+  position: relative;
 }
 
-#headerLogoText {
-    padding: 0px 22px 0px 0px;
-    margin: 0px;
-    font-family: 'Finger Paint' , cursive;
-    font-size: 36px;
-    font-weight: bold;
-    font-variant: small-caps;
-    bottom: -20px;
-    position: relative;
-    vertical-align: baseline;
-    text-align: right;text-shadow: 2px 1px 2px #c9c9c9;
+#headerLogoText {  
+  padding-top: 0px;  
+  padding-right: 22px;  
+  padding-bottom: 0px;  
+  padding-left: 0px;  
+  margin-top: 0px;  
+  margin-right: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 0px;  
+  font-family: 'Finger Paint', cursive;  
+  font-size: 36px;  
+  font-weight: bold;  
+  font-variant: small-caps;  
+  bottom: -20px;  
+  position: relative;  
+  vertical-align: baseline;  
+  text-align: right;  text-shadow: 3px 3px 5px #666666;
 }
 
-#headerMenu {
-    height: 20px;
-    bottom: -14px;
-    position: relative;
+#headerMenu {  
+  height: 20px;  
+  bottom: 0px;  
+  font-size: 10pt;  
+  font-weight: bold;  
+  text-decoration: none;  
+  text-align: left;  
+  display: block;  
+  width: auto;  
+  border-top-width: 2px;  
+  border-top-style: solid;  
+  border-top-color: black;  
+  border-left-style: none;  
+  position: relative;  
+  padding-top: 3px;  
+  padding-right: 3px;  
+  padding-bottom: 3px;  
+  padding-left: 3px;
 }
 
-#rightHeader {
-    float: none;
-    width: auto;
-    height: 100%;
-    position: relative;
+#rightHeader {  
+  float: none;  
+  width: auto;  
+  height: 100%;  
+  position: relative;
 }
+
+#headerTopRight {  text-shadow: 3px 3px 5px #666666;  
+  bottom: -8px;  
+  letter-spacing: 2px;  
+  word-spacing: 2px;  
+  font-size: 18pt;  
+  position: relative;  
+  padding-bottom: 6px;
+}
+
+#headerRight {  
+  text-indent: 12px;
+}
+
