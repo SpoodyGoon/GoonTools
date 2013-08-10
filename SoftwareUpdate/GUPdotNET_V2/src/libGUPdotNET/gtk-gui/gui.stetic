@@ -5,10 +5,9 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="..\bin\Debug\GUPdotNET.exe" internal="true" />
+    <widget-library name="../bin/Debug/libGUPdotNET.dll" internal="true" />
   </import>
-  <widget class="Gtk.Dialog" id="GUPdotNET.frmConfirm" design-size="400 129">
+  <widget class="Gtk.Dialog" id="libGUPdotNET.frmConfirm" design-size="400 129">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Update Available</property>
     <property name="Icon">resource:update_small.png</property>
@@ -155,7 +154,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.frmInstall" design-size="400 300">
+  <widget class="Gtk.Dialog" id="libGUPdotNET.frmInstall" design-size="400 300">
     <property name="MemberName" />
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">1</property>
@@ -324,7 +323,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.frmOptions" design-size="472 275">
+  <widget class="Gtk.Dialog" id="libGUPdotNET.frmOptions" design-size="472 275">
     <property name="MemberName" />
     <property name="HeightRequest">275</property>
     <property name="Visible">False</property>
@@ -383,13 +382,14 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Alignment" id="alignment5">
+                          <widget class="Gtk.Alignment" id="alignment1">
                             <property name="MemberName" />
                             <child>
-                              <widget class="GUPdotNET.UpdateTimeCombo" id="cboUpdateTime">
+                              <widget class="libGUPdotNET.UpdateTimeCombo" id="cboUpdateTime">
                                 <property name="MemberName" />
-                                <property name="WidthRequest">135</property>
-                                <property name="HeightRequest">25</property>
+                                <property name="WidthRequest">175</property>
+                                <property name="IsTextCombo">False</property>
+                                <property name="Items" translatable="yes" />
                               </widget>
                             </child>
                           </widget>
@@ -578,7 +578,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="GUPdotNET.frmDownload" design-size="382 58">
+  <widget class="Gtk.Window" id="libGUPdotNET.frmDownload" design-size="382 58">
     <property name="MemberName" />
     <property name="Title" translatable="yes">frmDownload</property>
     <property name="Icon">resource:downloading.png</property>

@@ -35,15 +35,15 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <WarningLevel>4</WarningLevel>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
@@ -56,16 +56,16 @@
     <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\Mono.Posix\2.0.0.0__0738eb9f132ed756\Mono.Posix.dll</HintPath>
     </Reference>
-    <Reference Include="System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System.Configuration\2.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System.Configuration\2.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
       <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System.Data\2.0.0.0__b77a5c561934e089\System.Data.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <Reference Include="System.Xml">
       <HintPath>..\..\..\..\..\..\..\Program Files\Mono-2.6.1\lib\mono\gac\System.Xml\2.0.0.0__b77a5c561934e089\System.Xml.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -80,10 +80,6 @@
     <Compile Include="frmInstall.cs" />
     <Compile Include="frmOptions.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="gtk-gui\GUPdotNET.frmConfirm.cs" />
-    <Compile Include="gtk-gui\GUPdotNET.frmDownload.cs" />
-    <Compile Include="gtk-gui\GUPdotNET.frmInstall.cs" />
-    <Compile Include="gtk-gui\GUPdotNET.frmOptions.cs" />
     <Compile Include="libGUPdotNET.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateCheck.cs" />
@@ -120,6 +116,10 @@
     <None Include="web_files\GetUpdateInfo.aspx" />
     <None Include="web_files\GetUpdateInfo.php" />
     <None Include="web_files\XMLTemplate.xml" />
+    <Compile Include="gtk-gui\libGUPdotNET.frmInstall.cs" />
+    <Compile Include="gtk-gui\libGUPdotNET.frmConfirm.cs" />
+    <Compile Include="gtk-gui\libGUPdotNET.frmOptions.cs" />
+    <Compile Include="gtk-gui\libGUPdotNET.frmDownload.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

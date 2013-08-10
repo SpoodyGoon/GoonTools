@@ -51,6 +51,7 @@ namespace libGUPdotNET
 		public void Build()
 		{
 			LoadUpdateTime();
+			this.Name = "UpdateTimeCombo";
 			this.WidthRequest = 185;
 			this.HeightRequest = 30;
 			Gtk.CellRendererText ct = new Gtk.CellRendererText();
