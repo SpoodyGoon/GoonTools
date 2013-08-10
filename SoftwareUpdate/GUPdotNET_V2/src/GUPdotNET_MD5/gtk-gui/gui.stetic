@@ -5,7 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="..\bin\Debug\GUPdotNET_MD5.exe" internal="true" />
+    <widget-library name="../bin/Debug/GUPdotNET_MD5.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="678 251">
     <action-group name="Default">
@@ -43,7 +43,7 @@
                 <property name="ShowArrow">False</property>
                 <property name="ButtonStyle">Icons</property>
                 <property name="IconSize">SmallToolbar</property>
-                <node name="__gtksharp_91_Stetic_Editor_ActionToolbar" type="Toolbar">
+                <node name="toolbar1" type="Toolbar">
                   <node type="Toolitem" action="saveAction1" />
                   <node type="Separator" />
                   <node type="Toolitem" action="quitAction1" />
@@ -372,7 +372,7 @@ SHA512</property>
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
-                    <property name="Icon">stock:gtk-execute Menu</property>
+                    <property name="Icon">stock:gtk-execute Button</property>
                     <property name="Label" translatable="yes">_Execute</property>
                     <property name="UseUnderline">True</property>
                     <signal name="Clicked" handler="OnBtnGenerateClicked" />
