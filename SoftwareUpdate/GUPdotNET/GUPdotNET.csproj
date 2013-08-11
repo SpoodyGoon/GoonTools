@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D2BCFD14-16F3-4D33-A3CE-A022D2BA4703}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GUPdotNET</RootNamespace>
+    <AssemblyName>GUPdotNET</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="gtk-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="gdk-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="glade-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="pango-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="atk-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\cancel.png" />
+    <EmbeddedResource Include="Resources\Images\downloading.png" />
+    <EmbeddedResource Include="Resources\Images\hide.png" />
+    <EmbeddedResource Include="Resources\Images\update_large.ico" />
+    <EmbeddedResource Include="Resources\Images\update_large.png" />
+    <EmbeddedResource Include="Resources\Images\update_medium.png" />
+    <EmbeddedResource Include="Resources\Images\update_needed.png" />
+    <EmbeddedResource Include="Resources\Images\update_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Views\OptionsView.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.UI.Views.OptionsView.cs" />
+    <Compile Include="UI\Views\DownloadView.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.UI.Views.DownloadView.cs" />
+    <Compile Include="UI\Views\ConfirmationView.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.UI.Views.ConfirmationView.cs" />
+    <Compile Include="UI\Views\InstallView.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.UI.Views.InstallView.cs" />
+    <Compile Include="UI\CustomWidgets\UpdateTimeCombo.cs" />
+    <Compile Include="Data\CheckSumUtility.cs" />
+    <Compile Include="Data\MetaInfo.cs" />
+    <Compile Include="Data\Options.cs" />
+    <Compile Include="GlobalTools\GlobalTools.cs" />
+    <Compile Include="UpdateCheck.cs" />
+    <Compile Include="Data\UpdateInfo.cs" />
+    <Compile Include="Data\StartupOptions.cs" />
+    <Compile Include="Data\GlobalObjectTypes.cs" />
+    <Compile Include="Data\UpdateOptions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="UI\" />
+    <Folder Include="UI\Views\" />
+    <Folder Include="UI\CustomWidgets\" />
+    <Folder Include="Data\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Images\" />
+    <Folder Include="GlobalTools\" />
+    <Folder Include="WebFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="WebFiles\GetUpdateInfo.asp" />
+    <None Include="WebFiles\GetUpdateInfo.aspx" />
+    <None Include="WebFiles\GetUpdateInfo.php" />
+    <None Include="WebFiles\UpdateCheck.xml" />
+    <None Include="WebFiles\XMLTemplate.xml" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <StandardHeader Text=" &#xA; ${FileName}&#xA; &#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA; Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA; This program is free software: you can redistribute it and/or modify&#xA; it under the terms of the GNU General Public License as published by&#xA; the Free Software Foundation, either version 3 of the License, or&#xA; (at your option) any later version.&#xA;&#xA; This program is distributed in the hope that it will be useful,&#xA; but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xA; GNU General Public License for more details.&#xA;&#xA; You should have received a copy of the GNU General Public License&#xA; along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;." IncludeInNewFiles="True" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
