@@ -4,8 +4,8 @@
     <Package OS="Windows" InstallerType="msi" Version="2.0">
       <Files>
         <File Type="ReleaseNotes">
-          <URL></URL>
-          <Checksum></Checksum>
+          <URL>ReleaseNotesURL</URL>
+          <Checksum>ChecksumValue</Checksum>
         </File>
         <File Type="Update">
           <URL>http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.msi</URL>
@@ -13,7 +13,7 @@
         </File>
         <File Type="Dependency">
           <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum></Checksum>
+          <Checksum>ChecksumValue</Checksum>
         </File>
       </Files>
     </Package>
@@ -21,15 +21,14 @@
       <Files>
         <File Type="ChangeLog">
           <URL>http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</URL>
-          <Checksum></Checksum>
+          <Checksum>ChecksumValue</Checksum>
         </File>
         <File Type="Update">
-          <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum></Checksum>
+          <URL>http://brdstudio.net/temp/AYMusic.zip</URL>v
         </File>
         <File Type="Dependency">
           <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum></Checksum>
+          <Checksum>ChecksumValue</Checksum>
         </File>
       </Files>
     </Package>
@@ -37,15 +36,15 @@
       <Files>
         <File Type="ChangeLog">
           <URL>http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</URL>
-          <Checksum></Checksum>
+          <Checksum>ChecksumValue</Checksum>
         </File>
         <File Type="Update">
           <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum></Checksum>
+          <Checksum>ChecksumValue</Checksum>
         </File>
         <File Type="Dependency">
           <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum></Checksum>
+          <Checksum>ChecksumValue</Checksum>
         </File>
       </Files>
     </Package>
@@ -53,15 +52,15 @@
       <Files>
         <File Type="ChangeLog">
           <URL>http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</URL>
-          <Checksum></Checksum>
+          <Checksum>ChecksumValue</Checksum>
         </File>
         <File Type="Update">
           <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum></Checksum>
+          <Checksum>ChecksumValue</Checksum>
         </File>
         <File Type="Dependency">
           <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum></Checksum>
+          <Checksum>ChecksumValue</Checksum>
         </File>
       </Files>
     </Package>
