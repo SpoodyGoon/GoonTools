@@ -1,26 +1,8 @@
-/*************************************************************************
- *                      UpdateInfo.cs
- *
- *  Copyright (C) 2009 Andrew York <goontools@brdstudio.net>
- *
- *************************************************************************/
-/*
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
- */
+
 using System;
 using System.Net;
-using System.Xml;
+using System.Collections.Generic;
+using System.Linq;
 using System.Configuration;
 using System.Reflection;
 using GoonTools;
@@ -29,199 +11,71 @@ using Gtk;
 namespace GUPdotNET.Data
 {
 	/// <summary>
-	/// Description of UpdateInfo.
+	/// Data class containing the information concerning the program
+	/// that GUPdotNET is supporting.
 	/// </summary>
-	/// // TODO: something is failing in the initializatin of update info
-	public class UpdateInfo
-	{
-		#region Local File Info
+	public class UpdateProgramInfo
+	{	
+		/// <summary>
+		///  The freindly name of the application
+		/// </summary>
+		internal  string ProgramTitle{ get; set; }
+
+		/// <summary>
+		/// This is the actual name of the program <example>MyProgram.exe</example>.
+		/// </summary>
+		internal string ProgramName{ get; set; }
+
+		/// <summary>
+		///  This is the GUPdotNET Config File Version.
+		///  Different versions of GUPdotNET may have different file formats.
+		/// </summary>
+		internal System.Version ConfigFileVersion{ get; set; }
+
+		/// <summary>
+		/// This is the Operating System info gotten from
+		/// the settings file if it is available, otherwise gotten from
+		/// System.Enviroment methods.
+		/// </summary>
+		internal string OS{get;set;}
+
+		/// <summary>
+		/// The type of installer that is being supported by GUPdotNET.
+		/// </summary>
+		internal string InstallType{get;set;}	
+
+		/// <summary>
+		/// Full path to the application we are updating,
+		/// should be the same directory that GUPdotNET is in.
+		/// </summary>
+		internal  string ProgramFullPath{ get; set; }
 		
 		/// <summary>
-		///  the freindly name of the application
+		///  The URL for the config file containing the update information.
 		/// </summary>
-		private string _ProgramTitle =  string.Empty;
-		internal  string ProgramTitle
-		{
-			set{_ProgramTitle = value;}
-			get{return _ProgramTitle;}
-		}
+		internal string UpdateInfoURL{get;set;}
 		
 		/// <summary>
-		/// this is the actual name of the program i.e. MyProgram.exe
+		/// The current version of the program GUPdotNET is supporting,
+		/// gotten from the settings file if present, otherwise gotten from the 
+		/// calling assebly.
 		/// </summary>
-		private string _ProgramName =  string.Empty;
-		internal string ProgramName
-		{
-			set{_ProgramName = value;}
-			get{return _ProgramName;}
-		}
+		internal System.Version ProgramVersion{get;set;}
 		
 		/// <summary>
-		///  This is the GUPdotNET Version
-		///  Different versions of GUPdotNET may have different file formats
+		/// If this is set to true this will not report if no connection 
+		/// is made to the web server or if other interuptions occur.
 		/// </summary>
-		private Version _XMLFileVersion = new Version(1,0);
-		internal Version XMLFileVersion
-		{
-			set{_XMLFileVersion=value;}
-			get{return _XMLFileVersion;}
-		}
-		
-		/// <summary>
-		///  This is the Operating System info
-		///  Passed in by the program calling the GUPdotNET assembly/class
-		/// </summary>
-		private string _OS = string.Empty;
-		internal string OS
-		{
-			set{_OS=value;}
-			get{return _OS;}
-		}
-		
-		/// <summary>
-		///  This is the Operating System info
-		///  Passed in by the program calling the GUPdotNET assembly/class
-		/// </summary>
-		private string _InstallType = string.Empty;
-		internal string InstallType
-		{
-			set{_InstallType=value;}
-			get{return _InstallType;}
-		}
-		
-		/// <summary>
-		///  full path to the application we are updating
-		/// </summary>
-		private string _ProgramFullPath = string.Empty;
-		public  string ProgramFullPath
-		{
-			set{_ProgramFullPath = value;}
-			get{return _ProgramFullPath;}
-		}
-		
-		/// <summary>
-		///  This is URL for the web site
-		///  containing the update information
-		/// </summary>
-		private string _UpdateInfoURL =  string.Empty;
-		internal string UpdateInfoURL
-		{
-			set{_UpdateInfoURL = value;}
-			get{return _UpdateInfoURL;}
-		}
-		
-		/// <summary>
-		///  This is the major version of the application
-		///  we are looking to update
-		/// </summary>
-		private Version _CurrentVersion = new Version();
-		internal Version CurrentVersion
-		{
-			set{_CurrentVersion=value;}
-			get{return _CurrentVersion;}
-		}
-		
-		/// <summary>
-		///  if this is set to true this will
-		///  not report if no connection is made to the
-		///  web server or if other interuptions occur
-		/// </summary>
-		private bool _SilentCheck = false;
-		internal bool SilentCheck
-		{
-			set{_SilentCheck=value;}
-			get{return _SilentCheck;}
-		}
+		internal bool SilentCheck{get;set;}
 		
 		/// <summary>
 		/// This is the directory on the local maching
-		/// where the new package will be stored and ran from
+		/// where the new package(s) and other files 
+		/// will be stored and ran from.
 		/// </summary>
-		private string _TempInstallerPath = string.Empty;
-		internal string TempInstallerPath
-		{
-			set{_TempInstallerPath=value;}
-			get{return _TempInstallerPath;}
-		}
-		
-		#endregion Local File Info
-		
-		#region Remote Update Info
-		
-		/// <summary>
-		///  The file that is the updated installation
-		/// </summary>
-		private string _UpdateFileURL = string.Empty;
-		internal string UpdateFileURL
-		{
-			set{_UpdateFileURL=value;}
-			get{return _UpdateFileURL;}
-		}
-		
-		/// <summary>
-		///  This is the major version
-		///  recieved from the web site
-		///  containing the update information
-		/// </summary>
-		private Version _UpdateVersion = new Version();
-		internal Version UpdateVersion
-		{
-			set{_UpdateVersion= value;}
-			get{return _UpdateVersion;}
-		}
-		
-		/// <summary>
-		///  this is a generic string of the updatable version
-		/// </summary>
-		private string _LatestVersion = string.Empty;
-		internal string LatestVersion
-		{
-			set{_LatestVersion=value;}
-			get{return _LatestVersion;}
-		}
-		
-		/// <summary>
-		///  http URL of the update details if any
-		/// </summary>
-		private string _UpdateDetailsURL = string.Empty;
-		internal string UpdateDetailsURL
-		{
-			set{_UpdateDetailsURL=value;}
-			get{return _UpdateDetailsURL;}
-		}
-		
-		/// <summary>
-		///  The CheckSum Type
-		/// </summary>
-		private CheckSumType _UseCheckSumType = CheckSumType.MD5;
-		internal CheckSumType UseCheckSumType
-		{
-			set{_UseCheckSumType=value;}
-			get{return _UseCheckSumType;}
-		}
-		
-		/// <summary>
-		///  The CheckSum of the installer or compressed file
-		/// </summary>
-		private string _UseCheckSum = string.Empty;
-		internal string UseCheckSum
-		{
-			set{_UseCheckSum=value;}
-			get{return _UseCheckSum;}
-		}
-		
-		/// <summary>
-		///  this contains any error that is returned from the
-		///  web site portion of the app
-		/// </summary>
-		private string _Error = string.Empty;
-		internal string Error
-		{
-			set{_Error=value;}
-			get{return _Error;}
-		}
-		
-		#endregion Remote Update Info
+		internal string TempWorkingPath{get;set;}
+
+		/*
 		
 		private bool IsLocalInfoLoaded = false;
 		private bool IsRemoteInfoLoaded = false;
@@ -384,8 +238,9 @@ namespace GUPdotNET.Data
 			}
 			return CheckSumType.MD5;
 		}
+		*/
 	}
-	
+	/*
 	public enum UpdateInfoType
 	{
 		Local,
@@ -393,4 +248,5 @@ namespace GUPdotNET.Data
 		All,
 		None
 	}
+	*/
 }

@@ -85,15 +85,17 @@
     <Compile Include="UI\Views\InstallView.cs" />
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.InstallView.cs" />
     <Compile Include="UI\CustomWidgets\UpdateTimeCombo.cs" />
-    <Compile Include="Data\CheckSumUtility.cs" />
     <Compile Include="Data\MetaInfo.cs" />
     <Compile Include="Data\Options.cs" />
     <Compile Include="GlobalTools\GlobalTools.cs" />
     <Compile Include="UpdateCheck.cs" />
-    <Compile Include="Data\UpdateInfo.cs" />
     <Compile Include="Data\StartupOptions.cs" />
-    <Compile Include="Data\GlobalObjectTypes.cs" />
     <Compile Include="Data\UpdateOptions.cs" />
+    <Compile Include="Data\UpdateProgramInfo.cs.cs" />
+    <Compile Include="Data\UpdatePackageInfo.cs" />
+    <Compile Include="Data\PackageFile.cs" />
+    <Compile Include="GlobalTools\CheckSumUtility.cs" />
+    <Compile Include="GlobalTools\GlobalObjectTypes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
