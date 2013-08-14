@@ -39,7 +39,7 @@ namespace GUPdotNET
 		public static bool RunUpdate(bool blnSilentUpdate)
 		{
 			bool blnSuccess = true;
-			UpdateInfo _UpdateInfo = new UpdateInfo(UpdateInfoType.All, blnSilentUpdate);
+			UpdateProgramInfo.cs _UpdateInfo = new UpdateProgramInfo.cs(UpdateInfoType.All, blnSilentUpdate);
 			try
 			{
 				_UpdateInfo.LoadInfo(UpdateInfoType.All);

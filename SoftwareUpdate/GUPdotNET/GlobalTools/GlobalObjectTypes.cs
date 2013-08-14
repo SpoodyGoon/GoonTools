@@ -19,5 +19,16 @@ namespace GUPdotNET
 		Canceled,
 		Error
 	}
+
+	public enum InstallMethod
+	{
+		msi,
+		exe,
+		zip,
+		bin,
+		rpm,
+		deb,
+		src
+	}
 }
 

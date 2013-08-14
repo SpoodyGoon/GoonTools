@@ -8,6 +8,21 @@ namespace GUPdotNET.UI.Views
 		{
 			this.Build();
 		}
+
+		protected void OnAutoUpdateCheckButtonToggled(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
+		}
+
+		protected void OnButtonCancelClicked(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
+		}
+
+		protected void OnButtonOkClicked(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
 
