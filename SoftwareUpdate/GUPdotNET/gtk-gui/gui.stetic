@@ -7,6 +7,18 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/GUPdotNET.exe" internal="true" />
   </import>
+  <icon-factory>
+    <icon-set id="Quit.png">
+      <source>
+        <property name="Image">resource:GUPdotNET.Resources.Images.Quit.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="About.png">
+      <source>
+        <property name="Image">resource:GUPdotNET.Resources.Images.About.png</property>
+      </source>
+    </icon-set>
+  </icon-factory>
   <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.OptionsView" design-size="411 180">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Options</property>
@@ -338,6 +350,226 @@ Month</property>
         <property name="BorderWidth">2</property>
         <child>
           <placeholder />
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">2</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonCancel">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-cancel</property>
+            <property name="ResponseId">-6</property>
+            <property name="label">gtk-cancel</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="489 187">
+    <action-group name="Default">
+      <action id="QuitAction">
+        <property name="Type">Action</property>
+        <property name="IsImportant">True</property>
+        <property name="Label" translatable="yes">Quit</property>
+        <property name="ShortLabel" translatable="yes">Quit</property>
+        <property name="StockId">Quit.png</property>
+      </action>
+      <action id="AboutGUPdotNETAction">
+        <property name="Type">Action</property>
+        <property name="IsImportant">True</property>
+        <property name="Label" translatable="yes">About GUPdotNET</property>
+        <property name="ShortLabel" translatable="yes">About GUPdotNET</property>
+        <property name="StockId">About.png</property>
+      </action>
+    </action-group>
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">GUPdotNET</property>
+    <property name="Icon">resource:GUPdotNET.Resources.Images.update_small.png</property>
+    <property name="WindowPosition">CenterAlways</property>
+    <property name="Modal">True</property>
+    <property name="Buttons">2</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.VBox" id="vbox2">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.MenuBar" id="menubar1">
+                <property name="MemberName" />
+                <node name="__gtksharp_124_Stetic_Editor_ActionMenuBar" type="Menubar">
+                  <node type="Menu" action="QuitAction" />
+                  <node type="Menu" action="AboutGUPdotNETAction" />
+                </node>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment5">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.HSeparator" id="hseparator1">
+                    <property name="MemberName" />
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment1">
+                <property name="MemberName" />
+                <property name="Xscale">0.01</property>
+                <child>
+                  <widget class="Gtk.HBox" id="hbox1">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Alignment" id="alignment2">
+                        <property name="MemberName" />
+                        <child>
+                          <widget class="Gtk.Label" id="updateLabel">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">&lt;span size="12000" weight="bold"&gt;Update tools for YahtzeeSharp.&lt;/span&gt;</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment7">
+                <property name="MemberName" />
+                <property name="Xscale">0.01</property>
+                <property name="TopPadding">4</property>
+                <child>
+                  <widget class="Gtk.HBox" id="hbox2">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Button" id="checkUpdateButton">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextAndIcon</property>
+                        <property name="Icon">resource:GUPdotNET.Resources.Images.CheckMark.png</property>
+                        <property name="Label" translatable="yes">Check for Updates</property>
+                        <property name="UseUnderline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="updateSettingsButton">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextAndIcon</property>
+                        <property name="Icon">resource:GUPdotNET.Resources.Images.Tools.png</property>
+                        <property name="Label" translatable="yes">Update Settings</property>
+                        <property name="UseUnderline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment6">
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.HButtonBox" id="hbuttonbox2">
+                    <property name="MemberName" />
+                    <property name="Size">0</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">4</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
         </child>
       </widget>
     </child>

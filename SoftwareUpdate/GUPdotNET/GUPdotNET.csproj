@@ -66,6 +66,11 @@
     <EmbeddedResource Include="Resources\Images\update_medium.png" />
     <EmbeddedResource Include="Resources\Images\update_needed.png" />
     <EmbeddedResource Include="Resources\Images\update_small.png" />
+    <EmbeddedResource Include="Resources\Images\CheckMark.png" />
+    <EmbeddedResource Include="Resources\Images\Help.png" />
+    <EmbeddedResource Include="Resources\Images\Quit.png" />
+    <EmbeddedResource Include="Resources\Images\Tools.png" />
+    <EmbeddedResource Include="Resources\Images\About.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -96,6 +101,8 @@
     <Compile Include="Data\PackageFile.cs" />
     <Compile Include="GlobalTools\CheckSumUtility.cs" />
     <Compile Include="GlobalTools\GlobalObjectTypes.cs" />
+    <Compile Include="UI\Views\MainView.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.UI.Views.MainView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
