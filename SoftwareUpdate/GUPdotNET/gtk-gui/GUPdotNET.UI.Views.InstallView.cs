@@ -4,7 +4,7 @@ namespace GUPdotNET.UI.Views
 {
 	public partial class InstallView
 	{
-		private global::Gtk.Button buttonCancel;
+		private global::Gtk.Button closeWindowButton;
 		private global::Gtk.Button buttonOk;
 
 		protected virtual void Build ()
@@ -25,15 +25,15 @@ namespace GUPdotNET.UI.Views
 			w2.BorderWidth = ((uint)(5));
 			w2.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.buttonCancel = new global::Gtk.Button ();
-			this.buttonCancel.CanDefault = true;
-			this.buttonCancel.CanFocus = true;
-			this.buttonCancel.Name = "buttonCancel";
-			this.buttonCancel.UseStock = true;
-			this.buttonCancel.UseUnderline = true;
-			this.buttonCancel.Label = "gtk-cancel";
-			this.AddActionWidget (this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w3 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w2 [this.buttonCancel]));
+			this.closeWindowButton = new global::Gtk.Button ();
+			this.closeWindowButton.CanDefault = true;
+			this.closeWindowButton.CanFocus = true;
+			this.closeWindowButton.Name = "buttonCancel";
+			this.closeWindowButton.UseStock = true;
+			this.closeWindowButton.UseUnderline = true;
+			this.closeWindowButton.Label = "gtk-cancel";
+			this.AddActionWidget (this.closeWindowButton, -6);
+			global::Gtk.ButtonBox.ButtonBoxChild w3 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w2 [this.closeWindowButton]));
 			w3.Expand = false;
 			w3.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild

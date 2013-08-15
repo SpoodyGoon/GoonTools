@@ -8,6 +8,16 @@ namespace GUPdotNET.UI.Views
 		{
 			this.Build();
 		}
+
+		protected void OnCloseWindowButtonClicked(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
+		}
+
+		protected void OnCancelInstallButtonClicked(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
 
