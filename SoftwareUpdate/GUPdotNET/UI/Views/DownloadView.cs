@@ -10,6 +10,16 @@ namespace GUPdotNET.UI.Views
 			this.Build();
 			this.CurrentStatus = DownloadStatus.None;
 		}
+
+		protected void OnCancelButtonClicked(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
+		}
+
+		protected void OnHideWindowButtonClicked(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
 
