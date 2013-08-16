@@ -4,57 +4,173 @@ namespace GUPdotNET.UI.Views
 {
 	public partial class InstallView
 	{
+		private global::Gtk.VBox vbox2;
+		private global::Gtk.Alignment alignment1;
+		private global::Gtk.Label titleLabel;
+		private global::Gtk.Alignment alignment3;
+		private global::Gtk.Label label1;
+		private global::Gtk.Alignment alignment2;
+		private global::Gtk.Expander detailsExpander;
+		private global::Gtk.Alignment alignment9;
+		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+		private global::Gtk.TextView installDetailsTextview;
+		private global::Gtk.Label GtkLabel2;
 		private global::Gtk.Button closeWindowButton;
-		private global::Gtk.Button buttonOk;
+		private global::Gtk.Button cancelInstallButton;
 
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
 			// Widget GUPdotNET.UI.Views.InstallView
 			this.Name = "GUPdotNET.UI.Views.InstallView";
-			this.Title = global::Mono.Unix.Catalog.GetString ("dialog1");
-			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Title = global::Mono.Unix.Catalog.GetString ("Installing");
+			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
+			this.Modal = true;
 			// Internal child GUPdotNET.UI.Views.InstallView.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";
 			w1.BorderWidth = ((uint)(2));
-			// Internal child GUPdotNET.UI.Views.InstallView.ActionArea
-			global::Gtk.HButtonBox w2 = this.ActionArea;
-			w2.Name = "dialog1_ActionArea";
-			w2.Spacing = 10;
-			w2.BorderWidth = ((uint)(5));
-			w2.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
-			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.closeWindowButton = new global::Gtk.Button ();
-			this.closeWindowButton.CanDefault = true;
-			this.closeWindowButton.CanFocus = true;
-			this.closeWindowButton.Name = "buttonCancel";
-			this.closeWindowButton.UseStock = true;
-			this.closeWindowButton.UseUnderline = true;
-			this.closeWindowButton.Label = "gtk-cancel";
-			this.AddActionWidget (this.closeWindowButton, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w3 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w2 [this.closeWindowButton]));
+			// Container child dialog1_VBox.Gtk.Box+BoxChild
+			this.vbox2 = new global::Gtk.VBox ();
+			this.vbox2.Name = "vbox2";
+			this.vbox2.Spacing = 6;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment1.Name = "alignment1";
+			this.alignment1.TopPadding = ((uint)(10));
+			// Container child alignment1.Gtk.Container+ContainerChild
+			this.titleLabel = new global::Gtk.Label ();
+			this.titleLabel.Name = "titleLabel";
+			this.titleLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Installing Program</b>");
+			this.titleLabel.UseMarkup = true;
+			this.alignment1.Add (this.titleLabel);
+			this.vbox2.Add (this.alignment1);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment1]));
+			w3.Position = 0;
 			w3.Expand = false;
 			w3.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.alignment3 = new global::Gtk.Alignment (0.06F, 0.5F, 0.01F, 1F);
+			this.alignment3.Name = "alignment3";
+			// Container child alignment3.Gtk.Container+ContainerChild
+			this.label1 = new global::Gtk.Label ();
+			this.label1.Name = "label1";
+			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Starting Install Process");
+			this.alignment3.Add (this.label1);
+			this.vbox2.Add (this.alignment3);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
+			w5.Position = 1;
+			w5.Expand = false;
+			w5.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.alignment2 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment2.Name = "alignment2";
+			this.alignment2.LeftPadding = ((uint)(4));
+			this.alignment2.RightPadding = ((uint)(4));
+			// Container child alignment2.Gtk.Container+ContainerChild
+			this.detailsExpander = new global::Gtk.Expander (null);
+			this.detailsExpander.CanFocus = true;
+			this.detailsExpander.Name = "detailsExpander";
+			// Container child detailsExpander.Gtk.Container+ContainerChild
+			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment9.Name = "alignment9";
+			// Container child alignment9.Gtk.Container+ContainerChild
+			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(3));
+			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+			this.installDetailsTextview = new global::Gtk.TextView ();
+			this.installDetailsTextview.CanFocus = true;
+			this.installDetailsTextview.Name = "installDetailsTextview";
+			this.installDetailsTextview.Editable = false;
+			this.installDetailsTextview.AcceptsTab = false;
+			this.installDetailsTextview.LeftMargin = 2;
+			this.installDetailsTextview.RightMargin = 2;
+			this.GtkScrolledWindow.Add (this.installDetailsTextview);
+			this.alignment9.Add (this.GtkScrolledWindow);
+			this.detailsExpander.Add (this.alignment9);
+			this.GtkLabel2 = new global::Gtk.Label ();
+			this.GtkLabel2.Name = "GtkLabel2";
+			this.GtkLabel2.Xpad = 8;
+			this.GtkLabel2.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Details</b>");
+			this.GtkLabel2.UseMarkup = true;
+			this.GtkLabel2.Justify = ((global::Gtk.Justification)(2));
+			this.detailsExpander.LabelWidget = this.GtkLabel2;
+			this.alignment2.Add (this.detailsExpander);
+			this.vbox2.Add (this.alignment2);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment2]));
+			w10.Position = 2;
+			w1.Add (this.vbox2);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
+			w11.Position = 0;
+			// Internal child GUPdotNET.UI.Views.InstallView.ActionArea
+			global::Gtk.HButtonBox w12 = this.ActionArea;
+			w12.Name = "dialog1_ActionArea";
+			w12.Homogeneous = true;
+			w12.BorderWidth = ((uint)(5));
+			w12.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.buttonOk = new global::Gtk.Button ();
-			this.buttonOk.CanDefault = true;
-			this.buttonOk.CanFocus = true;
-			this.buttonOk.Name = "buttonOk";
-			this.buttonOk.UseStock = true;
-			this.buttonOk.UseUnderline = true;
-			this.buttonOk.Label = "gtk-ok";
-			this.AddActionWidget (this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w2 [this.buttonOk]));
-			w4.Position = 1;
-			w4.Expand = false;
-			w4.Fill = false;
+			this.closeWindowButton = new global::Gtk.Button ();
+			this.closeWindowButton.HeightRequest = 32;
+			this.closeWindowButton.CanDefault = true;
+			this.closeWindowButton.CanFocus = true;
+			this.closeWindowButton.Name = "closeWindowButton";
+			this.closeWindowButton.UseUnderline = true;
+			// Container child closeWindowButton.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w13 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w14 = new global::Gtk.HBox ();
+			w14.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w15 = new global::Gtk.Image ();
+			w15.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Menu);
+			w14.Add (w15);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w17 = new global::Gtk.Label ();
+			w17.LabelProp = global::Mono.Unix.Catalog.GetString (" Close");
+			w17.UseUnderline = true;
+			w14.Add (w17);
+			w13.Add (w14);
+			this.closeWindowButton.Add (w13);
+			this.AddActionWidget (this.closeWindowButton, -7);
+			global::Gtk.ButtonBox.ButtonBoxChild w21 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w12 [this.closeWindowButton]));
+			w21.Expand = false;
+			w21.Fill = false;
+			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
+			this.cancelInstallButton = new global::Gtk.Button ();
+			this.cancelInstallButton.HeightRequest = 32;
+			this.cancelInstallButton.CanFocus = true;
+			this.cancelInstallButton.Name = "cancelInstallButton";
+			this.cancelInstallButton.UseUnderline = true;
+			// Container child cancelInstallButton.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w22 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w23 = new global::Gtk.HBox ();
+			w23.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w24 = new global::Gtk.Image ();
+			w24.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.cancel.png");
+			w23.Add (w24);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w26 = new global::Gtk.Label ();
+			w26.LabelProp = global::Mono.Unix.Catalog.GetString (" Cancel Install");
+			w26.UseUnderline = true;
+			w23.Add (w26);
+			w22.Add (w23);
+			this.cancelInstallButton.Add (w22);
+			this.AddActionWidget (this.cancelInstallButton, -6);
+			global::Gtk.ButtonBox.ButtonBoxChild w30 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w12 [this.cancelInstallButton]));
+			w30.Position = 1;
+			w30.Expand = false;
+			w30.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 400;
-			this.DefaultHeight = 300;
+			this.DefaultWidth = 518;
+			this.DefaultHeight = 165;
 			this.Show ();
+			this.closeWindowButton.Clicked += new global::System.EventHandler (this.OnCloseWindowButtonClicked);
+			this.cancelInstallButton.Clicked += new global::System.EventHandler (this.OnCancelInstallButtonClicked);
 		}
 	}
 }

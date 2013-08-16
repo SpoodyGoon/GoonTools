@@ -169,8 +169,7 @@ namespace GUPdotNET.Tools
 	}
 }
 
-namespace GoonTools
-{	
+
 		internal enum CheckSumType
 		{
 			MD5,
@@ -179,4 +178,4 @@ namespace GoonTools
 			SHA384,
 			SHA512
 		}
-}
+
