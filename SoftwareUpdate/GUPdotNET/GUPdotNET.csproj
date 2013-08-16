@@ -81,15 +81,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="UI\Views\OptionsView.cs" />
-    <Compile Include="gtk-gui\GUPdotNET.UI.Views.OptionsView.cs" />
     <Compile Include="UI\Views\DownloadView.cs" />
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.DownloadView.cs" />
-    <Compile Include="UI\Views\ConfirmationView.cs" />
-    <Compile Include="gtk-gui\GUPdotNET.UI.Views.ConfirmationView.cs" />
     <Compile Include="UI\Views\InstallView.cs" />
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.InstallView.cs" />
-    <Compile Include="UI\CustomWidgets\UpdateTimeCombo.cs" />
     <Compile Include="Data\MetaInfo.cs" />
     <Compile Include="Data\Options.cs" />
     <Compile Include="GlobalTools\GlobalTools.cs" />
@@ -103,10 +98,17 @@
     <Compile Include="GlobalTools\GlobalObjectTypes.cs" />
     <Compile Include="UI\Views\MainView.cs" />
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.MainView.cs" />
+    <Compile Include="MonoTools\Licenses.cs" />
+    <Compile Include="MonoTools\MiscTools.cs" />
+    <Compile Include="MonoTools\SimpleConfigDataItem.cs" />
+    <Compile Include="MonoTools\SimpleConfigFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="docs\templates\ReleaseNotes.html" />
+    <Content Include="ProgramConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -130,4 +132,7 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <Folder Include="MonoTools\" />
+  </ItemGroup>
 </Project>

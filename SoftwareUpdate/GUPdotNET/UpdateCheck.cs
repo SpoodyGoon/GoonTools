@@ -33,7 +33,7 @@ namespace GUPdotNET
 	{
 		public static bool RunUpdate()
 		{
-			return RunUpdate(false);
+			return this.RunUpdate(false);
 		}
 		
 		public static bool RunUpdate(bool blnSilentUpdate)
