@@ -33,43 +33,43 @@ namespace GUPdotNET
 	{
 		public static bool RunUpdate()
 		{
-			return this.RunUpdate(false);
+			return RunUpdate(false);
 		}
 		
 		public static bool RunUpdate(bool blnSilentUpdate)
 		{
 			bool blnSuccess = true;
-			UpdateProgramInfo.cs _UpdateInfo = new UpdateProgramInfo.cs(UpdateInfoType.All, blnSilentUpdate);
+			UpdateProgramInfo  _UpdateInfo = new UpdateProgramInfo ();
 			try
 			{
-				_UpdateInfo.LoadInfo(UpdateInfoType.All);
+				//_UpdateInfo.LoadInfo(UpdateInfoType.All);
 				
 				if(DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck) > GlobalTools.Options.UpdateSchedule)
 				{
 					// tell the user there is an update availalbe
 					// and ask if they would like to update
-					ConfirmationView confirmationView = new ConfirmationView();
-					if((Gtk.ResponseType)confirmationView.Run() == Gtk.ResponseType.Yes)
-					{
-						// update confirmed get installer file
-						DownloadView downloadView = new DownloadView();
-						downloadView.Show();
-						DownloadStatus LoadStat = downloadView.CurrentStatus;
-						while(LoadStat == DownloadStatus.Prep || LoadStat == DownloadStatus.InProcess)
-						{
-							GLib.Timeout.Add(1000, delegate{return false;});
-						}
-						downloadView.Destroy();
-						
-						if(LoadStat == DownloadStatus.Success)
-						{
-							// if the download was sucessful then procede with the install
-							InstallView installView = new InstallView();
-							installView.Run();
-							installView.Destroy();
-						}
-					}
-					confirmationView.Destroy();
+//					ConfirmationView confirmationView = new ConfirmationView();
+//					if((Gtk.ResponseType)confirmationView.Run() == Gtk.ResponseType.Yes)
+//					{
+//						// update confirmed get installer file
+//						DownloadView downloadView = new DownloadView();
+//						downloadView.Show();
+//						DownloadStatus LoadStat = downloadView.CurrentStatus;
+//						while(LoadStat == DownloadStatus.Prep || LoadStat == DownloadStatus.InProcess)
+//						{
+//							GLib.Timeout.Add(1000, delegate{return false;});
+//						}
+//						downloadView.Destroy();
+//						
+//						if(LoadStat == DownloadStatus.Success)
+//						{
+//							// if the download was sucessful then procede with the install
+//							InstallView installView = new InstallView();
+//							installView.Run();
+//							installView.Destroy();
+//						}
+//					}
+//					confirmationView.Destroy();
 				}
 				else
 				{
