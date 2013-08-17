@@ -31,14 +31,18 @@ namespace GUPdotNET
 	/// </summary>
 	public class UpdateCheck
 	{
-		public static bool RunUpdate()
+        public UpdateCheck()
+        {
+            this.Initalize();
+        }
+
+        private void Initalize()
+        {
+            GlobalTools.Initalize();
+        }
+
+		public void RunUpdate()
 		{
-			return RunUpdate(false);
-		}
-		
-		public static bool RunUpdate(bool blnSilentUpdate)
-		{
-			bool blnSuccess = true;
 			UpdateProgramInfo  _UpdateInfo = new UpdateProgramInfo ();
 			try
 			{
@@ -83,10 +87,11 @@ namespace GUPdotNET
 			}
 			catch(Exception ex)
 			{
-				// TODO: add MonoTools Handler here
-				blnSuccess = false;
+                Gtk.MessageDialog md = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.YesNo, false, ex.Message, "Error starting GUPdotNET auto-update tool.");
+                md.WindowPosition = WindowPosition.CenterAlways;
+                Gtk.ResponseType res = (Gtk.ResponseType)md.Run();
+                md.Destroy();
 			}
-			return blnSuccess;
 		}
 	}
 }

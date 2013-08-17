@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GUPdotNET>
+	<ProgramConfig>
+    <ProgramName>YahtzeeSharp</ProgramName>
+		<ProgramTitle>YahtzeeSharp 2.0</ProgramTitle>
+    <ProgramFileName>YahtzeeSharp.exe</ProgramFileName>
+    <ProgramDescription>A Simple Yahtzee like game, similar to the ones played 'back in the day'. Written in Mono/Gtk# using SQLite for data storage.</ProgramDescription>
+		<OS>Windows</OS>
+		<Processor64>False</Processor64>
+		<InstallerType>exe</InstallerType>
+		<UpdateInfoURL>http://brdstudio.net/gupdotnet/UpdateConfig.xml</UpdateInfoURL>
+		<ProgramVersion>2.0</ProgramVersion>
+    <RequireCheckSum>False</RequireCheckSum>
+	</ProgramConfig>
+</GUPdotNET>
