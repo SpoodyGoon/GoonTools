@@ -1,0 +1,14 @@
+<GUPdotNET>
+	<ProgramConfig>
+    <DebugMode>true</DebugMode>
+		<ProgramName>YahtzeeSharp</ProgramName>
+		<ProgramTitle>YahtzeeSharp 2.0</ProgramTitle>
+		<OS>Windows</OS>
+		<Processor64>False</Processor64>
+		<InstallerType>exe</InstallerType>
+		<UpdateInfoURL>http://brdstudio.net/gupdotnet/UpdateConfig.xml</UpdateInfoURL>
+		<ProgramVersion>2.0</ProgramVersion>
+		<PackageConfigVersion>1.0</PackageConfigVersion>
+		<RequireChecksum>False</RequireChecksum>
+	</ProgramConfig>
+</GUPdotNET>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>GUPdotNET Developer Guide</title>
+    <meta content="Andy York" name="author">
+    <meta content="Basic developer guided for GUPdotNET a simple .NET general update program."
+
+      name="description">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <style media="all" title="DevDocStyle" type="text/css">
+      root {  
+  display: block;
+}
+
+form {  
+  display: inline;
+}
+
+html, body {  
+  font-family: Arial, Helvetica, sans-serif;  
+  font-size: 10pt;  
+  color: black;  
+  background-color: #fffee7;  
+  display: block;  
+  height: 100%;
+}
+
+.SubHeader {  
+  font-size: 12pt;  
+  font-weight: bold;  
+  text-align: left;  
+  text-decoration: underline;
+}
+
+
+</style></head>
+  <body>
+    <p class="SubHeader">Naming convention:</p>
+    <ul>
+      <li>Program</li>
+      <ul>
+        <li>When used in a name "program" refers to the application, local
+          config and related files on the local machine that is being supported
+          by GUPdotNET.</li>
+        <li>For example GUPProgramConfig.xml contains information about the
+          application GUPdotNET is being used to update like Name, Title,
+          Version, etc.</li>
+      </ul>
+      <li>Package</li>
+      <ul>
+        <li>When used in a name "package" refers to remote application, config
+          and releted file concerning the newest application version that can be
+          upgraded to, files are located on a server and accessed via http.</li>
+        <ul>
+          <li>More access methods (ftp, web service, etc.) may be made available
+            later.</li>
+        </ul>
+        <li>For example GUPPackageConfig.xml contains information on each
+          OS, installer type and processor update that is currently
+          available.</li>
+      </ul>
+    </ul>
+  </body>
+</html>
