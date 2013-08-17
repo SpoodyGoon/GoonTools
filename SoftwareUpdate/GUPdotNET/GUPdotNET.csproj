@@ -109,14 +109,18 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Content Include="docs\DeveloperGuide.html" />
+    <Content Include="docs\templates\GUPProgramConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="docs\templates\ReleaseNotes.html" />
-    <Content Include="ProgramConfig.xml">
+    <Content Include="GUPProgramConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="docs\templates\GUPdotNETConfig.json" />
+    <None Include="docs\templates\GUPPackageConfig.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,7 +129,7 @@
     <None Include="WebFiles\GetUpdateInfo.aspx" />
     <None Include="WebFiles\GetUpdateInfo.php" />
     <None Include="WebFiles\UpdateCheck.xml" />
-    <None Include="docs\templates\GUPdotNETConfig.xml" />
+    <None Include="docs\templates\GUPPackageConfig.xml" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -136,8 +140,5 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
-  <ItemGroup>
-    <Folder Include="MonoTools\" />
-    <Folder Include="IO\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
