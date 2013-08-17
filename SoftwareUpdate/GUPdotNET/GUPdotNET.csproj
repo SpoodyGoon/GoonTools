@@ -55,6 +55,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -78,20 +79,14 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="UI\Views\DownloadView.cs" />
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.DownloadView.cs" />
     <Compile Include="UI\Views\InstallView.cs" />
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.InstallView.cs" />
-    <Compile Include="Data\Options.cs" />
     <Compile Include="GlobalTools\GlobalTools.cs" />
     <Compile Include="UpdateCheck.cs" />
-    <Compile Include="Data\UpdateOptions.cs" />
-    <Compile Include="Data\UpdateProgramInfo.cs.cs" />
+    <Compile Include="Data\UpdateSettings.cs" />
+    <Compile Include="Data\UpdateProgramInfo.cs" />
     <Compile Include="Data\UpdatePackageInfo.cs" />
     <Compile Include="Data\PackageFile.cs" />
     <Compile Include="GlobalTools\CheckSumUtility.cs" />
@@ -100,11 +95,7 @@
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.MainView.cs" />
     <Compile Include="MonoTools\Licenses.cs" />
     <Compile Include="MonoTools\MiscTools.cs" />
-    <Compile Include="MonoTools\SimpleConfigDataItem.cs" />
-    <Compile Include="MonoTools\SimpleConfigFile.cs" />
-    <Compile Include="IO\LocalConfigFile.cs" />
     <Compile Include="IO\LocalSystemTools.cs" />
-    <Compile Include="IO\UpdateProgramInfoReader.cs" />
     <Compile Include="IO\UpdatePackageInfoReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -114,17 +105,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="docs\templates\ReleaseNotes.html" />
-    <Content Include="GUPProgramConfig.xml">
+    <Content Include="GUPProgram.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="docs\templates\GUPPackageConfig.json" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <None Include="WebFiles\GetUpdateInfo.asp" />
     <None Include="WebFiles\GetUpdateInfo.aspx" />
     <None Include="WebFiles\GetUpdateInfo.php" />

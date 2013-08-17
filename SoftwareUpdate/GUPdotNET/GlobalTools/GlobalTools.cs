@@ -7,9 +7,7 @@ namespace GUPdotNET
 {
 	internal static class GlobalTools
 	{
-		internal static System.Action Initalized;
-
-		internal static UpdateOptions Options{ get; set; }
+		internal static UpdateSettings Options{ get; set; }
 
 		internal static RunType UpdateRunType{ get; set; }
 
@@ -17,17 +15,16 @@ namespace GUPdotNET
 
 		internal static UpdateProgramInfo ProgramInfo{ get; set; }
 
-		internal static LocalSystemTools LocalSystem{ get; set; }
+		internal static LocalSystemTools LocalSystem{ get; private set; }
 
 		internal static void Initalize()
 		{
 			LocalSystem = new LocalSystemTools();
 			LocalSystem.Initalize();
-			LocalConfigFile configFile = new LocalConfigFile();
-			configFile.ConfigFileRead();
-			UpdateProgramInfoReader programInfoReader = new UpdateProgramInfoReader();
-			programInfoReader.CallingAssemblyRead();
-			Initalized();
+            ProgramInfo = new UpdateProgramInfo();
+            ProgramInfo.Load();
+            Options = new UpdateSettings();
+            Options.Load();
 		}
 	}
 }
