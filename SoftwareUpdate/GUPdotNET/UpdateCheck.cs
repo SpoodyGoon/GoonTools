@@ -73,7 +73,7 @@ namespace GUPdotNET
 				}
 				else
 				{
-					if(GlobalTools.Startup.UpdateRunType == RunType.ManualCheck)
+					if(GlobalTools.UpdateRunType == RunType.ManualCheck)
 					{
 						MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No Update Available", "No Update Available");
 						md.Run();

@@ -17,20 +17,32 @@ namespace GUPdotNET.Data
 	public class UpdateProgramInfo
 	{	
 		/// <summary>
-		///  The freindly name of the application
-		/// </summary>
-		internal  string ProgramTitle{ get; set; }
-
-		/// <summary>
 		/// This is the actual name of the program <example>MyProgram.exe</example>.
 		/// </summary>
 		internal string ProgramName{ get; set; }
 
 		/// <summary>
-		///  This is the GUPdotNET Config File Version.
-		///  Different versions of GUPdotNET may have different file formats.
+		///  The freindly name of the application
 		/// </summary>
-		internal System.Version ConfigFileVersion{ get; set; }
+		internal  string ProgramTitle{ get; set; }
+
+		/// <summary>
+		/// Gets or sets the program description.
+		/// </summary>
+		internal string ProgramDescription{ get; set; }
+
+		/// <summary>
+		/// The current version of the program GUPdotNET is supporting,
+		/// gotten from the settings file if present, otherwise gotten from the 
+		/// calling assebly.
+		/// </summary>
+		internal System.Version ProgramVersion{get;set;}
+
+		/// <summary>
+		/// Full path to the application we are updating,
+		/// should be the same directory that GUPdotNET is in.
+		/// </summary>
+		internal  string ProgramFullPath{ get; set; }
 
 		/// <summary>
 		/// This is the Operating System info gotten from
@@ -42,31 +54,12 @@ namespace GUPdotNET.Data
 		/// <summary>
 		/// The type of installer that is being supported by GUPdotNET.
 		/// </summary>
-		internal string InstallType{get;set;}	
-
-		/// <summary>
-		/// Full path to the application we are updating,
-		/// should be the same directory that GUPdotNET is in.
-		/// </summary>
-		internal  string ProgramFullPath{ get; set; }
+		internal InstallMethod InstallType{get;set;}	
 		
 		/// <summary>
 		///  The URL for the config file containing the update information.
 		/// </summary>
-		internal string UpdateInfoURL{get;set;}
-		
-		/// <summary>
-		/// The current version of the program GUPdotNET is supporting,
-		/// gotten from the settings file if present, otherwise gotten from the 
-		/// calling assebly.
-		/// </summary>
-		internal System.Version ProgramVersion{get;set;}
-		
-		/// <summary>
-		/// If this is set to true this will not report if no connection 
-		/// is made to the web server or if other interuptions occur.
-		/// </summary>
-		internal bool SilentCheck{get;set;}
+		internal string UpdatePackageURL{get;set;}
 		
 		/// <summary>
 		/// This is the directory on the local maching

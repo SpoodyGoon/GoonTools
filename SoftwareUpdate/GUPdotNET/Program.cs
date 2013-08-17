@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using GUPdotNET.Data;
+using GUPdotNET.IO;
 using Gtk;
 
 namespace GUPdotNET
@@ -13,19 +14,16 @@ namespace GUPdotNET
 			bool runSuccessful = true;
 			try
 			{
+                GlobalTools.Initalized += GlobalTools_Initalized;
+				if(args.Length > 0 && args[0].ToLower().Equals("background"))
+				{
+					GlobalTools.UpdateRunType = RunType.BackgroundCheck;
+				}
+				else 
+				{
+					GlobalTools.UpdateRunType = RunType.ManualCheck;
+				}
 				GlobalTools.Initalize();
-
-				// no need to get fancy here keep it simple stupid
-				GlobalTools.Startup.SuppressErrors = args.ToString().ToLower().Contains("suppresserrors");
-				if(args.ToString().ToLower().Contains("options"))
-				{
-					GlobalTools.Startup.UpdateRunType = RunType.Options;
-				}
-				else if(args.ToString().ToLower().Contains("manual"))
-				{
-					GlobalTools.Startup.UpdateRunType = RunType.ManualCheck;
-				}
-
 
 
 			}
@@ -39,5 +37,9 @@ namespace GUPdotNET
 			Application.Run();
 			return runSuccessful ? 0:1;
 		}
+
+        private static void GlobalTools_Initalized()
+        {
+        }
 	}
 }
