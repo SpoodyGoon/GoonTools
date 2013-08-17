@@ -1,5 +1,5 @@
 //
-//  StartupOptions.cs
+//  UpdatePackageInfoReader.cs
 //
 //  Author:
 //       Andy York <goontools@brdstudio.net>
@@ -18,24 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 
-namespace GUPdotNET.Data
+namespace GUPdotNET.IO
 {
-	using System;
-
-	public class StartupOptions
+	public class UpdatePackageInfoReader
 	{
-		public RunType UpdateRunType{ get; set; }
-
-		public bool RunSilent{ get; set; }
-
-		public bool SuppressErrors{ get; set; }
-
-		public StartupOptions()
+		public UpdatePackageInfoReader()
 		{
-			this.UpdateRunType = RunType.BackgroundCheck;
-			this.RunSilent = true;
-			this.SuppressErrors = true;
 		}
 	}
 }

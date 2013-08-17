@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDescription("A simple stand alone update application build to be cross platform, easy to config and can be used with any .NET application for handling updates.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GoonTools")]
-[assembly: AssemblyProduct("")]
+[assembly: AssemblyProduct("GUPdotNET")]
 [assembly: AssemblyCopyright("Andy York")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

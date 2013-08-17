@@ -90,7 +90,6 @@
     <Compile Include="Data\Options.cs" />
     <Compile Include="GlobalTools\GlobalTools.cs" />
     <Compile Include="UpdateCheck.cs" />
-    <Compile Include="Data\StartupOptions.cs" />
     <Compile Include="Data\UpdateOptions.cs" />
     <Compile Include="Data\UpdateProgramInfo.cs.cs" />
     <Compile Include="Data\UpdatePackageInfo.cs" />
@@ -103,6 +102,10 @@
     <Compile Include="MonoTools\MiscTools.cs" />
     <Compile Include="MonoTools\SimpleConfigDataItem.cs" />
     <Compile Include="MonoTools\SimpleConfigFile.cs" />
+    <Compile Include="IO\LocalConfigFile.cs" />
+    <Compile Include="IO\LocalSystemTools.cs" />
+    <Compile Include="IO\UpdateProgramInfoReader.cs" />
+    <Compile Include="IO\UpdatePackageInfoReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -135,5 +138,6 @@
   </ProjectExtensions>
   <ItemGroup>
     <Folder Include="MonoTools\" />
+    <Folder Include="IO\" />
   </ItemGroup>
 </Project>

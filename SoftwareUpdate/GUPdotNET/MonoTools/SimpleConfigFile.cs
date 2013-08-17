@@ -35,7 +35,7 @@ namespace MonoTools.IO
     /// Best used for hobby related work that
     /// is not well defined ahead of time.
     /// </summary>
-    public class SimpleConfigFile
+    public class SimpleConfigFile : GLib.Object
     { 
         private const string OUTPUT = "{0}{1}{2}{3}";
         public string SaveFilePath{ get; private set; }
@@ -56,14 +56,15 @@ namespace MonoTools.IO
             set{ this.nameValuePairSeperator = value;}
         }
 
-        public SimpleConfigFile()
+        public SimpleConfigFile(string filePath)
         {
+			this.SaveFilePath = filePath;
             this.DataItem = new SimpleConfigDataItem();
-        }
+		}
 
-        public void Save(string filePath)
+        public void Save()
         {
-            using (StreamWriter writer = new StreamWriter(filePath,false))
+            using (StreamWriter writer = new StreamWriter(this.SaveFilePath,false))
             {
                 foreach(KeyValuePair<string, string> pair in this.DataItem)
                 {
@@ -72,13 +73,13 @@ namespace MonoTools.IO
             }
         }
 
-        public void Load(string filePath)
+        public void Load()
         {
             this.DataItem.Clear();
             string fileContents = string.Empty;
-            if (File.Exists(filePath))
+			if (File.Exists(this.SaveFilePath))
             {
-                using(StreamReader reader = new StreamReader(filePath))
+				using(StreamReader reader = new StreamReader(this.SaveFilePath))
                 {
                     fileContents = reader.ReadToEnd();
                 }
