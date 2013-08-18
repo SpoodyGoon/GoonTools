@@ -41,7 +41,7 @@ namespace GUPdotNET.Data
 
         internal UpdateSettings()
         {
-            this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, string.Format(FILENAME_FORMAT, GlobalTools.ProgramInfo.ProgramName));
+            this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, string.Format(FILENAME_FORMAT, GlobalTools.UpdateProgramName));
             this.AutoUpdate = true;
             this.LastUpdateCheck = DateTime.Now.AddDays(-1);
             this.UpdateSchedule = new TimeSpan(1, 0, 0, 0);
@@ -65,7 +65,7 @@ namespace GUPdotNET.Data
 
                 if (settingsInfo == null)
                 {
-                    throw new Exception("Unable to load GUPdotNET setting for program " + GlobalTools.ProgramInfo.ProgramName);
+                    throw new Exception("Unable to load GUPdotNET setting for program " + GlobalTools.UpdateProgramName);
                 }
 
                 this.SettingsVersion = System.Version.Parse(settingsInfo.SettingsVersion);
@@ -89,9 +89,9 @@ namespace GUPdotNET.Data
             XDocument settingsDocument =
                 new XDocument(
                     new XDeclaration("1.0", "utf-8", "yes"),
-                    new XComment(string.Format(COMMENT_FORMAT, GlobalTools.ProgramInfo.ProgramName)),
+                    new XComment(string.Format(COMMENT_FORMAT, GlobalTools.UpdateProgramName)),
                     new XElement("GUPdotNET",
-                        new XElement("UpdateSettings", new XAttribute("ProgramName", GlobalTools.ProgramInfo.ProgramName), new XAttribute("SettingsVersion", "1.0"),
+                        new XElement("UpdateSettings", new XAttribute("ProgramName", GlobalTools.UpdateProgramName), new XAttribute("SettingsVersion", "1.0"),
                             new XElement("AutoUpdate", this.AutoUpdate.ToString()),
                             new XElement("LastUpdateCheck", this.LastUpdateCheck.ToString()),
                             new XElement("UpdateSchedule", this.UpdateSchedule.Days.ToString())

@@ -27,29 +27,21 @@ using GUPdotNET.UI.Views;
 namespace GUPdotNET
 {
 	/// <summary>
-	/// Description of RunUpdate.
+	/// Description of RunUpdateCheck.
 	/// </summary>
-	public class UpdateCheck
+    internal class UpdateCheck
 	{
-        public UpdateCheck()
+        internal UpdateCheck()
         {
-            this.Initalize();
         }
 
-        private void Initalize()
-        {
-            GlobalTools.Initalize();
-        }
-
-		public void RunUpdate()
-		{
-			UpdateProgramInfo  _UpdateInfo = new UpdateProgramInfo ();
-			try
-			{
-				//_UpdateInfo.LoadInfo(UpdateInfoType.All);
-				
+        internal void RunUpdateCheck()
+		{				
 				if(DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck) > GlobalTools.Options.UpdateSchedule)
 				{
+                    
+                GlobalTools.ProgramInfo = new UpdateProgramInfo();
+                GlobalTools.ProgramInfo.Load();
 					// tell the user there is an update availalbe
 					// and ask if they would like to update
 //					ConfirmationView confirmationView = new ConfirmationView();
@@ -84,14 +76,6 @@ namespace GUPdotNET
 						md.Destroy();
 					}
 				}
-			}
-			catch(Exception ex)
-			{
-                Gtk.MessageDialog md = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.YesNo, false, ex.Message, "Error starting GUPdotNET auto-update tool.");
-                md.WindowPosition = WindowPosition.CenterAlways;
-                Gtk.ResponseType res = (Gtk.ResponseType)md.Run();
-                md.Destroy();
-			}
 		}
 	}
 }
