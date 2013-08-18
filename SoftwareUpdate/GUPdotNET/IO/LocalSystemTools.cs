@@ -26,21 +26,19 @@ using Gtk;
 
 namespace MonoTools.IO
 {
-	public class LocalSystemTools
+    internal class LocalSystemTools
 	{
-		public string AppPath { get; set; }
+        private const string UserDataFolderName = "GUPdotNET";
+        private const string DebugFolderName = "DebugData";
+        internal string AppPath { get; private set; }
 
-		public string UserDataPath { get; set; }
+        internal string UserDataPath { get; private set; }
 
-		public string OS { get; set; }
+        internal string OS { get; private set; }
 
-		public bool DebugMode { get; set; }
+        internal bool DebugMode { get; private set; }
 
-		public string UpdatePackageURL{ get; set; }
-
-		public string TempFilePath{ get; set;}
-
-		public void Initalize()
+        internal void Initalize()
 		{
 			// get OS information
 			switch(Environment.OSVersion.Platform)
@@ -60,22 +58,21 @@ namespace MonoTools.IO
 			}
 
 			// Get commonly used path information
-			Assembly asm = Assembly.GetExecutingAssembly();
-			this.AppPath = new FileInfo(asm.Location).Directory.FullName;
+			this.AppPath = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.FullName;
 			this.DebugMode = Convert.ToBoolean(ConfigurationManager.AppSettings["DebugMode"]);
-			this.UpdatePackageURL = ConfigurationManager.AppSettings["UpdatePackageURL"].ToString();
 
-			// if the application is in debug mode store the user data under the apppath
-			// otherwise use the users local application data path
+			// if the application is in debug mode store the user data 
+            // relative to the AppPath, otherwise use the users local application data path
 			if(this.DebugMode)
 			{
-				this.UserDataPath = Path.Combine(this.AppPath, "DebugData", "GUPdotNET");            
+				this.UserDataPath = Path.Combine(this.AppPath, DebugFolderName, UserDataFolderName);            
 			}
 			else
 			{                
-				this.UserDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GUPdotNet"); 
+				this.UserDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), UserDataFolderName); 
 			}
 
+            // if the user data path does not exist create it.
 			if(!Directory.Exists(this.UserDataPath))
 			{
 				Directory.CreateDirectory(this.UserDataPath);

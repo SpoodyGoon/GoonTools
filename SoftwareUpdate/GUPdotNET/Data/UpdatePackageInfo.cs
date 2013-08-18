@@ -42,6 +42,12 @@ namespace GUPdotNET.Data
 		/// </summary>
 		internal InstallMethod InstallerType{ get; set; }
 
+        /// <summary>
+        /// The temporary directory where package files will be 
+        /// downloaded/updated to be used.
+        /// </summary>
+        internal string TempPackagePath { get; set; }
+
 		/// <summary>
 		/// Gets or sets the package file(s) associated with an install package.
 		/// </summary>

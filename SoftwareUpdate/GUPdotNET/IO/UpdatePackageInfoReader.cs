@@ -19,6 +19,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Net;
+using System.IO;
+using GUPdotNET.Data;
 
 namespace GUPdotNET.IO
 {
@@ -27,6 +30,22 @@ namespace GUPdotNET.IO
 		public UpdatePackageInfoReader()
 		{
 		}
+
+        public void Load()
+        {
+            GlobalTools.PackageInfo = new UpdatePackageInfo();
+            GlobalTools.PackageInfo.TempPackagePath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            if (Directory.Exists(GlobalTools.PackageInfo.TempPackagePath))
+            {
+                throw new Exception("Unable to create temporary package working folder, folder already exist");
+            }
+
+            Directory.CreateDirectory(GlobalTools.PackageInfo.TempPackagePath);
+            string fileName = Path.GetFileName(new Uri(GlobalTools.ProgramInfo.UpdatePackageURL).LocalPath);
+            WebClient webClient = new WebClient();
+            webClient.DownloadFile(GlobalTools.ProgramInfo.UpdatePackageURL, Path.Combine(GlobalTools.PackageInfo.TempPackagePath, fileName));
+
+        }
 	}
 }
 
