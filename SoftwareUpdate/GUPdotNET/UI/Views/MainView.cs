@@ -22,14 +22,27 @@ using System;
 using System.Reflection;
 using MonoTools;
 using Gtk;
+using GUPdotNET.UI.ComboBox;
 
 namespace GUPdotNET.UI.Views
 {
 	public partial class MainView : Gtk.Dialog
 	{
+		private UpdateSchedualComboBox updateCheckCombobox = new UpdateSchedualComboBox();
+
 		public MainView()
 		{
 			this.Build();
+			this.updateCheckAlignment.Add(this.updateCheckCombobox);
+			this.updateCheckAlignment.ShowAll();
+
+			this.DebugDataAction.Visible = GlobalTools.LocalSystem.DebugMode;
+			this.menubar1.QueueDraw();
+
+			this.ActionArea.Hide();
+			this.feedbackMessageLabel.Text = "";
+			this.feedbackMessageLabel.QueueDraw();
+			this.QueueResize();
 		}
 
 		protected void OnCheckUpdateButtonClicked(object sender, EventArgs e)
@@ -94,6 +107,11 @@ namespace GUPdotNET.UI.Views
 				errorDialog.Run();
 				errorDialog.Destroy();
 			}
+		}
+
+		protected void OnDebugDataActionActivated(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

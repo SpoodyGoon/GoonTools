@@ -311,7 +311,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="471 211">
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="469 177">
     <action-group name="Default">
       <action id="QuitAction">
         <property name="Type">Action</property>
@@ -329,12 +329,19 @@
         <property name="StockId">About.png</property>
         <signal name="Activated" handler="OnAboutGUPdotNETActionActivated" />
       </action>
+      <action id="DebugDataAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Debug Data</property>
+        <property name="ShortLabel" translatable="yes">Debug Data</property>
+        <signal name="Activated" handler="OnDebugDataActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">GUPdotNET</property>
     <property name="Icon">resource:GUPdotNET.Resources.Images.update_small.png</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Modal">True</property>
+    <property name="Resizable">False</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -350,6 +357,7 @@
                 <property name="MemberName" />
                 <node name="__gtksharp_124_Stetic_Editor_ActionMenuBar" type="Menubar">
                   <node type="Menu" action="QuitAction" />
+                  <node type="Menu" action="DebugDataAction" />
                   <node type="Menu" action="AboutGUPdotNETAction" />
                 </node>
               </widget>
@@ -380,7 +388,7 @@
               <widget class="Gtk.Alignment" id="alignment1">
                 <property name="MemberName" />
                 <property name="Xscale">0.01</property>
-                <property name="BottomPadding">2</property>
+                <property name="BottomPadding">5</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox1">
                     <property name="MemberName" />
@@ -417,8 +425,8 @@
               <widget class="Gtk.Alignment" id="alignment3">
                 <property name="MemberName" />
                 <property name="Xscale">0.01</property>
-                <property name="Xalign">0.01</property>
                 <property name="LeftPadding">15</property>
+                <property name="RightPadding">10</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox3">
                     <property name="MemberName" />
@@ -443,30 +451,18 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Alignment" id="alignment8">
+                      <widget class="Gtk.Alignment" id="updateCheckAlignment">
                         <property name="MemberName" />
                         <property name="Xscale">0.01</property>
                         <property name="Yscale">0.01</property>
                         <property name="RightPadding">35</property>
                         <child>
-                          <widget class="Gtk.ComboBox" id="updateCheckCombobox">
-                            <property name="MemberName" />
-                            <property name="WidthRequest">95</property>
-                            <property name="IsTextCombo">True</property>
-                            <property name="Items" translatable="yes">Daily
-Weekly
-Bi-Weekly
-Monthly
-Never</property>
-                            <property name="Active">0</property>
-                          </widget>
+                          <placeholder />
                         </child>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
                         <property name="AutoSize">True</property>
-                        <property name="Expand">False</property>
-                        <property name="Fill">False</property>
                       </packing>
                     </child>
                     <child>
@@ -507,7 +503,6 @@ Never</property>
               <widget class="Gtk.Alignment" id="alignment7">
                 <property name="MemberName" />
                 <property name="Xscale">0.01</property>
-                <property name="Xalign">0.01</property>
                 <property name="LeftPadding">15</property>
                 <child>
                   <widget class="Gtk.Label" id="feedbackMessageLabel">

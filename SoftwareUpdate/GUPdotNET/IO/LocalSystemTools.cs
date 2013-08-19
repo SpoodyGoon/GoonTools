@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
 using Gtk;
@@ -37,6 +38,14 @@ namespace MonoTools.IO
         internal string OS { get; private set; }
 
         internal bool DebugMode { get; private set; }
+
+        /// <summary>
+        /// The temporary directory where package files will be 
+        /// downloaded/updated to be used.
+        /// </summary>
+        internal string TempPackagePath { get; set; }
+
+        internal Dictionary<string, string> TempPackagePaths;
 
         internal void Initalize()
 		{
@@ -77,6 +86,8 @@ namespace MonoTools.IO
 			{
 				Directory.CreateDirectory(this.UserDataPath);
 			}
+
+            this.TempPackagePaths = new Dictionary<string, string>();
 		}
 	}
 }

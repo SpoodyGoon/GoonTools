@@ -7,6 +7,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.UIManager UIManager;
 		private global::Gtk.Action QuitAction;
 		private global::Gtk.Action AboutGUPdotNETAction;
+		private global::Gtk.Action DebugDataAction;
 		private global::Gtk.VBox vbox2;
 		private global::Gtk.MenuBar menubar1;
 		private global::Gtk.Alignment alignment5;
@@ -19,8 +20,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.HBox hbox3;
 		private global::Gtk.Alignment alignment4;
 		private global::Gtk.Label label1;
-		private global::Gtk.Alignment alignment8;
-		private global::Gtk.ComboBox updateCheckCombobox;
+		private global::Gtk.Alignment updateCheckAlignment;
 		private global::Gtk.Alignment alignment9;
 		private global::Gtk.Button checkUpdateButton;
 		private global::Gtk.Alignment alignment7;
@@ -44,6 +44,9 @@ namespace GUPdotNET.UI.Views
 			this.AboutGUPdotNETAction.IsImportant = true;
 			this.AboutGUPdotNETAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("About GUPdotNET");
 			w1.Add (this.AboutGUPdotNETAction, null);
+			this.DebugDataAction = new global::Gtk.Action ("DebugDataAction", global::Mono.Unix.Catalog.GetString ("Debug Data"), null, null);
+			this.DebugDataAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Debug Data");
+			w1.Add (this.DebugDataAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "GUPdotNET.UI.Views.MainView";
@@ -51,6 +54,7 @@ namespace GUPdotNET.UI.Views
 			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.update_small.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Modal = true;
+			this.Resizable = false;
 			// Internal child GUPdotNET.UI.Views.MainView.VBox
 			global::Gtk.VBox w2 = this.VBox;
 			w2.Name = "dialog1_VBox";
@@ -61,7 +65,8 @@ namespace GUPdotNET.UI.Views
 			this.vbox2.Spacing = 6;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.UIManager.AddUiFromString ("<ui><menubar name=\'menubar1\'><menu name=\'QuitAction\' action=\'QuitAction\'/><menu n" +
-				"ame=\'AboutGUPdotNETAction\' action=\'AboutGUPdotNETAction\'/></menubar></ui>");
+				"ame=\'DebugDataAction\' action=\'DebugDataAction\'/><menu name=\'AboutGUPdotNETAction" +
+				"\' action=\'AboutGUPdotNETAction\'/></menubar></ui>");
 			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 			this.menubar1.Name = "menubar1";
 			this.vbox2.Add (this.menubar1);
@@ -84,7 +89,7 @@ namespace GUPdotNET.UI.Views
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 1F);
 			this.alignment1.Name = "alignment1";
-			this.alignment1.BottomPadding = ((uint)(2));
+			this.alignment1.BottomPadding = ((uint)(5));
 			// Container child alignment1.Gtk.Container+ContainerChild
 			this.hbox1 = new global::Gtk.HBox ();
 			this.hbox1.Name = "hbox1";
@@ -110,9 +115,10 @@ namespace GUPdotNET.UI.Views
 			w9.Expand = false;
 			w9.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.alignment3 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
+			this.alignment3 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 1F);
 			this.alignment3.Name = "alignment3";
 			this.alignment3.LeftPadding = ((uint)(15));
+			this.alignment3.RightPadding = ((uint)(10));
 			// Container child alignment3.Gtk.Container+ContainerChild
 			this.hbox3 = new global::Gtk.HBox ();
 			this.hbox3.Name = "hbox3";
@@ -131,25 +137,12 @@ namespace GUPdotNET.UI.Views
 			w11.Expand = false;
 			w11.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
-			this.alignment8 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 0.01F);
-			this.alignment8.Name = "alignment8";
-			this.alignment8.RightPadding = ((uint)(35));
-			// Container child alignment8.Gtk.Container+ContainerChild
-			this.updateCheckCombobox = global::Gtk.ComboBox.NewText ();
-			this.updateCheckCombobox.AppendText (global::Mono.Unix.Catalog.GetString ("Daily"));
-			this.updateCheckCombobox.AppendText (global::Mono.Unix.Catalog.GetString ("Weekly"));
-			this.updateCheckCombobox.AppendText (global::Mono.Unix.Catalog.GetString ("Bi-Weekly"));
-			this.updateCheckCombobox.AppendText (global::Mono.Unix.Catalog.GetString ("Monthly"));
-			this.updateCheckCombobox.AppendText (global::Mono.Unix.Catalog.GetString ("Never"));
-			this.updateCheckCombobox.WidthRequest = 95;
-			this.updateCheckCombobox.Name = "updateCheckCombobox";
-			this.updateCheckCombobox.Active = 0;
-			this.alignment8.Add (this.updateCheckCombobox);
-			this.hbox3.Add (this.alignment8);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.alignment8]));
-			w13.Position = 1;
-			w13.Expand = false;
-			w13.Fill = false;
+			this.updateCheckAlignment = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 0.01F);
+			this.updateCheckAlignment.Name = "updateCheckAlignment";
+			this.updateCheckAlignment.RightPadding = ((uint)(35));
+			this.hbox3.Add (this.updateCheckAlignment);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.updateCheckAlignment]));
+			w12.Position = 1;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment9.Name = "alignment9";
@@ -161,35 +154,35 @@ namespace GUPdotNET.UI.Views
 			this.checkUpdateButton.Name = "checkUpdateButton";
 			this.checkUpdateButton.UseUnderline = true;
 			// Container child checkUpdateButton.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w14 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+			global::Gtk.Alignment w13 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w15 = new global::Gtk.HBox ();
-			w15.Spacing = 2;
+			global::Gtk.HBox w14 = new global::Gtk.HBox ();
+			w14.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w16 = new global::Gtk.Image ();
-			w16.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.CheckMark.png");
-			w15.Add (w16);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w18 = new global::Gtk.Label ();
-			w18.LabelProp = global::Mono.Unix.Catalog.GetString ("Check Now");
-			w18.UseUnderline = true;
-			w15.Add (w18);
+			global::Gtk.Image w15 = new global::Gtk.Image ();
+			w15.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.CheckMark.png");
 			w14.Add (w15);
-			this.checkUpdateButton.Add (w14);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w17 = new global::Gtk.Label ();
+			w17.LabelProp = global::Mono.Unix.Catalog.GetString ("Check Now");
+			w17.UseUnderline = true;
+			w14.Add (w17);
+			w13.Add (w14);
+			this.checkUpdateButton.Add (w13);
 			this.alignment9.Add (this.checkUpdateButton);
 			this.hbox3.Add (this.alignment9);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.alignment9]));
-			w23.Position = 2;
-			w23.Expand = false;
-			w23.Fill = false;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.alignment9]));
+			w22.Position = 2;
+			w22.Expand = false;
+			w22.Fill = false;
 			this.alignment3.Add (this.hbox3);
 			this.vbox2.Add (this.alignment3);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
-			w25.Position = 3;
-			w25.Expand = false;
-			w25.Fill = false;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
+			w24.Position = 3;
+			w24.Expand = false;
+			w24.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.alignment7 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
+			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 1F);
 			this.alignment7.Name = "alignment7";
 			this.alignment7.LeftPadding = ((uint)(15));
 			// Container child alignment7.Gtk.Container+ContainerChild
@@ -198,10 +191,10 @@ namespace GUPdotNET.UI.Views
 			this.feedbackMessageLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Feedback Messages");
 			this.alignment7.Add (this.feedbackMessageLabel);
 			this.vbox2.Add (this.alignment7);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
-			w27.Position = 4;
-			w27.Expand = false;
-			w27.Fill = false;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment7]));
+			w26.Position = 4;
+			w26.Expand = false;
+			w26.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment6 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment6.Name = "alignment6";
@@ -210,21 +203,21 @@ namespace GUPdotNET.UI.Views
 			this.hbuttonbox2.Name = "hbuttonbox2";
 			this.alignment6.Add (this.hbuttonbox2);
 			this.vbox2.Add (this.alignment6);
-			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment6]));
-			w29.Position = 5;
+			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment6]));
+			w28.Position = 5;
+			w28.Expand = false;
+			w28.Fill = false;
+			w2.Add (this.vbox2);
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(w2 [this.vbox2]));
+			w29.Position = 0;
 			w29.Expand = false;
 			w29.Fill = false;
-			w2.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(w2 [this.vbox2]));
-			w30.Position = 0;
-			w30.Expand = false;
-			w30.Fill = false;
 			// Internal child GUPdotNET.UI.Views.MainView.ActionArea
-			global::Gtk.HButtonBox w31 = this.ActionArea;
-			w31.Name = "dialog1_ActionArea";
-			w31.Spacing = 10;
-			w31.BorderWidth = ((uint)(5));
-			w31.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w30 = this.ActionArea;
+			w30.Name = "dialog1_ActionArea";
+			w30.Spacing = 10;
+			w30.BorderWidth = ((uint)(5));
+			w30.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonCancel = new global::Gtk.Button ();
 			this.buttonCancel.CanDefault = true;
@@ -234,9 +227,9 @@ namespace GUPdotNET.UI.Views
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-cancel";
 			this.AddActionWidget (this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w32 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w31 [this.buttonCancel]));
-			w32.Expand = false;
-			w32.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w31 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w30 [this.buttonCancel]));
+			w31.Expand = false;
+			w31.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonOk = new global::Gtk.Button ();
 			this.buttonOk.CanDefault = true;
@@ -246,18 +239,19 @@ namespace GUPdotNET.UI.Views
 			this.buttonOk.UseUnderline = true;
 			this.buttonOk.Label = "gtk-ok";
 			this.AddActionWidget (this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w33 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w31 [this.buttonOk]));
-			w33.Position = 1;
-			w33.Expand = false;
-			w33.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w32 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w30 [this.buttonOk]));
+			w32.Position = 1;
+			w32.Expand = false;
+			w32.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 471;
-			this.DefaultHeight = 211;
+			this.DefaultWidth = 469;
+			this.DefaultHeight = 177;
 			this.Show ();
 			this.QuitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
 			this.AboutGUPdotNETAction.Activated += new global::System.EventHandler (this.OnAboutGUPdotNETActionActivated);
+			this.DebugDataAction.Activated += new global::System.EventHandler (this.OnDebugDataActionActivated);
 			this.checkUpdateButton.Clicked += new global::System.EventHandler (this.OnCheckUpdateButtonClicked);
 		}
 	}

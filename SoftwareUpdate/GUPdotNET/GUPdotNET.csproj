@@ -82,6 +82,7 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\ComboBox\UpdateSchedualComboBox.cs" />
     <Compile Include="UI\Views\DownloadView.cs" />
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.DownloadView.cs" />
     <Compile Include="UI\Views\InstallView.cs" />
