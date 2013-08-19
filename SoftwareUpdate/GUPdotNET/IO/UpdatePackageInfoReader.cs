@@ -34,16 +34,17 @@ namespace GUPdotNET.IO
         public void Load()
         {
             GlobalTools.PackageInfo = new UpdatePackageInfo();
-            GlobalTools.PackageInfo.TempPackagePath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            if (Directory.Exists(GlobalTools.PackageInfo.TempPackagePath))
+            var pkgPaths = GlobalTools.LocalSystem.TempPackagePaths;
+            pkgPaths.Add("root", Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
+            if (Directory.Exists(GlobalTools.LocalSystem.TempPackagePath))
             {
                 throw new Exception("Unable to create temporary package working folder, folder already exist");
             }
 
-            Directory.CreateDirectory(GlobalTools.PackageInfo.TempPackagePath);
-            string fileName = Path.GetFileName(new Uri(GlobalTools.ProgramInfo.UpdatePackageURL).LocalPath);
+            Directory.CreateDirectory(pkgPaths["root"]);
+            pkgPaths.Add("config", Path.Combine(GlobalTools.LocalSystem.TempPackagePath, Path.GetFileName(new Uri(GlobalTools.ProgramInfo.UpdatePackageURL).LocalPath)));
             WebClient webClient = new WebClient();
-            webClient.DownloadFile(GlobalTools.ProgramInfo.UpdatePackageURL, Path.Combine(GlobalTools.PackageInfo.TempPackagePath, fileName));
+            webClient.DownloadFile(GlobalTools.ProgramInfo.UpdatePackageURL, Path.Combine(GlobalTools.LocalSystem.TempPackagePath, pkgPaths["config"]));
 
         }
 	}
