@@ -12,6 +12,8 @@ namespace GUPdotNET
 
         internal static RunType UpdateRunType { get; set; }
 
+        internal static bool DebugMode { get; private set; }
+
         internal static UpdateSettings Options { get; set; }
 
 		internal static UpdatePackageInfo PackageInfo{ get; set; }
@@ -23,8 +25,9 @@ namespace GUPdotNET
 		internal static void Initalize()
 		{
             UpdateProgramName = ConfigurationManager.AppSettings["UpdateProgramName"].ToString();
+            DebugMode = Convert.ToBoolean(ConfigurationManager.AppSettings["DebugMode"]);
 			LocalSystem = new LocalSystemTools();
-			LocalSystem.Initalize();
+            LocalSystem.Initalize(DebugMode);
             Options = new UpdateSettings();
             Options.Load();
 		}

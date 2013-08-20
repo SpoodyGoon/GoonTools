@@ -28,7 +28,7 @@ using Gtk;
 namespace MonoTools.IO
 {
     internal class LocalSystemTools
-	{
+    {
         private const string UserDataFolderName = "GUPdotNET";
         private const string DebugFolderName = "DebugData";
         internal string AppPath { get; private set; }
@@ -36,8 +36,6 @@ namespace MonoTools.IO
         internal string UserDataPath { get; private set; }
 
         internal string OS { get; private set; }
-
-        internal bool DebugMode { get; private set; }
 
         /// <summary>
         /// The temporary directory where package files will be 
@@ -47,48 +45,48 @@ namespace MonoTools.IO
 
         internal Dictionary<string, string> TempPackagePaths;
 
-        internal void Initalize()
-		{
-			// get OS information
-			switch(Environment.OSVersion.Platform)
-			{
-			case PlatformID.Win32NT:
-			case PlatformID.Win32S:
-			case PlatformID.Win32Windows:
-			case PlatformID.WinCE:
-				this.OS = "Windows";
-			break;
-			case PlatformID.Unix:
-				this.OS = "Linux";
-			break;
-			case PlatformID.MacOSX:
-				this.OS = "Mac";
-			break;
-			}
+        internal void Initalize(bool debugMode)
+        {
+            // get OS information
+            switch (Environment.OSVersion.Platform)
+            {
+                case PlatformID.Win32NT:
+                case PlatformID.Win32S:
+                case PlatformID.Win32Windows:
+                case PlatformID.WinCE:
+                    this.OS = "Windows";
+                    break;
+                case PlatformID.Unix:
+                    this.OS = "Linux";
+                    break;
+                case PlatformID.MacOSX:
+                    this.OS = "Mac";
+                    break;
+            }
 
-			// Get commonly used path information
-			this.AppPath = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.FullName;
-			this.DebugMode = Convert.ToBoolean(ConfigurationManager.AppSettings["DebugMode"]);
+            // Get commonly used path information
+            this.AppPath = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.FullName;
 
-			// if the application is in debug mode store the user data 
+            // if the application is in debug mode store the user data 
             // relative to the AppPath, otherwise use the users local application data path
-			if(this.DebugMode)
-			{
-				this.UserDataPath = Path.Combine(this.AppPath, DebugFolderName, UserDataFolderName);            
-			}
-			else
-			{                
-				this.UserDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), UserDataFolderName); 
-			}
+            if (debugMode)
+            {
+                this.UserDataPath = Path.Combine(this.AppPath, DebugFolderName, UserDataFolderName);
+            }
+            else
+            {
+                this.UserDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), UserDataFolderName);
+            }
 
             // if the user data path does not exist create it.
-			if(!Directory.Exists(this.UserDataPath))
-			{
-				Directory.CreateDirectory(this.UserDataPath);
-			}
+            if (!Directory.Exists(this.UserDataPath))
+            {
+                Directory.CreateDirectory(this.UserDataPath);
+            }
 
             this.TempPackagePaths = new Dictionary<string, string>();
-		}
-	}
+            this.TempPackagePaths.Add("root", Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
+        }
+    }
 }
 
