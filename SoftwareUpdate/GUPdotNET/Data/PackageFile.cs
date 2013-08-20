@@ -26,7 +26,9 @@ namespace GUPdotNET.Data
 	{
 		internal string FileType{ get; set; }
 
-		internal string URL{ get; set; }
+        internal string URL { get; set; }
+
+        internal string FileName { get; set; }
 
 		internal string Checksum{ get; set; }
 	}

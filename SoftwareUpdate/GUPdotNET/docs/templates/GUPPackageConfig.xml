@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <GUPdotNET FileVersion="1.0">
-  <Packages>
+  <PackageConfig>
     <Package OS="Windows" InstallerType="msi" Version="2.0">
       <Files>
         <File Type="ReleaseNotes">
@@ -64,5 +64,5 @@
         </File>
       </Files>
     </Package>
-  </Packages>
+  </PackageConfig>
 </GUPdotNET>

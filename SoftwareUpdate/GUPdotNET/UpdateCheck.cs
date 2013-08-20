@@ -22,6 +22,7 @@
 using System;
 using Gtk;
 using GUPdotNET.Data;
+using System.Net;
 using GUPdotNET.UI.Views;
 
 namespace GUPdotNET
@@ -42,6 +43,7 @@ namespace GUPdotNET
                     
                 GlobalTools.ProgramInfo = new UpdateProgramInfo();
                 GlobalTools.ProgramInfo.Load();
+                GlobalTools.PackageInfo packageInfo = new UpdatePackageInfo();
 					// tell the user there is an update availalbe
 					// and ask if they would like to update
 //					ConfirmationView confirmationView = new ConfirmationView();
