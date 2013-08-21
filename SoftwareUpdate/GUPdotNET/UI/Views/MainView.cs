@@ -36,7 +36,7 @@ namespace GUPdotNET.UI.Views
 			this.updateCheckAlignment.Add(this.updateCheckCombobox);
 			this.updateCheckAlignment.ShowAll();
 
-			this.DebugDataAction.Visible = GlobalTools.LocalSystem.DebugMode;
+			this.DebugDataAction.Visible = GlobalTools.DebugMode;
 			this.menubar1.QueueDraw();
 
 			this.ActionArea.Hide();

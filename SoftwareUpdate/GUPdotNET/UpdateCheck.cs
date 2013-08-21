@@ -24,60 +24,80 @@ using Gtk;
 using GUPdotNET.Data;
 using System.Net;
 using GUPdotNET.UI.Views;
+using MonoTools;
 
 namespace GUPdotNET
 {
-	/// <summary>
-	/// Description of RunUpdateCheck.
-	/// </summary>
+    /// <summary>
+    /// Description of RunUpdateCheck.
+    /// </summary>
     internal class UpdateCheck
-	{
+    {
+        private const string confimMessage = "An update is available for {0} version {1}.\nWould you like to update now?";
         internal UpdateCheck()
         {
         }
 
         internal void RunUpdateCheck()
-		{				
-				if(DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck) > GlobalTools.Options.UpdateSchedule)
-				{
-                    
+        {
+            if (DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck) > GlobalTools.Options.UpdateSchedule)
+            {
+
                 GlobalTools.ProgramInfo = new UpdateProgramInfo();
                 GlobalTools.ProgramInfo.Load();
-                GlobalTools.PackageInfo packageInfo = new UpdatePackageInfo();
-					// tell the user there is an update availalbe
-					// and ask if they would like to update
-//					ConfirmationView confirmationView = new ConfirmationView();
-//					if((Gtk.ResponseType)confirmationView.Run() == Gtk.ResponseType.Yes)
-//					{
-//						// update confirmed get installer file
-//						DownloadView downloadView = new DownloadView();
-//						downloadView.Show();
-//						DownloadStatus LoadStat = downloadView.CurrentStatus;
-//						while(LoadStat == DownloadStatus.Prep || LoadStat == DownloadStatus.InProcess)
-//						{
-//							GLib.Timeout.Add(1000, delegate{return false;});
-//						}
-//						downloadView.Destroy();
-//						
-//						if(LoadStat == DownloadStatus.Success)
-//						{
-//							// if the download was sucessful then procede with the install
-//							InstallView installView = new InstallView();
-//							installView.Run();
-//							installView.Destroy();
-//						}
-//					}
-//					confirmationView.Destroy();
-				}
-				else
-				{
-					if(GlobalTools.UpdateRunType == RunType.ManualCheck)
-					{
-						MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No Update Available", "No Update Available");
-						md.Run();
-						md.Destroy();
-					}
-				}
-		}
-	}
+                GlobalTools.PackageInfo = new UpdatePackageInfo();
+                GlobalTools.PackageInfo.Load();
+
+                MessageDialog confirmMessageDialog = new MessageDialog(null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, string.Format(confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString()), "Update Available");
+                confirmMessageDialog.SetResponseSensitive(ResponseType.None, false);
+                Gtk.Button releaseNotesButton = (confirmMessageDialog.AddButton("View Release Notes", ResponseType.None) as Gtk.Button);
+                releaseNotesButton.Clicked += delegate(object sender, EventArgs e)
+                {
+                    ProcessTools.LaunchURL(GlobalTools.PackageInfo.PackageFiles["ReleaseNotes"].URL);
+                };
+                if ((Gtk.ResponseType)confirmMessageDialog.Run() == Gtk.ResponseType.Yes)
+                {
+                }
+
+                // tell the user there is an update availalbe
+                // and ask if they would like to update
+                //					ConfirmationView confirmationView = new ConfirmationView();
+                //					if((Gtk.ResponseType)confirmationView.Run() == Gtk.ResponseType.Yes)
+                //					{
+                //						// update confirmed get installer file
+                //						DownloadView downloadView = new DownloadView();
+                //						downloadView.Show();
+                //						DownloadStatus LoadStat = downloadView.CurrentStatus;
+                //						while(LoadStat == DownloadStatus.Prep || LoadStat == DownloadStatus.InProcess)
+                //						{
+                //							GLib.Timeout.Add(1000, delegate{return false;});
+                //						}
+                //						downloadView.Destroy();
+                //						
+                //						if(LoadStat == DownloadStatus.Success)
+                //						{
+                //							// if the download was sucessful then procede with the install
+                //							InstallView installView = new InstallView();
+                //							installView.Run();
+                //							installView.Destroy();
+                //						}
+                //					}
+                //					confirmationView.Destroy();
+            }
+            else
+            {
+                if (GlobalTools.UpdateRunType == RunType.ManualCheck)
+                {
+                    MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No Update Available", "No Update Available");
+                    md.Run();
+                    md.Destroy();
+                }
+            }
+        }
+
+        void releaseNotesButton_Clicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
