@@ -54,7 +54,7 @@ namespace GUPdotNET.Data
         /// <summary>
         /// Gets or sets the package file(s) associated with an install package.
         /// </summary>
-        internal List<PackageFile> PackageFile { get; set; }
+        internal Dictionary<string, PackageFile> PackageFiles { get; set; }
 
         /// <summary>
         /// The root direcotry used for holding temporary files while being used.
@@ -87,6 +87,22 @@ namespace GUPdotNET.Data
                                    Version = el.Attribute("Version").Value,
                                    FileList = el.Element("Files").Descendants("File")
                                }).SingleOrDefault();
+
+            this.OS = packageInfo.OS.ToString();
+            this.InstallerType = (InstallMethod)Enum.Parse(typeof(InstallMethod), packageInfo.InstallerType.ToString());
+            this.UpdateVersion = System.Version.Parse(packageInfo.Version);
+            this.PackageFiles = new Dictionary<string, PackageFile>();
+            foreach (var file in packageInfo.FileList)
+            {
+                this.PackageFiles.Add(
+                    file.Attribute("FileType").Value,
+                    new PackageFile()
+                    {
+                        FileType = file.Attribute("FileType").Value,
+                        URL = file.Element("URL").Value,
+                        Checksum = file.Element("Checksum").Value
+                    });
+            }
         }
     }
 }

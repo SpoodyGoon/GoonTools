@@ -19,18 +19,25 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.IO;
 
 namespace GUPdotNET.Data
 {
-	public class PackageFile
-	{
-		internal string FileType{ get; set; }
+    public class PackageFile
+    {
+        internal string FileType { get; set; }
 
         internal string URL { get; set; }
 
-        internal string FileName { get; set; }
+        internal string FileName
+        {
+            get
+            {
+                return Path.GetFileName(new Uri(this.URL).LocalPath);
+            }
+        }
 
-		internal string Checksum{ get; set; }
-	}
+        internal string Checksum { get; set; }
+    }
 }
 
