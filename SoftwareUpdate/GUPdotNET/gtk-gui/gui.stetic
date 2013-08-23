@@ -311,7 +311,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="469 177">
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="469 161">
     <action-group name="Default">
       <action id="QuitAction">
         <property name="Type">Action</property>
@@ -357,28 +357,11 @@
                 <property name="MemberName" />
                 <node name="__gtksharp_124_Stetic_Editor_ActionMenuBar" type="Menubar">
                   <node type="Menu" action="QuitAction" />
-                  <node type="Menu" action="DebugDataAction" />
                   <node type="Menu" action="AboutGUPdotNETAction" />
                 </node>
               </widget>
               <packing>
                 <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Alignment" id="alignment5">
-                <property name="MemberName" />
-                <child>
-                  <widget class="Gtk.HSeparator" id="hseparator1">
-                    <property name="MemberName" />
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">1</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -415,7 +398,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">2</property>
+                <property name="Position">1</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -493,7 +476,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">2</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -512,7 +495,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -529,7 +512,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">5</property>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -578,6 +561,109 @@
             <property name="StockId">gtk-ok</property>
             <property name="ResponseId">-5</property>
             <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.ConfirmView" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Update Available</property>
+    <property name="TypeHint">Dialog</property>
+    <property name="WindowPosition">CenterAlways</property>
+    <property name="Modal">True</property>
+    <property name="Buttons">2</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.VBox" id="vbox2">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment1">
+                <property name="MemberName" />
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment2">
+                <property name="MemberName" />
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment3">
+                <property name="MemberName" />
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">2</property>
+        <property name="LayoutStyle">Spread</property>
+        <child>
+          <widget class="Gtk.Button" id="noConfirmButton">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-no</property>
+            <property name="ResponseId">-9</property>
+            <property name="label">gtk-no</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="yesConfirmButton">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-yes</property>
+            <property name="ResponseId">-8</property>
+            <property name="label">gtk-yes</property>
           </widget>
           <packing>
             <property name="Position">1</property>

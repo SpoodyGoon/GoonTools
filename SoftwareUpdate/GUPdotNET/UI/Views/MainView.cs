@@ -33,6 +33,7 @@ namespace GUPdotNET.UI.Views
 		public MainView()
 		{
 			this.Build();
+            this.DeleteEvent += new DeleteEventHandler(MainView_DeleteEvent);
 			this.updateCheckAlignment.Add(this.updateCheckCombobox);
 			this.updateCheckAlignment.ShowAll();
 
@@ -45,20 +46,22 @@ namespace GUPdotNET.UI.Views
 			this.QueueResize();
 		}
 
+        private void MainView_DeleteEvent(object o, DeleteEventArgs args)
+        {
+            GlobalTools.Options.Save();
+            Application.Quit();
+        }
+
 		protected void OnCheckUpdateButtonClicked(object sender, EventArgs e)
 		{
-			throw new NotImplementedException();
+            UpdateCheck updateCheck = new UpdateCheck();
+            updateCheck.RunUpdateCheck();
 		}
 
 		protected void OnQuitActionActivated(object sender, EventArgs e)
 		{
-			this.SaveConfig();
+            GlobalTools.Options.Save();
 			Application.Quit();
-		}
-
-		private void SaveConfig()
-		{
-			// TODO: add config file saving
 		}
 
 		protected void OnAboutGUPdotNETActionActivated(object sender, EventArgs e)
@@ -93,8 +96,7 @@ namespace GUPdotNET.UI.Views
 				ad.Copyright = copyRight;
 				ad.HasSeparator = true;
 				ad.Modal = true;
-				ad.WidthRequest = 550;
-				ad.HeightRequest = 315;
+                ad.WidthRequest = 425;
 				ad.WebsiteLabel = title;
 				ad.Website = "https://code.google.com/p/goontools/";
 				ad.WindowPosition = WindowPosition.CenterAlways;
@@ -111,7 +113,9 @@ namespace GUPdotNET.UI.Views
 
 		protected void OnDebugDataActionActivated(object sender, EventArgs e)
 		{
-			throw new NotImplementedException();
+            Gtk.MessageDialog notImplementedMessage = new Gtk.MessageDialog(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, false, "Not Implemented", "Not Implemented");
+            notImplementedMessage.Run();
+            notImplementedMessage.Destroy();
 		}
 	}
 }

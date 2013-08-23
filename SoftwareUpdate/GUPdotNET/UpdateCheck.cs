@@ -33,6 +33,7 @@ namespace GUPdotNET
     /// </summary>
     internal class UpdateCheck
     {
+		internal Gtk.Window RootWindow{ get; set; }
         private const string confimMessage = "An update is available for {0} version {1}.\nWould you like to update now?";
         internal UpdateCheck()
         {
@@ -48,8 +49,8 @@ namespace GUPdotNET
                 GlobalTools.PackageInfo = new UpdatePackageInfo();
                 GlobalTools.PackageInfo.Load();
 
-                MessageDialog confirmMessageDialog = new MessageDialog(null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, string.Format(confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString()), "Update Available");
-                confirmMessageDialog.SetResponseSensitive(ResponseType.None, false);
+				MessageDialog confirmMessageDialog = new MessageDialog(this.RootWindow, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, string.Format(confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString()), "Update Available");
+				confirmMessageDialog.SetResponseSensitive(ResponseType.None, false);
                 Gtk.Button releaseNotesButton = (confirmMessageDialog.AddButton("View Release Notes", ResponseType.None) as Gtk.Button);
                 releaseNotesButton.Clicked += delegate(object sender, EventArgs e)
                 {
@@ -57,6 +58,9 @@ namespace GUPdotNET
                 };
                 if ((Gtk.ResponseType)confirmMessageDialog.Run() == Gtk.ResponseType.Yes)
                 {
+                    DownloadView downloadView = new DownloadView();
+                    downloadView.Run();
+                    downloadView.Destroy();
                 }
 
                 // tell the user there is an update availalbe

@@ -101,6 +101,8 @@
     <Compile Include="MonoTools\MiscTools.cs" />
     <Compile Include="IO\LocalSystemTools.cs" />
     <Compile Include="IO\UpdatePackageInfoReader.cs" />
+    <Compile Include="UI\Views\ConfirmView.cs" />
+    <Compile Include="gtk-gui\GUPdotNET.UI.Views.ConfirmView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
