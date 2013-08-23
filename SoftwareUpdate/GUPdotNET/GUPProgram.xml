@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GUPdotNET>
-	<ProgramConfig>
+	<ProgramConfig FileVersion="1.0">
     <ProgramName>YahtzeeSharp</ProgramName>
 		<ProgramTitle>YahtzeeSharp 2.0</ProgramTitle>
     <ProgramFileName>YahtzeeSharp.exe</ProgramFileName>

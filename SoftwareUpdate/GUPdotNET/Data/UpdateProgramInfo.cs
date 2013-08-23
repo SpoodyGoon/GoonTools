@@ -79,17 +79,31 @@ namespace GUPdotNET.Data
         /// </summary>
         internal string UpdatePackageURL { get; private set; }
 
+        /// <summary>
+        /// Gets the value indicating if the install package is required
+        /// to have a checksum.
+        /// </summary>
         internal bool RequireCheckSum { get; private set; }
 
         /// <summary>
-        /// This is the directory on the local maching
-        /// where the new package(s) and other files 
-        /// will be stored and ran from.
+        /// Gets a value indicating the version of the config file's format.
         /// </summary>
-        internal string TempWorkingPath { get; set; }
+        internal System.Version FileVersion { get; private set; }
 
+        /// <summary>
+        /// The full file path to the program config file.
+        /// </summary>
         private string configFilePath = string.Empty;
+
+        /// <summary>
+        /// The name of the program config file.
+        /// </summary>
         private const string FILENAME = "GUPProgram.xml";
+
+        /// <summary>
+        /// Data access class for accessing local program infomation
+        /// concerning the application that GUPdotNET is supporting.
+        /// </summary>
         internal UpdateProgramInfo()
         {
             this.configFilePath = Path.Combine(GlobalTools.LocalSystem.AppPath, FILENAME);
@@ -111,7 +125,8 @@ namespace GUPdotNET.Data
                                    InstallerType = e.Element("InstallerType").Value,
                                    UpdateInfoURL = e.Element("UpdateInfoURL").Value,
                                    ProgramVersion = e.Element("ProgramVersion").Value,
-                                   RequireCheckSum = e.Element("RequireCheckSum").Value
+                                   RequireCheckSum = e.Element("RequireCheckSum").Value,
+                                   FileVersion = e.Attribute("FileVersion").Value
                                }).SingleOrDefault();
 
             if (programInfo == null)
@@ -125,8 +140,10 @@ namespace GUPdotNET.Data
             this.ProgramDescription = programInfo.ProgramDescription.ToString();
             this.OS = programInfo.OS.ToString();
             this.Processor64 = Convert.ToBoolean(programInfo.Processor64);
+            this.UpdatePackageURL = programInfo.UpdateInfoURL.ToString();
             this.ProgramVersion = System.Version.Parse(programInfo.ProgramVersion);
             this.RequireCheckSum = bool.Parse(programInfo.RequireCheckSum);
+            this.FileVersion = System.Version.Parse(programInfo.FileVersion);
             InstallMethod installMethodParse;
             if (Enum.TryParse<InstallMethod>(programInfo.InstallerType, out installMethodParse))
             {

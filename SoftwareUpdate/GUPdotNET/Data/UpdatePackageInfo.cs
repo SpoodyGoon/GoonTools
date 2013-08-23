@@ -76,10 +76,10 @@ namespace GUPdotNET.Data
 
             XDocument configDocument = XDocument.Load(Path.Combine(this.tempPackageRoot, packageConfigName));
 
-            this.FileVersion = System.Version.Parse(configDocument.Root.Attribute("FileVersion").Value);
+            this.FileVersion = System.Version.Parse(configDocument.Element("GUPdotNET").Element("PackageConfig").Attribute("FileVersion").Value);
             XElement configRoot = configDocument.Element("GUPdotNET").Element("PackageConfig");
-            var packageInfo = (from el in configRoot.Elements("Package")
-                               where (string)el.Attribute("OS") == GlobalTools.PackageInfo.OS && (string)el.Attribute("InstallerType") == GlobalTools.PackageInfo.InstallerType.ToString()
+            var packageInfo = (from el in configRoot.Descendants("Package")
+                               where (string)el.Attribute("OS") == GlobalTools.ProgramInfo.OS && (string)el.Attribute("InstallerType") == GlobalTools.ProgramInfo.InstallType.ToString()
                                select new
                                {
                                    OS = el.Attribute("OS").Value,
@@ -95,10 +95,10 @@ namespace GUPdotNET.Data
             foreach (var file in packageInfo.FileList)
             {
                 this.PackageFiles.Add(
-                    file.Attribute("FileType").Value,
+                    file.Attribute("Type").Value,
                     new PackageFile()
                     {
-                        FileType = file.Attribute("FileType").Value,
+                        FileType = file.Attribute("Type").Value,
                         URL = file.Element("URL").Value,
                         Checksum = file.Element("Checksum").Value
                     });
