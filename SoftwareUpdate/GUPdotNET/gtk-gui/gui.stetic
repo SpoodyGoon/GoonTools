@@ -311,11 +311,10 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="469 161">
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="478 181">
     <action-group name="Default">
       <action id="QuitAction">
         <property name="Type">Action</property>
-        <property name="IsImportant">True</property>
         <property name="Label" translatable="yes">Quit</property>
         <property name="ShortLabel" translatable="yes">Quit</property>
         <property name="StockId">Quit.png</property>
@@ -323,17 +322,10 @@
       </action>
       <action id="AboutGUPdotNETAction">
         <property name="Type">Action</property>
-        <property name="IsImportant">True</property>
         <property name="Label" translatable="yes">About GUPdotNET</property>
         <property name="ShortLabel" translatable="yes">About GUPdotNET</property>
         <property name="StockId">About.png</property>
         <signal name="Activated" handler="OnAboutGUPdotNETActionActivated" />
-      </action>
-      <action id="DebugDataAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Debug Data</property>
-        <property name="ShortLabel" translatable="yes">Debug Data</property>
-        <signal name="Activated" handler="OnDebugDataActionActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -371,6 +363,7 @@
               <widget class="Gtk.Alignment" id="alignment1">
                 <property name="MemberName" />
                 <property name="Xscale">0.01</property>
+                <property name="TopPadding">5</property>
                 <property name="BottomPadding">5</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox1">
