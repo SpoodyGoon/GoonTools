@@ -36,10 +36,6 @@ namespace GUPdotNET.UI.Views
             this.DeleteEvent += new DeleteEventHandler(MainView_DeleteEvent);
 			this.updateCheckAlignment.Add(this.updateCheckCombobox);
 			this.updateCheckAlignment.ShowAll();
-
-			this.DebugDataAction.Visible = GlobalTools.DebugMode;
-			this.menubar1.QueueDraw();
-
 			this.ActionArea.Hide();
 			this.feedbackMessageLabel.Text = "";
 			this.feedbackMessageLabel.QueueDraw();

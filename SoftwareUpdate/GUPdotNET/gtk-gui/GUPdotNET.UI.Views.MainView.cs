@@ -7,7 +7,6 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.UIManager UIManager;
 		private global::Gtk.Action QuitAction;
 		private global::Gtk.Action AboutGUPdotNETAction;
-		private global::Gtk.Action DebugDataAction;
 		private global::Gtk.VBox vbox2;
 		private global::Gtk.MenuBar menubar1;
 		private global::Gtk.Alignment alignment1;
@@ -35,16 +34,11 @@ namespace GUPdotNET.UI.Views
 			this.UIManager = new global::Gtk.UIManager ();
 			global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
 			this.QuitAction = new global::Gtk.Action ("QuitAction", global::Mono.Unix.Catalog.GetString ("Quit"), null, "Quit.png");
-			this.QuitAction.IsImportant = true;
 			this.QuitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Quit");
 			w1.Add (this.QuitAction, null);
 			this.AboutGUPdotNETAction = new global::Gtk.Action ("AboutGUPdotNETAction", global::Mono.Unix.Catalog.GetString ("About GUPdotNET"), null, "About.png");
-			this.AboutGUPdotNETAction.IsImportant = true;
 			this.AboutGUPdotNETAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("About GUPdotNET");
 			w1.Add (this.AboutGUPdotNETAction, null);
-			this.DebugDataAction = new global::Gtk.Action ("DebugDataAction", global::Mono.Unix.Catalog.GetString ("Debug Data"), null, null);
-			this.DebugDataAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Debug Data");
-			w1.Add (this.DebugDataAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "GUPdotNET.UI.Views.MainView";
@@ -74,6 +68,7 @@ namespace GUPdotNET.UI.Views
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 1F);
 			this.alignment1.Name = "alignment1";
+			this.alignment1.TopPadding = ((uint)(5));
 			this.alignment1.BottomPadding = ((uint)(5));
 			// Container child alignment1.Gtk.Container+ContainerChild
 			this.hbox1 = new global::Gtk.HBox ();
@@ -231,12 +226,11 @@ namespace GUPdotNET.UI.Views
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 469;
-			this.DefaultHeight = 161;
+			this.DefaultWidth = 478;
+			this.DefaultHeight = 181;
 			this.Show ();
 			this.QuitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
 			this.AboutGUPdotNETAction.Activated += new global::System.EventHandler (this.OnAboutGUPdotNETActionActivated);
-			this.DebugDataAction.Activated += new global::System.EventHandler (this.OnDebugDataActionActivated);
 			this.checkUpdateButton.Clicked += new global::System.EventHandler (this.OnCheckUpdateButtonClicked);
 		}
 	}
