@@ -18,19 +18,31 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Reflection;
-using MonoTools;
-using Gtk;
-using GUPdotNET.UI.ComboBox;
 
 namespace GUPdotNET.UI.Views
 {
-	public partial class MainView : Gtk.Dialog
-	{
+	using System;
+	using System.Reflection;
+	using Gtk;
+	using GUPdotNET.UI.ComboBox;
+	using MonoTools;
+
+	/// <summary>
+	/// The root window when the application is not being ran in silent/background mode,
+	/// also is the UI for application settings/preferences.
+	/// </summary>
+	internal partial class MainView : Gtk.Dialog
+	{		
+		/// <summary>
+		/// The update check combobox for determining the amount of days between 
+		/// silent/background update checks.
+		/// </summary>
 		private UpdateSchedualComboBox updateCheckCombobox = new UpdateSchedualComboBox();
 
-		public MainView()
+		/// <summary>
+		/// Initializes a new instance of the <see cref="GUPdotNET.UI.Views.MainView"/> class.
+		/// </summary>
+		internal MainView()
 		{
 			this.Build();
             this.DeleteEvent += new DeleteEventHandler(MainView_DeleteEvent);
@@ -42,25 +54,35 @@ namespace GUPdotNET.UI.Views
 			this.QueueResize();
 		}
 
-        private void MainView_DeleteEvent(object o, DeleteEventArgs args)
-        {
-            GlobalTools.Options.Save();
-            Application.Quit();
-        }
-
-		protected void OnCheckUpdateButtonClicked(object sender, EventArgs e)
+		/// <summary>
+		/// Event fired when the "Update Check" button is fired, causing a forced 
+		/// update check reguardless of the time since the last check.
+		/// </summary>
+		/// <param name="sender">This parameter is not used.</param>
+		/// <param name="args">This parameter is not used.</param>
+		protected void OnCheckUpdateButtonClicked(object sender, EventArgs args)
 		{
             UpdateCheck updateCheck = new UpdateCheck();
             updateCheck.RunUpdateCheck();
 		}
 
-		protected void OnQuitActionActivated(object sender, EventArgs e)
+		/// <summary>
+		/// Event fired when the "Quit" menu button is pressed.
+		/// </summary>
+		/// <param name="sender">This parameter is not used.</param>
+		/// <param name="args">This parameter is not used.</param>
+		protected void OnQuitActionActivated(object sender, EventArgs args)
 		{
-            GlobalTools.Options.Save();
-			Application.Quit();
+			this.ApplicationQuit();
 		}
 
-		protected void OnAboutGUPdotNETActionActivated(object sender, EventArgs e)
+		/// <summary>
+		/// Event fired when the "About" menu button is pressed,
+		/// displayes the basic gtk about dialog window.
+		/// </summary>
+		/// <param name="sender">This parameter is not used.</param>
+		/// <param name="args">This parameter is not used.</param>
+		protected void OnAboutGUPdotNETActionActivated(object sender, EventArgs args)
 		{
 			// hook delegat to handle default button events in the gtk.about dialog window
 			Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link)
@@ -107,12 +129,27 @@ namespace GUPdotNET.UI.Views
 			}
 		}
 
-		protected void OnDebugDataActionActivated(object sender, EventArgs e)
+		/// <summary>
+		/// Consolidated method for when the application exists when not in silent/background mode.
+		/// </summary>
+		private void ApplicationQuit()
 		{
-            Gtk.MessageDialog notImplementedMessage = new Gtk.MessageDialog(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, false, "Not Implemented", "Not Implemented");
-            notImplementedMessage.Run();
-            notImplementedMessage.Destroy();
+			GlobalTools.Options.Save();
+			Application.Quit();
 		}
+
+		/// <summary>
+		/// Event fired when the close button is pushed on the window,
+		/// or is closed from the OS interface.
+		/// Saves the setting/preferences prior to exit.
+		/// </summary>
+		/// <param name="sender">Object firing the event, parameter is not used.</param>
+		/// <param name="args">This parameter is not used.</param>
+		private void MainView_DeleteEvent(object sender, DeleteEventArgs args)
+		{
+			this.ApplicationQuit();
+		}
+
 	}
 }
 

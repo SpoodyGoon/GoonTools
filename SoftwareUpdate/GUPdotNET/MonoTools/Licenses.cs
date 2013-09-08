@@ -24,23 +24,23 @@ using System;
 
 namespace  MonoTools.Tools
 {
-	public class LicenseText
+	internal class LicenseText
     {
-        public LicenseText()
+        internal LicenseText()
         {
         }
 
         #region Place Holder Text
 
-        public string Copyright = "[COPYRIGHT]";
-        public string Description = "[SHORT_DESCRIPTION]";
-        public string ProgramName = "[PROGRAM_NAME]";
+        internal string Copyright = "[COPYRIGHT]";
+        internal string Description = "[SHORT_DESCRIPTION]";
+        internal string ProgramName = "[PROGRAM_NAME]";
 
         #endregion Place Holder Text
 
         #region Licence Text
 
-        public string GPL3 =
+        internal string GPL3 =
             @"                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 

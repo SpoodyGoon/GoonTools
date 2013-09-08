@@ -22,9 +22,9 @@ using System;
 
 namespace GUPdotNET.UI.Views
 {
-	public partial class ConfirmView : Gtk.Dialog
+	internal partial class ConfirmView : Gtk.Dialog
 	{
-		public ConfirmView()
+		internal ConfirmView()
 		{
 			this.Build();
 		}

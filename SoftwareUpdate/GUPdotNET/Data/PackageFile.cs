@@ -23,7 +23,7 @@ using System.IO;
 
 namespace GUPdotNET.Data
 {
-    public class PackageFile
+    internal class PackageFile
     {
         internal string FileType { get; set; }
 
