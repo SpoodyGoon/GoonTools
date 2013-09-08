@@ -1,26 +1,46 @@
-using System;
-using io = System.IO;
-using System.Net;
-using System.ComponentModel;
-using Gtk;
+
 
 namespace GUPdotNET.UI.Views
 {
-	public partial class DownloadView : Gtk.Dialog
+    using System;
+    using System.ComponentModel;
+    using System.Net;
+    using Gtk;
+    using io = System.IO;
+
+	internal partial class DownloadView : Gtk.Dialog
 	{
-		public DownloadStatus CurrentStatus{ get; private set; }
-		public DownloadView()
+		internal DownloadStatus CurrentStatus{ get; private set; }
+        private WebClient webClient = new WebClient();
+          
+		internal DownloadView()
 		{
 			this.Build();
 			this.CurrentStatus = DownloadStatus.None;
 		}
 
+		protected void OnCancelButtonClicked(object sender, EventArgs e)
+		{
+            this.webClient.CancelAsync();
+		}
+
+		protected void OnHideWindowButtonClicked(object sender, EventArgs e)
+		{
+            this.Iconify();
+		}
+
+        private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs downloadProgressArgs)
+        {
+            this.downloadingProgressbar.Fraction = (double)downloadProgressArgs.ProgressPercentage;
+            this.downloadingProgressbar.Text = downloadProgressArgs.ProgressPercentage.ToString("P");
+            this.downloadingProgressbar.QueueDraw();
+        }
+
         private void DownloadFile()
         {
-            WebClient webClient = new WebClient();
-            webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(WebClient_DownloadProgressChanged);
-            webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(WebClient_DownloadFileCompleted);
-            webClient.DownloadFileAsync(new Uri(GlobalTools.PackageInfo.PackageFiles["Installer"].URL), io.Path.Combine(GlobalTools.LocalSystem.TempPackagePath, GlobalTools.PackageInfo.PackageFiles["Installer"].FileName));
+            this.webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(WebClient_DownloadProgressChanged);
+            this.webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(WebClient_DownloadFileCompleted);
+            this.webClient.DownloadFileAsync(new Uri(GlobalTools.PackageInfo.PackageFiles["Installer"].URL), io.Path.Combine(GlobalTools.LocalSystem.TempPackagePath, GlobalTools.PackageInfo.PackageFiles["Installer"].FileName));
         }
 
         private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs asyncCompletedArgs)
@@ -51,23 +71,6 @@ namespace GUPdotNET.UI.Views
                 this.Hide();
             }
         }
-
-        private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs downloadProgressArgs)
-        {
-            this.downloadingProgressbar.Fraction = (double)downloadProgressArgs.ProgressPercentage;
-            this.downloadingProgressbar.Text = downloadProgressArgs.ProgressPercentage.ToString("P");
-            this.downloadingProgressbar.QueueDraw();
-        }
-
-		protected void OnCancelButtonClicked(object sender, EventArgs e)
-		{
-			throw new NotImplementedException();
-		}
-
-		protected void OnHideWindowButtonClicked(object sender, EventArgs e)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }
 

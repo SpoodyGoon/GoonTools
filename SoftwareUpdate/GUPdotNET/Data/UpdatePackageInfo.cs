@@ -27,7 +27,7 @@ namespace GUPdotNET.Data
     using System.Linq;
     using System.Xml.Linq;
     using System.Collections.Generic;
-    public class UpdatePackageInfo
+    internal class UpdatePackageInfo
     {
         /// <summary>
         /// This is the version of the package config file, so that future
@@ -63,7 +63,7 @@ namespace GUPdotNET.Data
 
         private const string packageConfigName = "PackageConfig.xml";
 
-        public void Load()
+        internal void Load()
         {
             this.tempPackageRoot = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             if (Directory.Exists(this.tempPackageRoot))

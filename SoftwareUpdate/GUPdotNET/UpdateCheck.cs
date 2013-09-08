@@ -19,31 +19,41 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-using System;
-using Gtk;
-using GUPdotNET.Data;
-using System.Net;
-using GUPdotNET.UI.Views;
-using MonoTools;
 
 namespace GUPdotNET
 {
+    using System;
+    using Gtk;
+    using GUPdotNET.Data;
+    using GUPdotNET.UI.Views;
+    using MonoTools;
+
     /// <summary>
-    /// Description of RunUpdateCheck.
+    /// This class is the main logic tree for the application, 
+	/// determines the programs current state, loads config files
+	/// and provides feedback to the end user.
     /// </summary>
     internal class UpdateCheck
     {
+		/// <summary>
+		/// Gets or sets the root window when there is one, in some surcomstances
+		/// there will be no root window to provide a parent for dialog windows.
+		/// </summary>
 		internal Gtk.Window RootWindow{ get; set; }
-        private const string confimMessage = "An update is available for {0} version {1}.\nWould you like to update now?";
-        internal UpdateCheck()
-        {
-        }
 
+		/// <summary>
+		/// The string format for the confirm message shown when an update is available.
+		/// </summary>
+        private const string confimMessage = "An update is available for {0} version {1}.\nWould you like to update now?";
+        
+		/// <summary>
+		/// Runs the main logic methods for determining what actions
+		/// the application needs to execute.
+		/// </summary>
         internal void RunUpdateCheck()
         {
             if (DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck) > GlobalTools.Options.UpdateSchedule)
             {
-
                 GlobalTools.ProgramInfo = new UpdateProgramInfo();
                 GlobalTools.ProgramInfo.Load();
                 GlobalTools.PackageInfo = new UpdatePackageInfo();
@@ -56,6 +66,7 @@ namespace GUPdotNET
                 {
                     ProcessTools.LaunchURL(GlobalTools.PackageInfo.PackageFiles["ReleaseNotes"].URL);
                 };
+
                 if ((Gtk.ResponseType)confirmMessageDialog.Run() == Gtk.ResponseType.Yes)
                 {
                     DownloadView downloadView = new DownloadView();
@@ -97,11 +108,6 @@ namespace GUPdotNET
                     md.Destroy();
                 }
             }
-        }
-
-        void releaseNotesButton_Clicked(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -26,7 +26,7 @@ using System.IO;
 
 namespace GUPdotNET.Data
 {
-    public class UpdateSettings
+    internal class UpdateSettings
     {
         private string filePath = string.Empty;
 

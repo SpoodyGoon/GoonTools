@@ -1,15 +1,13 @@
-using System;
-using System.Linq;
-using GUPdotNET.Data;
-using GUPdotNET.IO;
-using Gtk;
-using GUPdotNET.UI.Views;
+
 
 namespace GUPdotNET
 {
-    public class MainClass
+    using Gtk;
+    using GUPdotNET.UI.Views;
+
+    internal class MainClass
     {
-        public static void Main(string[] args)
+        internal static void Main(string[] args)
         {
             Application.Init();
             GlobalTools.Initalize();
@@ -20,7 +18,6 @@ namespace GUPdotNET
                 GlobalTools.UpdateRunType = RunType.BackgroundCheck;               
                 UpdateCheck updateCheck = new UpdateCheck();
                 updateCheck.RunUpdateCheck();
-
                 Application.Quit();
             }
             else
@@ -30,7 +27,6 @@ namespace GUPdotNET
                 mainView.Show();
             }
             Application.Run();
-        }
-
+		}
     }
 }

@@ -15,7 +15,7 @@ namespace GUPdotNET.Data
     /// Data class containing the information concerning the program
     /// that GUPdotNET is supporting.
     /// </summary>
-    public class UpdateProgramInfo
+    internal class UpdateProgramInfo
     {
         /// <summary>
         /// This is the actual name of the program <example>MyProgram.exe</example>.

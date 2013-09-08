@@ -2,9 +2,9 @@ using System;
 
 namespace GUPdotNET.UI.Views
 {
-	public partial class InstallView : Gtk.Dialog
+	internal partial class InstallView : Gtk.Dialog
 	{
-		public InstallView()
+		internal InstallView()
 		{
 			this.Build();
 		}

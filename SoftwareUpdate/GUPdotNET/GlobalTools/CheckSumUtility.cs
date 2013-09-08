@@ -77,10 +77,10 @@ namespace GUPdotNET.Tools
 		}
 		
 		#endregion Constructors
-		
-		#region public properties
-		
-		internal string FilePath
+
+        #region internal properties
+
+        internal string FilePath
 		{
 			set{_FilePath=value;}
 			get{return _FilePath;}
@@ -97,10 +97,10 @@ namespace GUPdotNET.Tools
 			set{_CurrentCheckSumType=value;}
 			get{return _CurrentCheckSumType;}
 		}
-		
-		#endregion public properties
-		
-		internal string GetCheckSum()
+
+        #endregion internal properties
+
+        internal string GetCheckSum()
 		{
 			switch(_CurrentCheckSumType)
 			{

@@ -25,13 +25,13 @@ using GUPdotNET.Data;
 
 namespace GUPdotNET.IO
 {
-	public class UpdatePackageInfoReader
+	internal class UpdatePackageInfoReader
 	{
-		public UpdatePackageInfoReader()
+        internal UpdatePackageInfoReader()
 		{
 		}
 
-        public void Load()
+        internal void Load()
         {
             GlobalTools.PackageInfo = new UpdatePackageInfo();
             var pkgPaths = GlobalTools.LocalSystem.TempPackagePaths;
