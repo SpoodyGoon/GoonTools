@@ -30,6 +30,7 @@ namespace GUPdotNET.UI.Views
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Modal = true;
+			this.Resizable = false;
 			// Internal child GUPdotNET.UI.Views.ConfirmView.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";
@@ -75,7 +76,7 @@ namespace GUPdotNET.UI.Views
 			this.updateMessageLabel.Name = "updateMessageLabel";
 			this.updateMessageLabel.Xpad = 5;
 			this.updateMessageLabel.Ypad = 5;
-			this.updateMessageLabel.LabelProp = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel rutrum lectus. Integer dapibus eu augue vitae tristique. Morbi elementum consequat venenatis. Donec non pharetra est, non porta felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam viverra vehicula leo posuere dictum. Duis vitae varius eros. Nulla accumsan tempor augue non tempus. Mauris pharetra risus fringilla fermentum varius. Mauris at pharetra mi. Morbi adipiscing, dui sit amet gravida lacinia, sapien dui aliquam mauris, sed ultrices dui nibh et erat. Proin at ligula elit. Donec hendrerit quis dui at mattis. Morbi sit amet justo id.";
+			this.updateMessageLabel.LabelProp = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
 			this.updateMessageLabel.Wrap = true;
 			this.alignment2.Add (this.updateMessageLabel);
 			this.vbox2.Add (this.alignment2);
@@ -86,7 +87,8 @@ namespace GUPdotNET.UI.Views
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment3 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
 			this.alignment3.Name = "alignment3";
-			this.alignment3.LeftPadding = ((uint)(14));
+			this.alignment3.LeftPadding = ((uint)(8));
+			this.alignment3.BottomPadding = ((uint)(4));
 			// Container child alignment3.Gtk.Container+ContainerChild
 			this.hbox2 = new global::Gtk.HBox ();
 			this.hbox2.Name = "hbox2";
@@ -200,8 +202,8 @@ namespace GUPdotNET.UI.Views
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 472;
-			this.DefaultHeight = 352;
+			this.DefaultWidth = 488;
+			this.DefaultHeight = 178;
 			this.fileListDetailsButton.Hide ();
 			this.releaseNotesButton.Hide ();
 			this.Show ();

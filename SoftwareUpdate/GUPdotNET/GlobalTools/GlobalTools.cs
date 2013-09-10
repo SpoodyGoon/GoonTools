@@ -1,6 +1,5 @@
 using System;
 using GUPdotNET.Data;
-using GUPdotNET.IO;
 using MonoTools.IO;
 using System.Configuration;
 

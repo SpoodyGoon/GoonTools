@@ -59,6 +59,7 @@ namespace GUPdotNET.UI.Views
 				this.Hide();
 			};
 			this.DefaultResponse = Gtk.ResponseType.No;
+			this.QueueResize();
 			this.QueueDraw();
 		}
 
