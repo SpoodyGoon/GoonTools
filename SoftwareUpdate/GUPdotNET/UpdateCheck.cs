@@ -42,11 +42,6 @@ namespace GUPdotNET
 		internal Gtk.Window RootWindow{ get; set; }
 
 		/// <summary>
-		/// The string format for the confirm message shown when an update is available.
-		/// </summary>
-        private const string confimMessage = "An update is available for {0} version {1}.\nWould you like to update now?";
-        
-		/// <summary>
 		/// Runs the main logic methods for determining what actions
 		/// the application needs to execute.
 		/// </summary>
@@ -59,20 +54,24 @@ namespace GUPdotNET
                 GlobalTools.PackageInfo = new UpdatePackageInfo();
                 GlobalTools.PackageInfo.Load();
 
-				MessageDialog confirmMessageDialog = new MessageDialog(this.RootWindow, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, string.Format(confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString()), "Update Available");
-				confirmMessageDialog.SetResponseSensitive(ResponseType.None, false);
-                Gtk.Button releaseNotesButton = (confirmMessageDialog.AddButton("View Release Notes", ResponseType.None) as Gtk.Button);
-                releaseNotesButton.Clicked += delegate(object sender, EventArgs e)
-                {
-                    ProcessTools.LaunchURL(GlobalTools.PackageInfo.PackageFiles["ReleaseNotes"].URL);
-                };
+				// this is the dialog response that will be reused
+				// during the update process the reponse type for
+				// continueing will be Gtk.ResponseType.Yes anything else will
+				// break the process flow.
+				Gtk.ResponseType response = Gtk.ResponseType.None;
 
-                if ((Gtk.ResponseType)confirmMessageDialog.Run() == Gtk.ResponseType.Yes)
-                {
-                    DownloadView downloadView = new DownloadView();
-                    downloadView.Run();
-                    downloadView.Destroy();
-                }
+				// let the user know there is an update available and
+				// as if the user wants to install it.
+				ConfirmView confirmView = new ConfirmView();
+				response = (Gtk.ResponseType)confirmView.Run();
+				confirmView.Destroy();
+
+				if(response == ResponseType.Yes)
+				{
+                	DownloadView downloadView = new DownloadView();
+                	response = (Gtk.ResponseType)downloadView.Run();
+                	downloadView.Destroy();
+				}
 
                 // tell the user there is an update availalbe
                 // and ask if they would like to update

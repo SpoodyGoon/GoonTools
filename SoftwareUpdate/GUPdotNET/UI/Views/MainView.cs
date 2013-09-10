@@ -45,6 +45,11 @@ namespace GUPdotNET.UI.Views
 		internal MainView()
 		{
 			this.Build();
+			this.Initalize();
+		}
+
+		private void Initalize()
+		{
             this.DeleteEvent += new DeleteEventHandler(MainView_DeleteEvent);
 			this.updateCheckAlignment.Add(this.updateCheckCombobox);
 			this.updateCheckAlignment.ShowAll();
@@ -97,8 +102,7 @@ namespace GUPdotNET.UI.Views
 				string title = (programAssembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false)[0] as AssemblyTitleAttribute).Title;
 				string description = (programAssembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
 				string copyRight = (programAssembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false)[0] as AssemblyCopyrightAttribute).Copyright;
-				string company = (programAssembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false)[0] as AssemblyCompanyAttribute).Company;
-	
+
 				Gtk.AboutDialog ad = new Gtk.AboutDialog();
 				ad.Title = "About " + title;
 				ad.ProgramName = title;

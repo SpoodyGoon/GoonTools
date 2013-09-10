@@ -26,7 +26,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.HButtonBox hbuttonbox2;
 		private global::Gtk.Button buttonCancel;
 		private global::Gtk.Button buttonOk;
-
+		
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -56,8 +56,7 @@ namespace GUPdotNET.UI.Views
 			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 6;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name=\'menubar1\'><menu name=\'QuitAction\' action=\'QuitAction\'/><menu n" +
-				"ame=\'AboutGUPdotNETAction\' action=\'AboutGUPdotNETAction\'/></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='QuitAction' action='QuitAction'/><menu name='AboutGUPdotNETAction' action='AboutGUPdotNETAction'/></menubar></ui>");
 			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 			this.menubar1.Name = "menubar1";
 			this.vbox2.Add (this.menubar1);
