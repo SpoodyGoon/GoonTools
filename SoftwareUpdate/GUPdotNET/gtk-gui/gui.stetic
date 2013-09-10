@@ -577,7 +577,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.ConfirmView" design-size="472 352">
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.ConfirmView" design-size="488 178">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
     <property name="Title" translatable="yes">Update Available</property>
@@ -585,6 +585,7 @@
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Modal">True</property>
+    <property name="Resizable">False</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -643,7 +644,7 @@
                     <property name="MemberName" />
                     <property name="Xpad">5</property>
                     <property name="Ypad">5</property>
-                    <property name="LabelProp">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel rutrum lectus. Integer dapibus eu augue vitae tristique. Morbi elementum consequat venenatis. Donec non pharetra est, non porta felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam viverra vehicula leo posuere dictum. Duis vitae varius eros. Nulla accumsan tempor augue non tempus. Mauris pharetra risus fringilla fermentum varius. Mauris at pharetra mi. Morbi adipiscing, dui sit amet gravida lacinia, sapien dui aliquam mauris, sed ultrices dui nibh et erat. Proin at ligula elit. Donec hendrerit quis dui at mattis. Morbi sit amet justo id.</property>
+                    <property name="LabelProp">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </property>
                     <property name="Wrap">True</property>
                   </widget>
                 </child>
@@ -660,7 +661,8 @@
                 <property name="MemberName" />
                 <property name="Xscale">0.01</property>
                 <property name="Xalign">0.01</property>
-                <property name="LeftPadding">14</property>
+                <property name="LeftPadding">8</property>
+                <property name="BottomPadding">4</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox2">
                     <property name="MemberName" />
