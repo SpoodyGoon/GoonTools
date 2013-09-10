@@ -38,8 +38,27 @@ namespace GUPdotNET.UI.Views
 
 		private void Initalize ()
 		{
-			this.Title = string.Format(confirmTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
-			this.updateMessageLabel.Text = string.Format(confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+			this.Title = string.Format (confirmTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString ());
+			this.updateMessageLabel.Text = string.Format (confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString ());
+			if (GlobalTools.PackageInfo.PackageFiles.ContainsKey ("ReleaseNotes") && !string.IsNullOrEmpty (GlobalTools.PackageInfo.PackageFiles ["ReleaseNotes"].URL))
+			{
+				this.releaseNotesButton.Show ();
+			}
+			else
+			{
+				this.releaseNotesButton.Hide();
+			}
+			this.Close += delegate(object sender, EventArgs e)
+			{
+				this.Respond(Gtk.ResponseType.No);
+				this.Hide();
+			};
+			this.DeleteEvent += delegate(object o, Gtk.DeleteEventArgs args)
+			{
+				this.Respond(Gtk.ResponseType.No);
+				this.Hide();
+			};
+			this.DefaultResponse = Gtk.ResponseType.No;
 			this.QueueDraw();
 		}
 

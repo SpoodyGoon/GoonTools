@@ -158,12 +158,15 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.InstallView" design-size="518 165">
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.InstallView" design-size="518 129">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
     <property name="Title" translatable="yes">Installing</property>
+    <property name="Icon">resource:GUPdotNET.Resources.Images.update_medium.png</property>
+    <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Modal">True</property>
+    <property name="AllowShrink">True</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -199,9 +202,10 @@
                 <property name="Xscale">0.01</property>
                 <property name="Xalign">0.06</property>
                 <child>
-                  <widget class="Gtk.Label" id="label1">
+                  <widget class="Gtk.Label" id="processOverviewLabel">
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">Starting Install Process</property>
+                    <property name="Wrap">True</property>
                   </widget>
                 </child>
               </widget>
@@ -221,6 +225,7 @@
                   <widget class="Gtk.Expander" id="detailsExpander">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
+                    <signal name="Activated" handler="OnDetailsExpanderActivated" />
                     <child>
                       <widget class="Gtk.Alignment" id="alignment9">
                         <property name="MemberName" />

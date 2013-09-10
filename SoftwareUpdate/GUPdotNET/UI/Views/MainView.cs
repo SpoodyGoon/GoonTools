@@ -68,7 +68,7 @@ namespace GUPdotNET.UI.Views
 		protected void OnCheckUpdateButtonClicked(object sender, EventArgs args)
 		{
             UpdateCheck updateCheck = new UpdateCheck();
-            updateCheck.RunUpdateCheck();
+            updateCheck.RunUpdateCheck(true);
 		}
 
 		/// <summary>

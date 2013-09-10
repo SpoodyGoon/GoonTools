@@ -8,7 +8,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.Alignment alignment1;
 		private global::Gtk.Label titleLabel;
 		private global::Gtk.Alignment alignment3;
-		private global::Gtk.Label label1;
+		private global::Gtk.Label processOverviewLabel;
 		private global::Gtk.Alignment alignment2;
 		private global::Gtk.Expander detailsExpander;
 		private global::Gtk.Alignment alignment9;
@@ -24,8 +24,11 @@ namespace GUPdotNET.UI.Views
 			// Widget GUPdotNET.UI.Views.InstallView
 			this.Name = "GUPdotNET.UI.Views.InstallView";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Installing");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.update_medium.png");
+			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Modal = true;
+			this.AllowShrink = true;
 			// Internal child GUPdotNET.UI.Views.InstallView.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";
@@ -53,10 +56,11 @@ namespace GUPdotNET.UI.Views
 			this.alignment3 = new global::Gtk.Alignment (0.06F, 0.5F, 0.01F, 1F);
 			this.alignment3.Name = "alignment3";
 			// Container child alignment3.Gtk.Container+ContainerChild
-			this.label1 = new global::Gtk.Label ();
-			this.label1.Name = "label1";
-			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Starting Install Process");
-			this.alignment3.Add (this.label1);
+			this.processOverviewLabel = new global::Gtk.Label ();
+			this.processOverviewLabel.Name = "processOverviewLabel";
+			this.processOverviewLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Starting Install Process");
+			this.processOverviewLabel.Wrap = true;
+			this.alignment3.Add (this.processOverviewLabel);
 			this.vbox2.Add (this.alignment3);
 			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
 			w5.Position = 1;
@@ -167,8 +171,9 @@ namespace GUPdotNET.UI.Views
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 518;
-			this.DefaultHeight = 165;
+			this.DefaultHeight = 129;
 			this.Show ();
+			this.detailsExpander.Activated += new global::System.EventHandler (this.OnDetailsExpanderActivated);
 			this.closeWindowButton.Clicked += new global::System.EventHandler (this.OnCloseWindowButtonClicked);
 			this.cancelInstallButton.Clicked += new global::System.EventHandler (this.OnCancelInstallButtonClicked);
 		}
