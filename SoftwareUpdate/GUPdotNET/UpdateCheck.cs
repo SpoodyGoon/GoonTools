@@ -41,13 +41,18 @@ namespace GUPdotNET
 		/// </summary>
 		internal Gtk.Window RootWindow{ get; set; }
 
+		internal void RunUpdateCheck ()
+		{
+			this.RunUpdateCheck(false);
+		}
+
 		/// <summary>
 		/// Runs the main logic methods for determining what actions
 		/// the application needs to execute.
 		/// </summary>
-        internal void RunUpdateCheck()
+        internal void RunUpdateCheck(bool forceCheck)
         {
-            if (DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck) > GlobalTools.Options.UpdateSchedule)
+            if (forceCheck || DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck) > GlobalTools.Options.UpdateSchedule)
             {
                 GlobalTools.ProgramInfo = new UpdateProgramInfo();
                 GlobalTools.ProgramInfo.Load();
@@ -71,6 +76,13 @@ namespace GUPdotNET
                 	DownloadView downloadView = new DownloadView();
                 	response = (Gtk.ResponseType)downloadView.Run();
                 	downloadView.Destroy();
+				}
+
+				if(response == ResponseType.Yes)
+				{
+					InstallView installView = new InstallView();
+					response = (Gtk.ResponseType)installView.Run();
+					installView.Destroy();
 				}
 
                 // tell the user there is an update availalbe
