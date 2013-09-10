@@ -7,6 +7,10 @@ namespace GUPdotNET
 
     internal class MainClass
     {
+		// might want to redirect output to the calling application
+		// http://msdn.microsoft.com/en-us/library/system.diagnostics.process.outputdatareceived.aspx
+		// or get the process number to ask for close of calling application
+		// 
         internal static void Main(string[] args)
         {
             Application.Init();

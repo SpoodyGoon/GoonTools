@@ -24,10 +24,37 @@ namespace GUPdotNET.UI.Views
 {
 	internal partial class ConfirmView : Gtk.Dialog
 	{
+		/// <summary>
+		/// The string format for the confirm message shown when an update is available.
+		/// </summary>
+        private const string confimMessage = "An update is available for {0} version {1}.\nWould you like to update now?";
+        
+		private const string confirmTitle = "{0} {1} Available";
 		internal ConfirmView()
 		{
 			this.Build();
+			this.Initalize();
 		}
+
+		private void Initalize ()
+		{
+			this.Title = string.Format(confirmTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+			this.updateMessageLabel.Text = string.Format(confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+			this.QueueDraw();
+		}
+
+		protected void OnReleaseNotesButtonClicked (object sender, EventArgs e)
+		{
+			MonoTools.ProcessTools.LaunchURL(GlobalTools.PackageInfo.PackageFiles["ReleaseNotes"].URL);
+		}		
+
+		protected void OnFileListDetailsButtonClicked (object sender, EventArgs e)
+		{
+			// TODO: add a dialog with a treeview to show the package details.
+			throw new System.NotImplementedException ();
+		}
+
+
 	}
 }
 
