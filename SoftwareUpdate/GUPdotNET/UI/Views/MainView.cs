@@ -48,6 +48,11 @@ namespace GUPdotNET.UI.Views
 			this.Initalize();
 		}
 
+		/// <summary>
+		/// Sets up all widgets, properties, events, etc. that are not set up
+		/// by the designer in the Build method.
+		/// Can be used for some "pre-render" tasks.
+		/// </summary>
 		private void Initalize()
 		{
             this.DeleteEvent += new DeleteEventHandler(MainView_DeleteEvent);
