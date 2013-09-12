@@ -17,7 +17,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.Label GtkLabel2;
 		private global::Gtk.Button closeWindowButton;
 		private global::Gtk.Button cancelInstallButton;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
