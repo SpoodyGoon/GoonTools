@@ -2,8 +2,10 @@
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
+    <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/GUPdotNET.exe" internal="true" />
   </import>
@@ -323,20 +325,26 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="478 181">
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="478 283">
     <action-group name="Default">
       <action id="QuitAction">
         <property name="Type">Action</property>
+        <property name="HideIfEmpty">False</property>
+        <property name="IsImportant">True</property>
         <property name="Label" translatable="yes">Quit</property>
         <property name="ShortLabel" translatable="yes">Quit</property>
         <property name="StockId">Quit.png</property>
+        <property name="VisibleOverflown">False</property>
         <signal name="Activated" handler="OnQuitActionActivated" />
       </action>
       <action id="AboutGUPdotNETAction">
         <property name="Type">Action</property>
+        <property name="HideIfEmpty">False</property>
+        <property name="IsImportant">True</property>
         <property name="Label" translatable="yes">About GUPdotNET</property>
         <property name="ShortLabel" translatable="yes">About GUPdotNET</property>
         <property name="StockId">About.png</property>
+        <property name="VisibleOverflown">False</property>
         <signal name="Activated" handler="OnAboutGUPdotNETActionActivated" />
       </action>
     </action-group>
@@ -360,9 +368,12 @@
             <child>
               <widget class="Gtk.MenuBar" id="menubar1">
                 <property name="MemberName" />
-                <node name="menubar1" type="Menubar">
-                  <node type="Menu" action="QuitAction" />
-                  <node type="Menu" action="AboutGUPdotNETAction" />
+                <property name="CanDefault">True</property>
+                <property name="HasDefault">True</property>
+                <property name="CanFocus">True</property>
+                <node name="__gtksharp_116_Stetic_Editor_ActionMenuBar" type="Menubar">
+                  <node type="Menuitem" action="QuitAction" />
+                  <node type="Menuitem" action="AboutGUPdotNETAction" />
                 </node>
               </widget>
               <packing>

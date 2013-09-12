@@ -26,7 +26,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.HButtonBox hbuttonbox2;
 		private global::Gtk.Button buttonCancel;
 		private global::Gtk.Button buttonOk;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -34,10 +34,16 @@ namespace GUPdotNET.UI.Views
 			this.UIManager = new global::Gtk.UIManager ();
 			global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
 			this.QuitAction = new global::Gtk.Action ("QuitAction", global::Mono.Unix.Catalog.GetString ("Quit"), null, "Quit.png");
+			this.QuitAction.HideIfEmpty = false;
+			this.QuitAction.IsImportant = true;
 			this.QuitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Quit");
+			this.QuitAction.VisibleOverflown = false;
 			w1.Add (this.QuitAction, null);
 			this.AboutGUPdotNETAction = new global::Gtk.Action ("AboutGUPdotNETAction", global::Mono.Unix.Catalog.GetString ("About GUPdotNET"), null, "About.png");
+			this.AboutGUPdotNETAction.HideIfEmpty = false;
+			this.AboutGUPdotNETAction.IsImportant = true;
 			this.AboutGUPdotNETAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("About GUPdotNET");
+			this.AboutGUPdotNETAction.VisibleOverflown = false;
 			w1.Add (this.AboutGUPdotNETAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
@@ -56,8 +62,12 @@ namespace GUPdotNET.UI.Views
 			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 6;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='QuitAction' action='QuitAction'/><menu name='AboutGUPdotNETAction' action='AboutGUPdotNETAction'/></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name=\'menubar1\'><menuitem name=\'QuitAction\' action=\'QuitAction\'/><me" +
+				"nuitem name=\'AboutGUPdotNETAction\' action=\'AboutGUPdotNETAction\'/></menubar></ui" +
+				">");
 			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
+			this.menubar1.CanDefault = true;
+			this.menubar1.CanFocus = true;
 			this.menubar1.Name = "menubar1";
 			this.vbox2.Add (this.menubar1);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.menubar1]));
@@ -226,7 +236,8 @@ namespace GUPdotNET.UI.Views
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 478;
-			this.DefaultHeight = 181;
+			this.DefaultHeight = 283;
+			this.menubar1.HasDefault = true;
 			this.Show ();
 			this.QuitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
 			this.AboutGUPdotNETAction.Activated += new global::System.EventHandler (this.OnAboutGUPdotNETActionActivated);
