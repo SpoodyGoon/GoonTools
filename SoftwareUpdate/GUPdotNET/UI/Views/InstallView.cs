@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 namespace GUPdotNET.UI.Views
 {
@@ -43,7 +44,8 @@ namespace GUPdotNET.UI.Views
 			// TODO: much more work on this.
 			foreach (var file in GlobalTools.PackageInfo.PackageFiles.Where(f => f.Key.Equals("Installer")).Select(f => f.Value))
 			{
-				System.Diagnostics.Process.Start(file.FileName);
+				this.installDetailsTextview.Buffer.Text += "Starting " + file.FileType + " " + file.FileName + Environment.NewLine;
+				Process.Start(file.FileName);
 			}
 		}
 
