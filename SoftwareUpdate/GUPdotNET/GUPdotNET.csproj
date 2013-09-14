@@ -115,6 +115,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="docs\templates\ReleaseNotes.html" />
+    <Content Include="GUPdotNET.cd" />
     <Content Include="GUPProgram.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
