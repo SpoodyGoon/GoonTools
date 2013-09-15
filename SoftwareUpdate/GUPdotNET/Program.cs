@@ -1,16 +1,38 @@
-
+//
+//  Program.cs
+//
+//  Author:
+//       Andy York <goontools@brdstudio.net>
+//
+//  Copyright (c) 2013 Andy York
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace GUPdotNET
 {
     using Gtk;
     using GUPdotNET.UI.Views;
 
+    /// <summary>
+    /// The main entry class for the application.
+    /// </summary>
     internal class MainClass
     {
-		// might want to redirect output to the calling application
-		// http://msdn.microsoft.com/en-us/library/system.diagnostics.process.outputdatareceived.aspx
-		// or get the process number to ask for close of calling application
-		// 
+        /// <summary>
+        /// The entry point of the program, where the program control starts and ends.
+        /// </summary>
+        /// <param name="args">The command-line arguments that are passed into the application.</param>
         internal static void Main(string[] args)
         {
             Application.Init();
@@ -30,7 +52,8 @@ namespace GUPdotNET
                 MainView mainView = new MainView();
                 mainView.Show();
             }
+
             Application.Run();
-		}
+        }
     }
 }

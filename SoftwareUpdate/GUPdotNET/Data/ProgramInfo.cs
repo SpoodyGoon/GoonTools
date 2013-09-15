@@ -15,7 +15,7 @@ namespace GUPdotNET.Data
     /// Data class containing the information concerning the program
     /// that GUPdotNET is supporting.
     /// </summary>
-    internal class UpdateProgramInfo
+    internal class ProgramInfo
     {
         /// <summary>
         /// This is the actual name of the program <example>MyProgram.exe</example>.
@@ -104,7 +104,7 @@ namespace GUPdotNET.Data
         /// Data access class for accessing local program infomation
         /// concerning the application that GUPdotNET is supporting.
         /// </summary>
-        internal UpdateProgramInfo()
+        internal ProgramInfo()
         {
             this.configFilePath = Path.Combine(GlobalTools.LocalSystem.AppPath, FILENAME);
         }

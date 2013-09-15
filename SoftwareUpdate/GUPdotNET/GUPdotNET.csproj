@@ -41,23 +41,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
@@ -94,9 +81,6 @@
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.InstallView.cs" />
     <Compile Include="GlobalTools\GlobalTools.cs" />
     <Compile Include="UpdateCheck.cs" />
-    <Compile Include="Data\UpdateSettings.cs" />
-    <Compile Include="Data\UpdateProgramInfo.cs" />
-    <Compile Include="Data\UpdatePackageInfo.cs" />
     <Compile Include="Data\PackageFile.cs" />
     <Compile Include="GlobalTools\CheckSumUtility.cs" />
     <Compile Include="GlobalTools\GlobalObjectTypes.cs" />
@@ -107,6 +91,9 @@
     <Compile Include="IO\LocalSystemTools.cs" />
     <Compile Include="UI\Views\ConfirmView.cs" />
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.ConfirmView.cs" />
+    <Compile Include="Data\AppSettings.cs" />
+    <Compile Include="Data\ProgramInfo.cs" />
+    <Compile Include="Data\PackageInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -115,7 +102,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="docs\templates\ReleaseNotes.html" />
-    <Content Include="GUPdotNET.cd" />
     <Content Include="GUPProgram.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
