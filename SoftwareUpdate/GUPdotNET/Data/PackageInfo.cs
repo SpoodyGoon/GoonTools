@@ -27,7 +27,7 @@ namespace GUPdotNET.Data
     using System.Linq;
     using System.Xml.Linq;
     using System.Collections.Generic;
-    internal class UpdatePackageInfo
+    internal class PackageInfo
     {
         /// <summary>
         /// This is the version of the package config file, so that future

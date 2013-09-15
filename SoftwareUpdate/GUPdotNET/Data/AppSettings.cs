@@ -18,28 +18,39 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Xml;
-using System.Xml.Linq;
-using System.Linq;
-using System.IO;
-
 namespace GUPdotNET.Data
 {
-    internal class UpdateSettings
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Xml;
+    using System.Xml.Linq;
+
+    /// <summary>
+    /// Data class for saving the settings that pertain to GUPdotNET,
+    /// as it relates to a specific program it is supporting.
+    /// </summary>
+    internal class AppSettings
     {
+        /// <summary>
+        /// A string for formatting the comment stored in the application settings file.
+        /// </summary>
+        private const string COMMENT_FORMAT = "GUPdotNET update setting for supporting {0}";
+
+        /// <summary>
+        /// A string for formatting the file name of the application settings file.
+        /// </summary>
+        private const string FILENAME_FORMAT = "{0}.UpdateSettings.config";
+
+        /// <summary>
+        /// Full path to the xml file that contains the application settings.
+        /// </summary>
         private string filePath = string.Empty;
 
-        internal event System.Action SettingsLoaded;
-        internal event System.Action SettingsSaved;
-        private const string COMMENT_FORMAT = "GUPdotNET update setting for supporting {0}";
-        private const string FILENAME_FORMAT = "{0}Update.config";
-        internal bool AutoUpdate { get; set; }
-        internal DateTime LastUpdateCheck { get; set; }
-        internal TimeSpan UpdateSchedule { get; set; }
-        internal System.Version SettingsVersion { get; set; }
-
-        internal UpdateSettings()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GUPdotNET.Data.AppSettings"/> class.
+        /// </summary>
+        internal AppSettings()
         {
             this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, string.Format(FILENAME_FORMAT, GlobalTools.UpdateProgramName));
             this.AutoUpdate = true;
@@ -48,6 +59,31 @@ namespace GUPdotNET.Data
             this.SettingsVersion = new System.Version(1, 0);
         }
 
+        /// <summary>
+        /// Gets or sets the version of the application setting file format,
+        /// if the version number changes there may be more or less data 
+        /// in the format of the file.
+        /// </summary>
+        internal System.Version SettingsVersion { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether GUPdotNET will check for updates automatically.
+        /// </summary>
+        internal bool AutoUpdate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the lastdate/time that GUPdotNET checked for an update.
+        /// </summary>
+        internal DateTime LastUpdateCheck { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time span in days between the times GUPdotNET checks for updates.
+        /// </summary>
+        internal TimeSpan UpdateSchedule { get; set; }
+
+        /// <summary>
+        /// Method to load the application settings file if it exists.
+        /// </summary>
         internal void Load()
         {
             if (File.Exists(this.filePath))
@@ -77,34 +113,15 @@ namespace GUPdotNET.Data
             {
                 this.Save();
             }
-
-            if (this.SettingsLoaded != null)
-            {
-                this.SettingsLoaded();
-            }
         }
 
+        /// <summary>
+        /// Method to save the application settings file.
+        /// </summary>
         internal void Save()
         {
-            XDocument settingsDocument =
-                new XDocument(
-                    new XDeclaration("1.0", "utf-8", "yes"),
-                    new XComment(string.Format(COMMENT_FORMAT, GlobalTools.UpdateProgramName)),
-                    new XElement("GUPdotNET",
-                        new XElement("UpdateSettings", new XAttribute("ProgramName", GlobalTools.UpdateProgramName), new XAttribute("SettingsVersion", "1.0"),
-                            new XElement("AutoUpdate", this.AutoUpdate.ToString()),
-                            new XElement("LastUpdateCheck", this.LastUpdateCheck.ToString()),
-                            new XElement("UpdateSchedule", this.UpdateSchedule.Days.ToString())
-                        )
-                    )
-                );
+            XDocument settingsDocument = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XComment(string.Format(COMMENT_FORMAT, GlobalTools.UpdateProgramName)), new XElement("GUPdotNET", new XElement("UpdateSettings", new XAttribute("ProgramName", GlobalTools.UpdateProgramName), new XAttribute("SettingsVersion", "1.0"), new XElement("AutoUpdate", this.AutoUpdate.ToString()), new XElement("LastUpdateCheck", this.LastUpdateCheck.ToString()), new XElement("UpdateSchedule", this.UpdateSchedule.Days.ToString()))));
             settingsDocument.Save(this.filePath);
-
-            if (this.SettingsSaved != null)
-            {
-                this.SettingsSaved();
-            }
         }
     }
 }
-

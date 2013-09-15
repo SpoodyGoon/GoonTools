@@ -13,11 +13,11 @@ namespace GUPdotNET
 
         internal static bool DebugMode { get; private set; }
 
-        internal static UpdateSettings Options { get; set; }
+        internal static AppSettings Options { get; set; }
 
-		internal static UpdatePackageInfo PackageInfo{ get; set; }
+		internal static PackageInfo PackageInfo{ get; set; }
 
-		internal static UpdateProgramInfo ProgramInfo{ get; set; }
+		internal static ProgramInfo ProgramInfo{ get; set; }
 
         internal static LocalSystemTools LocalSystem { get; private set; }
 
@@ -27,7 +27,7 @@ namespace GUPdotNET
             DebugMode = Convert.ToBoolean(ConfigurationManager.AppSettings["DebugMode"]);
 			LocalSystem = new LocalSystemTools();
             LocalSystem.Initalize(DebugMode);
-            Options = new UpdateSettings();
+            Options = new AppSettings();
             Options.Load();
 		}
 	}
