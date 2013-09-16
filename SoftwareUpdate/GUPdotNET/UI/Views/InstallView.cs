@@ -10,6 +10,8 @@ namespace GUPdotNET.UI.Views
         private const string installMessage = "Starting Install {0} version {1}.";
         private const string installWindowTitle = "Installing {0} {1}";
         private const string installTitle = "<b><big>Installing {0} {1}</big></b>";
+        private const string processRunningTitle = "{0} Needs to Close";
+        private const string processRunning = "{0} needs to close to install the new update.";
         private bool installComplete = false;
 
         internal InstallView()
@@ -39,6 +41,14 @@ namespace GUPdotNET.UI.Views
         {
             // TODO: find the application being supported in the process list
             // AND GUPdotNET to see if they are being ran
+
+            var processes = Process.GetProcesses().Select(p => p.ProcessName.Contains(GlobalTools.ProgramInfo.ProgramFileName)).ToList();
+            if (processes != null)
+            {
+                Gtk.MessageDialog processDialog = new Gtk.MessageDialog(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.OkCancel, false, string.Format(processRunning, GlobalTools.ProgramInfo.ProgramName), string.Format(processRunningTitle, GlobalTools.ProgramInfo.ProgramName));
+                processDialog.Run();
+                processDialog.Destroy();
+            }
 
             // install the files in order from the package file list.
             // TODO: much more work on this.
