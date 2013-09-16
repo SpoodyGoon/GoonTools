@@ -30,7 +30,9 @@
     <property name="Modal">True</property>
     <property name="Resizable">False</property>
     <property name="AllowShrink">True</property>
-    <property name="Decorated">False</property>
+    <property name="DestroyWithParent">True</property>
+    <property name="SkipPagerHint">True</property>
+    <property name="SkipTaskbarHint">True</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -370,7 +372,7 @@
                 <property name="CanDefault">True</property>
                 <property name="HasDefault">True</property>
                 <property name="CanFocus">True</property>
-                <node name="__gtksharp_116_Stetic_Editor_ActionMenuBar" type="Menubar">
+                <node name="menubar1" type="Menubar">
                   <node type="Menuitem" action="QuitAction" />
                   <node type="Menuitem" action="AboutGUPdotNETAction" />
                 </node>

@@ -26,7 +26,9 @@ namespace GUPdotNET.UI.Views
 			this.Modal = true;
 			this.Resizable = false;
 			this.AllowShrink = true;
-			this.Decorated = false;
+			this.DestroyWithParent = true;
+			this.SkipPagerHint = true;
+			this.SkipTaskbarHint = true;
 			// Internal child GUPdotNET.UI.Views.DownloadView.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";

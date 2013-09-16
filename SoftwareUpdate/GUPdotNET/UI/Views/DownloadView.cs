@@ -17,6 +17,7 @@ namespace GUPdotNET.UI.Views
 		{
 			this.Build();
 			this.Initalize();
+            this.DownloadFile();
 		}
 
 		private void Initalize ()
