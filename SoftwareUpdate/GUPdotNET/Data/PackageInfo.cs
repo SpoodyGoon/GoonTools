@@ -85,7 +85,7 @@ namespace GUPdotNET.Data
                                    OS = el.Attribute("OS").Value,
                                    InstallerType = el.Attribute("InstallerType").Value,
                                    Version = el.Attribute("Version").Value,
-                                   FileList = el.Element("Files")
+                                    FileList = el.Element("Files").Descendants("File")
                                }).SingleOrDefault();
 
             this.OS = packageInfo.OS.ToString();

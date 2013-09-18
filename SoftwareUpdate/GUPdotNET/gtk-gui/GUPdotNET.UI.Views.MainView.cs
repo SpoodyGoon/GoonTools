@@ -50,6 +50,7 @@ namespace GUPdotNET.UI.Views
 			this.Name = "GUPdotNET.UI.Views.MainView";
 			this.Title = global::Mono.Unix.Catalog.GetString ("GUPdotNET");
 			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.update_small.png");
+			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Modal = true;
 			this.Resizable = false;
