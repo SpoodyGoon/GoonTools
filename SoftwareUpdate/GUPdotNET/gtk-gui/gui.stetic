@@ -353,6 +353,7 @@
     <property name="GeneratePublic">False</property>
     <property name="Title" translatable="yes">GUPdotNET</property>
     <property name="Icon">resource:GUPdotNET.Resources.Images.update_small.png</property>
+    <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Modal">True</property>
     <property name="Resizable">False</property>
