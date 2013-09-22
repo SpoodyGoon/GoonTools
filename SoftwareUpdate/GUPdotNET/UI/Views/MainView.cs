@@ -77,6 +77,43 @@ namespace GUPdotNET.UI.Views
         /// <param name="args">The parameter is not used.</param>
         protected void OnAboutGUPdotNETActionActivated(object sender, EventArgs args)
         {
+        }
+
+        /// <summary>
+        /// Consolidated method for when the application exists when not in silent/background mode.
+        /// </summary>
+        private void ApplicationQuit()
+        {
+            GlobalTools.Options.Save();
+            Application.Quit();
+        }
+
+        /// <summary>
+        /// Event fired when the close button is pushed on the window,
+        /// or is closed from the OS interface.
+        /// Saves the setting/preferences prior to exit.
+        /// </summary>
+        /// <param name="sender">Object firing the event, parameter is not used.</param>
+        /// <param name="args">This parameter is not used.</param>
+        private void MainView_DeleteEvent(object sender, DeleteEventArgs args)
+        {
+            this.ApplicationQuit();
+        }
+
+        /// <summary>
+        /// Sets up all widgets, properties, events, etc. that are not set up
+        /// by the designer in the Build method.
+        /// Can be used for some "pre-render" tasks.
+        /// </summary>
+        private void Initalize()
+        {
+            this.DeleteEvent += new DeleteEventHandler(this.MainView_DeleteEvent);
+            this.updateCheckAlignment.Add(this.updateCheckCombobox);
+            this.updateCheckAlignment.ShowAll();
+            this.QueueResize();
+        }
+        protected void OnAboutLabelButtonClicked ()
+        {
             // hook delegat to handle default button events in the gtk.about dialog window
             Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link)
             {
@@ -118,44 +155,15 @@ namespace GUPdotNET.UI.Views
                 errorDialog.Run();
                 errorDialog.Destroy();
             }
-        }
-
-        /// <summary>
-        /// Consolidated method for when the application exists when not in silent/background mode.
-        /// </summary>
-        private void ApplicationQuit()
+        }        protected void OnCancelButtonClicked (object sender, EventArgs e)
         {
-            GlobalTools.Options.Save();
-            Application.Quit();
-        }
-
-        /// <summary>
-        /// Event fired when the close button is pushed on the window,
-        /// or is closed from the OS interface.
-        /// Saves the setting/preferences prior to exit.
-        /// </summary>
-        /// <param name="sender">Object firing the event, parameter is not used.</param>
-        /// <param name="args">This parameter is not used.</param>
-        private void MainView_DeleteEvent(object sender, DeleteEventArgs args)
+            throw new System.NotImplementedException ();
+        }        protected void OnOkButtonClicked (object sender, EventArgs e)
         {
-            this.ApplicationQuit();
+            throw new System.NotImplementedException ();
         }
 
-        /// <summary>
-        /// Sets up all widgets, properties, events, etc. that are not set up
-        /// by the designer in the Build method.
-        /// Can be used for some "pre-render" tasks.
-        /// </summary>
-        private void Initalize()
-        {
-            this.DeleteEvent += new DeleteEventHandler(this.MainView_DeleteEvent);
-            this.updateCheckAlignment.Add(this.updateCheckCombobox);
-            this.updateCheckAlignment.ShowAll();
-            this.ActionArea.Hide();
 
-            this.feedbackMessageLabel.Text = string.Empty;
-            this.feedbackMessageLabel.QueueDraw();
-            this.QueueResize();
-        }
+
     }
 }

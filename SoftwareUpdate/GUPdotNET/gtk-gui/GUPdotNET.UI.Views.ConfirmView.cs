@@ -19,7 +19,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.Button releaseNotesButton;
 		private global::Gtk.Button noConfirmButton;
 		private global::Gtk.Button yesConfirmButton;
-
+		
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
