@@ -31,7 +31,6 @@ namespace MonoTools.UI
         public string DisplayText{ get; set; }
 
         public event System.Action Clicked;
-
         public LabelButton()
         {
             this.NormalFont.Color = "#ab0a0a";
@@ -75,7 +74,7 @@ namespace MonoTools.UI
             this.LeaveNotifyEvent += LabelButton_MouseOut;
         }
 
-        void LabelButton_MouseOut (object o, Gtk.LeaveNotifyEventArgs args)
+        private void LabelButton_MouseOut(object o, Gtk.LeaveNotifyEventArgs args)
         {
             
             this.Text = this.NormalFont.MarkupTextGet(this.DisplayText);
@@ -83,12 +82,20 @@ namespace MonoTools.UI
             this.QueueDraw();
         }
 
-        void LabelButton_MouseOver (object o, Gtk.EnterNotifyEventArgs args)
+        private void LabelButton_MouseOver (object o, Gtk.EnterNotifyEventArgs args)
         {
             
             this.Text = this.HoverFont.MarkupTextGet(this.DisplayText);
             this.UseMarkup = true;
             this.QueueDraw();
+        }
+
+        public enum ButtonState
+        {
+            Normal,
+            Hover,
+            Active,
+            Disabled
         }
     }
 }

@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="MonoTools\UI\FontMarkup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\ComboBox\UpdateSchedualComboBox.cs" />
@@ -110,7 +111,6 @@
     <Compile Include="Data\ProgramInfo.cs" />
     <Compile Include="Data\PackageInfo.cs" />
     <Compile Include="MonoTools\UI\LabelButton.cs" />
-    <Compile Include="MonoTools\UI\MarkupFont.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -142,7 +142,5 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="MonoTools\UI\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
