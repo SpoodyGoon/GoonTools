@@ -1,101 +1,297 @@
-//
-//  LabelButton.cs
-//
-//  Author:
-//       Andy York <goontools@brdstudio.net>
-//
-//  Copyright (c) 2013 Andy York
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
 
 namespace MonoTools.UI
 {
-    [System.ComponentModel.ToolboxItem(true)]
-    public class LabelButton : Gtk.Label
+    public abstract class LabelButton : Gtk.Label
     {
-        public MarkupFont NormalFont = new MarkupFont();
-        public MarkupFont HoverFont = new MarkupFont();
+        private FontMarkup normalMarkup = new FontMarkup();
+        private FontMarkup hoverMarkup = new FontMarkup();
+        private bool isHover = false;
+        protected string FontMarkupText = "Test Markup";
 
-        public string DisplayText{ get; set; }
-
-        public event System.Action Clicked;
-        public LabelButton()
+        protected abstract string TextValue{ set; get; }
+        #region Private Properties Normal Font Format
+        private string fontName = "";
+        private string normalColorHex = "#003399";
+        private string _Size = null;
+        private bool _Underlined = true;
+        private bool _Bold = false;
+        private bool _Italic = false;
+        #endregion  Private PropertiesNormal Font Format
+        #region  Private PropertiesHover Font Format
+        private string _HoverFontName = "";
+        private string _HoverColorHex = "#CC0000";
+        private string _HoverSize = null;
+        private bool _HoverBold = false;
+        private bool _HoverUnderlined = true;
+        private bool _HoverItalic = false;
+        #endregion  Private PropertiesHover Font Format
+        #region Private Properties Normal Font Format        
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue("")]
+        [System.ComponentModel.Description("The font name during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual string FontName
         {
-            this.NormalFont.Color = "#ab0a0a";
-            this.NormalFont.Underline = true;
-            this.HoverFont.Color = "#ab0a0a";
-            this.HoverFont.Underline = true;
-            this.DisplayText = "About GUPdotNET";
-            this.Initalize();
+            set
+            {
+                this.fontName = value;
+                this.UpdateMarkup(true, false);
+            }
+            get{ return this.fontName;}
         }
 
-        public void Initalize()
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue("#003399")]
+        [System.ComponentModel.Description("A hex value for the fonts color during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual string FontColor
         {
-            this.Events = Gdk.EventMask.LeaveNotifyMask | Gdk.EventMask.EnterNotifyMask | Gdk.EventMask.ButtonReleaseMask | Gdk.EventMask.ExposureMask | Gdk.EventMask.AllEventsMask;
+            set
+            {
+                this.normalColorHex = value;
+                this.UpdateMarkup(true, false);
+            }
+            get{ return this.normalColorHex;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("The size of font in points during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual string Size
+        {
+            set
+            {
+                _Size = value;
+                this.UpdateMarkup(true, false);
+            }
+            get{ return _Size;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("Is the font bold during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool Bold
+        {
+            set
+            { 
+                _Bold = value;
+                this.UpdateMarkup(true, false);
+            }
+            get{ return _Bold;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue(true)]
+        [System.ComponentModel.Description("Is the font underlined during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool Underlined
+        {
+            set
+            {
+                _Underlined = value;
+                this.UpdateMarkup(true, false);
+            }
+            get{ return _Underlined;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Normal Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("Is the font italic during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool Italic
+        {
+            set
+            {
+                _Italic = value;
+                this.UpdateMarkup(true, false);
+            }
+            get{ return _Italic;}
+        }
+        #endregion Private Properties Normal Font Format
+        #region Private Properties Hover Font Format
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue("")]
+        [System.ComponentModel.Description("The font name during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual string HoverFontName
+        {
+            set
+            {
+                _HoverFontName = value;
+                this.UpdateMarkup(false, true);
+            }
+            get{ return _HoverFontName;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue("#CC0000")]
+        [System.ComponentModel.Description("A hex value for the fonts color during hover display.")]
+        [System.ComponentModel.Browsable(true)]
+        public string HoverFontColor
+        {
+            set
+            {
+                _HoverColorHex = value;
+                this.UpdateMarkup(false, true);
+            }
+            get{ return _HoverColorHex;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("The size of font in points during normal display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual string HoverSize
+        {
+            set
+            {
+                _HoverSize = value;
+                UpdateMarkup(false, true);
+            }
+            get{ return _HoverSize;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("Is the font bold during hover display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool HoverBold
+        {
+            set
+            {
+                _HoverBold = value;
+                UpdateMarkup(false, true);
+            }
+            get{ return _HoverBold;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue(true)]
+        [System.ComponentModel.Description("Is the font underlined during hover.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool HoverUnderlined
+        {
+            set
+            {
+                _HoverUnderlined = value;
+                UpdateMarkup(false, true);
+            }
+            get{ return _HoverUnderlined;}
+        }
+
+        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
+        [System.ComponentModel.Category("Hover Font Format")]
+        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.Description("Is the font italic during hover display.")]
+        [System.ComponentModel.Browsable(true)]
+        public virtual bool HoverItalic
+        {
+            set
+            {
+                _HoverItalic = value;
+                UpdateMarkup(false, true);
+            }
+            get{ return _HoverItalic;}
+        }
+        #endregion Private Properties Hover Font Format
+        public LabelButton() : base()
+        {
+            this.Events = Gdk.EventMask.LeaveNotifyMask | Gdk.EventMask.EnterNotifyMask | Gdk.EventMask.ButtonReleaseMask | Gdk.EventMask.AllEventsMask;
+            this.SetFlag(Gtk.WidgetFlags.AppPaintable);
+            this.SetFlag(Gtk.WidgetFlags.Sensitive);
             this.CanFocus = true;
             this.Sensitive = true;
-            this.DoubleBuffered = true;
             this.AppPaintable = true;
+            this.Selectable = true;
+            this.SingleLineMode = true;
+            this.Wrap = false;
+            this.AppPaintable = true;
+            this.Ypad = 3;
+        }
 
-            if (!this.NormalFont.IsLoaded)
+        protected void UpdateMarkup(bool blnNormal, bool blnHover)
+        {
+            if (blnNormal)
             {
-                this.NormalFont.Load();
-            }
-            if (!this.HoverFont.IsLoaded)
-            {
-                this.HoverFont.Load();
-            }
-
-            this.ButtonReleaseEvent += delegate
-            {
-                if (this.Clicked != null)
+                this.normalMarkup.FontName = this.fontName;
+                this.normalMarkup.FontState = MarkupFontState.Normal;
+                this.normalMarkup.ForeColor = this.normalColorHex;
+                if (!string.IsNullOrEmpty(_Size))
                 {
-                    this.Clicked();
+                    this.normalMarkup.FontSize = Convert.ToInt32(_Size);
                 }
-            };
-            
-            this.Text = this.NormalFont.MarkupTextGet(this.DisplayText);
-            this.UseMarkup = true;
-            this.QueueDraw();
-
-            this.EnterNotifyEvent += LabelButton_MouseOver;
-            this.LeaveNotifyEvent += LabelButton_MouseOut;
+                else
+                {
+                    this.normalMarkup.FontSize = null;
+                }
+                this.normalMarkup.Bold = _Bold;
+                this.normalMarkup.Underline = _Underlined;
+                this.normalMarkup.Italic = _Italic;
+                this.normalMarkup.Initalize();
+            }
+            if (blnHover)
+            {
+                this.hoverMarkup.FontName = _HoverFontName;
+                this.hoverMarkup.FontState = MarkupFontState.Hover;
+                this.hoverMarkup.ForeColor = _HoverColorHex;
+                if (!string.IsNullOrEmpty(_HoverSize))
+                {
+                    this.hoverMarkup.FontSize = Convert.ToInt32(_HoverSize);
+                }
+                else
+                {
+                    this.hoverMarkup.FontSize = null;
+                }
+                this.hoverMarkup.Bold = _HoverBold;
+                this.hoverMarkup.Underline = _HoverUnderlined;
+                this.hoverMarkup.Italic = _HoverItalic;
+                this.hoverMarkup.Initalize();
+            }
+            this.UpdateDisplay();
         }
 
-        private void LabelButton_MouseOut(object o, Gtk.LeaveNotifyEventArgs args)
+        private void UpdateDisplay()
         {
-            
-            this.Text = this.NormalFont.MarkupTextGet(this.DisplayText);
+            if (this.isHover)
+            {
+                this.LabelProp = hoverMarkup.MarkupTextGet(this.Text);
+            }
+            else
+            {
+                this.LabelProp = normalMarkup.MarkupTextGet(this.Text);
+            }
             this.UseMarkup = true;
+            this.QueueResize();
             this.QueueDraw();
         }
 
-        private void LabelButton_MouseOver (object o, Gtk.EnterNotifyEventArgs args)
+        protected override bool OnLeaveNotifyEvent(Gdk.EventCrossing evnt)
         {
-            
-            this.Text = this.HoverFont.MarkupTextGet(this.DisplayText);
-            this.UseMarkup = true;
-            this.QueueDraw();
+            this.isHover = false;
+            this.UpdateDisplay();
+            return base.OnLeaveNotifyEvent(evnt);
         }
 
-        public enum ButtonState
+        protected override bool OnEnterNotifyEvent(Gdk.EventCrossing evnt)
         {
-            Normal,
-            Hover,
-            Active,
-            Disabled
+            this.isHover = true;
+            this.UpdateDisplay();
+            return base.OnEnterNotifyEvent(evnt);
         }
     }
 }

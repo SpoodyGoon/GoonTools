@@ -13,7 +13,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.Alignment alignment6;
 		private global::Gtk.Button hideWindowButton;
 		private global::Gtk.Button buttonCancel;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
