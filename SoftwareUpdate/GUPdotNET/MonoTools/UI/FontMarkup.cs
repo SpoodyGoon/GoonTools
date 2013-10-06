@@ -22,31 +22,35 @@ using System;
 
 namespace MonoTools.UI
 {
-    public class MarkupFont
+    public class FontMarkup
     {
-        private string _MarkupName = "MarkupName";
-        private MarkupFontState _FontState = MarkupFontState.Normal;
-        private string _FontName = "Serif";
-        private Nullable<int> _Size = 10;
-        // TODO: Implement Unit Of Measure
-        //private string _UOM = "pt";
-        private string _Color = "#ffffff";
-        private bool _Bold = false;
-        private bool _Italic = false;
-        private bool _Underline = false;
-        private string _Markup = string.Empty;
+        /// <summary>
+        /// The string for holding the markup layout after loading.
+        /// </summary>
+        private string markupText = string.Empty;
+        /// <summary>
+        /// The place holder for where the text to be displayed is to be placed.
+        /// </summary>
         public const string PlaceHolder = "[TEXT]";
-        public bool IsLoaded { get; private set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the markup text has been built.
+        /// </summary>
+        /// <value><c>true</c> if this instance is initalized, meaning that the markup text has been built; otherwise, <c>false</c>.</value>
+        public bool IsInitalized { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the name of the the descriptive name for the markup.
+        /// </summary>
         public string MarkupName { get; set; }
 
         public MarkupFontState FontState { get; set; }
 
         public string FontName { get; set; }
 
-        public Nullable<int> Size { get; set; }
+        public Nullable<int> FontSize { get; set; }
 
-        public string Color { get; set; }
+        public string ForeColor { get; set; }
 
         public bool Bold { get; set; }
 
@@ -54,88 +58,62 @@ namespace MonoTools.UI
 
         public bool Underline { get; set; }
 
-        public string Markup
+        public string MarkupText
         {
-            get { return _Markup; }
+            get { return markupText; }
         }
 
         public string MarkupTextGet(string text)
         {
-            if (!string.IsNullOrEmpty(_Markup))
-                return _Markup.Replace(PlaceHolder, text);
+            if (!string.IsNullOrEmpty(markupText))
+            {
+                return markupText.Replace(PlaceHolder, text);
+            }
             else
+            {
                 return text;
+            }
         }
 
-        public MarkupFont(string markupname, MarkupFontState fontstate, string fontname, string color, bool bold, bool underline, bool italic)
+        public FontMarkup()
         {
-            _MarkupName = markupname;
-            _FontState = fontstate;
-            _FontName = fontname;
-            _Color = color;
-            _Bold = bold;
-            _Underline = underline;
-            _Italic = italic;
-            BuildMarkup();
+            this.IsInitalized = false;
+            this.MarkupName = "MarkupName";
+            this.FontState = MarkupFontState.Normal;
+            this.Bold = false;
+            this.Italic = false;
+            this.Underline = false;
         }
 
-        public MarkupFont(MarkupFontState fontstate, string fontname, string color, bool bold)
-        {
-            _FontState = fontstate;
-            _FontName = fontname;
-            _Color = color;
-            _Bold = bold;
-            BuildMarkup();
-        }
-
-        public MarkupFont(string fontname, string color, bool bold)
-        {
-            _FontName = fontname;
-            _Color = color;
-            _Bold = bold;
-            BuildMarkup();
-        }
-
-        public MarkupFont(string fontname, string color)
-        {
-            _FontName = fontname;
-            _Color = color;
-            BuildMarkup();
-        }
-
-        public MarkupFont()
-        {
-            BuildMarkup();
-        }
-
-        public void BuildMarkup()
+        public void Initalize()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append("<span");
-            if (_FontName != null)
-                sb.Append(" face=\"" + _FontName + "\"");
+            if (this.FontName != null)
+                sb.Append(" face=\"" + this.FontName + "\"");
             // Assume sizes are all in points perform math
             // to convert to markup usable size in 1024ths of a point
-            if (_Size != null)
-                sb.Append(" size=\"" + (_Size * 1024).ToString() + "\"");
-            if (_Color != null)
-                sb.Append(" foreground=\"" + _Color + "\"");
-            if (_Bold)
+            if (this.FontSize != null)
+                sb.Append(" size=\"" + (this.FontSize * 1024).ToString() + "\"");
+            if (this.ForeColor != null)
+                sb.Append(" foreground=\"" + this.ForeColor + "\"");
+            if (this.Bold)
                 sb.Append(" weight=\"Bold\"");
-            if (_Italic)
+            if (this.Italic)
                 sb.Append(" style=\"Italic\"");
-            if (_Underline)
+            if (this.Underline)
                 sb.Append(" underline=\"single\"");
             sb.Append(">" + PlaceHolder + "</span>");
-            _Markup = sb.ToString();
+            this.markupText = sb.ToString();
+            this.IsInitalized = true;
         }
 
         public void Scale(double scale)
         {
-            if (_Size != null && _Size > 0)
+            if (this.FontSize != null && this.FontSize > 0)
             {
-                _Size = Convert.ToInt32(Math.Floor(Convert.ToDouble(_Size) * scale));
-                BuildMarkup();
+                this.FontSize = Convert.ToInt32(Math.Floor(Convert.ToDouble(this.FontSize) * scale));
+                this.Initalize();
             }
         }
     }

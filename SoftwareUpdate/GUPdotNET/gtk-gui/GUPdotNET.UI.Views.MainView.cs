@@ -25,7 +25,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.HButtonBox hbuttonbox2;
 		private global::Gtk.Button cancelButton;
 		private global::Gtk.Button okButton;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -67,12 +67,7 @@ namespace GUPdotNET.UI.Views
 			this.alignment5.Name = "alignment5";
 			this.alignment5.RightPadding = ((uint)(15));
 			// Container child alignment5.Gtk.Container+ContainerChild
-			this.aboutLabelButton = new global::MonoTools.UI.LabelButton ();
-			this.aboutLabelButton.Events = ((global::Gdk.EventMask)(1022));
-			this.aboutLabelButton.ExtensionEvents = ((global::Gdk.ExtensionMode)(1));
-			this.aboutLabelButton.Name = "aboutLabelButton";
-			this.aboutLabelButton.LabelProp = global::Mono.Unix.Catalog.GetString ("About GUPdotNET");
-			this.aboutLabelButton.DisplayText = "About GUPdotNET";
+			this.aboutLabelButton = null;
 			this.alignment5.Add (this.aboutLabelButton);
 			this.vbox2.Add (this.alignment5);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
@@ -232,7 +227,6 @@ namespace GUPdotNET.UI.Views
 			this.Show ();
 			this.QuitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
 			this.AboutGUPdotNETAction.Activated += new global::System.EventHandler (this.OnAboutGUPdotNETActionActivated);
-			this.aboutLabelButton.Clicked += new global::System.Action (this.OnAboutLabelButtonClicked);
 			this.checkUpdateButton.Clicked += new global::System.EventHandler (this.OnCheckUpdateButtonClicked);
 			this.cancelButton.Clicked += new global::System.EventHandler (this.OnCancelButtonClicked);
 			this.okButton.Clicked += new global::System.EventHandler (this.OnOkButtonClicked);
