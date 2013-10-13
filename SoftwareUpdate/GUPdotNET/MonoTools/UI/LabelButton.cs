@@ -3,14 +3,14 @@ using Gtk;
 
 namespace MonoTools.UI
 {
-    public abstract class LabelButton : Gtk.Label
+    public class LabelButton : Gtk.Label
     {
         private FontMarkup normalMarkup = new FontMarkup();
         private FontMarkup hoverMarkup = new FontMarkup();
         private bool isHover = false;
-        protected string FontMarkupText = "Test Markup";
+        public string FontMarkupText{ get; private set;}
 
-        protected abstract string TextValue{ set; get; }
+        public string TextValue{ set; get; }
         #region Private Properties Normal Font Format
         private string fontName = "";
         private string normalColorHex = "#003399";
@@ -20,12 +20,12 @@ namespace MonoTools.UI
         private bool _Italic = false;
         #endregion  Private PropertiesNormal Font Format
         #region  Private PropertiesHover Font Format
-        private string _HoverFontName = "";
-        private string _HoverColorHex = "#CC0000";
-        private string _HoverSize = null;
-        private bool _HoverBold = false;
-        private bool _HoverUnderlined = true;
-        private bool _HoverItalic = false;
+        private string hoverFontName = "";
+        private string hoverColorHex = "#CC0000";
+        private string hoverSize = null;
+        private bool hoverBold = false;
+        private bool hoverUnderlined = true;
+        private bool hoverItalic = false;
         #endregion  Private PropertiesHover Font Format
         #region Private Properties Normal Font Format        
         [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
@@ -33,7 +33,7 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue("")]
         [System.ComponentModel.Description("The font name during normal display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual string FontName
+        public string FontName
         {
             set
             {
@@ -48,7 +48,7 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue("#003399")]
         [System.ComponentModel.Description("A hex value for the fonts color during normal display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual string FontColor
+        public string FontColor
         {
             set
             {
@@ -63,7 +63,7 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue(false)]
         [System.ComponentModel.Description("The size of font in points during normal display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual string Size
+        public string Size
         {
             set
             {
@@ -78,7 +78,7 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue(false)]
         [System.ComponentModel.Description("Is the font bold during normal display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual bool Bold
+        public bool Bold
         {
             set
             { 
@@ -93,7 +93,7 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue(true)]
         [System.ComponentModel.Description("Is the font underlined during normal display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual bool Underlined
+        public bool Underlined
         {
             set
             {
@@ -108,7 +108,7 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue(false)]
         [System.ComponentModel.Description("Is the font italic during normal display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual bool Italic
+        public bool Italic
         {
             set
             {
@@ -124,14 +124,14 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue("")]
         [System.ComponentModel.Description("The font name during normal display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual string HoverFontName
+        public string HoverFontName
         {
             set
             {
-                _HoverFontName = value;
+                hoverFontName = value;
                 this.UpdateMarkup(false, true);
             }
-            get{ return _HoverFontName;}
+            get{ return hoverFontName;}
         }
 
         [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
@@ -143,10 +143,10 @@ namespace MonoTools.UI
         {
             set
             {
-                _HoverColorHex = value;
+                hoverColorHex = value;
                 this.UpdateMarkup(false, true);
             }
-            get{ return _HoverColorHex;}
+            get{ return hoverColorHex;}
         }
 
         [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
@@ -154,14 +154,14 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue(false)]
         [System.ComponentModel.Description("The size of font in points during normal display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual string HoverSize
+        public string HoverSize
         {
             set
             {
-                _HoverSize = value;
+                hoverSize = value;
                 UpdateMarkup(false, true);
             }
-            get{ return _HoverSize;}
+            get{ return hoverSize;}
         }
 
         [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
@@ -169,14 +169,14 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue(false)]
         [System.ComponentModel.Description("Is the font bold during hover display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual bool HoverBold
+        public bool HoverBold
         {
             set
             {
-                _HoverBold = value;
+                hoverBold = value;
                 UpdateMarkup(false, true);
             }
-            get{ return _HoverBold;}
+            get{ return hoverBold;}
         }
 
         [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
@@ -184,14 +184,14 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue(true)]
         [System.ComponentModel.Description("Is the font underlined during hover.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual bool HoverUnderlined
+        public bool HoverUnderlined
         {
             set
             {
-                _HoverUnderlined = value;
+                hoverUnderlined = value;
                 UpdateMarkup(false, true);
             }
-            get{ return _HoverUnderlined;}
+            get{ return hoverUnderlined;}
         }
 
         [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
@@ -199,29 +199,39 @@ namespace MonoTools.UI
         [System.ComponentModel.DefaultValue(false)]
         [System.ComponentModel.Description("Is the font italic during hover display.")]
         [System.ComponentModel.Browsable(true)]
-        public virtual bool HoverItalic
+        public bool HoverItalic
         {
             set
             {
-                _HoverItalic = value;
+                hoverItalic = value;
                 UpdateMarkup(false, true);
             }
-            get{ return _HoverItalic;}
+            get{ return hoverItalic;}
         }
         #endregion Private Properties Hover Font Format
-        public LabelButton() : base()
+        public LabelButton(string text) : base("LabelButton")
         {
+            this.TextValue = text;
             this.Events = Gdk.EventMask.LeaveNotifyMask | Gdk.EventMask.EnterNotifyMask | Gdk.EventMask.ButtonReleaseMask | Gdk.EventMask.AllEventsMask;
             this.SetFlag(Gtk.WidgetFlags.AppPaintable);
             this.SetFlag(Gtk.WidgetFlags.Sensitive);
-            this.CanFocus = true;
+            this.CanFocus = false;
+            this.CanDefault = false;
             this.Sensitive = true;
             this.AppPaintable = true;
             this.Selectable = true;
             this.SingleLineMode = true;
             this.Wrap = false;
-            this.AppPaintable = true;
             this.Ypad = 3;
+            this.UpdateMarkup(true, true);
+            this.UpdateDisplay();
+        }
+
+        public void SetText(string text)
+        {
+            this.TextValue = text;
+            this.UpdateMarkup(true, true);
+            this.UpdateDisplay();
         }
 
         protected void UpdateMarkup(bool blnNormal, bool blnHover)
@@ -246,44 +256,57 @@ namespace MonoTools.UI
             }
             if (blnHover)
             {
-                this.hoverMarkup.FontName = _HoverFontName;
+                this.hoverMarkup.FontName = hoverFontName;
                 this.hoverMarkup.FontState = MarkupFontState.Hover;
-                this.hoverMarkup.ForeColor = _HoverColorHex;
-                if (!string.IsNullOrEmpty(_HoverSize))
+                this.hoverMarkup.ForeColor = hoverColorHex;
+                if (!string.IsNullOrEmpty(hoverSize))
                 {
-                    this.hoverMarkup.FontSize = Convert.ToInt32(_HoverSize);
+                    this.hoverMarkup.FontSize = Convert.ToInt32(hoverSize);
                 }
                 else
                 {
                     this.hoverMarkup.FontSize = null;
                 }
-                this.hoverMarkup.Bold = _HoverBold;
-                this.hoverMarkup.Underline = _HoverUnderlined;
-                this.hoverMarkup.Italic = _HoverItalic;
+                this.hoverMarkup.Bold = hoverBold;
+                this.hoverMarkup.Underline = hoverUnderlined;
+                this.hoverMarkup.Italic = hoverItalic;
                 this.hoverMarkup.Initalize();
             }
             this.UpdateDisplay();
         }
 
+        private const string NormalOverride = "<span  foreground=\"#003399\" size=\"9200\" weight=\"bold\" underline=\"single\">{0}</span>";
+        private const string HoverOverride = "<span  foreground=\"#CC0000\" size=\"9200\" weight=\"bold\" underline=\"single\">{0}</span>";
         private void UpdateDisplay()
         {
             if (this.isHover)
             {
-                this.LabelProp = hoverMarkup.MarkupTextGet(this.Text);
+                this.LabelProp = string.Format(NormalOverride, this.TextValue);
             }
             else
             {
-                this.LabelProp = normalMarkup.MarkupTextGet(this.Text);
+                this.LabelProp = string.Format(HoverOverride, this.TextValue);
             }
             this.UseMarkup = true;
             this.QueueResize();
             this.QueueDraw();
         }
 
+        public event System.Action<object> Clicked;
+        protected override bool OnButtonReleaseEvent(Gdk.EventButton evnt)
+        {
+            if (this.Clicked != null)
+            {
+                this.Clicked(this);
+            }
+            return base.OnButtonReleaseEvent(evnt);
+        }
+
         protected override bool OnLeaveNotifyEvent(Gdk.EventCrossing evnt)
         {
             this.isHover = false;
             this.UpdateDisplay();
+            this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Arrow);
             return base.OnLeaveNotifyEvent(evnt);
         }
 
@@ -291,6 +314,9 @@ namespace MonoTools.UI
         {
             this.isHover = true;
             this.UpdateDisplay();
+            // TODO fix the cursor for the mouse over event
+            // most likely change the root element to be an event box
+            this.GdkWindow.Cursor = new Gdk.Cursor(Gdk.CursorType.Hand1);
             return base.OnEnterNotifyEvent(evnt);
         }
     }
