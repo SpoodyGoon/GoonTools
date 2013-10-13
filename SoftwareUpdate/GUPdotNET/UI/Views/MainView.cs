@@ -25,6 +25,7 @@ namespace GUPdotNET.UI.Views
     using Gtk;
     using GUPdotNET.UI.ComboBox;
     using MonoTools;
+    using MonoTools.UI;
 
     /// <summary>
     /// The root window when the application is not being ran in silent/background mode,
@@ -107,12 +108,19 @@ namespace GUPdotNET.UI.Views
         /// </summary>
         private void Initalize()
         {
+            LabelButton aboutLabelButton = new LabelButton("About GUPdotNET...");
+            aboutLabelButton.Clicked += this.OnAboutLabelButtonClicked;
+            aboutGUPdotNETAlignment.Add(aboutLabelButton);
+            aboutLabelButton.SetText("About GUPdotNET...");
+            aboutGUPdotNETAlignment.ShowAll();
             this.DeleteEvent += new DeleteEventHandler(this.MainView_DeleteEvent);
             this.updateCheckAlignment.Add(this.updateCheckCombobox);
             this.updateCheckAlignment.ShowAll();
             this.QueueResize();
+            this.QueueDraw();
         }
-        protected void OnAboutLabelButtonClicked ()
+
+        protected void OnAboutLabelButtonClicked (object sender)
         {
             // hook delegat to handle default button events in the gtk.about dialog window
             Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link)
