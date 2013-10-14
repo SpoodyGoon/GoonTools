@@ -120,53 +120,29 @@ namespace GUPdotNET.UI.Views
 			this.closeWindowButton.CanFocus = true;
 			this.closeWindowButton.Name = "closeWindowButton";
 			this.closeWindowButton.UseUnderline = true;
-			// Container child closeWindowButton.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w13 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w14 = new global::Gtk.HBox ();
-			w14.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w15 = new global::Gtk.Image ();
-			w15.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Menu);
-			w14.Add (w15);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w17 = new global::Gtk.Label ();
-			w17.LabelProp = global::Mono.Unix.Catalog.GetString (" Close");
-			w17.UseUnderline = true;
-			w14.Add (w17);
-			w13.Add (w14);
-			this.closeWindowButton.Add (w13);
+			this.closeWindowButton.Label = global::Mono.Unix.Catalog.GetString (" Close");
+			global::Gtk.Image w13 = new global::Gtk.Image ();
+			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Menu);
+			this.closeWindowButton.Image = w13;
 			this.AddActionWidget (this.closeWindowButton, -7);
-			global::Gtk.ButtonBox.ButtonBoxChild w21 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w12 [this.closeWindowButton]));
-			w21.Expand = false;
-			w21.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w14 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w12 [this.closeWindowButton]));
+			w14.Expand = false;
+			w14.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.cancelInstallButton = new global::Gtk.Button ();
 			this.cancelInstallButton.HeightRequest = 32;
 			this.cancelInstallButton.CanFocus = true;
 			this.cancelInstallButton.Name = "cancelInstallButton";
 			this.cancelInstallButton.UseUnderline = true;
-			// Container child cancelInstallButton.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w22 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w23 = new global::Gtk.HBox ();
-			w23.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w24 = new global::Gtk.Image ();
-			w24.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.cancel.png");
-			w23.Add (w24);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w26 = new global::Gtk.Label ();
-			w26.LabelProp = global::Mono.Unix.Catalog.GetString (" Cancel Install");
-			w26.UseUnderline = true;
-			w23.Add (w26);
-			w22.Add (w23);
-			this.cancelInstallButton.Add (w22);
+			this.cancelInstallButton.Label = global::Mono.Unix.Catalog.GetString (" Cancel Install");
+			global::Gtk.Image w15 = new global::Gtk.Image ();
+			w15.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.cancel.png");
+			this.cancelInstallButton.Image = w15;
 			this.AddActionWidget (this.cancelInstallButton, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w30 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w12 [this.cancelInstallButton]));
-			w30.Position = 1;
-			w30.Expand = false;
-			w30.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w16 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w12 [this.cancelInstallButton]));
+			w16.Position = 1;
+			w16.Expand = false;
+			w16.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}

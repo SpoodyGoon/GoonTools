@@ -31,6 +31,7 @@ namespace MonoTools.IO
     {
         private const string UserDataFolderName = "GUPdotNET";
         private const string DebugFolderName = "DebugData";
+
         internal string AppPath { get; private set; }
 
         internal string UserDataPath { get; private set; }
@@ -41,9 +42,19 @@ namespace MonoTools.IO
         /// The temporary directory where package files will be 
         /// downloaded/updated to be used.
         /// </summary>
-        internal string TempPackagePath { get; set; }
+        internal string TempPackagePath
+        { 
+            get
+            {
+                if (string.IsNullOrEmpty(this.tempPackagePath))
+                {
+                    this.BuildTempPath();
+                }
+                return this.tempPackagePath;
+            }
+        }
 
-        internal Dictionary<string, string> TempPackagePaths;
+        private string tempPackagePath = string.Empty;
 
         internal void Initalize(bool debugMode)
         {
@@ -55,13 +66,13 @@ namespace MonoTools.IO
                 case PlatformID.Win32Windows:
                 case PlatformID.WinCE:
                     this.OS = "Windows";
-                    break;
+                break;
                 case PlatformID.Unix:
                     this.OS = "Linux";
-                    break;
+                break;
                 case PlatformID.MacOSX:
                     this.OS = "Mac";
-                    break;
+                break;
             }
 
             // Get commonly used path information
@@ -83,9 +94,16 @@ namespace MonoTools.IO
             {
                 Directory.CreateDirectory(this.UserDataPath);
             }
+        }
 
-            this.TempPackagePaths = new Dictionary<string, string>();
-            this.TempPackagePaths.Add("root", Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
+        private void BuildTempPath()
+        {
+            this.tempPackagePath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            if (Directory.Exists(this.tempPackagePath))
+            {
+                throw new Exception("Unable to create temporary package working folder, folder already exist");
+            }
+            Directory.CreateDirectory(this.tempPackagePath);
         }
     }
 }

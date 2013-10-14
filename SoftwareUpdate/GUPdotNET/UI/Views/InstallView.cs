@@ -18,44 +18,56 @@ namespace GUPdotNET.UI.Views
         {
             this.Build();
             this.Initalize();
+            System.Threading.Thread.Sleep(2000);
+            this.InstallProcessRun();
         }
 
         private void Initalize()
         {
-            this.Title = string.Format(installWindowTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
-            this.titleLabel.Text = string.Format(installTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
-            this.processOverviewLabel.Text = string.Format(installMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
-            this.installDetailsTextview.Buffer.Text += "Starting Update Process..." + Environment.NewLine;
-            this.closeWindowButton.Hide();
-            this.cancelInstallButton.Show();
-            this.DefaultResponse = Gtk.ResponseType.No;
-            this.DeleteEvent += delegate(object o, Gtk.DeleteEventArgs args)
+            try
             {
-                this.Respond(Gtk.ResponseType.No);
-                this.Hide();
-            };
-            this.QueueDraw();
+                this.Title = string.Format(installWindowTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                this.titleLabel.LabelProp = string.Format(installTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                this.processOverviewLabel.LabelProp = string.Format(installMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                this.installDetailsTextview.Buffer.Text += "Starting Update Process..." + Environment.NewLine;
+                this.closeWindowButton.Hide();
+                this.cancelInstallButton.Show();
+                this.DefaultResponse = Gtk.ResponseType.No;
+                this.DeleteEvent += delegate(object o, Gtk.DeleteEventArgs args)
+                {
+                    this.Respond(Gtk.ResponseType.No);
+                    this.Hide();
+                };
+                this.QueueDraw();
+            }
+            catch (Exception ex)
+            {
+                GlobalTools.HandleError(this, ex);
+            }
         }
 
         private void InstallProcessRun()
         {
             // TODO: find the application being supported in the process list
             // AND GUPdotNET to see if they are being ran
-
-            var processes = Process.GetProcesses().Select(p => p.ProcessName.Contains(GlobalTools.ProgramInfo.ProgramFileName)).ToList();
-            if (processes != null)
+            try
             {
-                Gtk.MessageDialog processDialog = new Gtk.MessageDialog(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.OkCancel, false, string.Format(processRunning, GlobalTools.ProgramInfo.ProgramName), string.Format(processRunningTitle, GlobalTools.ProgramInfo.ProgramName));
-                processDialog.Run();
-                processDialog.Destroy();
+//                var processes = Process.GetProcesses().Select(p => p.ProcessName.Contains(GlobalTools.ProgramInfo.ProgramFileName)).ToList();
+//                if (processes != null)
+//                {
+//                    Gtk.MessageDialog processDialog = new Gtk.MessageDialog(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.OkCancel, false, string.Format(processRunning, GlobalTools.ProgramInfo.ProgramName), string.Format(processRunningTitle, GlobalTools.ProgramInfo.ProgramName));
+//                    processDialog.Run();
+//                    processDialog.Destroy();
+//                }
+
+                string installerPath = GlobalTools.ToLocalFile(GlobalTools.PackageInfo.InstallerURL);
+                // start the installer running
+                this.installDetailsTextview.Buffer.Text += "Starting Update Installer..." + Environment.NewLine;
+                Process.Start(installerPath);
             }
-
-            // install the files in order from the package file list.
-            // TODO: much more work on this.
-            foreach (var file in GlobalTools.PackageInfo.PackageFiles.Where(f => f.Key.Equals("Installer")).Select(f => f.Value))
+            catch (Exception ex)
             {
-                this.installDetailsTextview.Buffer.Text += "Starting " + file.FileType + " " + file.FileName + Environment.NewLine;
-                Process.Start(file.FileName);
+                GlobalTools.HandleError(this, ex);
             }
         }
 

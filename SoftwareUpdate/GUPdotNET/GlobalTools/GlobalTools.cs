@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using GUPdotNET.Data;
 using MonoTools.IO;
 using System.Configuration;
@@ -29,7 +30,29 @@ namespace GUPdotNET
             LocalSystem.Initalize(DebugMode);
             Options = new AppSettings();
             Options.Load();
-		}
+        }
+
+        internal static void HandleError(Exception error)
+        {   
+            HandleError(null, error);
+        }
+
+        internal static void HandleError(Gtk.Window parentWindow, Exception error)
+        {            
+            Gtk.MessageDialog errorDialog = new Gtk.MessageDialog(parentWindow, Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, false, error.Message, "An error has occured");
+            errorDialog.Run();
+            errorDialog.Destroy();
+        }
+
+        internal static string ToLocalFile(string remoteURL)
+        {
+            return ToLocalFile(new Uri(remoteURL));
+        }
+
+        internal static string ToLocalFile(Uri remoteURL)
+        {
+            return Path.Combine(GlobalTools.LocalSystem.TempPackagePath, Path.GetFileName(remoteURL.LocalPath));
+        }
 	}
 }
 

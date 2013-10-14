@@ -101,28 +101,16 @@ namespace GUPdotNET.UI.Views
 			this.fileListDetailsButton.CanFocus = true;
 			this.fileListDetailsButton.Name = "fileListDetailsButton";
 			this.fileListDetailsButton.UseUnderline = true;
-			// Container child fileListDetailsButton.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w8 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w9 = new global::Gtk.HBox ();
-			w9.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w10 = new global::Gtk.Image ();
-			w10.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.PackageDetails.png");
-			w9.Add (w10);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w12 = new global::Gtk.Label ();
-			w12.LabelProp = global::Mono.Unix.Catalog.GetString ("File List Details...");
-			w12.UseUnderline = true;
-			w9.Add (w12);
-			w8.Add (w9);
-			this.fileListDetailsButton.Add (w8);
+			this.fileListDetailsButton.Label = global::Mono.Unix.Catalog.GetString ("File List Details...");
+			global::Gtk.Image w8 = new global::Gtk.Image ();
+			w8.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.PackageDetails.png");
+			this.fileListDetailsButton.Image = w8;
 			this.alignment6.Add (this.fileListDetailsButton);
 			this.hbox2.Add (this.alignment6);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment6]));
-			w17.Position = 0;
-			w17.Expand = false;
-			w17.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment6]));
+			w10.Position = 0;
+			w10.Expand = false;
+			w10.Fill = false;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment5.Name = "alignment5";
@@ -131,45 +119,33 @@ namespace GUPdotNET.UI.Views
 			this.releaseNotesButton.CanFocus = true;
 			this.releaseNotesButton.Name = "releaseNotesButton";
 			this.releaseNotesButton.UseUnderline = true;
-			// Container child releaseNotesButton.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w18 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w19 = new global::Gtk.HBox ();
-			w19.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w20 = new global::Gtk.Image ();
-			w20.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.ReleaseNotes.png");
-			w19.Add (w20);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w22 = new global::Gtk.Label ();
-			w22.LabelProp = global::Mono.Unix.Catalog.GetString ("Release Notes...");
-			w22.UseUnderline = true;
-			w19.Add (w22);
-			w18.Add (w19);
-			this.releaseNotesButton.Add (w18);
+			this.releaseNotesButton.Label = global::Mono.Unix.Catalog.GetString ("Release Notes...");
+			global::Gtk.Image w11 = new global::Gtk.Image ();
+			w11.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.ReleaseNotes.png");
+			this.releaseNotesButton.Image = w11;
 			this.alignment5.Add (this.releaseNotesButton);
 			this.hbox2.Add (this.alignment5);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment5]));
-			w27.Position = 1;
-			w27.Expand = false;
-			w27.Fill = false;
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment5]));
+			w13.Position = 1;
+			w13.Expand = false;
+			w13.Fill = false;
 			this.alignment3.Add (this.hbox2);
 			this.vbox2.Add (this.alignment3);
-			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
-			w29.Position = 3;
-			w29.Expand = false;
-			w29.Fill = false;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
+			w15.Position = 3;
+			w15.Expand = false;
+			w15.Fill = false;
 			w1.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
-			w30.Position = 0;
-			w30.Expand = false;
-			w30.Fill = false;
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
+			w16.Position = 0;
+			w16.Expand = false;
+			w16.Fill = false;
 			// Internal child GUPdotNET.UI.Views.ConfirmView.ActionArea
-			global::Gtk.HButtonBox w31 = this.ActionArea;
-			w31.Name = "dialog1_ActionArea";
-			w31.Spacing = 14;
-			w31.BorderWidth = ((uint)(5));
-			w31.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w17 = this.ActionArea;
+			w17.Name = "dialog1_ActionArea";
+			w17.Spacing = 14;
+			w17.BorderWidth = ((uint)(5));
+			w17.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.noConfirmButton = new global::Gtk.Button ();
 			this.noConfirmButton.WidthRequest = 100;
@@ -181,9 +157,9 @@ namespace GUPdotNET.UI.Views
 			this.noConfirmButton.UseUnderline = true;
 			this.noConfirmButton.Label = "gtk-no";
 			this.AddActionWidget (this.noConfirmButton, -9);
-			global::Gtk.ButtonBox.ButtonBoxChild w32 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w31 [this.noConfirmButton]));
-			w32.Expand = false;
-			w32.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w18 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w17 [this.noConfirmButton]));
+			w18.Expand = false;
+			w18.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.yesConfirmButton = new global::Gtk.Button ();
 			this.yesConfirmButton.WidthRequest = 100;
@@ -195,15 +171,15 @@ namespace GUPdotNET.UI.Views
 			this.yesConfirmButton.UseUnderline = true;
 			this.yesConfirmButton.Label = "gtk-yes";
 			this.AddActionWidget (this.yesConfirmButton, -8);
-			global::Gtk.ButtonBox.ButtonBoxChild w33 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w31 [this.yesConfirmButton]));
-			w33.Position = 1;
-			w33.Expand = false;
-			w33.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w19 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w17 [this.yesConfirmButton]));
+			w19.Position = 1;
+			w19.Expand = false;
+			w19.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 488;
-			this.DefaultHeight = 178;
+			this.DefaultWidth = 492;
+			this.DefaultHeight = 211;
 			this.fileListDetailsButton.Hide ();
 			this.releaseNotesButton.Hide ();
 			this.Show ();

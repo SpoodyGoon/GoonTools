@@ -22,6 +22,7 @@
 namespace GUPdotNET
 {
     using System;
+    using System.Diagnostics;
     using Gtk;
     using GUPdotNET.Data;
     using GUPdotNET.UI.Views;
@@ -34,6 +35,8 @@ namespace GUPdotNET
     /// </summary>
     internal class UpdateCheck
     {
+        private const string InstallerStartedMessage = "\n<b>Update installer successfully started.</b>\n\nExiting <i>GUPdotNET</i> so the installer can complete the update process.";
+        private const string NoUpdateMessage = "No Update Available";
         /// <summary>
         /// Gets or sets the root window when there is one, in some circumstances
         /// there will be no root window to provide a parent for dialog windows.
@@ -44,9 +47,10 @@ namespace GUPdotNET
         /// Runs the main logic methods for determining what actions
         /// the application needs to execute.
         /// </summary>
-        internal void RunUpdateCheck()
+        /// <returns><c>true</c>, if the application should exit at the end of the process, <c>false</c> otherwise.</returns>
+        internal bool RunUpdateCheck()
         {
-            this.RunUpdateCheck(false);
+            return this.RunUpdateCheck(false);
         }
 
         /// <summary>
@@ -54,8 +58,10 @@ namespace GUPdotNET
         /// the application needs to execute.
         /// </summary>
         /// <param name="forceCheck">If set to <c>true</c> force check, which is used in for manual update checks.</param>
-        internal void RunUpdateCheck(bool forceCheck)
+        /// <returns><c>true</c>, if the application should exit at the end of the process, <c>false</c> otherwise.</returns>
+        internal bool RunUpdateCheck(bool forceCheck)
         {
+            bool exitAfterProcess = false;
             if (forceCheck || DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck) > GlobalTools.Options.UpdateSchedule)
             {
                 GlobalTools.ProgramInfo = new ProgramInfo();
@@ -84,20 +90,32 @@ namespace GUPdotNET
 
                 if (response == ResponseType.Yes)
                 {
-                    InstallView installView = new InstallView();
-                    response = (Gtk.ResponseType)installView.Run();
-                    installView.Destroy();
+                    string installerPath = GlobalTools.ToLocalFile(GlobalTools.PackageInfo.InstallerURL);
+                    if (!string.IsNullOrEmpty(installerPath))
+                    {
+                        Process.Start(installerPath);
+                        exitAfterProcess = true;
+                        System.Threading.Thread.Sleep(1000);
+                        MessageDialog exitWarningDialog = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, true, InstallerStartedMessage, "Exiting Updater");
+                        exitWarningDialog.WindowPosition = WindowPosition.CenterAlways;
+                        exitWarningDialog.Run();
+                        exitWarningDialog.Destroy();
+                    }
+//                    InstallView installView = new InstallView();
+//                    response = (Gtk.ResponseType)installView.Run();
+//                    installView.Destroy();
                 }
             }
             else
             {
                 if (GlobalTools.UpdateRunType == RunType.ManualCheck)
                 {
-                    MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "No Update Available", "No Update Available");
+                    MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, NoUpdateMessage, NoUpdateMessage);
                     md.Run();
                     md.Destroy();
                 }
             }
+            return exitAfterProcess;
         }
     }
 }
