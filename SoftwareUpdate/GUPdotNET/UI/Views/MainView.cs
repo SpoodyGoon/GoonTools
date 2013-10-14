@@ -59,11 +59,17 @@ namespace GUPdotNET.UI.Views
             try
             {
                 UpdateCheck updateCheck = new UpdateCheck();
+                updateCheck.RootWindow = this.GdkWindow;
+                this.checkUpdateButton.Label = "Checking...";
+                this.checkUpdateButton.Sensitive = false;
+                this.checkUpdateButton.QueueDraw();
                 if(updateCheck.RunUpdateCheck(true))
                 {
                     this.ApplicationQuit();
                 }
-
+                this.checkUpdateButton.Label = "Check Now";
+                this.checkUpdateButton.Sensitive = true;
+                this.checkUpdateButton.QueueDraw();
             }
             catch (Exception ex)
             {

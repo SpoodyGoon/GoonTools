@@ -632,7 +632,6 @@
               <widget class="Gtk.Alignment" id="alignment3">
                 <property name="MemberName" />
                 <property name="Xscale">0.01</property>
-                <property name="Xalign">0.01</property>
                 <property name="LeftPadding">8</property>
                 <property name="BottomPadding">4</property>
                 <child>
@@ -640,49 +639,15 @@
                     <property name="MemberName" />
                     <property name="Spacing">14</property>
                     <child>
-                      <widget class="Gtk.Alignment" id="alignment6">
+                      <widget class="Gtk.Alignment" id="releaseNotesAlignment">
                         <property name="MemberName" />
                         <child>
-                          <widget class="Gtk.Button" id="fileListDetailsButton">
-                            <property name="MemberName" />
-                            <property name="Visible">False</property>
-                            <property name="CanFocus">True</property>
-                            <property name="Type">TextAndIcon</property>
-                            <property name="Icon">resource:GUPdotNET.Resources.Images.PackageDetails.png</property>
-                            <property name="Label" translatable="yes">File List Details...</property>
-                            <property name="UseUnderline">True</property>
-                            <signal name="Clicked" handler="OnFileListDetailsButtonClicked" />
-                          </widget>
+                          <placeholder />
                         </child>
                       </widget>
                       <packing>
                         <property name="Position">0</property>
                         <property name="AutoSize">True</property>
-                        <property name="Expand">False</property>
-                        <property name="Fill">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.Alignment" id="alignment5">
-                        <property name="MemberName" />
-                        <child>
-                          <widget class="Gtk.Button" id="releaseNotesButton">
-                            <property name="MemberName" />
-                            <property name="Visible">False</property>
-                            <property name="CanFocus">True</property>
-                            <property name="Type">TextAndIcon</property>
-                            <property name="Icon">resource:GUPdotNET.Resources.Images.ReleaseNotes.png</property>
-                            <property name="Label" translatable="yes">Release Notes...</property>
-                            <property name="UseUnderline">True</property>
-                            <signal name="Clicked" handler="OnReleaseNotesButtonClicked" />
-                          </widget>
-                        </child>
-                      </widget>
-                      <packing>
-                        <property name="Position">1</property>
-                        <property name="AutoSize">True</property>
-                        <property name="Expand">False</property>
-                        <property name="Fill">False</property>
                       </packing>
                     </child>
                   </widget>
@@ -690,6 +655,22 @@
               </widget>
               <packing>
                 <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment5">
+                <property name="MemberName" />
+                <property name="TopPadding">2</property>
+                <property name="BottomPadding">2</property>
+                <child>
+                  <widget class="Gtk.HSeparator" id="hseparator2">
+                    <property name="MemberName" />
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -699,8 +680,6 @@
           <packing>
             <property name="Position">0</property>
             <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>

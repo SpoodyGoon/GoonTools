@@ -37,11 +37,12 @@ namespace GUPdotNET
     {
         private const string InstallerStartedMessage = "\n<b>Update installer successfully started.</b>\n\nExiting <i>GUPdotNET</i> so the installer can complete the update process.";
         private const string NoUpdateMessage = "No Update Available";
+
         /// <summary>
         /// Gets or sets the root window when there is one, in some circumstances
         /// there will be no root window to provide a parent for dialog windows.
         /// </summary>
-        internal Gtk.Window RootWindow { get; set; }
+        internal Gdk.Window RootWindow { get; set; }
 
         /// <summary>
         /// Runs the main logic methods for determining what actions
@@ -78,29 +79,47 @@ namespace GUPdotNET
                 // let the user know there is an update available and
                 // as if the user wants to install it.
                 ConfirmView confirmView = new ConfirmView();
+                if (this.RootWindow != null)
+                {
+                    confirmView.ParentWindow = this.RootWindow;
+                    confirmView.Modal = true;
+                }
                 response = (Gtk.ResponseType)confirmView.Run();
                 confirmView.Destroy();
 
                 if (response == ResponseType.Yes)
                 {
                     DownloadView downloadView = new DownloadView();
+                    if (this.RootWindow != null)
+                    {
+                        downloadView.ParentWindow = this.RootWindow;
+                        downloadView.Modal = true;
+                    }
                     response = (Gtk.ResponseType)downloadView.Run();
                     downloadView.Destroy();
                 }
 
                 if (response == ResponseType.Yes)
                 {
-                    string installerPath = GlobalTools.ToLocalFile(GlobalTools.PackageInfo.InstallerURL);
-                    if (!string.IsNullOrEmpty(installerPath))
+                    if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.InstallerURL))
                     {
-                        Process.Start(installerPath);
-                        exitAfterProcess = true;
-                        System.Threading.Thread.Sleep(1000);
-                        MessageDialog exitWarningDialog = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, true, InstallerStartedMessage, "Exiting Updater");
-                        exitWarningDialog.WindowPosition = WindowPosition.CenterAlways;
-                        exitWarningDialog.Run();
-                        exitWarningDialog.Destroy();
+                        string installerPath = GlobalTools.ToLocalFile(GlobalTools.PackageInfo.InstallerURL);
+                        if (!string.IsNullOrEmpty(installerPath))
+                        {
+                            Process.Start(installerPath);
+                            exitAfterProcess = true;
+                            System.Threading.Thread.Sleep(1000);
+                            MessageDialog exitWarningDialog = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, true, InstallerStartedMessage, "Exiting Updater");
+                            exitWarningDialog.WindowPosition = WindowPosition.CenterAlways;
+                            exitWarningDialog.Run();
+                            exitWarningDialog.Destroy();
+                        }
                     }
+                    else if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.DownloadsURL))
+                    {
+                        Process.Start(GlobalTools.PackageInfo.DownloadsURL);
+                    }
+
 //                    InstallView installView = new InstallView();
 //                    response = (Gtk.ResponseType)installView.Run();
 //                    installView.Destroy();
