@@ -325,7 +325,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="485 180">
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.MainView" design-size="485 166">
     <action-group name="Default">
       <action id="QuitAction">
         <property name="Type">Action</property>
@@ -356,6 +356,7 @@
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Modal">True</property>
+    <property name="Resizable">False</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -546,10 +547,11 @@
         <property name="Spacing">10</property>
         <property name="BorderWidth">5</property>
         <property name="Size">2</property>
-        <property name="LayoutStyle">End</property>
+        <property name="LayoutStyle">Spread</property>
         <child>
           <widget class="Gtk.Button" id="cancelButton">
             <property name="MemberName" />
+            <property name="HeightRequest">28</property>
             <property name="CanDefault">True</property>
             <property name="CanFocus">True</property>
             <property name="UseStock">True</property>
@@ -567,6 +569,7 @@
         <child>
           <widget class="Gtk.Button" id="okButton">
             <property name="MemberName" />
+            <property name="HeightRequest">28</property>
             <property name="CanDefault">True</property>
             <property name="CanFocus">True</property>
             <property name="UseStock">True</property>
