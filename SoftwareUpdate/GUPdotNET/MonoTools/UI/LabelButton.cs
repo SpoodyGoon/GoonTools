@@ -65,11 +65,11 @@ namespace MonoTools.UI
         {
             if (this.isHover)
             {
-                this.displayLabel.LabelProp = string.Format(NormalOverride, this.TextValue);
+                this.displayLabel.LabelProp = string.Format(HoverOverride, this.TextValue);
             }
             else
             {
-                this.displayLabel.LabelProp = string.Format(HoverOverride, this.TextValue);
+                this.displayLabel.LabelProp = string.Format(NormalOverride, this.TextValue);
             }
             this.displayLabel.UseMarkup = true;
             this.displayLabel.QueueResize();

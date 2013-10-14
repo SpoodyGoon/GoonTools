@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using MonoTools.UI;
 
 namespace GUPdotNET.UI.Views
 {
@@ -27,7 +28,9 @@ namespace GUPdotNET.UI.Views
         /// <summary>
         /// The string format for the confirm message shown when an update is available.
         /// </summary>
-        private const string confimMessage = "An update is available for {0} version {1}.\nWould you like to update now?";
+        private const string confimUpdateMessage = "An update is available for {0} version {1}.\nWould you like to update now?";
+        private const string confimDownloadMessage = "An update is available for {0} version {1}.\nWould you like to go to the downloads page now?";
+        private const string configURLMissing = "Unable to identify a location of an update installer or an update download page. Please refer to the project homepage to search for the new update.";
         private const string confirmTitle = "{0} {1} Available";
 
         internal ConfirmView()
@@ -41,14 +44,23 @@ namespace GUPdotNET.UI.Views
             try
             {
                 this.Title = string.Format(confirmTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
-                this.updateMessageLabel.Text = string.Format(confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                string updateMessage = configURLMissing;
+                if(!string.IsNullOrEmpty(GlobalTools.PackageInfo.InstallerURL))
+                {
+                    updateMessage = string.Format(confimUpdateMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                }
+                else if(!string.IsNullOrEmpty(GlobalTools.PackageInfo.DownloadsURL))
+                {
+                    updateMessage = string.Format(confimDownloadMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                }
+
+                this.updateMessageLabel.Text = updateMessage;
                 if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.ReleaseNotesURL))
                 {
-                    this.releaseNotesButton.Show();
-                }
-                else
-                {
-                    this.releaseNotesButton.Hide();
+                    LabelButton releaseNotesButton = new LabelButton("View Release Notes");
+                    releaseNotesButton.Clicked += this.OnReleaseNotesButtonClicked;
+                    this.releaseNotesAlignment.Add(releaseNotesButton);
+                    this.releaseNotesAlignment.ShowAll();
                 }
                 this.Close += delegate(object sender, EventArgs e)
                 {
@@ -70,7 +82,7 @@ namespace GUPdotNET.UI.Views
             }
         }
 
-        protected void OnReleaseNotesButtonClicked(object sender, EventArgs e)
+        protected void OnReleaseNotesButtonClicked(object sender)
         {
             try
             {

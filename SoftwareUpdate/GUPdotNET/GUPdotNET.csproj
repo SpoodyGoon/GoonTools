@@ -78,6 +78,7 @@
     <EmbeddedResource Include="Resources\Images\About.png" />
     <EmbeddedResource Include="Resources\Images\ReleaseNotes.png" />
     <EmbeddedResource Include="Resources\Images\PackageDetails.png" />
+    <EmbeddedResource Include="Resources\Images\DownloadPage.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

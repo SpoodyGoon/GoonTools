@@ -13,10 +13,9 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.Label updateMessageLabel;
 		private global::Gtk.Alignment alignment3;
 		private global::Gtk.HBox hbox2;
-		private global::Gtk.Alignment alignment6;
-		private global::Gtk.Button fileListDetailsButton;
+		private global::Gtk.Alignment releaseNotesAlignment;
 		private global::Gtk.Alignment alignment5;
-		private global::Gtk.Button releaseNotesButton;
+		private global::Gtk.HSeparator hseparator2;
 		private global::Gtk.Button noConfirmButton;
 		private global::Gtk.Button yesConfirmButton;
 
@@ -85,7 +84,7 @@ namespace GUPdotNET.UI.Views
 			w7.Expand = false;
 			w7.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.alignment3 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
+			this.alignment3 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 1F);
 			this.alignment3.Name = "alignment3";
 			this.alignment3.LeftPadding = ((uint)(8));
 			this.alignment3.BottomPadding = ((uint)(4));
@@ -94,58 +93,38 @@ namespace GUPdotNET.UI.Views
 			this.hbox2.Name = "hbox2";
 			this.hbox2.Spacing = 14;
 			// Container child hbox2.Gtk.Box+BoxChild
-			this.alignment6 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment6.Name = "alignment6";
-			// Container child alignment6.Gtk.Container+ContainerChild
-			this.fileListDetailsButton = new global::Gtk.Button ();
-			this.fileListDetailsButton.CanFocus = true;
-			this.fileListDetailsButton.Name = "fileListDetailsButton";
-			this.fileListDetailsButton.UseUnderline = true;
-			this.fileListDetailsButton.Label = global::Mono.Unix.Catalog.GetString ("File List Details...");
-			global::Gtk.Image w8 = new global::Gtk.Image ();
-			w8.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.PackageDetails.png");
-			this.fileListDetailsButton.Image = w8;
-			this.alignment6.Add (this.fileListDetailsButton);
-			this.hbox2.Add (this.alignment6);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment6]));
-			w10.Position = 0;
-			w10.Expand = false;
-			w10.Fill = false;
-			// Container child hbox2.Gtk.Box+BoxChild
-			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment5.Name = "alignment5";
-			// Container child alignment5.Gtk.Container+ContainerChild
-			this.releaseNotesButton = new global::Gtk.Button ();
-			this.releaseNotesButton.CanFocus = true;
-			this.releaseNotesButton.Name = "releaseNotesButton";
-			this.releaseNotesButton.UseUnderline = true;
-			this.releaseNotesButton.Label = global::Mono.Unix.Catalog.GetString ("Release Notes...");
-			global::Gtk.Image w11 = new global::Gtk.Image ();
-			w11.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.ReleaseNotes.png");
-			this.releaseNotesButton.Image = w11;
-			this.alignment5.Add (this.releaseNotesButton);
-			this.hbox2.Add (this.alignment5);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment5]));
-			w13.Position = 1;
-			w13.Expand = false;
-			w13.Fill = false;
+			this.releaseNotesAlignment = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.releaseNotesAlignment.Name = "releaseNotesAlignment";
+			this.hbox2.Add (this.releaseNotesAlignment);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.releaseNotesAlignment]));
+			w8.Position = 0;
 			this.alignment3.Add (this.hbox2);
 			this.vbox2.Add (this.alignment3);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
-			w15.Position = 3;
-			w15.Expand = false;
-			w15.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
+			w10.Position = 3;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment5.Name = "alignment5";
+			this.alignment5.TopPadding = ((uint)(2));
+			this.alignment5.BottomPadding = ((uint)(2));
+			// Container child alignment5.Gtk.Container+ContainerChild
+			this.hseparator2 = new global::Gtk.HSeparator ();
+			this.hseparator2.Name = "hseparator2";
+			this.alignment5.Add (this.hseparator2);
+			this.vbox2.Add (this.alignment5);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
+			w12.Position = 4;
+			w12.Expand = false;
+			w12.Fill = false;
 			w1.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
-			w16.Position = 0;
-			w16.Expand = false;
-			w16.Fill = false;
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
+			w13.Position = 0;
 			// Internal child GUPdotNET.UI.Views.ConfirmView.ActionArea
-			global::Gtk.HButtonBox w17 = this.ActionArea;
-			w17.Name = "dialog1_ActionArea";
-			w17.Spacing = 14;
-			w17.BorderWidth = ((uint)(5));
-			w17.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w14 = this.ActionArea;
+			w14.Name = "dialog1_ActionArea";
+			w14.Spacing = 14;
+			w14.BorderWidth = ((uint)(5));
+			w14.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.noConfirmButton = new global::Gtk.Button ();
 			this.noConfirmButton.WidthRequest = 100;
@@ -157,9 +136,9 @@ namespace GUPdotNET.UI.Views
 			this.noConfirmButton.UseUnderline = true;
 			this.noConfirmButton.Label = "gtk-no";
 			this.AddActionWidget (this.noConfirmButton, -9);
-			global::Gtk.ButtonBox.ButtonBoxChild w18 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w17 [this.noConfirmButton]));
-			w18.Expand = false;
-			w18.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w15 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w14 [this.noConfirmButton]));
+			w15.Expand = false;
+			w15.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.yesConfirmButton = new global::Gtk.Button ();
 			this.yesConfirmButton.WidthRequest = 100;
@@ -171,20 +150,16 @@ namespace GUPdotNET.UI.Views
 			this.yesConfirmButton.UseUnderline = true;
 			this.yesConfirmButton.Label = "gtk-yes";
 			this.AddActionWidget (this.yesConfirmButton, -8);
-			global::Gtk.ButtonBox.ButtonBoxChild w19 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w17 [this.yesConfirmButton]));
-			w19.Position = 1;
-			w19.Expand = false;
-			w19.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w16 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w14 [this.yesConfirmButton]));
+			w16.Position = 1;
+			w16.Expand = false;
+			w16.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 492;
 			this.DefaultHeight = 211;
-			this.fileListDetailsButton.Hide ();
-			this.releaseNotesButton.Hide ();
 			this.Show ();
-			this.fileListDetailsButton.Clicked += new global::System.EventHandler (this.OnFileListDetailsButtonClicked);
-			this.releaseNotesButton.Clicked += new global::System.EventHandler (this.OnReleaseNotesButtonClicked);
 		}
 	}
 }
