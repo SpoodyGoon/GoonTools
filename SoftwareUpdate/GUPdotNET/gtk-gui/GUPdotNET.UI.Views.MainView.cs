@@ -54,6 +54,7 @@ namespace GUPdotNET.UI.Views
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Modal = true;
+			this.Resizable = false;
 			// Internal child GUPdotNET.UI.Views.MainView.VBox
 			global::Gtk.VBox w2 = this.VBox;
 			w2.Name = "dialog1_VBox";
@@ -187,9 +188,10 @@ namespace GUPdotNET.UI.Views
 			w21.Name = "dialog1_ActionArea";
 			w21.Spacing = 10;
 			w21.BorderWidth = ((uint)(5));
-			w21.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			w21.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.cancelButton = new global::Gtk.Button ();
+			this.cancelButton.HeightRequest = 28;
 			this.cancelButton.CanDefault = true;
 			this.cancelButton.CanFocus = true;
 			this.cancelButton.Name = "cancelButton";
@@ -202,6 +204,7 @@ namespace GUPdotNET.UI.Views
 			w22.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.okButton = new global::Gtk.Button ();
+			this.okButton.HeightRequest = 28;
 			this.okButton.CanDefault = true;
 			this.okButton.CanFocus = true;
 			this.okButton.Name = "okButton";
@@ -217,7 +220,7 @@ namespace GUPdotNET.UI.Views
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 485;
-			this.DefaultHeight = 180;
+			this.DefaultHeight = 166;
 			this.Show ();
 			this.QuitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
 			this.AboutGUPdotNETAction.Activated += new global::System.EventHandler (this.OnAboutGUPdotNETActionActivated);

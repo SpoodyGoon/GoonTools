@@ -111,7 +111,6 @@ namespace GUPdotNET.UI.Views
             LabelButton aboutLabelButton = new LabelButton("About GUPdotNET...");
             aboutLabelButton.Clicked += this.OnAboutLabelButtonClicked;
             aboutGUPdotNETAlignment.Add(aboutLabelButton);
-            aboutLabelButton.SetText("About GUPdotNET...");
             aboutGUPdotNETAlignment.ShowAll();
             this.DeleteEvent += new DeleteEventHandler(this.MainView_DeleteEvent);
             this.updateCheckAlignment.Add(this.updateCheckCombobox);
