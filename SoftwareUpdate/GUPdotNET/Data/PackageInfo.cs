@@ -52,29 +52,45 @@ namespace GUPdotNET.Data
         internal InstallMethod InstallerType { get; set; }
 
         /// <summary>
-        /// Gets or sets the package file(s) associated with an install package.
+        /// Gets or sets the URL to release notes for the update package.
         /// </summary>
-        internal Dictionary<string, PackageFile> PackageFiles { get; set; }
+        internal string ReleaseNotesURL{ get; set;}
+
+        /// <summary>
+        /// Gets or sets the URL to the install file for the update package.
+        /// </summary>
+        internal string InstallerURL{ get; set;}
+
+        /// <summary>
+        /// Gets or sets the installer checksum.
+        /// </summary>
+        internal string InstallerChecksum{ get; set;}
+
+        /// <summary>
+        /// Gets or sets the URL for the downloads page for this package.
+        /// </summary>
+        /// <value>The downloads.</value>
+        internal string DownloadsURL{ get; set;}
 
         /// <summary>
         /// The root direcotry used for holding temporary files while being used.
         /// </summary>
         private string tempPackageRoot = string.Empty;
 
+        /// <summary>
+        /// The name of the package config.
+        /// </summary>
         private const string packageConfigName = "PackageConfig.xml";
 
+        /// <summary>
+        /// The main method to load the package xml for parsing.
+        /// </summary>
         internal void Load()
         {
-            this.tempPackageRoot = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            if (Directory.Exists(this.tempPackageRoot))
-            {
-                throw new Exception("Unable to create temporary package working folder, folder already exist");
-            }
-            Directory.CreateDirectory(this.tempPackageRoot);
             WebClient webClient = new WebClient();
-            webClient.DownloadFile(GlobalTools.ProgramInfo.UpdatePackageURL, Path.Combine(this.tempPackageRoot, packageConfigName));
+            webClient.DownloadFile(GlobalTools.ProgramInfo.UpdatePackageURL, Path.Combine(GlobalTools.LocalSystem.TempPackagePath, packageConfigName));
 
-            XDocument configDocument = XDocument.Load(Path.Combine(this.tempPackageRoot, packageConfigName));
+            XDocument configDocument = XDocument.Load(Path.Combine(GlobalTools.LocalSystem.TempPackagePath, packageConfigName));
 
             this.FileVersion = System.Version.Parse(configDocument.Element("GUPdotNET").Element("PackageConfig").Attribute("FileVersion").Value);
             XElement configRoot = configDocument.Element("GUPdotNET").Element("PackageConfig");
@@ -82,27 +98,22 @@ namespace GUPdotNET.Data
                                where (string)el.Attribute("OS") == GlobalTools.ProgramInfo.OS && (string)el.Attribute("InstallerType") == GlobalTools.ProgramInfo.InstallType.ToString()
                                select new
                                {
-                                   OS = el.Attribute("OS").Value,
-                                   InstallerType = el.Attribute("InstallerType").Value,
-                                   Version = el.Attribute("Version").Value,
-                                    FileList = el.Element("Files").Descendants("File")
+                                    OS = el.Attribute("OS").Value,
+                                    InstallerType = el.Attribute("InstallerType").Value,
+                                    Version = el.Attribute("Version").Value,
+                                    ReleaseNotes = el.Element("ReleaseNotes").Value,
+                                    Installer = el.Element("Installer").Value,
+                                    Checksum = el.Element("Installer").Attribute("Checksum").Value,
+                                    Downloads = el.Element("Downloads").Value
                                }).SingleOrDefault();
 
             this.OS = packageInfo.OS.ToString();
             this.InstallerType = (InstallMethod)Enum.Parse(typeof(InstallMethod), packageInfo.InstallerType.ToString());
             this.UpdateVersion = System.Version.Parse(packageInfo.Version);
-            this.PackageFiles = new Dictionary<string, PackageFile>();
-            foreach (var file in packageInfo.FileList)
-            {
-                this.PackageFiles.Add(
-                    file.Attribute("Type").Value,
-                    new PackageFile()
-                    {
-                        FileType = file.Attribute("Type").Value,
-                        URL = file.Element("URL").Value,
-                        Checksum = file.Element("Checksum").Value
-                    });
-            }
+            this.ReleaseNotesURL = packageInfo.ReleaseNotes;
+            this.InstallerURL = packageInfo.Installer;
+            this.InstallerChecksum = packageInfo.Checksum;
+            this.DownloadsURL = packageInfo.Downloads;
         }
     }
 }

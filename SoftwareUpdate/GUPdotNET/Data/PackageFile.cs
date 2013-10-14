@@ -29,6 +29,8 @@ namespace GUPdotNET.Data
 
         internal string URL { get; set; }
 
+        internal bool Enabled { get; set; }
+
         internal string FileName
         {
             get

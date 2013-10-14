@@ -1,64 +1,25 @@
 <?xml version="1.0"?>
 <GUPdotNET>
-  <PackageConfig FileVersion="1.0">
-    <Package OS="Windows" InstallerType="exe" Version="2.0">
-      <Files>
-        <File Type="ReleaseNotes">
-          <URL>http://brdstudio.net/gupdotnet/ReleaseNotes.html</URL>
-          <Checksum>ChecksumValue</Checksum>
-        </File>
-        <File Type="Installer">
-          <URL>http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</URL>
-          <Checksum></Checksum>
-        </File>
-      </Files>
-    </Package>
-    <Package OS="Windows" InstallerType="zip" Version="2.0">
-      <Files>
-        <File Type="ChangeLog">
-          <URL>http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</URL>
-          <Checksum>ChecksumValue</Checksum>
-        </File>
-        <File Type="Installer">
-          <URL>http://brdstudio.net/temp/AYMusic.zip</URL>v
-        </File>
-        <File Type="Dependency">
-          <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum>ChecksumValue</Checksum>
-        </File>
-      </Files>
-    </Package>
-    <Package OS="Linux" InstallerType="rpm" Version="2.0">
-      <Files>
-        <File Type="ChangeLog">
-          <URL>http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</URL>
-          <Checksum>ChecksumValue</Checksum>
-        </File>
-        <File Type="Installer">
-          <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum>ChecksumValue</Checksum>
-        </File>
-        <File Type="Dependency">
-          <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum>ChecksumValue</Checksum>
-        </File>
-      </Files>
-    </Package>
-    <Package OS="Linux" InstallerType="bin" Version="2.0">
-      <Files>
-        <File Type="Installer">
-          <URL>http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</URL>
-          <Checksum>ChecksumValue</Checksum>
-        </File>
-        <File Type="Update">
-          <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum>ChecksumValue</Checksum>
-        </File>
-        <File Type="Dependency">
-          <URL>http://brdstudio.net/temp/AYMusic.zip</URL>
-          <Checksum>ChecksumValue</Checksum>
-        </File>
-      </Files>
-    </Package>
-  </PackageConfig>
+	<PackageConfig FileVersion="1.0">
+		<Package OS="Windows" InstallerType="exe" Version="2.0">
+			<ReleaseNotes>http://brdstudio.net/gupdotnet/ReleaseNotes.html</ReleaseNotes>
+			<Installer Checksum="">http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</Installer>
+			<Downloads>http://sourceforge.net/projects/yahtzeesharp/files/YahtzeeSharp-Mono/YahtzeeSharp%201.1/</Downloads>
+		</Package>
+		<Package OS="Windows" InstallerType="zip" Version="2.0">
+			<ReleaseNotes>http://brdstudio.net/gupdotnet/ReleaseNotes.html</ReleaseNotes>
+			<Installer Checksum="">http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</Installer>
+			<Downloads>http://sourceforge.net/projects/yahtzeesharp/files/YahtzeeSharp-Mono/YahtzeeSharp%201.1/</Downloads>
+		</Package>
+		<Package OS="Linux" InstallerType="rpm" Version="2.0">
+			<ReleaseNotes>http://brdstudio.net/gupdotnet/ReleaseNotes.html</ReleaseNotes>
+			<Installer Checksum="">http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</Installer>
+			<Downloads>http://sourceforge.net/projects/yahtzeesharp/files/YahtzeeSharp-Mono/YahtzeeSharp%201.1/</Downloads>
+		</Package>
+		<Package OS="Linux" InstallerType="bin" Version="2.0">
+			<ReleaseNotes>http://brdstudio.net/gupdotnet/ReleaseNotes.html</ReleaseNotes>
+			<Installer Checksum="">http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</Installer>
+			<Downloads>http://sourceforge.net/projects/yahtzeesharp/files/YahtzeeSharp-Mono/YahtzeeSharp%201.1/</Downloads>
+		</Package>
+	</PackageConfig>
 </GUPdotNET>

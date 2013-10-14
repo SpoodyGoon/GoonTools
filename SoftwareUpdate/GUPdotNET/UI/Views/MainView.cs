@@ -56,8 +56,19 @@ namespace GUPdotNET.UI.Views
         /// <param name="args">The parameter is not used.</param>
         protected void OnCheckUpdateButtonClicked(object sender, EventArgs args)
         {
-            UpdateCheck updateCheck = new UpdateCheck();
-            updateCheck.RunUpdateCheck(true);
+            try
+            {
+                UpdateCheck updateCheck = new UpdateCheck();
+                if(updateCheck.RunUpdateCheck(true))
+                {
+                    this.ApplicationQuit();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                GlobalTools.HandleError(this, ex);
+            }
         }
 
         /// <summary>
@@ -71,13 +82,13 @@ namespace GUPdotNET.UI.Views
         }
 
         /// <summary>
-        /// Event fired when the "About" menu button is pressed,
-        /// displayes the basic gtk about dialog window.
+        /// Event fired when the close button is pushed.
         /// </summary>
         /// <param name="sender">The parameter is not used.</param>
-        /// <param name="args">The parameter is not used.</param>
-        protected void OnAboutGUPdotNETActionActivated(object sender, EventArgs args)
+        /// <param name="e">The parameter is not used.</param>
+        protected void OnCloseButtonClicked(object sender, EventArgs e)
         {
+            this.ApplicationQuit();
         }
 
         /// <summary>
@@ -85,7 +96,14 @@ namespace GUPdotNET.UI.Views
         /// </summary>
         private void ApplicationQuit()
         {
-            GlobalTools.Options.Save();
+            try
+            {
+                GlobalTools.Options.Save();
+            }
+            catch (Exception ex)
+            {
+                GlobalTools.HandleError(this, ex);
+            }
             Application.Quit();
         }
 
@@ -108,18 +126,30 @@ namespace GUPdotNET.UI.Views
         /// </summary>
         private void Initalize()
         {
-            LabelButton aboutLabelButton = new LabelButton("About GUPdotNET...");
-            aboutLabelButton.Clicked += this.OnAboutLabelButtonClicked;
-            aboutGUPdotNETAlignment.Add(aboutLabelButton);
-            aboutGUPdotNETAlignment.ShowAll();
-            this.DeleteEvent += new DeleteEventHandler(this.MainView_DeleteEvent);
-            this.updateCheckAlignment.Add(this.updateCheckCombobox);
-            this.updateCheckAlignment.ShowAll();
-            this.QueueResize();
-            this.QueueDraw();
+            try
+            {
+                LabelButton aboutLabelButton = new LabelButton("About GUPdotNET...");
+                aboutLabelButton.Clicked += this.OnAboutLabelButtonClicked;
+                aboutGUPdotNETAlignment.Add(aboutLabelButton);
+                aboutGUPdotNETAlignment.ShowAll();
+                this.DeleteEvent += new DeleteEventHandler(this.MainView_DeleteEvent);
+                this.updateCheckAlignment.Add(this.updateCheckCombobox);
+                this.updateCheckCombobox.WidthRequest = 125;
+                this.updateCheckAlignment.ShowAll();
+                this.QueueResize();
+                this.QueueDraw();
+            }
+            catch (Exception ex)
+            {
+                GlobalTools.HandleError(this, ex);
+            }
         }
 
-        protected void OnAboutLabelButtonClicked (object sender)
+        /// <summary>
+        /// Event fired when the about GUPdotNET link button is clicked.
+        /// </summary>
+        /// <param name="sender">The parameter is not used.</param>
+        protected void OnAboutLabelButtonClicked(object sender)
         {
             // hook delegat to handle default button events in the gtk.about dialog window
             Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link)
@@ -158,19 +188,8 @@ namespace GUPdotNET.UI.Views
             }
             catch (Exception ex)
             {
-                Gtk.MessageDialog errorDialog = new Gtk.MessageDialog(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, false, ex.Message, "An error has occured");
-                errorDialog.Run();
-                errorDialog.Destroy();
+                GlobalTools.HandleError(this, ex);
             }
-        }        protected void OnCancelButtonClicked (object sender, EventArgs e)
-        {
-            throw new System.NotImplementedException ();
-        }        protected void OnOkButtonClicked (object sender, EventArgs e)
-        {
-            throw new System.NotImplementedException ();
         }
-
-
-
     }
 }

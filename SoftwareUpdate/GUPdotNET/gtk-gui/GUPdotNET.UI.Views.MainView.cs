@@ -5,8 +5,6 @@ namespace GUPdotNET.UI.Views
 	internal partial class MainView
 	{
 		private global::Gtk.UIManager UIManager;
-		private global::Gtk.Action QuitAction;
-		private global::Gtk.Action AboutGUPdotNETAction;
 		private global::Gtk.VBox vbox2;
 		private global::Gtk.Alignment aboutGUPdotNETAlignment;
 		private global::Gtk.Alignment alignment1;
@@ -24,8 +22,7 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.HButtonBox hbuttonbox2;
 		private global::Gtk.Alignment alignment5;
 		private global::Gtk.HSeparator hseparator1;
-		private global::Gtk.Button cancelButton;
-		private global::Gtk.Button okButton;
+		private global::Gtk.Button closeButton;
 
 		protected virtual void Build ()
 		{
@@ -33,18 +30,6 @@ namespace GUPdotNET.UI.Views
 			// Widget GUPdotNET.UI.Views.MainView
 			this.UIManager = new global::Gtk.UIManager ();
 			global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
-			this.QuitAction = new global::Gtk.Action ("QuitAction", global::Mono.Unix.Catalog.GetString ("Quit"), null, "Quit.png");
-			this.QuitAction.HideIfEmpty = false;
-			this.QuitAction.IsImportant = true;
-			this.QuitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Quit");
-			this.QuitAction.VisibleOverflown = false;
-			w1.Add (this.QuitAction, null);
-			this.AboutGUPdotNETAction = new global::Gtk.Action ("AboutGUPdotNETAction", global::Mono.Unix.Catalog.GetString ("About GUPdotNET"), null, "About.png");
-			this.AboutGUPdotNETAction.HideIfEmpty = false;
-			this.AboutGUPdotNETAction.IsImportant = true;
-			this.AboutGUPdotNETAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("About GUPdotNET");
-			this.AboutGUPdotNETAction.VisibleOverflown = false;
-			w1.Add (this.AboutGUPdotNETAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.WidthRequest = 485;
@@ -125,7 +110,7 @@ namespace GUPdotNET.UI.Views
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.updateCheckAlignment = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 0.01F);
 			this.updateCheckAlignment.Name = "updateCheckAlignment";
-			this.updateCheckAlignment.RightPadding = ((uint)(35));
+			this.updateCheckAlignment.RightPadding = ((uint)(15));
 			this.hbox3.Add (this.updateCheckAlignment);
 			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.updateCheckAlignment]));
 			w10.Position = 1;
@@ -190,30 +175,19 @@ namespace GUPdotNET.UI.Views
 			w21.BorderWidth = ((uint)(5));
 			w21.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.cancelButton = new global::Gtk.Button ();
-			this.cancelButton.HeightRequest = 28;
-			this.cancelButton.CanDefault = true;
-			this.cancelButton.CanFocus = true;
-			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.UseStock = true;
-			this.cancelButton.UseUnderline = true;
-			this.cancelButton.Label = "gtk-cancel";
-			this.AddActionWidget (this.cancelButton, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w22 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w21 [this.cancelButton]));
-			w22.Expand = false;
-			w22.Fill = false;
-			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.okButton = new global::Gtk.Button ();
-			this.okButton.HeightRequest = 28;
-			this.okButton.CanDefault = true;
-			this.okButton.CanFocus = true;
-			this.okButton.Name = "okButton";
-			this.okButton.UseStock = true;
-			this.okButton.UseUnderline = true;
-			this.okButton.Label = "gtk-ok";
-			this.AddActionWidget (this.okButton, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w23 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w21 [this.okButton]));
-			w23.Position = 1;
+			this.closeButton = new global::Gtk.Button ();
+			this.closeButton.WidthRequest = 110;
+			this.closeButton.HeightRequest = 32;
+			this.closeButton.CanDefault = true;
+			this.closeButton.CanFocus = true;
+			this.closeButton.Name = "closeButton";
+			this.closeButton.UseUnderline = true;
+			this.closeButton.Label = global::Mono.Unix.Catalog.GetString ("_Close");
+			global::Gtk.Image w22 = new global::Gtk.Image ();
+			w22.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Button);
+			this.closeButton.Image = w22;
+			this.AddActionWidget (this.closeButton, 0);
+			global::Gtk.ButtonBox.ButtonBoxChild w23 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w21 [this.closeButton]));
 			w23.Expand = false;
 			w23.Fill = false;
 			if ((this.Child != null)) {
@@ -222,11 +196,8 @@ namespace GUPdotNET.UI.Views
 			this.DefaultWidth = 485;
 			this.DefaultHeight = 166;
 			this.Show ();
-			this.QuitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
-			this.AboutGUPdotNETAction.Activated += new global::System.EventHandler (this.OnAboutGUPdotNETActionActivated);
 			this.checkUpdateButton.Clicked += new global::System.EventHandler (this.OnCheckUpdateButtonClicked);
-			this.cancelButton.Clicked += new global::System.EventHandler (this.OnCancelButtonClicked);
-			this.okButton.Clicked += new global::System.EventHandler (this.OnOkButtonClicked);
+			this.closeButton.Clicked += new global::System.EventHandler (this.OnCloseButtonClicked);
 		}
 	}
 }

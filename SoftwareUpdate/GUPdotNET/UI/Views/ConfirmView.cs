@@ -22,59 +22,71 @@ using System;
 
 namespace GUPdotNET.UI.Views
 {
-	internal partial class ConfirmView : Gtk.Dialog
-	{
-		/// <summary>
-		/// The string format for the confirm message shown when an update is available.
-		/// </summary>
+    internal partial class ConfirmView : Gtk.Dialog
+    {
+        /// <summary>
+        /// The string format for the confirm message shown when an update is available.
+        /// </summary>
         private const string confimMessage = "An update is available for {0} version {1}.\nWould you like to update now?";
-        
-		private const string confirmTitle = "{0} {1} Available";
-		internal ConfirmView()
-		{
-			this.Build();
-			this.Initalize();
-		}
+        private const string confirmTitle = "{0} {1} Available";
 
-		private void Initalize ()
-		{
-			this.Title = string.Format (confirmTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString ());
-			this.updateMessageLabel.Text = string.Format (confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString ());
-			if (GlobalTools.PackageInfo.PackageFiles.ContainsKey ("ReleaseNotes") && !string.IsNullOrEmpty (GlobalTools.PackageInfo.PackageFiles ["ReleaseNotes"].URL))
-			{
-				this.releaseNotesButton.Show ();
-			}
-			else
-			{
-				this.releaseNotesButton.Hide();
-			}
-			this.Close += delegate(object sender, EventArgs e)
-			{
-				this.Respond(Gtk.ResponseType.No);
-				this.Hide();
-			};
-			this.DeleteEvent += delegate(object o, Gtk.DeleteEventArgs args)
-			{
-				this.Respond(Gtk.ResponseType.No);
-				this.Hide();
-			};
-			this.DefaultResponse = Gtk.ResponseType.No;
-			this.QueueResize();
-			this.QueueDraw();
-		}
+        internal ConfirmView()
+        {
+            this.Build();
+            this.Initalize();
+        }
 
-		protected void OnReleaseNotesButtonClicked (object sender, EventArgs e)
-		{
-			MonoTools.ProcessTools.LaunchURL(GlobalTools.PackageInfo.PackageFiles["ReleaseNotes"].URL);
-		}		
+        private void Initalize()
+        {
+            try
+            {
+                this.Title = string.Format(confirmTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                this.updateMessageLabel.Text = string.Format(confimMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.ReleaseNotesURL))
+                {
+                    this.releaseNotesButton.Show();
+                }
+                else
+                {
+                    this.releaseNotesButton.Hide();
+                }
+                this.Close += delegate(object sender, EventArgs e)
+                {
+                    this.Respond(Gtk.ResponseType.No);
+                    this.Hide();
+                };
+                this.DeleteEvent += delegate(object o, Gtk.DeleteEventArgs args)
+                {
+                    this.Respond(Gtk.ResponseType.No);
+                    this.Hide();
+                };
+                this.DefaultResponse = Gtk.ResponseType.No;
+                this.QueueResize();
+                this.QueueDraw();
+            }
+            catch (Exception ex)
+            {
+                GlobalTools.HandleError(this, ex);
+            }
+        }
 
-		protected void OnFileListDetailsButtonClicked (object sender, EventArgs e)
-		{
-			// TODO: add a dialog with a treeview to show the package details.
-			throw new System.NotImplementedException ();
-		}
+        protected void OnReleaseNotesButtonClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                MonoTools.ProcessTools.LaunchURL(GlobalTools.PackageInfo.ReleaseNotesURL);
+            }
+            catch (Exception ex)
+            {
+                GlobalTools.HandleError(this, ex);
+            }
+        }
 
-
-	}
+        protected void OnFileListDetailsButtonClicked(object sender, EventArgs e)
+        {
+            // TODO: add a dialog with a treeview to show the package details.
+            throw new System.NotImplementedException();
+        }
+    }
 }
 
