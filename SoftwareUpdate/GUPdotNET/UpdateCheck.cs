@@ -26,7 +26,7 @@ namespace GUPdotNET
     using Gtk;
     using GUPdotNET.Data;
     using GUPdotNET.UI.Views;
-    using MonoTools;
+    using GUPdotNET;
 
     /// <summary>
     /// This class is the main logic tree for the application, 

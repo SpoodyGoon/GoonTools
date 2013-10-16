@@ -23,9 +23,9 @@ namespace GUPdotNET.UI.Views
     using System;
     using System.Reflection;
     using Gtk;
+    using GUPdotNET;
+    using GUPdotNET.UI;
     using GUPdotNET.UI.ComboBox;
-    using MonoTools;
-    using MonoTools.UI;
 
     /// <summary>
     /// The root window when the application is not being ran in silent/background mode,
@@ -174,8 +174,8 @@ namespace GUPdotNET.UI.Views
                 ad.Title = "About " + title;
                 ad.ProgramName = title;
                 ad.Comments = description;
-                MonoTools.Tools.LicenseText lic = new MonoTools.Tools.LicenseText();
-                ad.License = lic.GPL3.Replace(lic.Copyright, copyRight).Replace(lic.Description, description).Replace(lic.ProgramName, title);
+                //GUPdotNET.Tools.LicenseText lic = new GUPdotNET.Tools.LicenseText();
+                //ad.License = lic.GPL3.Replace(lic.Copyright, copyRight).Replace(lic.Description, description).Replace(lic.ProgramName, title);
                 ad.Authors = new string[] { "Andy York <goontools@brdstudio.net>" };
                 ad.Version = programAssembly.GetName().Version.ToString();
                 ad.Logo = Gdk.Pixbuf.LoadFromResource("GUPdotNET.Resources.Images.update_large.png");

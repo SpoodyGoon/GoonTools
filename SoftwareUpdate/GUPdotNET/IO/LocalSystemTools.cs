@@ -18,29 +18,55 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Reflection;
-using Gtk;
 
-namespace MonoTools.IO
+namespace GUPdotNET.IO
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.IO;
+    using System.Reflection;
+    using Gtk;
+
+    /// <summary>
+    /// A helper class to reference and work with the local file system.
+    /// </summary>
     internal class LocalSystemTools
     {
+        /// <summary>
+        /// The name of the user data folder.
+        /// </summary>
         private const string UserDataFolderName = "GUPdotNET";
+
+        /// <summary>
+        /// The name of the debug folder.
+        /// </summary>
         private const string DebugFolderName = "DebugData";
 
+        /// <summary>
+        /// The full path to a temporary directory for working with files locally.
+        /// </summary>
+        private string tempPackagePath = string.Empty;
+
+        /// <summary>
+        /// Gets the directory that the application is running in.
+        /// </summary>
         internal string AppPath { get; private set; }
 
+        /// <summary>
+        /// Gets the full path to where user data like settings,
+        /// preferences and logs are kept.
+        /// </summary>
         internal string UserDataPath { get; private set; }
 
+        /// <summary>
+        /// Gets the operating system that the application is currently running on.
+        /// </summary>
         internal string OS { get; private set; }
 
         /// <summary>
-        /// The temporary directory where package files will be 
-        /// downloaded/updated to be used.
+        /// Gets full path to a temporary directory for working with files locally.
+        /// If the value is null then a new temporary directory is created
         /// </summary>
         internal string TempPackagePath
         { 
@@ -50,12 +76,16 @@ namespace MonoTools.IO
                 {
                     this.BuildTempPath();
                 }
+
                 return this.tempPackagePath;
             }
         }
 
-        private string tempPackagePath = string.Empty;
-
+        /// <summary>
+        /// The main method for initializing data being used while working
+        /// with the local file system. 
+        /// </summary>
+        /// <param name="debugMode">If set to <c>true</c> debug mode.</param>
         internal void Initalize(bool debugMode)
         {
             // get OS information
@@ -96,6 +126,10 @@ namespace MonoTools.IO
             }
         }
 
+        /// <summary>
+        /// Creates a temporary file path for downloading files 
+        /// to a local folder to work with.
+        /// </summary>
         private void BuildTempPath()
         {
             this.tempPackagePath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -103,8 +137,8 @@ namespace MonoTools.IO
             {
                 throw new Exception("Unable to create temporary package working folder, folder already exist");
             }
+
             Directory.CreateDirectory(this.tempPackagePath);
         }
     }
 }
-

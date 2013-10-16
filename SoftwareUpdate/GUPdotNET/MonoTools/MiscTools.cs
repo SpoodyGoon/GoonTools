@@ -2,9 +2,9 @@
 //  MiscTools.cs
 //
 //  Author:
-//       Andy York <andy@brdstudio.net>
+//       Andy York <goontools@brdstudio.net>
 //
-//  Copyright (c) 2013 Andy York 2012
+//  Copyright (c) 2013 Andy York
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,29 +18,40 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
-namespace MonoTools
+namespace GUPdotNET
 {
+    using System;
+    using System.Diagnostics;
+    using System.Threading;
+
+    /// <summary>
+    /// A helper class for working with process, diagnostics and threading.
+    /// </summary>
     public static class ProcessTools
-    {        
-        #region Launch URL
-        
-        private static string _LaunchURL = string.Empty;
-        
-        public static void LaunchURL(string URL)
+    {
+        /// <summary>
+        /// The URL to the web site to be launched.
+        /// </summary>
+        private static string launchURL = string.Empty;
+
+        /// <summary>
+        /// A method to launch the specified web site in the default browser.
+        /// </summary>
+        /// <param name="url">URL to the web site to be launched.</param>
+        public static void LaunchURL(string url)
         {
-            _LaunchURL = URL;
-            System.Threading.Thread trd = new System.Threading.Thread(new System.Threading.ThreadStart(StartURL));
-            trd.Start();
+            launchURL = url;
+            Thread processThread = new Thread(new ThreadStart(StartURL));
+            processThread.Start();
         }
-        
+
+        /// <summary>
+        /// Method to start the supplied URL in the default browser.
+        /// </summary>
         private static void StartURL()
         {
-            System.Diagnostics.Process.Start(_LaunchURL);
+            Process.Start(launchURL);
         }
-        
-        #endregion Launch URL
     }
 }
-

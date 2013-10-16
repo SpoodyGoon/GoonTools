@@ -20,9 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Gtk;
-using MonoTools;
+using GUPdotNET;
 
-namespace MonoTools.UI
+namespace GUPdotNET
 {
     public class LabelButton : Gtk.EventBox
     {

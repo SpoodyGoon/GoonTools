@@ -19,7 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using MonoTools.UI;
+using GUPdotNET.UI;
 
 namespace GUPdotNET.UI.Views
 {
@@ -86,18 +86,12 @@ namespace GUPdotNET.UI.Views
         {
             try
             {
-                MonoTools.ProcessTools.LaunchURL(GlobalTools.PackageInfo.ReleaseNotesURL);
+                GUPdotNET.ProcessTools.LaunchURL(GlobalTools.PackageInfo.ReleaseNotesURL);
             }
             catch (Exception ex)
             {
                 GlobalTools.HandleError(this, ex);
             }
-        }
-
-        protected void OnFileListDetailsButtonClicked(object sender, EventArgs e)
-        {
-            // TODO: add a dialog with a treeview to show the package details.
-            throw new System.NotImplementedException();
         }
     }
 }
