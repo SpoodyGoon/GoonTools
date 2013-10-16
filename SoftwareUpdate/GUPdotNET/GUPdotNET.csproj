@@ -79,10 +79,10 @@
     <EmbeddedResource Include="Resources\Images\ReleaseNotes.png" />
     <EmbeddedResource Include="Resources\Images\PackageDetails.png" />
     <EmbeddedResource Include="Resources\Images\DownloadPage.png" />
+    <EmbeddedResource Include="Resources\Images\Install.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="MonoTools\UI\FontMarkup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\ComboBox\UpdateSchedualComboBox.cs" />
@@ -92,7 +92,6 @@
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.InstallView.cs" />
     <Compile Include="GlobalTools\GlobalTools.cs" />
     <Compile Include="UpdateCheck.cs" />
-    <Compile Include="Data\PackageFile.cs" />
     <Compile Include="GlobalTools\CheckSumUtility.cs" />
     <Compile Include="GlobalTools\GlobalObjectTypes.cs" />
     <Compile Include="UI\Views\MainView.cs" />
@@ -120,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="docs\templates\GUPPackageConfig.json" />
     <None Include="WebFiles\GetUpdateInfo.asp" />
     <None Include="WebFiles\GetUpdateInfo.aspx" />
     <None Include="WebFiles\GetUpdateInfo.php" />

@@ -22,7 +22,7 @@
 
 using System;
 
-namespace  MonoTools.Tools
+namespace  GUPdotNET
 {
 	internal class LicenseText
     {
