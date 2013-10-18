@@ -170,27 +170,26 @@ namespace GUPdotNET.UI.Views
                 string description = (programAssembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
                 string copyRight = (programAssembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false)[0] as AssemblyCopyrightAttribute).Copyright;
 
-                Gtk.AboutDialog ad = new Gtk.AboutDialog();
-                ad.Title = "About " + title;
-                ad.ProgramName = title;
-                ad.Comments = description;
-                //GUPdotNET.Tools.LicenseText lic = new GUPdotNET.Tools.LicenseText();
-                //ad.License = lic.GPL3.Replace(lic.Copyright, copyRight).Replace(lic.Description, description).Replace(lic.ProgramName, title);
-                ad.Authors = new string[] { "Andy York <goontools@brdstudio.net>" };
-                ad.Version = programAssembly.GetName().Version.ToString();
-                ad.Logo = Gdk.Pixbuf.LoadFromResource("GUPdotNET.Resources.Images.update_large.png");
-                ad.Icon = Gdk.Pixbuf.LoadFromResource("GUPdotNET.Resources.Images.update_small.png");
-                ad.AllowShrink = false;
-                ad.AllowGrow = true;
-                ad.Copyright = copyRight;
-                ad.HasSeparator = true;
-                ad.Modal = true;
-                ad.WidthRequest = 425;
-                ad.WebsiteLabel = title;
-                ad.Website = "https://code.google.com/p/goontools/";
-                ad.WindowPosition = WindowPosition.CenterAlways;
-                ad.Run();
-                ad.Destroy();
+                Gtk.AboutDialog aboutDialog = new Gtk.AboutDialog();
+                aboutDialog.Title = "About " + title;
+                aboutDialog.ProgramName = title;
+                aboutDialog.Comments = description;
+                aboutDialog.License = Properties.Resources.GPL3;
+                aboutDialog.Authors = new string[] { "Andy York <goontools@brdstudio.net>" };
+                aboutDialog.Version = programAssembly.GetName().Version.ToString(2);
+                aboutDialog.Logo = Gdk.Pixbuf.LoadFromResource("GUPdotNET.Resources.Images.update_large.png");
+                aboutDialog.Icon = Gdk.Pixbuf.LoadFromResource("GUPdotNET.Resources.Images.update_small.png");
+                aboutDialog.AllowShrink = false;
+                aboutDialog.AllowGrow = true;
+                aboutDialog.Copyright = copyRight;
+                aboutDialog.HasSeparator = true;
+                aboutDialog.Modal = true;
+                aboutDialog.WidthRequest = 425;
+                aboutDialog.WebsiteLabel = title;
+                aboutDialog.Website = Properties.Settings.Default.ProjectWebSite;
+                aboutDialog.WindowPosition = WindowPosition.CenterAlways;
+                aboutDialog.Run();
+                aboutDialog.Destroy();
             }
             catch (Exception ex)
             {

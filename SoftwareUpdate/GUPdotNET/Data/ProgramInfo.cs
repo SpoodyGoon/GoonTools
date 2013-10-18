@@ -1,4 +1,7 @@
 
+
+namespace GUPdotNET.Data
+{
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,8 +12,6 @@ using System.Xml;
 using System.Xml.Linq;
 using Gtk;
 
-namespace GUPdotNET.Data
-{
     /// <summary>
     /// Data class containing the information concerning the program
     /// that GUPdotNET is supporting.
@@ -33,11 +34,6 @@ namespace GUPdotNET.Data
         internal string ProgramDescription { get; private set; }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether or not the processor is a 64 bit processor.
-        /// </summary>
-        internal bool Processor64 { get; private set; }
-
-        /// <summary>
         /// The current version of the program GUPdotNET is supporting,
         /// gotten from the settings file if present, otherwise gotten from the 
         /// calling assebly.
@@ -52,15 +48,9 @@ namespace GUPdotNET.Data
         {
             get
             {
-                return Path.Combine(GlobalTools.LocalSystem.AppPath, this.ProgramFileName);
+                return Path.Combine(GlobalTools.LocalSystem.AppPath, Properties.Settings.Default.UpdateFileName);
             }
         }
-
-        /// <summary>
-        /// Gets the name of the program that is supported by GUPdotNET.
-        /// <example>MyApp.exe</example>
-        /// </summary>
-        internal string ProgramFileName { get; private set; }
 
         /// <summary>
         /// This is the Operating System info gotten from
@@ -74,81 +64,24 @@ namespace GUPdotNET.Data
         /// </summary>
         internal InstallMethod InstallType { get; private set; }
 
+        internal ProcessorBit ProcessorType { get; private set; }
+
         /// <summary>
         ///  The URL for the config file containing the update information.
         /// </summary>
         internal string UpdatePackageURL { get; private set; }
 
-        /// <summary>
-        /// Gets the value indicating if the install package is required
-        /// to have a checksum.
-        /// </summary>
-        internal bool RequireCheckSum { get; private set; }
-
-        /// <summary>
-        /// Gets a value indicating the version of the config file's format.
-        /// </summary>
-        internal System.Version FileVersion { get; private set; }
-
-        /// <summary>
-        /// The full file path to the program config file.
-        /// </summary>
-        private string configFilePath = string.Empty;
-
-        /// <summary>
-        /// The name of the program config file.
-        /// </summary>
-        private const string FILENAME = "GUPProgram.xml";
-
-        /// <summary>
-        /// Data access class for accessing local program infomation
-        /// concerning the application that GUPdotNET is supporting.
-        /// </summary>
-        internal ProgramInfo()
-        {
-            this.configFilePath = Path.Combine(GlobalTools.LocalSystem.AppPath, FILENAME);
-        }
-
         internal void Load()
         {
-            XDocument configDocument = XDocument.Load(this.configFilePath);
-            XElement configRoot = configDocument.Element("GUPdotNET");
-            var programInfo = (from e in configRoot.Descendants("ProgramConfig")
-                               select new
-                               {
-                                   ProgramName = e.Element("ProgramName").Value,
-                                   ProgramTitle = e.Element("ProgramTitle").Value,
-                                   ProgramFileName = e.Element("ProgramFileName").Value,
-                                   ProgramDescription = e.Element("ProgramDescription").Value,
-                                   OS = e.Element("OS").Value,
-                                   Processor64 = e.Element("Processor64").Value,
-                                   InstallerType = e.Element("InstallerType").Value,
-                                   UpdateInfoURL = e.Element("UpdateInfoURL").Value,
-                                   ProgramVersion = e.Element("ProgramVersion").Value,
-                                   RequireCheckSum = e.Element("RequireCheckSum").Value,
-                                   FileVersion = e.Attribute("FileVersion").Value
-                               }).SingleOrDefault();
-
-            if (programInfo == null)
-            {
-                throw new Exception("Unable to parse program information required to process an update check");
-            }
-
-            this.ProgramName = programInfo.ProgramName.ToString();
-            this.ProgramTitle = programInfo.ProgramTitle.ToString();
-            this.ProgramFileName = programInfo.ProgramFileName.ToString();
-            this.ProgramDescription = programInfo.ProgramDescription.ToString();
-            this.OS = programInfo.OS.ToString();
-            this.Processor64 = Convert.ToBoolean(programInfo.Processor64);
-            this.UpdatePackageURL = programInfo.UpdateInfoURL.ToString();
-            this.ProgramVersion = System.Version.Parse(programInfo.ProgramVersion);
-            this.RequireCheckSum = bool.Parse(programInfo.RequireCheckSum);
-            this.FileVersion = System.Version.Parse(programInfo.FileVersion);
-            InstallMethod installMethodParse;
-            if (Enum.TryParse<InstallMethod>(programInfo.InstallerType, out installMethodParse))
-            {
-                this.InstallType = installMethodParse;
-            }
+            Assembly updateAssembly = Assembly.LoadFrom(this.ProgramFullPath);
+            this.ProgramName = (updateAssembly.GetCustomAttributes(typeof(AssemblyProductAttribute), false)[0] as AssemblyProductAttribute).Product;
+            this.ProgramTitle = (updateAssembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false)[0] as AssemblyTitleAttribute).Title;
+            this.ProgramDescription = (updateAssembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
+            this.ProgramVersion = System.Version.Parse((updateAssembly.GetCustomAttributes(typeof(AssemblyVersionAttribute), false)[0] as AssemblyVersionAttribute).Version);
+            this.OS = GlobalTools.LocalSystem.OS;
+            this.InstallType = (InstallMethod)Enum.Parse(typeof(InstallMethod), Properties.Settings.Default.InstallerType);
+            this.ProcessorType = (ProcessorBit)Enum.Parse(typeof(ProcessorBit), Properties.Settings.Default.ProcessorType);
+            this.UpdatePackageURL = Properties.Settings.Default.UpdatePackageURL;
         }
     }
 }

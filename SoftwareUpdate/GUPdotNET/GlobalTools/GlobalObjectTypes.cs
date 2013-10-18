@@ -20,6 +20,13 @@ namespace GUPdotNET
 		Error
 	}
 
+    public enum ProcessorBit
+    {
+        Any,
+        x32,
+        x64
+    }
+
 	public enum InstallMethod
 	{
 		msi,

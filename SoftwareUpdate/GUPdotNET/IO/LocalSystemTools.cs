@@ -22,11 +22,8 @@
 namespace GUPdotNET.IO
 {
     using System;
-    using System.Collections.Generic;
-    using System.Configuration;
     using System.IO;
     using System.Reflection;
-    using Gtk;
 
     /// <summary>
     /// A helper class to reference and work with the local file system.
@@ -85,8 +82,7 @@ namespace GUPdotNET.IO
         /// The main method for initializing data being used while working
         /// with the local file system. 
         /// </summary>
-        /// <param name="debugMode">If set to <c>true</c> debug mode.</param>
-        internal void Initalize(bool debugMode)
+        internal void Initalize()
         {
             // get OS information
             switch (Environment.OSVersion.Platform)
@@ -110,7 +106,7 @@ namespace GUPdotNET.IO
 
             // if the application is in debug mode store the user data 
             // relative to the AppPath, otherwise use the users local application data path
-            if (debugMode)
+            if (Properties.Settings.Default.DebugMode)
             {
                 this.UserDataPath = Path.Combine(this.AppPath, DebugFolderName, UserDataFolderName);
             }
