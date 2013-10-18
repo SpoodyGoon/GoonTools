@@ -45,12 +45,6 @@ namespace GUPdotNET
         internal static RunType UpdateRunType { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether this <see cref="GUPdotNET.GlobalTools"/> debug mode.
-        /// </summary>
-        /// <value><c>true</c> if debug mode; otherwise, <c>false</c>.</value>
-        internal static bool DebugMode { get; private set; }
-
-        /// <summary>
         /// Gets or sets the options for each user loaded from xml configuration files.
         /// </summary>
         internal static AppSettings Options { get; set; }
@@ -79,9 +73,8 @@ namespace GUPdotNET
         internal static void Initalize()
         {
             UpdateProgramName = ConfigurationManager.AppSettings["UpdateProgramName"].ToString();
-            DebugMode = Convert.ToBoolean(ConfigurationManager.AppSettings["DebugMode"]);
             LocalSystem = new LocalSystemTools();
-            LocalSystem.Initalize(DebugMode);
+            LocalSystem.Initalize();
             Options = new AppSettings();
             Options.Load();
         }

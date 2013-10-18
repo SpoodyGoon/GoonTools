@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GoonTools")]
 [assembly: AssemblyProduct("GUPdotNET")]
-[assembly: AssemblyCopyright("Andy York")]
+[assembly: AssemblyCopyright("(c) 2013 GoonTools and Andy York")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
