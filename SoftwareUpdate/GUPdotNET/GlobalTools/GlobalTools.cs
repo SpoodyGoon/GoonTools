@@ -72,7 +72,7 @@ namespace GUPdotNET
         /// </summary>
         internal static void Initalize()
         {
-            UpdateProgramName = ConfigurationManager.AppSettings["UpdateProgramName"].ToString();
+            UpdateProgramName = Properties.Settings.Default.UpdateFileName.Replace(Path.GetExtension(Properties.Settings.Default.UpdateFileName), "");
             LocalSystem = new LocalSystemTools();
             LocalSystem.Initalize();
             Options = new AppSettings();

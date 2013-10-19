@@ -108,11 +108,11 @@ namespace GUPdotNET.IO
             // relative to the AppPath, otherwise use the users local application data path
             if (Properties.Settings.Default.DebugMode)
             {
-                this.UserDataPath = Path.Combine(this.AppPath, DebugFolderName, UserDataFolderName);
+                this.UserDataPath = Path.Combine(this.AppPath, DebugFolderName, UserDataFolderName, GlobalTools.UpdateProgramName);
             }
             else
             {
-                this.UserDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), UserDataFolderName);
+                this.UserDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), UserDataFolderName, GlobalTools.UpdateProgramName);
             }
 
             // if the user data path does not exist create it.
