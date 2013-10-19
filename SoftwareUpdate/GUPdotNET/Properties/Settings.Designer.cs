@@ -76,5 +76,23 @@ namespace GUPdotNET.Properties {
                 return ((string)(this["ProjectWebSite"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ErrorLog {
+            get {
+                return ((bool)(this["ErrorLog"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UpdateLog {
+            get {
+                return ((bool)(this["UpdateLog"]));
+            }
+        }
     }
 }

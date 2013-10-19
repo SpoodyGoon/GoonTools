@@ -1,106 +1,482 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Developer guide for GUPdotNET a simple, stand alone, cross platform update application for Mono/Gtk#." name="description">
+    <style type="text/css">
+        root
+        {
+            display: block;
+        }
+
+        form
+        {
+            display: inline;
+        }
+
+        html, body
+        {
+            font-family: Tahoma,Helvetica,sans-serif;
+            font-size: 10pt;
+            color: black;
+            display: block;
+        }
+
+        #documentBody
+        {
+            padding: 6px 10px 6px 10px;
+            margin: 5px auto 5px auto;
+            width: 1250px;
+            position: relative;
+            display: block;
+            border: 5px double #000000;
+        }
+
+            #documentBody h1, h2, h3, h4
+            {
+                color: #003366;
+            }
+
+            #documentBody h1
+            {
+                font-family: Georgia, serif;
+                letter-spacing: 2px;
+                font-size: 22pt;
+                text-align:center;
+                text-decoration:underline;
+                text-shadow: 1px 1px 3px #c0c0c0;
+            }
+
+            #documentBody h2
+            {
+                font-family: Georgia;
+                font-size: 16pt;
+            }
+
+            #documentBody h3
+            {
+                font-style: italic;
+                font-size: 12pt;
+                text-indent: 6pt;
+                text-decoration: underline;
+            }
+
+            #documentBody h4
+            {
+                font-weight: bolder;
+                font-size: 10pt;
+                text-indent: 6pt;
+            }
+
+            #documentBody p, li
+            {
+                text-indent: 10pt;
+            }
+
+        table
+        {
+            font-size: inherit;
+            font-family: inherit;
+            empty-cells: show;
+            table-layout: auto;
+            border-collapse: collapse;
+            width: 85%;
+            border: 1px solid #000000;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+            table th, td
+            {
+                border: 1px solid #000000;
+            }
+
+            table td
+            {
+                padding: 3px 5px 3px 5px;
+                vertical-align: top;
+            }
+
+            table th
+            {
+                padding: 3px 5px 3px 5px;
+                vertical-align: bottom;
+            }
+
+            table .title
+            {
+                font-size: 12pt;
+                display: block;
+            }
+
+            table .subtitle
+            {
+                font-size: 8pt;
+                font-style: italic;
+                font-family: sans-serif;
+                color: rgb(255, 255, 255);
+                display: block;
+            }
+
+            table .descColumnHeader
+            {
+                text-align: left;
+                padding-left: 20px;
+            }
+
+            table thead
+            {
+                color: rgb(255, 255, 150);
+                background-color:#485f76;
+                letter-spacing: 2px;
+            }
+
+            table .nameColumn
+            {
+                width: 120px;
+            }
+
+            table .requiredColumn
+            {
+                width: 90px;
+            }
+
+            table .miscColumn
+            {
+                width: auto;
+            }
+
+        a:link, a:visited
+        {
+            color: #0000EE;
+            text-decoration: underline;
+        }
+
+        a:hover
+        {
+            color: #8F2C2C;
+            text-decoration: underline;
+        }
+
+        .futureFeature
+        {
+            font-weight: bold;
+            color: rgb(255, 0,0);
+            margin-right: -3px;
+            margin-top: -4px;
+        }
+
+        .alignLeft
+        {
+            text-align: left;
+        }
+
+        .alignRight
+        {
+            text-align: right;
+        }
+
+        .alignCenter
+        {
+            text-align: center;
+        }
+    </style>
     <title>GUPdotNET Developer Guide</title>
-    <meta content="Andy York" name="author">
-    <meta content="Basic developer guided for GUPdotNET a simple .NET general update program."
-      name="description">
-    <meta content="BlueGriffon wysiwyg editor" name="generator">
-    <style media="all" title="DevDocStyle" type="text/css">
-root {  
-  display: block;
-}
-
-form {  
-  display: inline;
-}
-
-html, body {  
-  font-family: Arial, Helvetica, sans-serif;  
-  font-size: 10pt;  
-  color: black;  
-  background-color: #fffee7;  
-  display: block;  
-  height: 100%;
-}
-
-.SubHeader {  
-  font-size: 12pt;  
-  font-weight: bold;  
-  text-align: left;  
-  text-decoration: underline;
-}
-
-#documentSection {  
-  width: 95%;  
-  min-height: 100%;  
-  height: 100%;  
-  border-top-width: 3px;  
-  border-top-style: solid;  
-  border-top-color: black;  
-  border-bottom-width: 3px;  
-  border-bottom-style: solid;  
-  border-bottom-color: black;  
-  border-left-width: 3px;  
-  border-left-style: solid;  
-  border-left-color: black;  
-  border-top-width: 3px;  
-  border-right-width: 3px;  
-  border-bottom-width: 3px;  
-  border-left-width: 3px;  
-  border-top-style: solid;  
-  border-right-style: solid;  
-  border-bottom-style: solid;  
-  border-left-style: solid;  
-  background-color: white;  
-  padding-top: 0px;  
-  padding-right: 0px;  
-  padding-bottom: 0px;  
-  padding-left: 0px;  
-  margin-right: auto;  
-  margin-left: auto;  
-  margin-top: 3px;  
-}
-
-#bodySection {  
-  padding-top: 10px;  
-  padding-right: 10px;  
-  padding-bottom: 10px;  
-  padding-left: 10px;
-}
-
-</style></head>
-  <body>
-    <div id="documentSection">
-      <div id="bodySection">
-        <h3 class="SubHeader">Naming convention:</h3>
+</head>
+<body>
+    <div id="documentBody">
+        <h1>GUPdotNET Developer Guide</h1>
+        <h2>Overview</h2>
+        <p>
+            GUPdotNET has been designed to be a simple, stand alone update tool for 
+            Mono/Gtk# applications. It started out as an attempt to be a clone of the gup 
+            (general purpose updater) used by Notepad++ and grew from there. There may 
+            be features added in the future there will be a focus on keeping GUPdotNET as 
+            small, easy to configure and cross platform as possible.
+        </p>
+        <p>
+            Not all features will be available in version 1.0 due to time constraints, testing issues, etc. any feature and/or item with a <span class="futureFeature">*</span> by is intended to be implemented in version 1.1 but there may be suprises.
+        </p>
+        <h2>Features</h2>
         <ul>
-          <li>Program</li>
-          <ul>
-            <li>When used in a name "program" refers to the application, local
-              config and related files on the local machine that is being
-              supported by GUPdotNET.</li>
-            <li>For example GUPProgramConfig.xml contains information about the
-              application GUPdotNET is being used to update like Name, Title,
-              Version, etc.</li>
-          </ul>
-          <li>Package</li>
-          <ul>
-            <li>When used in a name "package" refers to remote application,
-              config and releted file concerning the newest application version
-              that can be upgraded to, files are located on a server and
-              accessed via http.</li>
-            <ul>
-              <li>More access methods (ftp, web service, etc.) may be made
-                available later.</li>
+            <li>Simple configuration through xml formated files.</li>
+            <li>Dependant on only Mono/Gtk#.</li>
+            <li>Auto updates interface for end users.</li>
+            <li>Able to run indepedantly from the application it is supporting.</li>
+            <li>Optional redirect to download page instead of direct download of the update 
+                package.</li>
+            <li>Remote update configuration requires no programming.</li>
+            <li>Remote update configuration location types:<ul>
+                <li>http(s) basic web site url.</li>
+                <li><span class="futureFeature">*</span> ftp basic file transfer connection.</li>
+                <li><span class="futureFeature">*</span> from networked file share.</li>
+                <li><span class="futureFeature">*</span> by drag-n-drop into GUPdotNET.</li>
             </ul>
-            <li>For example GUPPackageConfig.xml contains information on each
-              OS, installer type and processor update that is currently
-              available.</li>
-          </ul>
+            </li>
         </ul>
-      </div>
+        <h2>Configuration and Setup</h2>
+        <h3>Local System</h3>
+        <p>
+            Local system configuration, also refered to as "program info", takes plase in 
+            the application config file (GUPdotNET.exe.config) that resides in the same 
+            folder that GUPdotNET does. This is a commonly used method for managing settings 
+            for .NET applications and can be changed at by anyone with write permissions to 
+            the containing directory.
+        </p>
+        <table>
+            <colgroup>
+                <col class="nameColumn" />
+                <col class="miscColumn" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="2"><span class="title">GUPdotNET Configuration</span></th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th class="descColumnHeader">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="alignLeft">ProjectWebSite</td>
+                    <td class="alignLeft">The URL to GUPdotNET's project web site.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">DebugMode</td>
+                    <td class="alignLeft">Debug mode is used during development, it changes the where user settings are 
+                    saved and in some cases writes out additional runtime information for testing 
+                    and debugging. </td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">ErrorLog</td>
+                    <td class="alignLeft">When turned on application errors will be written to the user application data 
+                    directory.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">UpdateLog</td>
+                    <td class="alignLeft">When turned on detailed information like when an update check is performed or an 
+                    installer is downloaded, is written to a log in the user application directory.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <colgroup>
+                <col class="nameColumn" />
+                <col class="miscColumn" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="2"><span class="title">Program Info</span><span class="subtitle">Loaded from GUPdotNET app.config.</span></th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th class="descColumnHeader">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="alignLeft">UpdateFileName</td>
+                    <td class="alignLeft">The file name of the program that is being supported by GUPdotNET, the program 
+                    must be present in the same directory as GUPdotNET.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">UpdatePackageURL</td>
+                    <td class="alignLeft">The remote web site address for the package configuration file, that contains 
+                    informatin on the most recent application updates.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">InstallerType</td>
+                    <td class="alignLeft">The type of install method used to install the currently installed application 
+                    being supported by GUPdotNET. Formats intended to be supported (not all formats 
+                    may be supported in the first version of GUPdotNET): msi, exe, zip, bin, rpm, 
+                    deb, src. </td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">ProcessorType</td>
+                    <td class="alignLeft">The processor type for the applicaiton that GUPdotNET is supporting, whether it 
+                    is spefically built for 32 or 64 bit. Valid vaules: Any, x32, x64.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <colgroup>
+                <col class="nameColumn" />
+                <col class="miscColumn" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="2"><span class="title">Program Info</span><span class="subtitle">Loaded from the supported application attributes.</span></th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th class="descColumnHeader">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="alignLeft">ProgramName</td>
+                    <td class="alignLeft">Read from the supported applications &#39;Product&#39; attribute.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">ProgramTitle</td>
+                    <td class="alignLeft">Read from the supported applications &#39;Title&#39; attribute.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">ProgramDescription</td>
+                    <td class="alignLeft">Read from the supported applications &#39;Description&#39; attribute.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">ProgramVersion</td>
+                    <td class="alignLeft">Read from the supported applications &#39;Version&quot; attribute.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Remote System</h3>
+        <p>
+            Remote system configuration, also refered to as "package info", is located 
+            on a web server that is publically accessable and contains information that 
+            relates to the most recent updates to the application that is supported by 
+            GUPdotNET. The package configuration is a static xml file that is pulled from 
+            the web site and used to determine if a newer version of the supported 
+            application is available. The package file is intended to contain update 
+            information for multiple operating systems and install methods.
+        </p>
+        <table>
+            <colgroup>
+                <col class="nameColumn" />
+                <col class="requiredColumn" />
+                <col class="miscColumn" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3"><span class="title">Package Configuration</span></th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Required</th>
+                    <th class="descColumnHeader">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="alignLeft">FileVersion</td>
+                    <td class="alignCenter">Yes</td>
+                    <td class="alignLeft">Used to track the format of the package configuration in the case that data 
+                    items are added in the future so that GUPdotNET will know how to parse the data.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">OS</td>
+                    <td class="alignCenter">Yes</td>
+                    <td class="alignLeft">Used to lookup update information that pertains to the application checking for 
+                    updates.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">InstallerType</td>
+                    <td class="alignCenter">Yes</td>
+                    <td class="alignLeft">Used to identify update information that pertains to the application checking 
+                    for updates. The type of install method used to install the currently installed 
+                    application being supported by GUPdotNET. Formats intended to be supported (not 
+                    all formats may be supported in the first version of GUPdotNET): msi, exe, zip, 
+                    bin, rpm, deb, src. </td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">ReleaseNotes</td>
+                    <td class="alignCenter">No</td>
+                    <td class="alignLeft">An web address where the release notes are located.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Installer</td>
+                    <td class="alignCenter">No</td>
+                    <td class="alignLeft">The web address to the installer that relates to the specificed OS and installer 
+                    type, if not supplied GUPdotNET will point the end user to the project's 
+                    download page instead.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Checksum</td>
+                    <td class="alignCenter">No</td>
+                    <td class="alignLeft">The MD5 checksum for validating the installer once it is downloaded to makes 
+                    sure it is correct.</td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Downloads</td>
+                    <td class="alignCenter">No</td>
+                    <td class="alignLeft">The web address to the supported applications project downloads page, used only 
+                    when the installer is URL is not supplied.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Platform Support</h2>
+        <h3>Windows</h3>
+        <ul>
+            <li>Windows xp, Vista and Windows 7<ul>
+                <li>Installer Type: exe/msi</li>
+            </ul>
+            </li>
+        </ul>
+        <h3>Linux</h3>
+        <ul>
+            <li>OpenSuse 11 and greater<ul>
+                <li>Installer Type: rpm</li>
+            </ul>
+            </li>
+            <li>Ubuntu 12 and greater<ul>
+                <li>Installer Type: deb</li>
+            </ul>
+            </li>
+            <li>Other<ul>
+                <li>Installer Type:
+                   
+                    <ul>
+                        <li>cross platform BitRock installer (<a href="http://www.bitrock.com/" target="_blank">bitrock.com</a>)</li>
+                        <li>source build</li>
+                    </ul>
+                </li>
+            </ul>
+            </li>
+        </ul>
+        <h3>Mac</h3>
+        <ul>
+            <li>Sorry not suppored at this time.</li>
+            <li>Because I don't have a Mac if someone wanted to work on GUPdotNET to suppor Macs 
+                I would be open to the subject.</li>
+        </ul>
+        <h2>References</h2>
+        <ul>
+            <li>GoonTools: <a href="http://code.google.com/p/goontools/" target="_blank">http://code.google.com/p/goontools/</a></li>
+            <li>Mono-Project: <a href="http://www.mono-project.com/" target="_blank">http://www.mono-project.com</a></li>
+            <li>BitRock Installer: <a href="http://www.bitrock.com/" target="_blank">bitrock.com</a></li>
+        </ul>
+        <h2>Definitions</h2>
+        <ul>
+            <li>GUPdotNET Configuration: Configuration that pertains to the running of GUPdotNET 
+                that does not affect the application that GUPdotNET is supporting.</li>
+            <li>Program Info: Configuration information that relates to the currently installed 
+                application that is being supported by GUPdotNET.</li>
+            <li>Package Info: Configuration information that relates to available updates that 
+                are checked when determining if a new update is available.</li>
+            <li>Path Definitions:<ul>
+                <li>User Data: Data that relates to the individual that is currently logged into a 
+                    computer.<ul>
+                    <li>Debug Mode On: [path to GUPdotNET.exe]/DebugData</li>
+                    <li>Debug Mode Off: [path to system user data directory]/GUPdotNET\[name of 
+                            supported application]/</li>
+                </ul>
+                </li>
+                <li>Application Data: Data that is stored application directory with GUPdotNET and 
+                    used to support its operation.</li>
+            </ul>
+            </li>
+        </ul>
+        <h2>Known Issues</h2>
+        <p>
+            None at this time but as will all programs written by one person there will be.
+        </p>
+        <h2>Version Information</h2>
+        <ul>
+            <li>Developer Guide Version: 1.0</li>
+            <li>Supporting GUPdotNET Version: 1.0</li>
+        </ul>
     </div>
-  </body>
+</body>
 </html>

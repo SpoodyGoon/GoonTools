@@ -40,7 +40,7 @@ namespace GUPdotNET.Data
         /// <summary>
         /// A string for formatting the file name of the application settings file.
         /// </summary>
-        private const string FILENAME_FORMAT = "{0}.UpdateSettings.config";
+        private const string FILENAME_FORMAT = "UpdateSettings.config";
 
         /// <summary>
         /// Full path to the xml file that contains the application settings.
@@ -52,7 +52,7 @@ namespace GUPdotNET.Data
         /// </summary>
         internal AppSettings()
         {
-            this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, string.Format(FILENAME_FORMAT, GlobalTools.UpdateProgramName));
+            this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, FILENAME_FORMAT);
             this.AutoUpdate = true;
             this.LastUpdateCheck = DateTime.Now.AddDays(-1);
             this.UpdateSchedule = new TimeSpan(1, 0, 0, 0);
