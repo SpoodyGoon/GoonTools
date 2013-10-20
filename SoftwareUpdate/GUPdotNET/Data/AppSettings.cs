@@ -35,12 +35,12 @@ namespace GUPdotNET.Data
         /// <summary>
         /// A string for formatting the comment stored in the application settings file.
         /// </summary>
-        private const string COMMENT_FORMAT = "GUPdotNET update setting for supporting {0}";
+        private const string CommentFormat = "GUPdotNET update setting for supporting {0}";
 
         /// <summary>
         /// A string for formatting the file name of the application settings file.
         /// </summary>
-        private const string FILENAME_FORMAT = "UpdateSettings.config";
+        private const string FileNameFormat = "UpdateSettings.config";
 
         /// <summary>
         /// Full path to the xml file that contains the application settings.
@@ -52,7 +52,7 @@ namespace GUPdotNET.Data
         /// </summary>
         internal AppSettings()
         {
-            this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, FILENAME_FORMAT);
+            this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, FileNameFormat);
             this.AutoUpdate = true;
             this.LastUpdateCheck = DateTime.Now.AddDays(-1);
             this.UpdateSchedule = new TimeSpan(1, 0, 0, 0);
@@ -120,7 +120,7 @@ namespace GUPdotNET.Data
         /// </summary>
         internal void Save()
         {
-            XDocument settingsDocument = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XComment(string.Format(COMMENT_FORMAT, GlobalTools.UpdateProgramName)), new XElement("GUPdotNET", new XElement("UpdateSettings", new XAttribute("ProgramName", GlobalTools.UpdateProgramName), new XAttribute("SettingsVersion", "1.0"), new XElement("AutoUpdate", this.AutoUpdate.ToString()), new XElement("LastUpdateCheck", this.LastUpdateCheck.ToString()), new XElement("UpdateSchedule", this.UpdateSchedule.Days.ToString()))));
+            XDocument settingsDocument = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XComment(string.Format(CommentFormat, GlobalTools.UpdateProgramName)), new XElement("GUPdotNET", new XElement("UpdateSettings", new XAttribute("ProgramName", GlobalTools.UpdateProgramName), new XAttribute("SettingsVersion", "1.0"), new XElement("AutoUpdate", this.AutoUpdate.ToString()), new XElement("LastUpdateCheck", this.LastUpdateCheck.ToString()), new XElement("UpdateSchedule", this.UpdateSchedule.Days.ToString()))));
             settingsDocument.Save(this.filePath);
         }
     }
