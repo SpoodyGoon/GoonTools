@@ -2,8 +2,10 @@
   <GlobalSettings>
     <CollectionProperty Name="RecognizedWords">
       <Value>combobox</Value>
+      <Value>Debian</Value>
       <Value>gtk</Value>
       <Value>GUPdotNET</Value>
+      <Value>Pdot</Value>
     </CollectionProperty>
     <BooleanProperty Name="AutoCheckForUpdate">True</BooleanProperty>
     <IntegerProperty Name="DaysToCheckForUpdates">1</IntegerProperty>

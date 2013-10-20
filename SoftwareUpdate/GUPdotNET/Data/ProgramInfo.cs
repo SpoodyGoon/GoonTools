@@ -55,7 +55,7 @@ using Gtk;
         /// <summary>
         /// Gets the current version of the program GUPdotNET is supporting,
         /// gotten from the settings file if present, otherwise gotten from the 
-        /// calling assebly.
+        /// calling assembly.
         /// </summary>
         internal System.Version ProgramVersion { get; private set; }
 

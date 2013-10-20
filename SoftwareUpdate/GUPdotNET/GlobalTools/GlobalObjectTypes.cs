@@ -28,8 +28,19 @@ namespace GUPdotNET
     /// </summary>
     public enum RunType
     {
+        /// <summary>
+        /// Used when the application is started from a user action.
+        /// </summary>
         ManualCheck,
+
+        /// <summary>
+        /// Used when checking for updates automatically.
+        /// </summary>
         BackgroundCheck,
+
+        /// <summary>
+        /// Used when requesting GUPdotNET options window.
+        /// </summary>
         Options
     }
 
@@ -38,8 +49,19 @@ namespace GUPdotNET
     /// </summary>
     public enum ProcessorBit
     {
+        /// <summary>
+        /// Used when processor bit type is not specified.
+        /// </summary>
         Any,
+
+        /// <summary>
+        /// Used when the processor is 32 bit.
+        /// </summary>
         x32,
+
+        /// <summary>
+        /// Used when the processor is 64 bit.
+        /// </summary>
         x64
     }
 
@@ -48,12 +70,39 @@ namespace GUPdotNET
     /// </summary>
     public enum InstallMethod
     {
+        /// <summary>
+        /// Windows installer package.
+        /// </summary>
         msi,
+
+        /// <summary>
+        /// Windows installer or setup program.
+        /// </summary>
         exe,
+
+        /// <summary>
+        /// Used when the program is stored in a compressed file.
+        /// </summary>
         zip,
+
+        /// <summary>
+        /// Linux binary installer not distribution specific.
+        /// </summary>
         bin,
+
+        /// <summary>
+        /// Linux Red Hat Package Manager binary installer.
+        /// </summary>
         rpm,
+
+        /// <summary>
+        /// Debian package manager binary installer.
+        /// </summary>
         deb,
+
+        /// <summary>
+        /// Installed by building the source code.
+        /// </summary>
         src
     }
 }
