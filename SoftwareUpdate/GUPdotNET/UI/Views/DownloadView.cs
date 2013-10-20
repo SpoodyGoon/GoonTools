@@ -10,8 +10,6 @@ namespace GUPdotNET.UI.Views
 
     internal partial class DownloadView : Gtk.Dialog
     {
-        internal DownloadStatus CurrentStatus{ get; private set; }
-
         private WebClient webClient = new WebClient();
 
         internal DownloadView()
@@ -30,7 +28,6 @@ namespace GUPdotNET.UI.Views
                 // with the response be "Yes" which will keep the
                 // update logic flow going.
                 this.DefaultResponse = ResponseType.No;
-                this.CurrentStatus = DownloadStatus.None;
                 this.ActionArea.Hide();
                 this.Close += delegate(object sender, EventArgs e)
                 {

@@ -134,7 +134,7 @@ namespace GUPdotNET
             {
                 using (var stream = File.OpenRead(filePath))
                 {
-                    return md5.ComputeHash(stream);
+                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty).ToLower();
                 }
             }
         }

@@ -49,7 +49,7 @@ namespace GUPdotNET
         /// <summary>
         /// The message displayed in the dialog window when a checksum has failed validation.
         /// </summary>
-        private const string ChecksumInvalidMessage = "The installer file failed validation, it is recomended that you do not continue to this install.\nDo you want to ignore this warning and install {0} anyways?";
+        private const string ChecksumInvalidMessage = "The installer file failed validation, it is recomended that you do not continue to this install.\nDo you want to ignore this warning and install <b>{0}</b> anyways?";
 
         /// <summary>
         /// The title for the dialog window when a checksum has failed validation.
@@ -177,7 +177,7 @@ namespace GUPdotNET
                 if (!fileChecksum.Equals(GlobalTools.PackageInfo.InstallerChecksum))
                 {
                     checksumValid = false;
-                    MessageDialog checksumDialog = new MessageDialog(this.RootWindow, DialogFlags.Modal, MessageType.Warning, ButtonsType.YesNo, string.Format(ChecksumInvalidMessage, GlobalTools.ProgramInfo.ProgramTitle), ChecksumInvalidTitle);
+                    MessageDialog checksumDialog = new MessageDialog(null, DialogFlags.Modal, MessageType.Warning, ButtonsType.YesNo, true, string.Format(ChecksumInvalidMessage, GlobalTools.ProgramInfo.ProgramTitle), ChecksumInvalidTitle);
                     checksumDialog.DefaultResponse = ResponseType.No;
                     if (checksumDialog.Run() == (int)Gtk.ResponseType.Yes)
                     {

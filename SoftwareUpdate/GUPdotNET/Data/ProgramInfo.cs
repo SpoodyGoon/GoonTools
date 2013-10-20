@@ -1,4 +1,23 @@
-
+//
+//  ProgramInfo.cs
+//
+//  Author:
+//       Andy York <goontools@brdstudio.net>
+//
+//  Copyright (c) 2013 Andy York
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace GUPdotNET.Data
 {
@@ -19,22 +38,22 @@ using Gtk;
     internal class ProgramInfo
     {
         /// <summary>
-        /// This is the actual name of the program <example>MyProgram.exe</example>.
+        /// Gets the actual name of the program <example>MyProgram.exe</example>.
         /// </summary>
         internal string ProgramName { get; private set; }
 
         /// <summary>
-        ///  The freindly name of the application
+        ///  Gets the friendly name of the application.
         /// </summary>
         internal string ProgramTitle { get; private set; }
 
         /// <summary>
-        /// Gets or sets the program description.
+        /// Gets the program description.
         /// </summary>
         internal string ProgramDescription { get; private set; }
 
         /// <summary>
-        /// The current version of the program GUPdotNET is supporting,
+        /// Gets the current version of the program GUPdotNET is supporting,
         /// gotten from the settings file if present, otherwise gotten from the 
         /// calling assebly.
         /// </summary>
@@ -53,24 +72,30 @@ using Gtk;
         }
 
         /// <summary>
-        /// This is the Operating System info gotten from
-        /// the settings file if it is available, otherwise gotten from
-        /// System.Enviroment methods.
+        /// Gets the Operating System info gotten from
+        /// the settings file if it is available.
         /// </summary>
         internal string OS { get; private set; }
 
         /// <summary>
-        /// The type of installer that is being supported by GUPdotNET.
+        /// Gets the type of installer that is being supported by GUPdotNET.
         /// </summary>
         internal InstallMethod InstallType { get; private set; }
 
+        /// <summary>
+        /// Gets the type of the processor whether the installer is for 64 bit, 32 bit or 'Any'.
+        /// </summary>
+        /// <value>The type of the processor.</value>
         internal ProcessorBit ProcessorType { get; private set; }
 
         /// <summary>
-        ///  The URL for the config file containing the update information.
+        ///  Gets the URL for the config file containing the update information.
         /// </summary>
         internal string UpdatePackageURL { get; private set; }
 
+        /// <summary>
+        /// A method for loading program information into the data object.
+        /// </summary>
         internal void Load()
         {
             Assembly updateAssembly = Assembly.LoadFrom(this.ProgramFullPath);
