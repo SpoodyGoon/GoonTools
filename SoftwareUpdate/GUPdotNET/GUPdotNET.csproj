@@ -107,11 +107,9 @@
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.InstallView.cs" />
     <Compile Include="GlobalTools\GlobalTools.cs" />
     <Compile Include="UpdateCheck.cs" />
-    <Compile Include="GlobalTools\CheckSumUtility.cs" />
     <Compile Include="GlobalTools\GlobalObjectTypes.cs" />
     <Compile Include="UI\Views\MainView.cs" />
     <Compile Include="gtk-gui\GUPdotNET.UI.Views.MainView.cs" />
-    <Compile Include="MonoTools\Licenses.cs" />
     <Compile Include="MonoTools\MiscTools.cs" />
     <Compile Include="IO\LocalSystemTools.cs" />
     <Compile Include="UI\Views\ConfirmView.cs" />
@@ -120,6 +118,7 @@
     <Compile Include="Data\ProgramInfo.cs" />
     <Compile Include="Data\PackageInfo.cs" />
     <Compile Include="MonoTools\UI\LabelButton.cs" />
+    <Compile Include="UI\ComboBox\UpdateSchedualItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

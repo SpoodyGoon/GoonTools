@@ -24,6 +24,7 @@ namespace GUPdotNET
     using System;
     using System.Configuration;
     using System.IO;
+    using System.Security.Cryptography;
     using GUPdotNET.Data;
     using GUPdotNET.IO;
 
@@ -72,7 +73,7 @@ namespace GUPdotNET
         /// </summary>
         internal static void Initalize()
         {
-            UpdateProgramName = Properties.Settings.Default.UpdateFileName.Replace(Path.GetExtension(Properties.Settings.Default.UpdateFileName), "");
+            UpdateProgramName = Properties.Settings.Default.UpdateFileName.Replace(Path.GetExtension(Properties.Settings.Default.UpdateFileName), string.Empty);
             LocalSystem = new LocalSystemTools();
             LocalSystem.Initalize();
             Options = new AppSettings();
@@ -120,6 +121,22 @@ namespace GUPdotNET
         internal static string ToLocalFile(Uri remoteURL)
         {
             return Path.Combine(GlobalTools.LocalSystem.TempPackagePath, Path.GetFileName(remoteURL.LocalPath));
+        }
+
+        /// <summary>
+        /// Creates a checksum for validating a downloaded installer.
+        /// </summary>
+        /// <param name="filePath">The full file path to the file to have its checksum generated.</param>
+        /// <returns>The checksum for the provided file.</returns>
+        internal static string FileChecksumGet(string filePath)
+        {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(filePath))
+                {
+                    return md5.ComputeHash(stream);
+                }
+            }
         }
     }
 }
