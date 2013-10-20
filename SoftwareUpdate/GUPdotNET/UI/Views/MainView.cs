@@ -63,10 +63,11 @@ namespace GUPdotNET.UI.Views
                 this.checkUpdateButton.Label = "Checking...";
                 this.checkUpdateButton.Sensitive = false;
                 this.checkUpdateButton.QueueDraw();
-                if(updateCheck.RunUpdateCheck(true))
+                if (updateCheck.RunUpdateCheck(true))
                 {
                     this.ApplicationQuit();
                 }
+
                 this.checkUpdateButton.Label = "Check Now";
                 this.checkUpdateButton.Sensitive = true;
                 this.checkUpdateButton.QueueDraw();
@@ -98,60 +99,6 @@ namespace GUPdotNET.UI.Views
         }
 
         /// <summary>
-        /// Consolidated method for when the application exists when not in silent/background mode.
-        /// </summary>
-        private void ApplicationQuit()
-        {
-            try
-            {
-                GlobalTools.Options.Save();
-            }
-            catch (Exception ex)
-            {
-                GlobalTools.HandleError(this, ex);
-            }
-            Application.Quit();
-        }
-
-        /// <summary>
-        /// Event fired when the close button is pushed on the window,
-        /// or is closed from the OS interface.
-        /// Saves the setting/preferences prior to exit.
-        /// </summary>
-        /// <param name="sender">Object firing the event, parameter is not used.</param>
-        /// <param name="args">This parameter is not used.</param>
-        private void MainView_DeleteEvent(object sender, DeleteEventArgs args)
-        {
-            this.ApplicationQuit();
-        }
-
-        /// <summary>
-        /// Sets up all widgets, properties, events, etc. that are not set up
-        /// by the designer in the Build method.
-        /// Can be used for some "pre-render" tasks.
-        /// </summary>
-        private void Initalize()
-        {
-            try
-            {
-                LabelButton aboutLabelButton = new LabelButton("About GUPdotNET...");
-                aboutLabelButton.Clicked += this.OnAboutLabelButtonClicked;
-                aboutGUPdotNETAlignment.Add(aboutLabelButton);
-                aboutGUPdotNETAlignment.ShowAll();
-                this.DeleteEvent += new DeleteEventHandler(this.MainView_DeleteEvent);
-                this.updateCheckAlignment.Add(this.updateCheckCombobox);
-                this.updateCheckCombobox.WidthRequest = 125;
-                this.updateCheckAlignment.ShowAll();
-                this.QueueResize();
-                this.QueueDraw();
-            }
-            catch (Exception ex)
-            {
-                GlobalTools.HandleError(this, ex);
-            }
-        }
-
-        /// <summary>
         /// Event fired when the about GUPdotNET link button is clicked.
         /// </summary>
         /// <param name="sender">The parameter is not used.</param>
@@ -159,7 +106,7 @@ namespace GUPdotNET.UI.Views
         {
             // hook delegat to handle default button events in the gtk.about dialog window
             Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link)
-            {
+                                       {
                 ProcessTools.LaunchURL(link);
             });
 
@@ -190,6 +137,61 @@ namespace GUPdotNET.UI.Views
                 aboutDialog.WindowPosition = WindowPosition.CenterAlways;
                 aboutDialog.Run();
                 aboutDialog.Destroy();
+            }
+            catch (Exception ex)
+            {
+                GlobalTools.HandleError(this, ex);
+            }
+        }
+
+        /// <summary>
+        /// Consolidated method for when the application exists when not in silent/background mode.
+        /// </summary>
+        private void ApplicationQuit()
+        {
+            try
+            {
+                GlobalTools.Options.Save();
+            }
+            catch (Exception ex)
+            {
+                GlobalTools.HandleError(this, ex);
+            }
+
+            Application.Quit();
+        }
+
+        /// <summary>
+        /// Event fired when the close button is pushed on the window,
+        /// or is closed from the OS interface.
+        /// Saves the setting/preferences prior to exit.
+        /// </summary>
+        /// <param name="sender">Object firing the event, parameter is not used.</param>
+        /// <param name="args">The parameter is not used.</param>
+        private void MainView_DeleteEvent(object sender, DeleteEventArgs args)
+        {
+            this.ApplicationQuit();
+        }
+
+        /// <summary>
+        /// Sets up all widgets, properties, events, etc. that are not set up
+        /// by the designer in the Build method.
+        /// Can be used for some "pre-render" tasks.
+        /// </summary>
+        private void Initalize()
+        {
+            try
+            {
+                LabelButton aboutLabelButton = new LabelButton("About GUPdotNET...");
+                aboutLabelButton.Clicked += this.OnAboutLabelButtonClicked;
+                this.aboutGUPdotNETAlignment.Add(aboutLabelButton);
+                this.aboutGUPdotNETAlignment.ShowAll();
+                this.DeleteEvent += new DeleteEventHandler(this.MainView_DeleteEvent);
+                this.updateCheckAlignment.Add(this.updateCheckCombobox);
+                this.updateCheckCombobox.WidthRequest = 125;
+                this.updateCheckAlignment.ShowAll();
+                this.QueueResize();
+                this.QueueDraw();
             }
             catch (Exception ex)
             {

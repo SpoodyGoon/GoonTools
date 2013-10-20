@@ -1,4 +1,23 @@
-
+//
+//  DownloadView.cs
+//
+//  Author:
+//       Andy York <goontools@brdstudio.net>
+//
+//  Copyright (c) 2013 Andy York
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace GUPdotNET.UI.Views
 {
@@ -8,10 +27,19 @@ namespace GUPdotNET.UI.Views
     using Gtk;
     using io = System.IO;
 
+    /// <summary>
+    /// A dialog for handling downloading installer files for running them locally.
+    /// </summary>
     internal partial class DownloadView : Gtk.Dialog
     {
+        /// <summary>
+        /// The standard object for downloading files from a remote web site.
+        /// </summary>
         private WebClient webClient = new WebClient();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GUPdotNET.UI.Views.DownloadView"/> class.
+        /// </summary>
         internal DownloadView()
         {
             this.Build();
@@ -19,6 +47,31 @@ namespace GUPdotNET.UI.Views
             this.DownloadFile();
         }
 
+        /// <summary>
+        /// Raises the cancel button clicked event that stops the download.
+        /// </summary>
+        /// <param name="sender">The parameter is not used.</param>
+        /// <param name="e">The parameter is not used.</param>
+        protected void OnCancelButtonClicked(object sender, EventArgs e)
+        {
+            this.webClient.CancelAsync();
+        }
+
+        /// <summary>
+        /// Raises the hide window button clicked event that minimalizes
+        /// the window to the icon tray effectively hiding the window from view.
+        /// </summary>
+        /// <param name="sender">The parameter is not used.</param>
+        /// <param name="e">The parameter is not used.</param>
+        protected void OnHideWindowButtonClicked(object sender, EventArgs e)
+        {
+            this.Iconify();
+        }
+
+        /// <summary>
+        /// The primary method for loading defaults, adding custom objects to the window,
+        /// and basic setup of the widgets.
+        /// </summary>
         private void Initalize()
         {
             try
@@ -46,16 +99,11 @@ namespace GUPdotNET.UI.Views
             }
         }
 
-        protected void OnCancelButtonClicked(object sender, EventArgs e)
-        {
-            this.webClient.CancelAsync();
-        }
-
-        protected void OnHideWindowButtonClicked(object sender, EventArgs e)
-        {
-            this.Iconify();
-        }
-
+        /// <summary>
+        /// Event fired by the web client when the progress of a download has changed.
+        /// </summary>
+        /// <param name="sender">The parameter is not used.</param>
+        /// <param name="downloadProgressArgs">Arguments containing details on the progress of the download.</param>
         private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs downloadProgressArgs)
         {
             try
@@ -70,6 +118,9 @@ namespace GUPdotNET.UI.Views
             }
         }
 
+        /// <summary>
+        /// Method that sets up and start the downloading of the installer file.
+        /// </summary>
         private void DownloadFile()
         {
             try
@@ -80,8 +131,8 @@ namespace GUPdotNET.UI.Views
                 }
 
                 Uri installerUri = new Uri(GlobalTools.PackageInfo.InstallerURL);
-                this.webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(WebClient_DownloadProgressChanged);
-                this.webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(WebClient_DownloadFileCompleted);
+                this.webClient.DownloadProgressChanged += this.WebClient_DownloadProgressChanged;
+                this.webClient.DownloadFileCompleted += this.WebClient_DownloadFileCompleted;
                 this.webClient.DownloadFileAsync(installerUri, GlobalTools.ToLocalFile(installerUri));
             }
             catch (Exception ex)
@@ -90,6 +141,11 @@ namespace GUPdotNET.UI.Views
             }
         }
 
+        /// <summary>
+        /// The event that is fired when the download has completed the requested action.
+        /// </summary>
+        /// <param name="sender">The parameter is not used.</param>
+        /// <param name="asyncCompletedArgs">Details relating to how and why the download has completed.</param>
         private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs asyncCompletedArgs)
         {
             if (asyncCompletedArgs.Cancelled)
@@ -98,26 +154,25 @@ namespace GUPdotNET.UI.Views
                 this.downloadingProgressbar.QueueDraw();
                 MessageDialog errorMessage = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, "Download Canceled", "Download Canceled");
                 errorMessage.Run();
-                errorMessage.Destroy();				
+                errorMessage.Destroy();
                 this.Respond(ResponseType.No);
             }
             else if (asyncCompletedArgs.Error != null)
-                {
-                    this.downloadingProgressbar.Text = "Download Error";
-                    this.downloadingProgressbar.QueueDraw();
-                    GlobalTools.HandleError(this, asyncCompletedArgs.Error);		
-                    this.Respond(ResponseType.No);
-                }
-                else
-                {
-                    this.downloadingProgressbar.Fraction = 1.0d;
-                    this.downloadingProgressbar.Text = "Download Finished";
-                    this.downloadingProgressbar.QueueDraw();
-                    System.Threading.Thread.Sleep(1000);
-                    webClient.Dispose();
-                    this.Respond(ResponseType.Yes);
-                }
+            {
+                this.downloadingProgressbar.Text = "Download Error";
+                this.downloadingProgressbar.QueueDraw();
+                GlobalTools.HandleError(this, asyncCompletedArgs.Error);
+                this.Respond(ResponseType.No);
+            }
+            else
+            {
+                this.downloadingProgressbar.Fraction = 1.0d;
+                this.downloadingProgressbar.Text = "Download Finished";
+                this.downloadingProgressbar.QueueDraw();
+                System.Threading.Thread.Sleep(1000);
+                this.webClient.Dispose();
+                this.Respond(ResponseType.Yes);
+            }
         }
     }
 }
-

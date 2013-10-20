@@ -72,7 +72,7 @@ namespace GUPdotNET.Data
         internal bool AutoUpdate { get; set; }
 
         /// <summary>
-        /// Gets or sets the lastdate/time that GUPdotNET checked for an update.
+        /// Gets or sets the last date and time that GUPdotNET checked for an update.
         /// </summary>
         internal DateTime LastUpdateCheck { get; set; }
 

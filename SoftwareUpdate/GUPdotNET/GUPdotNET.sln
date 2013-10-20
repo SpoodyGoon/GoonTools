@@ -191,7 +191,6 @@ Global
 		$31.EventRemoveBraceStyle = NextLine
 		$31.StatementBraceStyle = NextLine
 		$31.ElseNewLinePlacement = NewLine
-		$31.ElseIfNewLinePlacement = SameLine
 		$31.CatchNewLinePlacement = NewLine
 		$31.FinallyNewLinePlacement = NewLine
 		$31.WhileNewLinePlacement = NewLine
