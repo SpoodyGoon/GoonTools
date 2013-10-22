@@ -1,5 +1,5 @@
 // // --------------------------------------------------------------------------------------------------------------------
-// // <copyright file="UpdateSchedualItem.cs" company="Andy York">
+// // <copyright file="ProcessTools.cs" company="Andy York">
 // //
 // // Copyright (c) 2013 Andy York
 // //
@@ -22,32 +22,39 @@
 // // </summary>
 // // --------------------------------------------------------------------------------------------------------------------
 
-namespace GUPdotNET.UI.ComboBox
+namespace GUPdotNET
 {
+    using System;
+    using System.Diagnostics;
+    using System.Threading;
+
     /// <summary>
-    /// The data object that is stored in the list store, provides for access to fields in the object.
+    /// A helper class for working with process, diagnostics and threading.
     /// </summary>
-    internal class UpdateSchedualItem
+    public static class ProcessTools
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GUPdotNET.UI.ComboBox.UpdateSchedualItem"/> class.
+        /// The URL to the web site to be launched.
         /// </summary>
-        /// <param name="value">The value that relates to the text that is being selected.</param>
-        /// <param name="text">The text that is being displayed in the combobox for the end user to select.</param>
-        internal UpdateSchedualItem(int value, string text)
+        private static string launchURL = string.Empty;
+
+        /// <summary>
+        /// A method to launch the specified web site in the default browser.
+        /// </summary>
+        /// <param name="url">URL to the web site to be launched.</param>
+        public static void LaunchURL(string url)
         {
-            this.DisplayValue = value;
-            this.DisplayText = text;
+            launchURL = url;
+            Thread processThread = new Thread(new ThreadStart(StartURL));
+            processThread.Start();
         }
 
         /// <summary>
-        /// Gets or sets the display value which relates to the text that is being selected.
+        /// Method to start the supplied URL in the default browser.
         /// </summary>
-        internal int DisplayValue { get; set; }
-
-        /// <summary>
-        /// Gets or sets the display text which is being displayed in the combobox for the end user to select.
-        /// </summary>
-        internal string DisplayText { get; set; }
+        private static void StartURL()
+        {
+            Process.Start(launchURL);
+        }
     }
 }
