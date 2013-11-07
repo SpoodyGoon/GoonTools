@@ -26,9 +26,7 @@ namespace GUPdotNET
 {
     using System;
     using System.Diagnostics;
-    using System.IO;
     using Gtk;
-    using GUPdotNET;
     using GUPdotNET.Data;
     using GUPdotNET.UI.Views;
 

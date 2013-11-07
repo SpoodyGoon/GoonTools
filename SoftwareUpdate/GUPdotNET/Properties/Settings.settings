@@ -26,5 +26,8 @@
     <Setting Name="UpdateLog" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SettingsFileVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1.0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
