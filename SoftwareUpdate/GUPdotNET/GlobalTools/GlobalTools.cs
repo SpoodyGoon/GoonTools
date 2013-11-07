@@ -25,7 +25,6 @@
 namespace GUPdotNET
 {
     using System;
-    using System.Configuration;
     using System.IO;
     using System.Security.Cryptography;
     using GUPdotNET.Data;
@@ -80,6 +79,23 @@ namespace GUPdotNET
             LocalSystem = new LocalSystemTools();
             LocalSystem.Initalize();
             Options = new AppSettings();
+            Options.FileVersionChanged += delegate(System.Version fileVersion)
+            {
+                if (fileVersion == null)
+                {
+                    Options.SetDefaults();
+                    Options.Save();
+                }
+                else
+                {
+                    /*
+                        If the file version is different there may be other events that need to occur, 
+                        for version 1.0 it will be the same as if the file was new.
+                    */
+                    Options.SetDefaults();
+                    Options.Save();
+                }
+            };
             Options.Load();
         }
 
