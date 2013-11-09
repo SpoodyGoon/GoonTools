@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<GUPdotNET>
-	<PackageConfig FileVersion="1.0">
+<GUPdotNET FileVersion="1.0">
+	<PackageConfig>
 		<Package OS="Windows" InstallerType="exe" Version="2.0">
 			<ReleaseNotes>http://brdstudio.net/gupdotnet/ReleaseNotes.html</ReleaseNotes>
 			<Installer Checksum="">http://brdstudio.net/yahtzeesharp/files/YahtzeeSharp-1.0-Setup.exe</Installer>

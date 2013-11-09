@@ -38,22 +38,22 @@ namespace GUPdotNET.Data
         /// <summary>
         /// A string for formatting the comment stored in the application settings file.
         /// </summary>
-        private const string CommentFormat = "GUPdotNET update setting for supporting {0}";
+        private const string CommentFormat = "GUPdotNET update setting to support {0}";
 
         /// <summary>
         /// A string for formatting the file name of the application settings file.
         /// </summary>
-        private const string FileNameFormat = "{0}.UpdateSettings.config";
+        private const string SettingsFileName = "UpdateSettings.config";
 
         /// <summary>
         /// Format for the message to be shown when parsing the settings file fails.
         /// </summary>
-        private const string FileLoadErrorMessage = "Unable to load GUPdotNET setting for program {0}";
+        private const string FileLoadErrorMessage = "Unable to load GUPdotNET setting for program: '{0}'";
 
         /// <summary>
         /// Error message to be displayed when the file path is null or empty.
         /// </summary>
-        private const string FilePathEmptyMessage = "File path cannot be empty, missing file path. Unable to {0} user settings file.";
+        private const string FilePathEmptyMessage = "The update settings file path is missing. Unable to load the update user settings file for {0}.";
 
         /// <summary>
         /// Full path to the xml file that contains the application settings.
@@ -65,7 +65,7 @@ namespace GUPdotNET.Data
         /// </summary>
         internal AppSettings()
         {
-            this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, string.Format(FileNameFormat, GlobalTools.UpdateProgramName));
+            this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, SettingsFileName);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace GUPdotNET.Data
         /// there is a difference in the file versions 
         /// between the options file loaded and the one expected by the application.
         /// </summary>
-        public event System.Action<System.Version> FileVersionChanged;
+        internal event System.Action<System.Version> FileVersionChanged;
 
         /// <summary>
         /// Gets or sets the version of the application setting file format,
@@ -126,10 +126,6 @@ namespace GUPdotNET.Data
                     this.LastUpdateCheck = Convert.ToDateTime(settingsInfo.LastUpdateCheck);
                     this.UpdateSchedule = new TimeSpan(Convert.ToInt32(settingsInfo.UpdateSchedule), 0, 0, 0);
                 }
-                else
-                {
-                    this.Save();
-                }
             }
             catch (Exception error)
             {
@@ -146,7 +142,7 @@ namespace GUPdotNET.Data
             {
                 if (string.IsNullOrEmpty(this.filePath))
                 {
-                    throw new FileNotFoundException(string.Format(FilePathEmptyMessage, "save"));
+                    throw new Exception(string.Format(FilePathEmptyMessage, "save"));
                 }
 
                 XDocument settingsDocument = new XDocument(
@@ -195,7 +191,7 @@ namespace GUPdotNET.Data
             {
                 if (string.IsNullOrEmpty(this.filePath))
                 {
-                    throw new FileNotFoundException(string.Format(FilePathEmptyMessage, "load"));
+                    throw new Exception(string.Format(FilePathEmptyMessage, "load"));
                 }
 
                 if (File.Exists(this.filePath))

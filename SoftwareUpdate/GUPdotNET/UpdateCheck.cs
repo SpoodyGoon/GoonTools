@@ -82,7 +82,7 @@ namespace GUPdotNET
         internal bool RunUpdateCheck(bool forceCheck)
         {
             bool exitAfterProcess = false;
-            if (forceCheck || DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck) > GlobalTools.Options.UpdateSchedule)
+            if (forceCheck || DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck).TotalMilliseconds > GlobalTools.Options.UpdateSchedule.TotalMilliseconds)
             {
                 GlobalTools.ProgramInfo = new ProgramInfo();
                 GlobalTools.ProgramInfo.Load();
@@ -149,6 +149,9 @@ namespace GUPdotNET
                     response = (Gtk.ResponseType)installView.Run();
                     installView.Destroy();
                     */
+
+                    // Clean up the temporary files
+                    GlobalTools.LocalSystem.CleanTempPaths();
                 }
             }
             else
