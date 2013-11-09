@@ -52,7 +52,7 @@ namespace GUPdotNET.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("exe")]
         public string InstallerType {
             get {
                 return ((string)(this["InstallerType"]));
@@ -80,18 +80,18 @@ namespace GUPdotNET.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ErrorLog {
+        public bool UseErrorLog {
             get {
-                return ((bool)(this["ErrorLog"]));
+                return ((bool)(this["UseErrorLog"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool UpdateLog {
+        public bool UseUpdateLog {
             get {
-                return ((bool)(this["UpdateLog"]));
+                return ((bool)(this["UseUpdateLog"]));
             }
         }
         
@@ -101,6 +101,15 @@ namespace GUPdotNET.Properties {
         public string SettingsFileVersion {
             get {
                 return ((string)(this["SettingsFileVersion"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UpdateProgramTitle {
+            get {
+                return ((string)(this["UpdateProgramTitle"]));
             }
         }
     }

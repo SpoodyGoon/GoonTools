@@ -75,7 +75,7 @@ namespace GUPdotNET
         /// </summary>
         internal static void Initalize()
         {
-            UpdateProgramName = Properties.Settings.Default.UpdateFileName.Replace(Path.GetExtension(Properties.Settings.Default.UpdateFileName), string.Empty);
+            UpdateProgramName = Properties.Settings.Default.UpdateProgramTitle;
             LocalSystem = new LocalSystemTools();
             LocalSystem.Initalize();
             Options = new AppSettings();
@@ -156,6 +156,17 @@ namespace GUPdotNET
                     return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty).ToLower();
                 }
             }
+        }
+
+        /// <summary>
+        /// Method to write debug messages, used during development
+        /// to test and debug the application.
+        /// </summary>
+        /// <param name="text">The text to be written out.</param>
+        internal static void WriteDebug(string text)
+        {
+            Console.WriteLine(text);
+            System.Diagnostics.Debug.WriteLine(text);
         }
     }
 }

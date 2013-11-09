@@ -129,15 +129,57 @@ namespace GUPdotNET.IO
         /// Creates a temporary file path for downloading files 
         /// to a local folder to work with.
         /// </summary>
-        private void BuildTempPath()
+        internal void BuildTempPath()
         {
-            this.tempPackagePath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            this.tempPackagePath = Path.Combine(Path.GetTempPath(), UserDataFolderName, Path.GetRandomFileName());
             if (Directory.Exists(this.tempPackagePath))
             {
                 throw new Exception("Unable to create temporary package working folder, folder already exist");
             }
 
             Directory.CreateDirectory(this.tempPackagePath);
+        }
+
+        /// <summary>
+        /// A method to clean up temporary files used during
+        /// the update process, however if it fails simply let the 
+        /// operating system take care of it when it gets around to it.
+        /// </summary>
+        internal void RemoveTempPath()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(this.tempPackagePath) && Directory.Exists(this.tempPackagePath))
+                {
+                    Directory.Delete(this.tempPackagePath, true);
+                }
+            }
+            catch (IOException error)
+            {
+                /*
+                    Because removing the temporary directory is not critical 
+                    to the operation of the application or it's parent application
+                    there is no need to alert the user of IO error when cleaning up.
+                    The operating system will most likely clean up the temporary files
+                    at a later time, notifying the user would take away from fun game play.
+                */
+                if (Properties.Settings.Default.DebugMode)
+                {
+                    GlobalTools.WriteDebug(error.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// A method to clean up all temporary file from the
+        /// current instance as well as previous instances.
+        /// </summary>
+        internal void CleanTempPaths()
+        {
+            foreach (var directory in Path.Combine(Path.GetTempPath(), UserDataFolderName))
+            {
+                this.RemoveTempPath();
+            }
         }
     }
 }
