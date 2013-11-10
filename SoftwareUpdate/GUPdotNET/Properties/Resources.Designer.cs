@@ -61,6 +61,21 @@ namespace GUPdotNET.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+        ///&lt;!-- saved from url=(0051)http://www.gnu.org/licenses/gpl-3.0-standalone.html --&gt;
+        ///&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+        /// 
+        /// &lt;title&gt;GNU General Public License v3.0 - GNU Project - Free Software Foundation (FSF)&lt;/title&gt;
+        /// &lt;link rel=&quot;alternate&quot; type=&quot;application/rdf+xml&quot; href=&quot;http://www.gnu.org/licenses/gpl-3.0.rdf&quot;&gt; 
+        ///&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;chrome-extension://pbkhlepfbkdbmiogammhjnibak [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string gpl_3_0_standalone {
+            get {
+                return ResourceManager.GetString("gpl_3_0_standalone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to                     GNU GENERAL PUBLIC LICENSE
         ///                       Version 3, 29 June 2007
         ///

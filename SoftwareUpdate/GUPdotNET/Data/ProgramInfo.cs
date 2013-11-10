@@ -103,7 +103,7 @@ namespace GUPdotNET.Data
             this.OS = GlobalTools.LocalSystem.OS;
             this.InstallType = (InstallMethod)Enum.Parse(typeof(InstallMethod), Properties.Settings.Default.InstallerType);
             this.ProcessorType = (ProcessorBit)Enum.Parse(typeof(ProcessorBit), Properties.Settings.Default.ProcessorType);
-            this.UpdatePackageURL = Properties.Settings.Default.UpdatePackageURL;
+            this.UpdatePackageURL = Properties.Settings.Default.UpdatePackageURI;
         }
     }
 }
