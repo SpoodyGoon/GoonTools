@@ -1,7 +1,5 @@
 #summary Developer guide for GUPdotNET a simple, stand alone, cross platform update application for Mono/Gtk#.
-
-
-
+<br/>
 = GUPdotNET Developer Guide =
 ----
 == Overview ==
