@@ -1,14 +1,13 @@
 #summary Developer guide for GUPdotNET a simple, stand alone, cross platform update application for Mono/Gtk#.
-<br/>
-= GUPdotNET Developer Guide =
+= <font size="6" color="#003366"><u><i>,,GUPdotNET Developer Guide,,</i></u></font> =
 ----
-== Overview ==
+== <font color="#003366">Overview</font> ==
 
 GUPdotNET has been designed to be a simple, stand alone update tool for Mono/Gtk# applications. It started out as an attempt to be a clone of the gup (general purpose updater) used by Notepad++ and grew from there. There may be features added in the future there will be a focus on keeping GUPdotNET as small, easy to configure and cross platform as possible.
 
 Not all features will be available in version 1.0 due to time constraints, testing issues, etc. any feature and/or item with a [http://brdstudio.net/gupdotnet/unsupported.png] by is intended to be implemented in version 1.1 but there may be surprises.
 ----
-== Features ==
+== <font color="#003366">Features</font> ==
 
  * Simple configuration through xml formated files.
  * Dependant on only Mono/Gtk#.
@@ -22,27 +21,66 @@ Not all features will be available in version 1.0 due to time constraints, testi
   * [http://brdstudio.net/gupdotnet/unsupported.png] from networked file share.
   * [http://brdstudio.net/gupdotnet/unsupported.png] by drag-n-drop into GUPdotNET.
 ----
-== Configuration and Setup ==
+== <font color="#003366">Configuration and Setup</font> ==
 
 === <u><i>Local System</i></u> ===
 
 Local system configuration, also referred to as "program info", takes place in the application config file (GUPdotNET.exe.config) that resides in the same folder that GUPdotNET does. This is a commonly used method for managing settings for .NET applications and can be changed at by anyone with write permissions to the containing directory.
 
-==== GUPdotNET Configuration ====
+==== GUPdotNET Configuration <i><font size="1">(Loaded from GUPdotNET app.config)</font></i> ====
 || *Name* || *Description* ||
 || ProjectWebSite || The URL to GUPdotNET's project web site. || 
 || DebugMode || Debug mode is used during development, it changes the where user settings are saved and in some cases writes out additional runtime information for testing and debugging. || 
 || ErrorLog || When turned on application errors will be written to the user application data directory. || 
 || UpdateLog || When turned on detailed information like when an update check is performed or an installer is downloaded, is written to a log in the user application directory. || 
 
-==== Program Info ==== 
-======Loaded from GUPdotNET app.config======
+==== Program Info <i><font size=1>(Loaded from GUPdotNET app.config)</font></i> ==== 
 || *Name* || *Description* ||
 || UpdateFileName || The file name of the program that is being supported by GUPdotNET, the program must be present in the same directory as GUPdotNET. || 
 || UpdatePackageURL || The remote web site address for the package configuration file, that contains informatin on the most recent application updates. || 
 || InstallerType || The type of install method used to install the currently installed application being supported by GUPdotNET. Formats intended to be supported (not all formats may be supported in the first version of GUPdotNET): msi, exe, zip, bin, rpm, deb, src. || 
 || ProcessorType || The processor type for the applicaiton that GUPdotNET is supporting, whether it is spefically built for 32 or 64 bit. Valid vaules: Any, x32, x64. || 
 
+==== Program Info <i><font size=1>(Loaded from the supported application attributes)</font></i> ==== 
+|| *Name* || *Description* ||
+|| ProgramName || Read from the supported applications '_Product_' attribute. || 
+|| ProgramTitle || Read from the supported applications '_Title_' attribute. || 
+|| ProgramDescription || Read from the supported applications '_Description_' attribute. || 
+|| ProgramVersion || Read from the supported applications '_Version_' attribute. || 
+
+
 === <u><i>Remote System</i></u> ===
+
+Remote system configuration, also referred to as "package info", is located on a web server that is publicly accessible and contains information that relates to the most recent updates to the application that is supported by GUPdotNET. The package configuration is a static xml file that is pulled from the web site and used to determine if a newer version of the supported application is available. The package file is intended to contain update information for multiple operating systems and install methods.
+
+==== Package Configuration <i><font size=1>(Loaded from an xml file located one a network share or a web site)</font></i> ==== 
+|| *Name* || *Required* || *Description* ||
+||FileVersion || Yes || Used to track the format of the package configuration in the case that data items are added in the future so that GUPdotNET will know how to parse the data. || 
+||OS || Yes || Used to lookup update information that pertains to the application checking for updates. || 
+||InstallerType || Yes || Used to identify update information that pertains to the application checking for updates. The type of install method used to install the currently installed application being supported by GUPdotNET. Formats intended to be supported (not all formats may be supported in the first version of GUPdotNET): msi, exe, zip, bin, rpm, deb, src. || 
+||ReleaseNotes || No || An web address where the release notes are located. || 
+||Installer || No || The web address to the installer that relates to the specificed OS and installer type, if not supplied GUPdotNET will point the end user to the project's download page instead. || 
+||Checksum || No || The MD5 checksum for validating the installer once it is downloaded to makes sure it is correct. || 
+||Downloads || No || The web address to the supported applications project downloads page, used only when the installer is URL is not supplied. || 
+
+----
+== <font color="#003366">Platform Support</font> ==
+
+=== <u><i>Windows</i></u> ===
+ * Windows xp, Vista and Windows 7
+   * Installer Type: exe/msi
+=== <u><i>Linux</i></u> ===
+ * OpenSuse 11 and greater
+   * Installer Type: rpm
+ * Ubuntu 12 and greater
+   * Installer Type: deb
+ * Other
+   * Installer Type:
+     * A cross platform BitRock installer (bitrock.com)
+  * Source build
+=== <u><i>Mac</i></u> ===
+ * Sorry not supported at this time.
+ * Because I don't have a Mac if someone wanted to work on GUPdotNET to support Macs I would be open to the subject.
+
 
 More to come soon...
