@@ -65,7 +65,7 @@ namespace GUPdotNET.Data
         /// </summary>
         internal AppSettings()
         {
-            this.filePath = Path.Combine(GlobalTools.LocalSystem.AppPath, SettingsFileName);
+            this.filePath = Path.Combine(GlobalTools.LocalSystem.UserDataPath, SettingsFileName);
         }
 
         /// <summary>
@@ -93,9 +93,9 @@ namespace GUPdotNET.Data
         internal DateTime LastUpdateCheck { get; set; }
 
         /// <summary>
-        /// Gets or sets the time span in days between the times GUPdotNET checks for updates.
+        /// Gets or sets the day between the times GUPdotNET checks for updates.
         /// </summary>
-        internal TimeSpan UpdateSchedule { get; set; }
+        internal int UpdateSchedule { get; set; }
 
         /// <summary>
         /// Method to load the application settings file if it exists.
@@ -124,7 +124,7 @@ namespace GUPdotNET.Data
 
                     this.AutoUpdate = Convert.ToBoolean(settingsInfo.AutoUpdate);
                     this.LastUpdateCheck = Convert.ToDateTime(settingsInfo.LastUpdateCheck);
-                    this.UpdateSchedule = new TimeSpan(Convert.ToInt32(settingsInfo.UpdateSchedule), 0, 0, 0);
+                    this.UpdateSchedule = Convert.ToInt32(settingsInfo.UpdateSchedule);
                 }
             }
             catch (Exception error)
@@ -150,15 +150,14 @@ namespace GUPdotNET.Data
                     new XComment(string.Format(CommentFormat, GlobalTools.UpdateProgramName)),
                     new XElement(
                         "GUPdotNET",
+                        new XAttribute("FileVersion", this.FileVersion.ToString(2)),
                         new XElement(
                             "UpdateSettings",
                             new XAttribute("ProgramName", GlobalTools.UpdateProgramName),
                             new XElement("AutoUpdate", this.AutoUpdate.ToString()),
                             new XElement("LastUpdateCheck", this.LastUpdateCheck.ToString()),
-                            new XElement("UpdateSchedule", this.UpdateSchedule.Days.ToString()))));
-                
-                // set the file version value at the root element as an attribute
-                settingsDocument.Root.Attribute("FileVersion").Value = this.FileVersion.ToString(2);
+                            new XElement("UpdateSchedule", this.UpdateSchedule.ToString()))));
+
                 settingsDocument.Save(this.filePath);
             }
             catch (Exception error)
@@ -173,8 +172,8 @@ namespace GUPdotNET.Data
         internal void SetDefaults()
         {
             this.AutoUpdate = true;
-            this.LastUpdateCheck = DateTime.Now.AddDays(-2);
-            this.UpdateSchedule = TimeSpan.FromDays(1);
+            this.LastUpdateCheck = DateTime.Now.AddDays(-1);
+            this.UpdateSchedule = 1;
             this.FileVersion = System.Version.Parse(Properties.Settings.Default.SettingsFileVersion);
         }
 

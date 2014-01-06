@@ -4,16 +4,32 @@ namespace GUPdotNET.UI.Views
 {
 	internal partial class DownloadView
 	{
+		private global::Gtk.Alignment alignment5;
+		private global::Gtk.VBox vbox2;
 		private global::Gtk.Alignment alignment4;
 		private global::Gtk.HBox hbox1;
 		private global::Gtk.Alignment alignment7;
 		private global::Gtk.ProgressBar downloadingProgressbar;
-		private global::Gtk.Alignment alignment5;
-		private global::Gtk.Button cancelButton;
 		private global::Gtk.Alignment alignment6;
+		private global::Gtk.Button cancelButton;
+		private global::Gtk.Alignment alignment8;
+		private global::Gtk.HBox hbox2;
+		private global::Gtk.Alignment alignment9;
+		private global::Gtk.Image image3;
+		private global::Gtk.Alignment alignment10;
+		private global::Gtk.Label checkNowLabel;
+		private global::Gtk.Alignment alignment11;
 		private global::Gtk.Button hideWindowButton;
+		private global::Gtk.Alignment alignment12;
+		private global::Gtk.HBox hbox3;
+		private global::Gtk.Alignment alignment13;
+		private global::Gtk.Image image4;
+		private global::Gtk.Alignment alignment14;
+		private global::Gtk.Label checkNowLabel1;
+		private global::Gtk.Alignment alignment15;
+		private global::Gtk.CheckButton startInstallerCheckbutton;
 		private global::Gtk.Button buttonCancel;
-
+		
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -34,11 +50,16 @@ namespace GUPdotNET.UI.Views
 			w1.Name = "dialog1_VBox";
 			w1.BorderWidth = ((uint)(2));
 			// Container child dialog1_VBox.Gtk.Box+BoxChild
+			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment5.Name = "alignment5";
+			this.alignment5.BorderWidth = ((uint)(8));
+			// Container child alignment5.Gtk.Container+ContainerChild
+			this.vbox2 = new global::Gtk.VBox ();
+			this.vbox2.Name = "vbox2";
+			this.vbox2.Spacing = 6;
+			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment4 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 1F);
 			this.alignment4.Name = "alignment4";
-			this.alignment4.TopPadding = ((uint)(3));
-			this.alignment4.BottomPadding = ((uint)(3));
-			this.alignment4.BorderWidth = ((uint)(4));
 			// Container child alignment4.Gtk.Container+ContainerChild
 			this.hbox1 = new global::Gtk.HBox ();
 			this.hbox1.Name = "hbox1";
@@ -59,58 +80,149 @@ namespace GUPdotNET.UI.Views
 			w3.Expand = false;
 			w3.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment5.Name = "alignment5";
-			// Container child alignment5.Gtk.Container+ContainerChild
-			this.cancelButton = new global::Gtk.Button ();
-			this.cancelButton.WidthRequest = 90;
-			this.cancelButton.HeightRequest = 30;
-			this.cancelButton.CanFocus = true;
-			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.UseUnderline = true;
-			this.cancelButton.Label = global::Mono.Unix.Catalog.GetString ("Cancel");
-			global::Gtk.Image w4 = new global::Gtk.Image ();
-			w4.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.cancel.png");
-			this.cancelButton.Image = w4;
-			this.alignment5.Add (this.cancelButton);
-			this.hbox1.Add (this.alignment5);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment5]));
-			w6.Position = 1;
-			w6.Expand = false;
-			w6.Fill = false;
-			// Container child hbox1.Gtk.Box+BoxChild
 			this.alignment6 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment6.Name = "alignment6";
 			// Container child alignment6.Gtk.Container+ContainerChild
-			this.hideWindowButton = new global::Gtk.Button ();
-			this.hideWindowButton.WidthRequest = 90;
-			this.hideWindowButton.HeightRequest = 30;
-			this.hideWindowButton.CanFocus = true;
-			this.hideWindowButton.Name = "hideWindowButton";
-			this.hideWindowButton.UseUnderline = true;
-			this.hideWindowButton.Label = global::Mono.Unix.Catalog.GetString ("Hide");
-			global::Gtk.Image w7 = new global::Gtk.Image ();
-			w7.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.hide.png");
-			this.hideWindowButton.Image = w7;
-			this.alignment6.Add (this.hideWindowButton);
+			this.cancelButton = new global::Gtk.Button ();
+			this.cancelButton.CanFocus = true;
+			this.cancelButton.Name = "cancelButton";
+			// Container child cancelButton.Gtk.Container+ContainerChild
+			this.alignment8 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 0.01F);
+			this.alignment8.Name = "alignment8";
+			this.alignment8.LeftPadding = ((uint)(6));
+			this.alignment8.TopPadding = ((uint)(2));
+			this.alignment8.RightPadding = ((uint)(6));
+			this.alignment8.BottomPadding = ((uint)(2));
+			// Container child alignment8.Gtk.Container+ContainerChild
+			this.hbox2 = new global::Gtk.HBox ();
+			this.hbox2.Name = "hbox2";
+			this.hbox2.Spacing = 6;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment9.Name = "alignment9";
+			// Container child alignment9.Gtk.Container+ContainerChild
+			this.image3 = new global::Gtk.Image ();
+			this.image3.Name = "image3";
+			this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.cancel.png");
+			this.alignment9.Add (this.image3);
+			this.hbox2.Add (this.alignment9);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment9]));
+			w5.Position = 0;
+			w5.Expand = false;
+			w5.Fill = false;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.alignment10 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment10.Name = "alignment10";
+			this.alignment10.LeftPadding = ((uint)(2));
+			// Container child alignment10.Gtk.Container+ContainerChild
+			this.checkNowLabel = new global::Gtk.Label ();
+			this.checkNowLabel.Name = "checkNowLabel";
+			this.checkNowLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Cancel");
+			this.alignment10.Add (this.checkNowLabel);
+			this.hbox2.Add (this.alignment10);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment10]));
+			w7.Position = 1;
+			w7.Expand = false;
+			w7.Fill = false;
+			this.alignment8.Add (this.hbox2);
+			this.cancelButton.Add (this.alignment8);
+			this.cancelButton.Label = null;
+			this.alignment6.Add (this.cancelButton);
 			this.hbox1.Add (this.alignment6);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment6]));
-			w9.Position = 2;
-			w9.Expand = false;
-			w9.Fill = false;
-			this.alignment4.Add (this.hbox1);
-			w1.Add (this.alignment4);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(w1 [this.alignment4]));
-			w11.Position = 0;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment6]));
+			w11.Position = 1;
 			w11.Expand = false;
 			w11.Fill = false;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.alignment11 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment11.Name = "alignment11";
+			// Container child alignment11.Gtk.Container+ContainerChild
+			this.hideWindowButton = new global::Gtk.Button ();
+			this.hideWindowButton.CanFocus = true;
+			this.hideWindowButton.Name = "hideWindowButton";
+			// Container child hideWindowButton.Gtk.Container+ContainerChild
+			this.alignment12 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 0.01F);
+			this.alignment12.Name = "alignment12";
+			this.alignment12.LeftPadding = ((uint)(6));
+			this.alignment12.TopPadding = ((uint)(2));
+			this.alignment12.RightPadding = ((uint)(6));
+			this.alignment12.BottomPadding = ((uint)(2));
+			// Container child alignment12.Gtk.Container+ContainerChild
+			this.hbox3 = new global::Gtk.HBox ();
+			this.hbox3.Name = "hbox3";
+			this.hbox3.Spacing = 6;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.alignment13 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment13.Name = "alignment13";
+			// Container child alignment13.Gtk.Container+ContainerChild
+			this.image4 = new global::Gtk.Image ();
+			this.image4.Name = "image4";
+			this.image4.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.hide.png");
+			this.alignment13.Add (this.image4);
+			this.hbox3.Add (this.alignment13);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.alignment13]));
+			w13.Position = 0;
+			w13.Expand = false;
+			w13.Fill = false;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.alignment14 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment14.Name = "alignment14";
+			this.alignment14.LeftPadding = ((uint)(2));
+			// Container child alignment14.Gtk.Container+ContainerChild
+			this.checkNowLabel1 = new global::Gtk.Label ();
+			this.checkNowLabel1.Name = "checkNowLabel1";
+			this.checkNowLabel1.LabelProp = global::Mono.Unix.Catalog.GetString ("Hide");
+			this.alignment14.Add (this.checkNowLabel1);
+			this.hbox3.Add (this.alignment14);
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.alignment14]));
+			w15.Position = 1;
+			w15.Expand = false;
+			w15.Fill = false;
+			this.alignment12.Add (this.hbox3);
+			this.hideWindowButton.Add (this.alignment12);
+			this.hideWindowButton.Label = null;
+			this.alignment11.Add (this.hideWindowButton);
+			this.hbox1.Add (this.alignment11);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment11]));
+			w19.Position = 2;
+			w19.Expand = false;
+			w19.Fill = false;
+			this.alignment4.Add (this.hbox1);
+			this.vbox2.Add (this.alignment4);
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment4]));
+			w21.Position = 0;
+			w21.Expand = false;
+			w21.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.alignment15 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 0.01F);
+			this.alignment15.Name = "alignment15";
+			// Container child alignment15.Gtk.Container+ContainerChild
+			this.startInstallerCheckbutton = new global::Gtk.CheckButton ();
+			this.startInstallerCheckbutton.CanFocus = true;
+			this.startInstallerCheckbutton.Name = "startInstallerCheckbutton";
+			this.startInstallerCheckbutton.Label = global::Mono.Unix.Catalog.GetString ("Start installer when download completed.");
+			this.startInstallerCheckbutton.Active = true;
+			this.startInstallerCheckbutton.DrawIndicator = true;
+			this.startInstallerCheckbutton.UseUnderline = true;
+			this.alignment15.Add (this.startInstallerCheckbutton);
+			this.vbox2.Add (this.alignment15);
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment15]));
+			w23.Position = 1;
+			w23.Expand = false;
+			w23.Fill = false;
+			this.alignment5.Add (this.vbox2);
+			w1.Add (this.alignment5);
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(w1 [this.alignment5]));
+			w25.Position = 0;
+			w25.Expand = false;
+			w25.Fill = false;
 			// Internal child GUPdotNET.UI.Views.DownloadView.ActionArea
-			global::Gtk.HButtonBox w12 = this.ActionArea;
-			w12.Sensitive = false;
-			w12.Name = "dialog1_ActionArea";
-			w12.Spacing = 10;
-			w12.BorderWidth = ((uint)(5));
-			w12.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
+			global::Gtk.HButtonBox w26 = this.ActionArea;
+			w26.Sensitive = false;
+			w26.Name = "dialog1_ActionArea";
+			w26.Spacing = 10;
+			w26.BorderWidth = ((uint)(5));
+			w26.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonCancel = new global::Gtk.Button ();
 			this.buttonCancel.Sensitive = false;
@@ -121,16 +233,16 @@ namespace GUPdotNET.UI.Views
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-close";
 			this.AddActionWidget (this.buttonCancel, -7);
-			global::Gtk.ButtonBox.ButtonBoxChild w13 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w12 [this.buttonCancel]));
-			w13.Expand = false;
-			w13.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w27 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w26 [this.buttonCancel]));
+			w27.Expand = false;
+			w27.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 544;
-			this.DefaultHeight = 125;
+			this.DefaultWidth = 496;
+			this.DefaultHeight = 120;
 			this.buttonCancel.Hide ();
-			w12.Hide ();
+			w26.Hide ();
 			this.Show ();
 			this.cancelButton.Clicked += new global::System.EventHandler (this.OnCancelButtonClicked);
 			this.hideWindowButton.Clicked += new global::System.EventHandler (this.OnHideWindowButtonClicked);

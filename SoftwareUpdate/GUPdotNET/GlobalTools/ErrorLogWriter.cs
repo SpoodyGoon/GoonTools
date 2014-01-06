@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ProcessTools.cs" company="Andy York">
+// <copyright file="ErrorLogWriter.cs" company="Andy York">
 //
-// Copyright (c) 2013 Andy York
+// Copyright (C) 2013 Andy York
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the +terms of the GNU General Public License as published by
@@ -22,39 +22,37 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GUPdotNET
+namespace MonoTools.ErrorManager
 {
     using System;
-    using System.Diagnostics;
-    using System.Threading;
+    using System.IO;
 
     /// <summary>
-    /// A helper class for working with process, diagnostics and threading.
+    /// Helper class for writing error logs.
     /// </summary>
-    public static class ProcessTools
+    internal class ErrorLogWriter
     {
         /// <summary>
-        /// The URL to the web site to be launched.
+        /// The format for writing error logs.
         /// </summary>
-        private static string launchURL = string.Empty;
+        private const string ErrorMessageFormat = "Date/Time:\n{0}\nMessage:\n{1}\nTrace:\n{2}\n------------------------------------\n\n";
+        
+        /// <summary>
+        /// Default error log size in megabites.
+        /// </summary>
+        private const int DefaultMaxLogSize = 100;
 
         /// <summary>
-        /// A method to launch the specified web site in the default browser.
+        /// Method for writing error logs.
         /// </summary>
-        /// <param name="url">URL to the web site to be launched.</param>
-        public static void LaunchURL(string url)
+        /// <param name="filePath">Full path the error log is to be written to.</param>
+        /// <param name="error">The error to be written to file.</param>
+        internal static void WriteLog(string filePath, Exception error)
         {
-            launchURL = url;
-            Thread processThread = new Thread(new ThreadStart(StartURL));
-            processThread.Start();
-        }
-
-        /// <summary>
-        /// Method to start the supplied URL in the default browser.
-        /// </summary>
-        private static void StartURL()
-        {
-            Process.Start(launchURL);
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.Write(string.Format(ErrorMessageFormat, DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"), error.Message, error.ToString()));
+            }
         }
     }
 }

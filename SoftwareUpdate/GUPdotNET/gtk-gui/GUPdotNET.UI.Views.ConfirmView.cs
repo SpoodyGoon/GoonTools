@@ -5,20 +5,27 @@ namespace GUPdotNET.UI.Views
 	internal partial class ConfirmView
 	{
 		private global::Gtk.VBox vbox2;
-		private global::Gtk.Alignment alignment1;
-		private global::Gtk.Label titleLabel;
-		private global::Gtk.Alignment alignment4;
-		private global::Gtk.HSeparator hseparator1;
+		private global::Gtk.Alignment alignment5;
+		private global::Gtk.Label label1;
+		private global::Gtk.Alignment alignment6;
+		private global::Gtk.HSeparator hseparator2;
 		private global::Gtk.Alignment alignment2;
 		private global::Gtk.Label updateMessageLabel;
 		private global::Gtk.Alignment alignment3;
 		private global::Gtk.HBox hbox2;
 		private global::Gtk.Alignment releaseNotesAlignment;
-		private global::Gtk.Alignment alignment5;
-		private global::Gtk.HSeparator hseparator2;
-		private global::Gtk.Button noConfirmButton;
-		private global::Gtk.Button yesConfirmButton;
-
+		private global::Gtk.Alignment alignment9;
+		private global::Gtk.HSeparator hseparator3;
+		private global::Gtk.Alignment alignment1;
+		private global::Gtk.HBox hbox3;
+		private global::Gtk.Alignment alignment7;
+		private global::Gtk.Button closeButton;
+		private global::Gtk.Alignment alignment8;
+		private global::Gtk.HButtonBox hbuttonbox2;
+		private global::Gtk.Button downloadsButton;
+		private global::Gtk.Button installUpdatesButton;
+		private global::Gtk.Button cancelButton1;
+		
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -33,60 +40,63 @@ namespace GUPdotNET.UI.Views
 			// Internal child GUPdotNET.UI.Views.ConfirmView.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";
-			w1.BorderWidth = ((uint)(2));
 			// Container child dialog1_VBox.Gtk.Box+BoxChild
 			this.vbox2 = new global::Gtk.VBox ();
 			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 6;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 1F);
-			this.alignment1.Name = "alignment1";
-			this.alignment1.TopPadding = ((uint)(4));
-			this.alignment1.BottomPadding = ((uint)(2));
-			// Container child alignment1.Gtk.Container+ContainerChild
-			this.titleLabel = new global::Gtk.Label ();
-			this.titleLabel.Name = "titleLabel";
-			this.titleLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("<b><big>Update Available</big></b>");
-			this.titleLabel.UseMarkup = true;
-			this.alignment1.Add (this.titleLabel);
-			this.vbox2.Add (this.alignment1);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment1]));
-			w3.Position = 0;
+			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment5.Name = "alignment5";
+			this.alignment5.TopPadding = ((uint)(4));
+			// Container child alignment5.Gtk.Container+ContainerChild
+			this.label1 = new global::Gtk.Label ();
+			this.label1.Name = "label1";
+			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("<big><b>Update Available</b></big>");
+			this.label1.UseMarkup = true;
+			this.alignment5.Add (this.label1);
+			this.vbox2.Add (this.alignment5);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
+			w3.Position = 1;
 			w3.Expand = false;
 			w3.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.alignment4 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment4.Name = "alignment4";
-			// Container child alignment4.Gtk.Container+ContainerChild
-			this.hseparator1 = new global::Gtk.HSeparator ();
-			this.hseparator1.Name = "hseparator1";
-			this.alignment4.Add (this.hseparator1);
-			this.vbox2.Add (this.alignment4);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment4]));
-			w5.Position = 1;
+			this.alignment6 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment6.Name = "alignment6";
+			this.alignment6.TopPadding = ((uint)(4));
+			this.alignment6.BottomPadding = ((uint)(4));
+			// Container child alignment6.Gtk.Container+ContainerChild
+			this.hseparator2 = new global::Gtk.HSeparator ();
+			this.hseparator2.Name = "hseparator2";
+			this.alignment6.Add (this.hseparator2);
+			this.vbox2.Add (this.alignment6);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment6]));
+			w5.Position = 2;
 			w5.Expand = false;
 			w5.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment2 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 1F);
 			this.alignment2.Name = "alignment2";
+			this.alignment2.LeftPadding = ((uint)(6));
+			this.alignment2.RightPadding = ((uint)(6));
 			this.alignment2.BottomPadding = ((uint)(4));
 			// Container child alignment2.Gtk.Container+ContainerChild
 			this.updateMessageLabel = new global::Gtk.Label ();
+			this.updateMessageLabel.WidthRequest = 600;
 			this.updateMessageLabel.Name = "updateMessageLabel";
 			this.updateMessageLabel.Xpad = 5;
 			this.updateMessageLabel.Ypad = 5;
-			this.updateMessageLabel.LabelProp = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
+			this.updateMessageLabel.LabelProp = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
 			this.updateMessageLabel.Wrap = true;
 			this.alignment2.Add (this.updateMessageLabel);
 			this.vbox2.Add (this.alignment2);
 			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment2]));
-			w7.Position = 2;
+			w7.Position = 3;
 			w7.Expand = false;
 			w7.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.alignment3 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 1F);
+			this.alignment3 = new global::Gtk.Alignment (1F, 0.5F, 0.01F, 1F);
 			this.alignment3.Name = "alignment3";
-			this.alignment3.LeftPadding = ((uint)(8));
+			this.alignment3.LeftPadding = ((uint)(63));
 			this.alignment3.BottomPadding = ((uint)(4));
 			// Container child alignment3.Gtk.Container+ContainerChild
 			this.hbox2 = new global::Gtk.HBox ();
@@ -95,71 +105,126 @@ namespace GUPdotNET.UI.Views
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.releaseNotesAlignment = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.releaseNotesAlignment.Name = "releaseNotesAlignment";
+			this.releaseNotesAlignment.RightPadding = ((uint)(50));
 			this.hbox2.Add (this.releaseNotesAlignment);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.releaseNotesAlignment]));
 			w8.Position = 0;
 			this.alignment3.Add (this.hbox2);
 			this.vbox2.Add (this.alignment3);
 			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
-			w10.Position = 3;
+			w10.Position = 4;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment5.Name = "alignment5";
-			this.alignment5.TopPadding = ((uint)(2));
-			this.alignment5.BottomPadding = ((uint)(2));
-			// Container child alignment5.Gtk.Container+ContainerChild
-			this.hseparator2 = new global::Gtk.HSeparator ();
-			this.hseparator2.Name = "hseparator2";
-			this.alignment5.Add (this.hseparator2);
-			this.vbox2.Add (this.alignment5);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
-			w12.Position = 4;
+			this.alignment9 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment9.Name = "alignment9";
+			this.alignment9.TopPadding = ((uint)(4));
+			this.alignment9.BottomPadding = ((uint)(4));
+			// Container child alignment9.Gtk.Container+ContainerChild
+			this.hseparator3 = new global::Gtk.HSeparator ();
+			this.hseparator3.Name = "hseparator3";
+			this.alignment9.Add (this.hseparator3);
+			this.vbox2.Add (this.alignment9);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment9]));
+			w12.Position = 5;
 			w12.Expand = false;
 			w12.Fill = false;
-			w1.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
-			w13.Position = 0;
-			// Internal child GUPdotNET.UI.Views.ConfirmView.ActionArea
-			global::Gtk.HButtonBox w14 = this.ActionArea;
-			w14.Name = "dialog1_ActionArea";
-			w14.Spacing = 14;
-			w14.BorderWidth = ((uint)(5));
-			w14.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
-			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.noConfirmButton = new global::Gtk.Button ();
-			this.noConfirmButton.WidthRequest = 100;
-			this.noConfirmButton.HeightRequest = 32;
-			this.noConfirmButton.CanDefault = true;
-			this.noConfirmButton.CanFocus = true;
-			this.noConfirmButton.Name = "noConfirmButton";
-			this.noConfirmButton.UseStock = true;
-			this.noConfirmButton.UseUnderline = true;
-			this.noConfirmButton.Label = "gtk-no";
-			this.AddActionWidget (this.noConfirmButton, -9);
-			global::Gtk.ButtonBox.ButtonBoxChild w15 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w14 [this.noConfirmButton]));
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment1.Name = "alignment1";
+			this.alignment1.LeftPadding = ((uint)(12));
+			this.alignment1.TopPadding = ((uint)(4));
+			this.alignment1.RightPadding = ((uint)(12));
+			this.alignment1.BottomPadding = ((uint)(8));
+			// Container child alignment1.Gtk.Container+ContainerChild
+			this.hbox3 = new global::Gtk.HBox ();
+			this.hbox3.Name = "hbox3";
+			this.hbox3.Spacing = 6;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.alignment7 = new global::Gtk.Alignment (0.01F, 0.5F, 0.01F, 0.01F);
+			this.alignment7.Name = "alignment7";
+			// Container child alignment7.Gtk.Container+ContainerChild
+			this.closeButton = new global::Gtk.Button ();
+			this.closeButton.WidthRequest = 90;
+			this.closeButton.HeightRequest = 32;
+			this.closeButton.CanFocus = true;
+			this.closeButton.Name = "closeButton";
+			this.closeButton.Label = global::Mono.Unix.Catalog.GetString ("Close");
+			this.alignment7.Add (this.closeButton);
+			this.hbox3.Add (this.alignment7);
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.alignment7]));
+			w14.Position = 0;
+			w14.Expand = false;
+			w14.Fill = false;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.alignment8 = new global::Gtk.Alignment (1F, 0.5F, 0.01F, 0.01F);
+			this.alignment8.Name = "alignment8";
+			// Container child alignment8.Gtk.Container+ContainerChild
+			this.hbuttonbox2 = new global::Gtk.HButtonBox ();
+			this.hbuttonbox2.Name = "hbuttonbox2";
+			this.hbuttonbox2.Spacing = 16;
+			this.hbuttonbox2.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			// Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+			this.downloadsButton = new global::Gtk.Button ();
+			this.downloadsButton.WidthRequest = 120;
+			this.downloadsButton.HeightRequest = 36;
+			this.downloadsButton.CanDefault = true;
+			this.downloadsButton.CanFocus = true;
+			this.downloadsButton.Name = "downloadsButton";
+			this.downloadsButton.Label = global::Mono.Unix.Catalog.GetString ("Downloads...");
+			this.hbuttonbox2.Add (this.downloadsButton);
+			global::Gtk.ButtonBox.ButtonBoxChild w15 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2 [this.downloadsButton]));
 			w15.Expand = false;
 			w15.Fill = false;
-			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.yesConfirmButton = new global::Gtk.Button ();
-			this.yesConfirmButton.WidthRequest = 100;
-			this.yesConfirmButton.HeightRequest = 32;
-			this.yesConfirmButton.CanDefault = true;
-			this.yesConfirmButton.CanFocus = true;
-			this.yesConfirmButton.Name = "yesConfirmButton";
-			this.yesConfirmButton.UseStock = true;
-			this.yesConfirmButton.UseUnderline = true;
-			this.yesConfirmButton.Label = "gtk-yes";
-			this.AddActionWidget (this.yesConfirmButton, -8);
-			global::Gtk.ButtonBox.ButtonBoxChild w16 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w14 [this.yesConfirmButton]));
+			// Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+			this.installUpdatesButton = new global::Gtk.Button ();
+			this.installUpdatesButton.WidthRequest = 120;
+			this.installUpdatesButton.HeightRequest = 36;
+			this.installUpdatesButton.CanDefault = true;
+			this.installUpdatesButton.CanFocus = true;
+			this.installUpdatesButton.Name = "installUpdatesButton";
+			this.installUpdatesButton.Label = global::Mono.Unix.Catalog.GetString ("Install Updates");
+			this.hbuttonbox2.Add (this.installUpdatesButton);
+			global::Gtk.ButtonBox.ButtonBoxChild w16 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2 [this.installUpdatesButton]));
 			w16.Position = 1;
 			w16.Expand = false;
 			w16.Fill = false;
+			this.alignment8.Add (this.hbuttonbox2);
+			this.hbox3.Add (this.alignment8);
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.alignment8]));
+			w18.Position = 1;
+			this.alignment1.Add (this.hbox3);
+			this.vbox2.Add (this.alignment1);
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment1]));
+			w20.Position = 6;
+			w20.Expand = false;
+			w20.Fill = false;
+			w1.Add (this.vbox2);
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
+			w21.Position = 0;
+			// Internal child GUPdotNET.UI.Views.ConfirmView.ActionArea
+			global::Gtk.HButtonBox w22 = this.ActionArea;
+			w22.Name = "dialog1_ActionArea";
+			w22.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
+			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
+			this.cancelButton1 = new global::Gtk.Button ();
+			this.cancelButton1.CanFocus = true;
+			this.cancelButton1.Name = "cancelButton1";
+			this.cancelButton1.UseStock = true;
+			this.cancelButton1.UseUnderline = true;
+			this.cancelButton1.Label = "gtk-close";
+			this.AddActionWidget (this.cancelButton1, -9);
+			global::Gtk.ButtonBox.ButtonBoxChild w23 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w22 [this.cancelButton1]));
+			w23.Expand = false;
+			w23.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 492;
-			this.DefaultHeight = 211;
+			this.DefaultWidth = 638;
+			this.DefaultHeight = 284;
+			this.installUpdatesButton.HasDefault = true;
 			this.Show ();
+			this.closeButton.Clicked += new global::System.EventHandler (this.CloseButton_Clicked);
+			this.downloadsButton.Clicked += new global::System.EventHandler (this.DownloadsButton_Clicked);
+			this.installUpdatesButton.Clicked += new global::System.EventHandler (this.InstallUpdatesButton_Clicked);
 		}
 	}
 }

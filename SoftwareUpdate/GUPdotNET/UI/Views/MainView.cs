@@ -1,26 +1,26 @@
-// // --------------------------------------------------------------------------------------------------------------------
-// // <copyright file="MainView.cs" company="Andy York">
-// //
-// // Copyright (c) 2013 Andy York
-// //
-// // This program is free software: you can redistribute it and/or modify
-// // it under the +terms of the GNU General Public License as published by
-// // the Free Software Foundation, either version 3 of the License, or
-// // (at your option) any later version.
-// //
-// // This program is distributed in the hope that it will be useful,
-// // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// // GNU General Public License for more details.
-// //
-// // You should have received a copy of the GNU General Public License
-// // along with this program.  If not, see http://www.gnu.org/licenses/. 
-// // </copyright>
-// // <summary>
-// // Email: goontools@brdstudio.net
-// // Author: Andy York 
-// // </summary>
-// // --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MainView.cs" company="Andy York">
+// 
+// Copyright (c) 2013 Andy York
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the +terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see http://www.gnu.org/licenses/. 
+// </copyright>
+// <summary>
+// Email: goontools@brdstudio.net
+// Author: Andy York 
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GUPdotNET.UI.Views
 {
@@ -38,6 +38,23 @@ namespace GUPdotNET.UI.Views
     internal partial class MainView : Gtk.Dialog
     {
         /// <summary>
+        /// Text displayed on the about label button.
+        /// </summary>
+        private const string AboutButtonLabel = "About GUPdotNET...";
+
+        /// <summary>
+		/// Format for the label that appears referring to the 
+        /// application that is being updated.
+        /// </summary>
+        private const string HeaderLabelFormat = "<span size=\"12000\" weight=\"bold\">Update Tools for {0}.</span>";
+
+        /// <summary>
+		/// Format for the window title referring to the 
+        /// application that is being updated.
+        /// </summary>
+        private const string WindowTitleFormat = "GUPdotNET (Supporting {0})";
+
+        /// <summary>
         /// The update check combobox for determining the amount of days between 
         /// silent/background update checks.
         /// </summary>
@@ -48,8 +65,15 @@ namespace GUPdotNET.UI.Views
         /// </summary>
         internal MainView()
         {
-            this.Build();
-            this.Initalize();
+            try
+            {
+                this.Build();
+                this.Initalize();
+            }
+            catch (Exception error)
+            {
+                GlobalTools.HandleError(this, error);
+            }
         }
 
         /// <summary>
@@ -64,7 +88,7 @@ namespace GUPdotNET.UI.Views
             {
                 UpdateCheck updateCheck = new UpdateCheck();
                 updateCheck.RootWindow = this.GdkWindow;
-                this.checkUpdateButton.Label = "Checking...";
+                this.checkNowLabel.Text = "Checking...";
                 this.checkUpdateButton.Sensitive = false;
                 this.checkUpdateButton.QueueDraw();
                 if (updateCheck.RunUpdateCheck(true))
@@ -72,7 +96,7 @@ namespace GUPdotNET.UI.Views
                     this.ApplicationQuit();
                 }
 
-                this.checkUpdateButton.Label = "Check Now";
+                this.checkNowLabel.Text = "Check Now";
                 this.checkUpdateButton.Sensitive = true;
                 this.checkUpdateButton.QueueDraw();
             }
@@ -110,7 +134,7 @@ namespace GUPdotNET.UI.Views
         {
             // hook delegat to handle default button events in the gtk.about dialog window
             Gtk.AboutDialog.SetUrlHook(delegate(Gtk.AboutDialog dialog, string link)
-                                       {
+            {
                 ProcessTools.LaunchURL(link);
             });
 
@@ -122,7 +146,7 @@ namespace GUPdotNET.UI.Views
                 string copyRight = (programAssembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false)[0] as AssemblyCopyrightAttribute).Copyright;
 
                 Gtk.AboutDialog aboutDialog = new Gtk.AboutDialog();
-                aboutDialog.Title = "About " + title;
+                aboutDialog.Title = string.Format("About {0}", title);
                 aboutDialog.ProgramName = title;
                 aboutDialog.Comments = description;
                 aboutDialog.License = Properties.Resources.GPL3;
@@ -135,7 +159,7 @@ namespace GUPdotNET.UI.Views
                 aboutDialog.Copyright = copyRight;
                 aboutDialog.HasSeparator = true;
                 aboutDialog.Modal = true;
-                aboutDialog.WidthRequest = 425;
+                aboutDialog.WidthRequest = 500;
                 aboutDialog.WebsiteLabel = title;
                 aboutDialog.Website = Properties.Settings.Default.ProjectWebSite;
                 aboutDialog.WindowPosition = WindowPosition.CenterAlways;
@@ -186,13 +210,21 @@ namespace GUPdotNET.UI.Views
         {
             try
             {
-                LabelButton aboutLabelButton = new LabelButton("About GUPdotNET...");
+                this.updateTitleLabel.LabelProp = string.Format(HeaderLabelFormat, Properties.Settings.Default.UpdateProgramTitle);
+                this.updateTitleLabel.UseMarkup = true;
+                this.Title = string.Format(WindowTitleFormat, Properties.Settings.Default.UpdateProgramTitle);
+                LabelButton aboutLabelButton = new LabelButton(AboutButtonLabel);
                 aboutLabelButton.Clicked += this.OnAboutLabelButtonClicked;
                 this.aboutGUPdotNETAlignment.Add(aboutLabelButton);
                 this.aboutGUPdotNETAlignment.ShowAll();
                 this.DeleteEvent += new DeleteEventHandler(this.MainView_DeleteEvent);
                 this.updateCheckAlignment.Add(this.updateCheckCombobox);
                 this.updateCheckCombobox.WidthRequest = 125;
+                this.updateCheckCombobox.UpdateDays = GlobalTools.Options.UpdateSchedule;
+                this.updateCheckCombobox.Changed += delegate
+                {
+                    GlobalTools.Options.UpdateSchedule = this.updateCheckCombobox.UpdateDays;
+                };
                 this.updateCheckAlignment.ShowAll();
                 this.QueueResize();
                 this.QueueDraw();

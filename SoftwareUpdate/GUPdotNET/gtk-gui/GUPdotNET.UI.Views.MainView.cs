@@ -18,12 +18,18 @@ namespace GUPdotNET.UI.Views
 		private global::Gtk.Alignment updateCheckAlignment;
 		private global::Gtk.Alignment alignment9;
 		private global::Gtk.Button checkUpdateButton;
+		private global::Gtk.Alignment alignment7;
+		private global::Gtk.HBox hbox2;
+		private global::Gtk.Alignment alignment8;
+		private global::Gtk.Image image3;
+		private global::Gtk.Alignment alignment10;
+		private global::Gtk.Label checkNowLabel;
 		private global::Gtk.Alignment alignment6;
 		private global::Gtk.HButtonBox hbuttonbox2;
 		private global::Gtk.Alignment alignment5;
 		private global::Gtk.HSeparator hseparator1;
 		private global::Gtk.Button closeButton;
-
+		
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -70,7 +76,7 @@ namespace GUPdotNET.UI.Views
 			// Container child alignment2.Gtk.Container+ContainerChild
 			this.updateTitleLabel = new global::Gtk.Label ();
 			this.updateTitleLabel.Name = "updateTitleLabel";
-			this.updateTitleLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("<span size=\"12000\" weight=\"bold\">Update tools for YahtzeeSharp.</span>");
+			this.updateTitleLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("<span size=\"12000\" weight=\"bold\">Update Tools.</span>");
 			this.updateTitleLabel.UseMarkup = true;
 			this.alignment2.Add (this.updateTitleLabel);
 			this.hbox1.Add (this.alignment2);
@@ -119,27 +125,62 @@ namespace GUPdotNET.UI.Views
 			this.alignment9.Name = "alignment9";
 			// Container child alignment9.Gtk.Container+ContainerChild
 			this.checkUpdateButton = new global::Gtk.Button ();
-			this.checkUpdateButton.WidthRequest = 133;
-			this.checkUpdateButton.HeightRequest = 32;
+			this.checkUpdateButton.CanDefault = true;
 			this.checkUpdateButton.CanFocus = true;
 			this.checkUpdateButton.Name = "checkUpdateButton";
-			this.checkUpdateButton.UseUnderline = true;
-			this.checkUpdateButton.Label = global::Mono.Unix.Catalog.GetString ("Check Now");
-			global::Gtk.Image w11 = new global::Gtk.Image ();
-			w11.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.CheckMark.png");
-			this.checkUpdateButton.Image = w11;
+			// Container child checkUpdateButton.Gtk.Container+ContainerChild
+			this.alignment7 = new global::Gtk.Alignment (0.5F, 0.5F, 0.01F, 0.01F);
+			this.alignment7.Name = "alignment7";
+			this.alignment7.LeftPadding = ((uint)(6));
+			this.alignment7.TopPadding = ((uint)(2));
+			this.alignment7.RightPadding = ((uint)(6));
+			this.alignment7.BottomPadding = ((uint)(2));
+			// Container child alignment7.Gtk.Container+ContainerChild
+			this.hbox2 = new global::Gtk.HBox ();
+			this.hbox2.Name = "hbox2";
+			this.hbox2.Spacing = 6;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.alignment8 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment8.Name = "alignment8";
+			// Container child alignment8.Gtk.Container+ContainerChild
+			this.image3 = new global::Gtk.Image ();
+			this.image3.Name = "image3";
+			this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("GUPdotNET.Resources.Images.CheckMark.png");
+			this.alignment8.Add (this.image3);
+			this.hbox2.Add (this.alignment8);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment8]));
+			w12.Position = 0;
+			w12.Expand = false;
+			w12.Fill = false;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.alignment10 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment10.Name = "alignment10";
+			this.alignment10.LeftPadding = ((uint)(2));
+			// Container child alignment10.Gtk.Container+ContainerChild
+			this.checkNowLabel = new global::Gtk.Label ();
+			this.checkNowLabel.Name = "checkNowLabel";
+			this.checkNowLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Check Now");
+			this.alignment10.Add (this.checkNowLabel);
+			this.hbox2.Add (this.alignment10);
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.alignment10]));
+			w14.Position = 1;
+			w14.Expand = false;
+			w14.Fill = false;
+			this.alignment7.Add (this.hbox2);
+			this.checkUpdateButton.Add (this.alignment7);
+			this.checkUpdateButton.Label = null;
 			this.alignment9.Add (this.checkUpdateButton);
 			this.hbox3.Add (this.alignment9);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.alignment9]));
-			w13.Position = 2;
-			w13.Expand = false;
-			w13.Fill = false;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.alignment9]));
+			w18.Position = 2;
+			w18.Expand = false;
+			w18.Fill = false;
 			this.alignment3.Add (this.hbox3);
 			this.vbox2.Add (this.alignment3);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
-			w15.Position = 2;
-			w15.Expand = false;
-			w15.Fill = false;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment3]));
+			w20.Position = 2;
+			w20.Expand = false;
+			w20.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment6 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment6.Name = "alignment6";
@@ -148,10 +189,10 @@ namespace GUPdotNET.UI.Views
 			this.hbuttonbox2.Name = "hbuttonbox2";
 			this.alignment6.Add (this.hbuttonbox2);
 			this.vbox2.Add (this.alignment6);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment6]));
-			w17.Position = 3;
-			w17.Expand = false;
-			w17.Fill = false;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment6]));
+			w22.Position = 3;
+			w22.Expand = false;
+			w22.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment5 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment5.Name = "alignment5";
@@ -160,20 +201,20 @@ namespace GUPdotNET.UI.Views
 			this.hseparator1.Name = "hseparator1";
 			this.alignment5.Add (this.hseparator1);
 			this.vbox2.Add (this.alignment5);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
-			w19.PackType = ((global::Gtk.PackType)(1));
-			w19.Position = 4;
-			w19.Expand = false;
-			w19.Fill = false;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment5]));
+			w24.PackType = ((global::Gtk.PackType)(1));
+			w24.Position = 4;
+			w24.Expand = false;
+			w24.Fill = false;
 			w2.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(w2 [this.vbox2]));
-			w20.Position = 0;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(w2 [this.vbox2]));
+			w25.Position = 0;
 			// Internal child GUPdotNET.UI.Views.MainView.ActionArea
-			global::Gtk.HButtonBox w21 = this.ActionArea;
-			w21.Name = "dialog1_ActionArea";
-			w21.Spacing = 10;
-			w21.BorderWidth = ((uint)(5));
-			w21.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
+			global::Gtk.HButtonBox w26 = this.ActionArea;
+			w26.Name = "dialog1_ActionArea";
+			w26.Spacing = 10;
+			w26.BorderWidth = ((uint)(5));
+			w26.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(1));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.closeButton = new global::Gtk.Button ();
 			this.closeButton.WidthRequest = 110;
@@ -182,14 +223,26 @@ namespace GUPdotNET.UI.Views
 			this.closeButton.CanFocus = true;
 			this.closeButton.Name = "closeButton";
 			this.closeButton.UseUnderline = true;
-			this.closeButton.Label = global::Mono.Unix.Catalog.GetString ("_Close");
-			global::Gtk.Image w22 = new global::Gtk.Image ();
-			w22.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Button);
-			this.closeButton.Image = w22;
+			// Container child closeButton.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w27 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w28 = new global::Gtk.HBox ();
+			w28.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w29 = new global::Gtk.Image ();
+			w29.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Button);
+			w28.Add (w29);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w31 = new global::Gtk.Label ();
+			w31.LabelProp = global::Mono.Unix.Catalog.GetString ("_Close");
+			w31.UseUnderline = true;
+			w28.Add (w31);
+			w27.Add (w28);
+			this.closeButton.Add (w27);
 			this.AddActionWidget (this.closeButton, 0);
-			global::Gtk.ButtonBox.ButtonBoxChild w23 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w21 [this.closeButton]));
-			w23.Expand = false;
-			w23.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w35 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w26 [this.closeButton]));
+			w35.Expand = false;
+			w35.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
