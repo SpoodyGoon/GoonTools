@@ -99,7 +99,7 @@ namespace GUPdotNET.Data
             this.ProgramName = (updateAssembly.GetCustomAttributes(typeof(AssemblyProductAttribute), false)[0] as AssemblyProductAttribute).Product;
             this.ProgramTitle = (updateAssembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false)[0] as AssemblyTitleAttribute).Title;
             this.ProgramDescription = (updateAssembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
-            this.ProgramVersion = System.Version.Parse((updateAssembly.GetCustomAttributes(typeof(AssemblyVersionAttribute), false)[0] as AssemblyVersionAttribute).Version);
+            this.ProgramVersion = updateAssembly.GetName().Version; 
             this.OS = GlobalTools.LocalSystem.OS;
             this.InstallType = (InstallMethod)Enum.Parse(typeof(InstallMethod), Properties.Settings.Default.InstallerType);
             this.ProcessorType = (ProcessorBit)Enum.Parse(typeof(ProcessorBit), Properties.Settings.Default.ProcessorType);

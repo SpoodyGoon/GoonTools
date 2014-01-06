@@ -1,26 +1,26 @@
-﻿// // --------------------------------------------------------------------------------------------------------------------
-// // <copyright file="UpdateCheck.cs" company="Andy York">
-// //
-// // Copyright (c) 2013 Andy York
-// //
-// // This program is free software: you can redistribute it and/or modify
-// // it under the +terms of the GNU General Public License as published by
-// // the Free Software Foundation, either version 3 of the License, or
-// // (at your option) any later version.
-// //
-// // This program is distributed in the hope that it will be useful,
-// // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// // GNU General Public License for more details.
-// //
-// // You should have received a copy of the GNU General Public License
-// // along with this program.  If not, see http://www.gnu.org/licenses/. 
-// // </copyright>
-// // <summary>
-// // Email: goontools@brdstudio.net
-// // Author: Andy York 
-// // </summary>
-// // --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UpdateCheck.cs" company="Andy York">
+//
+// Copyright (c) 2013 Andy York
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the +terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see http://www.gnu.org/licenses/. 
+// </copyright>
+// <summary>
+// Email: goontools@brdstudio.net
+// Author: Andy York 
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GUPdotNET
 {
@@ -28,6 +28,7 @@ namespace GUPdotNET
     using System.Diagnostics;
     using Gtk;
     using GUPdotNET.Data;
+    using GUPdotNET.IO;
     using GUPdotNET.UI.Views;
 
     /// <summary>
@@ -82,85 +83,101 @@ namespace GUPdotNET
         internal bool RunUpdateCheck(bool forceCheck)
         {
             bool exitAfterProcess = false;
-            if (forceCheck || DateTime.Now.Subtract(GlobalTools.Options.LastUpdateCheck).TotalMilliseconds > GlobalTools.Options.UpdateSchedule.TotalMilliseconds)
+            var options = GlobalTools.Options;
+
+            if (forceCheck || (options.UpdateSchedule > -1 && DateTime.Now.Subtract(options.LastUpdateCheck).TotalDays.CompareTo(Convert.ToDouble(options.UpdateSchedule)) == 1))
             {
                 GlobalTools.ProgramInfo = new ProgramInfo();
                 GlobalTools.ProgramInfo.Load();
                 GlobalTools.PackageInfo = new PackageInfo();
-                GlobalTools.PackageInfo.Load();
-
-                // this is the dialog response that will be reused
-                // during the update process the reponse type for
-                // continueing will be Gtk.ResponseType.Yes anything else will
-                // break the process flow.
-                Gtk.ResponseType response = Gtk.ResponseType.None;
-
-                // let the user know there is an update available and
-                // as if the user wants to install it.
-                ConfirmView confirmView = new ConfirmView();
-                if (this.RootWindow != null)
+                if (GlobalTools.PackageInfo.Load())
                 {
-                    confirmView.ParentWindow = this.RootWindow;
-                    confirmView.Modal = true;
-                }
 
-                response = (Gtk.ResponseType)confirmView.Run();
-                confirmView.Destroy();
+                    // After loading the program and package information
+                    // update the options file to reflect that an update check
+                    // has been performed.
+                    GlobalTools.Options.LastUpdateCheck = DateTime.Now;
+                    GlobalTools.Options.Save();
 
-                if (response == ResponseType.Yes)
-                {
-                    DownloadView downloadView = new DownloadView();
+                    // check to see if a newer version is available
+                    if (GlobalTools.PackageInfo.UpdateVersion.CompareTo(GlobalTools.ProgramInfo.ProgramVersion) < 1)
+                    {
+                        if (GlobalTools.UpdateRunType == RunType.ManualCheck)
+                        {
+                            MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, NoUpdateMessage, NoUpdateMessage);
+                            md.Run();
+                            md.Destroy();
+                        }
+
+                        GlobalTools.LocalSystem.CleanTempPaths();
+                        return true;
+                    }
+
+                    // this is the dialog response that will be reused
+                    // during the update process the reponse type for
+                    // continueing will be Gtk.ResponseType.Yes anything else will
+                    // break the process flow.
+                    Gtk.ResponseType response = Gtk.ResponseType.None;
+
+                    // let the user know there is an update available and
+                    // as if the user wants to install it.
+                    ConfirmView confirmView = new ConfirmView();
                     if (this.RootWindow != null)
                     {
-                        downloadView.ParentWindow = this.RootWindow;
-                        downloadView.Modal = true;
+                        confirmView.ParentWindow = this.RootWindow;
+                        confirmView.Modal = true;
                     }
 
-                    response = (Gtk.ResponseType)downloadView.Run();
-                    downloadView.Destroy();
-                }
+                    response = (Gtk.ResponseType)confirmView.Run();
+                    confirmView.Destroy();
 
-                if (response == ResponseType.Yes)
-                {
-                    if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.InstallerURL))
+                    if (response == ResponseType.Yes)
                     {
-                        string installerPath = GlobalTools.ToLocalFile(GlobalTools.PackageInfo.InstallerURL);
-                        if (!string.IsNullOrEmpty(installerPath))
+                        DownloadView downloadView = new DownloadView();
+                        if (this.RootWindow != null)
                         {
-                            if (this.ValidateChecksum(installerPath))
+                            downloadView.ParentWindow = this.RootWindow;
+                            downloadView.Modal = true;
+                        }
+
+                        response = (Gtk.ResponseType)downloadView.Run();
+                        downloadView.Destroy();
+                    }
+
+                    if (response == ResponseType.Yes)
+                    {
+                        if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.InstallerURL))
+                        {
+                            string installerPath = GlobalTools.ToLocalFile(GlobalTools.PackageInfo.InstallerURL);
+                            if (!string.IsNullOrEmpty(installerPath))
                             {
-                                Process.Start(installerPath);
-                                exitAfterProcess = true;
-                                System.Threading.Thread.Sleep(1000);
-                                MessageDialog exitWarningDialog = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, true, InstallerStartedMessage, "Exiting Updater");
-                                exitWarningDialog.WindowPosition = WindowPosition.CenterAlways;
-                                exitWarningDialog.Run();
-                                exitWarningDialog.Destroy();
+                                if (this.ValidateChecksum(installerPath))
+                                {
+                                    InstallRunner installRunner = new InstallRunner(GlobalTools.ProgramInfo.ProgramFullPath, installerPath, GlobalTools.PackageInfo.InstallerType);
+                                    installRunner.Start();
+                                    exitAfterProcess = true;
+                                    System.Threading.Thread.Sleep(1000);
+                                    MessageDialog exitWarningDialog = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, true, InstallerStartedMessage, "Exiting Updater");
+                                    exitWarningDialog.WindowPosition = WindowPosition.CenterAlways;
+                                    exitWarningDialog.Run();
+                                    exitWarningDialog.Destroy();
+                                }
                             }
                         }
-                    }
-                    else if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.DownloadsURL))
-                    {
-                        Process.Start(GlobalTools.PackageInfo.DownloadsURL);
-                    }
+                        else if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.DownloadsURL))
+                            {
+                                Process.Start(GlobalTools.PackageInfo.DownloadsURL);
+                            }
 
-                    /*
+                        /*
                     InstallView installView = new InstallView();
                     response = (Gtk.ResponseType)installView.Run();
                     installView.Destroy();
                     */
 
-                    // Clean up the temporary files
-                    GlobalTools.LocalSystem.CleanTempPaths();
-                }
-            }
-            else
-            {
-                if (GlobalTools.UpdateRunType == RunType.ManualCheck)
-                {
-                    MessageDialog md = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, Gtk.ButtonsType.Ok, false, NoUpdateMessage, NoUpdateMessage);
-                    md.Run();
-                    md.Destroy();
+                        // Clean up the temporary files
+                        GlobalTools.LocalSystem.CleanTempPaths();
+                    }
                 }
             }
 

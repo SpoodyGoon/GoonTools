@@ -1,29 +1,30 @@
-// // --------------------------------------------------------------------------------------------------------------------
-// // <copyright file="ConfirmView.cs" company="Andy York">
-// //
-// // Copyright (c) 2013 Andy York
-// //
-// // This program is free software: you can redistribute it and/or modify
-// // it under the +terms of the GNU General Public License as published by
-// // the Free Software Foundation, either version 3 of the License, or
-// // (at your option) any later version.
-// //
-// // This program is distributed in the hope that it will be useful,
-// // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// // GNU General Public License for more details.
-// //
-// // You should have received a copy of the GNU General Public License
-// // along with this program.  If not, see http://www.gnu.org/licenses/. 
-// // </copyright>
-// // <summary>
-// // Email: goontools@brdstudio.net
-// // Author: Andy York 
-// // </summary>
-// // --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ConfirmView.cs" company="Andy York">
+//
+// Copyright (c) 2013 Andy York
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the +terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see http://www.gnu.org/licenses/. 
+// </copyright>
+// <summary>
+// Email: goontools@brdstudio.net
+// Author: Andy York 
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GUPdotNET.UI.Views
 {
+
     using System;
     using GUPdotNET.UI;
 
@@ -53,12 +54,24 @@ namespace GUPdotNET.UI.Views
         private const string ConfirmTitle = "{0} {1} Available";
 
         /// <summary>
+        /// Text displayed on the release notes label button.
+        /// </summary>
+        private const string ReleaseNotesLabel = "View Release Notes";
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="GUPdotNET.UI.Views.ConfirmView"/> class.
         /// </summary>
         internal ConfirmView()
         {
-            this.Build();
-            this.Initalize();
+            try
+            {
+                this.Build();
+                this.Initalize();
+            }
+            catch (Exception error)
+            {
+                GlobalTools.HandleError(this, error);
+            }
         }
 
         /// <summary>
@@ -85,21 +98,33 @@ namespace GUPdotNET.UI.Views
         {
             try
             {
-                this.Title = string.Format(ConfirmTitle, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                var packageInfo = GlobalTools.PackageInfo;
+                var programInfo = GlobalTools.ProgramInfo;
+                this.ActionArea.HideAll();
+                this.Title = string.Format(ConfirmTitle, programInfo.ProgramTitle, packageInfo.UpdateVersion.ToString());
+
+                // set the update message base on the package file contents.
                 string updateMessage = ConfigURLMissing;
-                if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.InstallerURL))
+                if (!string.IsNullOrEmpty(packageInfo.UpdateMessage))
                 {
-                    updateMessage = string.Format(ConfimUpdateMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
+                    updateMessage = packageInfo.UpdateMessage;
                 }
-                else if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.DownloadsURL))
-                {
-                    updateMessage = string.Format(ConfimDownloadMessage, GlobalTools.ProgramInfo.ProgramTitle, GlobalTools.PackageInfo.UpdateVersion.ToString());
-                }
+                else if (!string.IsNullOrEmpty(packageInfo.InstallerURL))
+                    {
+                        updateMessage = string.Format(ConfimUpdateMessage, programInfo.ProgramTitle, packageInfo.UpdateVersion.ToString());
+                    }
+                    else if (!string.IsNullOrEmpty(packageInfo.DownloadsURL))
+                        {
+                            updateMessage = string.Format(ConfimDownloadMessage, programInfo.ProgramTitle, packageInfo.UpdateVersion.ToString());
+                        }
 
                 this.updateMessageLabel.Text = updateMessage;
-                if (!string.IsNullOrEmpty(GlobalTools.PackageInfo.ReleaseNotesURL))
+                this.installUpdatesButton.Sensitive = string.IsNullOrEmpty(packageInfo.InstallerURL) ? false : true;
+                this.downloadsButton.Sensitive = string.IsNullOrEmpty(packageInfo.DownloadsURL) ? false : true;
+
+                if (!string.IsNullOrEmpty(packageInfo.ReleaseNotesURL))
                 {
-                    LabelButton releaseNotesButton = new LabelButton("View Release Notes");
+                    LabelButton releaseNotesButton = new LabelButton(ReleaseNotesLabel);
                     releaseNotesButton.Clicked += this.OnReleaseNotesButtonClicked;
                     this.releaseNotesAlignment.Add(releaseNotesButton);
                     this.releaseNotesAlignment.ShowAll();
@@ -125,6 +150,38 @@ namespace GUPdotNET.UI.Views
             {
                 GlobalTools.HandleError(this, ex);
             }
+        }
+
+        /// <summary>
+        /// Method to handle when the cancel buttons has been clicked.
+        /// </summary>
+        /// <param name="sender">The parameter is not used.</param>
+        /// <param name="args">The parameter is not used.</param>
+        protected void CloseButton_Clicked(object sender, EventArgs args)
+        {
+            this.Respond(Gtk.ResponseType.No);
+            this.Hide();
+        }
+
+        /// <summary>
+        /// Method to handle when teh downloads button has been clicked.
+        /// </summary>
+        /// <param name="sender">The parameter is not used.</param>
+        /// <param name="args">The parameter is not used.</param>
+        protected void DownloadsButton_Clicked(object sender, EventArgs args)
+        {
+            ProcessTools.LaunchURL(GlobalTools.PackageInfo.DownloadsURL);
+        }
+
+        /// <summary>
+        /// Method to handle when the install updates button has been clicked.
+        /// </summary>
+        /// <param name="sender">The parameter is not used.</param>
+        /// <param name="args">The parameter is not used.</param>
+        protected void InstallUpdatesButton_Clicked(object sender, EventArgs args)
+        {
+            this.Respond(Gtk.ResponseType.Yes);
+            this.Hide();
         }
     }
 }

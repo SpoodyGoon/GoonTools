@@ -19,7 +19,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.DownloadView" design-size="544 125">
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.DownloadView" design-size="496 120">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
     <property name="Title" translatable="yes">Downloading</property>
@@ -39,80 +39,213 @@
         <property name="MemberName" />
         <property name="BorderWidth">2</property>
         <child>
-          <widget class="Gtk.Alignment" id="alignment4">
+          <widget class="Gtk.Alignment" id="alignment5">
             <property name="MemberName" />
-            <property name="Xscale">0.01</property>
-            <property name="TopPadding">3</property>
-            <property name="BottomPadding">3</property>
-            <property name="BorderWidth">4</property>
+            <property name="BorderWidth">8</property>
             <child>
-              <widget class="Gtk.HBox" id="hbox1">
+              <widget class="Gtk.VBox" id="vbox2">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Alignment" id="alignment7">
+                  <widget class="Gtk.Alignment" id="alignment4">
                     <property name="MemberName" />
                     <property name="Xscale">0.01</property>
-                    <property name="Yscale">0.01</property>
-                    <property name="RightPadding">5</property>
                     <child>
-                      <widget class="Gtk.ProgressBar" id="downloadingProgressbar">
+                      <widget class="Gtk.HBox" id="hbox1">
                         <property name="MemberName" />
-                        <property name="WidthRequest">300</property>
-                        <property name="Text" translatable="yes">Downloading</property>
+                        <property name="Spacing">6</property>
+                        <child>
+                          <widget class="Gtk.Alignment" id="alignment7">
+                            <property name="MemberName" />
+                            <property name="Xscale">0.01</property>
+                            <property name="Yscale">0.01</property>
+                            <property name="RightPadding">5</property>
+                            <child>
+                              <widget class="Gtk.ProgressBar" id="downloadingProgressbar">
+                                <property name="MemberName" />
+                                <property name="WidthRequest">300</property>
+                                <property name="Text" translatable="yes">Downloading</property>
+                              </widget>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">0</property>
+                            <property name="AutoSize">False</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Alignment" id="alignment6">
+                            <property name="MemberName" />
+                            <child>
+                              <widget class="Gtk.Button" id="cancelButton">
+                                <property name="MemberName" />
+                                <property name="CanFocus">True</property>
+                                <property name="Type">Custom</property>
+                                <signal name="Clicked" handler="OnCancelButtonClicked" />
+                                <child>
+                                  <widget class="Gtk.Alignment" id="alignment8">
+                                    <property name="MemberName" />
+                                    <property name="Xscale">0.01</property>
+                                    <property name="Yscale">0.01</property>
+                                    <property name="LeftPadding">6</property>
+                                    <property name="TopPadding">2</property>
+                                    <property name="RightPadding">6</property>
+                                    <property name="BottomPadding">2</property>
+                                    <child>
+                                      <widget class="Gtk.HBox" id="hbox2">
+                                        <property name="MemberName" />
+                                        <property name="Spacing">6</property>
+                                        <child>
+                                          <widget class="Gtk.Alignment" id="alignment9">
+                                            <property name="MemberName" />
+                                            <child>
+                                              <widget class="Gtk.Image" id="image3">
+                                                <property name="MemberName" />
+                                                <property name="Pixbuf">resource:GUPdotNET.Resources.Images.cancel.png</property>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="Position">0</property>
+                                            <property name="AutoSize">True</property>
+                                            <property name="Expand">False</property>
+                                            <property name="Fill">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="Gtk.Alignment" id="alignment10">
+                                            <property name="MemberName" />
+                                            <property name="LeftPadding">2</property>
+                                            <child>
+                                              <widget class="Gtk.Label" id="checkNowLabel">
+                                                <property name="MemberName" />
+                                                <property name="LabelProp" translatable="yes">Cancel</property>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="Position">1</property>
+                                            <property name="AutoSize">True</property>
+                                            <property name="Expand">False</property>
+                                            <property name="Fill">False</property>
+                                          </packing>
+                                        </child>
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                </child>
+                              </widget>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Alignment" id="alignment11">
+                            <property name="MemberName" />
+                            <child>
+                              <widget class="Gtk.Button" id="hideWindowButton">
+                                <property name="MemberName" />
+                                <property name="CanFocus">True</property>
+                                <property name="Type">Custom</property>
+                                <signal name="Clicked" handler="OnHideWindowButtonClicked" />
+                                <child>
+                                  <widget class="Gtk.Alignment" id="alignment12">
+                                    <property name="MemberName" />
+                                    <property name="Xscale">0.01</property>
+                                    <property name="Yscale">0.01</property>
+                                    <property name="LeftPadding">6</property>
+                                    <property name="TopPadding">2</property>
+                                    <property name="RightPadding">6</property>
+                                    <property name="BottomPadding">2</property>
+                                    <child>
+                                      <widget class="Gtk.HBox" id="hbox3">
+                                        <property name="MemberName" />
+                                        <property name="Spacing">6</property>
+                                        <child>
+                                          <widget class="Gtk.Alignment" id="alignment13">
+                                            <property name="MemberName" />
+                                            <child>
+                                              <widget class="Gtk.Image" id="image4">
+                                                <property name="MemberName" />
+                                                <property name="Pixbuf">resource:GUPdotNET.Resources.Images.hide.png</property>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="Position">0</property>
+                                            <property name="AutoSize">True</property>
+                                            <property name="Expand">False</property>
+                                            <property name="Fill">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="Gtk.Alignment" id="alignment14">
+                                            <property name="MemberName" />
+                                            <property name="LeftPadding">2</property>
+                                            <child>
+                                              <widget class="Gtk.Label" id="checkNowLabel1">
+                                                <property name="MemberName" />
+                                                <property name="LabelProp" translatable="yes">Hide</property>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="Position">1</property>
+                                            <property name="AutoSize">True</property>
+                                            <property name="Expand">False</property>
+                                            <property name="Fill">False</property>
+                                          </packing>
+                                        </child>
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                </child>
+                              </widget>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">2</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
                       </widget>
                     </child>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
-                    <property name="AutoSize">False</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Alignment" id="alignment5">
-                    <property name="MemberName" />
-                    <child>
-                      <widget class="Gtk.Button" id="cancelButton">
-                        <property name="MemberName" />
-                        <property name="WidthRequest">90</property>
-                        <property name="HeightRequest">30</property>
-                        <property name="CanFocus">True</property>
-                        <property name="Type">TextAndIcon</property>
-                        <property name="Icon">resource:GUPdotNET.Resources.Images.cancel.png</property>
-                        <property name="Label" translatable="yes">Cancel</property>
-                        <property name="UseUnderline">True</property>
-                        <signal name="Clicked" handler="OnCancelButtonClicked" />
-                      </widget>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="Position">1</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Alignment" id="alignment6">
+                  <widget class="Gtk.Alignment" id="alignment15">
                     <property name="MemberName" />
+                    <property name="Xscale">0.01</property>
+                    <property name="Yscale">0.01</property>
                     <child>
-                      <widget class="Gtk.Button" id="hideWindowButton">
+                      <widget class="Gtk.CheckButton" id="startInstallerCheckbutton">
                         <property name="MemberName" />
-                        <property name="WidthRequest">90</property>
-                        <property name="HeightRequest">30</property>
                         <property name="CanFocus">True</property>
-                        <property name="Type">TextAndIcon</property>
-                        <property name="Icon">resource:GUPdotNET.Resources.Images.hide.png</property>
-                        <property name="Label" translatable="yes">Hide</property>
+                        <property name="Label" translatable="yes">Start installer when download completed.</property>
+                        <property name="Active">True</property>
+                        <property name="DrawIndicator">True</property>
+                        <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
-                        <signal name="Clicked" handler="OnHideWindowButtonClicked" />
                       </widget>
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">2</property>
+                    <property name="Position">1</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -377,7 +510,7 @@
                         <child>
                           <widget class="Gtk.Label" id="updateTitleLabel">
                             <property name="MemberName" />
-                            <property name="LabelProp" translatable="yes">&lt;span size="12000" weight="bold"&gt;Update tools for YahtzeeSharp.&lt;/span&gt;</property>
+                            <property name="LabelProp" translatable="yes">&lt;span size="12000" weight="bold"&gt;Update Tools.&lt;/span&gt;</property>
                             <property name="UseMarkup">True</property>
                           </widget>
                         </child>
@@ -450,14 +583,62 @@
                         <child>
                           <widget class="Gtk.Button" id="checkUpdateButton">
                             <property name="MemberName" />
-                            <property name="WidthRequest">133</property>
-                            <property name="HeightRequest">32</property>
+                            <property name="CanDefault">True</property>
                             <property name="CanFocus">True</property>
-                            <property name="Type">TextAndIcon</property>
-                            <property name="Icon">resource:GUPdotNET.Resources.Images.CheckMark.png</property>
-                            <property name="Label" translatable="yes">Check Now</property>
-                            <property name="UseUnderline">True</property>
+                            <property name="Type">Custom</property>
                             <signal name="Clicked" handler="OnCheckUpdateButtonClicked" />
+                            <child>
+                              <widget class="Gtk.Alignment" id="alignment7">
+                                <property name="MemberName" />
+                                <property name="Xscale">0.01</property>
+                                <property name="Yscale">0.01</property>
+                                <property name="LeftPadding">6</property>
+                                <property name="TopPadding">2</property>
+                                <property name="RightPadding">6</property>
+                                <property name="BottomPadding">2</property>
+                                <child>
+                                  <widget class="Gtk.HBox" id="hbox2">
+                                    <property name="MemberName" />
+                                    <property name="Spacing">6</property>
+                                    <child>
+                                      <widget class="Gtk.Alignment" id="alignment8">
+                                        <property name="MemberName" />
+                                        <child>
+                                          <widget class="Gtk.Image" id="image3">
+                                            <property name="MemberName" />
+                                            <property name="Pixbuf">resource:GUPdotNET.Resources.Images.CheckMark.png</property>
+                                          </widget>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="Position">0</property>
+                                        <property name="AutoSize">True</property>
+                                        <property name="Expand">False</property>
+                                        <property name="Fill">False</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="Gtk.Alignment" id="alignment10">
+                                        <property name="MemberName" />
+                                        <property name="LeftPadding">2</property>
+                                        <child>
+                                          <widget class="Gtk.Label" id="checkNowLabel">
+                                            <property name="MemberName" />
+                                            <property name="LabelProp" translatable="yes">Check Now</property>
+                                          </widget>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="Position">1</property>
+                                        <property name="AutoSize">True</property>
+                                        <property name="Expand">False</property>
+                                        <property name="Fill">False</property>
+                                      </packing>
+                                    </child>
+                                  </widget>
+                                </child>
+                              </widget>
+                            </child>
                           </widget>
                         </child>
                       </widget>
@@ -549,7 +730,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.ConfirmView" design-size="492 211">
+  <widget class="Gtk.Dialog" id="GUPdotNET.UI.Views.ConfirmView" design-size="638 284">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
     <property name="Title" translatable="yes">Update Available</property>
@@ -558,43 +739,27 @@
     <property name="WindowPosition">CenterAlways</property>
     <property name="Modal">True</property>
     <property name="Resizable">False</property>
-    <property name="Buttons">2</property>
+    <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
       <widget class="Gtk.VBox" id="dialog1_VBox">
         <property name="MemberName" />
-        <property name="BorderWidth">2</property>
         <child>
           <widget class="Gtk.VBox" id="vbox2">
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.Alignment" id="alignment1">
-                <property name="MemberName" />
-                <property name="Xscale">0.01</property>
-                <property name="TopPadding">4</property>
-                <property name="BottomPadding">2</property>
-                <child>
-                  <widget class="Gtk.Label" id="titleLabel">
-                    <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;b&gt;&lt;big&gt;Update Available&lt;/big&gt;&lt;/b&gt;</property>
-                    <property name="UseMarkup">True</property>
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
+              <placeholder />
             </child>
             <child>
-              <widget class="Gtk.Alignment" id="alignment4">
+              <widget class="Gtk.Alignment" id="alignment5">
                 <property name="MemberName" />
+                <property name="TopPadding">4</property>
                 <child>
-                  <widget class="Gtk.HSeparator" id="hseparator1">
+                  <widget class="Gtk.Label" id="label1">
                     <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">&lt;big&gt;&lt;b&gt;Update Available&lt;/b&gt;&lt;/big&gt;</property>
+                    <property name="UseMarkup">True</property>
                   </widget>
                 </child>
               </widget>
@@ -606,18 +771,13 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Alignment" id="alignment2">
+              <widget class="Gtk.Alignment" id="alignment6">
                 <property name="MemberName" />
-                <property name="Xscale">0.01</property>
-                <property name="Xalign">0.01</property>
+                <property name="TopPadding">4</property>
                 <property name="BottomPadding">4</property>
                 <child>
-                  <widget class="Gtk.Label" id="updateMessageLabel">
+                  <widget class="Gtk.HSeparator" id="hseparator2">
                     <property name="MemberName" />
-                    <property name="Xpad">5</property>
-                    <property name="Ypad">5</property>
-                    <property name="LabelProp">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </property>
-                    <property name="Wrap">True</property>
                   </widget>
                 </child>
               </widget>
@@ -629,10 +789,37 @@
               </packing>
             </child>
             <child>
+              <widget class="Gtk.Alignment" id="alignment2">
+                <property name="MemberName" />
+                <property name="Xscale">0.01</property>
+                <property name="Xalign">0.01</property>
+                <property name="LeftPadding">6</property>
+                <property name="RightPadding">6</property>
+                <property name="BottomPadding">4</property>
+                <child>
+                  <widget class="Gtk.Label" id="updateMessageLabel">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">600</property>
+                    <property name="Xpad">5</property>
+                    <property name="Ypad">5</property>
+                    <property name="LabelProp">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </property>
+                    <property name="Wrap">True</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+                <property name="AutoSize">False</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.Alignment" id="alignment3">
                 <property name="MemberName" />
                 <property name="Xscale">0.01</property>
-                <property name="LeftPadding">8</property>
+                <property name="Xalign">1</property>
+                <property name="LeftPadding">63</property>
                 <property name="BottomPadding">4</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox2">
@@ -641,6 +828,7 @@
                     <child>
                       <widget class="Gtk.Alignment" id="releaseNotesAlignment">
                         <property name="MemberName" />
+                        <property name="RightPadding">50</property>
                         <child>
                           <placeholder />
                         </child>
@@ -654,23 +842,123 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Alignment" id="alignment5">
+              <widget class="Gtk.Alignment" id="alignment9">
                 <property name="MemberName" />
-                <property name="TopPadding">2</property>
-                <property name="BottomPadding">2</property>
+                <property name="TopPadding">4</property>
+                <property name="BottomPadding">4</property>
                 <child>
-                  <widget class="Gtk.HSeparator" id="hseparator2">
+                  <widget class="Gtk.HSeparator" id="hseparator3">
                     <property name="MemberName" />
                   </widget>
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">5</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment1">
+                <property name="MemberName" />
+                <property name="LeftPadding">12</property>
+                <property name="TopPadding">4</property>
+                <property name="RightPadding">12</property>
+                <property name="BottomPadding">8</property>
+                <child>
+                  <widget class="Gtk.HBox" id="hbox3">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Alignment" id="alignment7">
+                        <property name="MemberName" />
+                        <property name="Xscale">0.01</property>
+                        <property name="Yscale">0.01</property>
+                        <property name="Xalign">0.01</property>
+                        <child>
+                          <widget class="Gtk.Button" id="closeButton">
+                            <property name="MemberName" />
+                            <property name="WidthRequest">90</property>
+                            <property name="HeightRequest">32</property>
+                            <property name="CanFocus">True</property>
+                            <property name="Type">TextOnly</property>
+                            <property name="Label" translatable="yes">Close</property>
+                            <signal name="Clicked" handler="CloseButton_Clicked" />
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Alignment" id="alignment8">
+                        <property name="MemberName" />
+                        <property name="Xscale">0.01</property>
+                        <property name="Yscale">0.01</property>
+                        <property name="Xalign">1</property>
+                        <child>
+                          <widget class="Gtk.HButtonBox" id="hbuttonbox2">
+                            <property name="MemberName" />
+                            <property name="Spacing">16</property>
+                            <property name="Size">2</property>
+                            <property name="LayoutStyle">End</property>
+                            <child>
+                              <widget class="Gtk.Button" id="downloadsButton">
+                                <property name="MemberName" />
+                                <property name="WidthRequest">120</property>
+                                <property name="HeightRequest">36</property>
+                                <property name="CanDefault">True</property>
+                                <property name="CanFocus">True</property>
+                                <property name="Type">TextOnly</property>
+                                <property name="Label" translatable="yes">Downloads...</property>
+                                <signal name="Clicked" handler="DownloadsButton_Clicked" />
+                              </widget>
+                              <packing>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="Gtk.Button" id="installUpdatesButton">
+                                <property name="MemberName" />
+                                <property name="WidthRequest">120</property>
+                                <property name="HeightRequest">36</property>
+                                <property name="CanDefault">True</property>
+                                <property name="HasDefault">True</property>
+                                <property name="CanFocus">True</property>
+                                <property name="Type">TextOnly</property>
+                                <property name="Label" translatable="yes">Install Updates</property>
+                                <signal name="Clicked" handler="InstallUpdatesButton_Clicked" />
+                              </widget>
+                              <packing>
+                                <property name="Position">1</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">6</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -687,43 +975,19 @@
     <child internal-child="ActionArea">
       <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
         <property name="MemberName" />
-        <property name="Spacing">14</property>
-        <property name="BorderWidth">5</property>
-        <property name="Size">2</property>
-        <property name="LayoutStyle">End</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">Spread</property>
         <child>
-          <widget class="Gtk.Button" id="noConfirmButton">
+          <widget class="Gtk.Button" id="cancelButton1">
             <property name="MemberName" />
-            <property name="WidthRequest">100</property>
-            <property name="HeightRequest">32</property>
-            <property name="CanDefault">True</property>
             <property name="CanFocus">True</property>
             <property name="UseStock">True</property>
             <property name="Type">StockItem</property>
-            <property name="StockId">gtk-no</property>
+            <property name="StockId">gtk-close</property>
             <property name="ResponseId">-9</property>
-            <property name="label">gtk-no</property>
+            <property name="label">gtk-close</property>
           </widget>
           <packing>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.Button" id="yesConfirmButton">
-            <property name="MemberName" />
-            <property name="WidthRequest">100</property>
-            <property name="HeightRequest">32</property>
-            <property name="CanDefault">True</property>
-            <property name="CanFocus">True</property>
-            <property name="UseStock">True</property>
-            <property name="Type">StockItem</property>
-            <property name="StockId">gtk-yes</property>
-            <property name="ResponseId">-8</property>
-            <property name="label">gtk-yes</property>
-          </widget>
-          <packing>
-            <property name="Position">1</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

@@ -1,26 +1,26 @@
-// // --------------------------------------------------------------------------------------------------------------------
-// // <copyright file="DownloadView.cs" company="Andy York">
-// //
-// // Copyright (c) 2013 Andy York
-// //
-// // This program is free software: you can redistribute it and/or modify
-// // it under the +terms of the GNU General Public License as published by
-// // the Free Software Foundation, either version 3 of the License, or
-// // (at your option) any later version.
-// //
-// // This program is distributed in the hope that it will be useful,
-// // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// // GNU General Public License for more details.
-// //
-// // You should have received a copy of the GNU General Public License
-// // along with this program.  If not, see http://www.gnu.org/licenses/. 
-// // </copyright>
-// // <summary>
-// // Email: goontools@brdstudio.net
-// // Author: Andy York 
-// // </summary>
-// // --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DownloadView.cs" company="Andy York">
+// 
+// Copyright (c) 2013 Andy York
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the +terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see http://www.gnu.org/licenses/. 
+// </copyright>
+// <summary>
+// Email: goontools@brdstudio.net
+// Author: Andy York 
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GUPdotNET.UI.Views
 {
@@ -41,13 +41,25 @@ namespace GUPdotNET.UI.Views
         private WebClient webClient = new WebClient();
 
         /// <summary>
+        /// Flag to identify when the expose event has been fired.
+        /// </summary>
+        private bool isExposed = false;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="GUPdotNET.UI.Views.DownloadView"/> class.
         /// </summary>
         internal DownloadView()
         {
-            this.Build();
-            this.Initalize();
-            this.DownloadFile();
+            try
+            {
+                // TODO: add logic to keep downloaded open when "start installer after..." is NOT checked.
+                this.Build();
+                this.Initalize();
+            }
+            catch (Exception error)
+            {
+                GlobalTools.HandleError(this, error);
+            }
         }
 
         /// <summary>
@@ -89,10 +101,22 @@ namespace GUPdotNET.UI.Views
                 {
                     this.Respond(ResponseType.No);
                 };
+
                 this.DeleteEvent += delegate(object o, DeleteEventArgs args)
                 {
                     this.Respond(ResponseType.No);
                 };
+
+                this.ExposeEvent += delegate(object sender, Gtk.ExposeEventArgs args)
+                {
+                    if (!this.isExposed)
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        this.DownloadFile();
+                        this.isExposed = true;
+                    }
+                };
+
                 this.QueueResize();
                 this.QueueDraw();
             }

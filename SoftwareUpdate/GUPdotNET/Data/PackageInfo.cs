@@ -24,6 +24,7 @@
 
 namespace GUPdotNET.Data
 {
+
     using System;
     using System.IO;
     using System.Linq;
@@ -50,6 +51,11 @@ namespace GUPdotNET.Data
         /// Error message to be displayed when the file path is null or empty.
         /// </summary>
         private const string FilePathEmptyMessage = "The update package file path is missing. Unable to load the update package file for {0}.";
+
+        /// <summary>
+        /// Error message format for unsupported URI Schemes
+        /// </summary>
+        private const string URIUnsupportedMessage = "The provided URI Scheme is not currently supported. URI Scheme: {0}.";
 
         /// <summary>
         /// Full path to the xml file that contains the application settings.
@@ -114,43 +120,113 @@ namespace GUPdotNET.Data
         internal string DownloadsURL { get; set; }
 
         /// <summary>
+        /// Gets or sets the update message for the update package.
+        /// </summary>
+        internal string UpdateMessage{ get; set; }
+
+        /// <summary>
         /// The main method to load the package xml for parsing.
         /// </summary>
-        internal void Load()
+        /// <returns>Boolean <c>true</c> if the package file was retrived successfully <c>false</c> if the package file was unaccessable.</returns>
+        internal bool Load()
         {
-            // TODO: add method to load package file from a local or network source as well.
-            WebClient webClient = new WebClient();
-            webClient.DownloadFile(GlobalTools.ProgramInfo.UpdatePackageURL, this.filePath);
+            bool success = true;
 
-            // Load the xml document
-            XDocument configDocument = XDocument.Load(Path.Combine(GlobalTools.LocalSystem.TempPackagePath, PackageConfigName));
-            this.FileVersion = System.Version.Parse(configDocument.Element("GUPdotNET").Element("PackageConfig").Attribute("FileVersion").Value);
-            XElement configRoot = configDocument.Element("GUPdotNET").Element("PackageConfig");
-            var packageInfo = (from el in configRoot.Descendants("Package")
-                               where (string)el.Attribute("OS") == GlobalTools.ProgramInfo.OS && (string)el.Attribute("InstallerType") == GlobalTools.ProgramInfo.InstallType.ToString()
-                               select new
-                               {
-                                    OS = el.Attribute("OS").Value,
-                                    InstallerType = el.Attribute("InstallerType").Value,
-                                    Version = el.Attribute("Version").Value,
-                                    ReleaseNotes = el.Element("ReleaseNotes").Value,
-                                    Installer = el.Element("Installer").Value,
-                                    Checksum = el.Element("Installer").Attribute("Checksum").Value,
-                                    Downloads = el.Element("Downloads").Value
-                               }).SingleOrDefault();
+            try
+            {
+                if(!this.MoveFile())
+                {
+                    throw new Exception("Unable to access package file.");
+                }
 
-            this.OS = packageInfo.OS.ToString();
-            this.InstallerType = (InstallMethod)Enum.Parse(typeof(InstallMethod), packageInfo.InstallerType.ToString());
-            this.UpdateVersion = System.Version.Parse(packageInfo.Version);
-            this.ReleaseNotesURL = packageInfo.ReleaseNotes;
-            this.InstallerURL = packageInfo.Installer;
-            this.InstallerChecksum = packageInfo.Checksum;
-            this.DownloadsURL = packageInfo.Downloads;
+                // Load the xml document
+                XDocument configDocument = XDocument.Load(this.filePath);
+                this.FileVersion = System.Version.Parse(configDocument.Element("GUPdotNET").Attribute("FileVersion").Value);
+                XElement configRoot = configDocument.Element("GUPdotNET").Element("PackageConfig");
+                var packageInfo = (from el in configRoot.Descendants("Package")
+                                               where (string)el.Attribute("OS") == GlobalTools.ProgramInfo.OS && (string)el.Attribute("InstallerType") == GlobalTools.ProgramInfo.InstallType.ToString()
+                                               select new
+                    {
+                        UpdateMessage = el.Element("UpdateMessage").Value,
+                        OS = el.Attribute("OS").Value,
+                        InstallerType = el.Attribute("InstallerType").Value,
+                        Version = el.Attribute("Version").Value,
+                        ReleaseNotes = el.Element("ReleaseNotes").Value,
+                        Installer = el.Element("Installer").Value,
+                        Checksum = el.Element("Installer").Attribute("Checksum").Value,
+                        Downloads = el.Element("Downloads").Value
+                       }).SingleOrDefault();
+
+                this.UpdateMessage = packageInfo.UpdateMessage.ToString().Trim();
+                this.OS = packageInfo.OS.ToString();
+                this.InstallerType = (InstallMethod)Enum.Parse(typeof(InstallMethod), packageInfo.InstallerType.ToString());
+                this.UpdateVersion = System.Version.Parse(packageInfo.Version);
+                this.ReleaseNotesURL = packageInfo.ReleaseNotes;
+                this.InstallerURL = packageInfo.Installer;
+                this.InstallerChecksum = packageInfo.Checksum;
+                this.DownloadsURL = packageInfo.Downloads;
+            }
+            catch (Exception error)
+            {
+                success = false;
+                GlobalTools.HandleError(error);
+            }
+
+            return success;
         }
 
-        private void MoveFile()
+        /// <summary>
+        /// Method to determine how to move the update package file.
+        /// Possible schemes: <c>file, ftp, gopher, http, https, ldap, mailto, net.pipe, net.tcp, news, nntp, telnet, uuid</c>
+        /// TODO: Add support for additional Uri Schemes
+        /// </summary>
+        /// <returns><c>true</c>, if file was moved, <c>false</c> otherwise.</returns>
+        private bool MoveFile()
         {
-            // TODO add methods to move the file from the web, ftp, network and local file path.
+            bool fileMoveSuccess = true;
+            try
+            {
+                Uri packagePathURI = new Uri(GlobalTools.ProgramInfo.UpdatePackageURL);
+                string packageScheme = packagePathURI.Scheme;
+                switch (packageScheme)
+                {
+                    case "http":
+                    case "https":
+                        using (WebClient webClient = new WebClient())
+                        {
+                            webClient.DownloadFile(packagePathURI, this.filePath);
+                        }
+
+                    break;
+                    case "file":
+                        File.Copy(packagePathURI.LocalPath, this.filePath);
+                    break;
+                    default:
+                        throw new NotSupportedException(string.Format(URIUnsupportedMessage, packageScheme));
+                }
+            }
+            catch (WebException webError)
+            {
+                fileMoveSuccess = false;
+                if (GlobalTools.UpdateRunType == RunType.ManualCheck)
+                {
+                    if (webError.Status == WebExceptionStatus.ConnectFailure)
+                    {
+                        GlobalTools.HandleError(new Exception("Unable to connect to remote web server to get update data file. Please check your internet connection and/or filewall status and try again."));
+                    }
+                    else
+                    {
+                        GlobalTools.HandleError(new Exception("Unknown error ocurred while attempting to get update data file."));
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                fileMoveSuccess = false;
+                GlobalTools.HandleError(error);
+            }
+
+            return fileMoveSuccess;
         }
 
         /// <summary>

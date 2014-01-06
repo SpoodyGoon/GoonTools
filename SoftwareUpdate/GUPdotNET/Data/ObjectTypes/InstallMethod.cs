@@ -50,6 +50,11 @@ namespace GUPdotNET
         bin,
 
         /// <summary>
+        /// Linux binary installer not distribution specific.
+        /// </summary>
+        run,
+
+        /// <summary>
         /// Linux Red Hat Package Manager binary installer.
         /// </summary>
         rpm,
