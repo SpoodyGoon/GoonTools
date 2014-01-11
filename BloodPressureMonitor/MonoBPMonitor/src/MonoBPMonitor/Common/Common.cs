@@ -36,9 +36,9 @@ namespace GoonTools
 	/// </summary>
 	static internal class Common
 	{
-		private static GoonTools.Helper.Options _Option;
+        private static GoonTools.Helper.Options _Option;
 		private static GoonTools.Helper.MetaInformation _MetaInfo;
-		private static GoonTools.Helper.EnviromentData _EnvData = new GoonTools.Helper.EnviromentData ();
+		private static GoonTools.Helper.EnviromentData _EnvData;
 		
 		#region Public Properties
 
@@ -70,6 +70,10 @@ namespace GoonTools
 		{
 			try
 			{
+                _EnvData = new EnviromentData();
+                _MetaInfo = new MetaInformation();
+                _Option = new Options();
+
 				// make sure the directory exists
 				if (!Directory.Exists (_EnvData.SavePath))
 					Directory.CreateDirectory (_EnvData.SavePath);

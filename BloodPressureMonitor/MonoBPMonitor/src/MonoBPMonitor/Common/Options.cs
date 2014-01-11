@@ -36,7 +36,7 @@ namespace GoonTools.Helper
 		/// for the dblocationand connection string the default locations
 		/// are very likely to be the perminant locations
 		/// </summary>
-		private string _DBLocation = System.IO.Path.Combine (GoonTools.Common.EnvData.SavePath, "BPMonitor.s3db");
+        private string _DBLocation = string.Empty;
 		/// <summary>
 		/// just a simple flag to save the error to the save directory or not
 		/// </summary>
@@ -75,7 +75,7 @@ namespace GoonTools.Helper
 
 		internal Options ()
 		{
-			
+            _DBLocation = System.IO.Path.Combine(GoonTools.Common.EnvData.SavePath, "BPMonitor.s3db");
 		}
 
 		internal Options (DataTable dt)

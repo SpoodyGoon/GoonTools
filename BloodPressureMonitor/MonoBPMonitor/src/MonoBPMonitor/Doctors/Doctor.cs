@@ -3,6 +3,7 @@
 using System;
 using Gtk;
 using GoonTools;
+using SQLiteDataHelper;
 
 namespace MonoBPMonitor
 {

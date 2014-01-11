@@ -6,6 +6,7 @@ using System.Data;
 using ICSharpCode.SharpZipLib.Zip;
 using Gtk;
 using GoonTools;
+using SQLiteDataHelper;
 
 namespace MonoBPMonitor
 {
@@ -67,6 +68,7 @@ namespace MonoBPMonitor
 			FileChooserDialog fc = new FileChooserDialog("Select a backup file", null, FileChooserAction.Save, "Cancel",ResponseType.Cancel,"Save",ResponseType.Ok);
 			FileFilter filter = new FileFilter();
 			DataSet ds = new DataSet("BPMonitorBackup");
+            
 			SQLiteBackup slb = new SQLiteBackup(Common.Option.DBLocation);
 			try
 			{

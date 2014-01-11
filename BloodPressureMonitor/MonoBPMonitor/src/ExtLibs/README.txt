@@ -1,0 +1,1 @@
+Assemblies that are not in the GAC or included via NuGet get put in this folder for use at the solution level.
