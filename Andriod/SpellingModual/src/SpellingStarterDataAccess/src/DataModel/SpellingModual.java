@@ -9,6 +9,7 @@ public class SpellingModual {
 	
 	public String getModualName() {
 		return ModualName;
+		// test
 	}
 
 	public void setModualName(String modualName) {
