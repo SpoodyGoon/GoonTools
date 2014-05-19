@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SpellingModual FileVersion="1.0">
+  <CreatedBy>Andy York</CreatedBy>
+  <CreatedDate>5/18/2014</CreatedDate>
+  <ModifiedBy>Andy York</ModifiedBy>
+  <ModifiedDate>5/18/2014</ModifiedDate>
+  <ModualName>Default</ModualName>
+  <AgeLevel Min="2" Max="4"/>
+  <DifficultyLevel>Easy</DifficultyLevel>
+  <Notes>This is the default spelling modual for this application.</Notes>
+  <Items>
+    <Item Position="1">
+      <Word>Dog</Word>
+      <Image>dog.png</Image>
+    </Item>
+  </Items>
+</SpellingModual>
