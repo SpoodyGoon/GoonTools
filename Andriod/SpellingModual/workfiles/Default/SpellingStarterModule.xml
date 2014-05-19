@@ -1,0 +1,50 @@
+<SpellingStarter FileVersion="1.0">
+	<Module Name="Default" Version="1.0">
+		<Author>Andy</Author>
+		<DateCreated/>
+		<Description>The default spelling module.</Description>
+		<Difficulty>
+			<Level>Medium</Level>
+			<MinAge/>
+			<MaxAge/>
+		</Difficulty>
+	</Module>
+	<SpellingItems>
+		<SpellingItem Word="Dog">
+			<ImagePath>Dog.png</ImagePath>
+			<Letters>
+				<Included/>
+				<Excluded>A,Y,X,H</Excluded>
+			</Letters>
+			<Notes>Dog Notes</Notes>
+			<SortOrder>1</SortOrder>
+		</SpellingItem>
+		<SpellingItem Word="Cat">
+			<ImagePath>Cat.png</ImagePath>
+			<Letters>
+				<Included>I,K</Included>
+				<Excluded>B,Z,X,H</Excluded>
+			</Letters>
+			<Notes>Cat Notes</Notes>
+			<SortOrder>2</SortOrder>
+		</SpellingItem>
+		<SpellingItem Word="Cow">
+			<ImagePath>Cow.png</ImagePath>
+			<Letters>
+				<Included>I,K</Included>
+				<Excluded>B,Z,X,H</Excluded>
+			</Letters>
+			<Notes>Cow Notes</Notes>
+			<SortOrder>3</SortOrder>
+		</SpellingItem>
+		<SpellingItem Word="House">
+			<ImagePath>House.png</ImagePath>
+			<Letters>
+				<Included>I,K</Included>
+				<Excluded>B,Z,X,H</Excluded>
+			</Letters>
+			<Notes>House Notes</Notes>
+			<SortOrder>4</SortOrder>
+		</SpellingItem>
+	</SpellingItems>
+</SpellingStarter>
