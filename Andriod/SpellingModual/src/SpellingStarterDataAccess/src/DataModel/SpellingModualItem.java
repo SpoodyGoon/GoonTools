@@ -1,70 +1,90 @@
 package DataModel;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.*;
+public class SpellingModualItem
+{
+    private int Position = 0;
 
-public class SpellingModualItem {
-	
-	private int Position = 0;
-	private boolean Bonus = false;
-	private String Word = "";
-	private String FilePath = "";
-	private int Difficulty = 3;
-	private List<String> IncludedLetters = new ArrayList<String>();
-	private List<String> ExcludedLetters = new ArrayList<String>();
+    private boolean Bonus = false;
 
-	public int getDifficulty() {
-		return Difficulty;
-	}
+    private String Word = "";
 
-	public List<String> getExcludedLetters() {
-		return ExcludedLetters;
-	}
+    private String FilePath = "";
 
-	public String getFilePath() {
-		return FilePath;
-	}
+    private int Difficulty = 3;
 
-	public List<String> getIncludedLetters() {
-		return IncludedLetters;
-	}
+    private List<String> IncludedLetters = new ArrayList<String>();
 
-	public int getPosition() {
-		return Position;
-	}
+    private List<String> ExcludedLetters = new ArrayList<String>();
 
-	public String getWord() {
-		return Word;
-	}
+    public int getDifficulty()
+    {
+        return this.Difficulty;
+    }
 
-	public boolean isBonus() {
-		return Bonus;
-	}
+    public List<String> getExcludedLetters()
+    {
+        return this.ExcludedLetters;
+    }
 
-	public void setBonus(boolean bonus) {
-		Bonus = bonus;
-	}
+    public String getFilePath()
+    {
+        return this.FilePath;
+    }
 
-	public void setDifficulty(int difficulty) {
-		Difficulty = difficulty;
-	}
+    public List<String> getIncludedLetters()
+    {
+        return this.IncludedLetters;
+    }
 
-	public void setExcludedLetters(List<String> excludedLetters) {
-		ExcludedLetters = excludedLetters;
-	}
+    public int getPosition()
+    {
+        return this.Position;
+    }
 
-	public void setFilePath(String filePath) {
-		FilePath = filePath;
-	}
+    public String getWord()
+    {
+        return this.Word;
+    }
 
-	public void setIncludedLetters(List<String> includedLetters) {
-		IncludedLetters = includedLetters;
-	}
+    public boolean isBonus()
+    {
+        return this.Bonus;
+    }
 
-	public void setPosition(int position) {
-		Position = position;
-	}
+    public void setBonus(boolean bonus)
+    {
+        this.Bonus = bonus;
+    }
 
-	public void setWord(String word) {
-		Word = word;
-	}
+    public void setDifficulty(int difficulty)
+    {
+        this.Difficulty = difficulty;
+    }
+
+    public void setExcludedLetters(List<String> excludedLetters)
+    {
+        this.ExcludedLetters = excludedLetters;
+    }
+
+    public void setFilePath(String filePath)
+    {
+        this.FilePath = filePath;
+    }
+
+    public void setIncludedLetters(List<String> includedLetters)
+    {
+        this.IncludedLetters = includedLetters;
+    }
+
+    public void setPosition(int position)
+    {
+        this.Position = position;
+    }
+
+    public void setWord(String word)
+    {
+        this.Word = word;
+    }
 }
