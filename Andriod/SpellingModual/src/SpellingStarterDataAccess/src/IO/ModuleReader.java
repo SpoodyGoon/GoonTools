@@ -70,12 +70,7 @@ public class ModuleReader {
 					Element item = (Element) node;
 					moduleItem.setPosition(Integer.valueOf(item.getAttribute("Position")));
 					moduleItem.setBonus(Boolean.valueOf(item.getAttribute("Bonus")));
-					moduleItem.setWord(this.getValue("Word", item));
-					
-					String[] strs = {"","","",""};
-					List<String> sst;
-					
-					
+					moduleItem.setWord(this.getValue("Word", item));					
 					moduleItem.setFilePath(this.getValue("Image", item));
 					moduleItem.setDifficulty(Integer.valueOf(this.getValue("Difficulty", item)));
 					moduleItem.setIncludedLetters(Arrays.asList(this.getValue("Included", item).split(",")));
