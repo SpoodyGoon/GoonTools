@@ -1,113 +1,91 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SpellingModule FileVersion="1.0" ModuleVersion="1.0">
-  <ModuleName>Default</ModuleName>
-  <CreatedBy>Andy York</CreatedBy>
-  <CreatedDate>5/18/2014</CreatedDate>
-  <ModifiedBy>Andy York</ModifiedBy>
-  <ModifiedDate>5/18/2014</ModifiedDate>
-  <Difficulty AverageLevel="Easy">
-    <Ages Min="2" Max="4"/>
-  </Difficulty>
-  <Notes>This is the default spelling Module for this application.</Notes>
-  <Items>
-    <Item Position="1" Bonus="False">
-      <Word>DOG</Word>
-      <Image>dog.png</Image>
-      <Difficulty>1</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="2" Bonus="False">
-      <Word>BAT</Word>
-      <Image>bat.png</Image>
-      <Difficulty>1</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="3" Bonus="False">
-      <Word>COW</Word>
-      <Image>cow.png</Image>
-      <Difficulty>1</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="4" Bonus="False">
-      <Word>FISH</Word>
-      <Image>fish.png</Image>
-      <Difficulty>2</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="5" Bonus="False">
-      <Word>LION</Word>
-      <Image>lion.png</Image>
-      <Difficulty>2</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="6" Bonus="False">
-      <Word>DEER</Word>
-      <Image>deer.png</Image>
-      <Difficulty>2</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="7" Bonus="False">
-      <Word>CHICKEN</Word>
-      <Image>chicken.png</Image>
-      <Difficulty>5</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="8" Bonus="False">
-      <Word>SKUNK</Word>
-      <Image>skunk.png</Image>
-      <Difficulty>3</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="9" Bonus="False">
-      <Word>SNAIL</Word>
-      <Image>snail.png</Image>
-      <Difficulty>4</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="10" Bonus="True">
-      <Word>ALLIGATOR</Word>
-      <Image>alligator.png</Image>
-      <Difficulty>5</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-    <Item Position="11" Bonus="True">
-      <Word>ELEPHANT</Word>
-      <Image>elephant.png</Image>
-      <Difficulty>5</Difficulty>
-      <Letters>
-        <Included>D,A,B</Included>
-        <Excluded>Z,X,Q</Excluded>
-      </Letters>
-    </Item>
-  </Items>
+	<ModuleName>Default</ModuleName>
+	<CreatedBy>Andy York</CreatedBy>
+	<CreatedDate>5/18/2014</CreatedDate>
+	<ModifiedBy>Andy York</ModifiedBy>
+	<ModifiedDate>5/18/2014</ModifiedDate>
+	<Difficulty AverageLevel="Easy">
+		<Ages Min="2" Max="4"/>
+	</Difficulty>
+	<Notes>This is the default spelling Module for this application.</Notes>
+	<Items>
+		<Item Position="1" Bonus="False">
+			<Word>DOG</Word>
+			<Image>dog.png</Image>
+			<Difficulty>1</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="2" Bonus="False">
+			<Word>BAT</Word>
+			<Image>bat.png</Image>
+			<Difficulty>1</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="3" Bonus="False">
+			<Word>COW</Word>
+			<Image>cow.png</Image>
+			<Difficulty>1</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="4" Bonus="False">
+			<Word>FISH</Word>
+			<Image>fish.png</Image>
+			<Difficulty>2</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="5" Bonus="False">
+			<Word>LION</Word>
+			<Image>lion.png</Image>
+			<Difficulty>2</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="6" Bonus="False">
+			<Word>DEER</Word>
+			<Image>deer.png</Image>
+			<Difficulty>2</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="7" Bonus="False">
+			<Word>CHICKEN</Word>
+			<Image>chicken.png</Image>
+			<Difficulty>5</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="8" Bonus="False">
+			<Word>SKUNK</Word>
+			<Image>skunk.png</Image>
+			<Difficulty>3</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="9" Bonus="False">
+			<Word>SNAIL</Word>
+			<Image>snail.png</Image>
+			<Difficulty>4</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="10" Bonus="True">
+			<Word>ALLIGATOR</Word>
+			<Image>alligator.png</Image>
+			<Difficulty>5</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+		<Item Position="11" Bonus="True">
+			<Word>ELEPHANT</Word>
+			<Image>elephant.png</Image>
+			<Difficulty>5</Difficulty>
+			<Included>D,A,B</Included>
+			<Excluded>Z,X,Q</Excluded>
+		</Item>
+	</Items>
 </SpellingModule>
