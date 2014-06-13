@@ -2,7 +2,7 @@ package DataModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpellingModualItem
+public class SpellingModuleItem
 {
     private int Position = 0;
 
