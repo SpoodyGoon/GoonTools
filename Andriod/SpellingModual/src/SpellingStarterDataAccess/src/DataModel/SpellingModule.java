@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class SpellingModual
+public class SpellingModule
 {
     private String ModualName = "Default";
 
@@ -27,7 +27,7 @@ public class SpellingModual
 
     private String Notes = "";
 
-    private List<SpellingModualItem> Items = new ArrayList<SpellingModualItem>();
+    private List<SpellingModuleItem> Items = new ArrayList<SpellingModuleItem>();
 
     public String getCreatedBy()
     {
@@ -49,7 +49,7 @@ public class SpellingModual
         return this.FileVersion;
     }
 
-    public List<SpellingModualItem> getItems()
+    public List<SpellingModuleItem> getItems()
     {
         return this.Items;
     }
@@ -109,7 +109,7 @@ public class SpellingModual
         this.FileVersion = fileVersion;
     }
 
-    public void setItems(List<SpellingModualItem> items)
+    public void setItems(List<SpellingModuleItem> items)
     {
         this.Items = items;
     }
@@ -147,5 +147,10 @@ public class SpellingModual
     public void setNotes(String notes)
     {
         this.Notes = notes;
+    }
+    
+    public void AddItem(SpellingModuleItem item)
+    {
+        this.Items.add(item);
     }
 }
