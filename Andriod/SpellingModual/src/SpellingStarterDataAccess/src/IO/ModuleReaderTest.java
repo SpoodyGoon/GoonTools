@@ -1,27 +1,35 @@
 package IO;
-import junit.framework.Assert;
+
 import junit.framework.TestCase;
-import DataModel.SpellingModule;
 
-public class ModuleReaderTest extends TestCase
-{
-    private String testFilePath = "C:\\TEMP\\SpellingModule\\Default\\config.xml";
+public class ModuleReaderTest extends TestCase {
 
-    public void testModuleReader()
-    {
-    }
+	public ModuleReaderTest(String name) {
+		super(name);
+	}
 
-    public void testModuleReaderString()
-    {
-        ModuleReader reader = new ModuleReader(this.testFilePath);
-        Assert.assertEquals(this.testFilePath, reader.getModualFilePath());
-    }
+	protected void setUp() throws Exception {
+		super.setUp();
+	}
 
-    public void testParseModule()
-    {
-        ModuleReader reader = new ModuleReader(this.testFilePath);
-        Assert.assertEquals(this.testFilePath, reader.getModualFilePath());
-        SpellingModule module = reader.ParseModule();
-        Assert.assertNotNull(module);
-    }
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
+
+	public void testModuleReaderString() {
+		fail("Not yet implemented");
+	}
+
+	public void testGetModualFilePath() {
+		fail("Not yet implemented");
+	}
+
+	public void testSetModualFilePath() {
+		fail("Not yet implemented");
+	}
+
+	public void testParseXML() {
+		fail("Not yet implemented");
+	}
+
 }
