@@ -65,10 +65,20 @@
                 android:textStyle="bold|italic"
                 android:typeface="serif" />
 
+            <Button
+                android:id="@+id/testTableLoadButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="41dp"
+                android:layout_toRightOf="@+id/textView1"
+                android:text="@string/testTableLoad" />
+
         </RelativeLayout>
 
         <TableLayout
-            android:id="@id/letterSelectTableLayout"
+            android:id="@+id/letterSelectTableLayout"
             android:layout_width="569dp"
             android:layout_height="match_parent"
             android:layout_column="1"
