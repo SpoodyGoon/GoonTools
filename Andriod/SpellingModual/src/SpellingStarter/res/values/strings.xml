@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="genericLetterPlaceholder">D</string>
     <string name="imagePlaceholder">Generic image used at startup as a placeholder</string>
+    <string name="testTableLoad">Test Table Load</string>
 
 </resources>

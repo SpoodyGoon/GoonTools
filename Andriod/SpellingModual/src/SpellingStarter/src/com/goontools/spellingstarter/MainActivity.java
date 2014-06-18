@@ -8,14 +8,18 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnLongClickListener, View.OnClickListener,
+View.OnTouchListener
+{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +51,9 @@ public class MainActivity extends Activity {
 				textView.setText(String.valueOf(letters[i + j]));
 				textView.setTextSize((float) 15.5);
 				textView.setTypeface(Typeface.DEFAULT_BOLD);
-				
+				row.addView(textView);
 			}
+			tableView.addView(row);
 		}
 		
 		
@@ -59,6 +64,24 @@ public class MainActivity extends Activity {
 	{
 		
 		
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		Toast.makeText (getApplicationContext(), "got here", Toast.LENGTH_SHORT).show ();
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
