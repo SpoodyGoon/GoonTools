@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookmarkSharp.DataAccess.DataModel
+namespace BookmarkSharp.DataModel
 {
     public class BookmarkTag
     {
