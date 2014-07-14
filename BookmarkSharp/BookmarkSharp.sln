@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkSharp", "BookmarkSharp\BookmarkSharp.csproj", "{31C59692-5C92-44D9-A33D-1892C2D76949}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkSharp.DataAccess", "BookmarkSharp.DataAccess\BookmarkSharp.DataAccess.csproj", "{F179AFAB-C3E7-484B-BA8E-097406137DC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkSharp.DataAccess", "BookmarkSharp.DataAccess\BookmarkSharp.DataAccess.csproj", "{E8568D10-521B-4CF2-8BD9-C2ABC3405DF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,10 @@ Global
 		{31C59692-5C92-44D9-A33D-1892C2D76949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C59692-5C92-44D9-A33D-1892C2D76949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31C59692-5C92-44D9-A33D-1892C2D76949}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F179AFAB-C3E7-484B-BA8E-097406137DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F179AFAB-C3E7-484B-BA8E-097406137DC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F179AFAB-C3E7-484B-BA8E-097406137DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F179AFAB-C3E7-484B-BA8E-097406137DC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8568D10-521B-4CF2-8BD9-C2ABC3405DF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8568D10-521B-4CF2-8BD9-C2ABC3405DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8568D10-521B-4CF2-8BD9-C2ABC3405DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8568D10-521B-4CF2-8BD9-C2ABC3405DF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
