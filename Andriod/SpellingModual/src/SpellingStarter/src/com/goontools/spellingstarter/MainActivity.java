@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements View.OnLongClickListener, View.OnClickListener,
@@ -25,6 +26,8 @@ View.OnTouchListener
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		Button btn = (Button)this.findViewById(R.id.testTableLoadButton);
+		btn.setOnClickListener(this);
 	}
 
 	@Override
