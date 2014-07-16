@@ -163,63 +163,18 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="CRUD\Create.cs" />
+    <Compile Include="CRUD\Delete.cs" />
+    <Compile Include="CRUD\Read.cs" />
+    <Compile Include="CRUD\Update.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bookmark.cs" />
     <Compile Include="Models\BookmarkFolder.cs" />
-    <Compile Include="Models\BookmarkSharpModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BookmarkSharpModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BookmarkSharpModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BookmarkSharpModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BookmarkSharpModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\BookmarkSharpConfig.cs" />
     <Compile Include="Models\BookmarkTag.cs" />
-    <Compile Include="Models\sp_BookmarkConfigGet_Result.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_BookmarkFoldersGet_Result.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_BookmarkLoginGet_Result.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_BookmarksGet_Result.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_StatusDescriptionGet_Result.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_TagByBookmarkIDGet_Result.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_TagGet_Result.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tb_Bookmark.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tb_BookmarkConfig.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tb_Folder.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tb_StatusDescription.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tb_Tag.cs">
-      <DependentUpon>BookmarkSharpModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ModelStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -291,23 +246,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\BookmarkSharpModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BookmarkSharpModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BookmarkSharpModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BookmarkSharpModel.edmx</DependentUpon>
-      <LastGenOutput>BookmarkSharpModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BookmarkSharpModel.edmx.diagram">
-      <DependentUpon>BookmarkSharpModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\BookmarkSharpModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BookmarkSharpModel.edmx</DependentUpon>
-      <LastGenOutput>BookmarkSharpModel.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
