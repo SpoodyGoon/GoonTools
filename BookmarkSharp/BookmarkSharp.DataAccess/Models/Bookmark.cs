@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BookmarkSharp.DataModel
 {
     public class Bookmark
     {
         public int BookmarkID { get; set; }
+        public Nullable<int> FolderID { get; set; }
         public string Title { get; set; }
         public string URL { get; set; }
         public int Position { get; set; }

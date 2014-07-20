@@ -176,6 +176,7 @@
     <Compile Include="Models\BookmarkTag.cs" />
     <Compile Include="Models\ModelStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\DataUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
