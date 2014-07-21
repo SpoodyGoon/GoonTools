@@ -118,5 +118,27 @@ namespace BookmarkSharp.DataAccess.CRUD
                 connection.Close();
             }
         }
+
+        public static void UpdateConfig(int bookmarkID, BookmarkTagAction bookmarkTagAction, List<BookmarkTag> tagList)
+        {
+            string tagXML = string.Empty;
+            using (SqlConnection connection = new SqlConnection(DataUtility.DefaultConnectionString))
+            {
+                SqlCommand command = new SqlCommand("sp_BookmarkTagRelationManager", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = 300;
+
+                if (tagList.Count > 0)
+                {
+                    command.Parameters.AddWithValue("@Tags", DataUtility.TagXMLCreate(tagList));
+                }
+
+                command.Parameters.AddWithValue("@BookmarkID", bookmarkID);
+                command.Parameters.AddWithValue("@RelationAction", bookmarkTagAction.ToString());
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
     }
 }
