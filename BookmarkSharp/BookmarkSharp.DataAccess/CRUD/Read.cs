@@ -159,6 +159,10 @@ namespace BookmarkSharp.DataAccess.CRUD
             }
             return folder;
         }
+        public static List<BookmarkFolder> FindActiveFolders()
+        {
+            return FindFolders(null, null, 1);
+        }
 
         public static List<BookmarkFolder> FindFolders(string folderName, Nullable<int> depth, Nullable<int> statusID)
         {
