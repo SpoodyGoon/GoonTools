@@ -18,7 +18,7 @@ namespace BookmarkSharp.DataAccess.Controllers
         // GET api/research/5
         public string Get(int id)
         {
-            return "value";
+            return id.ToString();
         }
 
         // POST api/research

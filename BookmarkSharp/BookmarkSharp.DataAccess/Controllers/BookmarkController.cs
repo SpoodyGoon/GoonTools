@@ -1,44 +1,42 @@
-﻿using System;
+﻿using BookmarkSharp.DataModel;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using BookmarkSharp.DataModel;
-using BookmarkSharp.DataAccess;
 
 namespace BookmarkSharp.DataAccess.Controllers
 {
     public class BookmarkController : ApiController
     {
-        public BookmarkController()
-        {
-        }
-
         // GET api/bookmarks
+        [HttpGet]
+        [ActionName("Get")]
         public IEnumerable<Bookmark> Get()
         {
             return CRUD.Read.FindActiveBookmarks();
         }
 
         // GET api/bookmarks/5
-        public Bookmark Get(int bookmarkID)
+        [HttpGet]
+        [ActionName("Get")]
+        public Bookmark Get(int id)
         {
-            return CRUD.Read.FindBookmark(bookmarkID);
+            return CRUD.Read.FindBookmark(id);
         }
 
         // POST api/bookmark
+        [HttpPost]
         public void Post([FromBody]Bookmark bookmark)
         {
 
         }
 
         // PUT api/research/5
+        [HttpPost]
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/bookmark/5
+        [HttpPost]
         public void Delete(int bookmarkID)
         {
             CRUD.Delete.DeleteBookmark(bookmarkID);
