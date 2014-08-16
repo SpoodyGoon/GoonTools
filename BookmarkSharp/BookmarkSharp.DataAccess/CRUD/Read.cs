@@ -1,9 +1,9 @@
-﻿using BookmarkSharp.DataAccess.Utility;
-using BookmarkSharp.DataModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using BookmarkSharp.DataAccess.Utility;
+using BookmarkSharp.DataModel;
 
 namespace BookmarkSharp.DataAccess.CRUD
 {
