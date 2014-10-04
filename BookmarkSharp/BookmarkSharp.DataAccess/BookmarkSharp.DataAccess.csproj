@@ -176,24 +176,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Bookmark.cs" />
-    <Compile Include="Models\BookmarkFolder.cs" />
-    <Compile Include="Models\BookmarkSharpConfig.cs" />
-    <Compile Include="Models\BookmarkTag.cs" />
-    <Compile Include="Models\ModelStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestSimpleBasicAuthentication.aspx.cs">
-      <DependentUpon>TestSimpleBasicAuthentication.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestSimpleBasicAuthentication.aspx.designer.cs">
-      <DependentUpon>TestSimpleBasicAuthentication.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Utility\BookmarkTagAction.cs" />
     <Compile Include="Utility\DataUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\UserCredentials.xml" />
+    <Content Include="App_Data\UserCredentials.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -277,7 +267,6 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="TestSimpleBasicAuthentication.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -321,6 +310,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookmarkSharp.DataModel\BookmarkSharp.DataModel.csproj">
+      <Project>{ef639fda-8733-4d73-b678-386be8605281}</Project>
+      <Name>BookmarkSharp.DataModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

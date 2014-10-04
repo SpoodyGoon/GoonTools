@@ -30,7 +30,7 @@ namespace BookmarkSharp.DataAccess.CRUD
                     bookmark.URL = reader["URL"].ToString();
                     bookmark.Position = Convert.ToInt32(reader["Position"]);
                     bookmark.Comment = reader["Comment"].ToString();
-                    bookmark.BookmarkStatus = DataUtility.ModelStatusParse(reader["StatusName"].ToString());
+                    bookmark.BookmarkStatus = BookmarkSharp.DataModel.Utility.ModelStatusParse(reader["StatusName"].ToString());
                 }
                 reader.Close();
                 connection.Close();
@@ -84,7 +84,7 @@ namespace BookmarkSharp.DataAccess.CRUD
                         URL = reader["URL"].ToString(),
                         Position = Convert.ToInt32(reader["Position"]),
                         Comment = reader["Comment"].ToString(),
-                        BookmarkStatus = DataUtility.ModelStatusParse(reader["StatusName"].ToString())
+                        BookmarkStatus = BookmarkSharp.DataModel.Utility.ModelStatusParse(reader["StatusName"].ToString())
                     });
 
                 }
@@ -120,7 +120,7 @@ namespace BookmarkSharp.DataAccess.CRUD
                             URL = reader["URL"].ToString(),
                             Position = Convert.ToInt32(reader["Position"]),
                             Comment = reader["Comment"].ToString(),
-                            BookmarkStatus = DataUtility.ModelStatusParse(reader["StatusName"].ToString())
+                            BookmarkStatus = BookmarkSharp.DataModel.Utility.ModelStatusParse(reader["StatusName"].ToString())
                         });
                     }
                     reader.Close();
@@ -152,7 +152,7 @@ namespace BookmarkSharp.DataAccess.CRUD
                     folder.Depth = Convert.ToInt32(reader["Depth"]);
                     folder.Position = Convert.ToInt32(reader["Position"]);
                     folder.Comment = reader["Comment"].ToString();
-                    folder.FolderStatus = DataUtility.ModelStatusParse(reader["StatusName"].ToString());
+                    folder.FolderStatus = BookmarkSharp.DataModel.Utility.ModelStatusParse(reader["StatusName"].ToString());
                 }
                 reader.Close();
                 connection.Close();
@@ -199,7 +199,7 @@ namespace BookmarkSharp.DataAccess.CRUD
                         Depth = Convert.ToInt32(reader["Depth"]),
                         Position = Convert.ToInt32(reader["Position"]),
                         Comment = reader["Comment"].ToString(),
-                        FolderStatus = DataUtility.ModelStatusParse(reader["StatusName"].ToString())
+                        FolderStatus = BookmarkSharp.DataModel.Utility.ModelStatusParse(reader["StatusName"].ToString())
                     });
                 }
 
@@ -232,7 +232,7 @@ namespace BookmarkSharp.DataAccess.CRUD
                             Depth = Convert.ToInt32(reader["Depth"]),
                             Position = Convert.ToInt32(reader["Position"]),
                             Comment = reader["Comment"].ToString(),
-                            FolderStatus = DataUtility.ModelStatusParse(reader["StatusName"].ToString())
+                            FolderStatus = BookmarkSharp.DataModel.Utility.ModelStatusParse(reader["StatusName"].ToString())
                         });
                     }
 
@@ -266,7 +266,7 @@ namespace BookmarkSharp.DataAccess.CRUD
                     tag.BitMask = Convert.ToInt32(reader["BitMask"]);
                     tag.Position = Convert.ToInt32(reader["Position"]);
                     tag.Comment = reader["Comment"].ToString();
-                    tag.TagStatus = DataUtility.ModelStatusParse(reader["StatusName"].ToString());
+                    tag.TagStatus = BookmarkSharp.DataModel.Utility.ModelStatusParse(reader["StatusName"].ToString());
                 }
 
                 reader.Close();
@@ -305,7 +305,7 @@ namespace BookmarkSharp.DataAccess.CRUD
                         BitMask = Convert.ToInt32(reader["BitMask"]),
                         Position = Convert.ToInt32(reader["Position"]),
                         Comment = reader["Comment"].ToString(),
-                        TagStatus = DataUtility.ModelStatusParse(reader["StatusName"].ToString())
+                        TagStatus = BookmarkSharp.DataModel.Utility.ModelStatusParse(reader["StatusName"].ToString())
                     });
                 }
 

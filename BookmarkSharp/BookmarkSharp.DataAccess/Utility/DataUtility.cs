@@ -7,16 +7,16 @@ namespace BookmarkSharp.DataAccess.Utility
 {
     public static class DataUtility
     {
-        public static ModelStatus ModelStatusParse(string statusName)
-        {
-            ModelStatus outModelStatus;
-            ModelStatus returnStatus = ModelStatus.None;
-            if (Enum.TryParse<ModelStatus>(statusName, out outModelStatus))
-            {
-                returnStatus = outModelStatus;
-            }
-            return returnStatus;
-        }
+        //public static ModelStatus ModelStatusParse(string statusName)
+        //{
+        //    ModelStatus outModelStatus;
+        //    ModelStatus returnStatus = ModelStatus.None;
+        //    if (Enum.TryParse<ModelStatus>(statusName, out outModelStatus))
+        //    {
+        //        returnStatus = outModelStatus;
+        //    }
+        //    return returnStatus;
+        //}
 
         private const string TagXMLFormat = "<Tags>{0}</Tags>";
         private const string TagIDXMLFormat = "<TagID>{0}</TagID>";
@@ -35,7 +35,7 @@ namespace BookmarkSharp.DataAccess.Utility
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["BSConn"].ToString();
+                return System.Configuration.ConfigurationManager.ConnectionStrings["BSConn"].ConnectionString;
             }
         }
     }
