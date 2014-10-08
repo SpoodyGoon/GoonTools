@@ -11,7 +11,7 @@ namespace BookmarkSharp.DataModel
         public string URL { get; set; }
         public int Position { get; set; }
         public string Comment { get; set; }
-        public ModelStatus BookmarkStatus { get; set; }
+        public Nullable<ModelStatus> BookmarkStatus { get; set; }
         public string BookmarkStatusName
         {
             get { return this.BookmarkStatus.ToString(); }

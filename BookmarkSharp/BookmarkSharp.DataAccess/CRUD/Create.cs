@@ -88,14 +88,10 @@ namespace BookmarkSharp.DataAccess.CRUD
                 command.Parameters.AddWithValue("@TagName ", tag.TagName);
                 command.Parameters.AddWithValue("@BitMask", tag.BitMask);
                 command.Parameters.AddWithValue("@Position", tag.Position);
+                command.Parameters.AddWithValue("@StatusID", tag.TagStatus);
                 if (!string.IsNullOrEmpty(tag.Comment))
                 {
                     command.Parameters.AddWithValue("@Comment", tag.Comment);
-                }
-
-                if (tag.TagStatus != null)
-                {
-                    command.Parameters.AddWithValue("@StatusID", tag.TagStatus);
                 }
 
                 connection.Open();
@@ -124,7 +120,7 @@ namespace BookmarkSharp.DataAccess.CRUD
                 command.Parameters.AddWithValue("@FullName", config.FullName);
                 command.Parameters.AddWithValue("@UserName", config.UserName);
                 command.Parameters.AddWithValue("@Password", config.Password);
-                command.Parameters.AddWithValue("@IsActive", (int)(config.IsActive ? 1:0));
+                command.Parameters.AddWithValue("@IsActive", (int)(config.IsActive ? 1 : 0));
                 connection.Open();
                 command.ExecuteNonQuery();
                 config.ConfigID = Convert.ToInt32(configIDParameter.Value);

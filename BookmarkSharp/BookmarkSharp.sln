@@ -5,6 +5,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkSharp.DataAccess", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkSharp.DataModel", "BookmarkSharp.DataModel\BookmarkSharp.DataModel.csproj", "{EF639FDA-8733-4D73-B678-386BE8605281}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BookmarkSharpLayout", "http://localhost:59132", "{90C8F299-CBD4-4931-9E8A-B3BE56CBC102}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_59132"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\WebSites\BookmarkSharpLayout\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59132\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_59132"
+		Release.AspNetCompiler.PhysicalPath = "..\..\WebSites\BookmarkSharpLayout\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59132\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\..\WebSites\BookmarkSharpLayout\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +41,10 @@ Global
 		{EF639FDA-8733-4D73-B678-386BE8605281}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF639FDA-8733-4D73-B678-386BE8605281}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF639FDA-8733-4D73-B678-386BE8605281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90C8F299-CBD4-4931-9E8A-B3BE56CBC102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90C8F299-CBD4-4931-9E8A-B3BE56CBC102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90C8F299-CBD4-4931-9E8A-B3BE56CBC102}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{90C8F299-CBD4-4931-9E8A-B3BE56CBC102}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
