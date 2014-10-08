@@ -1,9 +1,10 @@
-﻿
+﻿using System;
+
 namespace BookmarkSharp.DataModel
 {
     public class BookmarkTag
     {
-        public int TagID { get; set; }
+        public Nullable<int> TagID { get; set; }
         public string TagName { get; set; }
         public int BitMask { get; set; }
         public int Position { get; set; }

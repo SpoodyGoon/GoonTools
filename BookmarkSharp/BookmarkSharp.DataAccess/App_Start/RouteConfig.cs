@@ -30,6 +30,12 @@ namespace BookmarkSharp.DataAccess
                  url: "{controller}/{action}/{id}",
                  defaults: new { controller = "Folder", action = "Get", id = UrlParameter.Optional }
              );
+
+            routes.MapRoute(
+                 name: "Tags",
+                 url: "{controller}/{action}/{id}",
+                 defaults: new { controller = "Tags", action = "Get", id = UrlParameter.Optional }
+             );
         }
     }
 }
