@@ -1,0 +1,221 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+{
+    border-style: none;
+    border-color: -moz-initial;
+    border-width: 0px;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
+{
+    display: block;
+}
+
+body
+{
+    line-height: 1;
+}
+
+ol, ul
+{
+    list-style-type: none;
+    list-style-position: outside;
+    list-style-image: none;
+}
+
+blockquote, q
+{
+    quotes: none;
+}
+
+    blockquote:before, blockquote:after, q:before, q:after
+    {
+        content: none;
+    }
+
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+html
+{
+    height: 100%;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary
+{
+    display: block;
+}
+
+body
+{
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+
+h1
+{
+    font-size: 22pt;
+    font-family: 'Black Ops One', cursive;
+    color: #FFFF00;
+    display: inline-block;
+    margin-left: 10%;
+    margin-top: 14px;
+}
+
+h4
+{
+    font-size: 14pt;
+    font-family: 'Black Ops One', cursive;
+    color: #FFFF00;
+    display: inline-block;
+}
+
+#MainContainer
+{
+    margin-top: 5px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    width: 85%;
+    min-width: 550px;
+    min-height: 100%;
+    height: auto !important;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: black;
+    border-right-width: 2px;
+    border-right-style: solid;
+    border-right-color: black;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-left-width: 2px;
+    border-left-style: solid;
+    border-left-color: black;
+    -webkit-border-radius: 4px 4px 0px 0px;
+    border-radius: 4px 4px 0px 0px;
+    overflow: hidden;
+    z-index: 999;
+    background-color: #859992;
+}
+
+#PageHeader
+{
+    height: 80px;
+    -webkit-box-shadow: 10px 10px 18px 5px #cccccc;
+    box-shadow: 10px 10px 18px 5px #cccccc;
+    border-bottom-width: 4px;
+    border-bottom-style: double;
+    border-bottom-color: black;
+}
+
+.middle
+{
+    width: 100%;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 75px;
+    padding-left: 0px;
+    position: relative;
+}
+
+    .middle:after
+    {
+        display: table;
+        clear: both;
+        content: "";
+    }
+
+#PageContainer
+{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+}
+
+#PageContent
+{
+    padding-top: 15px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 170px;
+    position: relative;
+    clip: rect(auto, auto, -45px, auto);
+    background-color: #FFFFCC;
+    z-index:1;
+}
+
+#LeftMenu
+{
+    float: left;
+    width: 150px;
+    margin-left: -100%;
+    position: relative;
+    border-right:solid solid 1px;
+    z-index:10;
+    background-color: #859992;
+}
+
+#PageFooter
+{
+    margin-top: -45px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    width: 85%;
+    min-width: 550px;
+    height: 45px;
+    background-color: #333333;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0% 0%;
+    position: relative;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: black;
+    color: #ffffcc;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+    #PageFooter p
+    {
+        margin: 15px auto 15px 25px;
+    }
+
+#LeftNavigation
+{
+    margin-top: 20px;
+}
+
+    #LeftNavigation a
+    {
+        text-align: left;
+        margin-left: 10px;
+        display: block;
+    }
+
+        #LeftNavigation a:hover
+        {
+        }
+
+        #LeftNavigation a:link
+        {
+        }
+
+        #LeftNavigation a:visited
+        {
+        }
